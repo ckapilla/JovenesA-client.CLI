@@ -1,0 +1,19 @@
+<p>
+JovenesA WebA2
+<p>
+
+<h2>Ping Tests</h2>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button class="btn btn-primary btn-margin" routerLink=" [''] ">Home</button>
+      <button class="btn btn-primary btn-margin" routerLink=" ['ping'] ">Ping</button>
+      <button class="btn btn-primary btn-margin" routerLink=" ['profile'] " *ngIf="auth.isAuthenticated()">Profile</button>
+    </div>
+  </div>
+</nav>
+
+<main class="container">
+  <router-outlet></router-outlet>
+</main>
+

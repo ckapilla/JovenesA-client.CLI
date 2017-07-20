@@ -1,0 +1,61 @@
+<div class="panel panel-primary">
+  <div class="panel-heading" style="font-size:large">
+    Latest Student Sponsor Letters
+  </div>
+  <div class="panel-body">
+    <span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
+    <span *ngIf="successMessage" class="alert alert-success">{{successMessage}}</span>
+
+
+    <div [ngSwitch]="isLoading">
+      <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
+        <loading-container>
+        </loading-container>
+      </div>
+      <div *ngSwitchCase="false">
+        <table class="table">
+
+          <thead>
+            <tr>
+              <!--<td>Id</td>-->
+              <td></td>
+              <td>Student Name</td>
+              <td>Sponsor Group Name</td>
+              <td>Primary Sponsor Name</td>
+              <td>Sponsor Email</td>
+              <td>Sponsor Phone</td>
+              <td>Latest&nbsp;Letter</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let lmr of latestStudentLetters, let i = index">
+              <td>
+                {{ i+1 }}
+              </td>
+            <td>
+                {{ lmr.studentName }}
+              </td>
+              <td>
+                {{ lmr.sponsorGroupName }}
+              </td>
+              <td>
+                {{ lmr.primarySponsorName }}
+              </td>
+              <td>
+                {{ lmr.sponsorEmail }}
+              </td>
+              <td>
+                {{ lmr.sponsorPhone }}
+              </td>
+              <td (click)='gotoStudentLetter(lmr.studentId)' class='link'>
+                {{ lmr.latestMonth }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+  l

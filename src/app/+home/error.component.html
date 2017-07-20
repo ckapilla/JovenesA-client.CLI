@@ -1,0 +1,15 @@
+<div class="bodytext">
+  <h3>Oops we could not reach the page you requsted.</h3>
+
+  <div *ngIf="!auth.isAuthenticated()">
+
+ The URL you linked to is not accessible until you are logged in.
+   Please login using the button at top-right of the page.<br/>
+ After login, select your desired destination from the top menus.
+
+    <div>You can request a new password when you <a href="#" (click)="auth.login()">Log In</a>.</div>
+     <div>If you have any difficulties logging in please contact <a href='mailto:chris@kapilla.net'>webmaster</a> for assistance.</div>
+  </div>
+
+</div>
+

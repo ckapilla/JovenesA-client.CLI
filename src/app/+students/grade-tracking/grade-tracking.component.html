@@ -1,0 +1,57 @@
+<div class="panel panel-primary">
+  <div class="panel-heading" style="font-size:large">
+    Latest Mentor Reports
+  </div>
+  <div class="panel-body">
+    <span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
+    <span *ngIf="successMessage" class="alert alert-success">{{successMessage}}</span>
+
+
+    <div [ngSwitch]="isLoading">
+      <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
+        <loading-container>
+        </loading-container>
+      </div>
+      <div *ngSwitchCase="false">
+        <table class="table">
+
+          <thead>
+            <tr>
+              <!--<td>Id</td>-->
+              <td></td>
+              <td>Period</td>
+              <td>Given Out Date</td>
+              <td>Due Date</td>
+              <td>Turned-in Date</td>
+              <td>Grade Pt Avg</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let lmr of latestMentorReports, let i = index">
+              <td>
+                {{ i+1 }}
+              </td>
+              <td>
+                &nbsp;
+              </td>
+              <td >
+                &nbsp;
+              </td>
+              <td >
+                <img src="{{smileys[1]}}" width="24px" />
+              </td>
+              <td >
+                &nbsp;
+              </td>
+              <td >
+                &nbsp;
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+  l

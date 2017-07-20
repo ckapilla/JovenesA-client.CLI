@@ -1,0 +1,121 @@
+  <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+  <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
+  <div [ngSwitch]="isLoading">
+    <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
+      <loading-container>
+      </loading-container>
+    </div>
+    <div *ngSwitchCase="false">
+
+    <form [formGroup]="profileForm" class="form-horizontal" >
+
+        <div class="form-group">
+          <span class="controls">
+            <span class="btn btn-primary btn-xs"
+            (click)="location.back()">
+            &lt;&lt; Back
+            </span>
+          </span>
+
+          <!--<span class="controls">
+            <span class="btn btn-primary btn-xs"
+            (click)="mentorReportsReview()">
+            Mentor Reports
+            </span>
+          </span>-->
+
+        </div>
+
+
+        <div class="form-group">
+          <div class="controls">
+            <label for="inputMemberFName">First Name(s)</label>
+            <input id="inputMemberFName"
+                  formControlName="inputMemberFName"
+                  [(ngModel)]="member.firstNames"
+                  class="form-control input-sm" type="text" placeholder="First Name"
+                  />
+            <display-errors control="inputMemberFName" class="red"
+              [errors]="{
+                'required': 'First name is required',
+                'maxlength': 'Member First name cannot exceed 30 characters in length.'
+              }"></display-errors>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="controls">
+            <label for="inputMemberLName">Last Name(s)</label>
+            <input id="inputMemberLName"
+                   formControlName="inputMemberLName"
+                   [(ngModel)]="member.lastNames"
+                   type="text" class="form-control input-sm" placeholder="Last Name"
+                   />
+            <display-errors control="inputMemberLName" class="red"
+              [errors]="{
+                'required': 'Last name is required',
+                'maxlength': 'Member Last name cannot exceed 30 characters in length.'
+              }"></display-errors>
+          </div>
+        </div>
+
+        <div class="form-group" >
+          <div class="controls">
+            <label for="inputMemberSMAPhone">SMA Phone</label>
+            <input id="inputMemberSMAPhone"
+                  formControlName="inputMemberSMAPhone"
+                  [(ngModel)]="member.smaPhone"
+                  type="text" class="form-control input-sm" placeholder="Best Phone Number when in SMA"
+                  />
+            </div>
+        </div>
+
+
+        <div class="form-group" >
+          <div class="controls">
+            <label for="inputMemberNonSMAPhone">Non-SMA Phone</label>
+            <input id="inputMemberNonSMAPhone"
+                  formControlName="inputMemberNonSMAPhone"
+                  [(ngModel)]="member.NonSmaPhone"
+                  type="text" class="form-control input-sm" placeholder="Best Phone Number when not in SMA"
+                  />
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <div class="controls">
+          <label for="EnglishLevelSelector">English Level:</label>
+          <select formControlName="EnglishLevelSelector"
+                  class="form-control input-sm"
+              [(ngModel)]="member.englishSkillLevelId" >
+            <option *ngFor="let status of statuses" [value]="status.statusId">{{status.label}}</option>
+          </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="controls">
+          <label for="SpanishLevelSelector">Spanish Level:</label>
+          <select formControlName="SpanishLevelSelector"
+                  class="form-control input-sm"
+              [(ngModel)]="member.spanishSkillLevelId" >
+            <option *ngFor="let status of statuses" [value]="status.statusId">{{status.label}}</option>
+          </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="controls">
+            <button class="btn btn-primary"
+            (click)="saveProfile()"
+            [disabled]="!profileForm.valid">
+            Save
+            </button> <span class="red" [hidden]="profileForm.valid">All required fields must be filled in before saving.</span>
+          </div>
+        </div>
+    </form>
+    </div>
+  </div>
+
+

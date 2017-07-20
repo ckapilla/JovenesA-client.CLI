@@ -1,16 +1,103 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { APP_BASE_HREF, Location } from '@angular/common';
+// import { RouterModule } from '@angular/router';
+import { HttpModule, Http } from '@angular/http';
+import { AUTH_PROVIDERS, AuthHttp, AuthConfig } from 'angular2-jwt/angular2-jwt';
+import { Auth } from './app_shared/services/auth.service';
 
 import { AppComponent } from './app.component';
 
+import { appRouting, appRoutingProviders } from './app.routing';
+import { CanActivateViaAdminAuthGuard,
+          CanActivateViaMentorAuthGuard,
+          CanActivateViaStudentAuthGuard,
+          ConfirmDeactivateGuard  } from './app.routing-guards';
+// every module that has a routing component needs to be imported here
+import { AboutModule } from './+about/about.module';
+import { HomeModule } from './+home/home.module';
+import { AdminsModule } from './+admins/admins.module';
+import { MentorsModule } from './+mentors/mentors.module';
+import { StudentsModule } from './+students/students.module';
+import { ReportsModule } from './+reports/reports.module';
+
+/////
+import { AppSharedModule } from './app_shared/app_shared.module';
+import { SessionService } from './app_shared/services/session.service';
+import { SqlResource } from './app_shared/services/sql-resource';
+
+export function getNewAuthProviders(http) {
+    return new AuthHttp(new AuthConfig(), http);
+}
+
 @NgModule({
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule,
+    HttpModule,
+    appRouting,
+    appRoutingProviders,
+    // RouterModule,
+    ReactiveFormsModule,
+    AboutModule,
+    HomeModule,
+    AdminsModule,
+    MentorsModule,
+    StudentsModule,
+    ReportsModule,
+    AppSharedModule.forRoot()
+  ],
+
   declarations: [
     AppComponent
   ],
-  imports: [
-    BrowserModule
+
+  exports: [
+    ReactiveFormsModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_BASE_HREF,
+      useValue: '<%= APP_BASE %>'
+    },
+    Location,
+    // AUTH_PROVIDERS,
+    // {
+    //   provide: AuthHttp,
+    //   useFactory(http: Http) {
+    //     return new AuthHttp(new AuthConfig(), http);
+    //   },
+    //   // useFactory: getNewAuthProviders,
+    //   deps: [Http]
+    // },
+    Auth,
+    {
+      provide: SessionService,
+      useFactory() {
+        console.log('New SessionService##');
+        return new SessionService();
+      }
+    },
+    SessionService,
+    SqlResource,
+    CanActivateViaAdminAuthGuard,
+    CanActivateViaMentorAuthGuard,
+    CanActivateViaStudentAuthGuard,
+    ConfirmDeactivateGuard,
+    // {
+    //   provide: SqlResource,
+    //   useFactory: () => {
+    //     console.log('New SqlResource');
+    //     return new SqlResource(http: AuthHttp);
+    //   },
+    //   deps: [AuthHttp]
+    // }
+  ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

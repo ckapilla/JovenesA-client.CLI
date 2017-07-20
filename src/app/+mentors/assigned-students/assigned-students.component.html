@@ -1,0 +1,27 @@
+<div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+<div *ngIf = "!errorMessage" class="container">
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>Student Name</th>
+          <!--<th>Email</th>-->
+          <th>Meeting Status</th>
+          <th>Report Status</th>
+          <th>Latest Snapshot</th>
+        </tr>
+      </thead>
+      <tbody>
+
+            <tr *ngFor="let item of studentMentors, let i = index" 
+              [ngClass]="setRowClasses(item.studentId)"  
+              id="item.studentId" 
+              (click)='selectStudent(item.studentId, i)'>
+              <td>{{item.studentLastNames}}, {{item.studentFirstNames}}</td>
+              <!--<td>{{item.studentEmail}}</td>-->
+              <td><img src='../../../assets/images/{{item.timelyMentorMeetingStatus}}.jpg' height='22'></td>
+              <td><img src='../../../assets/images/{{item.timelyMentorReportStatus}}.jpg' height='22'></td>
+              <td><img src='../../../assets/images/{{smileys[item.studentSnapshotStatus + 1]}}' height='22'></td>
+            </tr>
+      </tbody>
+    </table>
+</div>

@@ -1,0 +1,66 @@
+<div class="panel panel-primary">
+  <div class="panel-heading" style="font-size:large">
+    Members by Type
+  </div>
+  <div class="panel-body">
+    <span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
+    <span *ngIf="successMessage" class="alert alert-success">{{successMessage}}</span>
+
+    <div>
+      <form>
+
+        <label for="TypeSelector">Type:</label>
+        <select name="TypeSelector" [(ngModel)]="selectedType"
+        >
+          <!--(change)="setSelectedType($event.target.value)">-->
+          <option *ngFor="let type of types" [ngValue]="type">{{type.label}}</option>
+          </select>
+
+        <!--<button class="btn default-btn" (click)="fetchFilteredData()">Submit</button>-->
+      </form>
+
+    </div>
+    <div [ngSwitch]="isLoading">
+      <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
+        <loading-container>
+        </loading-container>
+      </div>
+      <div *ngSwitchCase="false">
+        <table class="table">
+
+          <thead>
+            <tr>
+              <!--<td>Id</td>-->
+              <td></td>
+              <td>Member</td>
+              <td>Email</td>
+              <td>Related Student</td>
+              <td>Communication History</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let member of members, let i = index">
+              <td>
+                {{ i+1 }}
+              </td>
+              <td (click)='gotoMember(member.memberId, member.memberName)' class='link' >
+                {{ member.lastNames }}, {{ member.firstNames }}
+              </td>
+              <td >
+                <a href='mailto:{{ member.email }}'>{{ member.email }}</a>
+              </td>
+              <td>
+                {{ member.relatedStudentName }}
+              </td>
+              <td (click)='gotoCommunications(member.memberId, member.memberName)' class='link' >
+                Communication History
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+  l

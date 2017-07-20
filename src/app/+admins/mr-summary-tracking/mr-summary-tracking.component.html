@@ -1,0 +1,125 @@
+<div class="panel panel-primary">
+  <div class="panel-heading" style="font-size:large"> Mentor Reports Sponsor Summary Tracking</div>
+<div class="panel-body">
+  <span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
+  <span *ngIf="successMessage" class="alert alert-success">{{successMessage}}</span>
+
+    <div>
+        <div class="controls">
+
+          <label for="yearSelector">&nbsp;Report Year/Month:</label>
+          <select name="yearSelector" [(ngModel)]="selectedYear" (change)="setSelectedYear($event.target.value)">>
+            <option *ngFor="let year of years" [value]="year.value">{{year.label}}</option>
+          </select>
+          <select name="monthSelector" [(ngModel)]="selectedMonth" (change)="setSelectedMonth($event.target.value)">
+            <option *ngFor="let month of months" [value]="month.value">{{month.label}}</option>
+          </select>
+
+          <label for="SponsorSummaryStatusSelector">SponsorSummary Status:</label>
+          <select name="SponsorSummaryStatusSelector" [(ngModel)]="selectedSponsorSummaryStatus" (change)="setSelectedSponsorSummaryStatus($event.target.value)">
+            <option *ngFor="let status of sponsorSummaryStatuses" [value]="status.value">{{status.label}}</option>
+          </select>
+
+          <label for="highlightStatusSelector">&nbsp;Highlight Status:</label>
+          <select name="highlightStatusSelector" [(ngModel)]="selectedHighlightStatus" (change)="setSelectedHighlightStatus($event.target.value)">
+            <option *ngFor="let status of highlightStatuses" [value]="status.value">{{status.label}}</option>
+          </select>
+
+        </div>
+
+
+    </div>
+
+  <div [ngSwitch]="isLoading">
+    <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
+      <loading-container>
+      </loading-container>
+    </div>
+    <div *ngSwitchCase="false">
+      <div class="row" style="border-bottom: 3px solid #ccc; margin-top: 2px;" *ngFor="let lmr of mentorReportByMonth, let i = index">
+<div class="col-md-12">
+
+  <div class="row" id= '{{"id" + lmr.mentorReportId}}'>
+          &nbsp;
+          <button class="btn default-btn"  (click)="gotoMentorReport(lmr.mentorReportId)">Review</button>
+        &nbsp;
+
+    <span class="padded link">
+              [Student:
+              {{ lmr.studentName }} ]
+          </span>
+    <span class="padded">
+              [Mentor:
+              {{ lmr.mentorName }} ]
+          </span>
+    <span class="padded">
+              [Sponsor:
+              {{ lmr.sponsorLastName }}, {{ lmr.sponsorFirstName}} ]
+          </span>
+
+  </div>
+
+  <div class="row">
+    <span class="padded">
+              &nbsp;Sponsor Summary Status: {{ lmr.sponsorSummaryStatus }}
+    </span>
+    <span class="padded">
+              &nbsp;Highlight Status: {{ lmr.highlightStatus }}
+    </span>
+  </div>
+  <div class="row">
+    <span class="padded">
+            &nbsp;Report Date:
+            {{ lmr.reportDateTime | truncateDate }}
+          </span>
+    <span class="padded">
+            &nbsp;Last Contact Month:
+
+           {{ lmr.latestMonth }}
+          </span>
+    <span class="padded">
+            &nbsp;Student Snapshot:
+            <img src="{{smileys[lmr.mentorReportSnapshot+1]}}" width="24px" />
+          </span>
+  </div>
+  <!--<div class="row">
+    <div class="padded">
+      &nbsp;Follow-up Needed:
+    </div>
+    <div class="col-md-10">
+      {{ lmr.followUpNeeded }}
+    </div>
+  </div>-->
+  <div class="row">
+    <div class="col-md2 padded">
+      &nbsp;Positive Events:
+    </div>
+    <div class="col-md-10">
+      {{ lmr.recentSuccess }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="padded">
+      &nbsp;Challenges:
+    </div>
+    <div class="col-md-10">
+      {{ lmr.recentSetback }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="padded">
+           Sponsor Summary   <!--[{{ lmr.mentorPreferredLanguageId | alphaLanguage }} --&gt; {{ lmr.sponsorPreferredLanguageId | alphaLanguage }} {{ translationNeeded(lmr.mentorPreferredLanguageId,lmr.sponsorPreferredLanguageId) }}]-->
+    </div>
+    <div class="col-md-10">
+      {{ lmr.sponsorSummary }}
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+l

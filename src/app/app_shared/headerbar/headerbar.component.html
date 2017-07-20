@@ -1,0 +1,31 @@
+<div class="fixedbar">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <div class="logo">
+          <div class="pull-left">
+            <h3>
+              <a href="#"><img src="../../../assets/images/JAPrivadaLogo.png"  /></a>
+            </h3>
+          </div>
+          <div class="pull-right">
+            <section id="login">
+              <button class="btn btn-primary btn-sm" (click)="auth.login()" *ngIf="!auth.isAuthenticated()">Log In / Iniciar sesión</button>
+              <span *ngIf="auth.isAuthenticated()">Welcome {{auth.nickname}} <br/></span>
+              <span class="link" (click)="auth.logout()" *ngIf="auth.isAuthenticated()">Log Out</span>
+            </section>
+          </div>
+          <div class="navi">
+            <nav>
+              <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['']">Home</a>
+              <a [routerLinkActive]="['active']" [routerLink]="['admins']" [hidden]=!isAdminWithValidToken()>Admins</a>
+              <a [routerLinkActive]="['active']" [routerLink]="['mentors']" [hidden]=!isMentorWithValidToken()>Mentors</a>
+              <a [routerLinkActive]="['active']" [routerLink]="['students']" [hidden]=!isStudentWithValidToken()>Estudiantes</a>
+              <a [routerLinkActive]="['active']" [routerLink]="['reports']" [hidden]=!isAdminWithValidToken()>Reports</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

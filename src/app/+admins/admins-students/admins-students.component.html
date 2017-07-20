@@ -1,0 +1,121 @@
+<div class="panel panel-primary">
+  <div class="panel-heading" style="font-size:large">
+    Students by Status
+  </div>
+  <div class="panel-body">
+    <span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
+    <span *ngIf="successMessage" class="alert alert-success">{{successMessage}}</span>
+
+    <div>
+
+
+        <label for="StatusSelector">Status:</label>
+        <select name="StatusSelector" [(ngModel)]="selectedStatus" (change)="setSelectedStatus($event.target.value)">
+          <option *ngFor="let status of statuses" [value]="status.value">{{status.label}}</option>
+          </select>
+
+        <label for="YearJoinedSelector">Year Joined JA:</label>
+        <select name="YearJoinedSelector" [(ngModel)]="selectedYearJoined" (change)="setSelectedYearJoined($event.target.value)">
+          <option *ngFor="let year of joinedYears" [value]="year.value">{{year.label}}</option>
+          </select>
+
+        <label for="GradYearSelector">Graduation Year:</label>
+        <select name="GradYearSelector" [(ngModel)]="selectedGradYear" (change)="setSelectedGradYear($event.target.value)">
+          <option *ngFor="let year of gradYears" [value]="year.value">{{year.label}}</option>
+          </select>
+
+        <!--<button class="btn default-btn" (click)="fetchFilteredData()">Submit</button>-->
+
+
+    </div>
+    <div [ngSwitch]="isLoading">
+      <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
+        <loading-container>
+        </loading-container>
+      </div>
+      <div *ngSwitchCase="false">
+        <table class="table">
+
+          <thead>
+            <tr>
+              <!--<td>Id</td>-->
+              <td></td>
+              <td>Student</td>
+              <td>Status</td>
+              <td>Year<br /> Joined</td>
+              <td>Grad<br /> Year/Mo</td>
+              <td>&nbsp;&nbsp;Grades<br />GPA&nbsp;&nbsp;OnTime</td>
+            <td>Assigned Mentor</td>
+              <td>&nbsp;&nbsp;Mentor Reports<br />Mtg&nbsp;&nbsp;Rpt&nbsp;Snapshot</td>
+              <!--<td>Quarterly Assessments</td>-->
+
+
+              <td>Sponsor</td>
+              <td>Sponsor Letters</td>
+              <td>Univ</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let student of studentDTOs, let i = index">
+              <!--<td class='centered'>
+            {{ student.studentDTOId}}
+          </td>-->
+              <td>
+                {{ i+1 }}
+              </td>
+              <td (click)='gotoStudent(student.studentDTOId, student.studentName)' class='link'>
+                {{ student.studentName }}
+              </td>
+              <td class='centered'>
+                {{ student.status }}
+              </td>
+              <td class='centered'>
+                {{ student.yearJoinedJa}}
+              </td>
+              <td class='centered'>
+                {{ student.gradYear}}/{{ student.gradMonth}}
+              </td>
+              <td style="text-align:center;white-space: nowrap">
+                <img src="/assets/images/{{student.gpaStatus}}.jpg" height="22">
+                &nbsp;&nbsp;
+                <img src="/assets/images/{{student.gradeRptStatus}}.jpg" height="22">
+              </td>
+              <td>
+                {{ student.mentorName }}
+              </td>
+              <td style="text-align:center;white-space: nowrap">
+                <img src="/assets/images/{{student.timelyMentorMeetingStatus}}.jpg" height="22">
+                <img src="/assets/images/{{student.timelyMentorReportStatus}}.jpg" height="22">
+                <img src="{{smileys[student.studentSnapshotStatus + 1]}}" width="24" />
+                <span (click)='gotoReport(student.studentDTOId)' class='link'>
+                View</span>
+                <!--<a ui-sref="mentorReportList({mentorId: 0, studentId: {{student.studentDTOId}}, studentName: '{{student.studentName}}' })">
+              <button class="btn btn-sm">&gt;</button>-->
+                <!--</a>-->
+              </td>
+              <!--<td class='centered'>
+                      <img ng-src="{{vm.smileys[student.studentAssessmentStatus + 1]}}" width="24" />
+            <a ui-sref="quarterlyReportList({studentId: {{student.studentDTOId}}, studentName: '{{student.studentName}}' })">
+              <button class="btn btn-sm">&gt;</button>
+              </a>
+          </td>-->
+
+
+              <td>
+                {{ student.sponsorName }}
+              </td>
+              <td class='centered'>
+                <img src="/assets/images/{{student.timelyStudentLetterStatus}}.jpg" height="22">
+              </td>
+              <td>
+                {{ student.universityAbbrev }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+  l

@@ -1,0 +1,8 @@
+<nav>
+  <a [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{ exact: true }" [routerLink]="['/admins']">Welcome</a>
+  <a [routerLinkActive]="['active']" [routerLink]="['/admins/profile', currUserId]">Profile</a>
+  <a [routerLinkActive]="['active']" [routerLink]="['/admins/students']">Students</a>
+  <a [routerLinkActive]="['active']" [routerLink]="['/admins/members']">Members</a>
+  <a [routerLinkActive]="['active']" [routerLink]="['/admins/mentor-reports/summary-tracking']">Sponsor Summaries</a>
+  <a [routerLinkActive]="['active']" [routerLink]="['/admins/mentor-reports/follow-up-tracking']">Follow-Up Tracking</a>
+</nav>

@@ -1,0 +1,73 @@
+<div class="panel panel-primary">
+  <div class="panel-heading" style="font-size:large">
+    Review Sponsor Summary for {{mentorReport.studentName}}
+  </div>
+  <div class="panel-body">
+    <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+    <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
+    <div [ngSwitch]="isLoading">
+      <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
+        <loading-container>
+        </loading-container>
+      </div>
+      <div *ngSwitchCase="false">
+
+
+        <form [formGroup]="frmUpdate">
+
+
+          <div class="form-group">
+
+          </div>
+
+          <div class="controls">
+            <label for="summaryStatusSelector">Sponsor Summary Status:</label>
+            <select formControlName="summaryStatusSelector" class="form-control input-sm" [(ngModel)]="mentorReport.sponsorSummaryStatusId">
+              <option *ngFor="let status of sponsorSummaryStatuses" [value]="status.value">{{status.label}}</option>
+            </select>
+            <display-errors control="summaryStatusSelector" class="red" [errors]="{
+                  'required': 'Summary Status is required'
+                }"></display-errors>
+          </div>
+
+          <div class="controls">
+            <label for="highlightStatusSelector">Highlight Status:</label>
+            <select formControlName="highlightStatusSelector" class="form-control input-sm" [(ngModel)]="mentorReport.highlightStatusId">
+              <option *ngFor="let status of highlightStatuses" [value]="status.value">{{status.label}}</option>
+            </select>
+          </div>
+
+          <div class="controls">
+            <label for="inputSummary">Sponsor Summary</label>
+            <textarea id="inputSummary" #summary formControlName="inputSummary" [(ngModel)]="mentorReport.sponsorSummary" type="text"
+              class="form-control input-sm" placeholder="Summary from Above">
+          </textarea>
+            <display-errors control="inputSummary" class="red" [errors]="{'required': 'An entry is required, even if it is just N/A',
+                'maxlength': 'Entry cannot exceed 2000 characters in length.'
+                }"></display-errors>
+          </div>
+
+          <div class="col-md-6 col-md-offset-1">
+            <span>
+                  <button class="btn btn-primary"
+                  style="width:80px;margin-right:10px"
+                  (click)="onSubmit()"
+                  >
+            Save
+                  </button>
+            </span>&nbsp;
+            <span>
+                <button class="btn btn-default"
+                  style="width:70px"
+                  (click)="onCancel()">
+            Cancel
+                  </button>
+              <!--<div class="red" [hidden]="frmUpdate.valid">Student Summary must be filled in before saving.
+              </div>-->
+            </span>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>

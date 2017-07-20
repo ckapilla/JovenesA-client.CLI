@@ -1,0 +1,117 @@
+<div class="panel panel-primary">
+  <div class="panel-heading" style="font-size:large">
+    Add New Monthly Report
+  </div>
+  <div class="panel-body">
+    <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+    <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
+
+    <form [formGroup]="addNewForm">
+      <fieldset [disabled]="addNewForm.submitted">
+        <div class="form-group">
+          <div class="controls">
+            <label for="lastContactYearSelector"> Year/Month you Last Communicated with Student</label>
+            <select formControlName="lastContactYearSelector" [(ngModel)]="mentorReport.lastContactYear">
+            <option *ngFor="let year of contactYears" [value]="year.value">{{year.label}}</option>
+            </select>
+            <span *ngIf="!lastYear.valid &amp;&amp; lastYear.touched" class="red"> Select Year</span>
+
+            <select formControlName="lastContactMonthSelector" [(ngModel)]="mentorReport.lastContactMonth">
+            <option *ngFor="let month of contactMonths" [value]="month.value">{{month.label}}</option>
+            </select>
+            <span *ngIf="!lastMonth.valid &amp;&amp; lastMonth.touched" class="red">Select Month</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="controls">
+            <label> Student Snapshot: (<span>How are things going overall with the student?</span>)</label>
+            <label>
+            <input type="radio" id="inputSnapshot"
+            formControlName="inputSnapshot"
+            [(ngModel)]="mentorReport.mentorReportSnapshot" value="1">
+             <img src="/assets/images/greenSmiley.jpg" width="24px" />
+            </label>
+            <label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" id="inputSnapshot"
+            formControlName="inputSnapshot"
+            [(ngModel)]="mentorReport.mentorReportSnapshot" value="0" >
+                <img src="/assets/images/neutralSmiley.jpg" width="24px" />
+            </label>
+           <label>&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="radio" id="inputSnapshot"
+              formControlName="inputSnapshot"
+              [(ngModel)]="mentorReport.mentorReportSnapshot" value="-1" >
+                <img src="/assets/images/frownSmiley.jpg" width="24px" />
+            <span *ngIf="snapshot.hasError('required')" class="red">Please select a Snapshot color</span>
+            </label>
+          </div>
+        </div>
+
+        <div [hidden]="this.needsFollowUp">
+          <button class="btn btn-primary btn-sm"
+
+                  (click)="onNeedsFollowUp()"
+                  >
+            Needs Follow Up
+          </button>
+          <span> << Click here to enter a description of any situation that needs follow-up by Jovenes Adelante administration.
+          <br />(Haga clic aquí para entrar en una descripción de cualquier situación que necesite seguimiento por Jovenes Adelante administración.)
+          </span>
+        </div>
+        <div [hidden]="!this.needsFollowUp" class="controls">
+
+          <label for="inputFollowUp"><span class="red emphasis"> >>> Describe the Situation Requiring Follow Up<br />Describa la situación que necesite seguimiento</span></label>
+          <textarea id="inputFollowUp" formControlName="inputFollowUp" [(ngModel)]="mentorReport.followUpNeeded" type="text" class="form-control input-sm"
+            placeholder="Follow up Needed">
+          </textarea>
+          <display-errors control="inputFollowUp" class="red"
+            [errors]="{
+                'maxlength': 'Entry cannot exceed 2000 characters in length.'
+                }"></display-errors>
+        </div>
+
+        <div class="controls">
+          <label for="inputSuccess">Describe positive events in the student's life during the past month<br />Describa logros y eventos positivos en la vida del estudiante</label>
+          <textarea id="inputSuccess" #success formControlName="inputSuccess" [(ngModel)]="mentorReport.recentSuccess" type="text"
+            class="form-control input-sm" placeholder="Positive Events">
+          </textarea>
+          <display-errors control="inputSuccess" class="red"
+            [errors]="{'required': 'An entry is required, even if it is just N/A',
+                'maxlength': 'Entry cannot exceed 2000 characters in length.'
+                }"></display-errors>
+        </div>
+
+        <div class="controls">
+          <label for="inputSetback">Describe any special challenges in the student's life during the past month<br />Describa retos y obstáculos en la vida del estudiante</label>
+          <textarea id="inputSetback" #setback formControlName="inputSetback" [(ngModel)]="mentorReport.recentSetback" type="text"
+            class="form-control input-sm" placeholder="Special Challenges (or 'N/A')">
+          </textarea>
+          <display-errors control="inputSetback" class="red"
+            [errors]="{'required': 'An entry is required, even if it is just N/A',
+                'maxlength': 'Entry cannot exceed 2000 characters in length.'
+                }"></display-errors>
+        </div>
+
+        <div class="col-md-6 col-md-offset-1">
+          <span>
+          <button class="btn btn-primary"
+                  style="width:80px;margin-right:10px"
+                  (click)="onSubmit()"
+                  >
+            Save
+          </button>
+         </span>&nbsp;
+          <span>
+          <button class="btn btn-default"
+                  style="width:70px"
+                  (click)="onCancel()">
+            Cancel
+          </button>
+          <div class="red" [hidden]="addNewForm.valid">Year, Month, Snapshot and all text fields must be filled in correctly before saving.</div>
+        </span>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>

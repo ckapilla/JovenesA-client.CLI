@@ -1,0 +1,58 @@
+<div class="panel panel-primary">
+  <div class="panel-heading" style="font-size:large">
+    Añadir Nueva Carta de Padrino
+  </div>
+  <div class="panel-body">
+    <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+    <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
+
+    <form [formGroup]="addNewForm">
+      <fieldset [disabled]="addNewForm.submitted">
+        <div class="form-group">
+          <div class="controls">
+            <label for="letterYearSelector"> Año/Mes de esta Periodo</label>
+            <select formControlName="letterYearSelector" [(ngModel)]="sponsorLetter.letterYear">
+            <option *ngFor="let year of periodYears" [value]="year.value">{{year.label}}</option>
+            </select>
+
+            <select formControlName="letterMonthSelector" [(ngModel)]="sponsorLetter.letterMonth">
+            <option *ngFor="let month of periodMonths" [value]="month.value">{{month.label}}</option>
+            </select>
+          </div>
+          <span *ngIf="!letterMonth.valid &amp;&amp; letterMonth.touched" class="red"> Month is required</span>
+        </div>
+
+
+        <div class="controls">
+          <label for="inputLetterText">Texto de Carta</label>
+          <textarea id="inputLetterText" #success formControlName="inputLetterText" [(ngModel)]="sponsorLetter.letterText" type="text"
+            class="form-control input-sm" placeholder="Carta a tu Sponsor">
+          </textarea>
+          <display-errors control="inputLetterText" class="red" [errors]="{'required': 'An entry is required, even if it is just N/A',
+                'maxlength': 'Entrada no puede exceder los 2000 caracteres.'
+                }"></display-errors>
+        </div>
+
+        <div class="col-md-6 col-md-offset-1">
+          <span>
+          <button class="btn btn-primary"
+                  style="width:80px;margin-right:10px"
+                  (click)="onSubmit()"
+                  >
+            Guardar
+
+          </button>
+         </span>&nbsp;
+          <span>
+          <button class="btn btn-default"
+                  style="width:80px"
+                  (click)="onCancel()">
+            Cancelar
+          </button>
+          <div class="red" [hidden]="addNewForm.valid">Año, Mes, y texto de carta deben ser completados correctamente antes de guardar.</div>
+        </span>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>

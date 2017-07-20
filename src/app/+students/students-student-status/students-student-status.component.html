@@ -1,0 +1,79 @@
+<div class="panel panel-primary">
+  <div class="panel-heading" style="font-size:large">
+    Mi Estado
+  </div>
+  <div class="panel-body">
+    <span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
+    <span *ngIf="successMessage" class="alert alert-success">{{successMessage}}</span>
+
+    <div>
+
+    </div>
+    <div [ngSwitch]="isLoading">
+      <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
+        <loading-container>
+        </loading-container>
+      </div>
+      <div *ngSwitchCase="false">
+        <table class="table">
+
+          <thead>
+            <tr>
+
+              <td class='centered'>Estado</td>
+              <td class='centered'>Desde</td>
+              <td class='centered'>Grad<br /> Año/Mes</td>
+              <td class='centered'>&nbsp;&nbsp;Calificaciones<br />Promedio&nbsp;a&nbsp;Tiempo</td>
+
+
+              <td class='centered'>Mentor</td>
+              <td class='centered'>&nbsp;&nbsp;Reunión de<br/>Mentor este Mes </td>
+
+              <td class='centered'>Padrino</td>
+              <td class='centered'>Carta Padrino<br />ene. 2017</td>
+              <td>Univ</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let student of studentDTOs, let i = index">
+              <td class='centered'>
+                {{ student.esStatus }}
+              </td>
+              <td class='centered'>
+                {{ student.yearJoinedJa}}
+              </td>
+              <td class='centered'>
+                {{ student.gradYear}}/{{ student.gradMonth}}
+              </td>
+              <td style="text-align:center;white-space: nowrap">
+                <img src="/assets/images/{{student.gpaStatus}}.jpg" height="22">
+                &nbsp;&nbsp;
+                <img src="/assets/images/{{student.gradeRptStatus}}.jpg" height="22">
+              </td>
+              <td>
+                {{ student.mentorName }}
+              </td>
+              <td style="text-align:center;white-space: nowrap">
+                <img src="/assets/images/{{student.timelyMentorMeetingStatus}}.jpg" height="22">
+              </td>
+
+
+              <td>
+                {{ student.sponsorName }}
+              </td>
+              <td class='centered'>
+                <img src="/assets/images/{{student.timelyStudentLetterStatus}}.jpg" height="22">
+              </td>
+
+              <td>
+                {{ student.universityAbbrev }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+  l

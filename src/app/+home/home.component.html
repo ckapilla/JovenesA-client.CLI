@@ -1,0 +1,26 @@
+<div class="bodytext">
+  <h3>Welcome to the Jovenes Adelante Privada website.</h3>
+  <div *ngIf="!auth.isAuthenticated()">
+    <p>You can request a new password when you <a href="#" (click)="auth.login()">Log In</a>.
+     <br />If you have any difficulties logging in please contact <a href='mailto:chris@kapilla.net'>webmaster</a> for assistance.
+    </p>
+  </div>
+  <div *ngIf="auth.isAuthenticated()">
+    <p>Please select your member type from the menu above (Admin, Mentor, etc.).
+      <br/> If you are not {{auth.nickname}}, please <a href="#" (click)="onLogoutClick($event)">Log Out</a>  and log in with your email address.
+    </p>
+  </div>
+  <br /><br />
+  <h3>Bienvenidos a la Web de Jovenes Adelante Privada.</h3>
+  <div *ngIf="!auth.isAuthenticated()">
+    <p>Puede solicitar una nueva contraseña cuando usted registro <a href="#" (click)="auth.login()">Iniciar sesión</a>.
+     <br />Si tienes alguna dificultad iniciar sesión, póngase en contacto con <a href='mailto:chris@kapilla.net'>webmaster</a> para asistencia.
+    </p>
+  </div>
+  <div *ngIf="auth.isAuthenticated()">
+    <p>Por favor seleccione su tipo de miembro desde el menú de arriba (Admin, Estudiante, etc.).
+     <br />Si no eres Chris, por favor, <a href="#" (click)="onLogoutClick($event)">desconectarse</a> e inicie sesión con su dirección de correo electrónico.
+    </p>
+  </div>
+</div>
+
