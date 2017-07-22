@@ -23,8 +23,8 @@ export class Auth {
   email: string;
   nickname: string;
   // lock: any;
-  AUTH0_CLIENT_ID: string = 'pwC5E08ZZFytctumrhmI2bFmakYRGhD2';
-  AUTH0_DOMAIN: string = 'ckapilla.auth0.com';
+  AUTH0_CLIENT_ID = 'pwC5E08ZZFytctumrhmI2bFmakYRGhD2';
+  AUTH0_DOMAIN = 'ckapilla.auth0.com';
 
   lock = new Auth0Lock(this.AUTH0_CLIENT_ID, this.AUTH0_DOMAIN, {
     theme: {
@@ -54,8 +54,8 @@ export class Auth {
       title: 'LogIn/Iniciar sesión',
       loginLabel: 'LogIn/Iniciar sesión',
       LoginSubmitLabel: 'LogIn/Iniciar sesión',
-      //notYourAccountAction: 'Not your account? / ¿No es su cuenta?',
-      //notYourAccountAction: 'Use different account or change Password / Cambiar cuenta o contraseña?',
+      // notYourAccountAction: 'Not your account? / ¿No es su cuenta?',
+      // notYourAccountAction: 'Use different account or change Password / Cambiar cuenta o contraseña?',
       notYourAccountAction: 'Use different account or Change Password / Usar otra cuenta o Cambiar contraseña',
       lastLoginInstructions: 'Last time you logged in with /<br/>La última vez inició sesión con',
       passwordInputPlaceholder: 'your password / su contraseña',
@@ -88,6 +88,7 @@ export class Auth {
     this.userProfile = JSON.parse(localStorage.getItem('profile'));
     this.session = session;
 
+    console.log('Auth constructor');
 
     this.lock.on('authorization_error', (auth_error: any) => {
       console.log('authorization_error event received');
@@ -158,7 +159,7 @@ export class Auth {
         if (authResult && authResult.error) {
           this.lock.emit('authorization_error', authResult);
         }
-      //}
+      // }
     });
   }
 
@@ -169,7 +170,7 @@ export class Auth {
 
   public isAuthenticated() {
     // Check if there's an unexpired JWT
-    //console.log('isAuthenticated: ' + tokenNotExpired());
+    // console.log('isAuthenticated: ' + tokenNotExpired());
     return tokenNotExpired();
   }
 
@@ -193,7 +194,7 @@ export class Auth {
       this.session.setUserId((<any>this.userProfile)['user_id'].substr('auth0|'.length));
       console.log('userId: ' + this.session.userId);
       localStorage.setItem('userId', this.session.userId.toString());
-      //console.log('###retrieved session: ' + localStorage.getItem('userId'));
+      // console.log('###retrieved session: ' + localStorage.getItem('userId'));
       this.UpdateLastLogin(this.session.userId);
 
 

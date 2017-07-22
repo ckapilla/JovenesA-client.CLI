@@ -17,4 +17,4 @@ export * from './mr-follow-up-updates/mr-follow-up-updates.component';
 export * from './admins.routing';
 export * from './shared/admins-navbar/index'
 
-export * from './admins-grade-history/admins-grade-history.component';
+// export * from './admins-grade-history/admins-grade-history.component';

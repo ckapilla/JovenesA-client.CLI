@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Config } from './app_shared/index';
 import './operators';
 import { Router } from '@angular/router';
 import { Auth } from './app_shared/services/auth.service';
@@ -12,8 +11,8 @@ import { SessionService } from './app_shared/services/session.service';
  */
 @Component({
   moduleId: module.id,
-  selector: 'ja-app',
-  templateUrl: 'app.component.html'
+  selector: 'app-ja',
+  template: 'app.component.html'
 })
 export class AppComponent {
 
@@ -26,7 +25,6 @@ export class AppComponent {
       auth.restoreUserProfile();
     }
     console.log('@@@@session: ' + session.getUserId());
-    console.log('Environment config', Config);
     // router.events
     //   //.filter(e => e instanceof NavigationEnd || e instanceof NavigationError)
     //   .subscribe(e => {

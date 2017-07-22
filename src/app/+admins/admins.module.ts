@@ -17,7 +17,7 @@ import { MentorReportFollowUpUpdatesComponent } from './index';
 import { AdminsNavbarComponent } from './shared/admins-navbar/admins-navbar.component';
 import { AdminsRouting } from './admins.routing';
 
-import { AdminsGradeHistoryComponent } from './index';
+// import { AdminsGradeHistoryComponent } from './index';
 
 @NgModule({
     imports: [
@@ -34,7 +34,7 @@ import { AdminsGradeHistoryComponent } from './index';
         AdminsStudentsComponent,
         AdminsStudentComponent,
 
-        AdminsGradeHistoryComponent,
+        // AdminsGradeHistoryComponent,
 
         MentorReportsSummaryTrackingComponent,
         MentorReportSummaryUpdatesComponent,

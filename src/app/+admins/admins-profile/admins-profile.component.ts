@@ -8,9 +8,9 @@ import { Admin } from '../shared/admin';
 
 @Component({
   moduleId: module.id,
-  selector: 'admin-profile',
+  selector: 'app-admin-profile',
   templateUrl: './admins-profile.component.html',
-  styleUrls:  ['../../../css/forms.css'],
+  styleUrls:  ['../../../assets/css/forms.css'],
 })
 export class AdminsProfileComponent implements OnInit {
   profileForm: FormGroup;
@@ -25,7 +25,7 @@ export class AdminsProfileComponent implements OnInit {
   lastNames: string;
   admin: Admin;
   //
-  //private curSegment: RouteSegment;
+  // private curSegment: RouteSegment;
   //
 
   constructor(
@@ -45,11 +45,11 @@ export class AdminsProfileComponent implements OnInit {
 
     this.profileForm = formBuilder.group({
       inputAdminFName: ['', Validators.required],
-      inputAdminLName: ['',Validators.required],
-      inputAdminPhone: ['',Validators.required],
-      inputMonthsinSma: ['',Validators.required],
-      SpanishLevelSelector: ['',Validators.required],
-      EnglishLevelSelector: ['',Validators.required],
+      inputAdminLName: ['', Validators.required],
+      inputAdminPhone: ['', Validators.required],
+      inputMonthsinSma: ['', Validators.required],
+      SpanishLevelSelector: ['', Validators.required],
+      EnglishLevelSelector: ['', Validators.required],
     });
     this.admin = new Admin();
 
@@ -61,12 +61,12 @@ export class AdminsProfileComponent implements OnInit {
   ngOnInit() {
     console.log('ngOnInit');
 
-    let id = this.currRoute.snapshot.params['id'];
+    const id = this.currRoute.snapshot.params['id'];
     console.log('sqlResource with adminId: ' + id);
     this.isLoading = true;
     this.sqlResource.getAdmin(id)
       .subscribe(
-        data => {this.admin = data;},
+        data => {this.admin = data; },
         err => console.error('Subscribe error: ' + err),
         () => {console.log('done');
               this.isLoading = false;
@@ -87,13 +87,13 @@ export class AdminsProfileComponent implements OnInit {
         this.sqlResource.postAdmin(this.admin)
         .subscribe(
             (student) => {
-                //console.log('subscribe result from postAdmin');
+                // console.log('subscribe result from postAdmin');
                 this.successMessage = 'Changes were saved successfully.';
                 this.submitted = true;
                 this.isLoading = false;
-                window.scrollTo(0,0);
-                window.setTimeout( () => {//console.log('clearing success message');
-                  this.successMessage = '';}, 3000);
+                window.scrollTo(0, 0);
+                window.setTimeout( () => {// console.log('clearing success message');
+                  this.successMessage = ''; }, 3000);
              },
             (error) =>  {
                 console.log(this.errorMessage = <any>error);

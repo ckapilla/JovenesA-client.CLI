@@ -165,7 +165,7 @@ var AuthHttp = (function () {
         return this.requestHelper({ body: '', method: http_1.RequestMethod.Options, url: url }, options);
     };
     AuthHttp = __decorate([
-        core_1.Injectable(), 
+        core_1.Injectable(),
         __metadata('design:paramtypes', [AuthConfig, http_1.Http, http_1.RequestOptions])
     ], AuthHttp);
     return AuthHttp;
@@ -205,9 +205,9 @@ var JwtHelper = (function () {
         if (str.length % 4 == 1) {
             throw new Error("'atob' failed: The string to be decoded is not correctly encoded.");
         }
-        for (var bc = 0, bs = void 0, buffer = void 0, idx = 0; 
+        for (var bc = 0, bs = void 0, buffer = void 0, idx = 0;
         // get next character
-        buffer = str.charAt(idx++); 
+        buffer = str.charAt(idx++);
         // character found in table? initialize bit storage and add its ascii value;
         ~buffer && (bs = bc % 4 ? bs * 64 + buffer : buffer,
             // and if not first of each 4 characters,
@@ -268,15 +268,15 @@ function tokenNotExpired(tokenName, jwt) {
     return token != null && !jwtHelper.isTokenExpired(token);
 }
 exports.tokenNotExpired = tokenNotExpired;
-exports.AUTH_PROVIDERS = [
-    {
-        provide: AuthHttp,
-        deps: [http_1.Http, http_1.RequestOptions],
-        useFactory: function (http, options) {
-            return new AuthHttp(new AuthConfig(), http, options);
-        }
-    }
-];
+// exports.AUTH_PROVIDERS = [
+//     {
+//         provide: AuthHttp,
+//         deps: [http_1.Http, http_1.RequestOptions],
+//         useFactory: function (http, options) {
+//             return new AuthHttp(new AuthConfig(), http, options);
+//         }
+//     }
+// ];
 function provideAuth(config) {
     return [
         {
@@ -347,7 +347,7 @@ var AuthModule = (function () {
             providers: [AuthHttp, JwtHelper]
         }),
         __param(0, core_1.Optional()),
-        __param(0, core_1.SkipSelf()), 
+        __param(0, core_1.SkipSelf()),
         __metadata('design:paramtypes', [AuthModule])
     ], AuthModule);
     return AuthModule;

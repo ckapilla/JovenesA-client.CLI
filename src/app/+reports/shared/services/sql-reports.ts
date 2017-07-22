@@ -13,51 +13,58 @@ export class SqlReports {
 
   constructor(private http: AuthHttp,
               private _http: Http) {
+
+    const serverMode = 'Prod';
+
     console.log('window: ' + window.location.hostname);
-    if (window.location.hostname === 'privada.jovenesadelante.org') {
+    if (window.location.hostname === 'privada.jovenesadelante.org'
+              || serverMode === 'Prod') {
       this.WebApiPrefix = 'http://jovenesadelantewebapi.azurewebsites.net/api/v1/';
     } else {
-      this.WebApiPrefix = 'http://jovenesadelantewebapitest.azurewebsites.net/api/v1/' ;
+      // this.WebApiPrefix = 'http://jovenesadelantewebapitest.azurewebsites.net/api/v1/' ;
+      this.WebApiPrefix = 'http://192.168.1.68:45455/api/v1/' ;
     }
+
+
 
   }
 
   public getLatestMentorReports(): Observable <LatestMentorReports[]>  {
-    let url: string = this.WebApiPrefix + 'reports/latest-mentor-reports';
+    const url = this.WebApiPrefix + 'reports/latest-mentor-reports';
     console.log('sending AuthHttp get request for LatestMentorReports with ' + url);
     return this.http.get(url)
-      .map((response:Response) => response.json())
+      .map((response: Response) => response.json())
       .catch(this.handleError);
   }
 
   public getLatestMentorReports2(): Observable <LatestMentorReports2[]>  {
-    let url: string = this.WebApiPrefix + 'reports/latest-mentor-reports2';
+    const url = this.WebApiPrefix + 'reports/latest-mentor-reports2';
     console.log('sending AuthHttp get request for LatestMentorReports with ' + url);
     return this.http.get(url)
-      .map((response:Response) => response.json())
+      .map((response: Response) => response.json())
       .catch(this.handleError);
   }
 
 
   public getLatestStudentLetters(): Observable <LatestStudentLetters[]>  {
-    let url: string = this.WebApiPrefix + 'reports/latest-student-letters';
+    const url = this.WebApiPrefix + 'reports/latest-student-letters';
     console.log('sending AuthHttp get request for LatestStudentLetters with ' + url);
     return this.http.get(url)
-      .map((response:Response) => response.json())
+      .map((response: Response) => response.json())
       .catch(this.handleError);
   }
 
   public getLatestStudentLetters2(): Observable <LatestStudentLetters2[]>  {
-    let url: string = this.WebApiPrefix + 'reports/latest-student-letters2';
+    const url = this.WebApiPrefix + 'reports/latest-student-letters2';
     console.log('sending AuthHttp get request for LatestStudentLetters2 with ' + url);
     return this.http.get(url)
-      .map((response:Response) => response.json())
+      .map((response: Response) => response.json())
       .catch(this.handleError);
   }
 
   private handleError (error: any) {
     console.log('sqlResource handle error');
-    let errMsg = (error.message) ? error.message :
+    const errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
     console.error(errMsg); // log to console instead
     if (errMsg === 'No JWT present or has expired') {

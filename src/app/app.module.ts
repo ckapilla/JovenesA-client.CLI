@@ -5,8 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { APP_BASE_HREF, Location } from '@angular/common';
 // import { RouterModule } from '@angular/router';
-import { HttpModule, Http } from '@angular/http';
-import { AUTH_PROVIDERS, AuthHttp, AuthConfig } from 'angular2-jwt/angular2-jwt';
+import { HttpModule, Http, RequestOptions } from '@angular/http';
+import { AuthHttp, AuthConfig } from 'angular2-jwt/angular2-jwt';
 import { Auth } from './app_shared/services/auth.service';
 
 import { AppComponent } from './app.component';
@@ -24,14 +24,9 @@ import { MentorsModule } from './+mentors/mentors.module';
 import { StudentsModule } from './+students/students.module';
 import { ReportsModule } from './+reports/reports.module';
 
-/////
 import { AppSharedModule } from './app_shared/app_shared.module';
 import { SessionService } from './app_shared/services/session.service';
 import { SqlResource } from './app_shared/services/sql-resource';
-
-export function getNewAuthProviders(http) {
-    return new AuthHttp(new AuthConfig(), http);
-}
 
 @NgModule({
   imports: [
@@ -62,18 +57,18 @@ export function getNewAuthProviders(http) {
   providers: [
     {
       provide: APP_BASE_HREF,
-      useValue: '<%= APP_BASE %>'
+      useValue: '/'
     },
     Location,
     // AUTH_PROVIDERS,
-    // {
-    //   provide: AuthHttp,
-    //   useFactory(http: Http) {
-    //     return new AuthHttp(new AuthConfig(), http);
-    //   },
-    //   // useFactory: getNewAuthProviders,
-    //   deps: [Http]
-    // },
+    {
+      provide: AuthHttp,
+      useFactory(http: Http) {
+        return new AuthHttp(new AuthConfig(), http);
+      },
+      deps: [Http]
+    },
+
     Auth,
     {
       provide: SessionService,
@@ -90,7 +85,7 @@ export function getNewAuthProviders(http) {
     ConfirmDeactivateGuard,
     // {
     //   provide: SqlResource,
-    //   useFactory: () => {
+    //   useFactory(http) {
     //     console.log('New SqlResource');
     //     return new SqlResource(http: AuthHttp);
     //   },

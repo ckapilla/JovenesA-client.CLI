@@ -13,7 +13,7 @@ import { MentorReportFollowUpUpdatesComponent } from './index';
 import { AdminsComponent } from './index';
 import { CanActivateViaAdminAuthGuard } from '../app.routing-guards';
 
-import { AdminsGradeHistoryComponent } from './index';
+// import { AdminsGradeHistoryComponent } from './index';
 
 const routes: Routes = [
   {
@@ -50,10 +50,10 @@ const routes: Routes = [
           path: 'students/student/:id',
           component: AdminsStudentComponent
         },
-        {
-          path: 'students/grade-history/:id',
-          component: AdminsGradeHistoryComponent
-        },
+        // {
+        //   path: 'students/grade-history/:id',
+        //   component: AdminsGradeHistoryComponent
+        // },
         {
           path: 'mentor-reports/summary-tracking',
           component: MentorReportsSummaryTrackingComponent

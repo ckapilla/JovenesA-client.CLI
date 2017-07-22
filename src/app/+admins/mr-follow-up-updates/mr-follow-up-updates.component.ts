@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router,ActivatedRoute, NavigationExtras } from '@angular/router';
-import { FormGroup, FormBuilder, //FormControl,
-               //Validators,
-               AbstractControl } from '@angular/forms';
+import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
+import { FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
 
 import { SqlResource } from '../../app_shared/services/sql-resource';
 import { RptMentorReport } from '../../app_shared/models/mentor-report';
@@ -14,7 +12,7 @@ interface SELECTITEM {
 @Component({
   moduleId: module.id,
   templateUrl: './mr-follow-up-updates.component.html',
-  styleUrls: ['../../../css/forms.css'],
+  styleUrls: ['../../../assets/css/forms.css'],
 })
 
 export class MentorReportFollowUpUpdatesComponent
