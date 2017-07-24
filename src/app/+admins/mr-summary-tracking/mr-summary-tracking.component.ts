@@ -29,6 +29,7 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
   selectedMonth: string;
   selectedSponsorSummaryStatus: string;
   selectedHighlightStatus: string;
+
   constructor(
               public router: Router,
               public session: SessionService,
@@ -42,19 +43,19 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
     ];
 
      this.months = [
-      {value:'0', label:'Select'},
-      {value:'1', label:'Jan'},
-      {value:'2', label:'Feb'},
-      {value:'3', label:'Mar'},
-      {value:'4', label:'Apr'},
-      {value:'5', label:'May'},
-      {value:'6', label:'Jun'},
-      {value:'7', label:'Jul'},
-      {value:'8', label:'Aug'},
-      {value:'9', label:'Sep'},
-      {value:'10', label:'Oct'},
-      {value:'11', label:'Nov'},
-      {value:'12', label:'Dec'}
+      {value: '0', label: 'Select'},
+      {value: '1', label: 'Jan'},
+      {value: '2', label: 'Feb'},
+      {value: '3', label: 'Mar'},
+      {value: '4', label: 'Apr'},
+      {value: '5', label: 'May'},
+      {value: '6', label: 'Jun'},
+      {value: '7', label: 'Jul'},
+      {value: '8', label: 'Aug'},
+      {value: '9', label: 'Sep'},
+      {value: '10', label: 'Oct'},
+      {value: '11', label: 'Nov'},
+      {value: '12', label: 'Dec'}
     ];
 
     this.sponsorSummaryStatuses = [
@@ -80,9 +81,9 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
       //   { value: '2104', label: 'Closed' },
       // ];
 
-    let today = new Date();
+    const today = new Date();
     this.selectedYear = '' + today.getFullYear(); // '2017';
-    this.selectedMonth = '0';// + today.getMonth() + 1;// '5';
+    this.selectedMonth = '0'; // + today.getMonth() + 1;// '5';
 
     this.selectedSponsorSummaryStatus = this.sponsorSummaryStatuses[0].value;
     this.selectedHighlightStatus = this.highlightStatuses[0].value;
@@ -99,18 +100,18 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
   ngOnInit() {
     console.log('in OnInit');
 
-      let month = this.route.snapshot.queryParams['month'];
+      const month = this.route.snapshot.queryParams['month'];
       console.log('month param = ' +  month);
       if (month !== undefined) {
         this.selectedMonth =  month;
       }
-      let summary = this.route.snapshot.queryParams['summary'];
+      const summary = this.route.snapshot.queryParams['summary'];
       console.log('summary param = ' +  summary);
       if (month !== undefined) {
         this.selectedSponsorSummaryStatus =  summary;
       }
 
-      let highlight = this.route.snapshot.queryParams['highlight'];
+      const highlight = this.route.snapshot.queryParams['highlight'];
       console.log('highlight param = ' +  highlight);
       if (highlight !== undefined) {
         this.selectedHighlightStatus =  highlight;
@@ -129,24 +130,24 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
                   this.selectedSponsorSummaryStatus,
                   this.selectedHighlightStatus)
       .subscribe(
-        data => {this.mentorReportByMonth = data;},
+        data => {this.mentorReportByMonth = data; },
         err => console.error('Subscribe error: ' + err),
         () => { console.log('data loaded now set timeout for scroll');
         setTimeout(() => {
           this.scrollIntoView();
         }, 0);
-        this.isLoading = false;}
+        this.isLoading = false; }
       );
 
   }
 
   scrollIntoView() {
-      let idSelector = '#' + this.route.snapshot.queryParams['id'];
+      const idSelector = '#' + this.route.snapshot.queryParams['id'];
         console.log('id param = ' +  this.route.snapshot.queryParams['id']);
           const element = document.querySelector(idSelector);
           if (element) {
             console.log('querySelector returns element ' + element);
-            element.scrollIntoView(element);
+            element.scrollIntoView(true);
         }
   }
 
@@ -173,14 +174,14 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
     console.log('setting studentName to ' + studentName);
     this.session.setAssignedStudentName(studentName);
 
-    let link = ['/admins/students/student/' + id];
-    //let link = ['/admins/students/mentorReports/' + id];
+    const link = ['/admins/students/student/' + id];
+    //const link = ['/admins/students/mentorReports/' + id];
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }
 
   gotoMentorReport(id: number) {
-    let link = ['/admins/mentor-reports/summary-updates/' + id];
+    const link = ['/admins/mentor-reports/summary-updates/' + id];
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }

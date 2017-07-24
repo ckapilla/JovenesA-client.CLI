@@ -14,7 +14,6 @@ interface SELECTITEM {
 
 @Component({
   moduleId: module.id,
-  selector: 'admin-students',
   templateUrl: './admins-students.component.html'
 })
 
@@ -28,6 +27,8 @@ export class AdminsStudentsComponent implements OnInit {
   smileys: string[];
   studentDTOs: StudentDTO[];
   isLoading: boolean;
+  errorMessage: string;
+  successMessage: string;
 
   constructor(
               public sqlResource: SqlResource,
@@ -53,7 +54,7 @@ export class AdminsStudentsComponent implements OnInit {
       { value: '2010', label: '2010' }, { value: '2011', label: '2011' },
       { value: '2012', label: '2012' }, { value: '2013', label: '2013' },
       { value: '2014', label: '2014' }, { value: '2015', label: '2015' },
-      {value:'2016', label:'2016'}, {value:'2017', label:'2017'},
+      {value: '2016', label: '2016'}, {value: '2017', label: '2017'},
       //    {value:'2018', label:'2018'}, {value:'2019', label:'2015'},
       //    {value:'2020', label:'2020'}
     ];
@@ -119,23 +120,23 @@ export class AdminsStudentsComponent implements OnInit {
     this.isLoading = true;
     this.sqlResource.getStudentDTOs(this.selectedStatus, this.selectedGradYear, this.selectedYearJoined)
       .subscribe(
-        data => {this.studentDTOs = data;},
-        err => console.error('Subscribe error: ' + err),
-        () => { console.log('done'); this.isLoading = false;}
+        data => { this.studentDTOs = data; this.successMessage = 'Students retrieved successfully.' },
+        err => { this.errorMessage =  err } ,
+        () => { console.log('done'); this.isLoading = false; }
       );
   }
   gotoStudent(id: number, studentName: string) {
     console.log('setting studentName to ' + studentName);
     this.session.setAssignedStudentName(studentName);
 
-    let link = ['/admins/students/student/' + id];
-    //let link = ['/admins/students/mentorReports/' + id];
+    const link = ['/admins/students/student/' + id];
+    // const link = ['/admins/students/mentorReports/' + id];
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }
 
   gotoReport(id: number) {
-    let link = ['/admins/students/mentorReports/' + id];
+    const link = ['/admins/students/mentorReports/' + id];
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }

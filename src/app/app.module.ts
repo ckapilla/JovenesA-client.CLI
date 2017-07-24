@@ -17,7 +17,6 @@ import { CanActivateViaAdminAuthGuard,
           CanActivateViaStudentAuthGuard,
           ConfirmDeactivateGuard  } from './app.routing-guards';
 // every module that has a routing component needs to be imported here
-import { AboutModule } from './+about/about.module';
 import { HomeModule } from './+home/home.module';
 import { AdminsModule } from './+admins/admins.module';
 import { MentorsModule } from './+mentors/mentors.module';
@@ -37,7 +36,7 @@ import { SqlResource } from './app_shared/services/sql-resource';
     appRoutingProviders,
     // RouterModule,
     ReactiveFormsModule,
-    AboutModule,
+    HomeModule,
     HomeModule,
     AdminsModule,
     MentorsModule,
@@ -83,14 +82,14 @@ import { SqlResource } from './app_shared/services/sql-resource';
     CanActivateViaMentorAuthGuard,
     CanActivateViaStudentAuthGuard,
     ConfirmDeactivateGuard,
-    // {
-    //   provide: SqlResource,
-    //   useFactory(http) {
-    //     console.log('New SqlResource');
-    //     return new SqlResource(http: AuthHttp);
-    //   },
-    //   deps: [AuthHttp]
-    // }
+    {
+      provide: SqlResource,
+      useFactory(http: AuthHttp, _http: Http) {
+        console.log('New SqlResource');
+        return new SqlResource(http, _http);
+      },
+      deps: [AuthHttp, Http]
+    }
   ],
   bootstrap: [AppComponent]
 })

@@ -1,8 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-
 import { Router, ActivatedRoute } from '@angular/router';
-
 import { SqlResource } from '../../app_shared/services/sql-resource';
 import { SessionService } from '../../app_shared/services/session.service';
 
@@ -14,7 +12,6 @@ interface SELECTITEM {
 
 @Component({
   moduleId: module.id,
-  selector: 'admin-members',
   templateUrl: './admins-communications.component.html',
   styleUrls:  ['./admins-communications.component.css'],
 })
@@ -22,10 +19,12 @@ interface SELECTITEM {
 export class AdminsCommunicationsComponent implements OnInit {
   types: SELECTITEM[];
   _selectedType: SELECTITEM;
-  //selectedTypeLabel: string;
   smileys: string[];
   communications: Communication[];
   isLoading: boolean;
+  errorMessage: string;
+  successMessage: string;
+  memberId: number;
 
   constructor(
               public currRoute: ActivatedRoute,
@@ -37,7 +36,7 @@ export class AdminsCommunicationsComponent implements OnInit {
     console.log('Hi from member List Ctrl controller function');
 
     this.types = [
-      //{ value: '0', label: '[All]' },
+      // { value: '0', label: '[All]' },
       { value: '2068', label: 'Admin' },
       { value: '1007', label: 'BoardMember' },
       { value: '1013', label: 'Donor' },
@@ -45,21 +44,21 @@ export class AdminsCommunicationsComponent implements OnInit {
 
 
       { value: '1012', label: 'Employee' },
-      //{ value: '1011', label: 'ESOLTutor' },
+      // { value: '1011', label: 'ESOLTutor' },
       { value: '1010', label: 'Mentor' },
       { value: '2072', label: 'NonPerson' },
       { value: '2041', label: 'Pledger' },
       { value: '2040', label: 'President' },
 
-      //{ value: '2066', label: 'LegacyDonor' },
-      //{ value: '2067', label: '[All]' },
+      // { value: '2066', label: 'LegacyDonor' },
+      // { value: '2067', label: '[All]' },
       { value: '1009', label: 'Sponsor' },
-      //{ value: '2069', label: 'Student' },
+      // { value: '2069', label: 'Student' },
       { value: '1008', label: 'Volunteer' }
     ];
 
 
-    //this.selectedTypeLabel = this.types[3].label;
+    // this.selectedTypeLabel = this.types[3].label;
     // this.gradeRptsStatus = 'yellowWarning.jpg'
     // this.gpaStatus = 'greenCheck.jpg'
 
@@ -74,7 +73,7 @@ export class AdminsCommunicationsComponent implements OnInit {
 
   ngOnInit() {
     console.log('ngOnInit');
-    let Id = this.currRoute.snapshot.params['id'];
+    const Id = this.currRoute.snapshot.params['id'];
     this.fetchFilteredData(Id);
   }
 
@@ -89,18 +88,19 @@ export class AdminsCommunicationsComponent implements OnInit {
     this.sqlResource.getCommunicationsForMember(memberId)
       .subscribe(
         data => {this.communications = data;
-          console.log('subscribe data is ' , this.communications);},
-        err => console.error('Subscribe error: ' + err),
+          console.log('subscribe data is ' , this.communications);
+          this.successMessage = 'Data retrieved successfully';
+        },
+        err => { this.errorMessage =  err },
         () => { console.log('done is', this.communications); this.isLoading = false;}
       );
   }
 
-  communicationAdd(memberId: number, memberName: string) {
+  communicationAdd(memberId: number) {
     console.log('in communication: communicationAdd, ready to navigate');
-    //this.studentId = this.session.getAssignedStudentId();
-    let target = '/admins/members/communications-add/' + memberId;
-    this.router.navigateByUrl(target);//, //{mentorId: this.mentorId, studentId: this.studentId}]);
-
+    // this.studentId = this.session.getAssignedStudentId();
+    const target = '/admins/members/communications-add/' + memberId;
+    this.router.navigateByUrl(target); // , //{mentorId: this.mentorId, studentId: this.studentId}]);
   }
 
 }

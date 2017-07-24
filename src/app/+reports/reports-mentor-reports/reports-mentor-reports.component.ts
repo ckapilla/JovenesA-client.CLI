@@ -12,6 +12,8 @@ export class ReportsMentorReportsComponent implements OnInit {
     latestMentorReports: LatestMentorReports[];
   isLoading: boolean;
   smileys: Array<string>;
+  errorMessage: string;
+  successMessage: string;
 
   constructor(public sqlReports: SqlReports,
               public router: Router,

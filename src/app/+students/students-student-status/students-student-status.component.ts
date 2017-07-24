@@ -14,7 +14,6 @@ interface SELECTITEM {
 
 @Component({
   moduleId: module.id,
-  selector: 'student-status',
   templateUrl: './students-student-status.component.html',
   styleUrls:  ['./students-student-status.component.css'],
 })
@@ -24,6 +23,8 @@ export class StudentsStudentStatusComponent implements OnInit {
   studentDTOs: StudentDTO;
   studentId: number;
   isLoading: boolean;
+  errorMessage: string;
+  successMessage: string;
 
   constructor(
               public currRoute: ActivatedRoute,

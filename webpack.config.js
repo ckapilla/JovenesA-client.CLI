@@ -8,7 +8,7 @@ const cssnano = require('cssnano');
 
 const { NoEmitOnErrorsPlugin, SourceMapDevToolPlugin, NamedModulesPlugin } = require('webpack');
 const { GlobCopyWebpackPlugin, BaseHrefWebpackPlugin } = require('@angular/cli/plugins/webpack');
-const { CommonsChunkPlugin } = require('webpack').optimize;
+const { CommonsChunkPlugin, UglifyJsPlugin } = require('webpack').optimize;
 const { AotPlugin } = require('@ngtools/webpack');
 
 const nodeModules = path.join(process.cwd(), 'node_modules');
@@ -94,6 +94,10 @@ module.exports = {
   "module": {
     "rules": [
       {
+        test: /\.ts$/,
+        loader: '@ngtools/webpack',
+      },
+      {
         "enforce": "pre",
         "test": /\.js$/,
         "loader": "source-map-loader",
@@ -110,13 +114,10 @@ module.exports = {
         "loader": "raw-loader"
       },
       {
-        "test": /\.(eot|svg)$/,
-        "loader": "file-loader?name=[name].[hash:20].[ext]"
-      },
-      {
         "test": /\.(jpg|png|webp|gif|otf|ttf|woff|woff2|cur|ani)$/,
         "loader": "url-loader?name=[name].[hash:20].[ext]&limit=10000"
       },
+      // .css$ exclude styles.css
       {
         "exclude": [
           path.join(process.cwd(), "src/styles.css")
@@ -140,6 +141,7 @@ module.exports = {
           }
         ]
       },
+      // .scss$ | .sass$ exclude styles.css
       {
         "exclude": [
           path.join(process.cwd(), "src/styles.css")
@@ -171,65 +173,7 @@ module.exports = {
           }
         ]
       },
-      {
-        "exclude": [
-          path.join(process.cwd(), "src/styles.css")
-        ],
-        "test": /\.less$/,
-        "use": [
-          "exports-loader?module.exports.toString()",
-          {
-            "loader": "css-loader",
-            "options": {
-              "sourceMap": false,
-              "importLoaders": 1
-            }
-          },
-          {
-            "loader": "postcss-loader",
-            "options": {
-              "ident": "postcss",
-              "plugins": postcssPlugins
-            }
-          },
-          {
-            "loader": "less-loader",
-            "options": {
-              "sourceMap": false
-            }
-          }
-        ]
-      },
-      {
-        "exclude": [
-          path.join(process.cwd(), "src/styles.css")
-        ],
-        "test": /\.styl$/,
-        "use": [
-          "exports-loader?module.exports.toString()",
-          {
-            "loader": "css-loader",
-            "options": {
-              "sourceMap": false,
-              "importLoaders": 1
-            }
-          },
-          {
-            "loader": "postcss-loader",
-            "options": {
-              "ident": "postcss",
-              "plugins": postcssPlugins
-            }
-          },
-          {
-            "loader": "stylus-loader",
-            "options": {
-              "sourceMap": false,
-              "paths": []
-            }
-          }
-        ]
-      },
+      // .css include styles.css
       {
         "include": [
           path.join(process.cwd(), "src/styles.css")
@@ -253,6 +197,7 @@ module.exports = {
           }
         ]
       },
+      // .scss$ | .sass$ include styes.css
       {
         "include": [
           path.join(process.cwd(), "src/styles.css")
@@ -283,69 +228,6 @@ module.exports = {
             }
           }
         ]
-      },
-      {
-        "include": [
-          path.join(process.cwd(), "src/styles.css")
-        ],
-        "test": /\.less$/,
-        "use": [
-          "style-loader",
-          {
-            "loader": "css-loader",
-            "options": {
-              "sourceMap": false,
-              "importLoaders": 1
-            }
-          },
-          {
-            "loader": "postcss-loader",
-            "options": {
-              "ident": "postcss",
-              "plugins": postcssPlugins
-            }
-          },
-          {
-            "loader": "less-loader",
-            "options": {
-              "sourceMap": false
-            }
-          }
-        ]
-      },
-      {
-        "include": [
-          path.join(process.cwd(), "src/styles.css")
-        ],
-        "test": /\.styl$/,
-        "use": [
-          "style-loader",
-          {
-            "loader": "css-loader",
-            "options": {
-              "sourceMap": false,
-              "importLoaders": 1
-            }
-          },
-          {
-            "loader": "postcss-loader",
-            "options": {
-              "ident": "postcss",
-              "plugins": postcssPlugins
-            }
-          },
-          {
-            "loader": "stylus-loader",
-            "options": {
-              "sourceMap": false,
-              "paths": []
-            }
-          }
-        ]
-      },
-      {
-        "test": /\.ts$/,
-        "loader": "@ngtools/webpack"
       }
     ]
   },
@@ -423,15 +305,28 @@ module.exports = {
       ]
     }),
     new NamedModulesPlugin({}),
+    new UglifyJsPlugin ({
+        beautify: false,
+        mangle: {
+            screw_ie8: true,
+            keep_fnames: true
+        },
+        compress: {
+            warnings: false,
+            screw_ie8: true
+        },
+        comments: false
+    }),
     new AotPlugin({
-      "mainPath": "main.ts",
+      "mainPath": "./src/main.ts",
       "hostReplacementPaths": {
         "environments/environment.ts": "environments/environment.ts"
       },
       "exclude": [],
-      "tsConfigPath": "src/tsconfig.app.json",
-      "skipCodeGeneration": true
-    })
+      "tsConfigPath": "./tsconfig-aot.json",
+      "skipCodeGeneration": true,
+      "entryModule": __dirname + '/src/app/app.module.ts#AppModule'
+    }),
   ],
   "node": {
     "fs": "empty",

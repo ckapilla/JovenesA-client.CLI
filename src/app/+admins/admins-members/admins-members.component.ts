@@ -14,7 +14,6 @@ interface SELECTITEM {
 
 @Component({
   moduleId: module.id,
-  selector: 'admin-members',
   templateUrl: './admins-members.component.html',
   styleUrls:  ['./admins-members.component.css'],
 })
@@ -22,10 +21,11 @@ interface SELECTITEM {
 export class AdminsMembersComponent implements OnInit {
   types: SELECTITEM[];
   _selectedType: SELECTITEM;
-  //selectedTypeLabel: string;
   smileys: string[];
   members: MemberStudentRelations[];
   isLoading: boolean;
+  errorMessage: string;
+  successMessage: string;
 
   constructor(
               public sqlResource: SqlResource,
@@ -36,29 +36,24 @@ export class AdminsMembersComponent implements OnInit {
     console.log('Hi from member List Ctrl controller function');
 
     this.types = [
-      //{ value: '0', label: '[All]' },
-      { value: '2068', label: 'Admin' },
-      { value: '1007', label: 'BoardMember' },
-      { value: '1013', label: 'Donor' },
-
 
 
       { value: '1012', label: 'Employee' },
-      //{ value: '1011', label: 'ESOLTutor' },
+      // { value: '1011', label: 'ESOLTutor' },
       { value: '1010', label: 'Mentor' },
       { value: '2072', label: 'NonPerson' },
       { value: '2041', label: 'Pledger' },
       { value: '2040', label: 'President' },
 
-      //{ value: '2066', label: 'LegacyDonor' },
-      //{ value: '2067', label: '[All]' },
+      // { value: '2066', label: 'LegacyDonor' },
+      // { value: '2067', label: '[All]' },
       { value: '1009', label: 'Sponsor' },
-      //{ value: '2069', label: 'Student' },
+      // { value: '2069', label: 'Student' },
       { value: '1008', label: 'Volunteer' }
     ];
 
 
-    //this.selectedTypeLabel = this.types[3].label;
+    // this.selectedTypeLabel = this.types[3].label;
     // this.gradeRptsStatus = 'yellowWarning.jpg'
     // this.gpaStatus = 'greenCheck.jpg'
 
@@ -100,22 +95,22 @@ export class AdminsMembersComponent implements OnInit {
     this.isLoading = true;
     this.sqlResource.getMemberStudentRelations(type)
       .subscribe(
-        data => {this.members = data;},
-        err => console.error('Subscribe error: ' + err),
-        () => { console.log('done'); this.isLoading = false;}
+        data => { this.members = data; this.successMessage = 'Data loaded successfully' },
+        err => this.errorMessage = err,
+        () => { console.log('done'); this.isLoading = false; }
       );
   }
   gotoMember(id: number, memberName: string) {
     console.log('setting memberName to ' + memberName);
-    //this.session.setAssignedMemberName(memberName);
+    // this.session.setAssignedMemberName(memberName);
 
-    let link = ['/admins/members/member/' + id];
+    const link = ['/admins/members/member/' + id];
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }
 
   gotoCommunications(id: number, memberName: string) {
-    let link = ['/admins/members/communications/' + id];
+    const link = ['/admins/members/communications/' + id];
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }

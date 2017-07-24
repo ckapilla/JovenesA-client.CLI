@@ -6,8 +6,8 @@
     <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
     <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
 
-    <form [formGroup]="addNewForm">
-      <fieldset [disabled]="addNewForm.submitted">
+    <form [formGroup]="myForm">
+      <fieldset [disabled]="submitted">
         <div class="form-group">
           <div class="controls">
             <label for="lastContactYearSelector"> Year/Month you Last Communicated with Student</label>
@@ -108,7 +108,7 @@
                   (click)="onCancel()">
             Cancel
           </button>
-          <div class="red" [hidden]="addNewForm.valid">Year, Month, Snapshot and all text fields must be filled in correctly before saving.</div>
+          <div class="red" [hidden]="myForm.valid">Year, Month, Snapshot and all text fields must be filled in correctly before saving.</div>
         </span>
         </div>
       </fieldset>

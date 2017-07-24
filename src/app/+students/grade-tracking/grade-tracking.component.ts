@@ -10,6 +10,8 @@ import { SessionService } from '../../app_shared/services/session.service';
 export class GradeTrackingComponent implements OnInit {
   isLoading: boolean;
   smileys: Array<string>;
+  errorMessage: string;
+  successMessage: string;
 
   constructor(public router: Router,
               public session: SessionService

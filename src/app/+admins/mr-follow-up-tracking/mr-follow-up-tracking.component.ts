@@ -18,7 +18,8 @@ export class MentorReportsFollowUpTrackingComponent implements OnInit {
   isLoading: boolean;
   smileys: Array<string>;
   followUpStatuses: SELECTITEM[];
-
+  errorMessage: string;
+  successMessage: string;
 
   constructor(public sqlResource: SqlResource,
               public router: Router,
@@ -50,7 +51,7 @@ export class MentorReportsFollowUpTrackingComponent implements OnInit {
     console.log('in fetchData for MentorReportsFollowUp');
     this.sqlResource.getMentorReportsFollowUpStatus()
       .subscribe(
-        data => {this.mentorReportsFollowUp = data;},
+        data => {this.mentorReportsFollowUp = data; },
         err => console.error('Subscribe error: ' + err),
         () => { console.log('done >>'); console.log(this.mentorReportsFollowUp[0]); console.log('<<'); this.isLoading = false;}
       );
@@ -66,14 +67,14 @@ export class MentorReportsFollowUpTrackingComponent implements OnInit {
     console.log('setting studentName to ' + studentName);
     this.session.setAssignedStudentName(studentName);
 
-    let link = ['/admins/students/student/' + id];
-    //let link = ['/admins/students/mentorReports/' + id];
+    const link = ['/admins/students/student/' + id];
+    // const link = ['/admins/students/mentorReports/' + id];
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }
 
   gotoFollowUpUpdate(id: number) {
-    let link = ['/admins/mentor-reports/follow-up-updates/' + id];
+    const link = ['/admins/mentor-reports/follow-up-updates/' + id];
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }

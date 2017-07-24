@@ -12,6 +12,8 @@ export class ReportsStudentLettersComponent implements OnInit {
     latestStudentLetters: LatestStudentLetters[];
   isLoading: boolean;
   smileys: Array<string>;
+  errorMessage: string;
+  successMessage: string;
 
   constructor(public sqlReports: SqlReports,
               public router: Router,

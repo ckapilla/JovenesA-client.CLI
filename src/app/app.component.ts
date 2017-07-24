@@ -12,7 +12,7 @@ import { SessionService } from './app_shared/services/session.service';
 @Component({
   moduleId: module.id,
   selector: 'app-ja',
-  template: 'app.component.html'
+  templateUrl: 'app.component.html'
 })
 export class AppComponent {
 

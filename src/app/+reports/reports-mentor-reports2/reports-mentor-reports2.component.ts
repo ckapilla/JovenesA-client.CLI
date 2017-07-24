@@ -20,6 +20,8 @@ export class ReportsMentorReports2Component implements OnInit {
   mentorReportStatuses: SELECTITEM[];
   sponsorSummaryStatuses: SELECTITEM[];
   selectedSponsorSummaryStatus: string;
+  errorMessage: string;
+  successMessage: string;
 
   constructor(public sqlReports: SqlReports,
               public router: Router,

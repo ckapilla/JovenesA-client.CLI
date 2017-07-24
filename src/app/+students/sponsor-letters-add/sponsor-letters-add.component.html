@@ -7,7 +7,7 @@
     <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
 
     <form [formGroup]="addNewForm">
-      <fieldset [disabled]="addNewForm.submitted">
+      <fieldset [disabled]="submitted">
         <div class="form-group">
           <div class="controls">
             <label for="letterYearSelector"> Año/Mes de esta Periodo</label>

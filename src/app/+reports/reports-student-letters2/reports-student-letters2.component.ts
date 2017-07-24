@@ -13,6 +13,8 @@ export class ReportsStudentLetters2Component implements OnInit {
     latestStudentLetters2: LatestStudentLetters2[];
   isLoading: boolean;
   smileys: Array<string>;
+  errorMessage: string;
+  successMessage: string;
 
   constructor(public sqlReports: SqlReports,
               public router: Router,
