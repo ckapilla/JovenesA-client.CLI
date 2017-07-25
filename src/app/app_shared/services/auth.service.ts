@@ -82,13 +82,15 @@ export class Auth {
     zone: NgZone,
     private router: Router,
     public session: SessionService,
-    private sqlResource: SqlResource) {
-    console.log('Auth constructor');
+    public sqlResource: SqlResource) {
+
+    console.log('Auth constructor before session assignment');
     this.zoneImpl = zone;
     this.userProfile = JSON.parse(localStorage.getItem('profile'));
     this.session = session;
-
-    console.log('Auth constructor');
+    this.sqlResource = sqlResource
+    console.log(this.session);
+    console.log(this.sqlResource);
 
     this.lock.on('authorization_error', (auth_error: any) => {
       console.log('authorization_error event received');
@@ -103,7 +105,7 @@ export class Auth {
       localStorage.setItem('id_token', authResult.idToken);
 
       // Use the token in authResult to getProfile() and save it to localStorage
-      console.log('calling lock.getProfile');
+      console.log('calling lock.getUserInfo');
       this.lock.getProfile(authResult.idToken, (error: any, profile: any) => {
         if (error) {
           // Handle error
@@ -112,7 +114,7 @@ export class Auth {
         }
         // If authentication is successful, set up a 'session' by saving the items
         // in local storage
-        console.log('in getProfile callback with profile>>');
+        console.log('in getUserInfo callback with profile>>');
 
         if (this.isAuthenticated()) {
           // console.log(JSON.stringify(profile));
@@ -140,7 +142,7 @@ export class Auth {
       }); // end get profile
       console.log('end of authenticated event handler1');
     });
-    console.log('end of authenticated event handler definition');// end authenticated event handler
+    console.log('end of authenticated event handler definition'); // end authenticated event handler
     console.log('before call to handleRedirectWithHash');
     this.handleRedirectWithHash();
   }
@@ -149,7 +151,8 @@ export class Auth {
     console.log('in handleRedirectWithHash');
     this.router.events.take(1).subscribe(event => {
       console.log('in handleRedirectWithHash subscribe event with hash ' + window.location.hash);
-      // if (/access_token/.test(event.url) || /error/.test(event.url)) {
+      // 7/23/2017 workaround for url not being found
+      if (/access_token/.test(event['url']) || /error/.test(event['url'])) {
         console.log('handleRedirectWithHash has token or error, parsing authResult');
         const authResult = this.auth0.parseHash(window.location.hash);
         if (authResult && authResult.idToken) {
@@ -159,7 +162,7 @@ export class Auth {
         if (authResult && authResult.error) {
           this.lock.emit('authorization_error', authResult);
         }
-      // }
+      }
     });
   }
 

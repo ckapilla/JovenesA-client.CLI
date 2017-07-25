@@ -19,10 +19,10 @@ export class SqlReports {
     console.log('window: ' + window.location.hostname);
     if (window.location.hostname === 'privada.jovenesadelante.org'
               || serverMode === 'Prod') {
-      this.WebApiPrefix = 'http://jovenesadelantewebapi.azurewebsites.net/api/v1/';
+      this.WebApiPrefix = 'https://jovenesadelantewebapi.azurewebsites.net/api/v1/';
     } else {
-      // this.WebApiPrefix = 'http://jovenesadelantewebapitest.azurewebsites.net/api/v1/' ;
-      this.WebApiPrefix = 'http://192.168.1.68:45455/api/v1/' ;
+      // this.WebApiPrefix = 'https://jovenesadelantewebapitest.azurewebsites.net/api/v1/' ;
+      this.WebApiPrefix = 'https://192.168.1.68:45455/api/v1/' ;
     }
 
 

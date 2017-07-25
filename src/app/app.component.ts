@@ -3,8 +3,7 @@ import './operators';
 import { Router } from '@angular/router';
 import { Auth } from './app_shared/services/auth.service';
 import { SessionService } from './app_shared/services/session.service';
-
-
+import { SqlResource } from './app_shared/services/sql-resource';
 /**
  * This class represents the main application component. Within the @Routes annotation is the configuration of the
  * applications routes, configuring the paths for the lazy loaded components (HomeComponent, AboutComponent).
@@ -19,7 +18,8 @@ export class AppComponent {
    constructor(
                 private auth: Auth,
                 session: SessionService,
-                router: Router
+                router: Router,
+                sqlResource: SqlResource
                 ) {
     if (session.getUserId() === 0) {
       auth.restoreUserProfile();

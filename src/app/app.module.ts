@@ -27,6 +27,16 @@ import { AppSharedModule } from './app_shared/app_shared.module';
 import { SessionService } from './app_shared/services/session.service';
 import { SqlResource } from './app_shared/services/sql-resource';
 
+export function AuthHttpFactory (http: Http) {
+  console.log(' *************************************************** New AuthHttp');
+      return new AuthHttp(new AuthConfig(), http);
+}
+
+export function sqlResourceFactory (http: AuthHttp, _http: Http) {
+    console.log(' *************************************************** New SqlResource');
+       return new SqlResource(http, _http);
+ }
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -36,7 +46,6 @@ import { SqlResource } from './app_shared/services/sql-resource';
     appRoutingProviders,
     // RouterModule,
     ReactiveFormsModule,
-    HomeModule,
     HomeModule,
     AdminsModule,
     MentorsModule,
@@ -60,38 +69,45 @@ import { SqlResource } from './app_shared/services/sql-resource';
     },
     Location,
     // AUTH_PROVIDERS,
+    // {
+    //   provide: AuthHttp,
+    //   useFactory(http: Http) {
+    //     return new AuthHttp(new AuthConfig(), http);
+    //   },
+    //   deps: [Http]
+    // },
     {
       provide: AuthHttp,
-      useFactory(http: Http) {
-        return new AuthHttp(new AuthConfig(), http);
-      },
+      useFactory: AuthHttpFactory,
       deps: [Http]
     },
 
     Auth,
-    {
-      provide: SessionService,
-      useFactory() {
-        console.log('New SessionService##');
-        return new SessionService();
-      }
-    },
+    // {
+    //   provide: SessionService,
+    //   useFactory() {
+    //     console.log('New SessionService##');
+    //     return new SessionService();
+    //   }
+    // },
     SessionService,
     SqlResource,
+    // {
+    //   provide: SqlResource,
+    //   useFactory: sqlResourceFactory, // (http: AuthHttp, _http: Http) {
+    //   //   console.log(' *************************************************** New SqlResource');
+    //   //   return new SqlResource(http, _http);
+    //   // }// ,
+    //   deps: [AuthHttp, Http]
+    // },
     CanActivateViaAdminAuthGuard,
     CanActivateViaMentorAuthGuard,
     CanActivateViaStudentAuthGuard,
-    ConfirmDeactivateGuard,
-    {
-      provide: SqlResource,
-      useFactory(http: AuthHttp, _http: Http) {
-        console.log('New SqlResource');
-        return new SqlResource(http, _http);
-      },
-      deps: [AuthHttp, Http]
-    }
+    ConfirmDeactivateGuard
+
   ],
   bootstrap: [AppComponent]
 })
 
-export class AppModule { }
+export class AppModule {}
+

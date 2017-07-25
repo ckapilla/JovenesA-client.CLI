@@ -43,12 +43,12 @@ import * as i33 from '@angular/common';
 import * as i34 from '@angular/platform-browser';
 import * as i35 from '@angular/forms';
 import * as i36 from '@angular/http';
-import * as i37 from '../../../src/app/+reports/shared/services/sql-reports';
-import * as i38 from 'angular2-jwt/angular2-jwt';
+import * as i37 from 'angular2-jwt/angular2-jwt';
+import * as i38 from '../../../src/app/+reports/shared/services/sql-reports';
 import * as i39 from '@angular/router';
-import * as i40 from '../../../src/app/app_shared/services/sql-resource';
-import * as i41 from '../../../src/app/app_shared/services/auth.service';
-import * as i42 from '../../../src/app/app_shared/services/session.service';
+import * as i40 from '../../../src/app/app_shared/services/session.service';
+import * as i41 from '../../../src/app/app_shared/services/sql-resource';
+import * as i42 from '../../../src/app/app_shared/services/auth.service';
 import * as i43 from '../../../src/app/app.routing-guards';
 import * as i44 from '../../../src/app/+home/home.component';
 import * as i45 from '../../../src/app/+admins/admins.component';
@@ -126,25 +126,27 @@ export const AppModuleNgFactory:i0.NgModuleFactory<i1.AppModule> = i0.ɵcmf(i1.A
               i36.ɵb,([] as any[])),i0.ɵmpd(4608,i36.XHRBackend,i36.XHRBackend,[i36.BrowserXhr,
               i36.ResponseOptions,i36.XSRFStrategy]),i0.ɵmpd(4608,i36.RequestOptions,
               i36.BaseRequestOptions,([] as any[])),i0.ɵmpd(5120,i36.Http,i36.ɵc,[i36.XHRBackend,
-              i36.RequestOptions]),i0.ɵmpd(4608,i37.SqlReports,i37.SqlReports,[i38.AuthHttp,
-              i36.Http]),i0.ɵmpd(5120,i39.ActivatedRoute,i39.ɵf,[i39.Router]),i0.ɵmpd(4608,
-              i39.NoPreloading,i39.NoPreloading,([] as any[])),i0.ɵmpd(6144,i39.PreloadingStrategy,
+              i36.RequestOptions]),i0.ɵmpd(5120,i37.AuthHttp,i1.AuthHttpFactory,[i36.Http]),
+          i0.ɵmpd(4608,i38.SqlReports,i38.SqlReports,[i37.AuthHttp,i36.Http]),i0.ɵmpd(5120,
+              i39.ActivatedRoute,i39.ɵf,[i39.Router]),i0.ɵmpd(4608,i39.NoPreloading,
+              i39.NoPreloading,([] as any[])),i0.ɵmpd(6144,i39.PreloadingStrategy,
               (null as any),[i39.NoPreloading]),i0.ɵmpd(135680,i39.RouterPreloader,
               i39.RouterPreloader,[i39.Router,i0.NgModuleFactoryLoader,i0.Compiler,
                   i0.Injector,i39.PreloadingStrategy]),i0.ɵmpd(4608,i39.PreloadAllModules,
               i39.PreloadAllModules,([] as any[])),i0.ɵmpd(5120,i39.ROUTER_INITIALIZER,
               i39.ɵi,[i39.ɵg]),i0.ɵmpd(5120,i0.APP_BOOTSTRAP_LISTENER,(p0_0:any) => {
             return [p0_0];
-          },[i39.ROUTER_INITIALIZER]),i0.ɵmpd(4608,i40.SqlResource,i40.SqlResource,
-              [i38.AuthHttp,i36.Http]),i0.ɵmpd(4608,i41.Auth,i41.Auth,[i0.NgZone,i39.Router,
-              i42.SessionService,i40.SqlResource]),i0.ɵmpd(4608,i43.CanActivateViaAdminAuthGuard,
-              i43.CanActivateViaAdminAuthGuard,[i41.Auth,i39.Router,i42.SessionService]),
-          i0.ɵmpd(4608,i43.CanActivateViaMentorAuthGuard,i43.CanActivateViaMentorAuthGuard,
-              [i41.Auth,i39.Router,i42.SessionService]),i0.ɵmpd(4608,i43.CanActivateViaStudentAuthGuard,
-              i43.CanActivateViaStudentAuthGuard,[i41.Auth,i39.Router,i42.SessionService]),
-          i0.ɵmpd(4608,i43.ConfirmDeactivateGuard,i43.ConfirmDeactivateGuard,([] as any[])),
-          i0.ɵmpd(512,i33.CommonModule,i33.CommonModule,([] as any[])),i0.ɵmpd(1024,
-              i0.ErrorHandler,i34.ɵa,([] as any[])),i0.ɵmpd(1024,i0.NgProbeToken,() => {
+          },[i39.ROUTER_INITIALIZER]),i0.ɵmpd(4608,i40.SessionService,i40.SessionService,
+              ([] as any[])),i0.ɵmpd(4608,i41.SqlResource,i41.SqlResource,[i37.AuthHttp,
+              i36.Http]),i0.ɵmpd(4608,i42.Auth,i42.Auth,[i0.NgZone,i39.Router,i40.SessionService,
+              i41.SqlResource]),i0.ɵmpd(4608,i43.CanActivateViaAdminAuthGuard,i43.CanActivateViaAdminAuthGuard,
+              [i42.Auth,i39.Router,i40.SessionService]),i0.ɵmpd(4608,i43.CanActivateViaMentorAuthGuard,
+              i43.CanActivateViaMentorAuthGuard,[i42.Auth,i39.Router,i40.SessionService]),
+          i0.ɵmpd(4608,i43.CanActivateViaStudentAuthGuard,i43.CanActivateViaStudentAuthGuard,
+              [i42.Auth,i39.Router,i40.SessionService]),i0.ɵmpd(4608,i43.ConfirmDeactivateGuard,
+              i43.ConfirmDeactivateGuard,([] as any[])),i0.ɵmpd(512,i33.CommonModule,
+              i33.CommonModule,([] as any[])),i0.ɵmpd(1024,i0.ErrorHandler,i34.ɵa,
+              ([] as any[])),i0.ɵmpd(1024,i0.NgProbeToken,() => {
             return [i39.ɵb()];
           },([] as any[])),i0.ɵmpd(512,i39.ɵg,i39.ɵg,[i0.Injector]),i0.ɵmpd(1024,i0.APP_INITIALIZER,
               (p0_0:any,p0_1:any,p1_0:any) => {
@@ -210,7 +212,6 @@ export const AppModuleNgFactory:i0.NgModuleFactory<i1.AppModule> = i0.ɵcmf(i1.A
               i75.AdminsModule,([] as any[])),i0.ɵmpd(512,i76.MentorsModule,i76.MentorsModule,
               ([] as any[])),i0.ɵmpd(512,i77.StudentsModule,i77.StudentsModule,([] as any[])),
           i0.ɵmpd(512,i78.ReportsModule,i78.ReportsModule,([] as any[])),i0.ɵmpd(512,
-              i1.AppModule,i1.AppModule,([] as any[])),i0.ɵmpd(256,i38.AuthHttp,(undefined as any),
-              ([] as any[])),i0.ɵmpd(512,i42.SessionService,i42.SessionService,([] as any[]))]);
+              i1.AppModule,i1.AppModule,([] as any[]))]);
     });
-//# sourceMappingURL=data:application/json;base64,eyJmaWxlIjoiL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC9hcHAubW9kdWxlLm5nZmFjdG9yeS50cyIsInZlcnNpb24iOjMsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIm5nOi8vL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC9hcHAubW9kdWxlLnRzIl0sInNvdXJjZXNDb250ZW50IjpbIiAiXSwibWFwcGluZ3MiOiJBQUFBOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OyJ9
+//# sourceMappingURL=data:application/json;base64,eyJmaWxlIjoiL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC9hcHAubW9kdWxlLm5nZmFjdG9yeS50cyIsInZlcnNpb24iOjMsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIm5nOi8vL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC9hcHAubW9kdWxlLnRzIl0sInNvdXJjZXNDb250ZW50IjpbIiAiXSwibWFwcGluZ3MiOiJBQUFBOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OzsifQ==

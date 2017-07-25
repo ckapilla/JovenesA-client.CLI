@@ -14,7 +14,7 @@ export class SessionService {
     constructor() {
         // this.loading$ = new Observable(observer => this._observer = observer)
         // .share();
-        console.log('SessionService constructor');
+        console.log('SessionService constructor 4');
         this.userId = 0;
         this.assignedStudentId = 0;
     }

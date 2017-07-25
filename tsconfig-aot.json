@@ -11,8 +11,8 @@
     "suppressImplicitAnyIndexErrors": true,
     "typeRoots": [
       "node_modules/@types"
-    ]// ,
-    // "outDir": "./dist/out-tsc",
+    ],
+    "outDir": "./dist/out-tsc" // ,
     // "baseUrl": "src",
     // "declaration": false
   },
