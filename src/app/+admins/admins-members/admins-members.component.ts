@@ -95,7 +95,7 @@ export class AdminsMembersComponent implements OnInit {
     this.isLoading = true;
     this.sqlResource.getMemberStudentRelations(type)
       .subscribe(
-        data => { this.members = data; this.successMessage = 'Data loaded successfully' },
+        data => { this.members = data; },
         err => this.errorMessage = err,
         () => { console.log('done'); this.isLoading = false; }
       );

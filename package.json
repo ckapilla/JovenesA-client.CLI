@@ -6,6 +6,7 @@
     "ng": "ng",
     "start": "webpack-dev-server --port=3000",
     "build": "webpack",
+    "build.aot": "./aot.sh",
     "build.prod": "webpack --env=prod --verbose --display-provided-exports ",
     "test": "karma start ./karma.conf.js",
     "lint": "ng lint",

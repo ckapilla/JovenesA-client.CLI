@@ -24,11 +24,11 @@ export class SqlResource {
               private _http: Http) {
     console.log('sqlResource constructor');
 
-    // const serverMode = 'Prod';
+    const serverMode = 'Prod';
 
     console.log('window: ' + window.location.hostname);
-    if (window.location.hostname === 'privada.jovenesadelante.org' ) {
-     //         || serverMode === 'Prod') {
+    if (window.location.hostname === 'privada.jovenesadelante.org'
+              || serverMode === 'Prod') {
       this.WebApiPrefix = 'https://jovenesadelantewebapi.azurewebsites.net/api/v1/';
     } else {
       // this.WebApiPrefix = 'http://jovenesadelantewebapitest.azurewebsites.net/api/v1/' ;

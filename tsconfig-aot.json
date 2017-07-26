@@ -12,9 +12,7 @@
     "typeRoots": [
       "node_modules/@types"
     ],
-    "outDir": "./dist/out-tsc" // ,
-    // "baseUrl": "src",
-    // "declaration": false
+    "outDir": "./aot/out-tsc" // ,
   },
   "files": [
     "src/app/app.module.ts",
