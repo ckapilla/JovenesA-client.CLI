@@ -28,6 +28,7 @@ export class SqlResource {
 
     console.log('window: ' + window.location.hostname);
     if (window.location.hostname === 'privada.jovenesadelante.org'
+              // && serverMode !== 'Prod') {
               || serverMode === 'Prod') {
       this.WebApiPrefix = 'https://jovenesadelantewebapi.azurewebsites.net/api/v1/';
     } else {
