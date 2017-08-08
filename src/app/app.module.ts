@@ -28,7 +28,7 @@ import { SessionService } from './app_shared/services/session.service';
 import { SqlResource } from './app_shared/services/sql-resource';
 
 export function AuthHttpFactory (http: Http) {
-  console.log(' *************************************************** New AuthHttp');
+  // console.log(' *************************************************** New AuthHttp');
       return new AuthHttp(new AuthConfig(), http);
 }
 

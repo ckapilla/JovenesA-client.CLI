@@ -143,17 +143,17 @@ export class Auth {
       console.log('end of authenticated event handler1');
     });
     console.log('end of authenticated event handler definition'); // end authenticated event handler
-    console.log('before call to handleRedirectWithHash');
-    this.handleRedirectWithHash();
+    // console.log('before call to handleRedirectWithHash');
+    this.handleRedirectWithAuthHash();
   }
 
-  public handleRedirectWithHash() {
-    console.log('in handleRedirectWithHash');
+  public handleRedirectWithAuthHash() {
+    console.log('in handleRedirectWithAuthHash');
     this.router.events.take(1).subscribe(event => {
-      console.log('in handleRedirectWithHash subscribe event with hash ' + window.location.hash);
+      console.log('in handleRedirectWithAuthHash subscribe event with hash ' + window.location.hash);
       // 7/23/2017 workaround for url not being found
       if (/access_token/.test(event['url']) || /error/.test(event['url'])) {
-        console.log('handleRedirectWithHash has token or error, parsing authResult');
+        console.log('handleRedirectWithAuthHash has token or error, parsing authResult');
         const authResult = this.auth0.parseHash(window.location.hash);
         if (authResult && authResult.idToken) {
           console.log('manual emit authenticated');
@@ -244,7 +244,7 @@ export class Auth {
   // }
 
   public UpdateLastLogin(id: number): void {
-    console.log('calling SqlResource UpdateLastLogin');
+    // console.log('calling SqlResource UpdateLastLogin');
     this.sqlResource.UpdateLastLogin(this.session.userId)
       .subscribe(
       data => {/*console.log('');*/ },

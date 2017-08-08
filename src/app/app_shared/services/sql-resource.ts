@@ -316,11 +316,11 @@ export class SqlResource {
 
   public UpdateLastLogin(userId: number): Observable<any> {
     const url = this.WebApiPrefix + 'updates' + '/LastLoginTime/' + userId;
-    console.log('sending AuthHttp get request to set LastLogin datetime');
+    // console.log('sending AuthHttp get request to set LastLogin datetime');
     return this._http.get(url)
       .map(
           (response: Response) => {
-            console.log('updateLastLogin success; no json expected ');
+            ; // console.log('updateLastLogin success; no json expected ');
             })
       .catch(this.handleError
       );

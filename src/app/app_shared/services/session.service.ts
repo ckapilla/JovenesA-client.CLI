@@ -104,7 +104,7 @@ export class SessionService {
     }
 
     public getFailedRoute(): string {
-      console.log('getFailedRoute returning ' + this.failedRoute);
+      // console.log('getFailedRoute returning ' + this.failedRoute);
       return this.failedRoute;
     }
 
