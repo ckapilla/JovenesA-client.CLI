@@ -74,7 +74,7 @@
         <div class="controls">
           <label for="inputSuccess">Describe positive events in the student's life during the past month<br />Describa logros y eventos positivos en la vida del estudiante</label>
           <textarea id="inputSuccess" #success formControlName="inputSuccess" [(ngModel)]="mentorReport.recentSuccess" type="text"
-            class="form-control input-sm" placeholder="Positive Events">
+            class="form-control input-sm" placeholder="(Si usted habla Ingles de manera fluida, favor de hacer su reporte en dicho idioma.)">
           </textarea>
           <display-errors control="inputSuccess" class="red"
             [errors]="{'required': 'An entry is required, even if it is just N/A',
@@ -85,7 +85,7 @@
         <div class="controls">
           <label for="inputSetback">Describe any special challenges in the student's life during the past month<br />Describa retos y obstáculos en la vida del estudiante</label>
           <textarea id="inputSetback" #setback formControlName="inputSetback" [(ngModel)]="mentorReport.recentSetback" type="text"
-            class="form-control input-sm" placeholder="Special Challenges (or 'N/A')">
+            class="form-control input-sm" placeholder="(Si usted habla Ingles de manera fluida, favor de hacer su reporte en dicho idioma.)">
           </textarea>
           <display-errors control="inputSetback" class="red"
             [errors]="{'required': 'An entry is required, even if it is just N/A',
