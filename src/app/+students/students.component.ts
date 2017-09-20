@@ -20,7 +20,7 @@ export class StudentsComponent {
   }
 
   public onLogoutClick = ($event: Event) => {
-   	    console.log('onLogoutClick');
+        console.log('onLogoutClick');
         $event.preventDefault(); // don't navigate to href.
         this.auth.logout();
   }

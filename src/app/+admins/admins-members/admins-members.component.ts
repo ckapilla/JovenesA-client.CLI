@@ -15,7 +15,6 @@ interface SELECTITEM {
 @Component({
   moduleId: module.id,
   templateUrl: './admins-members.component.html',
-  styleUrls:  ['./admins-members.component.css'],
 })
 
 export class AdminsMembersComponent implements OnInit {
@@ -45,7 +44,7 @@ export class AdminsMembersComponent implements OnInit {
       { value: '2041', label: 'Pledger' },
       { value: '2040', label: 'President' },
 
-      // { value: '2066', label: 'LegacyDonor' },
+      { value: '2068', label: 'Admin' },
       // { value: '2067', label: '[All]' },
       { value: '1009', label: 'Sponsor' },
       // { value: '2069', label: 'Student' },

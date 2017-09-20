@@ -86,12 +86,15 @@ export class AdminsStudentComponent implements OnInit {
     this.sqlResource.updateStudent(this.student)
         .subscribe(
             (student) => {
-                //console.log('subscribe result in updateStudent');
-                this.successMessage = 'Changes were saved successfully.';
+                // console.log('subscribe result in updateStudent');
+                // need timeout to avoid "Expression has changed error"
+                window.setTimeout( () => {
+                this.successMessage = 'Changes were saved successfully.'; }, 0);
+                // this.successMessage = 'Changes were saved successfully.';
                 this.submitted = true;
                 this.isLoading = false;
                 window.scrollTo(0,0);
-                window.setTimeout( () => {//console.log('clearing success message');
+                window.setTimeout( () => {// console.log('clearing success message');
                               this.successMessage = '';}, 3000);
              },
             (error) =>  {

@@ -46,8 +46,8 @@ export class StudentsStudentStatusComponent implements OnInit {
 
   ngOnInit() {
     console.log('ngOnInit');
-    //et id = this.currRoute.snapshot.params['id'];
-    let id = this.session.getStudentId();
+    // et id = this.currRoute.snapshot.params['id'];
+    const id = this.session.getStudentId();
     console.log('stdudentStatus with studentId: ' + id);
     this.isLoading = true;
     this.sqlResource.getStudentDTO(id)

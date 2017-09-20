@@ -19,7 +19,7 @@ export function StudentsProfileComponentNgSummary():any[] {
           isSelf:false,isSkipSelf:false,isOptional:false,token:{identifier:{reference:i2.SqlResource}}},
       {isAttribute:false,isHost:false,isSelf:false,isSkipSelf:false,isOptional:false,
           token:{identifier:{reference:i3.FormBuilder}}}],lifecycleHooks:[0]},isComponent:true,
-      selector:'student-profile',exportAs:(null as any),inputs:{},outputs:{},hostListeners:{},
+      selector:'ng-component',exportAs:(null as any),inputs:{},outputs:{},hostListeners:{},
       hostProperties:{},hostAttributes:{},providers:([] as any[]),viewProviders:([] as any[]),
       queries:([] as any[]),viewQueries:([] as any[]),entryComponents:([] as any[]),
       changeDetection:1,template:{animations:([] as any[]),ngContentSelectors:([] as any[]),

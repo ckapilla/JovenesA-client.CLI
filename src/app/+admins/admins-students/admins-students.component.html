@@ -58,12 +58,12 @@
           <tbody>
             <tr *ngFor="let student of studentDTOs, let i = index">
               <!--<td class='centered'>
-            {{ student.studentDTOId}}
+            {{ student.studentId}}
           </td>-->
               <td>
-                {{ i+1 }}
+                {{ i+1 }} | {{ student.studentId }}
               </td>
-              <td (click)='gotoStudent(student.studentDTOId, student.studentName)' class='link'>
+              <td (click)='gotoStudent(student.studentId, student.studentName)' class='link'>
                 {{ student.studentName }}
               </td>
               <td class='centered'>
@@ -87,15 +87,15 @@
                 <img src="/assets/images/{{student.timelyMentorMeetingStatus}}.jpg" height="22">
                 <img src="/assets/images/{{student.timelyMentorReportStatus}}.jpg" height="22">
                 <img src="{{smileys[student.studentSnapshotStatus + 1]}}" width="24" />
-                <span (click)='gotoReport(student.studentDTOId)' class='link'>
+                <span (click)='gotoReport(student.studentId)' class='link'>
                 View</span>
-                <!--<a ui-sref="mentorReportList({mentorId: 0, studentId: {{student.studentDTOId}}, studentName: '{{student.studentName}}' })">
+                <!--<a ui-sref="mentorReportList({mentorId: 0, studentId: {{student.studentId}}, studentName: '{{student.studentName}}' })">
               <button class="btn btn-sm">&gt;</button>-->
                 <!--</a>-->
               </td>
               <!--<td class='centered'>
                       <img ng-src="{{vm.smileys[student.studentAssessmentStatus + 1]}}" width="24" />
-            <a ui-sref="quarterlyReportList({studentId: {{student.studentDTOId}}, studentName: '{{student.studentName}}' })">
+            <a ui-sref="quarterlyReportList({studentId: {{student.studentId}}, studentName: '{{student.studentName}}' })">
               <button class="btn btn-sm">&gt;</button>
               </a>
           </td>-->

@@ -84,20 +84,21 @@ import * as i74 from 'angular2-jwt/angular2-jwt';
 import * as i75 from '../../../src/app/app_shared/services/auth.service';
 import * as i76 from '../../../src/app/app_shared/services/session.service';
 import * as i77 from '../../../src/app/app_shared/services/sql-resource';
-import * as i78 from '../../../src/app/app_shared/app_shared.module';
-import * as i79 from './app.component.ngsummary';
-import * as i80 from '../../node_modules/@angular/common/common.ngsummary';
-import * as i81 from '../../node_modules/@angular/core/core.ngsummary';
-import * as i82 from '../../node_modules/@angular/platform-browser/platform-browser.ngsummary';
-import * as i83 from '../../node_modules/@angular/forms/forms.ngsummary';
-import * as i84 from '../../node_modules/@angular/http/http.ngsummary';
-import * as i85 from '../../node_modules/@angular/router/router.ngsummary';
-import * as i86 from './app_shared/app_shared.module.ngsummary';
-import * as i87 from './+home/home.module.ngsummary';
-import * as i88 from './+admins/admins.module.ngsummary';
-import * as i89 from './+mentors/mentors.module.ngsummary';
-import * as i90 from './+students/students.module.ngsummary';
-import * as i91 from './+reports/reports.module.ngsummary';
+import * as i78 from '../../../src/app/app_shared/services/web-api-prefix.service';
+import * as i79 from '../../../src/app/app_shared/app_shared.module';
+import * as i80 from './app.component.ngsummary';
+import * as i81 from '../../node_modules/@angular/common/common.ngsummary';
+import * as i82 from '../../node_modules/@angular/core/core.ngsummary';
+import * as i83 from '../../node_modules/@angular/platform-browser/platform-browser.ngsummary';
+import * as i84 from '../../node_modules/@angular/forms/forms.ngsummary';
+import * as i85 from '../../node_modules/@angular/http/http.ngsummary';
+import * as i86 from '../../node_modules/@angular/router/router.ngsummary';
+import * as i87 from './app_shared/app_shared.module.ngsummary';
+import * as i88 from './+home/home.module.ngsummary';
+import * as i89 from './+admins/admins.module.ngsummary';
+import * as i90 from './+mentors/mentors.module.ngsummary';
+import * as i91 from './+students/students.module.ngsummary';
+import * as i92 from './+reports/reports.module.ngsummary';
 export function AppModuleNgSummary():any[] {
   return [{summaryKind:2,type:{reference:i0.AppModule,diDeps:([] as any[]),lifecycleHooks:([] as any[])},
       entryComponents:[{componentType:i1.HomeComponent,componentFactory:i2.HomeComponentNgFactory},
@@ -700,15 +701,25 @@ export function AppModuleNgSummary():any[] {
           {provider:{token:{identifier:{reference:i77.SqlResource,diDeps:[{isAttribute:false,
               isHost:false,isSelf:false,isSkipSelf:false,isOptional:false,token:{identifier:{reference:i74.AuthHttp}}},
               {isAttribute:false,isHost:false,isSelf:false,isSkipSelf:false,isOptional:false,
-                  token:{identifier:{reference:i65.Http}}}],lifecycleHooks:([] as any[])}},
-              useClass:{reference:i77.SqlResource,diDeps:[{isAttribute:false,isHost:false,
+                  token:{identifier:{reference:i65.Http}}},{isAttribute:false,isHost:false,
+                  isSelf:false,isSkipSelf:false,isOptional:false,token:{identifier:{reference:i78.WebApiPrefixService}}}],
+              lifecycleHooks:([] as any[])}},useClass:{reference:i77.SqlResource,diDeps:[{isAttribute:false,
+              isHost:false,isSelf:false,isSkipSelf:false,isOptional:false,token:{identifier:{reference:i74.AuthHttp}}},
+              {isAttribute:false,isHost:false,isSelf:false,isSkipSelf:false,isOptional:false,
+                  token:{identifier:{reference:i65.Http}}},{isAttribute:false,isHost:false,
+                  isSelf:false,isSkipSelf:false,isOptional:false,token:{identifier:{reference:i78.WebApiPrefixService}}}],
+              lifecycleHooks:([] as any[])},useValue:(undefined as any),useFactory:(null as any),
+              useExisting:(undefined as any),deps:[{isAttribute:false,isHost:false,
                   isSelf:false,isSkipSelf:false,isOptional:false,token:{identifier:{reference:i74.AuthHttp}}},
                   {isAttribute:false,isHost:false,isSelf:false,isSkipSelf:false,isOptional:false,
-                      token:{identifier:{reference:i65.Http}}}],lifecycleHooks:([] as any[])},
-              useValue:(undefined as any),useFactory:(null as any),useExisting:(undefined as any),
-              deps:[{isAttribute:false,isHost:false,isSelf:false,isSkipSelf:false,
-                  isOptional:false,token:{identifier:{reference:i74.AuthHttp}}},{isAttribute:false,
-                  isHost:false,isSelf:false,isSkipSelf:false,isOptional:false,token:{identifier:{reference:i65.Http}}}],
+                      token:{identifier:{reference:i65.Http}}},{isAttribute:false,
+                      isHost:false,isSelf:false,isSkipSelf:false,isOptional:false,
+                      token:{identifier:{reference:i78.WebApiPrefixService}}}],multi:false},
+              module:{reference:i0.AppModule,diDeps:([] as any[]),lifecycleHooks:([] as any[])}},
+          {provider:{token:{identifier:{reference:i78.WebApiPrefixService,diDeps:([] as any[]),
+              lifecycleHooks:([] as any[])}},useClass:{reference:i78.WebApiPrefixService,
+              diDeps:([] as any[]),lifecycleHooks:([] as any[])},useValue:(undefined as any),
+              useFactory:(null as any),useExisting:(undefined as any),deps:([] as any[]),
               multi:false},module:{reference:i0.AppModule,diDeps:([] as any[]),lifecycleHooks:([] as any[])}},
           {provider:{token:{identifier:{reference:i68.CanActivateViaAdminAuthGuard,
               diDeps:[{isAttribute:false,isHost:false,isSelf:false,isSkipSelf:false,
@@ -785,7 +796,7 @@ export function AppModuleNgSummary():any[] {
               {isAttribute:false,isHost:false,isSelf:false,isSkipSelf:false,isOptional:true,
                   token:{identifier:{reference:i66.Router}}}],lifecycleHooks:([] as any[])},
           {reference:i64.FormsModule,diDeps:([] as any[]),lifecycleHooks:([] as any[])},
-          {reference:i78.AppSharedModule,diDeps:([] as any[]),lifecycleHooks:([] as any[])},
+          {reference:i79.AppSharedModule,diDeps:([] as any[]),lifecycleHooks:([] as any[])},
           {reference:i67.HomeModule,diDeps:([] as any[]),lifecycleHooks:([] as any[])},
           {reference:i69.AdminsModule,diDeps:([] as any[]),lifecycleHooks:([] as any[])},
           {reference:i70.MentorsModule,diDeps:([] as any[]),lifecycleHooks:([] as any[])},
@@ -801,11 +812,11 @@ export function AppModuleNgSummary():any[] {
           {reference:i64.MaxLengthValidator},{reference:i64.PatternValidator},{reference:i64.CheckboxRequiredValidator},
           {reference:i64.EmailValidator},{reference:i64.FormControlDirective},{reference:i64.FormGroupDirective},
           {reference:i64.FormControlName},{reference:i64.FormGroupName},{reference:i64.FormArrayName}],
-      exportedPipes:([] as any[])},i79.AppComponentNgSummary,i80.CommonModuleNgSummary,
-      i81.ApplicationModuleNgSummary,i82.BrowserModuleNgSummary,i83.ɵbcNgSummary,i83.ReactiveFormsModuleNgSummary,
-      i84.HttpModuleNgSummary,i85.RouterModuleNgSummary,i83.FormsModuleNgSummary,i86.AppSharedModuleNgSummary,
-      i87.HomeModuleNgSummary,i88.AdminsModuleNgSummary,i89.MentorsModuleNgSummary,
-      i90.StudentsModuleNgSummary,i91.ReportsModuleNgSummary,{summaryKind:3,type:{reference:i61.Location,
+      exportedPipes:([] as any[])},i80.AppComponentNgSummary,i81.CommonModuleNgSummary,
+      i82.ApplicationModuleNgSummary,i83.BrowserModuleNgSummary,i84.ɵbcNgSummary,i84.ReactiveFormsModuleNgSummary,
+      i85.HttpModuleNgSummary,i86.RouterModuleNgSummary,i84.FormsModuleNgSummary,i87.AppSharedModuleNgSummary,
+      i88.HomeModuleNgSummary,i89.AdminsModuleNgSummary,i90.MentorsModuleNgSummary,
+      i91.StudentsModuleNgSummary,i92.ReportsModuleNgSummary,{summaryKind:3,type:{reference:i61.Location,
           diDeps:[{isAttribute:false,isHost:false,isSelf:false,isSkipSelf:false,isOptional:false,
               token:{identifier:{reference:i61.LocationStrategy}}}],lifecycleHooks:([] as any[])}},
       {summaryKind:3,type:{reference:i66.DefaultUrlSerializer,diDeps:([] as any[]),
@@ -841,24 +852,27 @@ export function AppModuleNgSummary():any[] {
       {summaryKind:3,type:{reference:i77.SqlResource,diDeps:[{isAttribute:false,isHost:false,
           isSelf:false,isSkipSelf:false,isOptional:false,token:{identifier:{reference:i74.AuthHttp}}},
           {isAttribute:false,isHost:false,isSelf:false,isSkipSelf:false,isOptional:false,
-              token:{identifier:{reference:i65.Http}}}],lifecycleHooks:([] as any[])}},
-      {summaryKind:3,type:{reference:i68.CanActivateViaAdminAuthGuard,diDeps:[{isAttribute:false,
-          isHost:false,isSelf:false,isSkipSelf:false,isOptional:false,token:{identifier:{reference:i75.Auth}}},
-          {isAttribute:false,isHost:false,isSelf:false,isSkipSelf:false,isOptional:false,
-              token:{identifier:{reference:i66.Router}}},{isAttribute:false,isHost:false,
-              isSelf:false,isSkipSelf:false,isOptional:false,token:{identifier:{reference:i76.SessionService}}}],
-          lifecycleHooks:([] as any[])}},{summaryKind:3,type:{reference:i68.CanActivateViaMentorAuthGuard,
+              token:{identifier:{reference:i65.Http}}},{isAttribute:false,isHost:false,
+              isSelf:false,isSkipSelf:false,isOptional:false,token:{identifier:{reference:i78.WebApiPrefixService}}}],
+          lifecycleHooks:([] as any[])}},{summaryKind:3,type:{reference:i78.WebApiPrefixService,
+          diDeps:([] as any[]),lifecycleHooks:([] as any[])}},{summaryKind:3,type:{reference:i68.CanActivateViaAdminAuthGuard,
           diDeps:[{isAttribute:false,isHost:false,isSelf:false,isSkipSelf:false,isOptional:false,
               token:{identifier:{reference:i75.Auth}}},{isAttribute:false,isHost:false,
               isSelf:false,isSkipSelf:false,isOptional:false,token:{identifier:{reference:i66.Router}}},
               {isAttribute:false,isHost:false,isSelf:false,isSkipSelf:false,isOptional:false,
                   token:{identifier:{reference:i76.SessionService}}}],lifecycleHooks:([] as any[])}},
-      {summaryKind:3,type:{reference:i68.CanActivateViaStudentAuthGuard,diDeps:[{isAttribute:false,
+      {summaryKind:3,type:{reference:i68.CanActivateViaMentorAuthGuard,diDeps:[{isAttribute:false,
           isHost:false,isSelf:false,isSkipSelf:false,isOptional:false,token:{identifier:{reference:i75.Auth}}},
           {isAttribute:false,isHost:false,isSelf:false,isSkipSelf:false,isOptional:false,
               token:{identifier:{reference:i66.Router}}},{isAttribute:false,isHost:false,
               isSelf:false,isSkipSelf:false,isOptional:false,token:{identifier:{reference:i76.SessionService}}}],
-          lifecycleHooks:([] as any[])}},{summaryKind:3,type:{reference:i68.ConfirmDeactivateGuard,
-          diDeps:([] as any[]),lifecycleHooks:([] as any[])}}];
+          lifecycleHooks:([] as any[])}},{summaryKind:3,type:{reference:i68.CanActivateViaStudentAuthGuard,
+          diDeps:[{isAttribute:false,isHost:false,isSelf:false,isSkipSelf:false,isOptional:false,
+              token:{identifier:{reference:i75.Auth}}},{isAttribute:false,isHost:false,
+              isSelf:false,isSkipSelf:false,isOptional:false,token:{identifier:{reference:i66.Router}}},
+              {isAttribute:false,isHost:false,isSelf:false,isSkipSelf:false,isOptional:false,
+                  token:{identifier:{reference:i76.SessionService}}}],lifecycleHooks:([] as any[])}},
+      {summaryKind:3,type:{reference:i68.ConfirmDeactivateGuard,diDeps:([] as any[]),
+          lifecycleHooks:([] as any[])}}];
 }
-//# sourceMappingURL=data:application/json;base64,eyJmaWxlIjoiL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC9hcHAubW9kdWxlLm5nc3VtbWFyeS50cyIsInZlcnNpb24iOjMsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIm5nOi8vL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC9hcHAubW9kdWxlLnRzIl0sInNvdXJjZXNDb250ZW50IjpbIiAiXSwibWFwcGluZ3MiOiJBQUFBOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OyJ9
+//# sourceMappingURL=data:application/json;base64,eyJmaWxlIjoiL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC9hcHAubW9kdWxlLm5nc3VtbWFyeS50cyIsInZlcnNpb24iOjMsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIm5nOi8vL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC9hcHAubW9kdWxlLnRzIl0sInNvdXJjZXNDb250ZW50IjpbIiAiXSwibWFwcGluZ3MiOiJBQUFBOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7In0=

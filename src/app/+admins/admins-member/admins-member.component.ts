@@ -88,7 +88,10 @@ export class AdminsMemberComponent implements OnInit {
         .subscribe(
             (student) => {
                 console.log('subscribe result in updateMember');
-                this.successMessage = 'Changes were saved successfully.';
+                // need timeout to avoid "Expression has changed error"
+                window.setTimeout( () => {
+                this.successMessage = 'Changes were saved successfully.'; }, 0);
+                // this.successMessage = 'Changes were saved successfully.';
                 this.submitted = true;
                 this.isLoading = false;
                 window.scrollTo(0, 0);

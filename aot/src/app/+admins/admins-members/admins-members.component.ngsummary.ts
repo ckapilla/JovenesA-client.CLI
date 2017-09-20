@@ -21,7 +21,7 @@ export function AdminsMembersComponentNgSummary():any[] {
       inputs:{},outputs:{},hostListeners:{},hostProperties:{},hostAttributes:{},providers:([] as any[]),
       viewProviders:([] as any[]),queries:([] as any[]),viewQueries:([] as any[]),
       entryComponents:([] as any[]),changeDetection:1,template:{animations:([] as any[]),
-          ngContentSelectors:([] as any[]),encapsulation:0},componentViewType:i4.View_AdminsMembersComponent_0,
+          ngContentSelectors:([] as any[]),encapsulation:2},componentViewType:i4.View_AdminsMembersComponent_0,
       rendererType:i4.RenderType_AdminsMembersComponent,componentFactory:i4.AdminsMembersComponentNgFactory}];
 }
 //# sourceMappingURL=data:application/json;base64,eyJmaWxlIjoiL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC8rYWRtaW5zL2FkbWlucy1tZW1iZXJzL2FkbWlucy1tZW1iZXJzLmNvbXBvbmVudC5uZ3N1bW1hcnkudHMiLCJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJuZzovLy9ob21lL2NrYXBpbGxhL0Rldi9Kb3ZlbmVzQS1jbGllbnQuQ0xJL3NyYy9hcHAvK2FkbWlucy9hZG1pbnMtbWVtYmVycy9hZG1pbnMtbWVtYmVycy5jb21wb25lbnQudHMiXSwic291cmNlc0NvbnRlbnQiOlsiICJdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7In0=

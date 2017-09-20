@@ -53,7 +53,7 @@ export class MonthlyReportsComponent implements OnInit {
   onSelectedStudentId(studentId: number) {
     console.log('$$$$$$$ got selectedId event');
     this.studentId = studentId;
-    this.sqlResource.getMentorReports(this.mentorId, studentId)
+    this.sqlResource.getMentorReportDTOs(this.mentorId, studentId)
       .subscribe(
         data => {this.mentorReports = data;},
         err => console.error('Subscribe error: ' + err),

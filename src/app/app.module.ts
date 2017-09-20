@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, InjectionToken } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { ReactiveFormsModule } from '@angular/forms';
@@ -26,15 +26,20 @@ import { ReportsModule } from './+reports/reports.module';
 import { AppSharedModule } from './app_shared/app_shared.module';
 import { SessionService } from './app_shared/services/session.service';
 import { SqlResource } from './app_shared/services/sql-resource';
+import { WebApiPrefixService } from './app_shared/services/web-api-prefix.service';
+
+// export declare const WEB_API_LOCAL: InjectionToken<string>;
+// export declare const WEB_API_AZURE: InjectionToken<string>;
+
 
 export function AuthHttpFactory (http: Http) {
   // console.log(' *************************************************** New AuthHttp');
       return new AuthHttp(new AuthConfig(), http);
 }
 
-export function sqlResourceFactory (http: AuthHttp, _http: Http) {
+export function sqlResourceFactory (http: AuthHttp, _http: Http, webApiPrefixService: WebApiPrefixService) {
     console.log(' *************************************************** New SqlResource');
-       return new SqlResource(http, _http);
+       return new SqlResource(http, _http, webApiPrefixService);
  }
 
 @NgModule({
@@ -67,6 +72,14 @@ export function sqlResourceFactory (http: AuthHttp, _http: Http) {
       provide: APP_BASE_HREF,
       useValue: '/'
     },
+    // {
+    //   provide: WEB_API_LOCAL,
+    //   useValue: 'http://192.168.1.69:45456/api/'
+    // },
+    // {
+    //   provide: WEB_API_AZURE,
+    //   useValue: 'https://jovenesadelantewebapi.azurewebsites.net/api/v1/'
+    // },
     Location,
     // AUTH_PROVIDERS,
     // {
@@ -100,6 +113,7 @@ export function sqlResourceFactory (http: AuthHttp, _http: Http) {
     //   // }// ,
     //   deps: [AuthHttp, Http]
     // },
+    WebApiPrefixService,
     CanActivateViaAdminAuthGuard,
     CanActivateViaMentorAuthGuard,
     CanActivateViaStudentAuthGuard,

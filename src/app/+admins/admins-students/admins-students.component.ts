@@ -118,7 +118,7 @@ export class AdminsStudentsComponent implements OnInit {
     //        'gradyear: ' + this.selectedGradYear
     //        );
     this.isLoading = true;
-    this.sqlResource.getStudentDTOs(this.selectedStatus, this.selectedGradYear, this.selectedYearJoined)
+    this.sqlResource.getStudentDTOsByStatusAndYear(this.selectedStatus, this.selectedYearJoined, this.selectedGradYear)
       .subscribe(
         data => { this.studentDTOs = data;  },
         err => { this.errorMessage =  err } ,
