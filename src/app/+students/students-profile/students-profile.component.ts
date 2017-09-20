@@ -5,11 +5,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { SqlResource } from '../../app_shared/services/sql-resource';
 import { Student } from '../../app_shared/models/student';
-//import {DisplayErrorsComponent } from '../../app_shared/components/display-errors.component';
+// import {DisplayErrorsComponent } from '../../app_shared/components/display-errors.component';
 
 @Component({
   moduleId: module.id,
-  selector: 'student-profile',
+  // selector: 'student-profile',
   templateUrl: './students-profile.component.html',
   styleUrls:  ['./students-profile.component.css'],
 })
@@ -45,8 +45,8 @@ export class StudentsProfileComponent implements OnInit {
       inputStudentFName: ['', Validators.required],
       inputStudentLName: ['',Validators.required],
       inputStudentPhone: ['',Validators.required],
-      //inputMonthsinSma: ['',Validators.required],
-      //SpanishLevelSelector: ['',Validators.required],
+      // inputMonthsinSma: ['',Validators.required],
+      // SpanishLevelSelector: ['',Validators.required],
       EnglishLevelSelector: ['',Validators.required],
     });
     this.student = new Student();
@@ -61,7 +61,7 @@ export class StudentsProfileComponent implements OnInit {
     // this.currRoute.params
     //   .map(params => params['id'])
     //   .subscribe((id) => {
-    let id = this.currRoute.snapshot.params['id'];
+    const id = this.currRoute.snapshot.params['id'];
     console.log('stdudentsProfile with studentId: ' + id);
     this.isLoading = true;
     this.sqlResource.getStudent(id)
@@ -84,7 +84,7 @@ export class StudentsProfileComponent implements OnInit {
 
   saveProfile(): boolean {
     console.log('saving ');
-        this.sqlResource.postStudent(this.student)
+        this.sqlResource.updateStudent(this.student)
         .subscribe(
             (student) => {
                 this.successMessage = 'Changes were saved successfully.';

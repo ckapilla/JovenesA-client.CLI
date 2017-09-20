@@ -83,10 +83,10 @@ export class AdminsStudentComponent implements OnInit {
   saveProfile(): boolean {
     console.log('saving admin student ');
     this.isLoading = true;
-    this.sqlResource.postStudent(this.student)
+    this.sqlResource.updateStudent(this.student)
         .subscribe(
             (student) => {
-                //console.log('subscribe result in postStudent');
+                //console.log('subscribe result in updateStudent');
                 this.successMessage = 'Changes were saved successfully.';
                 this.submitted = true;
                 this.isLoading = false;

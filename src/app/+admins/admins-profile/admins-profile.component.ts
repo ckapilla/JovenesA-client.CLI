@@ -84,7 +84,7 @@ export class AdminsProfileComponent implements OnInit {
 
   saveProfile(): boolean {
     console.log('saving ');
-        this.sqlResource.postAdmin(this.admin)
+        this.sqlResource.updateAdmin(this.admin)
         .subscribe(
             (student) => {
                 // console.log('subscribe result from postAdmin');

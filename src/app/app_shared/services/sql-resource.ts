@@ -24,16 +24,17 @@ export class SqlResource {
               private _http: Http) {
     console.log('sqlResource constructor');
 
-    const serverMode = 'Prod';
+    const serverMode = 'Dev';
 
     console.log('window: ' + window.location.hostname);
     if (window.location.hostname === 'privada.jovenesadelante.org'
               // && serverMode !== 'Prod') {
-              || serverMode === 'Prod') {
+              // || serverMode === 'Prod') {
+              ) {
       this.WebApiPrefix = 'https://jovenesadelantewebapi.azurewebsites.net/api/v1/';
     } else {
       // this.WebApiPrefix = 'http://jovenesadelantewebapitest.azurewebsites.net/api/v1/' ;
-      this.WebApiPrefix = 'https://192.168.1.68:45455/api/v1/' ;
+      this.WebApiPrefix = 'http://192.168.1.69:45456/api/' ;
     }
 
   }
@@ -96,7 +97,7 @@ export class SqlResource {
                           sponsorId: number): Observable<RptMentorReport> {
 
     const url = this.WebApiPrefix + 'studentsponsorletters/' + studentId; // + '/' + sponsorId;
-    console.log('in postSponsorLetter with url ' + url );
+    console.log('in postSponsorLetter with urldmins/profile/1216 ' + url );
     let body = JSON.stringify({ sponsorLetter });
     // strip outer 'mentor' name
     const x = JSON.parse(body);
@@ -138,12 +139,17 @@ export class SqlResource {
 
   public getStudentDTOs(statusId: string, gradYear: string, yearJoinedJA: string): Observable<StudentDTO[]> {
     const url = this.WebApiPrefix
-    + 'studentDTOs/statusId/gradYear/yearJoinedJA'
-    + '?statusId=' + statusId
-    + '&gradYear=' + gradYear
-    + '&yearJoinedJA=' + yearJoinedJA;
+    // + 'students/statusId/gradYear/yearJoinedJA'
+    // + '?statusId=' + statusId
+    // + '&gradYear=' + gradYear
+    // + '&yearJoinedJA=' + yearJoinedJA;
+    + 'students'
+    + '/' + statusId
+    + '/' + gradYear
+    + '/' + yearJoinedJA;
+
 // statusId: vm.selectedStatus.statusId, gradYear: vm.selectedGradYear.year, yearJoinedJA: vm.selectedYearJoined.year },
-    console.log('sending AuthHttp get request for Students');
+    console.log('sending AuthHttp get request for Students with url ' + url);
     return this.http.get(url)
       .map((response: Response) => response.json())
       .catch(this.handleError);
@@ -208,7 +214,7 @@ export class SqlResource {
   }
 
 
-  public postMentor(mentor: Mentor): Observable<Mentor> {
+  public updateMentor(mentor: Mentor): Observable<Mentor> {
 
     const url = this.WebApiPrefix + 'mentors/';
 
@@ -219,12 +225,12 @@ export class SqlResource {
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
 
-    return this.http.post(url, body, options)
+    return this.http.put(url, body, options)
       .map(this.extractData)
       .catch(this.handleError);
   }
 
-  public postMember(member: Member): Observable<Member> {
+  public updateMember(member: Member): Observable<Member> {
 
     const url = this.WebApiPrefix + 'members/';
 
@@ -235,21 +241,21 @@ export class SqlResource {
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
 
-    return this.http.post(url, body, options)
+    return this.http.put(url, body, options)
       .map(this.extractData)
       .catch(this.handleError);
   }
 
  public getAdmin(adminId: Number): Observable<Admin> {
     const url = this.WebApiPrefix + 'admins/' + adminId;
-    // console.log('sending AuthHttp get request for Admin');
+    console.log('sending AuthHttp get request for Admin to ' + url);
     return this.http.get(url)
       .map((response: Response) => response.json())
       .catch(this.handleError
       );
   }
 
-  public postAdmin(admin: Admin): Observable<Admin> {
+  public updateAdmin(admin: Admin): Observable<Admin> {
 
     const url = this.WebApiPrefix + 'admins/';
 
@@ -257,11 +263,11 @@ export class SqlResource {
     // strip outer 'admin' name
     const x = JSON.parse(body);
     body = JSON.stringify(x.admin);
-    console.log('in postAdmin');
+    console.log('in putAdmin');
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
 
-    return this.http.post(url, body, options)
+    return this.http.put(url, body, options)
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -285,7 +291,7 @@ export class SqlResource {
 //   }
 
 
-  public postStudent(student: Student): Observable<any> {
+  public updateStudent(student: Student): Observable<any> {
 
     const url = this.WebApiPrefix + 'students/';
 
@@ -293,10 +299,10 @@ export class SqlResource {
     // strip outer 'student' name
     const x = JSON.parse(body);
     body = JSON.stringify(x.student);
-    // console.log('in postStudent');
+    // console.log('in updateStudent');
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
-    return this.http.post(url, body, options)
+    return this.http.put(url, body, options)
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -315,9 +321,9 @@ export class SqlResource {
   // }
 
   public UpdateLastLogin(userId: number): Observable<any> {
-    const url = this.WebApiPrefix + 'updates' + '/LastLoginTime/' + userId;
+    const url = this.WebApiPrefix + 'members' + '/LastLogin/' + userId;
     // console.log('sending AuthHttp get request to set LastLogin datetime');
-    return this._http.get(url)
+    return this._http.put(url, null)
       .map(
           (response: Response) => {
             ; // console.log('updateLastLogin success; no json expected ');

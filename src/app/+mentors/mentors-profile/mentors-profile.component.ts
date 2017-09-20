@@ -87,7 +87,7 @@ export class MentorsProfileComponent implements OnInit {
 
   saveProfile(): boolean {
     console.log('saving ');
-        this.sqlResource.postMentor(this.mentor)
+        this.sqlResource.updateMentor(this.mentor)
         .subscribe(
             (student) => {
                 this.successMessage = 'Changes were saved successfully.';

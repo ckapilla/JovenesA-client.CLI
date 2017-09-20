@@ -84,15 +84,15 @@ export class AdminsMemberComponent implements OnInit {
   saveProfile(): boolean {
     console.log('saving admin member ');
     this.isLoading = true;
-    this.sqlResource.postMember(this.member)
+    this.sqlResource.updateMember(this.member)
         .subscribe(
             (student) => {
-                console.log('subscribe result in postMember');
+                console.log('subscribe result in updateMember');
                 this.successMessage = 'Changes were saved successfully.';
                 this.submitted = true;
                 this.isLoading = false;
-                window.scrollTo(0,0);
-                window.setTimeout( () => {//console.log('clearing success message');
+                window.scrollTo(0, 0);
+                window.setTimeout( () => {// console.log('clearing success message');
                               this.successMessage = '';}, 3000);
              },
             (error) =>  {
