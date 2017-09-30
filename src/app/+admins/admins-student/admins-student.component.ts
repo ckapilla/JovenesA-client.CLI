@@ -61,15 +61,15 @@ export class AdminsStudentComponent implements OnInit {
 
   ngOnInit() {
     console.log('admins Student ngOnInit');
-    let Id = this.currRoute.snapshot.params['id'];
-    console.log('sqlResource with StudentId: ' + Id);
+    const id = this.currRoute.snapshot.params['id'];
+    console.log('sqlResource with StudentId: ' + id);
     this.isLoading = true;
-    this.sqlResource.getStudent(Id)
+    this.sqlResource.getStudent(id)
       .subscribe(
-        data => {this.student = data;},
+        data => {this.student = data; },
         err => console.error('Subscribe error: ' + err),
         () => { console.log('getStudent is done');
-                this.isLoading = false;}
+                this.isLoading = false; }
       );
 
       this.profileForm.valueChanges.subscribe(
@@ -111,8 +111,9 @@ export class AdminsStudentComponent implements OnInit {
   }
 
   mentorReportsReview() {
-    let Id = this.currRoute.snapshot.params['id'];
-    this.router.navigate(['/admins/students/mentorReports/' + Id  + '/']); //this.studentId ]);
+    const id = this.currRoute.snapshot.params['id'];
+    // tslint:disable-next-line:comment-format
+    this.router.navigate(['/admins/students/mentorReports/' + id  + '/']); //this.studentId ]);
   };
 
   public hasChanges() {
@@ -125,8 +126,8 @@ export class AdminsStudentComponent implements OnInit {
   }
 
   gotoGradeHistory() {
-    let id = this.currRoute.snapshot.params['id'];
-    let link = ['/admins/students/grade-history/' + id + '/'];
+    const id = this.currRoute.snapshot.params['id'];
+    const link = ['/admins/students/grade-history/' + id + '/'];
     this.router.navigate(link);
   }
 }

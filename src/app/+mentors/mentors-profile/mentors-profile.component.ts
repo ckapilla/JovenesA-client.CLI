@@ -46,11 +46,11 @@ export class MentorsProfileComponent implements OnInit {
 
     this.profileForm = formBuilder.group({
       inputMentorFName: ['', Validators.required],
-      inputMentorLName: ['',Validators.required],
-      inputMentorPhone: ['',Validators.required],
-      inputMonthsinSma: ['',Validators.required],
-      SpanishLevelSelector: ['',Validators.required],
-      EnglishLevelSelector: ['',Validators.required],
+      inputMentorLName: ['', Validators.required],
+      inputMentorPhone: ['', Validators.required],
+      inputMonthsinSma: ['', Validators.required],
+      SpanishLevelSelector: ['', Validators.required],
+      EnglishLevelSelector: ['', Validators.required],
     });
     this.mentor = new Mentor();
 
@@ -64,12 +64,12 @@ export class MentorsProfileComponent implements OnInit {
     // this.currRoute.params
     //   .map(params => params['id'])
     //   .subscribe((id) => {
-    let id = this.currRoute.snapshot.params['id'];
+    const id = this.currRoute.snapshot.params['id'];
     console.log('calling sqlResource with mentorId: ' + id);
     this.isLoading = true;
     this.sqlResource.getMentor(id)
       .subscribe(
-        data => {this.mentor = data;},
+        data => {this.mentor = data; },
         err => console.error('Subscribe error: ' + err),
         () => {console.log('done loading');
               this.isLoading = false;
@@ -94,8 +94,8 @@ export class MentorsProfileComponent implements OnInit {
                 this.submitted = true;
                 this.isLoading = false;
 
-                window.scrollTo(0,0);
-                window.setTimeout( () => {this.successMessage = '';}, 3000);
+                window.scrollTo(0, 0);
+                window.setTimeout( () => {this.successMessage = ''; }, 3000);
              },
             (error) =>  {
                 console.log(this.errorMessage = <any>error);

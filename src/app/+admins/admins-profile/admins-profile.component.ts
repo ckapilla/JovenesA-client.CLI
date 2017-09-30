@@ -69,6 +69,8 @@ export class AdminsProfileComponent implements OnInit {
         data => {this.admin = data; },
         err => console.error('Subscribe error: ' + err),
         () => {console.log('done');
+              console.log(this.admin.lastNames);
+              console.log(this.admin.sma_Phone);
               this.isLoading = false;
             }
       );

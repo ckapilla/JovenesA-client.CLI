@@ -43,13 +43,13 @@ export class AdminsMemberComponent implements OnInit {
 
     this.profileForm = formBuilder.group({
       inputMemberFName: ['', Validators.compose(
-                  [Validators.required,Validators.maxLength(30)])],
-      inputMemberLName: ['',Validators.compose(
-                  [Validators.required,Validators.maxLength(30)])],
+                  [Validators.required, Validators.maxLength(30)])],
+      inputMemberLName: ['', Validators.compose(
+                  [Validators.required, Validators.maxLength(30)])],
       inputMemberSMAPhone: [''],
       inputMemberNonSMAPhone: [''],
-      inputInitialInterview: ['',Validators.maxLength(2000)],
-      inputMemberStory: ['',Validators.maxLength(2000)],
+      inputInitialInterview: ['', Validators.maxLength(2000)],
+      inputMemberStory: ['', Validators.maxLength(2000)],
       EnglishLevelSelector: [''],
       SpanishLevelSelector: [''],
     });
@@ -62,15 +62,15 @@ export class AdminsMemberComponent implements OnInit {
 
   ngOnInit() {
     console.log('admins Member ngOnInit');
-    let Id = this.currRoute.snapshot.params['id'];
-    console.log('sqlResource with MemberId: ' + Id);
+    const id = this.currRoute.snapshot.params['id'];
+    console.log('sqlResource with MemberId: ' + id);
     this.isLoading = true;
-    this.sqlResource.getMember(Id)
+    this.sqlResource.getMember(id)
       .subscribe(
-        data => {this.member = data;},
+        data => {this.member = data; },
         err => console.error('Subscribe error: ' + err),
         () => { console.log('getMember is done');
-                this.isLoading = false;}
+                this.isLoading = false; }
       );
 
       this.profileForm.valueChanges.subscribe(
@@ -96,7 +96,7 @@ export class AdminsMemberComponent implements OnInit {
                 this.isLoading = false;
                 window.scrollTo(0, 0);
                 window.setTimeout( () => {// console.log('clearing success message');
-                              this.successMessage = '';}, 3000);
+                              this.successMessage = ''; }, 3000);
              },
             (error) =>  {
                 console.log(this.errorMessage = <any>error);
@@ -112,8 +112,8 @@ export class AdminsMemberComponent implements OnInit {
   }
 
   mentorReportsReview() {
-    let Id = this.currRoute.snapshot.params['id'];
-    this.router.navigate(['/admins/students/mentorReports/' + Id  + '/']); //this.studentId ]);
+    const id = this.currRoute.snapshot.params['id'];
+    this.router.navigate(['/admins/students/mentorReports/' + id  + '/']); //this.studentId ]);
   };
 
   public hasChanges() {

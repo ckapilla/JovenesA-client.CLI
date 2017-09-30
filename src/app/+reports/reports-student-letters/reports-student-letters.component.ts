@@ -47,14 +47,14 @@ export class ReportsStudentLettersComponent implements OnInit {
   //   console.log('setting studentName to ' + studentName);
   //   this.session.setAssignedStudentName(studentName);
 
-  //   let link = ['/admins/students/student/' + id];
-  //   //let link = ['/admins/students/StudentLetters/' + id];
+  //   const link = ['/admins/students/student/' + id];
+  //   //const link = ['/admins/students/StudentLetters/' + id];
   //   console.log('navigating to ' + link);
   //   this.router.navigate(link);
   // }
 
   gotoStudentletter(id: number) {
-    let link = ['/admins/students/studentLetters/' + id];
+    const link = ['/admins/students/studentLetters/' + id];
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }

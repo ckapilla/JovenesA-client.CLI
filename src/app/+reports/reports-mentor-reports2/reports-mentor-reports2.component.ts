@@ -73,14 +73,14 @@ export class ReportsMentorReports2Component implements OnInit {
     console.log('setting studentName to ' + studentName);
     this.session.setAssignedStudentName(studentName);
 
-    let link = ['/admins/students/student/' + id];
-    //let link = ['/admins/students/mentorReports/' + id];
+    const link = ['/admins/students/student/' + id];
+    //const link = ['/admins/students/mentorReports/' + id];
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }
 
   gotoMentorReport(id: number) {
-    let link = ['/admins/students/mentorReports/' + id];
+    const link = ['/admins/students/mentorReports/' + id];
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }

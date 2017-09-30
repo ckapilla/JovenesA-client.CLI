@@ -196,7 +196,7 @@ public updateStudent(student: Student): Observable<any> {
 
       public updateAdmin(admin: Admin): Observable<Admin> {
 
-        const url = this.WebApiPrefix + 'admins/';
+        const url = this.WebApiPrefix + 'admins/' + admin.adminId;
 
         let body = JSON.stringify({ admin });
         // strip outer 'admin' name
@@ -222,7 +222,7 @@ public updateStudent(student: Student): Observable<any> {
 
       public updateMentor(mentor: Mentor): Observable<Mentor> {
 
-        const url = this.WebApiPrefix + 'mentors/';
+        const url = this.WebApiPrefix + 'mentors/' + mentor.mentorId;
 
         let body = JSON.stringify({ mentor });
         // strip outer 'mentor' name
@@ -290,7 +290,7 @@ public getMentorReport(mentorReportId: number): Observable <RptMentorReport[]>  
 
   public getMentorReportsByMonth(year: string, month: string,
     summaryStatusId: string, highlightStatusId: string): Observable <MentorReportByMonth[]>  {
-const url = this.WebApiPrefix + 'mentorReportsByMonth'
+const url = this.WebApiPrefix + 'mentor_reports/by_month'
       + '?year=' + year
       + '&month=' + month
       + '&summaryStatusId=' + summaryStatusId

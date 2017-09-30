@@ -73,8 +73,8 @@ export class AdminsCommunicationsComponent implements OnInit {
 
   ngOnInit() {
     console.log('ngOnInit');
-    const Id = this.currRoute.snapshot.params['id'];
-    this.fetchFilteredData(Id);
+    const id = this.currRoute.snapshot.params['id'];
+    this.fetchFilteredData(id);
   }
 
   // can't rely on two way binding to have updated the selected values

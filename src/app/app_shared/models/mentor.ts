@@ -7,13 +7,13 @@
         // public FullName: string,
 
         // public SmaAddress: string,
-         public smaPhone?: string,
+         public sma_Phone?: string,
         // public NonSmaAddress: string,
         // public NonSmaCity: string,
         // public NonSmaStateProvince: string,
         // public NonSmaPostalCode: string,
 
-        // public NonSmaPhone: string,
+        // public nonSma_Phone: string,
         // public Email: string,
         public monthsinSma?: string,
         // public CareerExperience: string,
@@ -23,7 +23,7 @@
 
         public technology?: string,
 
-        public nonSmaCountryId?: number,
+        public nonSma_CountryId?: number,
         public mentorStatusId?: number,
         public yearJoinedJa?: number,
         public bestWayToContactId?: number,
