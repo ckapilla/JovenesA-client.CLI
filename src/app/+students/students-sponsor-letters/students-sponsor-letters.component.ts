@@ -36,17 +36,6 @@ export class StudentsSponsorLettersComponent implements OnInit {
     console.log('sponsorLetters ngOnInit');
 
     this.studentId = this.currRoute.snapshot.params['id'];
-    //console.log('stdudentsSponsorLetters with studentId: ' + id);
-    // this.isLoading = true;
-    // this.sqlResource.getStudentDTO(id)
-    //   .subscribe(
-    //     data => {this.student = data;},
-    //     err => console.error('Subscribe error: ' + err),
-    //     () => {console.log('done loading');
-    //           this.isLoading = false;
-    //           }
-    //   );
-
     // may be undefined at this point:
     console.log('studentId ' + this.studentId);
 

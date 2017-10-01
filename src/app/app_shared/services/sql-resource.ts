@@ -245,7 +245,7 @@ public updateStudent(student: Student): Observable<any> {
 
 
 public getMentorReport(mentorReportId: number): Observable <RptMentorReport[]>  {
-    const url = this.WebApiPrefix + 'mentorReport/' + mentorReportId;
+    const url = this.WebApiPrefix + 'mentor_reports/' + mentorReportId;
     console.log('sending AuthHttp get request for MentorReport with ' + url);
     return this.http.get(url)
       .map((response: Response) => response.json())
@@ -261,44 +261,63 @@ public getMentorReport(mentorReportId: number): Observable <RptMentorReport[]>  
   }
 
   public getMentorReportsFollowUpStatus(): Observable <MentorReportFollowUp[]>  {
-    const url = this.WebApiPrefix + 'mentorReportsFollowUpNeeded';
-    console.log('sending AuthHttp get request for MentorReportsFollowUpNeeded with ' + url);
+    const url = this.WebApiPrefix + 'mentor_reports/follow_up';
+    console.log('sending AuthHttp get request with ' + url);
     return this.http.get(url)
       .map((response: Response) => response.json())
       .catch(this.handleError);
   }
 
-  public postMentorReport(mentorReport: RptMentorReport,
-                          operation: string,
+  public updateMentorReport(mentorReport: RptMentorReport,
                           mentorId: number,
                           studentId: number): Observable<RptMentorReport> {
 
-    console.log('operation is' + operation);
-    const url = this.WebApiPrefix + 'mentorReports/' + operation;
-    console.log('sending AuthHttp get request for PostMentoReport with ' + url);
+    const url = this.WebApiPrefix + 'mentor_reports/' + mentorReport.mentorReportId ;
     let body = JSON.stringify({ mentorReport });
     // strip outer 'mentor' name
     const x = JSON.parse(body);
     body = JSON.stringify(x.mentorReport);
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
+
+    console.log('ready to put ' + url + ' body: ' + body + ' options ' + options);
+    return this.http.put(url, body, options)
+      .map(this.extractData)
+      .catch(this.handleError);
+
+  }
+
+
+  public addMentorReport(mentorReport: RptMentorReport,
+      mentorId: number,
+      studentId: number): Observable<RptMentorReport> {
+
+    const url = this.WebApiPrefix + 'mentor_reports';
+    let body = JSON.stringify({ mentorReport });
+    // strip outer 'mentor' name
+    const x = JSON.parse(body);
+    body = JSON.stringify(x.mentorReport);
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({ headers: headers });
+
     console.log('ready to post ' + url + ' body: ' + body + ' options ' + options);
     return this.http.post(url, body, options)
       .map(this.extractData)
       .catch(this.handleError);
   }
 
+
   public getMentorReportsByMonth(year: string, month: string,
     summaryStatusId: string, highlightStatusId: string): Observable <MentorReportByMonth[]>  {
-const url = this.WebApiPrefix + 'mentor_reports/by_month'
-      + '?year=' + year
-      + '&month=' + month
-      + '&summaryStatusId=' + summaryStatusId
-      + '&highlightStatusId=' + highlightStatusId;
-console.log('sending AuthHttp get request for MentorReportsByMonth with ' + url);
-return this.http.get(url)
-.map((response: Response) => response.json())
-.catch(this.handleError);
+    const url = this.WebApiPrefix + 'mentor_reports/by_month'
+                        + '?year=' + year
+                        + '&month=' + month
+                        + '&summaryStatusId=' + summaryStatusId
+                        + '&highlightStatusId=' + highlightStatusId;
+    console.log('sending AuthHttp get request for MentorReportsByMonth with ' + url);
+    return this.http.get(url)
+    .map((response: Response) => response.json())
+    .catch(this.handleError);
 }
 
 //////////////////////////////////////////////////

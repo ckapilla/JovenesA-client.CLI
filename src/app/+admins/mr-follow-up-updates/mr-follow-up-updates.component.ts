@@ -109,19 +109,15 @@ export class MentorReportFollowUpUpdatesComponent
 
     onSubmit()  {
         console.log('Hi from mentor ReportReview Submit');
-        //console.log(this.mentorReport);
+        // console.log(this.mentorReport);
 
         if (this.frmUpdate.invalid) {
           this.errorMessage = '';
-
-
           window.scrollTo(0,0);
           return false;
         }
 
-
-        this.sqlResource.postMentorReport(this.mentorReport,
-                                        'Update',
+        this.sqlResource.updateMentorReport(this.mentorReport,
                                         this.mentorReport.mentorId,
                                         this.mentorReport.studentId)
             .subscribe(

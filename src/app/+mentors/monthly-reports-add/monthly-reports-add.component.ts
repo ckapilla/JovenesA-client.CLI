@@ -162,25 +162,24 @@ export class MonthlyReportsAddComponent
         }
 
 
-        this.sqlResource.postMentorReport(this.mentorReport,
-                                        'Add',
-                                        this.mentorReport.mentorId,
-                                        this.mentorReport.studentId)
-            .subscribe(
-                (student) => {
-                    console.log(this.successMessage = <any>student);
-                    this.submitted = true;
-                    this.isLoading = false;
-                    const target = '/mentors/monthly-reports/' + this.mentorReport.mentorId;// + '/' + this.mentorReport.studentId;
-                    console.log('after call to postMentorReport; navigating to ' + target);
-                    this.router.navigateByUrl(target);
-                },
-                (error) =>  {
-                    console.log(this.errorMessage = <any>error);
-                    this.isLoading = false;
-                }
-            );
-        return false;
+    this.sqlResource.addMentorReport(this.mentorReport,
+                                      this.mentorReport.mentorId,
+                                      this.mentorReport.studentId)
+          .subscribe(
+              (student) => {
+                  console.log(this.successMessage = <any>student);
+                  this.submitted = true;
+                  this.isLoading = false;
+                  const target = '/mentors/monthly-reports/' + this.mentorReport.mentorId;// + '/' + this.mentorReport.studentId;
+                  console.log('after call to addMentorReport; navigating to ' + target);
+                  this.router.navigateByUrl(target);
+              },
+              (error) =>  {
+                  console.log(this.errorMessage = <any>error);
+                  this.isLoading = false;
+              }
+          );
+      return false;
     }
 
     onCancel() {

@@ -77,7 +77,7 @@ export class AdminsMembersComponent implements OnInit {
 
   ngOnInit() {
     console.log('ngOnInit');
-    this.selectedType = this.types[3];
+    this.selectedType = this.types[6];
     this.fetchFilteredData(this.selectedType.label);
   }
 

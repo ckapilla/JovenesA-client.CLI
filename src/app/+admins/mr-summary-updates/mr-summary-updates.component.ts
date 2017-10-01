@@ -150,8 +150,7 @@ export class MentorReportSummaryUpdatesComponent
         }
 
 
-        this.sqlResource.postMentorReport(this.mentorReport,
-                                        'Update',
+        this.sqlResource.updateMentorReport(this.mentorReport,
                                         this.mentorReport.mentorId,
                                         this.mentorReport.studentId)
             .subscribe(
