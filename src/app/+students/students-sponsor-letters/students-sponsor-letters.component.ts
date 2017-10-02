@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { SqlResource } from '../../app_shared/services/sql-resource';
 import { SessionService } from '../../app_shared/services/session.service';
-import { RptSponsorLetter } from '../../app_shared/models/sponsor-letter';
+import { SponsorLetter } from '../../app_shared/models/sponsor-letter';
 import { StudentDTO} from '../../app_shared/models/studentDTO';
 
 
@@ -19,7 +19,7 @@ export class StudentsSponsorLettersComponent implements OnInit {
   errorMessage: string;
   studentId: number;
   student: StudentDTO;
-  sponsorLetters: Array<RptSponsorLetter>;
+  sponsorLetters: Array<SponsorLetter>;
   sponsorName: string;
   sponsorId: number;
 
@@ -58,8 +58,8 @@ export class StudentsSponsorLettersComponent implements OnInit {
   }
 
   sponsorLetterAdd() {
-    console.log('in students-donor-letters: sponsorLettertAdd, ready to navigate');
-    const target = '/students/sponsor-letters-add/' + this.studentId  + '/' + this.sponsorId;
+    const target = 'students/sponsor-letters-add/' + this.studentId  + '/' + this.sponsorId;
+    console.log('in students-sponsor-letters: ready to navigate to' + target);
     this.router.navigateByUrl(target);
   }
 }

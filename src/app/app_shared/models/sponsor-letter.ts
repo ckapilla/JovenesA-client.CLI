@@ -1,8 +1,8 @@
-  export class RptSponsorLetter {
+  export class SponsorLetter {
       constructor(
         public sponsorLetterId?: number,
         public studentId?: number,
-        public sponsorId?: number,
+        public sponsorGroupId?: number,
         public sponsorName?: string,
         public studentName?: string,
         public letterDateTime?: Date,

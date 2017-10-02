@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
 
 import { SqlResource } from '../../app_shared/services/sql-resource';
-import { RptSponsorLetter } from '../../app_shared/models/sponsor-letter';
+import { SponsorLetter } from '../../app_shared/models/sponsor-letter';
 
 interface SELECTITEM {
    value: string; label: string;
@@ -18,7 +18,7 @@ interface SELECTITEM {
 export class SponsorLettersAddComponent
         implements OnInit {
     addNewForm: FormGroup;
-    sponsorLetter: RptSponsorLetter;
+    sponsorLetter: SponsorLetter;
     isLoading: boolean;
     submitted: boolean;
 
@@ -75,8 +75,8 @@ export class SponsorLettersAddComponent
         this.letterText = this.addNewForm.controls['inputFollowUp'];
 
 
-        this.sponsorLetter = new RptSponsorLetter();
-        this.sponsorLetter.sponsorId = 0;
+        this.sponsorLetter = new SponsorLetter();
+        this.sponsorLetter.sponsorGroupId = 0;
         this.sponsorLetter.studentId = 0;
         // SQL Server will adjust the time to UTC by adding TimezoneOffset
         // we want to store local time so we adjust for that.
@@ -95,9 +95,9 @@ export class SponsorLettersAddComponent
 
     ngOnInit() {
         console.log('sponsorLettersAdd ngOnInit');
-        this.sponsorLetter.sponsorId = this.currRoute.snapshot.params['sponsorId'];
+        this.sponsorLetter.sponsorGroupId = this.currRoute.snapshot.params['sponsorId'];
         this.sponsorLetter.studentId = this.currRoute.snapshot.params['studentId'];
-        console.log('sponsorId ' + this.sponsorLetter.sponsorId);
+        console.log('sponsorGroupId ' + this.sponsorLetter.sponsorGroupId);
         console.log('studentId ' + this.sponsorLetter.studentId);
         this.sponsorLetter.letterYear = 2017;
         this.sponsorLetter.letterMonth = 1;
@@ -135,7 +135,8 @@ export class SponsorLettersAddComponent
 
 
         this.sqlResource.postSponsorLetter(this.sponsorLetter,
-                                        this.sponsorLetter.studentId)
+                                        this.sponsorLetter.studentId,
+                                        this.sponsorLetter.sponsorGroupId)
             .subscribe(
                 (student) => {
                     console.log(this.successMessage = <any>student);

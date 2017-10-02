@@ -11,7 +11,7 @@ import { MemberStudentRelations } from '../models/member-student-relations';
 import { Communication } from '../models/communication';
 import { RptMentorReport } from '../models/mentor-report';
 import { RptStudentMentor } from '../models/student-mentor';
-import { RptSponsorLetter } from '../models/sponsor-letter';
+import { SponsorLetter } from '../models/sponsor-letter';
 import { MentorReportByMonth } from '../models/mentor-report-by-month';
 import { MentorReportFollowUp } from '../models/mentor-report-follow-up';
 import { AuthHttp } from 'angular2-jwt/angular2-jwt';
@@ -325,18 +325,19 @@ public getMentorReport(mentorReportId: number): Observable <RptMentorReport>  {
 //////////////////////////////////////////////////
 
 
-  public getSponsorLetters(studentId: number, sponsorId: number): Observable <RptSponsorLetter[]>  {
-    const url = this.WebApiPrefix + 'studentsponsorletters/' + studentId + '/' + sponsorId;
+  public getSponsorLetters(studentId: number, sponsorId: number): Observable <SponsorLetter[]>  {
+    const url = this.WebApiPrefix + 'student_sponsor_letters/' + studentId + '/' + sponsorId;
     console.log('sending AuthHttp get request for SponsorLetters with ' + url);
     return this.http.get(url)
       .map((response: Response) => response.json())
       .catch(this.handleError);
   }
 
-  public postSponsorLetter(sponsorLetter: RptSponsorLetter,
-                          studentId: number): Observable<RptMentorReport> {
+  public postSponsorLetter(sponsorLetter: SponsorLetter,
+                          studentId: number,
+                          sponsorGroupId: number): Observable<RptMentorReport> {
 
-    const url = this.WebApiPrefix + 'student_sponsor_letters/' + studentId;
+    const url = this.WebApiPrefix + 'student_sponsor_letters/' + studentId + '/' + sponsorGroupId;
     console.log('in postSponsorLetter with url ' + url );
     let body = JSON.stringify({ sponsorLetter });
     // strip outer 'mentor' name
