@@ -244,7 +244,7 @@ public updateStudent(student: Student): Observable<any> {
 //////////////////////////////////////////////////
 
 
-public getMentorReport(mentorReportId: number): Observable <RptMentorReport[]>  {
+public getMentorReport(mentorReportId: number): Observable <RptMentorReport>  {
     const url = this.WebApiPrefix + 'mentor_reports/' + mentorReportId;
     console.log('sending AuthHttp get request for MentorReport with ' + url);
     return this.http.get(url)

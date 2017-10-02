@@ -59,7 +59,7 @@ export class StudentsSponsorLettersComponent implements OnInit {
 
   sponsorLetterAdd() {
     console.log('in students-donor-letters: sponsorLettertAdd, ready to navigate');
-    let target = '/students/sponsor-letters-add/' + this.studentId  + '/' + this.sponsorId;
+    const target = '/students/sponsor-letters-add/' + this.studentId  + '/' + this.sponsorId;
     this.router.navigateByUrl(target);
   }
 }

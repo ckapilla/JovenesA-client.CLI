@@ -60,7 +60,7 @@ export class MentorReportFollowUpUpdatesComponent
 
         this.frmUpdate = _fb.group({
 
-            inputFollowUpHistory: [''],//,Validators.compose([Validators.required, Validators.maxLength(2000)])],
+            inputFollowUpHistory: [''], //,Validators.compose([Validators.required, Validators.maxLength(2000)])],
 
             followUpStatusSelector: [''],
 
@@ -72,7 +72,7 @@ export class MentorReportFollowUpUpdatesComponent
         this.followUpStatusSelector = this.frmUpdate.controls['followUpStatusSelector'];
         this.followUpNeeded = this.frmUpdate.controls['inputFollowUpNeeded'];
 
-        this.mentorReport = new RptMentorReport();// MentorReportResource();
+        this.mentorReport = new RptMentorReport(); // MentorReportResource();
 
         this.errorMessage = '';
         this.successMessage = '';
@@ -82,12 +82,12 @@ export class MentorReportFollowUpUpdatesComponent
     ngOnInit() {
 
 
-    let mentorReportId = this.currRoute.snapshot.params['mentorReportId'];
+    const mentorReportId = this.currRoute.snapshot.params['mentorReportId'];
     console.log('sqlResource with MentorReportId: ' + mentorReportId);
     this.isLoading = true;
     this.sqlResource.getMentorReport(mentorReportId)
       .subscribe(
-        data => {this.mentorReport = data;},
+        data => {this.mentorReport = data; },
         err => console.error('Subscribe error: ' + err),
         () => { console.log('done with data MentorReport>>');
                 console.log(this.mentorReport);
@@ -113,7 +113,7 @@ export class MentorReportFollowUpUpdatesComponent
 
         if (this.frmUpdate.invalid) {
           this.errorMessage = '';
-          window.scrollTo(0,0);
+          window.scrollTo(0, 0);
           return false;
         }
 
@@ -140,18 +140,18 @@ export class MentorReportFollowUpUpdatesComponent
     }
 
     navigateBackInContext() {
-      let target = '/admins/mentor-reports/follow-up-tracking';
+      const target = '/admins/mentor-reports/follow-up-tracking';
       console.log('after Submit or Cancel navigating to ' + target);
-      let reportDate = new Date(this.mentorReport.reportDateTime);
-      let reportMonth = reportDate.getMonth() + 1;  // JS Date months are zero based
-      let navigationExtras: NavigationExtras = {
+      const reportDate = new Date(this.mentorReport.reportDateTime);
+      const reportMonth = reportDate.getMonth() + 1;  // JS Date months are zero based
+      const navigationExtras: NavigationExtras = {
         queryParams: { id: 'id' + this.mentorReport.mentorReportId,
                         month:  reportMonth,
                         summary: this.savedFollowUpStatusId
                       }
       };
 
-      this.router.navigate([target],navigationExtras);
+      this.router.navigate([target], navigationExtras);
     }
 
     public hasChanges() {

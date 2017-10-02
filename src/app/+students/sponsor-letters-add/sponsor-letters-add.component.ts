@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router,ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
 
 import { SqlResource } from '../../app_shared/services/sql-resource';
@@ -41,7 +41,7 @@ export class SponsorLettersAddComponent
         console.log('Hi from SponsorLettersAddComponent');
      this.periodYears = [
       // {value: '2016', label: '2016'},
-      {value: '2017', label: '2017'} //,
+      {value: '2017', label: '2017'} // ,
       //    {value: '2018', label: '2018'}, {value: '2019', label: '2015'},
       //    {value: '2020', label: '2020'}
     ];
@@ -66,7 +66,7 @@ export class SponsorLettersAddComponent
             letterYearSelector: ['', Validators.required],
             letterMonthSelector: ['', this.validateMonth],
 
-            inputLetterText: ['',Validators.compose(
+            inputLetterText: ['', Validators.compose(
                                 [Validators.required, Validators.maxLength(2000)])]
         });
 
@@ -130,7 +130,6 @@ export class SponsorLettersAddComponent
             ++i;
           }
 
-          window.scrollTo(0,0);
           return false;
         }
 
@@ -142,7 +141,7 @@ export class SponsorLettersAddComponent
                     console.log(this.successMessage = <any>student);
                     this.submitted = true;
                     this.isLoading = false;
-                    const target = '/students/sponsor-letters/' + this.sponsorLetter.studentId;// + '/' + this.sponsorLetter.studentId;
+                    const target = '/students/sponsor-letters/' + this.sponsorLetter.studentId;
                     console.log('after call to postSponsorLetter; navigating to ' + target);
                     this.router.navigateByUrl(target);
                 },
@@ -155,7 +154,7 @@ export class SponsorLettersAddComponent
     }
 
     onCancel() {
-        const target = '/students/sponsor-letters/' + this.sponsorLetter.studentId;// + '/' + this.studentId;
+        const target = '/students/sponsor-letters/' + this.sponsorLetter.studentId; // + '/' + this.studentId;
         console.log('navigating to ' + target);
         this.router.navigateByUrl(target);
     }
