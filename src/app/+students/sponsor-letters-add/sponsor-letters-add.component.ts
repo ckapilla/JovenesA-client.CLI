@@ -136,8 +136,7 @@ export class SponsorLettersAddComponent
 
 
         this.sqlResource.postSponsorLetter(this.sponsorLetter,
-                                        this.sponsorLetter.studentId,
-                                        this.sponsorLetter.sponsorId)
+                                        this.sponsorLetter.studentId)
             .subscribe(
                 (student) => {
                     console.log(this.successMessage = <any>student);

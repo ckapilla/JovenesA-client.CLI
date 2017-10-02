@@ -334,11 +334,10 @@ public getMentorReport(mentorReportId: number): Observable <RptMentorReport[]>  
   }
 
   public postSponsorLetter(sponsorLetter: RptSponsorLetter,
-                          studentId: number,
-                          sponsorId: number): Observable<RptMentorReport> {
+                          studentId: number): Observable<RptMentorReport> {
 
-    const url = this.WebApiPrefix + 'studentsponsorletters/' + studentId; // + '/' + sponsorId;
-    console.log('in postSponsorLetter with urldmins/profile/1216 ' + url );
+    const url = this.WebApiPrefix + 'student_sponsor_letters/' + studentId;
+    console.log('in postSponsorLetter with url ' + url );
     let body = JSON.stringify({ sponsorLetter });
     // strip outer 'mentor' name
     const x = JSON.parse(body);
