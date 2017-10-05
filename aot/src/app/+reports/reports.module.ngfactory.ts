@@ -19,15 +19,16 @@ import * as i9 from '@angular/forms';
 import * as i10 from '../../../../src/app/+reports/shared/services/sql-reports';
 import * as i11 from 'angular2-jwt/angular2-jwt';
 import * as i12 from '@angular/http';
-import * as i13 from '@angular/router';
-import * as i14 from '../../../../src/app/app_shared/app_shared.module';
-import * as i15 from '../../../../src/app/+reports/reports.component';
-import * as i16 from '../../../../src/app/app.routing-guards';
-import * as i17 from '../../../../src/app/+reports/reports-home/reports-home.component';
-import * as i18 from '../../../../src/app/+reports/reports-mentor-reports/reports-mentor-reports.component';
-import * as i19 from '../../../../src/app/+reports/reports-mentor-reports2/reports-mentor-reports2.component';
-import * as i20 from '../../../../src/app/+reports/reports-student-letters/reports-student-letters.component';
-import * as i21 from '../../../../src/app/+reports/reports-student-letters2/reports-student-letters2.component';
+import * as i13 from '../../../../src/app/app_shared/services/web-api-prefix.service';
+import * as i14 from '@angular/router';
+import * as i15 from '../../../../src/app/app_shared/app_shared.module';
+import * as i16 from '../../../../src/app/+reports/reports.component';
+import * as i17 from '../../../../src/app/app.routing-guards';
+import * as i18 from '../../../../src/app/+reports/reports-home/reports-home.component';
+import * as i19 from '../../../../src/app/+reports/reports-mentor-reports/reports-mentor-reports.component';
+import * as i20 from '../../../../src/app/+reports/reports-mentor-reports2/reports-mentor-reports2.component';
+import * as i21 from '../../../../src/app/+reports/reports-student-letters/reports-student-letters.component';
+import * as i22 from '../../../../src/app/+reports/reports-student-letters2/reports-student-letters2.component';
 export const ReportsModuleNgFactory:i0.NgModuleFactory<i1.ReportsModule> = i0.ɵcmf(i1.ReportsModule,
     ([] as any[]),(_l:any) => {
       return i0.ɵmod([i0.ɵmpd(512,i0.ComponentFactoryResolver,i0.ɵCodegenComponentFactoryResolver,
@@ -37,19 +38,19 @@ export const ReportsModuleNgFactory:i0.NgModuleFactory<i1.ReportsModule> = i0.ɵ
               i0.NgModuleRef]),i0.ɵmpd(4608,i8.NgLocalization,i8.NgLocaleLocalization,
           [i0.LOCALE_ID]),i0.ɵmpd(4608,i9.FormBuilder,i9.FormBuilder,([] as any[])),
           i0.ɵmpd(4608,i9.ɵi,i9.ɵi,([] as any[])),i0.ɵmpd(4608,i10.SqlReports,i10.SqlReports,
-              [i11.AuthHttp,i12.Http]),i0.ɵmpd(512,i8.CommonModule,i8.CommonModule,
-              ([] as any[])),i0.ɵmpd(512,i13.RouterModule,i13.RouterModule,[[2,i13.ɵa],
-              [2,i13.Router]]),i0.ɵmpd(512,i9.ɵbc,i9.ɵbc,([] as any[])),i0.ɵmpd(512,
-              i9.ReactiveFormsModule,i9.ReactiveFormsModule,([] as any[])),i0.ɵmpd(512,
-              i9.FormsModule,i9.FormsModule,([] as any[])),i0.ɵmpd(512,i14.AppSharedModule,
-              i14.AppSharedModule,([] as any[])),i0.ɵmpd(512,i1.ReportsModule,i1.ReportsModule,
-              ([] as any[])),i0.ɵmpd(1024,i13.ROUTES,() => {
-            return [[{path:'reports',component:i15.ReportsComponent,canActivate:[i16.CanActivateViaAdminAuthGuard],
-                children:[{path:'',pathMatch:'full',component:i17.ReportsHomeComponent},
-                    {path:'mentor-reports',component:i18.ReportsMentorReportsComponent},
-                    {path:'mentor-reports2',component:i19.ReportsMentorReports2Component},
-                    {path:'student-letters',component:i20.ReportsStudentLettersComponent},
-                    {path:'student-letters2',component:i21.ReportsStudentLetters2Component}]}]];
+              [i11.AuthHttp,i12.Http,i13.WebApiPrefixService]),i0.ɵmpd(512,i8.CommonModule,
+              i8.CommonModule,([] as any[])),i0.ɵmpd(512,i14.RouterModule,i14.RouterModule,
+              [[2,i14.ɵa],[2,i14.Router]]),i0.ɵmpd(512,i9.ɵbc,i9.ɵbc,([] as any[])),
+          i0.ɵmpd(512,i9.ReactiveFormsModule,i9.ReactiveFormsModule,([] as any[])),
+          i0.ɵmpd(512,i9.FormsModule,i9.FormsModule,([] as any[])),i0.ɵmpd(512,i15.AppSharedModule,
+              i15.AppSharedModule,([] as any[])),i0.ɵmpd(512,i1.ReportsModule,i1.ReportsModule,
+              ([] as any[])),i0.ɵmpd(1024,i14.ROUTES,() => {
+            return [[{path:'reports',component:i16.ReportsComponent,canActivate:[i17.CanActivateViaAdminAuthGuard],
+                children:[{path:'',pathMatch:'full',component:i18.ReportsHomeComponent},
+                    {path:'mentor-reports',component:i19.ReportsMentorReportsComponent},
+                    {path:'mentor-reports2',component:i20.ReportsMentorReports2Component},
+                    {path:'student-letters',component:i21.ReportsStudentLettersComponent},
+                    {path:'student-letters2',component:i22.ReportsStudentLetters2Component}]}]];
           },([] as any[]))]);
     });
-//# sourceMappingURL=data:application/json;base64,eyJmaWxlIjoiL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC8rcmVwb3J0cy9yZXBvcnRzLm1vZHVsZS5uZ2ZhY3RvcnkudHMiLCJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJuZzovLy9ob21lL2NrYXBpbGxhL0Rldi9Kb3ZlbmVzQS1jbGllbnQuQ0xJL3NyYy9hcHAvK3JlcG9ydHMvcmVwb3J0cy5tb2R1bGUudHMiXSwic291cmNlc0NvbnRlbnQiOlsiICJdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OyJ9
+//# sourceMappingURL=data:application/json;base64,eyJmaWxlIjoiL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC8rcmVwb3J0cy9yZXBvcnRzLm1vZHVsZS5uZ2ZhY3RvcnkudHMiLCJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJuZzovLy9ob21lL2NrYXBpbGxhL0Rldi9Kb3ZlbmVzQS1jbGllbnQuQ0xJL3NyYy9hcHAvK3JlcG9ydHMvcmVwb3J0cy5tb2R1bGUudHMiXSwic291cmNlc0NvbnRlbnQiOlsiICJdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OzsifQ==

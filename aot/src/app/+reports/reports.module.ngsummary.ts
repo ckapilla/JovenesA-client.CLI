@@ -27,18 +27,19 @@ import * as i17 from '../../../../src/app/app.routing-guards';
 import * as i18 from '../../../../src/app/+reports/shared/services/sql-reports';
 import * as i19 from 'angular2-jwt/angular2-jwt';
 import * as i20 from '@angular/http';
-import * as i21 from '../../../../src/app/app_shared/app_shared.module';
-import * as i22 from './reports.component.ngsummary';
-import * as i23 from './shared/reports-navbar/reports-navbar.component.ngsummary';
-import * as i24 from './reports-home/reports-home.component.ngsummary';
-import * as i25 from './reports-mentor-reports/reports-mentor-reports.component.ngsummary';
-import * as i26 from './reports-mentor-reports2/reports-mentor-reports2.component.ngsummary';
-import * as i27 from './reports-student-letters/reports-student-letters.component.ngsummary';
-import * as i28 from './reports-student-letters2/reports-student-letters2.component.ngsummary';
-import * as i29 from '../../../node_modules/@angular/common/common.ngsummary';
-import * as i30 from '../../../node_modules/@angular/router/router.ngsummary';
-import * as i31 from '../../../node_modules/@angular/forms/forms.ngsummary';
-import * as i32 from '../app_shared/app_shared.module.ngsummary';
+import * as i21 from '../../../../src/app/app_shared/services/web-api-prefix.service';
+import * as i22 from '../../../../src/app/app_shared/app_shared.module';
+import * as i23 from './reports.component.ngsummary';
+import * as i24 from './shared/reports-navbar/reports-navbar.component.ngsummary';
+import * as i25 from './reports-home/reports-home.component.ngsummary';
+import * as i26 from './reports-mentor-reports/reports-mentor-reports.component.ngsummary';
+import * as i27 from './reports-mentor-reports2/reports-mentor-reports2.component.ngsummary';
+import * as i28 from './reports-student-letters/reports-student-letters.component.ngsummary';
+import * as i29 from './reports-student-letters2/reports-student-letters2.component.ngsummary';
+import * as i30 from '../../../node_modules/@angular/common/common.ngsummary';
+import * as i31 from '../../../node_modules/@angular/router/router.ngsummary';
+import * as i32 from '../../../node_modules/@angular/forms/forms.ngsummary';
+import * as i33 from '../app_shared/app_shared.module.ngsummary';
 export function ReportsModuleNgSummary():any[] {
   return [{summaryKind:2,type:{reference:i0.ReportsModule,diDeps:([] as any[]),lifecycleHooks:([] as any[])},
       entryComponents:[{componentType:i1.ReportsComponent,componentFactory:i2.ReportsComponentNgFactory},
@@ -80,34 +81,42 @@ export function ReportsModuleNgSummary():any[] {
               lifecycleHooks:([] as any[])}},{provider:{token:{identifier:{reference:i18.SqlReports,
               diDeps:[{isAttribute:false,isHost:false,isSelf:false,isSkipSelf:false,
                   isOptional:false,token:{identifier:{reference:i19.AuthHttp}}},{isAttribute:false,
-                  isHost:false,isSelf:false,isSkipSelf:false,isOptional:false,token:{identifier:{reference:i20.Http}}}],
-              lifecycleHooks:([] as any[])}},useClass:{reference:i18.SqlReports,diDeps:[{isAttribute:false,
-              isHost:false,isSelf:false,isSkipSelf:false,isOptional:false,token:{identifier:{reference:i19.AuthHttp}}},
-              {isAttribute:false,isHost:false,isSelf:false,isSkipSelf:false,isOptional:false,
-                  token:{identifier:{reference:i20.Http}}}],lifecycleHooks:([] as any[])},
+                  isHost:false,isSelf:false,isSkipSelf:false,isOptional:false,token:{identifier:{reference:i20.Http}}},
+                  {isAttribute:false,isHost:false,isSelf:false,isSkipSelf:false,isOptional:false,
+                      token:{identifier:{reference:i21.WebApiPrefixService}}}],lifecycleHooks:([] as any[])}},
+              useClass:{reference:i18.SqlReports,diDeps:[{isAttribute:false,isHost:false,
+                  isSelf:false,isSkipSelf:false,isOptional:false,token:{identifier:{reference:i19.AuthHttp}}},
+                  {isAttribute:false,isHost:false,isSelf:false,isSkipSelf:false,isOptional:false,
+                      token:{identifier:{reference:i20.Http}}},{isAttribute:false,
+                      isHost:false,isSelf:false,isSkipSelf:false,isOptional:false,
+                      token:{identifier:{reference:i21.WebApiPrefixService}}}],lifecycleHooks:([] as any[])},
               useValue:(undefined as any),useFactory:(null as any),useExisting:(undefined as any),
               deps:[{isAttribute:false,isHost:false,isSelf:false,isSkipSelf:false,
                   isOptional:false,token:{identifier:{reference:i19.AuthHttp}}},{isAttribute:false,
-                  isHost:false,isSelf:false,isSkipSelf:false,isOptional:false,token:{identifier:{reference:i20.Http}}}],
-              multi:false},module:{reference:i0.ReportsModule,diDeps:([] as any[]),
-              lifecycleHooks:([] as any[])}}],modules:[{reference:i13.CommonModule,
-          diDeps:([] as any[]),lifecycleHooks:([] as any[])},{reference:i16.RouterModule,
-          diDeps:[{isAttribute:false,isHost:false,isSelf:false,isSkipSelf:false,isOptional:true,
-              token:{identifier:{reference:i16.ɵa}}},{isAttribute:false,isHost:false,
-              isSelf:false,isSkipSelf:false,isOptional:true,token:{identifier:{reference:i16.Router}}}],
-          lifecycleHooks:([] as any[])},{reference:i15.ɵbc,diDeps:([] as any[]),lifecycleHooks:([] as any[])},
-          {reference:i15.ReactiveFormsModule,diDeps:([] as any[]),lifecycleHooks:([] as any[])},
-          {reference:i15.FormsModule,diDeps:([] as any[]),lifecycleHooks:([] as any[])},
-          {reference:i21.AppSharedModule,diDeps:([] as any[]),lifecycleHooks:([] as any[])},
-          {reference:i0.ReportsModule,diDeps:([] as any[]),lifecycleHooks:([] as any[])}],
-      exportedDirectives:([] as any[]),exportedPipes:([] as any[])},i22.ReportsComponentNgSummary,
-      i23.ReportsNavbarComponentNgSummary,i24.ReportsHomeComponentNgSummary,i25.ReportsMentorReportsComponentNgSummary,
-      i26.ReportsMentorReports2ComponentNgSummary,i27.ReportsStudentLettersComponentNgSummary,
-      i28.ReportsStudentLetters2ComponentNgSummary,i29.CommonModuleNgSummary,i30.RouterModuleNgSummary,
-      i31.ɵbcNgSummary,i31.ReactiveFormsModuleNgSummary,i31.FormsModuleNgSummary,i32.AppSharedModuleNgSummary,
+                  isHost:false,isSelf:false,isSkipSelf:false,isOptional:false,token:{identifier:{reference:i20.Http}}},
+                  {isAttribute:false,isHost:false,isSelf:false,isSkipSelf:false,isOptional:false,
+                      token:{identifier:{reference:i21.WebApiPrefixService}}}],multi:false},
+              module:{reference:i0.ReportsModule,diDeps:([] as any[]),lifecycleHooks:([] as any[])}}],
+      modules:[{reference:i13.CommonModule,diDeps:([] as any[]),lifecycleHooks:([] as any[])},
+          {reference:i16.RouterModule,diDeps:[{isAttribute:false,isHost:false,isSelf:false,
+              isSkipSelf:false,isOptional:true,token:{identifier:{reference:i16.ɵa}}},
+              {isAttribute:false,isHost:false,isSelf:false,isSkipSelf:false,isOptional:true,
+                  token:{identifier:{reference:i16.Router}}}],lifecycleHooks:([] as any[])},
+          {reference:i15.ɵbc,diDeps:([] as any[]),lifecycleHooks:([] as any[])},{reference:i15.ReactiveFormsModule,
+              diDeps:([] as any[]),lifecycleHooks:([] as any[])},{reference:i15.FormsModule,
+              diDeps:([] as any[]),lifecycleHooks:([] as any[])},{reference:i22.AppSharedModule,
+              diDeps:([] as any[]),lifecycleHooks:([] as any[])},{reference:i0.ReportsModule,
+              diDeps:([] as any[]),lifecycleHooks:([] as any[])}],exportedDirectives:([] as any[]),
+      exportedPipes:([] as any[])},i23.ReportsComponentNgSummary,i24.ReportsNavbarComponentNgSummary,
+      i25.ReportsHomeComponentNgSummary,i26.ReportsMentorReportsComponentNgSummary,
+      i27.ReportsMentorReports2ComponentNgSummary,i28.ReportsStudentLettersComponentNgSummary,
+      i29.ReportsStudentLetters2ComponentNgSummary,i30.CommonModuleNgSummary,i31.RouterModuleNgSummary,
+      i32.ɵbcNgSummary,i32.ReactiveFormsModuleNgSummary,i32.FormsModuleNgSummary,i33.AppSharedModuleNgSummary,
       {summaryKind:3,type:{reference:i18.SqlReports,diDeps:[{isAttribute:false,isHost:false,
           isSelf:false,isSkipSelf:false,isOptional:false,token:{identifier:{reference:i19.AuthHttp}}},
           {isAttribute:false,isHost:false,isSelf:false,isSkipSelf:false,isOptional:false,
-              token:{identifier:{reference:i20.Http}}}],lifecycleHooks:([] as any[])}}];
+              token:{identifier:{reference:i20.Http}}},{isAttribute:false,isHost:false,
+              isSelf:false,isSkipSelf:false,isOptional:false,token:{identifier:{reference:i21.WebApiPrefixService}}}],
+          lifecycleHooks:([] as any[])}}];
 }
-//# sourceMappingURL=data:application/json;base64,eyJmaWxlIjoiL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC8rcmVwb3J0cy9yZXBvcnRzLm1vZHVsZS5uZ3N1bW1hcnkudHMiLCJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJuZzovLy9ob21lL2NrYXBpbGxhL0Rldi9Kb3ZlbmVzQS1jbGllbnQuQ0xJL3NyYy9hcHAvK3JlcG9ydHMvcmVwb3J0cy5tb2R1bGUudHMiXSwic291cmNlc0NvbnRlbnQiOlsiICJdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OzsifQ==
+//# sourceMappingURL=data:application/json;base64,eyJmaWxlIjoiL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC8rcmVwb3J0cy9yZXBvcnRzLm1vZHVsZS5uZ3N1bW1hcnkudHMiLCJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJuZzovLy9ob21lL2NrYXBpbGxhL0Rldi9Kb3ZlbmVzQS1jbGllbnQuQ0xJL3NyYy9hcHAvK3JlcG9ydHMvcmVwb3J0cy5tb2R1bGUudHMiXSwic291cmNlc0NvbnRlbnQiOlsiICJdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OzsifQ==

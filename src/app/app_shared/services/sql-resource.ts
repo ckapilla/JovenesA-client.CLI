@@ -26,21 +26,9 @@ export class SqlResource {
   constructor(private http: AuthHttp,
               private _http: Http,
               private webApiPrefixService: WebApiPrefixService) {
-              // @Inject(WEBAPIPREFIX) public webApiPrefix: string) {
+
     console.log('sqlResource constructor');
-
     this.WebApiPrefix = webApiPrefixService.getWebApiPrefix();
-
-    // console.log('window: ' + window.location.hostname);
-    // if (window.location.hostname === 'privada.jovenesadelante.org'
-    //           // && serverMode !== 'Prod') {
-    //           // || serverMode === 'Prod') {
-    //           ) {
-    //   this.WebApiPrefix = 'https://jovenesadelantewebapi.azurewebsites.net/api/v1/';
-    // } else {
-    //   // this.WebApiPrefix = 'http://jovenesadelantewebapitest.azurewebsites.net/api/v1/' ;
-    //   this.WebApiPrefix = 'http://192.168.1.69:45456/api/' ;
-    // }
 
   }
 
@@ -147,7 +135,7 @@ public updateStudent(student: Student): Observable<any> {
   public getMemberStudentRelations(type: string): Observable<MemberStudentRelations[]> {
 
         const url = this.WebApiPrefix
-        + 'members/student-relations/' + type + '/0';
+        + 'members/student_relations/' + type;
     // statusId: vm.selectedStatus.statusId, gradYear: vm.selectedGradYear.year, yearJoinedJA: vm.selectedYearJoined.year },
         console.log('sending AuthHttp get request with url ' + url);
         return this.http.get(url)
