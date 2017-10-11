@@ -84,9 +84,10 @@ export class Auth {
     public session: SessionService,
     public sqlResource: SqlResource) {
 
-    console.log('Auth constructor before session assignment');
+    console.log('Auth constructor before stored session assignment');
     this.zoneImpl = zone;
-    this.userProfile = JSON.parse(localStorage.getItem('profile'));
+    // in case this is a page refresh, check to see if we have a saved profile
+    this.checkRestoreUserProfile(); // JSON.parse(localStorage.getItem('profile'));
     this.session = session;
     this.sqlResource = sqlResource
     console.log(this.session);
@@ -102,11 +103,13 @@ export class Auth {
 
       console.log('token>>>');
       console.log(authResult.idToken);
-      localStorage.setItem('id_token', authResult.idToken);
 
-      // Use the token in authResult to getProfile() and save it to localStorage
+      this.setSession(authResult);
+
+
+      // Call get userInfo with the token in authResult
       console.log('calling lock.getUserInfo');
-      this.lock.getProfile(authResult.idToken, (error: any, profile: any) => {
+      this.lock.getUserInfo(authResult.accessToken, (error: any, profile: any) => {
         if (error) {
           // Handle error
           alert(error);
@@ -117,13 +120,15 @@ export class Auth {
         console.log('in getUserInfo callback with profile>>');
 
         if (this.isAuthenticated()) {
-          // console.log(JSON.stringify(profile));
+          console.log('###in Authenticated getUserInfo callback with profile>>');
+          console.log(profile);
+          console.log('###setting AUth0 profile to local storage');
           localStorage.setItem('profile', JSON.stringify(profile));
 
           // this.zoneImpl.run(() => this.userProfile = profile); // enter Angular zone and assign userProfile
           this.userProfile = profile;
-          this.parseUserProfile();
-          console.log('have failed route of ' + this.session.getFailedRoute());
+          this.extractUserProfileElements();
+          console.log('checking for failed route of ');
           if (this.session.getFailedRoute() > '') {
             console.log('navigating to failed route: ' + this.session.getFailedRoute());
             this.router.navigate([this.session.getFailedRoute()]);
@@ -136,10 +141,10 @@ export class Auth {
           //   localStorage.removeItem('redirect_url');
           // }
         } else {
-          console.log('token expired');
+          console.log('isAuthenticated returned false');
         }
-        console.log('end of getProfile handler');
-      }); // end get profile
+        console.log('end of getUserInfo handler');
+      }); // end getUserInfo
       console.log('end of authenticated event handler1');
     });
     console.log('end of authenticated event handler definition'); // end authenticated event handler
@@ -175,21 +180,36 @@ export class Auth {
     // Check if there's an unexpired JWT
     // console.log('isAuthenticated: ' + tokenNotExpired());
     return tokenNotExpired();
+    // const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
+    // console.log('expiresAt: ' + expiresAt);
+    // const isNotExpired = new Date().getTime() < expiresAt;
+    // console.log('isAuthenticated has ' + Date.now.toString() + ' ' + expiresAt);
+    // console.log(isNotExpired);
+    // return isNotExpired; // tokenNotExpired();
   }
 
-  public parseUserProfile(): void {
-    if (this.userProfile !== null) {
-      this.adminStatus = (<any>this.userProfile)['adminStatus'];
+  private setSession(authResult: any) {
+    const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
+    console.log('expiresAt: ' + expiresAt);
+    localStorage.setItem('access_token', authResult.access_token);
+    localStorage.setItem('id_token', authResult.idToken);
+    localStorage.setItem('expires_at', expiresAt);
+  }
+
+  public extractUserProfileElements(): void {
+    if (this.userProfile !== null && this.userProfile !== undefined) {
+      const app_metadata = (<any>this.userProfile)['app_metadata'];
+      this.adminStatus = (<any>app_metadata)['adminStatus'];
       this.session.setAdminStatus(this.adminStatus);
       console.log('isAdmin: ' + this.session.isAdmin());
       localStorage.setItem('isAdmin', this.session.isAdmin().toString());
 
-      this.mentorStatus = (<any>this.userProfile)['mentorStatus'];
+      this.mentorStatus = (<any>app_metadata)['mentorStatus'];
       this.session.setMentorStatus(this.mentorStatus);
       console.log('isMentor: ' + this.session.isMentor());
       localStorage.setItem('isMentor', this.session.isMentor().toString());
 
-      this.studentId = (<any>this.userProfile)['studentId'];
+      this.studentId = (<any>app_metadata)['studentId'];
       this.session.setStudentId(this.studentId);
       console.log('studentId: ' + this.session.getStudentId());
       localStorage.setItem('studentId', this.session.getStudentId().toString());
@@ -197,8 +217,6 @@ export class Auth {
       this.session.setUserId((<any>this.userProfile)['user_id'].substr('auth0|'.length));
       console.log('userId: ' + this.session.userId);
       localStorage.setItem('userId', this.session.userId.toString());
-      // console.log('###retrieved session: ' + localStorage.getItem('userId'));
-      this.UpdateLastLogin(this.session.userId);
 
 
       this.email = (<any>this.userProfile)['email'];
@@ -206,7 +224,7 @@ export class Auth {
     }
   }
 
-  public restoreUserProfile(): void {
+  public checkRestoreUserProfile(): void {
     this.userProfile = JSON.parse(localStorage.getItem('profile'));
     console.log('restored profile>>>>>>>');
 
@@ -214,34 +232,9 @@ export class Auth {
       console.log('emptyProfile, do not parse');
     } else {
       console.log(this.userProfile);
-      this.parseUserProfile();
+      this.extractUserProfileElements();
     }
   }
-
-  // public getRedirectUrl() {
-  //   let path: string;
-  //   let host: string;
-  //   let port: string;
-  //   let redirectUrl: string;
-
-  //   if (window.location.pathname.indexOf('mentors') !== -1 ) {
-  //     path = '/mentors';
-  //   } else if  (window.location.pathname.indexOf('admins') !== -1 ) {
-  //     path = '/admins';
-  //   } else if  (window.location.pathname.indexOf('students') !== -1 ) {
-  //     path = '/students';
-  //   } else {
-  //     path = '';
-  //   }
-
-
-  //   port = window.location.port > '' ? ':' + window.location.port : '';
-  //   host = window.location.hostname + port;
-  //   redirectUrl = 'http://' + host + path;
-  //   console.log('host: ' + host);
-  //   console.log('path ' + path);
-  //   console.log('redirect_url: ' + redirectUrl);
-  // }
 
   public UpdateLastLogin(id: number): void {
     // console.log('calling SqlResource UpdateLastLogin');
@@ -256,14 +249,25 @@ export class Auth {
 
   public logout() {
     console.log('in logout');
+
     this.session.setAdminStatus(undefined);
     this.session.setMentorStatus(undefined);
     this.session.setSponsorStatus(undefined);
     this.session.setStudentId(undefined);
-    localStorage.removeItem('profile');
-    localStorage.removeItem('id_token');
+    //localStorage.removeItem('profile');
+    //localStorage.removeItem('id_token');
+    localStorage.clear();
     this.zoneImpl.run(() => this.userProfile = undefined);
-    this.router.navigate(['']);
+    //this.router.navigate(['']);
+    setTimeout(function() {
+      console.log('in timeout callback');
+      document.location.href =
+      'http://ckapilla.auth0.com/v2/logout?returnTo=http%3A%2F%2Fprivada.jovenesadelante.org';
+      }
+      , 500);
+    //window.location.href =
+    //'https://ckapilla.auth0.com/v2/logout?client_id=pwC5E08ZZFytctumrhmI2bFmakYRGhD';
+    //'https://ckapilla.auth0.com/v2/logout?client_id=pwC5E08ZZFytctumrhmI2bFmakYRGhD2&returnTo=http%3A%2F%2Fprivada.jovenesadelante.org';
   }
 
 

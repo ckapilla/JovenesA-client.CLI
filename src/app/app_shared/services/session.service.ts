@@ -25,7 +25,7 @@ export class SessionService {
     }
 
     public isAdmin(): boolean {
-      if (this.adminStatus === undefined) {
+      if (!this.adminStatus) {
         return false;
       } else {
         return this.adminStatus === 1015;
@@ -38,7 +38,7 @@ export class SessionService {
     }
 
     public isMentor(): boolean {
-      if (this.mentorStatus === undefined) {
+      if (!this.mentorStatus) {
         return false;
       } else {
         return this.mentorStatus === 1015;

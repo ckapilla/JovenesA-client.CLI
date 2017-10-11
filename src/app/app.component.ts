@@ -21,9 +21,9 @@ export class AppComponent {
                 router: Router,
                 sqlResource: SqlResource
                 ) {
-    if (session.getUserId() === 0) {
-      auth.restoreUserProfile();
-    }
+    // if (session.getUserId() === 0) {
+    //   auth.restoreUserProfileFromLocalStorage();
+    // }
     console.log('@@@@session: ' + session.getUserId());
     // router.events
     //   //.filter(e => e instanceof NavigationEnd || e instanceof NavigationError)

@@ -15,10 +15,10 @@ export class WebApiPrefixService {
     backendEnv = 'AzureProd'
 
     console.log('window: ' + window.location.hostname);
-    if (window.location.hostname.toLocaleUpperCase() === 'privada.jovenesadelante.org'
+    if (window.location.hostname.toLocaleLowerCase() === 'privada.jovenesadelante.org'
               || backendEnv === 'AzureProd') {
       this.WebApiPrefix = 'https://jovenesadelantewebapi.azurewebsites.net/api/';
-    } else if (window.location.hostname.toLocaleUpperCase() === 'jovenesadelantewebapitest.azurewebsites.net'
+    } else if (window.location.hostname.toLocaleLowerCase() === 'jovenesadelantewebtest.azurewebsites.net'
               || backendEnv === 'AzureTest') {
       this.WebApiPrefix = 'https://jovenesadelantewebapitest.azurewebsites.net/api/';
     } else { // localhost

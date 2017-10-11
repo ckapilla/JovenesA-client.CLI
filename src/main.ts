@@ -8,5 +8,6 @@ console.log('Running AOT compiled');
 platformBrowser().bootstrapModuleFactory(AppModuleNgFactory);
 
 if (environment.production) {
+  console.log('####################Prod Mode####################');
   enableProdMode();
 }
