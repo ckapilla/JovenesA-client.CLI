@@ -7,7 +7,6 @@ import { Member } from '../../app_shared/models/member';
 
 @Component({
   moduleId: module.id,
-  selector: 'student-profile',
   templateUrl: './admins-member.component.html',
   styleUrls:  ['./admins-member.component.css'],
 })

@@ -25,9 +25,9 @@
             <select formControlName="summaryStatusSelector" class="form-control input-sm" [(ngModel)]="mentorReport.sponsorSummaryStatusId">
               <option *ngFor="let status of sponsorSummaryStatuses" [value]="status.value">{{status.label}}</option>
             </select>
-            <display-errors control="summaryStatusSelector" class="red" [errors]="{
+            <app-display-errors control="summaryStatusSelector" class="red" [errors]="{
                   'required': 'Summary Status is required'
-                }"></display-errors>
+                }"></app-display-errors>
           </div>
 
           <div class="controls">
@@ -42,9 +42,9 @@
             <textarea id="inputSummary" #summary formControlName="inputSummary" [(ngModel)]="mentorReport.sponsorSummary" type="text"
               class="form-control input-sm" placeholder="Summary from Above">
           </textarea>
-            <display-errors control="inputSummary" class="red" [errors]="{'required': 'An entry is required, even if it is just N/A',
+            <app-display-errors control="inputSummary" class="red" [errors]="{'required': 'An entry is required, even if it is just N/A',
                 'maxlength': 'Entry cannot exceed 2000 characters in length.'
-                }"></display-errors>
+                }"></app-display-errors>
           </div>
 
           <div class="col-md-6 col-md-offset-1">

@@ -19,9 +19,9 @@ const styles_SponsorLettersAddComponent:any[] = [i0.styles];
 export const RenderType_SponsorLettersAddComponent:i1.RendererType2 = i1.ɵcrt({encapsulation:0,
     styles:styles_SponsorLettersAddComponent,data:{}});
 function View_SponsorLettersAddComponent_1(_l:any):i1.ɵViewDefinition {
-  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,(null as any),(null as any),1,'div',[['class',
+  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,0,(null as any),(null as any),1,'div',[['class',
       'alert alert-danger']],(null as any),(null as any),(null as any),(null as any),
-      (null as any))),(_l()(),i1.ɵted((null as any),['','']))],(null as any),(_ck,
+      (null as any))),(_l()(),i1.ɵted(1,(null as any),['','']))],(null as any),(_ck,
       _v) => {
     var _co:any = _v.component;
     const currVal_0:any = _co.errorMessage;
@@ -29,9 +29,9 @@ function View_SponsorLettersAddComponent_1(_l:any):i1.ɵViewDefinition {
   });
 }
 function View_SponsorLettersAddComponent_2(_l:any):i1.ɵViewDefinition {
-  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,(null as any),(null as any),1,'div',[['class',
+  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,0,(null as any),(null as any),1,'div',[['class',
       'alert alert-success']],(null as any),(null as any),(null as any),(null as any),
-      (null as any))),(_l()(),i1.ɵted((null as any),['','']))],(null as any),(_ck,
+      (null as any))),(_l()(),i1.ɵted(1,(null as any),['','']))],(null as any),(_ck,
       _v) => {
     var _co:any = _v.component;
     const currVal_0:any = _co.successMessage;
@@ -39,12 +39,12 @@ function View_SponsorLettersAddComponent_2(_l:any):i1.ɵViewDefinition {
   });
 }
 function View_SponsorLettersAddComponent_3(_l:any):i1.ɵViewDefinition {
-  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,(null as any),(null as any),3,'option',([] as any[]),
-      (null as any),(null as any),(null as any),(null as any),(null as any))),i1.ɵdid(147456,
-      (null as any),0,i2.NgSelectOption,[i1.ElementRef,i1.Renderer,[2,i2.SelectControlValueAccessor]],
-      {value:[0,'value']},(null as any)),i1.ɵdid(147456,(null as any),0,i2.ɵq,[i1.ElementRef,
-      i1.Renderer,[8,(null as any)]],{value:[0,'value']},(null as any)),(_l()(),i1.ɵted((null as any),
-      ['','']))],(_ck,_v) => {
+  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,0,(null as any),(null as any),3,'option',([] as any[]),
+      (null as any),(null as any),(null as any),(null as any),(null as any))),i1.ɵdid(1,
+      147456,(null as any),0,i2.NgSelectOption,[i1.ElementRef,i1.Renderer2,[2,i2.SelectControlValueAccessor]],
+      {value:[0,'value']},(null as any)),i1.ɵdid(2,147456,(null as any),0,i2.ɵq,[i1.ElementRef,
+      i1.Renderer2,[8,(null as any)]],{value:[0,'value']},(null as any)),(_l()(),i1.ɵted(3,
+      (null as any),['','']))],(_ck,_v) => {
     const currVal_0:any = _v.context.$implicit.value;
     _ck(_v,1,0,currVal_0);
     const currVal_1:any = _v.context.$implicit.value;
@@ -55,12 +55,12 @@ function View_SponsorLettersAddComponent_3(_l:any):i1.ɵViewDefinition {
   });
 }
 function View_SponsorLettersAddComponent_4(_l:any):i1.ɵViewDefinition {
-  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,(null as any),(null as any),3,'option',([] as any[]),
-      (null as any),(null as any),(null as any),(null as any),(null as any))),i1.ɵdid(147456,
-      (null as any),0,i2.NgSelectOption,[i1.ElementRef,i1.Renderer,[2,i2.SelectControlValueAccessor]],
-      {value:[0,'value']},(null as any)),i1.ɵdid(147456,(null as any),0,i2.ɵq,[i1.ElementRef,
-      i1.Renderer,[8,(null as any)]],{value:[0,'value']},(null as any)),(_l()(),i1.ɵted((null as any),
-      ['','']))],(_ck,_v) => {
+  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,0,(null as any),(null as any),3,'option',([] as any[]),
+      (null as any),(null as any),(null as any),(null as any),(null as any))),i1.ɵdid(1,
+      147456,(null as any),0,i2.NgSelectOption,[i1.ElementRef,i1.Renderer2,[2,i2.SelectControlValueAccessor]],
+      {value:[0,'value']},(null as any)),i1.ɵdid(2,147456,(null as any),0,i2.ɵq,[i1.ElementRef,
+      i1.Renderer2,[8,(null as any)]],{value:[0,'value']},(null as any)),(_l()(),i1.ɵted(3,
+      (null as any),['','']))],(_ck,_v) => {
     const currVal_0:any = _v.context.$implicit.value;
     _ck(_v,1,0,currVal_0);
     const currVal_1:any = _v.context.$implicit.value;
@@ -71,28 +71,28 @@ function View_SponsorLettersAddComponent_4(_l:any):i1.ɵViewDefinition {
   });
 }
 function View_SponsorLettersAddComponent_5(_l:any):i1.ɵViewDefinition {
-  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,(null as any),(null as any),1,'span',[['class',
+  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,0,(null as any),(null as any),1,'span',[['class',
       'red']],(null as any),(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i1.ɵted((null as any),[' Month is required']))],(null as any),(null as any));
+      (_l()(),i1.ɵted(-1,(null as any),[' Month is required']))],(null as any),(null as any));
 }
 export function View_SponsorLettersAddComponent_0(_l:any):i1.ɵViewDefinition {
-  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,(null as any),(null as any),93,'div',[['class',
+  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,0,(null as any),(null as any),93,'div',[['class',
       'panel panel-primary']],(null as any),(null as any),(null as any),(null as any),
-      (null as any))),(_l()(),i1.ɵted((null as any),['\n  '])),(_l()(),i1.ɵeld(0,(null as any),
-      (null as any),1,'div',[['class','panel-heading'],['style','font-size:large']],
+      (null as any))),(_l()(),i1.ɵted(-1,(null as any),['\n  '])),(_l()(),i1.ɵeld(2,
+      0,(null as any),(null as any),1,'div',[['class','panel-heading'],['style','font-size:large']],
       (null as any),(null as any),(null as any),(null as any),(null as any))),(_l()(),
-      i1.ɵted((null as any),['\n    Añadir Nueva Carta de Padrino\n  '])),(_l()(),
-      i1.ɵted((null as any),['\n  '])),(_l()(),i1.ɵeld(0,(null as any),(null as any),
+      i1.ɵted(-1,(null as any),['\n    Añadir Nueva Carta de Padrino\n  '])),(_l()(),
+      i1.ɵted(-1,(null as any),['\n  '])),(_l()(),i1.ɵeld(5,0,(null as any),(null as any),
       87,'div',[['class','panel-body']],(null as any),(null as any),(null as any),
-      (null as any),(null as any))),(_l()(),i1.ɵted((null as any),['\n    '])),(_l()(),
-      i1.ɵand(16777216,(null as any),(null as any),1,(null as any),View_SponsorLettersAddComponent_1)),
-      i1.ɵdid(16384,(null as any),0,i3.NgIf,[i1.ViewContainerRef,i1.TemplateRef],{ngIf:[0,
-          'ngIf']},(null as any)),(_l()(),i1.ɵted((null as any),['\n    '])),(_l()(),
-          i1.ɵand(16777216,(null as any),(null as any),1,(null as any),View_SponsorLettersAddComponent_2)),
-      i1.ɵdid(16384,(null as any),0,i3.NgIf,[i1.ViewContainerRef,i1.TemplateRef],{ngIf:[0,
-          'ngIf']},(null as any)),(_l()(),i1.ɵted((null as any),['\n\n    '])),(_l()(),
-          i1.ɵeld(0,(null as any),(null as any),78,'form',[['novalidate','']],[[2,
-              'ng-untouched',(null as any)],[2,'ng-touched',(null as any)],[2,'ng-pristine',
+      (null as any),(null as any))),(_l()(),i1.ɵted(-1,(null as any),['\n    '])),
+      (_l()(),i1.ɵand(16777216,(null as any),(null as any),1,(null as any),View_SponsorLettersAddComponent_1)),
+      i1.ɵdid(8,16384,(null as any),0,i3.NgIf,[i1.ViewContainerRef,i1.TemplateRef],
+          {ngIf:[0,'ngIf']},(null as any)),(_l()(),i1.ɵted(-1,(null as any),['\n    '])),
+      (_l()(),i1.ɵand(16777216,(null as any),(null as any),1,(null as any),View_SponsorLettersAddComponent_2)),
+      i1.ɵdid(11,16384,(null as any),0,i3.NgIf,[i1.ViewContainerRef,i1.TemplateRef],
+          {ngIf:[0,'ngIf']},(null as any)),(_l()(),i1.ɵted(-1,(null as any),['\n\n    '])),
+      (_l()(),i1.ɵeld(13,0,(null as any),(null as any),78,'form',[['novalidate','']],
+          [[2,'ng-untouched',(null as any)],[2,'ng-touched',(null as any)],[2,'ng-pristine',
               (null as any)],[2,'ng-dirty',(null as any)],[2,'ng-valid',(null as any)],
               [2,'ng-invalid',(null as any)],[2,'ng-pending',(null as any)]],[[(null as any),
               'submit'],[(null as any),'reset']],(_v,en,$event) => {
@@ -106,29 +106,30 @@ export function View_SponsorLettersAddComponent_0(_l:any):i1.ɵViewDefinition {
               ad = (pd_1 && ad);
             }
             return ad;
-          },(null as any),(null as any))),i1.ɵdid(16384,(null as any),0,i2.ɵbh,([] as any[]),
-          (null as any),(null as any)),i1.ɵdid(540672,(null as any),0,i2.FormGroupDirective,
-          [[8,(null as any)],[8,(null as any)]],{form:[0,'form']},(null as any)),i1.ɵprd(2048,
-          (null as any),i2.ControlContainer,(null as any),[i2.FormGroupDirective]),
-      i1.ɵdid(16384,(null as any),0,i2.NgControlStatusGroup,[i2.ControlContainer],
-          (null as any),(null as any)),(_l()(),i1.ɵted((null as any),['\n      '])),
-      (_l()(),i1.ɵeld(0,(null as any),(null as any),71,'fieldset',([] as any[]),[[8,
-          'disabled',0]],(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i1.ɵted((null as any),['\n        '])),(_l()(),i1.ɵeld(0,(null as any),
-          (null as any),32,'div',[['class','form-group']],(null as any),(null as any),
-          (null as any),(null as any),(null as any))),(_l()(),i1.ɵted((null as any),
-          ['\n          '])),(_l()(),i1.ɵeld(0,(null as any),(null as any),26,'div',
-          [['class','controls']],(null as any),(null as any),(null as any),(null as any),
-          (null as any))),(_l()(),i1.ɵted((null as any),['\n            '])),(_l()(),
-          i1.ɵeld(0,(null as any),(null as any),1,'label',[['for','letterYearSelector']],
+          },(null as any),(null as any))),i1.ɵdid(14,16384,(null as any),0,i2.ɵbf,
+          ([] as any[]),(null as any),(null as any)),i1.ɵdid(15,540672,(null as any),
+          0,i2.FormGroupDirective,[[8,(null as any)],[8,(null as any)]],{form:[0,'form']},
+          (null as any)),i1.ɵprd(2048,(null as any),i2.ControlContainer,(null as any),
+          [i2.FormGroupDirective]),i1.ɵdid(17,16384,(null as any),0,i2.NgControlStatusGroup,
+          [i2.ControlContainer],(null as any),(null as any)),(_l()(),i1.ɵted(-1,(null as any),
+          ['\n      '])),(_l()(),i1.ɵeld(19,0,(null as any),(null as any),71,'fieldset',
+          ([] as any[]),[[8,'disabled',0]],(null as any),(null as any),(null as any),
+          (null as any))),(_l()(),i1.ɵted(-1,(null as any),['\n        '])),(_l()(),
+          i1.ɵeld(21,0,(null as any),(null as any),32,'div',[['class','form-group']],
               (null as any),(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i1.ɵted((null as any),[' Año/Mes de esta Periodo'])),(_l()(),i1.ɵted((null as any),
-          ['\n            '])),(_l()(),i1.ɵeld(0,(null as any),(null as any),9,'select',
-          [['formControlName','letterYearSelector']],[[2,'ng-untouched',(null as any)],
-              [2,'ng-touched',(null as any)],[2,'ng-pristine',(null as any)],[2,'ng-dirty',
-                  (null as any)],[2,'ng-valid',(null as any)],[2,'ng-invalid',(null as any)],
-              [2,'ng-pending',(null as any)]],[[(null as any),'ngModelChange'],[(null as any),
-              'change'],[(null as any),'blur']],(_v,en,$event) => {
+      (_l()(),i1.ɵted(-1,(null as any),['\n          '])),(_l()(),i1.ɵeld(23,0,(null as any),
+          (null as any),26,'div',[['class','controls']],(null as any),(null as any),
+          (null as any),(null as any),(null as any))),(_l()(),i1.ɵted(-1,(null as any),
+          ['\n            '])),(_l()(),i1.ɵeld(25,0,(null as any),(null as any),1,
+          'label',[['for','letterYearSelector']],(null as any),(null as any),(null as any),
+          (null as any),(null as any))),(_l()(),i1.ɵted(-1,(null as any),[' Año/Mes de esta Periodo'])),
+      (_l()(),i1.ɵted(-1,(null as any),['\n            '])),(_l()(),i1.ɵeld(28,0,(null as any),
+          (null as any),9,'select',[['formControlName','letterYearSelector']],[[2,
+              'ng-untouched',(null as any)],[2,'ng-touched',(null as any)],[2,'ng-pristine',
+              (null as any)],[2,'ng-dirty',(null as any)],[2,'ng-valid',(null as any)],
+              [2,'ng-invalid',(null as any)],[2,'ng-pending',(null as any)]],[[(null as any),
+              'ngModelChange'],[(null as any),'change'],[(null as any),'blur']],(_v,
+              en,$event) => {
             var ad:boolean = true;
             var _co:i4.SponsorLettersAddComponent = _v.component;
             if (('change' === en)) {
@@ -144,21 +145,21 @@ export function View_SponsorLettersAddComponent_0(_l:any):i1.ɵViewDefinition {
               ad = (pd_2 && ad);
             }
             return ad;
-          },(null as any),(null as any))),i1.ɵdid(16384,(null as any),0,i2.SelectControlValueAccessor,
-          [i1.Renderer,i1.ElementRef],(null as any),(null as any)),i1.ɵprd(1024,(null as any),
+          },(null as any),(null as any))),i1.ɵdid(29,16384,(null as any),0,i2.SelectControlValueAccessor,
+          [i1.Renderer2,i1.ElementRef],(null as any),(null as any)),i1.ɵprd(1024,(null as any),
           i2.NG_VALUE_ACCESSOR,(p0_0:any) => {
             return [p0_0];
-          },[i2.SelectControlValueAccessor]),i1.ɵdid(671744,(null as any),0,i2.FormControlName,
+          },[i2.SelectControlValueAccessor]),i1.ɵdid(31,671744,(null as any),0,i2.FormControlName,
           [[3,i2.ControlContainer],[8,(null as any)],[8,(null as any)],[2,i2.NG_VALUE_ACCESSOR]],
           {name:[0,'name'],model:[1,'model']},{update:'ngModelChange'}),i1.ɵprd(2048,
-          (null as any),i2.NgControl,(null as any),[i2.FormControlName]),i1.ɵdid(16384,
-          (null as any),0,i2.NgControlStatus,[i2.NgControl],(null as any),(null as any)),
-      (_l()(),i1.ɵted((null as any),['\n            '])),(_l()(),i1.ɵand(16777216,
+          (null as any),i2.NgControl,(null as any),[i2.FormControlName]),i1.ɵdid(33,
+          16384,(null as any),0,i2.NgControlStatus,[i2.NgControl],(null as any),(null as any)),
+      (_l()(),i1.ɵted(-1,(null as any),['\n            '])),(_l()(),i1.ɵand(16777216,
           (null as any),(null as any),1,(null as any),View_SponsorLettersAddComponent_3)),
-      i1.ɵdid(802816,(null as any),0,i3.NgForOf,[i1.ViewContainerRef,i1.TemplateRef,
-          i1.IterableDiffers],{ngForOf:[0,'ngForOf']},(null as any)),(_l()(),i1.ɵted((null as any),
-          ['\n            '])),(_l()(),i1.ɵted((null as any),['\n\n            '])),
-      (_l()(),i1.ɵeld(0,(null as any),(null as any),9,'select',[['formControlName',
+      i1.ɵdid(36,802816,(null as any),0,i3.NgForOf,[i1.ViewContainerRef,i1.TemplateRef,
+          i1.IterableDiffers],{ngForOf:[0,'ngForOf']},(null as any)),(_l()(),i1.ɵted(-1,
+          (null as any),['\n            '])),(_l()(),i1.ɵted(-1,(null as any),['\n\n            '])),
+      (_l()(),i1.ɵeld(39,0,(null as any),(null as any),9,'select',[['formControlName',
           'letterMonthSelector']],[[2,'ng-untouched',(null as any)],[2,'ng-touched',
           (null as any)],[2,'ng-pristine',(null as any)],[2,'ng-dirty',(null as any)],
           [2,'ng-valid',(null as any)],[2,'ng-invalid',(null as any)],[2,'ng-pending',
@@ -179,36 +180,36 @@ export function View_SponsorLettersAddComponent_0(_l:any):i1.ɵViewDefinition {
           ad = (pd_2 && ad);
         }
         return ad;
-      },(null as any),(null as any))),i1.ɵdid(16384,(null as any),0,i2.SelectControlValueAccessor,
-          [i1.Renderer,i1.ElementRef],(null as any),(null as any)),i1.ɵprd(1024,(null as any),
+      },(null as any),(null as any))),i1.ɵdid(40,16384,(null as any),0,i2.SelectControlValueAccessor,
+          [i1.Renderer2,i1.ElementRef],(null as any),(null as any)),i1.ɵprd(1024,(null as any),
           i2.NG_VALUE_ACCESSOR,(p0_0:any) => {
             return [p0_0];
-          },[i2.SelectControlValueAccessor]),i1.ɵdid(671744,(null as any),0,i2.FormControlName,
+          },[i2.SelectControlValueAccessor]),i1.ɵdid(42,671744,(null as any),0,i2.FormControlName,
           [[3,i2.ControlContainer],[8,(null as any)],[8,(null as any)],[2,i2.NG_VALUE_ACCESSOR]],
           {name:[0,'name'],model:[1,'model']},{update:'ngModelChange'}),i1.ɵprd(2048,
-          (null as any),i2.NgControl,(null as any),[i2.FormControlName]),i1.ɵdid(16384,
-          (null as any),0,i2.NgControlStatus,[i2.NgControl],(null as any),(null as any)),
-      (_l()(),i1.ɵted((null as any),['\n            '])),(_l()(),i1.ɵand(16777216,
+          (null as any),i2.NgControl,(null as any),[i2.FormControlName]),i1.ɵdid(44,
+          16384,(null as any),0,i2.NgControlStatus,[i2.NgControl],(null as any),(null as any)),
+      (_l()(),i1.ɵted(-1,(null as any),['\n            '])),(_l()(),i1.ɵand(16777216,
           (null as any),(null as any),1,(null as any),View_SponsorLettersAddComponent_4)),
-      i1.ɵdid(802816,(null as any),0,i3.NgForOf,[i1.ViewContainerRef,i1.TemplateRef,
-          i1.IterableDiffers],{ngForOf:[0,'ngForOf']},(null as any)),(_l()(),i1.ɵted((null as any),
-          ['\n            '])),(_l()(),i1.ɵted((null as any),['\n          '])),(_l()(),
-          i1.ɵted((null as any),['\n          '])),(_l()(),i1.ɵand(16777216,(null as any),
-          (null as any),1,(null as any),View_SponsorLettersAddComponent_5)),i1.ɵdid(16384,
-          (null as any),0,i3.NgIf,[i1.ViewContainerRef,i1.TemplateRef],{ngIf:[0,'ngIf']},
-          (null as any)),(_l()(),i1.ɵted((null as any),['\n        '])),(_l()(),i1.ɵted((null as any),
-          ['\n\n\n        '])),(_l()(),i1.ɵeld(0,(null as any),(null as any),16,'div',
-          [['class','controls']],(null as any),(null as any),(null as any),(null as any),
-          (null as any))),(_l()(),i1.ɵted((null as any),['\n          '])),(_l()(),
-          i1.ɵeld(0,(null as any),(null as any),1,'label',[['for','inputLetterText']],
-              (null as any),(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i1.ɵted((null as any),['Texto de Carta'])),(_l()(),i1.ɵted((null as any),
-          ['\n          '])),(_l()(),i1.ɵeld(0,[['success',1]],(null as any),6,'textarea',
-          [['class','form-control input-sm'],['formControlName','inputLetterText'],
-              ['id','inputLetterText'],['placeholder','Carta a tu Sponsor'],['type',
-                  'text']],[[2,'ng-untouched',(null as any)],[2,'ng-touched',(null as any)],
-              [2,'ng-pristine',(null as any)],[2,'ng-dirty',(null as any)],[2,'ng-valid',
-                  (null as any)],[2,'ng-invalid',(null as any)],[2,'ng-pending',(null as any)]],
+      i1.ɵdid(47,802816,(null as any),0,i3.NgForOf,[i1.ViewContainerRef,i1.TemplateRef,
+          i1.IterableDiffers],{ngForOf:[0,'ngForOf']},(null as any)),(_l()(),i1.ɵted(-1,
+          (null as any),['\n            '])),(_l()(),i1.ɵted(-1,(null as any),['\n          '])),
+      (_l()(),i1.ɵted(-1,(null as any),['\n          '])),(_l()(),i1.ɵand(16777216,
+          (null as any),(null as any),1,(null as any),View_SponsorLettersAddComponent_5)),
+      i1.ɵdid(52,16384,(null as any),0,i3.NgIf,[i1.ViewContainerRef,i1.TemplateRef],
+          {ngIf:[0,'ngIf']},(null as any)),(_l()(),i1.ɵted(-1,(null as any),['\n        '])),
+      (_l()(),i1.ɵted(-1,(null as any),['\n\n\n        '])),(_l()(),i1.ɵeld(55,0,(null as any),
+          (null as any),16,'div',[['class','controls']],(null as any),(null as any),
+          (null as any),(null as any),(null as any))),(_l()(),i1.ɵted(-1,(null as any),
+          ['\n          '])),(_l()(),i1.ɵeld(57,0,(null as any),(null as any),1,'label',
+          [['for','inputLetterText']],(null as any),(null as any),(null as any),(null as any),
+          (null as any))),(_l()(),i1.ɵted(-1,(null as any),['Texto de Carta'])),(_l()(),
+          i1.ɵted(-1,(null as any),['\n          '])),(_l()(),i1.ɵeld(60,0,[['success',
+          1]],(null as any),6,'textarea',[['class','form-control input-sm'],['formControlName',
+          'inputLetterText'],['id','inputLetterText'],['placeholder','Carta a tu Sponsor'],
+          ['type','text']],[[2,'ng-untouched',(null as any)],[2,'ng-touched',(null as any)],
+          [2,'ng-pristine',(null as any)],[2,'ng-dirty',(null as any)],[2,'ng-valid',
+              (null as any)],[2,'ng-invalid',(null as any)],[2,'ng-pending',(null as any)]],
           [[(null as any),'ngModelChange'],[(null as any),'input'],[(null as any),
               'blur'],[(null as any),'compositionstart'],[(null as any),'compositionend']],
           (_v,en,$event) => {
@@ -235,30 +236,31 @@ export function View_SponsorLettersAddComponent_0(_l:any):i1.ɵViewDefinition {
               ad = (pd_4 && ad);
             }
             return ad;
-          },(null as any),(null as any))),i1.ɵdid(16384,(null as any),0,i2.DefaultValueAccessor,
-          [i1.Renderer,i1.ElementRef,[2,i2.COMPOSITION_BUFFER_MODE]],(null as any),
+          },(null as any),(null as any))),i1.ɵdid(61,16384,(null as any),0,i2.DefaultValueAccessor,
+          [i1.Renderer2,i1.ElementRef,[2,i2.COMPOSITION_BUFFER_MODE]],(null as any),
           (null as any)),i1.ɵprd(1024,(null as any),i2.NG_VALUE_ACCESSOR,(p0_0:any) => {
         return [p0_0];
-      },[i2.DefaultValueAccessor]),i1.ɵdid(671744,(null as any),0,i2.FormControlName,
+      },[i2.DefaultValueAccessor]),i1.ɵdid(63,671744,(null as any),0,i2.FormControlName,
           [[3,i2.ControlContainer],[8,(null as any)],[8,(null as any)],[2,i2.NG_VALUE_ACCESSOR]],
           {name:[0,'name'],model:[1,'model']},{update:'ngModelChange'}),i1.ɵprd(2048,
-          (null as any),i2.NgControl,(null as any),[i2.FormControlName]),i1.ɵdid(16384,
-          (null as any),0,i2.NgControlStatus,[i2.NgControl],(null as any),(null as any)),
-      (_l()(),i1.ɵted((null as any),['          '])),(_l()(),i1.ɵted((null as any),
-          ['\n          '])),(_l()(),i1.ɵeld(0,(null as any),(null as any),2,'display-errors',
+          (null as any),i2.NgControl,(null as any),[i2.FormControlName]),i1.ɵdid(65,
+          16384,(null as any),0,i2.NgControlStatus,[i2.NgControl],(null as any),(null as any)),
+      (_l()(),i1.ɵted(-1,(null as any),['          '])),(_l()(),i1.ɵted(-1,(null as any),
+          ['\n          '])),(_l()(),i1.ɵeld(68,0,(null as any),(null as any),2,'app-display-errors',
           [['class','red'],['control','inputLetterText']],(null as any),(null as any),
           (null as any),i5.View_DisplayErrorsComponent_0,i5.RenderType_DisplayErrorsComponent)),
-      i1.ɵdid(49152,(null as any),0,i6.DisplayErrorsComponent,[i2.FormGroupDirective],
-          {errors:[0,'errors'],control:[1,'control']},(null as any)),i1.ɵpod(['required',
-          'maxlength']),(_l()(),i1.ɵted((null as any),['\n        '])),(_l()(),i1.ɵted((null as any),
-          ['\n\n        '])),(_l()(),i1.ɵeld(0,(null as any),(null as any),16,'div',
-          [['class','col-md-6 col-md-offset-1']],(null as any),(null as any),(null as any),
-          (null as any),(null as any))),(_l()(),i1.ɵted((null as any),['\n          '])),
-      (_l()(),i1.ɵeld(0,(null as any),(null as any),4,'span',([] as any[]),(null as any),
-          (null as any),(null as any),(null as any),(null as any))),(_l()(),i1.ɵted((null as any),
-          ['\n          '])),(_l()(),i1.ɵeld(0,(null as any),(null as any),1,'button',
-          [['class','btn btn-primary'],['style','width:80px;margin-right:10px']],(null as any),
-          [[(null as any),'click']],(_v,en,$event) => {
+      i1.ɵdid(69,49152,(null as any),0,i6.DisplayErrorsComponent,[i2.FormGroupDirective],
+          {errors:[0,'errors'],control:[1,'control']},(null as any)),i1.ɵpod(70,{'required':0,
+          'maxlength':1}),(_l()(),i1.ɵted(-1,(null as any),['\n        '])),(_l()(),
+          i1.ɵted(-1,(null as any),['\n\n        '])),(_l()(),i1.ɵeld(73,0,(null as any),
+          (null as any),16,'div',[['class','col-md-6 col-md-offset-1']],(null as any),
+          (null as any),(null as any),(null as any),(null as any))),(_l()(),i1.ɵted(-1,
+          (null as any),['\n          '])),(_l()(),i1.ɵeld(75,0,(null as any),(null as any),
+          4,'span',([] as any[]),(null as any),(null as any),(null as any),(null as any),
+          (null as any))),(_l()(),i1.ɵted(-1,(null as any),['\n          '])),(_l()(),
+          i1.ɵeld(77,0,(null as any),(null as any),1,'button',[['class','btn btn-primary'],
+              ['style','width:80px;margin-right:10px']],(null as any),[[(null as any),
+              'click']],(_v,en,$event) => {
             var ad:boolean = true;
             var _co:i4.SponsorLettersAddComponent = _v.component;
             if (('click' === en)) {
@@ -266,11 +268,11 @@ export function View_SponsorLettersAddComponent_0(_l:any):i1.ɵViewDefinition {
               ad = (pd_0 && ad);
             }
             return ad;
-          },(null as any),(null as any))),(_l()(),i1.ɵted((null as any),['\n            Guardar\n\n          '])),
-      (_l()(),i1.ɵted((null as any),['\n         '])),(_l()(),i1.ɵted((null as any),
-          [' \n          '])),(_l()(),i1.ɵeld(0,(null as any),(null as any),7,'span',
+          },(null as any),(null as any))),(_l()(),i1.ɵted(-1,(null as any),['\n            Guardar\n\n          '])),
+      (_l()(),i1.ɵted(-1,(null as any),['\n         '])),(_l()(),i1.ɵted(-1,(null as any),
+          [' \n          '])),(_l()(),i1.ɵeld(81,0,(null as any),(null as any),7,'span',
           ([] as any[]),(null as any),(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i1.ɵted((null as any),['\n          '])),(_l()(),i1.ɵeld(0,(null as any),
+      (_l()(),i1.ɵted(-1,(null as any),['\n          '])),(_l()(),i1.ɵeld(83,0,(null as any),
           (null as any),1,'button',[['class','btn btn-default'],['style','width:80px']],
           (null as any),[[(null as any),'click']],(_v,en,$event) => {
             var ad:boolean = true;
@@ -280,87 +282,88 @@ export function View_SponsorLettersAddComponent_0(_l:any):i1.ɵViewDefinition {
               ad = (pd_0 && ad);
             }
             return ad;
-          },(null as any),(null as any))),(_l()(),i1.ɵted((null as any),['\n            Cancelar\n          '])),
-      (_l()(),i1.ɵted((null as any),['\n          '])),(_l()(),i1.ɵeld(0,(null as any),
+          },(null as any),(null as any))),(_l()(),i1.ɵted(-1,(null as any),['\n            Cancelar\n          '])),
+      (_l()(),i1.ɵted(-1,(null as any),['\n          '])),(_l()(),i1.ɵeld(86,0,(null as any),
           (null as any),1,'div',[['class','red']],[[8,'hidden',0]],(null as any),(null as any),
-          (null as any),(null as any))),(_l()(),i1.ɵted((null as any),['Año, Mes, y texto de carta deben ser completados correctamente antes de guardar.'])),
-      (_l()(),i1.ɵted((null as any),['\n        '])),(_l()(),i1.ɵted((null as any),
-          ['\n        '])),(_l()(),i1.ɵted((null as any),['\n      '])),(_l()(),i1.ɵted((null as any),
-          ['\n    '])),(_l()(),i1.ɵted((null as any),['\n  '])),(_l()(),i1.ɵted((null as any),
-          ['\n'])),(_l()(),i1.ɵted((null as any),['\n']))],(_ck,_v) => {
-    var _co:i4.SponsorLettersAddComponent = _v.component;
-    const currVal_0:any = _co.errorMessage;
-    _ck(_v,8,0,currVal_0);
-    const currVal_1:any = _co.successMessage;
-    _ck(_v,11,0,currVal_1);
-    const currVal_9:any = _co.addNewForm;
-    _ck(_v,15,0,currVal_9);
-    const currVal_18:any = 'letterYearSelector';
-    const currVal_19:any = _co.sponsorLetter.letterYear;
-    _ck(_v,31,0,currVal_18,currVal_19);
-    const currVal_20:any = _co.periodYears;
-    _ck(_v,36,0,currVal_20);
-    const currVal_28:any = 'letterMonthSelector';
-    const currVal_29:any = _co.sponsorLetter.letterMonth;
-    _ck(_v,42,0,currVal_28,currVal_29);
-    const currVal_30:any = _co.periodMonths;
-    _ck(_v,47,0,currVal_30);
-    const currVal_31:boolean = (!_co.letterMonth.valid && _co.letterMonth.touched);
-    _ck(_v,52,0,currVal_31);
-    const currVal_39:any = 'inputLetterText';
-    const currVal_40:any = _co.sponsorLetter.letterText;
-    _ck(_v,63,0,currVal_39,currVal_40);
-    const currVal_41:any = _ck(_v,70,0,'An entry is required, even if it is just N/A',
-        'Entrada no puede exceder los 2000 caracteres.');
-    const currVal_42:any = 'inputLetterText';
-    _ck(_v,69,0,currVal_41,currVal_42);
-  },(_ck,_v) => {
-    var _co:i4.SponsorLettersAddComponent = _v.component;
-    const currVal_2:any = i1.ɵnov(_v,17).ngClassUntouched;
-    const currVal_3:any = i1.ɵnov(_v,17).ngClassTouched;
-    const currVal_4:any = i1.ɵnov(_v,17).ngClassPristine;
-    const currVal_5:any = i1.ɵnov(_v,17).ngClassDirty;
-    const currVal_6:any = i1.ɵnov(_v,17).ngClassValid;
-    const currVal_7:any = i1.ɵnov(_v,17).ngClassInvalid;
-    const currVal_8:any = i1.ɵnov(_v,17).ngClassPending;
-    _ck(_v,13,0,currVal_2,currVal_3,currVal_4,currVal_5,currVal_6,currVal_7,currVal_8);
-    const currVal_10:any = _co.submitted;
-    _ck(_v,19,0,currVal_10);
-    const currVal_11:any = i1.ɵnov(_v,33).ngClassUntouched;
-    const currVal_12:any = i1.ɵnov(_v,33).ngClassTouched;
-    const currVal_13:any = i1.ɵnov(_v,33).ngClassPristine;
-    const currVal_14:any = i1.ɵnov(_v,33).ngClassDirty;
-    const currVal_15:any = i1.ɵnov(_v,33).ngClassValid;
-    const currVal_16:any = i1.ɵnov(_v,33).ngClassInvalid;
-    const currVal_17:any = i1.ɵnov(_v,33).ngClassPending;
-    _ck(_v,28,0,currVal_11,currVal_12,currVal_13,currVal_14,currVal_15,currVal_16,
-        currVal_17);
-    const currVal_21:any = i1.ɵnov(_v,44).ngClassUntouched;
-    const currVal_22:any = i1.ɵnov(_v,44).ngClassTouched;
-    const currVal_23:any = i1.ɵnov(_v,44).ngClassPristine;
-    const currVal_24:any = i1.ɵnov(_v,44).ngClassDirty;
-    const currVal_25:any = i1.ɵnov(_v,44).ngClassValid;
-    const currVal_26:any = i1.ɵnov(_v,44).ngClassInvalid;
-    const currVal_27:any = i1.ɵnov(_v,44).ngClassPending;
-    _ck(_v,39,0,currVal_21,currVal_22,currVal_23,currVal_24,currVal_25,currVal_26,
-        currVal_27);
-    const currVal_32:any = i1.ɵnov(_v,65).ngClassUntouched;
-    const currVal_33:any = i1.ɵnov(_v,65).ngClassTouched;
-    const currVal_34:any = i1.ɵnov(_v,65).ngClassPristine;
-    const currVal_35:any = i1.ɵnov(_v,65).ngClassDirty;
-    const currVal_36:any = i1.ɵnov(_v,65).ngClassValid;
-    const currVal_37:any = i1.ɵnov(_v,65).ngClassInvalid;
-    const currVal_38:any = i1.ɵnov(_v,65).ngClassPending;
-    _ck(_v,60,0,currVal_32,currVal_33,currVal_34,currVal_35,currVal_36,currVal_37,
-        currVal_38);
-    const currVal_43:any = _co.addNewForm.valid;
-    _ck(_v,86,0,currVal_43);
-  });
+          (null as any),(null as any))),(_l()(),i1.ɵted(-1,(null as any),['Año, Mes, y texto de carta deben ser completados correctamente antes de guardar.'])),
+      (_l()(),i1.ɵted(-1,(null as any),['\n        '])),(_l()(),i1.ɵted(-1,(null as any),
+          ['\n        '])),(_l()(),i1.ɵted(-1,(null as any),['\n      '])),(_l()(),
+          i1.ɵted(-1,(null as any),['\n    '])),(_l()(),i1.ɵted(-1,(null as any),['\n  '])),
+      (_l()(),i1.ɵted(-1,(null as any),['\n'])),(_l()(),i1.ɵted(-1,(null as any),['\n']))],
+      (_ck,_v) => {
+        var _co:i4.SponsorLettersAddComponent = _v.component;
+        const currVal_0:any = _co.errorMessage;
+        _ck(_v,8,0,currVal_0);
+        const currVal_1:any = _co.successMessage;
+        _ck(_v,11,0,currVal_1);
+        const currVal_9:any = _co.addNewForm;
+        _ck(_v,15,0,currVal_9);
+        const currVal_18:any = 'letterYearSelector';
+        const currVal_19:any = _co.sponsorLetter.letterYear;
+        _ck(_v,31,0,currVal_18,currVal_19);
+        const currVal_20:any = _co.periodYears;
+        _ck(_v,36,0,currVal_20);
+        const currVal_28:any = 'letterMonthSelector';
+        const currVal_29:any = _co.sponsorLetter.letterMonth;
+        _ck(_v,42,0,currVal_28,currVal_29);
+        const currVal_30:any = _co.periodMonths;
+        _ck(_v,47,0,currVal_30);
+        const currVal_31:boolean = (!_co.letterMonth.valid && _co.letterMonth.touched);
+        _ck(_v,52,0,currVal_31);
+        const currVal_39:any = 'inputLetterText';
+        const currVal_40:any = _co.sponsorLetter.letterText;
+        _ck(_v,63,0,currVal_39,currVal_40);
+        const currVal_41:any = _ck(_v,70,0,'An entry is required, even if it is just N/A',
+            'Entrada no puede exceder los 2000 caracteres.');
+        const currVal_42:any = 'inputLetterText';
+        _ck(_v,69,0,currVal_41,currVal_42);
+      },(_ck,_v) => {
+        var _co:i4.SponsorLettersAddComponent = _v.component;
+        const currVal_2:any = i1.ɵnov(_v,17).ngClassUntouched;
+        const currVal_3:any = i1.ɵnov(_v,17).ngClassTouched;
+        const currVal_4:any = i1.ɵnov(_v,17).ngClassPristine;
+        const currVal_5:any = i1.ɵnov(_v,17).ngClassDirty;
+        const currVal_6:any = i1.ɵnov(_v,17).ngClassValid;
+        const currVal_7:any = i1.ɵnov(_v,17).ngClassInvalid;
+        const currVal_8:any = i1.ɵnov(_v,17).ngClassPending;
+        _ck(_v,13,0,currVal_2,currVal_3,currVal_4,currVal_5,currVal_6,currVal_7,currVal_8);
+        const currVal_10:any = _co.submitted;
+        _ck(_v,19,0,currVal_10);
+        const currVal_11:any = i1.ɵnov(_v,33).ngClassUntouched;
+        const currVal_12:any = i1.ɵnov(_v,33).ngClassTouched;
+        const currVal_13:any = i1.ɵnov(_v,33).ngClassPristine;
+        const currVal_14:any = i1.ɵnov(_v,33).ngClassDirty;
+        const currVal_15:any = i1.ɵnov(_v,33).ngClassValid;
+        const currVal_16:any = i1.ɵnov(_v,33).ngClassInvalid;
+        const currVal_17:any = i1.ɵnov(_v,33).ngClassPending;
+        _ck(_v,28,0,currVal_11,currVal_12,currVal_13,currVal_14,currVal_15,currVal_16,
+            currVal_17);
+        const currVal_21:any = i1.ɵnov(_v,44).ngClassUntouched;
+        const currVal_22:any = i1.ɵnov(_v,44).ngClassTouched;
+        const currVal_23:any = i1.ɵnov(_v,44).ngClassPristine;
+        const currVal_24:any = i1.ɵnov(_v,44).ngClassDirty;
+        const currVal_25:any = i1.ɵnov(_v,44).ngClassValid;
+        const currVal_26:any = i1.ɵnov(_v,44).ngClassInvalid;
+        const currVal_27:any = i1.ɵnov(_v,44).ngClassPending;
+        _ck(_v,39,0,currVal_21,currVal_22,currVal_23,currVal_24,currVal_25,currVal_26,
+            currVal_27);
+        const currVal_32:any = i1.ɵnov(_v,65).ngClassUntouched;
+        const currVal_33:any = i1.ɵnov(_v,65).ngClassTouched;
+        const currVal_34:any = i1.ɵnov(_v,65).ngClassPristine;
+        const currVal_35:any = i1.ɵnov(_v,65).ngClassDirty;
+        const currVal_36:any = i1.ɵnov(_v,65).ngClassValid;
+        const currVal_37:any = i1.ɵnov(_v,65).ngClassInvalid;
+        const currVal_38:any = i1.ɵnov(_v,65).ngClassPending;
+        _ck(_v,60,0,currVal_32,currVal_33,currVal_34,currVal_35,currVal_36,currVal_37,
+            currVal_38);
+        const currVal_43:any = _co.addNewForm.valid;
+        _ck(_v,86,0,currVal_43);
+      });
 }
 export function View_SponsorLettersAddComponent_Host_0(_l:any):i1.ɵViewDefinition {
-  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,(null as any),(null as any),1,'ng-component',
+  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,0,(null as any),(null as any),1,'ng-component',
       ([] as any[]),(null as any),(null as any),(null as any),View_SponsorLettersAddComponent_0,
-      RenderType_SponsorLettersAddComponent)),i1.ɵdid(114688,(null as any),0,i4.SponsorLettersAddComponent,
+      RenderType_SponsorLettersAddComponent)),i1.ɵdid(1,114688,(null as any),0,i4.SponsorLettersAddComponent,
       [i7.ActivatedRoute,i7.Router,i8.SqlResource,i2.FormBuilder],(null as any),(null as any))],
       (_ck,_v) => {
         _ck(_v,1,0);
@@ -368,4 +371,4 @@ export function View_SponsorLettersAddComponent_Host_0(_l:any):i1.ɵViewDefiniti
 }
 export const SponsorLettersAddComponentNgFactory:i1.ComponentFactory<i4.SponsorLettersAddComponent> = i1.ɵccf('ng-component',
     i4.SponsorLettersAddComponent,View_SponsorLettersAddComponent_Host_0,{},{},([] as any[]));
-//# sourceMappingURL=data:application/json;base64,eyJmaWxlIjoiL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC8rc3R1ZGVudHMvc3BvbnNvci1sZXR0ZXJzLWFkZC9zcG9uc29yLWxldHRlcnMtYWRkLmNvbXBvbmVudC5uZ2ZhY3RvcnkudHMiLCJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJuZzovLy9ob21lL2NrYXBpbGxhL0Rldi9Kb3ZlbmVzQS1jbGllbnQuQ0xJL3NyYy9hcHAvK3N0dWRlbnRzL3Nwb25zb3ItbGV0dGVycy1hZGQvc3BvbnNvci1sZXR0ZXJzLWFkZC5jb21wb25lbnQudHMiLCJuZzovLy9ob21lL2NrYXBpbGxhL0Rldi9Kb3ZlbmVzQS1jbGllbnQuQ0xJL3NyYy9hcHAvK3N0dWRlbnRzL3Nwb25zb3ItbGV0dGVycy1hZGQvc3BvbnNvci1sZXR0ZXJzLWFkZC5jb21wb25lbnQuaHRtbCIsIm5nOi8vL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC8rc3R1ZGVudHMvc3BvbnNvci1sZXR0ZXJzLWFkZC9zcG9uc29yLWxldHRlcnMtYWRkLmNvbXBvbmVudC50cy5TcG9uc29yTGV0dGVyc0FkZENvbXBvbmVudF9Ib3N0Lmh0bWwiXSwic291cmNlc0NvbnRlbnQiOlsiICIsIjxkaXYgY2xhc3M9XCJwYW5lbCBwYW5lbC1wcmltYXJ5XCI+XG4gIDxkaXYgY2xhc3M9XCJwYW5lbC1oZWFkaW5nXCIgc3R5bGU9XCJmb250LXNpemU6bGFyZ2VcIj5cbiAgICBBw7FhZGlyIE51ZXZhIENhcnRhIGRlIFBhZHJpbm9cbiAgPC9kaXY+XG4gIDxkaXYgY2xhc3M9XCJwYW5lbC1ib2R5XCI+XG4gICAgPGRpdiAqbmdJZj1cImVycm9yTWVzc2FnZVwiIGNsYXNzPVwiYWxlcnQgYWxlcnQtZGFuZ2VyXCI+e3tlcnJvck1lc3NhZ2V9fTwvZGl2PlxuICAgIDxkaXYgKm5nSWY9XCJzdWNjZXNzTWVzc2FnZVwiIGNsYXNzPVwiYWxlcnQgYWxlcnQtc3VjY2Vzc1wiPnt7c3VjY2Vzc01lc3NhZ2V9fTwvZGl2PlxuXG4gICAgPGZvcm0gW2Zvcm1Hcm91cF09XCJhZGROZXdGb3JtXCI+XG4gICAgICA8ZmllbGRzZXQgW2Rpc2FibGVkXT1cInN1Ym1pdHRlZFwiPlxuICAgICAgICA8ZGl2IGNsYXNzPVwiZm9ybS1ncm91cFwiPlxuICAgICAgICAgIDxkaXYgY2xhc3M9XCJjb250cm9sc1wiPlxuICAgICAgICAgICAgPGxhYmVsIGZvcj1cImxldHRlclllYXJTZWxlY3RvclwiPiBBw7FvL01lcyBkZSBlc3RhIFBlcmlvZG88L2xhYmVsPlxuICAgICAgICAgICAgPHNlbGVjdCBmb3JtQ29udHJvbE5hbWU9XCJsZXR0ZXJZZWFyU2VsZWN0b3JcIiBbKG5nTW9kZWwpXT1cInNwb25zb3JMZXR0ZXIubGV0dGVyWWVhclwiPlxuICAgICAgICAgICAgPG9wdGlvbiAqbmdGb3I9XCJsZXQgeWVhciBvZiBwZXJpb2RZZWFyc1wiIFt2YWx1ZV09XCJ5ZWFyLnZhbHVlXCI+e3t5ZWFyLmxhYmVsfX08L29wdGlvbj5cbiAgICAgICAgICAgIDwvc2VsZWN0PlxuXG4gICAgICAgICAgICA8c2VsZWN0IGZvcm1Db250cm9sTmFtZT1cImxldHRlck1vbnRoU2VsZWN0b3JcIiBbKG5nTW9kZWwpXT1cInNwb25zb3JMZXR0ZXIubGV0dGVyTW9udGhcIj5cbiAgICAgICAgICAgIDxvcHRpb24gKm5nRm9yPVwibGV0IG1vbnRoIG9mIHBlcmlvZE1vbnRoc1wiIFt2YWx1ZV09XCJtb250aC52YWx1ZVwiPnt7bW9udGgubGFiZWx9fTwvb3B0aW9uPlxuICAgICAgICAgICAgPC9zZWxlY3Q+XG4gICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgPHNwYW4gKm5nSWY9XCIhbGV0dGVyTW9udGgudmFsaWQgJmFtcDsmYW1wOyBsZXR0ZXJNb250aC50b3VjaGVkXCIgY2xhc3M9XCJyZWRcIj4gTW9udGggaXMgcmVxdWlyZWQ8L3NwYW4+XG4gICAgICAgIDwvZGl2PlxuXG5cbiAgICAgICAgPGRpdiBjbGFzcz1cImNvbnRyb2xzXCI+XG4gICAgICAgICAgPGxhYmVsIGZvcj1cImlucHV0TGV0dGVyVGV4dFwiPlRleHRvIGRlIENhcnRhPC9sYWJlbD5cbiAgICAgICAgICA8dGV4dGFyZWEgaWQ9XCJpbnB1dExldHRlclRleHRcIiAjc3VjY2VzcyBmb3JtQ29udHJvbE5hbWU9XCJpbnB1dExldHRlclRleHRcIiBbKG5nTW9kZWwpXT1cInNwb25zb3JMZXR0ZXIubGV0dGVyVGV4dFwiIHR5cGU9XCJ0ZXh0XCJcbiAgICAgICAgICAgIGNsYXNzPVwiZm9ybS1jb250cm9sIGlucHV0LXNtXCIgcGxhY2Vob2xkZXI9XCJDYXJ0YSBhIHR1IFNwb25zb3JcIj5cbiAgICAgICAgICA8L3RleHRhcmVhPlxuICAgICAgICAgIDxkaXNwbGF5LWVycm9ycyBjb250cm9sPVwiaW5wdXRMZXR0ZXJUZXh0XCIgY2xhc3M9XCJyZWRcIiBbZXJyb3JzXT1cInsncmVxdWlyZWQnOiAnQW4gZW50cnkgaXMgcmVxdWlyZWQsIGV2ZW4gaWYgaXQgaXMganVzdCBOL0EnLFxuICAgICAgICAgICAgICAgICdtYXhsZW5ndGgnOiAnRW50cmFkYSBubyBwdWVkZSBleGNlZGVyIGxvcyAyMDAwIGNhcmFjdGVyZXMuJ1xuICAgICAgICAgICAgICAgIH1cIj48L2Rpc3BsYXktZXJyb3JzPlxuICAgICAgICA8L2Rpdj5cblxuICAgICAgICA8ZGl2IGNsYXNzPVwiY29sLW1kLTYgY29sLW1kLW9mZnNldC0xXCI+XG4gICAgICAgICAgPHNwYW4+XG4gICAgICAgICAgPGJ1dHRvbiBjbGFzcz1cImJ0biBidG4tcHJpbWFyeVwiXG4gICAgICAgICAgICAgICAgICBzdHlsZT1cIndpZHRoOjgwcHg7bWFyZ2luLXJpZ2h0OjEwcHhcIlxuICAgICAgICAgICAgICAgICAgKGNsaWNrKT1cIm9uU3VibWl0KClcIlxuICAgICAgICAgICAgICAgICAgPlxuICAgICAgICAgICAgR3VhcmRhclxuXG4gICAgICAgICAgPC9idXR0b24+XG4gICAgICAgICA8L3NwYW4+Jm5ic3A7XG4gICAgICAgICAgPHNwYW4+XG4gICAgICAgICAgPGJ1dHRvbiBjbGFzcz1cImJ0biBidG4tZGVmYXVsdFwiXG4gICAgICAgICAgICAgICAgICBzdHlsZT1cIndpZHRoOjgwcHhcIlxuICAgICAgICAgICAgICAgICAgKGNsaWNrKT1cIm9uQ2FuY2VsKClcIj5cbiAgICAgICAgICAgIENhbmNlbGFyXG4gICAgICAgICAgPC9idXR0b24+XG4gICAgICAgICAgPGRpdiBjbGFzcz1cInJlZFwiIFtoaWRkZW5dPVwiYWRkTmV3Rm9ybS52YWxpZFwiPkHDsW8sIE1lcywgeSB0ZXh0byBkZSBjYXJ0YSBkZWJlbiBzZXIgY29tcGxldGFkb3MgY29ycmVjdGFtZW50ZSBhbnRlcyBkZSBndWFyZGFyLjwvZGl2PlxuICAgICAgICA8L3NwYW4+XG4gICAgICAgIDwvZGl2PlxuICAgICAgPC9maWVsZHNldD5cbiAgICA8L2Zvcm0+XG4gIDwvZGl2PlxuPC9kaXY+XG4iLCI8bmctY29tcG9uZW50PjwvbmctY29tcG9uZW50PiJdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztvQkNLSTtNQUFBO01BQUEsZ0JBQXFEOzs7SUFBQTtJQUFBOzs7O29CQUNyRDtNQUFBO01BQUEsZ0JBQXdEOzs7SUFBQTtJQUFBOzs7O29CQVFoRDtNQUFBLCtFQUFBO01BQUE7TUFBQSwwQ0FBQTtrQkFBQSxzREFBOEQ7TUFBQTtJQUFyQjtJQUF6QyxXQUF5QyxTQUF6QztJQUF5QztJQUF6QyxXQUF5QyxTQUF6Qzs7SUFBOEQ7SUFBQTs7OztvQkFJOUQ7TUFBQSwrRUFBQTtNQUFBO01BQUEsMENBQUE7a0JBQUEsc0RBQWlFO01BQUE7SUFBdEI7SUFBM0MsV0FBMkMsU0FBM0M7SUFBMkM7SUFBM0MsV0FBMkMsU0FBM0M7O0lBQWlFO0lBQUE7Ozs7b0JBR25FO01BQUE7TUFBNEU7OztvQkFyQnRGO01BQUE7TUFBQSxnQkFBaUMseUNBQy9CO01BQUE7TUFBQSx3RUFBbUQ7YUFBQSw2REFFN0M7YUFBQSwwQkFD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
+//# sourceMappingURL=data:application/json;base64,eyJmaWxlIjoiL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC8rc3R1ZGVudHMvc3BvbnNvci1sZXR0ZXJzLWFkZC9zcG9uc29yLWxldHRlcnMtYWRkLmNvbXBvbmVudC5uZ2ZhY3RvcnkudHMiLCJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJuZzovLy9ob21lL2NrYXBpbGxhL0Rldi9Kb3ZlbmVzQS1jbGllbnQuQ0xJL3NyYy9hcHAvK3N0dWRlbnRzL3Nwb25zb3ItbGV0dGVycy1hZGQvc3BvbnNvci1sZXR0ZXJzLWFkZC5jb21wb25lbnQudHMiLCJuZzovLy9ob21lL2NrYXBpbGxhL0Rldi9Kb3ZlbmVzQS1jbGllbnQuQ0xJL3NyYy9hcHAvK3N0dWRlbnRzL3Nwb25zb3ItbGV0dGVycy1hZGQvc3BvbnNvci1sZXR0ZXJzLWFkZC5jb21wb25lbnQuaHRtbCIsIm5nOi8vL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC8rc3R1ZGVudHMvc3BvbnNvci1sZXR0ZXJzLWFkZC9zcG9uc29yLWxldHRlcnMtYWRkLmNvbXBvbmVudC50cy5TcG9uc29yTGV0dGVyc0FkZENvbXBvbmVudF9Ib3N0Lmh0bWwiXSwic291cmNlc0NvbnRlbnQiOlsiICIsIjxkaXYgY2xhc3M9XCJwYW5lbCBwYW5lbC1wcmltYXJ5XCI+XG4gIDxkaXYgY2xhc3M9XCJwYW5lbC1oZWFkaW5nXCIgc3R5bGU9XCJmb250LXNpemU6bGFyZ2VcIj5cbiAgICBBw7FhZGlyIE51ZXZhIENhcnRhIGRlIFBhZHJpbm9cbiAgPC9kaXY+XG4gIDxkaXYgY2xhc3M9XCJwYW5lbC1ib2R5XCI+XG4gICAgPGRpdiAqbmdJZj1cImVycm9yTWVzc2FnZVwiIGNsYXNzPVwiYWxlcnQgYWxlcnQtZGFuZ2VyXCI+e3tlcnJvck1lc3NhZ2V9fTwvZGl2PlxuICAgIDxkaXYgKm5nSWY9XCJzdWNjZXNzTWVzc2FnZVwiIGNsYXNzPVwiYWxlcnQgYWxlcnQtc3VjY2Vzc1wiPnt7c3VjY2Vzc01lc3NhZ2V9fTwvZGl2PlxuXG4gICAgPGZvcm0gW2Zvcm1Hcm91cF09XCJhZGROZXdGb3JtXCI+XG4gICAgICA8ZmllbGRzZXQgW2Rpc2FibGVkXT1cInN1Ym1pdHRlZFwiPlxuICAgICAgICA8ZGl2IGNsYXNzPVwiZm9ybS1ncm91cFwiPlxuICAgICAgICAgIDxkaXYgY2xhc3M9XCJjb250cm9sc1wiPlxuICAgICAgICAgICAgPGxhYmVsIGZvcj1cImxldHRlclllYXJTZWxlY3RvclwiPiBBw7FvL01lcyBkZSBlc3RhIFBlcmlvZG88L2xhYmVsPlxuICAgICAgICAgICAgPHNlbGVjdCBmb3JtQ29udHJvbE5hbWU9XCJsZXR0ZXJZZWFyU2VsZWN0b3JcIiBbKG5nTW9kZWwpXT1cInNwb25zb3JMZXR0ZXIubGV0dGVyWWVhclwiPlxuICAgICAgICAgICAgPG9wdGlvbiAqbmdGb3I9XCJsZXQgeWVhciBvZiBwZXJpb2RZZWFyc1wiIFt2YWx1ZV09XCJ5ZWFyLnZhbHVlXCI+e3t5ZWFyLmxhYmVsfX08L29wdGlvbj5cbiAgICAgICAgICAgIDwvc2VsZWN0PlxuXG4gICAgICAgICAgICA8c2VsZWN0IGZvcm1Db250cm9sTmFtZT1cImxldHRlck1vbnRoU2VsZWN0b3JcIiBbKG5nTW9kZWwpXT1cInNwb25zb3JMZXR0ZXIubGV0dGVyTW9udGhcIj5cbiAgICAgICAgICAgIDxvcHRpb24gKm5nRm9yPVwibGV0IG1vbnRoIG9mIHBlcmlvZE1vbnRoc1wiIFt2YWx1ZV09XCJtb250aC52YWx1ZVwiPnt7bW9udGgubGFiZWx9fTwvb3B0aW9uPlxuICAgICAgICAgICAgPC9zZWxlY3Q+XG4gICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgPHNwYW4gKm5nSWY9XCIhbGV0dGVyTW9udGgudmFsaWQgJmFtcDsmYW1wOyBsZXR0ZXJNb250aC50b3VjaGVkXCIgY2xhc3M9XCJyZWRcIj4gTW9udGggaXMgcmVxdWlyZWQ8L3NwYW4+XG4gICAgICAgIDwvZGl2PlxuXG5cbiAgICAgICAgPGRpdiBjbGFzcz1cImNvbnRyb2xzXCI+XG4gICAgICAgICAgPGxhYmVsIGZvcj1cImlucHV0TGV0dGVyVGV4dFwiPlRleHRvIGRlIENhcnRhPC9sYWJlbD5cbiAgICAgICAgICA8dGV4dGFyZWEgaWQ9XCJpbnB1dExldHRlclRleHRcIiAjc3VjY2VzcyBmb3JtQ29udHJvbE5hbWU9XCJpbnB1dExldHRlclRleHRcIiBbKG5nTW9kZWwpXT1cInNwb25zb3JMZXR0ZXIubGV0dGVyVGV4dFwiIHR5cGU9XCJ0ZXh0XCJcbiAgICAgICAgICAgIGNsYXNzPVwiZm9ybS1jb250cm9sIGlucHV0LXNtXCIgcGxhY2Vob2xkZXI9XCJDYXJ0YSBhIHR1IFNwb25zb3JcIj5cbiAgICAgICAgICA8L3RleHRhcmVhPlxuICAgICAgICAgIDxhcHAtZGlzcGxheS1lcnJvcnMgY29udHJvbD1cImlucHV0TGV0dGVyVGV4dFwiIGNsYXNzPVwicmVkXCIgW2Vycm9yc109XCJ7J3JlcXVpcmVkJzogJ0FuIGVudHJ5IGlzIHJlcXVpcmVkLCBldmVuIGlmIGl0IGlzIGp1c3QgTi9BJyxcbiAgICAgICAgICAgICAgICAnbWF4bGVuZ3RoJzogJ0VudHJhZGEgbm8gcHVlZGUgZXhjZWRlciBsb3MgMjAwMCBjYXJhY3RlcmVzLidcbiAgICAgICAgICAgICAgICB9XCI+PC9hcHAtZGlzcGxheS1lcnJvcnM+XG4gICAgICAgIDwvZGl2PlxuXG4gICAgICAgIDxkaXYgY2xhc3M9XCJjb2wtbWQtNiBjb2wtbWQtb2Zmc2V0LTFcIj5cbiAgICAgICAgICA8c3Bhbj5cbiAgICAgICAgICA8YnV0dG9uIGNsYXNzPVwiYnRuIGJ0bi1wcmltYXJ5XCJcbiAgICAgICAgICAgICAgICAgIHN0eWxlPVwid2lkdGg6ODBweDttYXJnaW4tcmlnaHQ6MTBweFwiXG4gICAgICAgICAgICAgICAgICAoY2xpY2spPVwib25TdWJtaXQoKVwiXG4gICAgICAgICAgICAgICAgICA+XG4gICAgICAgICAgICBHdWFyZGFyXG5cbiAgICAgICAgICA8L2J1dHRvbj5cbiAgICAgICAgIDwvc3Bhbj4mbmJzcDtcbiAgICAgICAgICA8c3Bhbj5cbiAgICAgICAgICA8YnV0dG9uIGNsYXNzPVwiYnRuIGJ0bi1kZWZhdWx0XCJcbiAgICAgICAgICAgICAgICAgIHN0eWxlPVwid2lkdGg6ODBweFwiXG4gICAgICAgICAgICAgICAgICAoY2xpY2spPVwib25DYW5jZWwoKVwiPlxuICAgICAgICAgICAgQ2FuY2VsYXJcbiAgICAgICAgICA8L2J1dHRvbj5cbiAgICAgICAgICA8ZGl2IGNsYXNzPVwicmVkXCIgW2hpZGRlbl09XCJhZGROZXdGb3JtLnZhbGlkXCI+QcOxbywgTWVzLCB5IHRleHRvIGRlIGNhcnRhIGRlYmVuIHNlciBjb21wbGV0YWRvcyBjb3JyZWN0YW1lbnRlIGFudGVzIGRlIGd1YXJkYXIuPC9kaXY+XG4gICAgICAgIDwvc3Bhbj5cbiAgICAgICAgPC9kaXY+XG4gICAgICA8L2ZpZWxkc2V0PlxuICAgIDwvZm9ybT5cbiAgPC9kaXY+XG48L2Rpdj5cbiIsIjxuZy1jb21wb25lbnQ+PC9uZy1jb21wb25lbnQ+Il0sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O29CQ0tJO01BQUE7TUFBQSxnQkFBcUQ7OztJQUFBO0lBQUE7Ozs7b0JBQ3JEO01BQUE7TUFBQSxnQkFBd0Q7OztJQUFBO0lBQUE7Ozs7b0JBUWhEO01BQUEsK0VBQUE7TUFBQTtNQUFBLDBDQUFBO21CQUFBLHNEQUE4RDtNQUFBO0lBQXJCO0lBQXpDLFdBQXlDLFNBQXpDO0lBQXlDO0lBQXpDLFdBQXlDLFNBQXpDOztJQUE4RDtJQUFBOzs7O29CQUk5RDtNQUFBLCtFQUFBO01BQUE7TUFBQSwwQ0FBQTttQkFBQSxzREFBaUU7TUFBQTtJQUF0QjtJQUEzQyxXQUEyQyxTQUEzQztJQUEyQztJQUEzQyxXQUEyQyxTQUEzQzs7SUFBaUU7SUFBQTs7OztvQkFHbkU7TUFBQTtNQUE0RTs7O29CQXJCdEY7TUFBQTtNQUFBLGdCQUFpQyw0Q0FDL0I7TUFBQTtNQUFBLHdFQUFtRDthQUFBLGdFQUU3Qzth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

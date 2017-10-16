@@ -5,7 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { SqlResource } from '../../app_shared/services/sql-resource';
 import { Student } from '../../app_shared/models/student';
-// import {DisplayErrorsComponent } from '../../app_shared/components/display-errors.component';
+// import {DisplayErrorsComponent } from '../../app_shared/components/app-display-errors.component';
 
 @Component({
   moduleId: module.id,
@@ -43,11 +43,11 @@ export class StudentsProfileComponent implements OnInit {
 
     this.profileForm = formBuilder.group({
       inputStudentFName: ['', Validators.required],
-      inputStudentLName: ['',Validators.required],
-      inputStudentPhone: ['',Validators.required],
+      inputStudentLName: ['', Validators.required],
+      inputStudentPhone: ['', Validators.required],
       // inputMonthsinSma: ['',Validators.required],
       // SpanishLevelSelector: ['',Validators.required],
-      EnglishLevelSelector: ['',Validators.required],
+      EnglishLevelSelector: ['', Validators.required],
     });
     this.student = new Student();
 
@@ -66,7 +66,7 @@ export class StudentsProfileComponent implements OnInit {
     this.isLoading = true;
     this.sqlResource.getStudent(id)
       .subscribe(
-        data => {this.student = data;},
+        data => {this.student = data; },
         err => console.error('Subscribe error: ' + err),
         () => {console.log('done loading');
               this.isLoading = false;
@@ -91,8 +91,8 @@ export class StudentsProfileComponent implements OnInit {
                 this.submitted = true;
                 this.isLoading = false;
 
-                window.scrollTo(0,0);
-                window.setTimeout( () => {this.successMessage = '';}, 3000);
+                window.scrollTo(0, 0);
+                window.setTimeout( () => {this.successMessage = ''; }, 3000);
              },
             (error) =>  {
                 console.log(this.errorMessage = <any>error);

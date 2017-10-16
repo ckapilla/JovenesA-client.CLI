@@ -1,19 +1,19 @@
 import { Component } from '@angular/core';
 //import { AppRouting } from '../../app.routing';
 
-import { Auth } from '../services/auth.service';
+import { AuthService } from '../services/auth.service';
 import { SessionService } from '../services/session.service';
 /**
  * This class represents the headerbar component.
  */
 @Component({
   moduleId: module.id,
-  selector: 'ja-headerbar',
+  selector: 'app-headerbar',
   templateUrl: 'headerbar.component.html',
   styleUrls: ['headerbar.component.css'],
 })
 export class HeaderbarComponent {
-     constructor( public auth: Auth,
+     constructor( public auth: AuthService,
                   public session: SessionService
                   ) {
         //console.log('***session: ' + session.getUserId());

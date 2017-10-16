@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import './operators';
 import { Router } from '@angular/router';
-import { Auth } from './app_shared/services/auth.service';
+import { AuthService } from './app_shared/services/auth.service';
 import { SessionService } from './app_shared/services/session.service';
 import { SqlResource } from './app_shared/services/sql-resource';
 /**
@@ -16,7 +16,7 @@ import { SqlResource } from './app_shared/services/sql-resource';
 export class AppComponent {
 
    constructor(
-                private auth: Auth,
+                private auth: AuthService,
                 session: SessionService,
                 router: Router,
                 sqlResource: SqlResource
@@ -24,6 +24,8 @@ export class AppComponent {
     // if (session.getUserId() === 0) {
     //   auth.restoreUserProfileFromLocalStorage();
     // }
+    console.log('appComponent constructor with AuthService');
+    console.log(auth);
     console.log('@@@@session: ' + session.getUserId());
     // router.events
     //   //.filter(e => e instanceof NavigationEnd || e instanceof NavigationError)

@@ -5,10 +5,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { APP_BASE_HREF, Location } from '@angular/common';
 // import { RouterModule } from '@angular/router';
-import { HttpModule, Http, RequestOptions } from '@angular/http';
-import { AuthHttp, AuthConfig } from 'angular2-jwt/angular2-jwt';
-import { Auth } from './app_shared/services/auth.service';
-
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+// import { AuthHttp, AuthConfig } from 'angular2-jwt/angular2-jwt';
+import { AuthService } from './app_shared/services/auth.service';
 import { AppComponent } from './app.component';
 
 import { appRouting, appRoutingProviders } from './app.routing';
@@ -32,21 +31,21 @@ import { WebApiPrefixService } from './app_shared/services/web-api-prefix.servic
 // export declare const WEB_API_AZURE: InjectionToken<string>;
 
 
-export function AuthHttpFactory (http: Http) {
-  // console.log(' *************************************************** New AuthHttp');
-      return new AuthHttp(new AuthConfig(), http);
-}
+// export function AuthHttpFactory (http: Http) {
+//   // console.log(' *************************************************** New AuthHttp');
+//       return new AuthHttp(new AuthConfig(), http);
+// }
 
-export function sqlResourceFactory (http: AuthHttp, _http: Http, webApiPrefixService: WebApiPrefixService) {
+export function sqlResourceFactory (http: HttpClient, webApiPrefixService: WebApiPrefixService) {
     console.log(' *************************************************** New SqlResource');
-       return new SqlResource(http, _http, webApiPrefixService);
+       return new SqlResource(http, webApiPrefixService);
  }
 
 @NgModule({
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    HttpModule,
+    HttpClientModule,
     appRouting,
     appRoutingProviders,
     // RouterModule,
@@ -65,7 +64,7 @@ export function sqlResourceFactory (http: AuthHttp, _http: Http, webApiPrefixSer
 
   exports: [
     ReactiveFormsModule,
-    HttpModule
+    HttpClientModule
   ],
   providers: [
     {
@@ -89,13 +88,13 @@ export function sqlResourceFactory (http: AuthHttp, _http: Http, webApiPrefixSer
     //   },
     //   deps: [Http]
     // },
-    {
-      provide: AuthHttp,
-      useFactory: AuthHttpFactory,
-      deps: [Http]
-    },
+    // {
+    //   provide: AuthHttp,
+    //   useFactory: AuthHttpFactory,
+    //   deps: [Http]
+    // },
 
-    Auth,
+    AuthService,
     // {
     //   provide: SessionService,
     //   useFactory() {

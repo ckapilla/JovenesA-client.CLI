@@ -18,11 +18,11 @@
                   [(ngModel)]="admin.firstNames"
                   class="form-control input-sm" type="text" placeholder="First Name"
                   />
-            <display-errors control="inputAdminFName" class="red"
+            <app-display-errors control="inputAdminFName" class="red"
               [errors]="{
                 'required': 'First name is required',
                 'maxlength': 'Admin First name cannot exceed 30 characters in length.'
-              }"></display-errors>
+              }"></app-display-errors>
           </div>
         </div>
 
@@ -34,11 +34,11 @@
                    [(ngModel)]="admin.lastNames"
                    type="text" class="form-control input-sm" placeholder="Last Name"
                    />
-            <display-errors control="inputAdminLName" class="red"
+            <app-display-errors control="inputAdminLName" class="red"
               [errors]="{
                 'required': 'Last name is required',
                 'maxlength': 'Admin Last name cannot exceed 30 characters in length.'
-              }"></display-errors>
+              }"></app-display-errors>
           </div>
         </div>
 
@@ -50,12 +50,12 @@
                   [(ngModel)]="admin.sma_Phone"
                   type="text" class="form-control input-sm" placeholder="Phone while in SMA: ###-###-####"
                   />
-            <display-errors control="inputAdminPhone" class="red"
+            <app-display-errors control="inputAdminPhone" class="red"
               [errors]="{
                 'required': 'SMA Phone is required.',
                 'minlength': 'SMA Phone must be at least 7 characters in length.',
                 'maxlength': 'SMA Phone cannot exceed 13 characters in length.'
-              }"></display-errors>
+              }"></app-display-errors>
           </div>
         </div>
 
@@ -67,10 +67,10 @@
                   [(ngModel)]="admin.monthsinSma"
                   type="text" class="form-control input-sm" placeholder="Months in SMA"
                   />
-            <display-errors control="inputMonthsinSma" class="red"
+            <app-display-errors control="inputMonthsinSma" class="red"
               [errors]="{
                 'required': 'Months in SMA is required.'
-              }"></display-errors>
+              }"></app-display-errors>
           </div>
         </div>
 
@@ -84,10 +84,10 @@
               [(ngModel)]="admin.spanishSkillLevelId">
             <option *ngFor="let status of statuses" [value]="status.statusId">{{status.label}}</option>
           </select>
-            <display-errors control="SpanishLevelSelector" class="red"
+            <app-display-errors control="SpanishLevelSelector" class="red"
               [errors]="{
                 'required': 'Spanish Skill Level is required'
-              }"></display-errors>
+              }"></app-display-errors>
           </div>
         </div>
 
@@ -100,10 +100,10 @@
               [(ngModel)]="admin.englishSkillLevelId" >
             <option *ngFor="let status of statuses" [value]="status.statusId">{{status.label}}</option>
           </select>
-            <display-errors control="EnglishLevelSelector"
+            <app-display-errors control="EnglishLevelSelector"
               [errors]="{
                 'required': 'English Skill Level is required'
-              }"></display-errors>
+              }"></app-display-errors>
           </div>
         </div>
 

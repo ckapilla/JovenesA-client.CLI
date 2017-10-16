@@ -28,9 +28,9 @@
           <textarea id="inputLetterText" #success formControlName="inputLetterText" [(ngModel)]="sponsorLetter.letterText" type="text"
             class="form-control input-sm" placeholder="Carta a tu Sponsor">
           </textarea>
-          <display-errors control="inputLetterText" class="red" [errors]="{'required': 'An entry is required, even if it is just N/A',
+          <app-display-errors control="inputLetterText" class="red" [errors]="{'required': 'An entry is required, even if it is just N/A',
                 'maxlength': 'Entrada no puede exceder los 2000 caracteres.'
-                }"></display-errors>
+                }"></app-display-errors>
         </div>
 
         <div class="col-md-6 col-md-offset-1">

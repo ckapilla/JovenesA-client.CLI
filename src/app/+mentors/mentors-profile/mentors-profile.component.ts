@@ -6,11 +6,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SqlResource } from '../../app_shared/services/sql-resource';
 
 import { Mentor } from '../../app_shared/models/mentor';
-//import {DisplayErrorsComponent } from '../../app_shared/components/display-errors.component';
+//import {DisplayErrorsComponent } from '../../app_shared/components/app-display-errors.component';
 
 @Component({
   moduleId: module.id,
-  selector: 'mentor-profile',
   templateUrl: './mentors-profile.component.html'
 })
 export class MentorsProfileComponent implements OnInit {

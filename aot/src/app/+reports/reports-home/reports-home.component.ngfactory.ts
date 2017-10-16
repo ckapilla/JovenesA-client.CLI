@@ -13,13 +13,13 @@ const styles_ReportsHomeComponent:any[] = [i0.styles];
 export const RenderType_ReportsHomeComponent:i1.RendererType2 = i1.ɵcrt({encapsulation:0,
     styles:styles_ReportsHomeComponent,data:{}});
 export function View_ReportsHomeComponent_0(_l:any):i1.ɵViewDefinition {
-  return i1.ɵvid(0,[(_l()(),i1.ɵted((null as any),['\nWelcome to the Reports page for Administrators. We currently have just a single report, but will\nbe adding more over the coming days and weeks. Please let Chris know if there is a report\nyou would find useful and like to see implemented.\n']))],
+  return i1.ɵvid(0,[(_l()(),i1.ɵted(-1,(null as any),['\nWelcome to the Reports page for Administrators. We currently have just a single report, but will\nbe adding more over the coming days and weeks. Please let Chris know if there is a report\nyou would find useful and like to see implemented.\n']))],
       (null as any),(null as any));
 }
 export function View_ReportsHomeComponent_Host_0(_l:any):i1.ɵViewDefinition {
-  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,(null as any),(null as any),1,'ng-component',
+  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,0,(null as any),(null as any),1,'ng-component',
       ([] as any[]),(null as any),(null as any),(null as any),View_ReportsHomeComponent_0,
-      RenderType_ReportsHomeComponent)),i1.ɵdid(49152,(null as any),0,i2.ReportsHomeComponent,
+      RenderType_ReportsHomeComponent)),i1.ɵdid(1,49152,(null as any),0,i2.ReportsHomeComponent,
       ([] as any[]),(null as any),(null as any))],(null as any),(null as any));
 }
 export const ReportsHomeComponentNgFactory:i1.ComponentFactory<i2.ReportsHomeComponent> = i1.ɵccf('ng-component',

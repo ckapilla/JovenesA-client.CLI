@@ -21,9 +21,9 @@
                 <select formControlName="followUpStatusSelector" class="form-control input-sm" [(ngModel)]="mentorReport.followUpStatusId">
               <option *ngFor="let status of followUpStatuses" [value]="status.value">{{status.label}}</option>
             </select>
-                <display-errors control="followUpStatusSelector" class="red" [errors]="{
+                <app-display-errors control="followUpStatusSelector" class="red" [errors]="{
                   'required': 'Summary Status is required'
-                }"></display-errors>
+                }"></app-display-errors>
               </div>
 
                <div class="controls">
@@ -31,9 +31,9 @@
                 <textarea id="inputFollowUpNeeded" formControlName="inputFollowUpNeeded" [(ngModel)]="mentorReport.followUpNeeded" type="text" class="form-control input-sm"
                   placeholder="Follow up Needed (or 'N/A')">
           </textarea>
-                <display-errors control="inputFollowUp" class="red" [errors]="{'required': 'An entry is required, even if it is just N/A',
+                <app-display-errors control="inputFollowUp" class="red" [errors]="{'required': 'An entry is required, even if it is just N/A',
                 'maxlength': 'Entry cannot exceed 2000 characters in length.'
-                }"></display-errors>
+                }"></app-display-errors>
               </div>
 
 
@@ -42,9 +42,9 @@
                 <textarea id="inputFollowUpHistory" #summary formControlName="inputFollowUpHistory" [(ngModel)]="mentorReport.followUpHistory" type="text"
                   class="form-control input-sm" placeholder="Please log all updates for this issue here.">
           </textarea>
-                <display-errors control="followUpHistory" class="red" [errors]="{'required': 'An entry is required, even if it is just N/A',
+                <app-display-errors control="followUpHistory" class="red" [errors]="{'required': 'An entry is required, even if it is just N/A',
                 'maxlength': 'Entry cannot exceed 2000 characters in length.'
-                }"></display-errors>
+                }"></app-display-errors>
               </div>
 
 

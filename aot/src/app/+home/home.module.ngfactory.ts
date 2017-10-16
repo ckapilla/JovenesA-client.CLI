@@ -22,7 +22,7 @@ export const HomeModuleNgFactory:i0.NgModuleFactory<i1.HomeModule> = i0.ɵcmf(i1
               i4.FormBuilder,i4.FormBuilder,([] as any[])),i0.ɵmpd(4608,i4.ɵi,i4.ɵi,
               ([] as any[])),i0.ɵmpd(512,i3.CommonModule,i3.CommonModule,([] as any[])),
           i0.ɵmpd(512,i5.RouterModule,i5.RouterModule,[[2,i5.ɵa],[2,i5.Router]]),i0.ɵmpd(512,
-              i4.ɵbc,i4.ɵbc,([] as any[])),i0.ɵmpd(512,i4.ReactiveFormsModule,i4.ReactiveFormsModule,
+              i4.ɵba,i4.ɵba,([] as any[])),i0.ɵmpd(512,i4.ReactiveFormsModule,i4.ReactiveFormsModule,
               ([] as any[])),i0.ɵmpd(512,i4.FormsModule,i4.FormsModule,([] as any[])),
           i0.ɵmpd(512,i6.AppSharedModule,i6.AppSharedModule,([] as any[])),i0.ɵmpd(512,
               i1.HomeModule,i1.HomeModule,([] as any[])),i0.ɵmpd(1024,i5.ROUTES,() => {

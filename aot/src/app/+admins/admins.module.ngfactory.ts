@@ -50,7 +50,7 @@ export const AdminsModuleNgFactory:i0.NgModuleFactory<i1.AdminsModule> = i0.ɵcm
           [i0.LOCALE_ID]),i0.ɵmpd(4608,i15.FormBuilder,i15.FormBuilder,([] as any[])),
           i0.ɵmpd(4608,i15.ɵi,i15.ɵi,([] as any[])),i0.ɵmpd(512,i14.CommonModule,i14.CommonModule,
               ([] as any[])),i0.ɵmpd(512,i16.RouterModule,i16.RouterModule,[[2,i16.ɵa],
-              [2,i16.Router]]),i0.ɵmpd(512,i15.ɵbc,i15.ɵbc,([] as any[])),i0.ɵmpd(512,
+              [2,i16.Router]]),i0.ɵmpd(512,i15.ɵba,i15.ɵba,([] as any[])),i0.ɵmpd(512,
               i15.ReactiveFormsModule,i15.ReactiveFormsModule,([] as any[])),i0.ɵmpd(512,
               i15.FormsModule,i15.FormsModule,([] as any[])),i0.ɵmpd(512,i17.AppSharedModule,
               i17.AppSharedModule,([] as any[])),i0.ɵmpd(512,i1.AdminsModule,i1.AdminsModule,

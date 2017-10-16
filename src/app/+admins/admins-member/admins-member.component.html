@@ -35,11 +35,11 @@
                   [(ngModel)]="member.firstNames"
                   class="form-control input-sm" type="text" placeholder="First Name"
                   />
-            <display-errors control="inputMemberFName" class="red"
+            <app-display-errors control="inputMemberFName" class="red"
               [errors]="{
                 'required': 'First name is required',
                 'maxlength': 'Member First name cannot exceed 30 characters in length.'
-              }"></display-errors>
+              }"></app-display-errors>
           </div>
         </div>
 
@@ -51,11 +51,11 @@
                    [(ngModel)]="member.lastNames"
                    type="text" class="form-control input-sm" placeholder="Last Name"
                    />
-            <display-errors control="inputMemberLName" class="red"
+            <app-display-errors control="inputMemberLName" class="red"
               [errors]="{
                 'required': 'Last name is required',
                 'maxlength': 'Member Last name cannot exceed 30 characters in length.'
-              }"></display-errors>
+              }"></app-display-errors>
           </div>
         </div>
 

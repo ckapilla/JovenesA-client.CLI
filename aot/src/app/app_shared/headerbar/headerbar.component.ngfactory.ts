@@ -17,7 +17,7 @@ const styles_HeaderbarComponent:any[] = [i0.styles];
 export const RenderType_HeaderbarComponent:i1.RendererType2 = i1.ɵcrt({encapsulation:0,
     styles:styles_HeaderbarComponent,data:{}});
 function View_HeaderbarComponent_1(_l:any):i1.ɵViewDefinition {
-  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,(null as any),(null as any),1,'button',[['class',
+  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,0,(null as any),(null as any),1,'button',[['class',
       'btn btn-primary btn-sm']],(null as any),[[(null as any),'click']],(_v,en,$event) => {
     var ad:boolean = true;
     var _co:any = _v.component;
@@ -26,22 +26,22 @@ function View_HeaderbarComponent_1(_l:any):i1.ɵViewDefinition {
       ad = (pd_0 && ad);
     }
     return ad;
-  },(null as any),(null as any))),(_l()(),i1.ɵted((null as any),['Log In / Iniciar sesión']))],
+  },(null as any),(null as any))),(_l()(),i1.ɵted(-1,(null as any),['Log In / Iniciar sesión']))],
       (null as any),(null as any));
 }
 function View_HeaderbarComponent_2(_l:any):i1.ɵViewDefinition {
-  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,(null as any),(null as any),2,'span',([] as any[]),
+  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,0,(null as any),(null as any),2,'span',([] as any[]),
       (null as any),(null as any),(null as any),(null as any),(null as any))),(_l()(),
-      i1.ɵted((null as any),['Welcome ',' '])),(_l()(),i1.ɵeld(0,(null as any),(null as any),
-      0,'br',([] as any[]),(null as any),(null as any),(null as any),(null as any),
-      (null as any)))],(null as any),(_ck,_v) => {
+      i1.ɵted(1,(null as any),['Welcome ',' '])),(_l()(),i1.ɵeld(2,0,(null as any),
+      (null as any),0,'br',([] as any[]),(null as any),(null as any),(null as any),
+      (null as any),(null as any)))],(null as any),(_ck,_v) => {
     var _co:any = _v.component;
     const currVal_0:any = _co.auth.nickname;
     _ck(_v,1,0,currVal_0);
   });
 }
 function View_HeaderbarComponent_3(_l:any):i1.ɵViewDefinition {
-  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,(null as any),(null as any),1,'span',[['class',
+  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,0,(null as any),(null as any),1,'span',[['class',
       'link']],(null as any),[[(null as any),'click']],(_v,en,$event) => {
     var ad:boolean = true;
     var _co:any = _v.component;
@@ -50,57 +50,58 @@ function View_HeaderbarComponent_3(_l:any):i1.ɵViewDefinition {
       ad = (pd_0 && ad);
     }
     return ad;
-  },(null as any),(null as any))),(_l()(),i1.ɵted((null as any),['Log Out']))],(null as any),
-      (null as any));
+  },(null as any),(null as any))),(_l()(),i1.ɵted(-1,(null as any),['Log Out']))],
+      (null as any),(null as any));
 }
 export function View_HeaderbarComponent_0(_l:any):i1.ɵViewDefinition {
-  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,(null as any),(null as any),89,'div',[['class',
+  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,0,(null as any),(null as any),89,'div',[['class',
       'fixedbar']],(null as any),(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i1.ɵted((null as any),['\n  '])),(_l()(),i1.ɵeld(0,(null as any),(null as any),
-          86,'div',[['class','container']],(null as any),(null as any),(null as any),
-          (null as any),(null as any))),(_l()(),i1.ɵted((null as any),['\n    '])),
-      (_l()(),i1.ɵeld(0,(null as any),(null as any),83,'div',[['class','row']],(null as any),
-          (null as any),(null as any),(null as any),(null as any))),(_l()(),i1.ɵted((null as any),
-          ['\n      '])),(_l()(),i1.ɵeld(0,(null as any),(null as any),80,'div',[['class',
-          'span12']],(null as any),(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i1.ɵted((null as any),['\n        '])),(_l()(),i1.ɵeld(0,(null as any),
-          (null as any),77,'div',[['class','logo']],(null as any),(null as any),(null as any),
-          (null as any),(null as any))),(_l()(),i1.ɵted((null as any),['\n          '])),
-      (_l()(),i1.ɵeld(0,(null as any),(null as any),7,'div',[['class','pull-left']],
-          (null as any),(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i1.ɵted((null as any),['\n            '])),(_l()(),i1.ɵeld(0,(null as any),
-          (null as any),4,'h3',([] as any[]),(null as any),(null as any),(null as any),
-          (null as any),(null as any))),(_l()(),i1.ɵted((null as any),['\n              '])),
-      (_l()(),i1.ɵeld(0,(null as any),(null as any),1,'a',[['href','#']],(null as any),
-          (null as any),(null as any),(null as any),(null as any))),(_l()(),i1.ɵeld(0,
-          (null as any),(null as any),0,'img',[['src','../../../assets/images/JAPrivadaLogo.png']],
-          (null as any),(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i1.ɵted((null as any),['\n            '])),(_l()(),i1.ɵted((null as any),
-          ['\n          '])),(_l()(),i1.ɵted((null as any),['\n          '])),(_l()(),
-          i1.ɵeld(0,(null as any),(null as any),13,'div',[['class','pull-right']],
+      (_l()(),i1.ɵted(-1,(null as any),['\n  '])),(_l()(),i1.ɵeld(2,0,(null as any),
+          (null as any),86,'div',[['class','container']],(null as any),(null as any),
+          (null as any),(null as any),(null as any))),(_l()(),i1.ɵted(-1,(null as any),
+          ['\n    '])),(_l()(),i1.ɵeld(4,0,(null as any),(null as any),83,'div',[['class',
+          'row']],(null as any),(null as any),(null as any),(null as any),(null as any))),
+      (_l()(),i1.ɵted(-1,(null as any),['\n      '])),(_l()(),i1.ɵeld(6,0,(null as any),
+          (null as any),80,'div',[['class','span12']],(null as any),(null as any),
+          (null as any),(null as any),(null as any))),(_l()(),i1.ɵted(-1,(null as any),
+          ['\n        '])),(_l()(),i1.ɵeld(8,0,(null as any),(null as any),77,'div',
+          [['class','logo']],(null as any),(null as any),(null as any),(null as any),
+          (null as any))),(_l()(),i1.ɵted(-1,(null as any),['\n          '])),(_l()(),
+          i1.ɵeld(10,0,(null as any),(null as any),7,'div',[['class','pull-left']],
               (null as any),(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i1.ɵted((null as any),['\n            '])),(_l()(),i1.ɵeld(0,(null as any),
+      (_l()(),i1.ɵted(-1,(null as any),['\n            '])),(_l()(),i1.ɵeld(12,0,(null as any),
+          (null as any),4,'h3',([] as any[]),(null as any),(null as any),(null as any),
+          (null as any),(null as any))),(_l()(),i1.ɵted(-1,(null as any),['\n              '])),
+      (_l()(),i1.ɵeld(14,0,(null as any),(null as any),1,'a',[['href','#']],(null as any),
+          (null as any),(null as any),(null as any),(null as any))),(_l()(),i1.ɵeld(15,
+          0,(null as any),(null as any),0,'img',[['src','../../../assets/images/JAPrivadaLogo.png']],
+          (null as any),(null as any),(null as any),(null as any),(null as any))),
+      (_l()(),i1.ɵted(-1,(null as any),['\n            '])),(_l()(),i1.ɵted(-1,(null as any),
+          ['\n          '])),(_l()(),i1.ɵted(-1,(null as any),['\n          '])),(_l()(),
+          i1.ɵeld(19,0,(null as any),(null as any),13,'div',[['class','pull-right']],
+              (null as any),(null as any),(null as any),(null as any),(null as any))),
+      (_l()(),i1.ɵted(-1,(null as any),['\n            '])),(_l()(),i1.ɵeld(21,0,(null as any),
           (null as any),10,'section',[['id','login']],(null as any),(null as any),
-          (null as any),(null as any),(null as any))),(_l()(),i1.ɵted((null as any),
+          (null as any),(null as any),(null as any))),(_l()(),i1.ɵted(-1,(null as any),
           ['\n              '])),(_l()(),i1.ɵand(16777216,(null as any),(null as any),
-          1,(null as any),View_HeaderbarComponent_1)),i1.ɵdid(16384,(null as any),
+          1,(null as any),View_HeaderbarComponent_1)),i1.ɵdid(24,16384,(null as any),
           0,i2.NgIf,[i1.ViewContainerRef,i1.TemplateRef],{ngIf:[0,'ngIf']},(null as any)),
-      (_l()(),i1.ɵted((null as any),['\n              '])),(_l()(),i1.ɵand(16777216,
+      (_l()(),i1.ɵted(-1,(null as any),['\n              '])),(_l()(),i1.ɵand(16777216,
           (null as any),(null as any),1,(null as any),View_HeaderbarComponent_2)),
-      i1.ɵdid(16384,(null as any),0,i2.NgIf,[i1.ViewContainerRef,i1.TemplateRef],{ngIf:[0,
-          'ngIf']},(null as any)),(_l()(),i1.ɵted((null as any),['\n              '])),
+      i1.ɵdid(27,16384,(null as any),0,i2.NgIf,[i1.ViewContainerRef,i1.TemplateRef],
+          {ngIf:[0,'ngIf']},(null as any)),(_l()(),i1.ɵted(-1,(null as any),['\n              '])),
       (_l()(),i1.ɵand(16777216,(null as any),(null as any),1,(null as any),View_HeaderbarComponent_3)),
-      i1.ɵdid(16384,(null as any),0,i2.NgIf,[i1.ViewContainerRef,i1.TemplateRef],{ngIf:[0,
-          'ngIf']},(null as any)),(_l()(),i1.ɵted((null as any),['\n            '])),
-      (_l()(),i1.ɵted((null as any),['\n          '])),(_l()(),i1.ɵted((null as any),
-          ['\n          '])),(_l()(),i1.ɵeld(0,(null as any),(null as any),50,'div',
+      i1.ɵdid(30,16384,(null as any),0,i2.NgIf,[i1.ViewContainerRef,i1.TemplateRef],
+          {ngIf:[0,'ngIf']},(null as any)),(_l()(),i1.ɵted(-1,(null as any),['\n            '])),
+      (_l()(),i1.ɵted(-1,(null as any),['\n          '])),(_l()(),i1.ɵted(-1,(null as any),
+          ['\n          '])),(_l()(),i1.ɵeld(34,0,(null as any),(null as any),50,'div',
           [['class','navi']],(null as any),(null as any),(null as any),(null as any),
-          (null as any))),(_l()(),i1.ɵted((null as any),['\n            '])),(_l()(),
-          i1.ɵeld(0,(null as any),(null as any),47,'nav',([] as any[]),(null as any),
-              (null as any),(null as any),(null as any),(null as any))),(_l()(),i1.ɵted((null as any),
-          ['\n              '])),(_l()(),i1.ɵeld(0,(null as any),(null as any),8,'a',
-          ([] as any[]),[[1,'target',0],[8,'href',4]],[[(null as any),'click']],(_v,
-              en,$event) => {
+          (null as any))),(_l()(),i1.ɵted(-1,(null as any),['\n            '])),(_l()(),
+          i1.ɵeld(36,0,(null as any),(null as any),47,'nav',([] as any[]),(null as any),
+              (null as any),(null as any),(null as any),(null as any))),(_l()(),i1.ɵted(-1,
+          (null as any),['\n              '])),(_l()(),i1.ɵeld(38,0,(null as any),
+          (null as any),8,'a',([] as any[]),[[1,'target',0],[8,'href',4]],[[(null as any),
+              'click']],(_v,en,$event) => {
             var ad:boolean = true;
             if (('click' === en)) {
               const pd_0:any = ((<any>i1.ɵnov(_v,39).onClick($event.button,$event.ctrlKey,
@@ -108,16 +109,16 @@ export function View_HeaderbarComponent_0(_l:any):i1.ɵViewDefinition {
               ad = (pd_0 && ad);
             }
             return ad;
-          },(null as any),(null as any))),i1.ɵdid(671744,[[2,4]],0,i3.RouterLinkWithHref,
+          },(null as any),(null as any))),i1.ɵdid(39,671744,[[2,4]],0,i3.RouterLinkWithHref,
           [i3.Router,i3.ActivatedRoute,i2.LocationStrategy],{routerLink:[0,'routerLink']},
-          (null as any)),i1.ɵpad(1),i1.ɵdid(1720320,(null as any),2,i3.RouterLinkActive,
-          [i3.Router,i1.ElementRef,i1.Renderer,i1.ChangeDetectorRef],{routerLinkActiveOptions:[0,
+          (null as any)),i1.ɵpad(40,1),i1.ɵdid(41,1720320,(null as any),2,i3.RouterLinkActive,
+          [i3.Router,i1.ElementRef,i1.Renderer2,i1.ChangeDetectorRef],{routerLinkActiveOptions:[0,
               'routerLinkActiveOptions'],routerLinkActive:[1,'routerLinkActive']},
           (null as any)),i1.ɵqud(603979776,1,{links:1}),i1.ɵqud(603979776,2,{linksWithHrefs:1}),
-      i1.ɵpod(['exact']),i1.ɵpad(1),(_l()(),i1.ɵted((null as any),['Home'])),(_l()(),
-          i1.ɵted((null as any),['\n              '])),(_l()(),i1.ɵeld(0,(null as any),
-          (null as any),7,'a',([] as any[]),[[8,'hidden',0],[1,'target',0],[8,'href',
-              4]],[[(null as any),'click']],(_v,en,$event) => {
+      i1.ɵpod(44,{exact:0}),i1.ɵpad(45,1),(_l()(),i1.ɵted(-1,(null as any),['Home'])),
+      (_l()(),i1.ɵted(-1,(null as any),['\n              '])),(_l()(),i1.ɵeld(48,0,
+          (null as any),(null as any),7,'a',([] as any[]),[[8,'hidden',0],[1,'target',
+              0],[8,'href',4]],[[(null as any),'click']],(_v,en,$event) => {
             var ad:boolean = true;
             if (('click' === en)) {
               const pd_0:any = ((<any>i1.ɵnov(_v,49).onClick($event.button,$event.ctrlKey,
@@ -125,15 +126,15 @@ export function View_HeaderbarComponent_0(_l:any):i1.ɵViewDefinition {
               ad = (pd_0 && ad);
             }
             return ad;
-          },(null as any),(null as any))),i1.ɵdid(671744,[[4,4]],0,i3.RouterLinkWithHref,
+          },(null as any),(null as any))),i1.ɵdid(49,671744,[[4,4]],0,i3.RouterLinkWithHref,
           [i3.Router,i3.ActivatedRoute,i2.LocationStrategy],{routerLink:[0,'routerLink']},
-          (null as any)),i1.ɵpad(1),i1.ɵdid(1720320,(null as any),2,i3.RouterLinkActive,
-          [i3.Router,i1.ElementRef,i1.Renderer,i1.ChangeDetectorRef],{routerLinkActive:[0,
+          (null as any)),i1.ɵpad(50,1),i1.ɵdid(51,1720320,(null as any),2,i3.RouterLinkActive,
+          [i3.Router,i1.ElementRef,i1.Renderer2,i1.ChangeDetectorRef],{routerLinkActive:[0,
               'routerLinkActive']},(null as any)),i1.ɵqud(603979776,3,{links:1}),i1.ɵqud(603979776,
-          4,{linksWithHrefs:1}),i1.ɵpad(1),(_l()(),i1.ɵted((null as any),['Admins'])),
-      (_l()(),i1.ɵted((null as any),['\n              '])),(_l()(),i1.ɵeld(0,(null as any),
-          (null as any),7,'a',([] as any[]),[[8,'hidden',0],[1,'target',0],[8,'href',
-              4]],[[(null as any),'click']],(_v,en,$event) => {
+          4,{linksWithHrefs:1}),i1.ɵpad(54,1),(_l()(),i1.ɵted(-1,(null as any),['Admins'])),
+      (_l()(),i1.ɵted(-1,(null as any),['\n              '])),(_l()(),i1.ɵeld(57,0,
+          (null as any),(null as any),7,'a',([] as any[]),[[8,'hidden',0],[1,'target',
+              0],[8,'href',4]],[[(null as any),'click']],(_v,en,$event) => {
             var ad:boolean = true;
             if (('click' === en)) {
               const pd_0:any = ((<any>i1.ɵnov(_v,58).onClick($event.button,$event.ctrlKey,
@@ -141,15 +142,15 @@ export function View_HeaderbarComponent_0(_l:any):i1.ɵViewDefinition {
               ad = (pd_0 && ad);
             }
             return ad;
-          },(null as any),(null as any))),i1.ɵdid(671744,[[6,4]],0,i3.RouterLinkWithHref,
+          },(null as any),(null as any))),i1.ɵdid(58,671744,[[6,4]],0,i3.RouterLinkWithHref,
           [i3.Router,i3.ActivatedRoute,i2.LocationStrategy],{routerLink:[0,'routerLink']},
-          (null as any)),i1.ɵpad(1),i1.ɵdid(1720320,(null as any),2,i3.RouterLinkActive,
-          [i3.Router,i1.ElementRef,i1.Renderer,i1.ChangeDetectorRef],{routerLinkActive:[0,
+          (null as any)),i1.ɵpad(59,1),i1.ɵdid(60,1720320,(null as any),2,i3.RouterLinkActive,
+          [i3.Router,i1.ElementRef,i1.Renderer2,i1.ChangeDetectorRef],{routerLinkActive:[0,
               'routerLinkActive']},(null as any)),i1.ɵqud(603979776,5,{links:1}),i1.ɵqud(603979776,
-          6,{linksWithHrefs:1}),i1.ɵpad(1),(_l()(),i1.ɵted((null as any),['Mentors'])),
-      (_l()(),i1.ɵted((null as any),['\n              '])),(_l()(),i1.ɵeld(0,(null as any),
-          (null as any),7,'a',([] as any[]),[[8,'hidden',0],[1,'target',0],[8,'href',
-              4]],[[(null as any),'click']],(_v,en,$event) => {
+          6,{linksWithHrefs:1}),i1.ɵpad(63,1),(_l()(),i1.ɵted(-1,(null as any),['Mentors'])),
+      (_l()(),i1.ɵted(-1,(null as any),['\n              '])),(_l()(),i1.ɵeld(66,0,
+          (null as any),(null as any),7,'a',([] as any[]),[[8,'hidden',0],[1,'target',
+              0],[8,'href',4]],[[(null as any),'click']],(_v,en,$event) => {
             var ad:boolean = true;
             if (('click' === en)) {
               const pd_0:any = ((<any>i1.ɵnov(_v,67).onClick($event.button,$event.ctrlKey,
@@ -157,15 +158,15 @@ export function View_HeaderbarComponent_0(_l:any):i1.ɵViewDefinition {
               ad = (pd_0 && ad);
             }
             return ad;
-          },(null as any),(null as any))),i1.ɵdid(671744,[[8,4]],0,i3.RouterLinkWithHref,
+          },(null as any),(null as any))),i1.ɵdid(67,671744,[[8,4]],0,i3.RouterLinkWithHref,
           [i3.Router,i3.ActivatedRoute,i2.LocationStrategy],{routerLink:[0,'routerLink']},
-          (null as any)),i1.ɵpad(1),i1.ɵdid(1720320,(null as any),2,i3.RouterLinkActive,
-          [i3.Router,i1.ElementRef,i1.Renderer,i1.ChangeDetectorRef],{routerLinkActive:[0,
+          (null as any)),i1.ɵpad(68,1),i1.ɵdid(69,1720320,(null as any),2,i3.RouterLinkActive,
+          [i3.Router,i1.ElementRef,i1.Renderer2,i1.ChangeDetectorRef],{routerLinkActive:[0,
               'routerLinkActive']},(null as any)),i1.ɵqud(603979776,7,{links:1}),i1.ɵqud(603979776,
-          8,{linksWithHrefs:1}),i1.ɵpad(1),(_l()(),i1.ɵted((null as any),['Estudiantes'])),
-      (_l()(),i1.ɵted((null as any),['\n              '])),(_l()(),i1.ɵeld(0,(null as any),
-          (null as any),7,'a',([] as any[]),[[8,'hidden',0],[1,'target',0],[8,'href',
-              4]],[[(null as any),'click']],(_v,en,$event) => {
+          8,{linksWithHrefs:1}),i1.ɵpad(72,1),(_l()(),i1.ɵted(-1,(null as any),['Estudiantes'])),
+      (_l()(),i1.ɵted(-1,(null as any),['\n              '])),(_l()(),i1.ɵeld(75,0,
+          (null as any),(null as any),7,'a',([] as any[]),[[8,'hidden',0],[1,'target',
+              0],[8,'href',4]],[[(null as any),'click']],(_v,en,$event) => {
             var ad:boolean = true;
             if (('click' === en)) {
               const pd_0:any = ((<any>i1.ɵnov(_v,76).onClick($event.button,$event.ctrlKey,
@@ -173,17 +174,17 @@ export function View_HeaderbarComponent_0(_l:any):i1.ɵViewDefinition {
               ad = (pd_0 && ad);
             }
             return ad;
-          },(null as any),(null as any))),i1.ɵdid(671744,[[10,4]],0,i3.RouterLinkWithHref,
+          },(null as any),(null as any))),i1.ɵdid(76,671744,[[10,4]],0,i3.RouterLinkWithHref,
           [i3.Router,i3.ActivatedRoute,i2.LocationStrategy],{routerLink:[0,'routerLink']},
-          (null as any)),i1.ɵpad(1),i1.ɵdid(1720320,(null as any),2,i3.RouterLinkActive,
-          [i3.Router,i1.ElementRef,i1.Renderer,i1.ChangeDetectorRef],{routerLinkActive:[0,
+          (null as any)),i1.ɵpad(77,1),i1.ɵdid(78,1720320,(null as any),2,i3.RouterLinkActive,
+          [i3.Router,i1.ElementRef,i1.Renderer2,i1.ChangeDetectorRef],{routerLinkActive:[0,
               'routerLinkActive']},(null as any)),i1.ɵqud(603979776,9,{links:1}),i1.ɵqud(603979776,
-          10,{linksWithHrefs:1}),i1.ɵpad(1),(_l()(),i1.ɵted((null as any),['Reports'])),
-      (_l()(),i1.ɵted((null as any),['\n            '])),(_l()(),i1.ɵted((null as any),
-          ['\n          '])),(_l()(),i1.ɵted((null as any),['\n        '])),(_l()(),
-          i1.ɵted((null as any),['\n      '])),(_l()(),i1.ɵted((null as any),['\n    '])),
-      (_l()(),i1.ɵted((null as any),['\n  '])),(_l()(),i1.ɵted((null as any),['\n'])),
-      (_l()(),i1.ɵted((null as any),['\n']))],(_ck,_v) => {
+          10,{linksWithHrefs:1}),i1.ɵpad(81,1),(_l()(),i1.ɵted(-1,(null as any),['Reports'])),
+      (_l()(),i1.ɵted(-1,(null as any),['\n            '])),(_l()(),i1.ɵted(-1,(null as any),
+          ['\n          '])),(_l()(),i1.ɵted(-1,(null as any),['\n        '])),(_l()(),
+          i1.ɵted(-1,(null as any),['\n      '])),(_l()(),i1.ɵted(-1,(null as any),
+          ['\n    '])),(_l()(),i1.ɵted(-1,(null as any),['\n  '])),(_l()(),i1.ɵted(-1,
+          (null as any),['\n'])),(_l()(),i1.ɵted(-1,(null as any),['\n']))],(_ck,_v) => {
     var _co:i4.HeaderbarComponent = _v.component;
     const currVal_0:boolean = !_co.auth.isAuthenticated();
     _ck(_v,24,0,currVal_0);
@@ -236,11 +237,12 @@ export function View_HeaderbarComponent_0(_l:any):i1.ɵViewDefinition {
   });
 }
 export function View_HeaderbarComponent_Host_0(_l:any):i1.ɵViewDefinition {
-  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,(null as any),(null as any),1,'ja-headerbar',
+  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,0,(null as any),(null as any),1,'app-headerbar',
       ([] as any[]),(null as any),(null as any),(null as any),View_HeaderbarComponent_0,
-      RenderType_HeaderbarComponent)),i1.ɵdid(49152,(null as any),0,i4.HeaderbarComponent,
-      [i5.Auth,i6.SessionService],(null as any),(null as any))],(null as any),(null as any));
+      RenderType_HeaderbarComponent)),i1.ɵdid(1,49152,(null as any),0,i4.HeaderbarComponent,
+      [i5.AuthService,i6.SessionService],(null as any),(null as any))],(null as any),
+      (null as any));
 }
-export const HeaderbarComponentNgFactory:i1.ComponentFactory<i4.HeaderbarComponent> = i1.ɵccf('ja-headerbar',
+export const HeaderbarComponentNgFactory:i1.ComponentFactory<i4.HeaderbarComponent> = i1.ɵccf('app-headerbar',
     i4.HeaderbarComponent,View_HeaderbarComponent_Host_0,{},{},([] as any[]));
-//# sourceMappingURL=data:application/json;base64,eyJmaWxlIjoiL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC9hcHBfc2hhcmVkL2hlYWRlcmJhci9oZWFkZXJiYXIuY29tcG9uZW50Lm5nZmFjdG9yeS50cyIsInZlcnNpb24iOjMsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIm5nOi8vL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC9hcHBfc2hhcmVkL2hlYWRlcmJhci9oZWFkZXJiYXIuY29tcG9uZW50LnRzIiwibmc6Ly8vaG9tZS9ja2FwaWxsYS9EZXYvSm92ZW5lc0EtY2xpZW50LkNMSS9zcmMvYXBwL2FwcF9zaGFyZWQvaGVhZGVyYmFyL2hlYWRlcmJhci5jb21wb25lbnQuaHRtbCIsIm5nOi8vL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC9hcHBfc2hhcmVkL2hlYWRlcmJhci9oZWFkZXJiYXIuY29tcG9uZW50LnRzLkhlYWRlcmJhckNvbXBvbmVudF9Ib3N0Lmh0bWwiXSwic291cmNlc0NvbnRlbnQiOlsiICIsIjxkaXYgY2xhc3M9XCJmaXhlZGJhclwiPlxuICA8ZGl2IGNsYXNzPVwiY29udGFpbmVyXCI+XG4gICAgPGRpdiBjbGFzcz1cInJvd1wiPlxuICAgICAgPGRpdiBjbGFzcz1cInNwYW4xMlwiPlxuICAgICAgICA8ZGl2IGNsYXNzPVwibG9nb1wiPlxuICAgICAgICAgIDxkaXYgY2xhc3M9XCJwdWxsLWxlZnRcIj5cbiAgICAgICAgICAgIDxoMz5cbiAgICAgICAgICAgICAgPGEgaHJlZj1cIiNcIj48aW1nIHNyYz1cIi4uLy4uLy4uL2Fzc2V0cy9pbWFnZXMvSkFQcml2YWRhTG9nby5wbmdcIiAgLz48L2E+XG4gICAgICAgICAgICA8L2gzPlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgIDxkaXYgY2xhc3M9XCJwdWxsLXJpZ2h0XCI+XG4gICAgICAgICAgICA8c2VjdGlvbiBpZD1cImxvZ2luXCI+XG4gICAgICAgICAgICAgIDxidXR0b24gY2xhc3M9XCJidG4gYnRuLXByaW1hcnkgYnRuLXNtXCIgKGNsaWNrKT1cImF1dGgubG9naW4oKVwiICpuZ0lmPVwiIWF1dGguaXNBdXRoZW50aWNhdGVkKClcIj5Mb2cgSW4gLyBJbmljaWFyIHNlc2nDs248L2J1dHRvbj5cbiAgICAgICAgICAgICAgPHNwYW4gKm5nSWY9XCJhdXRoLmlzQXV0aGVudGljYXRlZCgpXCI+V2VsY29tZSB7e2F1dGgubmlja25hbWV9fSA8YnIvPjwvc3Bhbj5cbiAgICAgICAgICAgICAgPHNwYW4gY2xhc3M9XCJsaW5rXCIgKGNsaWNrKT1cImF1dGgubG9nb3V0KClcIiAqbmdJZj1cImF1dGguaXNBdXRoZW50aWNhdGVkKClcIj5Mb2cgT3V0PC9zcGFuPlxuICAgICAgICAgICAgPC9zZWN0aW9uPlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgIDxkaXYgY2xhc3M9XCJuYXZpXCI+XG4gICAgICAgICAgICA8bmF2PlxuICAgICAgICAgICAgICA8YSBbcm91dGVyTGlua0FjdGl2ZV09XCJbJ2FjdGl2ZSddXCIgW3JvdXRlckxpbmtBY3RpdmVPcHRpb25zXT1cInsgZXhhY3Q6IHRydWUgfVwiIFtyb3V0ZXJMaW5rXT1cIlsnJ11cIj5Ib21lPC9hPlxuICAgICAgICAgICAgICA8YSBbcm91dGVyTGlua0FjdGl2ZV09XCJbJ2FjdGl2ZSddXCIgW3JvdXRlckxpbmtdPVwiWydhZG1pbnMnXVwiIFtoaWRkZW5dPSFpc0FkbWluV2l0aFZhbGlkVG9rZW4oKT5BZG1pbnM8L2E+XG4gICAgICAgICAgICAgIDxhIFtyb3V0ZXJMaW5rQWN0aXZlXT1cIlsnYWN0aXZlJ11cIiBbcm91dGVyTGlua109XCJbJ21lbnRvcnMnXVwiIFtoaWRkZW5dPSFpc01lbnRvcldpdGhWYWxpZFRva2VuKCk+TWVudG9yczwvYT5cbiAgICAgICAgICAgICAgPGEgW3JvdXRlckxpbmtBY3RpdmVdPVwiWydhY3RpdmUnXVwiIFtyb3V0ZXJMaW5rXT1cIlsnc3R1ZGVudHMnXVwiIFtoaWRkZW5dPSFpc1N0dWRlbnRXaXRoVmFsaWRUb2tlbigpPkVzdHVkaWFudGVzPC9hPlxuICAgICAgICAgICAgICA8YSBbcm91dGVyTGlua0FjdGl2ZV09XCJbJ2FjdGl2ZSddXCIgW3JvdXRlckxpbmtdPVwiWydyZXBvcnRzJ11cIiBbaGlkZGVuXT0haXNBZG1pbldpdGhWYWxpZFRva2VuKCk+UmVwb3J0czwvYT5cbiAgICAgICAgICAgIDwvbmF2PlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICA8L2Rpdj5cbiAgICAgIDwvZGl2PlxuICAgIDwvZGl2PlxuICA8L2Rpdj5cbjwvZGl2PlxuIiwiPGphLWhlYWRlcmJhcj48L2phLWhlYWRlcmJhcj4iXSwibWFwcGluZ3MiOiJBQUFBOzs7Ozs7Ozs7Ozs7Ozs7Ozs7O29CQ1ljO01BQUE7SUFBQTtJQUFBO0lBQXVDO01BQUE7TUFBQTtJQUFBO0lBQXZDO0VBQUEsZ0NBQThGOzs7O29CQUM5RjtNQUFBLHdFQUFxQzthQUFBLGtDQUEwQjtNQUFBO01BQUE7O0lBQTFCO0lBQUE7Ozs7b0JBQ3JDO01BQUE7SUFBQTtJQUFBO0lBQW1CO01BQUE7TUFBQTtJQUFBO0lBQW5CO0VBQUEsZ0NBQTBFOzs7O29CQWR4RjtNQUFBO01BQXNCLHlDQUNwQjtVQUFBO1VBQUEsOEJBQXVCO01BQ3JCO1VBQUEsMERBQWlCO1VBQUEsZUFDZjtVQUFBO01BQW9CLCtDQUNsQjtVQUFBO1VBQUEsOEJBQWtCO01BQ2hCO1VBQUE7TUFBdUIsbURBQ3JCO1VBQUE7VUFBQSw4QkFBSTtNQUNGO1VBQUEsMERBQVk7VUFBQTtVQUFBO01BQTJELG1EQUNwRTtVQUFBLG1CQUNELGlEQUNOO2lCQUFBO2NBQUE7TUFBd0IsbURBQ3RCO1VBQUE7VUFBQSw0Q0FBb0I7VUFBQSx1QkFDbEI7VUFBQSxtREFBQTtVQUFBO01BQThILHFEQUM5SDtVQUFBO2FBQUE7VUFBQSx3QkFBMkU7TUFDM0U7YUFBQTtVQUFBLHdCQUF3RjtNQUNoRixpREFDTjtVQUFBLG1CQUNOO1VBQUE7VUFBQSxnQkFBa0IsbURBQ2hCO2lCQUFBO2NBQUEsMERBQUs7VUFBQSx1QkFDSDtVQUFBO3VCQUFBO1lBQUE7WUFBQTtjQUFBO2tCQUFBO2NBQUE7WUFBQTtZQUFBO1VBQUEsdUNBQUE7VUFBQTtVQUFBLHNCQUErRSxXQUEvRTtVQUFBO2NBQUE7VUFBQTthQUFtQyxtQkFBaEMsSUFBZ0cseUNBQVE7aUJBQUEsc0NBQzNHO1VBQUE7Y0FBQTtZQUFBO1lBQUE7Y0FBQTtrQkFBQTtjQUFBO1lBQUE7WUFBQTtVQUFBLHVDQUFBO1VBQUE7VUFBQSxzQkFBbUMsV0FBbkM7VUFBQTtjQUFBO1VBQUEsNkJBQUcsSUFBNEY7TUFBVSxxREFDekc7VUFBQTtjQUFBO1lBQUE7WUFBQTtjQUFBO2tCQUFBO2NBQUE7WUFBQTtZQUFBO1VBQUEsdUNBQUE7VUFBQTtVQUFBLHNCQUFtQyxXQUFuQztVQUFBO2NBQUE7VUFBQSw2QkFBRyxJQUE4RjtNQUFXLHFEQUM1RztVQUFBO2NBQUE7WUFBQTtZQUFBO2NBQUE7a0JBQUE7Y0FBQTtZQUFBO1lBQUE7VUFBQSx1Q0FBQTtVQUFBO1VBQUEsc0JBQW1DLFdBQW5DO1VBQUE7Y0FBQTtVQUFBLDZCQUFHLElBQWdHO01BQWUscURBQ2xIO1VBQUE7Y0FBQTtZQUFBO1lBQUE7Y0FBQTtrQkFBQTtjQUFBO1lBQUE7WUFBQTtVQUFBLHVDQUFBO1VBQUE7VUFBQSxzQkFBbUMsV0FBbkM7VUFBQTtjQUFBO1VBQUEsOEJBQUcsSUFBNkY7TUFBVyxtREFDdkc7VUFBQSxtQkFDRiwrQ0FDRjtpQkFBQSw4QkFDRjtNQUNGLHlDQUNGO01BQ0Y7O0lBbEJzRTtJQUE5RCxZQUE4RCxTQUE5RDtJQUNNO0lBQU4sWUFBTSxTQUFOO0lBQzJDO0lBQTNDLFlBQTJDLFNBQTNDO0lBSytFO0lBQS9FLFlBQStFLFNBQS9FO0lBQW1DO0lBQWhDO0lBQUgsWUFBbUMsVUFBaEMsU0FBSDtJQUNtQztJQUFuQyxZQUFtQyxVQUFuQztJQUFHO0lBQUgsWUFBRyxVQUFIO0lBQ21DO0lBQW5DLFlBQW1DLFVBQW5DO0lBQUc7SUFBSCxZQUFHLFVBQUg7SUFDbUM7SUFBbkMsWUFBbUMsVUFBbkM7SUFBRztJQUFILFlBQUcsVUFBSDtJQUNtQztJQUFuQyxZQUFtQyxVQUFuQztJQUFHO0lBQUgsWUFBRyxVQUFIOzs7SUFKQTtJQUFBO0lBQUEsWUFBQSxtQkFBQTtJQUM2RDtJQUE3RDtJQUFBO0lBQUEsWUFBNkQsVUFBN0Qsb0JBQUE7SUFDOEQ7SUFBOUQ7SUFBQTtJQUFBLFlBQThELFdBQTlELHFCQUFBO0lBQytEO0lBQS9EO0lBQUE7SUFBQSxZQUErRCxXQUEvRCxxQkFBQTtJQUM4RDtJQUE5RDtJQUFBO0lBQUEsWUFBOEQsV0FBOUQscUJBQUE7Ozs7b0JDdkJkO01BQUE7bUNBQUEsVUFBQTtNQUFBOzs7In0=
+//# sourceMappingURL=data:application/json;base64,eyJmaWxlIjoiL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC9hcHBfc2hhcmVkL2hlYWRlcmJhci9oZWFkZXJiYXIuY29tcG9uZW50Lm5nZmFjdG9yeS50cyIsInZlcnNpb24iOjMsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIm5nOi8vL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC9hcHBfc2hhcmVkL2hlYWRlcmJhci9oZWFkZXJiYXIuY29tcG9uZW50LnRzIiwibmc6Ly8vaG9tZS9ja2FwaWxsYS9EZXYvSm92ZW5lc0EtY2xpZW50LkNMSS9zcmMvYXBwL2FwcF9zaGFyZWQvaGVhZGVyYmFyL2hlYWRlcmJhci5jb21wb25lbnQuaHRtbCIsIm5nOi8vL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC9hcHBfc2hhcmVkL2hlYWRlcmJhci9oZWFkZXJiYXIuY29tcG9uZW50LnRzLkhlYWRlcmJhckNvbXBvbmVudF9Ib3N0Lmh0bWwiXSwic291cmNlc0NvbnRlbnQiOlsiICIsIjxkaXYgY2xhc3M9XCJmaXhlZGJhclwiPlxuICA8ZGl2IGNsYXNzPVwiY29udGFpbmVyXCI+XG4gICAgPGRpdiBjbGFzcz1cInJvd1wiPlxuICAgICAgPGRpdiBjbGFzcz1cInNwYW4xMlwiPlxuICAgICAgICA8ZGl2IGNsYXNzPVwibG9nb1wiPlxuICAgICAgICAgIDxkaXYgY2xhc3M9XCJwdWxsLWxlZnRcIj5cbiAgICAgICAgICAgIDxoMz5cbiAgICAgICAgICAgICAgPGEgaHJlZj1cIiNcIj48aW1nIHNyYz1cIi4uLy4uLy4uL2Fzc2V0cy9pbWFnZXMvSkFQcml2YWRhTG9nby5wbmdcIiAgLz48L2E+XG4gICAgICAgICAgICA8L2gzPlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgIDxkaXYgY2xhc3M9XCJwdWxsLXJpZ2h0XCI+XG4gICAgICAgICAgICA8c2VjdGlvbiBpZD1cImxvZ2luXCI+XG4gICAgICAgICAgICAgIDxidXR0b24gY2xhc3M9XCJidG4gYnRuLXByaW1hcnkgYnRuLXNtXCIgKGNsaWNrKT1cImF1dGgubG9naW4oKVwiICpuZ0lmPVwiIWF1dGguaXNBdXRoZW50aWNhdGVkKClcIj5Mb2cgSW4gLyBJbmljaWFyIHNlc2nDs248L2J1dHRvbj5cbiAgICAgICAgICAgICAgPHNwYW4gKm5nSWY9XCJhdXRoLmlzQXV0aGVudGljYXRlZCgpXCI+V2VsY29tZSB7e2F1dGgubmlja25hbWV9fSA8YnIvPjwvc3Bhbj5cbiAgICAgICAgICAgICAgPHNwYW4gY2xhc3M9XCJsaW5rXCIgKGNsaWNrKT1cImF1dGgubG9nb3V0KClcIiAqbmdJZj1cImF1dGguaXNBdXRoZW50aWNhdGVkKClcIj5Mb2cgT3V0PC9zcGFuPlxuICAgICAgICAgICAgPC9zZWN0aW9uPlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgIDxkaXYgY2xhc3M9XCJuYXZpXCI+XG4gICAgICAgICAgICA8bmF2PlxuICAgICAgICAgICAgICA8YSBbcm91dGVyTGlua0FjdGl2ZV09XCJbJ2FjdGl2ZSddXCIgW3JvdXRlckxpbmtBY3RpdmVPcHRpb25zXT1cInsgZXhhY3Q6IHRydWUgfVwiIFtyb3V0ZXJMaW5rXT1cIlsnJ11cIj5Ib21lPC9hPlxuICAgICAgICAgICAgICA8YSBbcm91dGVyTGlua0FjdGl2ZV09XCJbJ2FjdGl2ZSddXCIgW3JvdXRlckxpbmtdPVwiWydhZG1pbnMnXVwiIFtoaWRkZW5dPSFpc0FkbWluV2l0aFZhbGlkVG9rZW4oKT5BZG1pbnM8L2E+XG4gICAgICAgICAgICAgIDxhIFtyb3V0ZXJMaW5rQWN0aXZlXT1cIlsnYWN0aXZlJ11cIiBbcm91dGVyTGlua109XCJbJ21lbnRvcnMnXVwiIFtoaWRkZW5dPSFpc01lbnRvcldpdGhWYWxpZFRva2VuKCk+TWVudG9yczwvYT5cbiAgICAgICAgICAgICAgPGEgW3JvdXRlckxpbmtBY3RpdmVdPVwiWydhY3RpdmUnXVwiIFtyb3V0ZXJMaW5rXT1cIlsnc3R1ZGVudHMnXVwiIFtoaWRkZW5dPSFpc1N0dWRlbnRXaXRoVmFsaWRUb2tlbigpPkVzdHVkaWFudGVzPC9hPlxuICAgICAgICAgICAgICA8YSBbcm91dGVyTGlua0FjdGl2ZV09XCJbJ2FjdGl2ZSddXCIgW3JvdXRlckxpbmtdPVwiWydyZXBvcnRzJ11cIiBbaGlkZGVuXT0haXNBZG1pbldpdGhWYWxpZFRva2VuKCk+UmVwb3J0czwvYT5cbiAgICAgICAgICAgIDwvbmF2PlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICA8L2Rpdj5cbiAgICAgIDwvZGl2PlxuICAgIDwvZGl2PlxuICA8L2Rpdj5cbjwvZGl2PlxuIiwiPGFwcC1oZWFkZXJiYXI+PC9hcHAtaGVhZGVyYmFyPiJdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7b0JDWWM7TUFBQTtJQUFBO0lBQUE7SUFBdUM7TUFBQTtNQUFBO0lBQUE7SUFBdkM7RUFBQSxnQ0FBOEY7Ozs7b0JBQzlGO01BQUEsd0VBQXFDO2FBQUEsb0NBQTBCO01BQUE7TUFBQTs7SUFBMUI7SUFBQTs7OztvQkFDckM7TUFBQTtJQUFBO0lBQUE7SUFBbUI7TUFBQTtNQUFBO0lBQUE7SUFBbkI7RUFBQSxnQ0FBMEU7Ozs7b0JBZHhGO01BQUE7TUFBc0IsNENBQ3BCO1VBQUE7VUFBQSw0Q0FBdUI7VUFBQSxhQUNyQjtVQUFBO01BQWlCLGdEQUNmO1VBQUE7VUFBQSw0Q0FBb0I7VUFBQSxpQkFDbEI7VUFBQTtVQUFBLGdCQUFrQixvREFDaEI7aUJBQUE7Y0FBQTtNQUF1QixzREFDckI7VUFBQTtVQUFBLDhCQUFJO01BQ0Y7VUFBQSwwREFBWTtVQUFBO1VBQUE7TUFBMkQsc0RBQ3BFO1VBQUEsbUJBQ0Qsb0RBQ047aUJBQUE7Y0FBQTtNQUF3QixzREFDdEI7VUFBQTtVQUFBLDRDQUFvQjtVQUFBLHVCQUNsQjtVQUFBLG1EQUFBO1VBQUE7TUFBOEgsd0RBQzlIO1VBQUE7YUFBQTtVQUFBLGlDQUEyRTtNQUMzRTthQUFBO1VBQUEsaUNBQXdGO01BQ2hGLG9EQUNOO1VBQUEsbUJBQ047VUFBQTtVQUFBLGdCQUFrQixzREFDaEI7aUJBQUE7Y0FBQSwwREFBSztVQUFBLHFDQUNIO1VBQUE7Y0FBQTtZQUFBO1lBQUE7Y0FBQTtrQkFBQTtjQUFBO1lBQUE7WUFBQTtVQUFBLHVDQUFBO1VBQUE7VUFBQSxzQkFBK0UsY0FBL0U7VUFBQTtjQUFBO1VBQUE7YUFBbUMsc0JBQWhDLE9BQWdHO01BQVEsd0RBQzNHO1VBQUE7Y0FBQTtZQUFBO1lBQUE7Y0FBQTtrQkFBQTtjQUFBO1lBQUE7WUFBQTtVQUFBLHVDQUFBO1VBQUE7VUFBQSxzQkFBbUMsY0FBbkM7VUFBQTtjQUFBO1VBQUEsNkJBQUcsT0FBNEY7TUFBVSx3REFDekc7VUFBQTtjQUFBO1lBQUE7WUFBQTtjQUFBO2tCQUFBO2NBQUE7WUFBQTtZQUFBO1VBQUEsdUNBQUE7VUFBQTtVQUFBLHNCQUFtQyxjQUFuQztVQUFBO2NBQUE7VUFBQSw2QkFBRyxPQUE4RjtNQUFXLHdEQUM1RztVQUFBO2NBQUE7WUFBQTtZQUFBO2NBQUE7a0JBQUE7Y0FBQTtZQUFBO1lBQUE7VUFBQSx1Q0FBQTtVQUFBO1VBQUEsc0JBQW1DLGNBQW5DO1VBQUE7Y0FBQTtVQUFBLDZCQUFHLE9BQWdHO01BQWUsd0RBQ2xIO1VBQUE7Y0FBQTtZQUFBO1lBQUE7Y0FBQTtrQkFBQTtjQUFBO1lBQUE7WUFBQTtVQUFBLHVDQUFBO1VBQUE7VUFBQSxzQkFBbUMsY0FBbkM7VUFBQTtjQUFBO1VBQUEsOEJBQUcsT0FBNkY7TUFBVyxzREFDdkc7VUFBQSxtQkFDRixrREFDRjtpQkFBQSxpQ0FDRjtVQUFBLGFBQ0YsNENBQ0Y7VUFBQSx1QkFDRjs7SUFsQnNFO0lBQTlELFlBQThELFNBQTlEO0lBQ007SUFBTixZQUFNLFNBQU47SUFDMkM7SUFBM0MsWUFBMkMsU0FBM0M7SUFLK0U7SUFBL0UsWUFBK0UsU0FBL0U7SUFBbUM7SUFBaEM7SUFBSCxZQUFtQyxVQUFoQyxTQUFIO0lBQ21DO0lBQW5DLFlBQW1DLFVBQW5DO0lBQUc7SUFBSCxZQUFHLFVBQUg7SUFDbUM7SUFBbkMsWUFBbUMsVUFBbkM7SUFBRztJQUFILFlBQUcsVUFBSDtJQUNtQztJQUFuQyxZQUFtQyxVQUFuQztJQUFHO0lBQUgsWUFBRyxVQUFIO0lBQ21DO0lBQW5DLFlBQW1DLFVBQW5DO0lBQUc7SUFBSCxZQUFHLFVBQUg7OztJQUpBO0lBQUE7SUFBQSxZQUFBLG1CQUFBO0lBQzZEO0lBQTdEO0lBQUE7SUFBQSxZQUE2RCxVQUE3RCxvQkFBQTtJQUM4RDtJQUE5RDtJQUFBO0lBQUEsWUFBOEQsV0FBOUQscUJBQUE7SUFDK0Q7SUFBL0Q7SUFBQTtJQUFBLFlBQStELFdBQS9ELHFCQUFBO0lBQzhEO0lBQTlEO0lBQUE7SUFBQSxZQUE4RCxXQUE5RCxxQkFBQTs7OztvQkN2QmQ7TUFBQTttQ0FBQSxVQUFBO01BQUE7Ozs7In0=

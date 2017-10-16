@@ -42,11 +42,11 @@
                   [(ngModel)]="student.firstNames"
                   class="form-control input-sm" type="text" placeholder="First Name"
                   />
-            <display-errors control="inputStudentFName" class="red"
+            <app-display-errors control="inputStudentFName" class="red"
               [errors]="{
                 'required': 'First name is required',
                 'maxlength': 'Student First name cannot exceed 30 characters in length.'
-              }"></display-errors>
+              }"></app-display-errors>
           </div>
         </div>
 
@@ -58,11 +58,11 @@
                    [(ngModel)]="student.lastNames"
                    type="text" class="form-control input-sm" placeholder="Last Name"
                    />
-            <display-errors control="inputStudentLName" class="red"
+            <app-display-errors control="inputStudentLName" class="red"
               [errors]="{
                 'required': 'Last name is required',
                 'maxlength': 'Student Last name cannot exceed 30 characters in length.'
-              }"></display-errors>
+              }"></app-display-errors>
           </div>
         </div>
 
@@ -74,12 +74,12 @@
                   [(ngModel)]="student.cellPhone"
                   type="text" class="form-control input-sm" placeholder="Best Phone Number: ###-###-####"
                   />
-            <display-errors control="inputStudentPhone" class="red"
+            <app-display-errors control="inputStudentPhone" class="red"
               [errors]="{
                 'required': 'Cell Phone is required.',
                 'minlength': 'Cell Phone must be at least 7 characters in length.',
                 'maxlength': 'Cell Phone cannot exceed 13 characters in length.'
-              }"></display-errors>
+              }"></app-display-errors>
           </div>
         </div>
 
@@ -92,10 +92,10 @@
             class="form-control input-sm" placeholder="Intitial Interview with Student"
             >
           </textarea>
-          <display-errors  control="inputInitialInterview" class="red"
+          <app-display-errors  control="inputInitialInterview" class="red"
               [errors]="{
                 'maxlength': 'Initial Interview cannot exceed 2000 characters in length.'
-              }"></display-errors>
+              }"></app-display-errors>
           </div>
         </div>
 
@@ -108,10 +108,10 @@
             class="form-control input-sm" placeholder="Consolidated Student Story"
             >
           </textarea>
-          <display-errors control="inputStudentStory" class="red"
+          <app-display-errors control="inputStudentStory" class="red"
               [errors]="{
                 'maxlength': 'Student Story cannot exceed 2000 characters in length.'
-              }"></display-errors>
+              }"></app-display-errors>
           </div>
         </div>
 

@@ -18,9 +18,9 @@ const styles_MonthlyReportsAddComponent:any[] = ([] as any[]);
 export const RenderType_MonthlyReportsAddComponent:i0.RendererType2 = i0.ɵcrt({encapsulation:2,
     styles:styles_MonthlyReportsAddComponent,data:{}});
 function View_MonthlyReportsAddComponent_1(_l:any):i0.ɵViewDefinition {
-  return i0.ɵvid(0,[(_l()(),i0.ɵeld(0,(null as any),(null as any),1,'div',[['class',
+  return i0.ɵvid(0,[(_l()(),i0.ɵeld(0,0,(null as any),(null as any),1,'div',[['class',
       'alert alert-danger']],(null as any),(null as any),(null as any),(null as any),
-      (null as any))),(_l()(),i0.ɵted((null as any),['','']))],(null as any),(_ck,
+      (null as any))),(_l()(),i0.ɵted(1,(null as any),['','']))],(null as any),(_ck,
       _v) => {
     var _co:any = _v.component;
     const currVal_0:any = _co.errorMessage;
@@ -28,9 +28,9 @@ function View_MonthlyReportsAddComponent_1(_l:any):i0.ɵViewDefinition {
   });
 }
 function View_MonthlyReportsAddComponent_2(_l:any):i0.ɵViewDefinition {
-  return i0.ɵvid(0,[(_l()(),i0.ɵeld(0,(null as any),(null as any),1,'div',[['class',
+  return i0.ɵvid(0,[(_l()(),i0.ɵeld(0,0,(null as any),(null as any),1,'div',[['class',
       'alert alert-success']],(null as any),(null as any),(null as any),(null as any),
-      (null as any))),(_l()(),i0.ɵted((null as any),['','']))],(null as any),(_ck,
+      (null as any))),(_l()(),i0.ɵted(1,(null as any),['','']))],(null as any),(_ck,
       _v) => {
     var _co:any = _v.component;
     const currVal_0:any = _co.successMessage;
@@ -38,12 +38,12 @@ function View_MonthlyReportsAddComponent_2(_l:any):i0.ɵViewDefinition {
   });
 }
 function View_MonthlyReportsAddComponent_3(_l:any):i0.ɵViewDefinition {
-  return i0.ɵvid(0,[(_l()(),i0.ɵeld(0,(null as any),(null as any),3,'option',([] as any[]),
-      (null as any),(null as any),(null as any),(null as any),(null as any))),i0.ɵdid(147456,
-      (null as any),0,i1.NgSelectOption,[i0.ElementRef,i0.Renderer,[2,i1.SelectControlValueAccessor]],
-      {value:[0,'value']},(null as any)),i0.ɵdid(147456,(null as any),0,i1.ɵq,[i0.ElementRef,
-      i0.Renderer,[8,(null as any)]],{value:[0,'value']},(null as any)),(_l()(),i0.ɵted((null as any),
-      ['','']))],(_ck,_v) => {
+  return i0.ɵvid(0,[(_l()(),i0.ɵeld(0,0,(null as any),(null as any),3,'option',([] as any[]),
+      (null as any),(null as any),(null as any),(null as any),(null as any))),i0.ɵdid(1,
+      147456,(null as any),0,i1.NgSelectOption,[i0.ElementRef,i0.Renderer2,[2,i1.SelectControlValueAccessor]],
+      {value:[0,'value']},(null as any)),i0.ɵdid(2,147456,(null as any),0,i1.ɵq,[i0.ElementRef,
+      i0.Renderer2,[8,(null as any)]],{value:[0,'value']},(null as any)),(_l()(),i0.ɵted(3,
+      (null as any),['','']))],(_ck,_v) => {
     const currVal_0:any = _v.context.$implicit.value;
     _ck(_v,1,0,currVal_0);
     const currVal_1:any = _v.context.$implicit.value;
@@ -54,17 +54,17 @@ function View_MonthlyReportsAddComponent_3(_l:any):i0.ɵViewDefinition {
   });
 }
 function View_MonthlyReportsAddComponent_4(_l:any):i0.ɵViewDefinition {
-  return i0.ɵvid(0,[(_l()(),i0.ɵeld(0,(null as any),(null as any),1,'span',[['class',
+  return i0.ɵvid(0,[(_l()(),i0.ɵeld(0,0,(null as any),(null as any),1,'span',[['class',
       'red']],(null as any),(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i0.ɵted((null as any),[' Select Year']))],(null as any),(null as any));
+      (_l()(),i0.ɵted(-1,(null as any),[' Select Year']))],(null as any),(null as any));
 }
 function View_MonthlyReportsAddComponent_5(_l:any):i0.ɵViewDefinition {
-  return i0.ɵvid(0,[(_l()(),i0.ɵeld(0,(null as any),(null as any),3,'option',([] as any[]),
-      (null as any),(null as any),(null as any),(null as any),(null as any))),i0.ɵdid(147456,
-      (null as any),0,i1.NgSelectOption,[i0.ElementRef,i0.Renderer,[2,i1.SelectControlValueAccessor]],
-      {value:[0,'value']},(null as any)),i0.ɵdid(147456,(null as any),0,i1.ɵq,[i0.ElementRef,
-      i0.Renderer,[8,(null as any)]],{value:[0,'value']},(null as any)),(_l()(),i0.ɵted((null as any),
-      ['','']))],(_ck,_v) => {
+  return i0.ɵvid(0,[(_l()(),i0.ɵeld(0,0,(null as any),(null as any),3,'option',([] as any[]),
+      (null as any),(null as any),(null as any),(null as any),(null as any))),i0.ɵdid(1,
+      147456,(null as any),0,i1.NgSelectOption,[i0.ElementRef,i0.Renderer2,[2,i1.SelectControlValueAccessor]],
+      {value:[0,'value']},(null as any)),i0.ɵdid(2,147456,(null as any),0,i1.ɵq,[i0.ElementRef,
+      i0.Renderer2,[8,(null as any)]],{value:[0,'value']},(null as any)),(_l()(),i0.ɵted(3,
+      (null as any),['','']))],(_ck,_v) => {
     const currVal_0:any = _v.context.$implicit.value;
     _ck(_v,1,0,currVal_0);
     const currVal_1:any = _v.context.$implicit.value;
@@ -75,34 +75,34 @@ function View_MonthlyReportsAddComponent_5(_l:any):i0.ɵViewDefinition {
   });
 }
 function View_MonthlyReportsAddComponent_6(_l:any):i0.ɵViewDefinition {
-  return i0.ɵvid(0,[(_l()(),i0.ɵeld(0,(null as any),(null as any),1,'span',[['class',
+  return i0.ɵvid(0,[(_l()(),i0.ɵeld(0,0,(null as any),(null as any),1,'span',[['class',
       'red']],(null as any),(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i0.ɵted((null as any),['Select Month']))],(null as any),(null as any));
+      (_l()(),i0.ɵted(-1,(null as any),['Select Month']))],(null as any),(null as any));
 }
 function View_MonthlyReportsAddComponent_7(_l:any):i0.ɵViewDefinition {
-  return i0.ɵvid(0,[(_l()(),i0.ɵeld(0,(null as any),(null as any),1,'span',[['class',
+  return i0.ɵvid(0,[(_l()(),i0.ɵeld(0,0,(null as any),(null as any),1,'span',[['class',
       'red']],(null as any),(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i0.ɵted((null as any),['Please select a Snapshot color']))],(null as any),
+      (_l()(),i0.ɵted(-1,(null as any),['Please select a Snapshot color']))],(null as any),
       (null as any));
 }
 export function View_MonthlyReportsAddComponent_0(_l:any):i0.ɵViewDefinition {
-  return i0.ɵvid(0,[(_l()(),i0.ɵeld(0,(null as any),(null as any),204,'div',[['class',
+  return i0.ɵvid(0,[(_l()(),i0.ɵeld(0,0,(null as any),(null as any),204,'div',[['class',
       'panel panel-primary']],(null as any),(null as any),(null as any),(null as any),
-      (null as any))),(_l()(),i0.ɵted((null as any),['\n  '])),(_l()(),i0.ɵeld(0,(null as any),
-      (null as any),1,'div',[['class','panel-heading'],['style','font-size:large']],
+      (null as any))),(_l()(),i0.ɵted(-1,(null as any),['\n  '])),(_l()(),i0.ɵeld(2,
+      0,(null as any),(null as any),1,'div',[['class','panel-heading'],['style','font-size:large']],
       (null as any),(null as any),(null as any),(null as any),(null as any))),(_l()(),
-      i0.ɵted((null as any),['\n    Add New Monthly Report\n  '])),(_l()(),i0.ɵted((null as any),
-      ['\n  '])),(_l()(),i0.ɵeld(0,(null as any),(null as any),198,'div',[['class',
-      'panel-body']],(null as any),(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i0.ɵted((null as any),['\n    '])),(_l()(),i0.ɵand(16777216,(null as any),
-          (null as any),1,(null as any),View_MonthlyReportsAddComponent_1)),i0.ɵdid(16384,
-          (null as any),0,i2.NgIf,[i0.ViewContainerRef,i0.TemplateRef],{ngIf:[0,'ngIf']},
-          (null as any)),(_l()(),i0.ɵted((null as any),['\n    '])),(_l()(),i0.ɵand(16777216,
-          (null as any),(null as any),1,(null as any),View_MonthlyReportsAddComponent_2)),
-      i0.ɵdid(16384,(null as any),0,i2.NgIf,[i0.ViewContainerRef,i0.TemplateRef],{ngIf:[0,
-          'ngIf']},(null as any)),(_l()(),i0.ɵted((null as any),['\n\n    '])),(_l()(),
-          i0.ɵeld(0,(null as any),(null as any),189,'form',[['novalidate','']],[[2,
-              'ng-untouched',(null as any)],[2,'ng-touched',(null as any)],[2,'ng-pristine',
+      i0.ɵted(-1,(null as any),['\n    Add New Monthly Report\n  '])),(_l()(),i0.ɵted(-1,
+      (null as any),['\n  '])),(_l()(),i0.ɵeld(5,0,(null as any),(null as any),198,
+      'div',[['class','panel-body']],(null as any),(null as any),(null as any),(null as any),
+      (null as any))),(_l()(),i0.ɵted(-1,(null as any),['\n    '])),(_l()(),i0.ɵand(16777216,
+      (null as any),(null as any),1,(null as any),View_MonthlyReportsAddComponent_1)),
+      i0.ɵdid(8,16384,(null as any),0,i2.NgIf,[i0.ViewContainerRef,i0.TemplateRef],
+          {ngIf:[0,'ngIf']},(null as any)),(_l()(),i0.ɵted(-1,(null as any),['\n    '])),
+      (_l()(),i0.ɵand(16777216,(null as any),(null as any),1,(null as any),View_MonthlyReportsAddComponent_2)),
+      i0.ɵdid(11,16384,(null as any),0,i2.NgIf,[i0.ViewContainerRef,i0.TemplateRef],
+          {ngIf:[0,'ngIf']},(null as any)),(_l()(),i0.ɵted(-1,(null as any),['\n\n    '])),
+      (_l()(),i0.ɵeld(13,0,(null as any),(null as any),189,'form',[['novalidate','']],
+          [[2,'ng-untouched',(null as any)],[2,'ng-touched',(null as any)],[2,'ng-pristine',
               (null as any)],[2,'ng-dirty',(null as any)],[2,'ng-valid',(null as any)],
               [2,'ng-invalid',(null as any)],[2,'ng-pending',(null as any)]],[[(null as any),
               'submit'],[(null as any),'reset']],(_v,en,$event) => {
@@ -116,30 +116,30 @@ export function View_MonthlyReportsAddComponent_0(_l:any):i0.ɵViewDefinition {
               ad = (pd_1 && ad);
             }
             return ad;
-          },(null as any),(null as any))),i0.ɵdid(16384,(null as any),0,i1.ɵbh,([] as any[]),
-          (null as any),(null as any)),i0.ɵdid(540672,(null as any),0,i1.FormGroupDirective,
-          [[8,(null as any)],[8,(null as any)]],{form:[0,'form']},(null as any)),i0.ɵprd(2048,
-          (null as any),i1.ControlContainer,(null as any),[i1.FormGroupDirective]),
-      i0.ɵdid(16384,(null as any),0,i1.NgControlStatusGroup,[i1.ControlContainer],
-          (null as any),(null as any)),(_l()(),i0.ɵted((null as any),['\n      '])),
-      (_l()(),i0.ɵeld(0,(null as any),(null as any),182,'fieldset',([] as any[]),[[8,
-          'disabled',0]],(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i0.ɵted((null as any),['\n        '])),(_l()(),i0.ɵeld(0,(null as any),
-          (null as any),35,'div',[['class','form-group']],(null as any),(null as any),
-          (null as any),(null as any),(null as any))),(_l()(),i0.ɵted((null as any),
-          ['\n          '])),(_l()(),i0.ɵeld(0,(null as any),(null as any),32,'div',
-          [['class','controls']],(null as any),(null as any),(null as any),(null as any),
-          (null as any))),(_l()(),i0.ɵted((null as any),['\n            '])),(_l()(),
-          i0.ɵeld(0,(null as any),(null as any),1,'label',[['for','lastContactYearSelector']],
+          },(null as any),(null as any))),i0.ɵdid(14,16384,(null as any),0,i1.ɵbf,
+          ([] as any[]),(null as any),(null as any)),i0.ɵdid(15,540672,(null as any),
+          0,i1.FormGroupDirective,[[8,(null as any)],[8,(null as any)]],{form:[0,'form']},
+          (null as any)),i0.ɵprd(2048,(null as any),i1.ControlContainer,(null as any),
+          [i1.FormGroupDirective]),i0.ɵdid(17,16384,(null as any),0,i1.NgControlStatusGroup,
+          [i1.ControlContainer],(null as any),(null as any)),(_l()(),i0.ɵted(-1,(null as any),
+          ['\n      '])),(_l()(),i0.ɵeld(19,0,(null as any),(null as any),182,'fieldset',
+          ([] as any[]),[[8,'disabled',0]],(null as any),(null as any),(null as any),
+          (null as any))),(_l()(),i0.ɵted(-1,(null as any),['\n        '])),(_l()(),
+          i0.ɵeld(21,0,(null as any),(null as any),35,'div',[['class','form-group']],
               (null as any),(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i0.ɵted((null as any),[' Year/Month you Last Communicated with Student'])),
-      (_l()(),i0.ɵted((null as any),['\n            '])),(_l()(),i0.ɵeld(0,(null as any),
-          (null as any),9,'select',[['formControlName','lastContactYearSelector']],
-          [[2,'ng-untouched',(null as any)],[2,'ng-touched',(null as any)],[2,'ng-pristine',
-              (null as any)],[2,'ng-dirty',(null as any)],[2,'ng-valid',(null as any)],
-              [2,'ng-invalid',(null as any)],[2,'ng-pending',(null as any)]],[[(null as any),
-              'ngModelChange'],[(null as any),'change'],[(null as any),'blur']],(_v,
-              en,$event) => {
+      (_l()(),i0.ɵted(-1,(null as any),['\n          '])),(_l()(),i0.ɵeld(23,0,(null as any),
+          (null as any),32,'div',[['class','controls']],(null as any),(null as any),
+          (null as any),(null as any),(null as any))),(_l()(),i0.ɵted(-1,(null as any),
+          ['\n            '])),(_l()(),i0.ɵeld(25,0,(null as any),(null as any),1,
+          'label',[['for','lastContactYearSelector']],(null as any),(null as any),
+          (null as any),(null as any),(null as any))),(_l()(),i0.ɵted(-1,(null as any),
+          [' Year/Month you Last Communicated with Student'])),(_l()(),i0.ɵted(-1,
+          (null as any),['\n            '])),(_l()(),i0.ɵeld(28,0,(null as any),(null as any),
+          9,'select',[['formControlName','lastContactYearSelector']],[[2,'ng-untouched',
+              (null as any)],[2,'ng-touched',(null as any)],[2,'ng-pristine',(null as any)],
+              [2,'ng-dirty',(null as any)],[2,'ng-valid',(null as any)],[2,'ng-invalid',
+                  (null as any)],[2,'ng-pending',(null as any)]],[[(null as any),'ngModelChange'],
+              [(null as any),'change'],[(null as any),'blur']],(_v,en,$event) => {
             var ad:boolean = true;
             var _co:i3.MonthlyReportsAddComponent = _v.component;
             if (('change' === en)) {
@@ -155,24 +155,24 @@ export function View_MonthlyReportsAddComponent_0(_l:any):i0.ɵViewDefinition {
               ad = (pd_2 && ad);
             }
             return ad;
-          },(null as any),(null as any))),i0.ɵdid(16384,(null as any),0,i1.SelectControlValueAccessor,
-          [i0.Renderer,i0.ElementRef],(null as any),(null as any)),i0.ɵprd(1024,(null as any),
+          },(null as any),(null as any))),i0.ɵdid(29,16384,(null as any),0,i1.SelectControlValueAccessor,
+          [i0.Renderer2,i0.ElementRef],(null as any),(null as any)),i0.ɵprd(1024,(null as any),
           i1.NG_VALUE_ACCESSOR,(p0_0:any) => {
             return [p0_0];
-          },[i1.SelectControlValueAccessor]),i0.ɵdid(671744,(null as any),0,i1.FormControlName,
+          },[i1.SelectControlValueAccessor]),i0.ɵdid(31,671744,(null as any),0,i1.FormControlName,
           [[3,i1.ControlContainer],[8,(null as any)],[8,(null as any)],[2,i1.NG_VALUE_ACCESSOR]],
           {name:[0,'name'],model:[1,'model']},{update:'ngModelChange'}),i0.ɵprd(2048,
-          (null as any),i1.NgControl,(null as any),[i1.FormControlName]),i0.ɵdid(16384,
-          (null as any),0,i1.NgControlStatus,[i1.NgControl],(null as any),(null as any)),
-      (_l()(),i0.ɵted((null as any),['\n            '])),(_l()(),i0.ɵand(16777216,
+          (null as any),i1.NgControl,(null as any),[i1.FormControlName]),i0.ɵdid(33,
+          16384,(null as any),0,i1.NgControlStatus,[i1.NgControl],(null as any),(null as any)),
+      (_l()(),i0.ɵted(-1,(null as any),['\n            '])),(_l()(),i0.ɵand(16777216,
           (null as any),(null as any),1,(null as any),View_MonthlyReportsAddComponent_3)),
-      i0.ɵdid(802816,(null as any),0,i2.NgForOf,[i0.ViewContainerRef,i0.TemplateRef,
-          i0.IterableDiffers],{ngForOf:[0,'ngForOf']},(null as any)),(_l()(),i0.ɵted((null as any),
-          ['\n            '])),(_l()(),i0.ɵted((null as any),['\n            '])),
+      i0.ɵdid(36,802816,(null as any),0,i2.NgForOf,[i0.ViewContainerRef,i0.TemplateRef,
+          i0.IterableDiffers],{ngForOf:[0,'ngForOf']},(null as any)),(_l()(),i0.ɵted(-1,
+          (null as any),['\n            '])),(_l()(),i0.ɵted(-1,(null as any),['\n            '])),
       (_l()(),i0.ɵand(16777216,(null as any),(null as any),1,(null as any),View_MonthlyReportsAddComponent_4)),
-      i0.ɵdid(16384,(null as any),0,i2.NgIf,[i0.ViewContainerRef,i0.TemplateRef],{ngIf:[0,
-          'ngIf']},(null as any)),(_l()(),i0.ɵted((null as any),['\n\n            '])),
-      (_l()(),i0.ɵeld(0,(null as any),(null as any),9,'select',[['formControlName',
+      i0.ɵdid(40,16384,(null as any),0,i2.NgIf,[i0.ViewContainerRef,i0.TemplateRef],
+          {ngIf:[0,'ngIf']},(null as any)),(_l()(),i0.ɵted(-1,(null as any),['\n\n            '])),
+      (_l()(),i0.ɵeld(42,0,(null as any),(null as any),9,'select',[['formControlName',
           'lastContactMonthSelector']],[[2,'ng-untouched',(null as any)],[2,'ng-touched',
           (null as any)],[2,'ng-pristine',(null as any)],[2,'ng-dirty',(null as any)],
           [2,'ng-valid',(null as any)],[2,'ng-invalid',(null as any)],[2,'ng-pending',
@@ -193,45 +193,46 @@ export function View_MonthlyReportsAddComponent_0(_l:any):i0.ɵViewDefinition {
           ad = (pd_2 && ad);
         }
         return ad;
-      },(null as any),(null as any))),i0.ɵdid(16384,(null as any),0,i1.SelectControlValueAccessor,
-          [i0.Renderer,i0.ElementRef],(null as any),(null as any)),i0.ɵprd(1024,(null as any),
+      },(null as any),(null as any))),i0.ɵdid(43,16384,(null as any),0,i1.SelectControlValueAccessor,
+          [i0.Renderer2,i0.ElementRef],(null as any),(null as any)),i0.ɵprd(1024,(null as any),
           i1.NG_VALUE_ACCESSOR,(p0_0:any) => {
             return [p0_0];
-          },[i1.SelectControlValueAccessor]),i0.ɵdid(671744,(null as any),0,i1.FormControlName,
+          },[i1.SelectControlValueAccessor]),i0.ɵdid(45,671744,(null as any),0,i1.FormControlName,
           [[3,i1.ControlContainer],[8,(null as any)],[8,(null as any)],[2,i1.NG_VALUE_ACCESSOR]],
           {name:[0,'name'],model:[1,'model']},{update:'ngModelChange'}),i0.ɵprd(2048,
-          (null as any),i1.NgControl,(null as any),[i1.FormControlName]),i0.ɵdid(16384,
-          (null as any),0,i1.NgControlStatus,[i1.NgControl],(null as any),(null as any)),
-      (_l()(),i0.ɵted((null as any),['\n            '])),(_l()(),i0.ɵand(16777216,
+          (null as any),i1.NgControl,(null as any),[i1.FormControlName]),i0.ɵdid(47,
+          16384,(null as any),0,i1.NgControlStatus,[i1.NgControl],(null as any),(null as any)),
+      (_l()(),i0.ɵted(-1,(null as any),['\n            '])),(_l()(),i0.ɵand(16777216,
           (null as any),(null as any),1,(null as any),View_MonthlyReportsAddComponent_5)),
-      i0.ɵdid(802816,(null as any),0,i2.NgForOf,[i0.ViewContainerRef,i0.TemplateRef,
-          i0.IterableDiffers],{ngForOf:[0,'ngForOf']},(null as any)),(_l()(),i0.ɵted((null as any),
-          ['\n            '])),(_l()(),i0.ɵted((null as any),['\n            '])),
+      i0.ɵdid(50,802816,(null as any),0,i2.NgForOf,[i0.ViewContainerRef,i0.TemplateRef,
+          i0.IterableDiffers],{ngForOf:[0,'ngForOf']},(null as any)),(_l()(),i0.ɵted(-1,
+          (null as any),['\n            '])),(_l()(),i0.ɵted(-1,(null as any),['\n            '])),
       (_l()(),i0.ɵand(16777216,(null as any),(null as any),1,(null as any),View_MonthlyReportsAddComponent_6)),
-      i0.ɵdid(16384,(null as any),0,i2.NgIf,[i0.ViewContainerRef,i0.TemplateRef],{ngIf:[0,
-          'ngIf']},(null as any)),(_l()(),i0.ɵted((null as any),['\n          '])),
-      (_l()(),i0.ɵted((null as any),['\n        '])),(_l()(),i0.ɵted((null as any),
-          ['\n\n        '])),(_l()(),i0.ɵeld(0,(null as any),(null as any),52,'div',
+      i0.ɵdid(54,16384,(null as any),0,i2.NgIf,[i0.ViewContainerRef,i0.TemplateRef],
+          {ngIf:[0,'ngIf']},(null as any)),(_l()(),i0.ɵted(-1,(null as any),['\n          '])),
+      (_l()(),i0.ɵted(-1,(null as any),['\n        '])),(_l()(),i0.ɵted(-1,(null as any),
+          ['\n\n        '])),(_l()(),i0.ɵeld(58,0,(null as any),(null as any),52,'div',
           [['class','form-group']],(null as any),(null as any),(null as any),(null as any),
-          (null as any))),(_l()(),i0.ɵted((null as any),['\n          '])),(_l()(),
-          i0.ɵeld(0,(null as any),(null as any),49,'div',[['class','controls']],(null as any),
-              (null as any),(null as any),(null as any),(null as any))),(_l()(),i0.ɵted((null as any),
-          ['\n            '])),(_l()(),i0.ɵeld(0,(null as any),(null as any),4,'label',
-          ([] as any[]),(null as any),(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i0.ɵted((null as any),[' Student Snapshot: ('])),(_l()(),i0.ɵeld(0,(null as any),
-          (null as any),1,'span',([] as any[]),(null as any),(null as any),(null as any),
-          (null as any),(null as any))),(_l()(),i0.ɵted((null as any),['How are things going overall with the student?'])),
-      (_l()(),i0.ɵted((null as any),[')'])),(_l()(),i0.ɵted((null as any),['\n            '])),
-      (_l()(),i0.ɵeld(0,(null as any),(null as any),11,'label',([] as any[]),(null as any),
-          (null as any),(null as any),(null as any),(null as any))),(_l()(),i0.ɵted((null as any),
-          ['\n            '])),(_l()(),i0.ɵeld(0,(null as any),(null as any),6,'input',
-          [['formControlName','inputSnapshot'],['id','inputSnapshot'],['type','radio'],
-              ['value','1']],[[2,'ng-untouched',(null as any)],[2,'ng-touched',(null as any)],
-              [2,'ng-pristine',(null as any)],[2,'ng-dirty',(null as any)],[2,'ng-valid',
-                  (null as any)],[2,'ng-invalid',(null as any)],[2,'ng-pending',(null as any)]],
-          [[(null as any),'ngModelChange'],[(null as any),'input'],[(null as any),
-              'blur'],[(null as any),'compositionstart'],[(null as any),'compositionend'],
-              [(null as any),'change']],(_v,en,$event) => {
+          (null as any))),(_l()(),i0.ɵted(-1,(null as any),['\n          '])),(_l()(),
+          i0.ɵeld(60,0,(null as any),(null as any),49,'div',[['class','controls']],
+              (null as any),(null as any),(null as any),(null as any),(null as any))),
+      (_l()(),i0.ɵted(-1,(null as any),['\n            '])),(_l()(),i0.ɵeld(62,0,(null as any),
+          (null as any),4,'label',([] as any[]),(null as any),(null as any),(null as any),
+          (null as any),(null as any))),(_l()(),i0.ɵted(-1,(null as any),[' Student Snapshot: ('])),
+      (_l()(),i0.ɵeld(64,0,(null as any),(null as any),1,'span',([] as any[]),(null as any),
+          (null as any),(null as any),(null as any),(null as any))),(_l()(),i0.ɵted(-1,
+          (null as any),['How are things going overall with the student?'])),(_l()(),
+          i0.ɵted(-1,(null as any),[')'])),(_l()(),i0.ɵted(-1,(null as any),['\n            '])),
+      (_l()(),i0.ɵeld(68,0,(null as any),(null as any),11,'label',([] as any[]),(null as any),
+          (null as any),(null as any),(null as any),(null as any))),(_l()(),i0.ɵted(-1,
+          (null as any),['\n            '])),(_l()(),i0.ɵeld(70,0,(null as any),(null as any),
+          6,'input',[['formControlName','inputSnapshot'],['id','inputSnapshot'],['type',
+              'radio'],['value','1']],[[2,'ng-untouched',(null as any)],[2,'ng-touched',
+              (null as any)],[2,'ng-pristine',(null as any)],[2,'ng-dirty',(null as any)],
+              [2,'ng-valid',(null as any)],[2,'ng-invalid',(null as any)],[2,'ng-pending',
+                  (null as any)]],[[(null as any),'ngModelChange'],[(null as any),
+              'input'],[(null as any),'blur'],[(null as any),'compositionstart'],[(null as any),
+              'compositionend'],[(null as any),'change']],(_v,en,$event) => {
             var ad:boolean = true;
             var _co:i3.MonthlyReportsAddComponent = _v.component;
             if (('input' === en)) {
@@ -263,31 +264,31 @@ export function View_MonthlyReportsAddComponent_0(_l:any):i0.ɵViewDefinition {
               ad = (pd_6 && ad);
             }
             return ad;
-          },(null as any),(null as any))),i0.ɵdid(16384,(null as any),0,i1.DefaultValueAccessor,
-          [i0.Renderer,i0.ElementRef,[2,i1.COMPOSITION_BUFFER_MODE]],(null as any),
-          (null as any)),i0.ɵdid(212992,(null as any),0,i1.RadioControlValueAccessor,
-          [i0.Renderer,i0.ElementRef,i1.ɵi,i0.Injector],{formControlName:[0,'formControlName'],
+          },(null as any),(null as any))),i0.ɵdid(71,16384,(null as any),0,i1.DefaultValueAccessor,
+          [i0.Renderer2,i0.ElementRef,[2,i1.COMPOSITION_BUFFER_MODE]],(null as any),
+          (null as any)),i0.ɵdid(72,212992,(null as any),0,i1.RadioControlValueAccessor,
+          [i0.Renderer2,i0.ElementRef,i1.ɵi,i0.Injector],{formControlName:[0,'formControlName'],
               value:[1,'value']},(null as any)),i0.ɵprd(1024,(null as any),i1.NG_VALUE_ACCESSOR,
           (p0_0:any,p1_0:any) => {
             return [p0_0,p1_0];
-          },[i1.DefaultValueAccessor,i1.RadioControlValueAccessor]),i0.ɵdid(671744,
+          },[i1.DefaultValueAccessor,i1.RadioControlValueAccessor]),i0.ɵdid(74,671744,
           (null as any),0,i1.FormControlName,[[3,i1.ControlContainer],[8,(null as any)],
               [8,(null as any)],[2,i1.NG_VALUE_ACCESSOR]],{name:[0,'name'],model:[1,
               'model']},{update:'ngModelChange'}),i0.ɵprd(2048,(null as any),i1.NgControl,
-          (null as any),[i1.FormControlName]),i0.ɵdid(16384,(null as any),0,i1.NgControlStatus,
-          [i1.NgControl],(null as any),(null as any)),(_l()(),i0.ɵted((null as any),
-          ['\n             '])),(_l()(),i0.ɵeld(0,(null as any),(null as any),0,'img',
-          [['src','/assets/images/greenSmiley.jpg'],['width','24px']],(null as any),
-          (null as any),(null as any),(null as any),(null as any))),(_l()(),i0.ɵted((null as any),
-          ['\n            '])),(_l()(),i0.ɵted((null as any),['\n            '])),
-      (_l()(),i0.ɵeld(0,(null as any),(null as any),11,'label',([] as any[]),(null as any),
-          (null as any),(null as any),(null as any),(null as any))),(_l()(),i0.ɵted((null as any),
-          ['    \n            '])),(_l()(),i0.ɵeld(0,(null as any),(null as any),6,
-          'input',[['formControlName','inputSnapshot'],['id','inputSnapshot'],['type',
-              'radio'],['value','0']],[[2,'ng-untouched',(null as any)],[2,'ng-touched',
-              (null as any)],[2,'ng-pristine',(null as any)],[2,'ng-dirty',(null as any)],
-              [2,'ng-valid',(null as any)],[2,'ng-invalid',(null as any)],[2,'ng-pending',
-                  (null as any)]],[[(null as any),'ngModelChange'],[(null as any),
+          (null as any),[i1.FormControlName]),i0.ɵdid(76,16384,(null as any),0,i1.NgControlStatus,
+          [i1.NgControl],(null as any),(null as any)),(_l()(),i0.ɵted(-1,(null as any),
+          ['\n             '])),(_l()(),i0.ɵeld(78,0,(null as any),(null as any),0,
+          'img',[['src','/assets/images/greenSmiley.jpg'],['width','24px']],(null as any),
+          (null as any),(null as any),(null as any),(null as any))),(_l()(),i0.ɵted(-1,
+          (null as any),['\n            '])),(_l()(),i0.ɵted(-1,(null as any),['\n            '])),
+      (_l()(),i0.ɵeld(81,0,(null as any),(null as any),11,'label',([] as any[]),(null as any),
+          (null as any),(null as any),(null as any),(null as any))),(_l()(),i0.ɵted(-1,
+          (null as any),['    \n            '])),(_l()(),i0.ɵeld(83,0,(null as any),
+          (null as any),6,'input',[['formControlName','inputSnapshot'],['id','inputSnapshot'],
+              ['type','radio'],['value','0']],[[2,'ng-untouched',(null as any)],[2,
+              'ng-touched',(null as any)],[2,'ng-pristine',(null as any)],[2,'ng-dirty',
+              (null as any)],[2,'ng-valid',(null as any)],[2,'ng-invalid',(null as any)],
+              [2,'ng-pending',(null as any)]],[[(null as any),'ngModelChange'],[(null as any),
               'input'],[(null as any),'blur'],[(null as any),'compositionstart'],[(null as any),
               'compositionend'],[(null as any),'change']],(_v,en,$event) => {
             var ad:boolean = true;
@@ -321,31 +322,31 @@ export function View_MonthlyReportsAddComponent_0(_l:any):i0.ɵViewDefinition {
               ad = (pd_6 && ad);
             }
             return ad;
-          },(null as any),(null as any))),i0.ɵdid(16384,(null as any),0,i1.DefaultValueAccessor,
-          [i0.Renderer,i0.ElementRef,[2,i1.COMPOSITION_BUFFER_MODE]],(null as any),
-          (null as any)),i0.ɵdid(212992,(null as any),0,i1.RadioControlValueAccessor,
-          [i0.Renderer,i0.ElementRef,i1.ɵi,i0.Injector],{formControlName:[0,'formControlName'],
+          },(null as any),(null as any))),i0.ɵdid(84,16384,(null as any),0,i1.DefaultValueAccessor,
+          [i0.Renderer2,i0.ElementRef,[2,i1.COMPOSITION_BUFFER_MODE]],(null as any),
+          (null as any)),i0.ɵdid(85,212992,(null as any),0,i1.RadioControlValueAccessor,
+          [i0.Renderer2,i0.ElementRef,i1.ɵi,i0.Injector],{formControlName:[0,'formControlName'],
               value:[1,'value']},(null as any)),i0.ɵprd(1024,(null as any),i1.NG_VALUE_ACCESSOR,
           (p0_0:any,p1_0:any) => {
             return [p0_0,p1_0];
-          },[i1.DefaultValueAccessor,i1.RadioControlValueAccessor]),i0.ɵdid(671744,
+          },[i1.DefaultValueAccessor,i1.RadioControlValueAccessor]),i0.ɵdid(87,671744,
           (null as any),0,i1.FormControlName,[[3,i1.ControlContainer],[8,(null as any)],
               [8,(null as any)],[2,i1.NG_VALUE_ACCESSOR]],{name:[0,'name'],model:[1,
               'model']},{update:'ngModelChange'}),i0.ɵprd(2048,(null as any),i1.NgControl,
-          (null as any),[i1.FormControlName]),i0.ɵdid(16384,(null as any),0,i1.NgControlStatus,
-          [i1.NgControl],(null as any),(null as any)),(_l()(),i0.ɵted((null as any),
-          ['\n                '])),(_l()(),i0.ɵeld(0,(null as any),(null as any),0,
-          'img',[['src','/assets/images/neutralSmiley.jpg'],['width','24px']],(null as any),
-          (null as any),(null as any),(null as any),(null as any))),(_l()(),i0.ɵted((null as any),
-          ['\n            '])),(_l()(),i0.ɵted((null as any),['\n           '])),(_l()(),
-          i0.ɵeld(0,(null as any),(null as any),14,'label',([] as any[]),(null as any),
-              (null as any),(null as any),(null as any),(null as any))),(_l()(),i0.ɵted((null as any),
-          ['    \n              '])),(_l()(),i0.ɵeld(0,(null as any),(null as any),
-          6,'input',[['formControlName','inputSnapshot'],['id','inputSnapshot'],['type',
-              'radio'],['value','-1']],[[2,'ng-untouched',(null as any)],[2,'ng-touched',
-              (null as any)],[2,'ng-pristine',(null as any)],[2,'ng-dirty',(null as any)],
-              [2,'ng-valid',(null as any)],[2,'ng-invalid',(null as any)],[2,'ng-pending',
-                  (null as any)]],[[(null as any),'ngModelChange'],[(null as any),
+          (null as any),[i1.FormControlName]),i0.ɵdid(89,16384,(null as any),0,i1.NgControlStatus,
+          [i1.NgControl],(null as any),(null as any)),(_l()(),i0.ɵted(-1,(null as any),
+          ['\n                '])),(_l()(),i0.ɵeld(91,0,(null as any),(null as any),
+          0,'img',[['src','/assets/images/neutralSmiley.jpg'],['width','24px']],(null as any),
+          (null as any),(null as any),(null as any),(null as any))),(_l()(),i0.ɵted(-1,
+          (null as any),['\n            '])),(_l()(),i0.ɵted(-1,(null as any),['\n           '])),
+      (_l()(),i0.ɵeld(94,0,(null as any),(null as any),14,'label',([] as any[]),(null as any),
+          (null as any),(null as any),(null as any),(null as any))),(_l()(),i0.ɵted(-1,
+          (null as any),['    \n              '])),(_l()(),i0.ɵeld(96,0,(null as any),
+          (null as any),6,'input',[['formControlName','inputSnapshot'],['id','inputSnapshot'],
+              ['type','radio'],['value','-1']],[[2,'ng-untouched',(null as any)],[2,
+              'ng-touched',(null as any)],[2,'ng-pristine',(null as any)],[2,'ng-dirty',
+              (null as any)],[2,'ng-valid',(null as any)],[2,'ng-invalid',(null as any)],
+              [2,'ng-pending',(null as any)]],[[(null as any),'ngModelChange'],[(null as any),
               'input'],[(null as any),'blur'],[(null as any),'compositionstart'],[(null as any),
               'compositionend'],[(null as any),'change']],(_v,en,$event) => {
             var ad:boolean = true;
@@ -379,32 +380,33 @@ export function View_MonthlyReportsAddComponent_0(_l:any):i0.ɵViewDefinition {
               ad = (pd_6 && ad);
             }
             return ad;
-          },(null as any),(null as any))),i0.ɵdid(16384,(null as any),0,i1.DefaultValueAccessor,
-          [i0.Renderer,i0.ElementRef,[2,i1.COMPOSITION_BUFFER_MODE]],(null as any),
-          (null as any)),i0.ɵdid(212992,(null as any),0,i1.RadioControlValueAccessor,
-          [i0.Renderer,i0.ElementRef,i1.ɵi,i0.Injector],{formControlName:[0,'formControlName'],
+          },(null as any),(null as any))),i0.ɵdid(97,16384,(null as any),0,i1.DefaultValueAccessor,
+          [i0.Renderer2,i0.ElementRef,[2,i1.COMPOSITION_BUFFER_MODE]],(null as any),
+          (null as any)),i0.ɵdid(98,212992,(null as any),0,i1.RadioControlValueAccessor,
+          [i0.Renderer2,i0.ElementRef,i1.ɵi,i0.Injector],{formControlName:[0,'formControlName'],
               value:[1,'value']},(null as any)),i0.ɵprd(1024,(null as any),i1.NG_VALUE_ACCESSOR,
           (p0_0:any,p1_0:any) => {
             return [p0_0,p1_0];
-          },[i1.DefaultValueAccessor,i1.RadioControlValueAccessor]),i0.ɵdid(671744,
+          },[i1.DefaultValueAccessor,i1.RadioControlValueAccessor]),i0.ɵdid(100,671744,
           (null as any),0,i1.FormControlName,[[3,i1.ControlContainer],[8,(null as any)],
               [8,(null as any)],[2,i1.NG_VALUE_ACCESSOR]],{name:[0,'name'],model:[1,
               'model']},{update:'ngModelChange'}),i0.ɵprd(2048,(null as any),i1.NgControl,
-          (null as any),[i1.FormControlName]),i0.ɵdid(16384,(null as any),0,i1.NgControlStatus,
-          [i1.NgControl],(null as any),(null as any)),(_l()(),i0.ɵted((null as any),
-          ['\n                '])),(_l()(),i0.ɵeld(0,(null as any),(null as any),0,
-          'img',[['src','/assets/images/frownSmiley.jpg'],['width','24px']],(null as any),
-          (null as any),(null as any),(null as any),(null as any))),(_l()(),i0.ɵted((null as any),
-          ['\n            '])),(_l()(),i0.ɵand(16777216,(null as any),(null as any),
-          1,(null as any),View_MonthlyReportsAddComponent_7)),i0.ɵdid(16384,(null as any),
-          0,i2.NgIf,[i0.ViewContainerRef,i0.TemplateRef],{ngIf:[0,'ngIf']},(null as any)),
-      (_l()(),i0.ɵted((null as any),['\n            '])),(_l()(),i0.ɵted((null as any),
-          ['\n          '])),(_l()(),i0.ɵted((null as any),['\n        '])),(_l()(),
-          i0.ɵted((null as any),['\n\n        '])),(_l()(),i0.ɵeld(0,(null as any),
-          (null as any),9,'div',([] as any[]),[[8,'hidden',0]],(null as any),(null as any),
-          (null as any),(null as any))),(_l()(),i0.ɵted((null as any),['\n          '])),
-      (_l()(),i0.ɵeld(0,(null as any),(null as any),1,'button',[['class','btn btn-primary btn-sm']],
-          (null as any),[[(null as any),'click']],(_v,en,$event) => {
+          (null as any),[i1.FormControlName]),i0.ɵdid(102,16384,(null as any),0,i1.NgControlStatus,
+          [i1.NgControl],(null as any),(null as any)),(_l()(),i0.ɵted(-1,(null as any),
+          ['\n                '])),(_l()(),i0.ɵeld(104,0,(null as any),(null as any),
+          0,'img',[['src','/assets/images/frownSmiley.jpg'],['width','24px']],(null as any),
+          (null as any),(null as any),(null as any),(null as any))),(_l()(),i0.ɵted(-1,
+          (null as any),['\n            '])),(_l()(),i0.ɵand(16777216,(null as any),
+          (null as any),1,(null as any),View_MonthlyReportsAddComponent_7)),i0.ɵdid(107,
+          16384,(null as any),0,i2.NgIf,[i0.ViewContainerRef,i0.TemplateRef],{ngIf:[0,
+              'ngIf']},(null as any)),(_l()(),i0.ɵted(-1,(null as any),['\n            '])),
+      (_l()(),i0.ɵted(-1,(null as any),['\n          '])),(_l()(),i0.ɵted(-1,(null as any),
+          ['\n        '])),(_l()(),i0.ɵted(-1,(null as any),['\n\n        '])),(_l()(),
+          i0.ɵeld(112,0,(null as any),(null as any),9,'div',([] as any[]),[[8,'hidden',
+              0]],(null as any),(null as any),(null as any),(null as any))),(_l()(),
+          i0.ɵted(-1,(null as any),['\n          '])),(_l()(),i0.ɵeld(114,0,(null as any),
+          (null as any),1,'button',[['class','btn btn-primary btn-sm']],(null as any),
+          [[(null as any),'click']],(_v,en,$event) => {
             var ad:boolean = true;
             var _co:i3.MonthlyReportsAddComponent = _v.component;
             if (('click' === en)) {
@@ -412,33 +414,34 @@ export function View_MonthlyReportsAddComponent_0(_l:any):i0.ɵViewDefinition {
               ad = (pd_0 && ad);
             }
             return ad;
-          },(null as any),(null as any))),(_l()(),i0.ɵted((null as any),['\n            Needs Follow Up\n          '])),
-      (_l()(),i0.ɵted((null as any),['\n          '])),(_l()(),i0.ɵeld(0,(null as any),
+          },(null as any),(null as any))),(_l()(),i0.ɵted(-1,(null as any),['\n            Needs Follow Up\n          '])),
+      (_l()(),i0.ɵted(-1,(null as any),['\n          '])),(_l()(),i0.ɵeld(117,0,(null as any),
           (null as any),3,'span',([] as any[]),(null as any),(null as any),(null as any),
-          (null as any),(null as any))),(_l()(),i0.ɵted((null as any),[' << Click here to enter a description of any situation that needs follow-up by Jovenes Adelante administration.\n          '])),
-      (_l()(),i0.ɵeld(0,(null as any),(null as any),0,'br',([] as any[]),(null as any),
-          (null as any),(null as any),(null as any),(null as any))),(_l()(),i0.ɵted((null as any),
-          ['(Haga clic aquí para entrar en una descripción de cualquier situación que necesite seguimiento por Jovenes Adelante administración.)\n          '])),
-      (_l()(),i0.ɵted((null as any),['\n        '])),(_l()(),i0.ɵted((null as any),
-          ['\n        '])),(_l()(),i0.ɵeld(0,(null as any),(null as any),19,'div',
+          (null as any),(null as any))),(_l()(),i0.ɵted(-1,(null as any),[' << Click here to enter a description of any situation that needs follow-up by Jovenes Adelante administration.\n          '])),
+      (_l()(),i0.ɵeld(119,0,(null as any),(null as any),0,'br',([] as any[]),(null as any),
+          (null as any),(null as any),(null as any),(null as any))),(_l()(),i0.ɵted(-1,
+          (null as any),['(Haga clic aquí para entrar en una descripción de cualquier situación que necesite seguimiento por Jovenes Adelante administración.)\n          '])),
+      (_l()(),i0.ɵted(-1,(null as any),['\n        '])),(_l()(),i0.ɵted(-1,(null as any),
+          ['\n        '])),(_l()(),i0.ɵeld(123,0,(null as any),(null as any),19,'div',
           [['class','controls']],[[8,'hidden',0]],(null as any),(null as any),(null as any),
-          (null as any))),(_l()(),i0.ɵted((null as any),['\n\n          '])),(_l()(),
-          i0.ɵeld(0,(null as any),(null as any),4,'label',[['for','inputFollowUp']],
+          (null as any))),(_l()(),i0.ɵted(-1,(null as any),['\n\n          '])),(_l()(),
+          i0.ɵeld(125,0,(null as any),(null as any),4,'label',[['for','inputFollowUp']],
               (null as any),(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i0.ɵeld(0,(null as any),(null as any),3,'span',[['class','red emphasis']],
+      (_l()(),i0.ɵeld(126,0,(null as any),(null as any),3,'span',[['class','red emphasis']],
           (null as any),(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i0.ɵted((null as any),[' >>> Describe the Situation Requiring Follow Up'])),
-      (_l()(),i0.ɵeld(0,(null as any),(null as any),0,'br',([] as any[]),(null as any),
-          (null as any),(null as any),(null as any),(null as any))),(_l()(),i0.ɵted((null as any),
-          ['Describa la situación que necesite seguimiento'])),(_l()(),i0.ɵted((null as any),
-          ['\n          '])),(_l()(),i0.ɵeld(0,(null as any),(null as any),6,'textarea',
-          [['class','form-control input-sm'],['formControlName','inputFollowUp'],['id',
-              'inputFollowUp'],['placeholder','Follow up Needed'],['type','text']],
-          [[2,'ng-untouched',(null as any)],[2,'ng-touched',(null as any)],[2,'ng-pristine',
-              (null as any)],[2,'ng-dirty',(null as any)],[2,'ng-valid',(null as any)],
-              [2,'ng-invalid',(null as any)],[2,'ng-pending',(null as any)]],[[(null as any),
-              'ngModelChange'],[(null as any),'input'],[(null as any),'blur'],[(null as any),
-              'compositionstart'],[(null as any),'compositionend']],(_v,en,$event) => {
+      (_l()(),i0.ɵted(-1,(null as any),[' >>> Describe the Situation Requiring Follow Up'])),
+      (_l()(),i0.ɵeld(128,0,(null as any),(null as any),0,'br',([] as any[]),(null as any),
+          (null as any),(null as any),(null as any),(null as any))),(_l()(),i0.ɵted(-1,
+          (null as any),['Describa la situación que necesite seguimiento'])),(_l()(),
+          i0.ɵted(-1,(null as any),['\n          '])),(_l()(),i0.ɵeld(131,0,(null as any),
+          (null as any),6,'textarea',[['class','form-control input-sm'],['formControlName',
+              'inputFollowUp'],['id','inputFollowUp'],['placeholder','Follow up Needed'],
+              ['type','text']],[[2,'ng-untouched',(null as any)],[2,'ng-touched',(null as any)],
+              [2,'ng-pristine',(null as any)],[2,'ng-dirty',(null as any)],[2,'ng-valid',
+                  (null as any)],[2,'ng-invalid',(null as any)],[2,'ng-pending',(null as any)]],
+          [[(null as any),'ngModelChange'],[(null as any),'input'],[(null as any),
+              'blur'],[(null as any),'compositionstart'],[(null as any),'compositionend']],
+          (_v,en,$event) => {
             var ad:boolean = true;
             var _co:i3.MonthlyReportsAddComponent = _v.component;
             if (('input' === en)) {
@@ -462,37 +465,37 @@ export function View_MonthlyReportsAddComponent_0(_l:any):i0.ɵViewDefinition {
               ad = (pd_4 && ad);
             }
             return ad;
-          },(null as any),(null as any))),i0.ɵdid(16384,(null as any),0,i1.DefaultValueAccessor,
-          [i0.Renderer,i0.ElementRef,[2,i1.COMPOSITION_BUFFER_MODE]],(null as any),
+          },(null as any),(null as any))),i0.ɵdid(132,16384,(null as any),0,i1.DefaultValueAccessor,
+          [i0.Renderer2,i0.ElementRef,[2,i1.COMPOSITION_BUFFER_MODE]],(null as any),
           (null as any)),i0.ɵprd(1024,(null as any),i1.NG_VALUE_ACCESSOR,(p0_0:any) => {
         return [p0_0];
-      },[i1.DefaultValueAccessor]),i0.ɵdid(671744,(null as any),0,i1.FormControlName,
+      },[i1.DefaultValueAccessor]),i0.ɵdid(134,671744,(null as any),0,i1.FormControlName,
           [[3,i1.ControlContainer],[8,(null as any)],[8,(null as any)],[2,i1.NG_VALUE_ACCESSOR]],
           {name:[0,'name'],model:[1,'model']},{update:'ngModelChange'}),i0.ɵprd(2048,
-          (null as any),i1.NgControl,(null as any),[i1.FormControlName]),i0.ɵdid(16384,
-          (null as any),0,i1.NgControlStatus,[i1.NgControl],(null as any),(null as any)),
-      (_l()(),i0.ɵted((null as any),['          '])),(_l()(),i0.ɵted((null as any),
-          ['\n          '])),(_l()(),i0.ɵeld(0,(null as any),(null as any),2,'display-errors',
+          (null as any),i1.NgControl,(null as any),[i1.FormControlName]),i0.ɵdid(136,
+          16384,(null as any),0,i1.NgControlStatus,[i1.NgControl],(null as any),(null as any)),
+      (_l()(),i0.ɵted(-1,(null as any),['          '])),(_l()(),i0.ɵted(-1,(null as any),
+          ['\n          '])),(_l()(),i0.ɵeld(139,0,(null as any),(null as any),2,'app-display-errors',
           [['class','red'],['control','inputFollowUp']],(null as any),(null as any),
           (null as any),i4.View_DisplayErrorsComponent_0,i4.RenderType_DisplayErrorsComponent)),
-      i0.ɵdid(49152,(null as any),0,i5.DisplayErrorsComponent,[i1.FormGroupDirective],
-          {errors:[0,'errors'],control:[1,'control']},(null as any)),i0.ɵpod(['maxlength']),
-      (_l()(),i0.ɵted((null as any),['\n        '])),(_l()(),i0.ɵted((null as any),
-          ['\n\n        '])),(_l()(),i0.ɵeld(0,(null as any),(null as any),18,'div',
-          [['class','controls']],(null as any),(null as any),(null as any),(null as any),
-          (null as any))),(_l()(),i0.ɵted((null as any),['\n          '])),(_l()(),
-          i0.ɵeld(0,(null as any),(null as any),3,'label',[['for','inputSuccess']],
+      i0.ɵdid(140,49152,(null as any),0,i5.DisplayErrorsComponent,[i1.FormGroupDirective],
+          {errors:[0,'errors'],control:[1,'control']},(null as any)),i0.ɵpod(141,{'maxlength':0}),
+      (_l()(),i0.ɵted(-1,(null as any),['\n        '])),(_l()(),i0.ɵted(-1,(null as any),
+          ['\n\n        '])),(_l()(),i0.ɵeld(144,0,(null as any),(null as any),18,
+          'div',[['class','controls']],(null as any),(null as any),(null as any),(null as any),
+          (null as any))),(_l()(),i0.ɵted(-1,(null as any),['\n          '])),(_l()(),
+          i0.ɵeld(146,0,(null as any),(null as any),3,'label',[['for','inputSuccess']],
               (null as any),(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i0.ɵted((null as any),['Describe positive events in the student\'s life during the past month'])),
-      (_l()(),i0.ɵeld(0,(null as any),(null as any),0,'br',([] as any[]),(null as any),
-          (null as any),(null as any),(null as any),(null as any))),(_l()(),i0.ɵted((null as any),
-          ['Describa logros y eventos positivos en la vida del estudiante'])),(_l()(),
-          i0.ɵted((null as any),['\n          '])),(_l()(),i0.ɵeld(0,[['success',1]],
-          (null as any),6,'textarea',[['class','form-control input-sm'],['formControlName',
-              'inputSuccess'],['id','inputSuccess'],['placeholder','(Si usted habla Ingles de manera fluida, favor de hacer su reporte en dicho idioma.)'],
-              ['type','text']],[[2,'ng-untouched',(null as any)],[2,'ng-touched',(null as any)],
-              [2,'ng-pristine',(null as any)],[2,'ng-dirty',(null as any)],[2,'ng-valid',
-                  (null as any)],[2,'ng-invalid',(null as any)],[2,'ng-pending',(null as any)]],
+      (_l()(),i0.ɵted(-1,(null as any),['Describe positive events in the student\'s life during the past month'])),
+      (_l()(),i0.ɵeld(148,0,(null as any),(null as any),0,'br',([] as any[]),(null as any),
+          (null as any),(null as any),(null as any),(null as any))),(_l()(),i0.ɵted(-1,
+          (null as any),['Describa logros y eventos positivos en la vida del estudiante'])),
+      (_l()(),i0.ɵted(-1,(null as any),['\n          '])),(_l()(),i0.ɵeld(151,0,[['success',
+          1]],(null as any),6,'textarea',[['class','form-control input-sm'],['formControlName',
+          'inputSuccess'],['id','inputSuccess'],['placeholder','(Si usted habla Ingles de manera fluida, favor de hacer su reporte en dicho idioma.)'],
+          ['type','text']],[[2,'ng-untouched',(null as any)],[2,'ng-touched',(null as any)],
+          [2,'ng-pristine',(null as any)],[2,'ng-dirty',(null as any)],[2,'ng-valid',
+              (null as any)],[2,'ng-invalid',(null as any)],[2,'ng-pending',(null as any)]],
           [[(null as any),'ngModelChange'],[(null as any),'input'],[(null as any),
               'blur'],[(null as any),'compositionstart'],[(null as any),'compositionend']],
           (_v,en,$event) => {
@@ -519,37 +522,37 @@ export function View_MonthlyReportsAddComponent_0(_l:any):i0.ɵViewDefinition {
               ad = (pd_4 && ad);
             }
             return ad;
-          },(null as any),(null as any))),i0.ɵdid(16384,(null as any),0,i1.DefaultValueAccessor,
-          [i0.Renderer,i0.ElementRef,[2,i1.COMPOSITION_BUFFER_MODE]],(null as any),
+          },(null as any),(null as any))),i0.ɵdid(152,16384,(null as any),0,i1.DefaultValueAccessor,
+          [i0.Renderer2,i0.ElementRef,[2,i1.COMPOSITION_BUFFER_MODE]],(null as any),
           (null as any)),i0.ɵprd(1024,(null as any),i1.NG_VALUE_ACCESSOR,(p0_0:any) => {
         return [p0_0];
-      },[i1.DefaultValueAccessor]),i0.ɵdid(671744,(null as any),0,i1.FormControlName,
+      },[i1.DefaultValueAccessor]),i0.ɵdid(154,671744,(null as any),0,i1.FormControlName,
           [[3,i1.ControlContainer],[8,(null as any)],[8,(null as any)],[2,i1.NG_VALUE_ACCESSOR]],
           {name:[0,'name'],model:[1,'model']},{update:'ngModelChange'}),i0.ɵprd(2048,
-          (null as any),i1.NgControl,(null as any),[i1.FormControlName]),i0.ɵdid(16384,
-          (null as any),0,i1.NgControlStatus,[i1.NgControl],(null as any),(null as any)),
-      (_l()(),i0.ɵted((null as any),['          '])),(_l()(),i0.ɵted((null as any),
-          ['\n          '])),(_l()(),i0.ɵeld(0,(null as any),(null as any),2,'display-errors',
+          (null as any),i1.NgControl,(null as any),[i1.FormControlName]),i0.ɵdid(156,
+          16384,(null as any),0,i1.NgControlStatus,[i1.NgControl],(null as any),(null as any)),
+      (_l()(),i0.ɵted(-1,(null as any),['          '])),(_l()(),i0.ɵted(-1,(null as any),
+          ['\n          '])),(_l()(),i0.ɵeld(159,0,(null as any),(null as any),2,'app-display-errors',
           [['class','red'],['control','inputSuccess']],(null as any),(null as any),
           (null as any),i4.View_DisplayErrorsComponent_0,i4.RenderType_DisplayErrorsComponent)),
-      i0.ɵdid(49152,(null as any),0,i5.DisplayErrorsComponent,[i1.FormGroupDirective],
-          {errors:[0,'errors'],control:[1,'control']},(null as any)),i0.ɵpod(['required',
-          'maxlength']),(_l()(),i0.ɵted((null as any),['\n        '])),(_l()(),i0.ɵted((null as any),
-          ['\n\n        '])),(_l()(),i0.ɵeld(0,(null as any),(null as any),18,'div',
-          [['class','controls']],(null as any),(null as any),(null as any),(null as any),
-          (null as any))),(_l()(),i0.ɵted((null as any),['\n          '])),(_l()(),
-          i0.ɵeld(0,(null as any),(null as any),3,'label',[['for','inputSetback']],
-              (null as any),(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i0.ɵted((null as any),['Describe any special challenges in the student\'s life during the past month'])),
-      (_l()(),i0.ɵeld(0,(null as any),(null as any),0,'br',([] as any[]),(null as any),
-          (null as any),(null as any),(null as any),(null as any))),(_l()(),i0.ɵted((null as any),
-          ['Describa retos y obstáculos en la vida del estudiante'])),(_l()(),i0.ɵted((null as any),
-          ['\n          '])),(_l()(),i0.ɵeld(0,[['setback',1]],(null as any),6,'textarea',
-          [['class','form-control input-sm'],['formControlName','inputSetback'],['id',
-              'inputSetback'],['placeholder','(Si usted habla Ingles de manera fluida, favor de hacer su reporte en dicho idioma.)'],
-              ['type','text']],[[2,'ng-untouched',(null as any)],[2,'ng-touched',(null as any)],
-              [2,'ng-pristine',(null as any)],[2,'ng-dirty',(null as any)],[2,'ng-valid',
-                  (null as any)],[2,'ng-invalid',(null as any)],[2,'ng-pending',(null as any)]],
+      i0.ɵdid(160,49152,(null as any),0,i5.DisplayErrorsComponent,[i1.FormGroupDirective],
+          {errors:[0,'errors'],control:[1,'control']},(null as any)),i0.ɵpod(161,{'required':0,
+          'maxlength':1}),(_l()(),i0.ɵted(-1,(null as any),['\n        '])),(_l()(),
+          i0.ɵted(-1,(null as any),['\n\n        '])),(_l()(),i0.ɵeld(164,0,(null as any),
+          (null as any),18,'div',[['class','controls']],(null as any),(null as any),
+          (null as any),(null as any),(null as any))),(_l()(),i0.ɵted(-1,(null as any),
+          ['\n          '])),(_l()(),i0.ɵeld(166,0,(null as any),(null as any),3,'label',
+          [['for','inputSetback']],(null as any),(null as any),(null as any),(null as any),
+          (null as any))),(_l()(),i0.ɵted(-1,(null as any),['Describe any special challenges in the student\'s life during the past month'])),
+      (_l()(),i0.ɵeld(168,0,(null as any),(null as any),0,'br',([] as any[]),(null as any),
+          (null as any),(null as any),(null as any),(null as any))),(_l()(),i0.ɵted(-1,
+          (null as any),['Describa retos y obstáculos en la vida del estudiante'])),
+      (_l()(),i0.ɵted(-1,(null as any),['\n          '])),(_l()(),i0.ɵeld(171,0,[['setback',
+          1]],(null as any),6,'textarea',[['class','form-control input-sm'],['formControlName',
+          'inputSetback'],['id','inputSetback'],['placeholder','(Si usted habla Ingles de manera fluida, favor de hacer su reporte en dicho idioma.)'],
+          ['type','text']],[[2,'ng-untouched',(null as any)],[2,'ng-touched',(null as any)],
+          [2,'ng-pristine',(null as any)],[2,'ng-dirty',(null as any)],[2,'ng-valid',
+              (null as any)],[2,'ng-invalid',(null as any)],[2,'ng-pending',(null as any)]],
           [[(null as any),'ngModelChange'],[(null as any),'input'],[(null as any),
               'blur'],[(null as any),'compositionstart'],[(null as any),'compositionend']],
           (_v,en,$event) => {
@@ -576,30 +579,31 @@ export function View_MonthlyReportsAddComponent_0(_l:any):i0.ɵViewDefinition {
               ad = (pd_4 && ad);
             }
             return ad;
-          },(null as any),(null as any))),i0.ɵdid(16384,(null as any),0,i1.DefaultValueAccessor,
-          [i0.Renderer,i0.ElementRef,[2,i1.COMPOSITION_BUFFER_MODE]],(null as any),
+          },(null as any),(null as any))),i0.ɵdid(172,16384,(null as any),0,i1.DefaultValueAccessor,
+          [i0.Renderer2,i0.ElementRef,[2,i1.COMPOSITION_BUFFER_MODE]],(null as any),
           (null as any)),i0.ɵprd(1024,(null as any),i1.NG_VALUE_ACCESSOR,(p0_0:any) => {
         return [p0_0];
-      },[i1.DefaultValueAccessor]),i0.ɵdid(671744,(null as any),0,i1.FormControlName,
+      },[i1.DefaultValueAccessor]),i0.ɵdid(174,671744,(null as any),0,i1.FormControlName,
           [[3,i1.ControlContainer],[8,(null as any)],[8,(null as any)],[2,i1.NG_VALUE_ACCESSOR]],
           {name:[0,'name'],model:[1,'model']},{update:'ngModelChange'}),i0.ɵprd(2048,
-          (null as any),i1.NgControl,(null as any),[i1.FormControlName]),i0.ɵdid(16384,
-          (null as any),0,i1.NgControlStatus,[i1.NgControl],(null as any),(null as any)),
-      (_l()(),i0.ɵted((null as any),['          '])),(_l()(),i0.ɵted((null as any),
-          ['\n          '])),(_l()(),i0.ɵeld(0,(null as any),(null as any),2,'display-errors',
+          (null as any),i1.NgControl,(null as any),[i1.FormControlName]),i0.ɵdid(176,
+          16384,(null as any),0,i1.NgControlStatus,[i1.NgControl],(null as any),(null as any)),
+      (_l()(),i0.ɵted(-1,(null as any),['          '])),(_l()(),i0.ɵted(-1,(null as any),
+          ['\n          '])),(_l()(),i0.ɵeld(179,0,(null as any),(null as any),2,'app-display-errors',
           [['class','red'],['control','inputSetback']],(null as any),(null as any),
           (null as any),i4.View_DisplayErrorsComponent_0,i4.RenderType_DisplayErrorsComponent)),
-      i0.ɵdid(49152,(null as any),0,i5.DisplayErrorsComponent,[i1.FormGroupDirective],
-          {errors:[0,'errors'],control:[1,'control']},(null as any)),i0.ɵpod(['required',
-          'maxlength']),(_l()(),i0.ɵted((null as any),['\n        '])),(_l()(),i0.ɵted((null as any),
-          ['\n\n        '])),(_l()(),i0.ɵeld(0,(null as any),(null as any),16,'div',
-          [['class','col-md-6 col-md-offset-1']],(null as any),(null as any),(null as any),
-          (null as any),(null as any))),(_l()(),i0.ɵted((null as any),['\n          '])),
-      (_l()(),i0.ɵeld(0,(null as any),(null as any),4,'span',([] as any[]),(null as any),
-          (null as any),(null as any),(null as any),(null as any))),(_l()(),i0.ɵted((null as any),
-          ['\n          '])),(_l()(),i0.ɵeld(0,(null as any),(null as any),1,'button',
-          [['class','btn btn-primary'],['style','width:80px;margin-right:10px']],(null as any),
-          [[(null as any),'click']],(_v,en,$event) => {
+      i0.ɵdid(180,49152,(null as any),0,i5.DisplayErrorsComponent,[i1.FormGroupDirective],
+          {errors:[0,'errors'],control:[1,'control']},(null as any)),i0.ɵpod(181,{'required':0,
+          'maxlength':1}),(_l()(),i0.ɵted(-1,(null as any),['\n        '])),(_l()(),
+          i0.ɵted(-1,(null as any),['\n\n        '])),(_l()(),i0.ɵeld(184,0,(null as any),
+          (null as any),16,'div',[['class','col-md-6 col-md-offset-1']],(null as any),
+          (null as any),(null as any),(null as any),(null as any))),(_l()(),i0.ɵted(-1,
+          (null as any),['\n          '])),(_l()(),i0.ɵeld(186,0,(null as any),(null as any),
+          4,'span',([] as any[]),(null as any),(null as any),(null as any),(null as any),
+          (null as any))),(_l()(),i0.ɵted(-1,(null as any),['\n          '])),(_l()(),
+          i0.ɵeld(188,0,(null as any),(null as any),1,'button',[['class','btn btn-primary'],
+              ['style','width:80px;margin-right:10px']],(null as any),[[(null as any),
+              'click']],(_v,en,$event) => {
             var ad:boolean = true;
             var _co:i3.MonthlyReportsAddComponent = _v.component;
             if (('click' === en)) {
@@ -607,13 +611,14 @@ export function View_MonthlyReportsAddComponent_0(_l:any):i0.ɵViewDefinition {
               ad = (pd_0 && ad);
             }
             return ad;
-          },(null as any),(null as any))),(_l()(),i0.ɵted((null as any),['\n            Save\n          '])),
-      (_l()(),i0.ɵted((null as any),['\n         '])),(_l()(),i0.ɵted((null as any),
-          [' \n          '])),(_l()(),i0.ɵeld(0,(null as any),(null as any),7,'span',
-          ([] as any[]),(null as any),(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i0.ɵted((null as any),['\n          '])),(_l()(),i0.ɵeld(0,(null as any),
-          (null as any),1,'button',[['class','btn btn-default'],['style','width:70px']],
-          (null as any),[[(null as any),'click']],(_v,en,$event) => {
+          },(null as any),(null as any))),(_l()(),i0.ɵted(-1,(null as any),['\n            Save\n          '])),
+      (_l()(),i0.ɵted(-1,(null as any),['\n         '])),(_l()(),i0.ɵted(-1,(null as any),
+          [' \n          '])),(_l()(),i0.ɵeld(192,0,(null as any),(null as any),7,
+          'span',([] as any[]),(null as any),(null as any),(null as any),(null as any),
+          (null as any))),(_l()(),i0.ɵted(-1,(null as any),['\n          '])),(_l()(),
+          i0.ɵeld(194,0,(null as any),(null as any),1,'button',[['class','btn btn-default'],
+              ['style','width:70px']],(null as any),[[(null as any),'click']],(_v,
+              en,$event) => {
             var ad:boolean = true;
             var _co:i3.MonthlyReportsAddComponent = _v.component;
             if (('click' === en)) {
@@ -621,171 +626,172 @@ export function View_MonthlyReportsAddComponent_0(_l:any):i0.ɵViewDefinition {
               ad = (pd_0 && ad);
             }
             return ad;
-          },(null as any),(null as any))),(_l()(),i0.ɵted((null as any),['\n            Cancel\n          '])),
-      (_l()(),i0.ɵted((null as any),['\n          '])),(_l()(),i0.ɵeld(0,(null as any),
+          },(null as any),(null as any))),(_l()(),i0.ɵted(-1,(null as any),['\n            Cancel\n          '])),
+      (_l()(),i0.ɵted(-1,(null as any),['\n          '])),(_l()(),i0.ɵeld(197,0,(null as any),
           (null as any),1,'div',[['class','red']],[[8,'hidden',0]],(null as any),(null as any),
-          (null as any),(null as any))),(_l()(),i0.ɵted((null as any),['Year, Month, Snapshot and all text fields must be filled in correctly before saving.'])),
-      (_l()(),i0.ɵted((null as any),['\n        '])),(_l()(),i0.ɵted((null as any),
-          ['\n        '])),(_l()(),i0.ɵted((null as any),['\n      '])),(_l()(),i0.ɵted((null as any),
-          ['\n    '])),(_l()(),i0.ɵted((null as any),['\n  '])),(_l()(),i0.ɵted((null as any),
-          ['\n'])),(_l()(),i0.ɵted((null as any),['\n']))],(_ck,_v) => {
-    var _co:i3.MonthlyReportsAddComponent = _v.component;
-    const currVal_0:any = _co.errorMessage;
-    _ck(_v,8,0,currVal_0);
-    const currVal_1:any = _co.successMessage;
-    _ck(_v,11,0,currVal_1);
-    const currVal_9:any = _co.myForm;
-    _ck(_v,15,0,currVal_9);
-    const currVal_18:any = 'lastContactYearSelector';
-    const currVal_19:any = _co.mentorReport.lastContactYear;
-    _ck(_v,31,0,currVal_18,currVal_19);
-    const currVal_20:any = _co.contactYears;
-    _ck(_v,36,0,currVal_20);
-    const currVal_21:boolean = (!_co.lastYear.valid && _co.lastYear.touched);
-    _ck(_v,40,0,currVal_21);
-    const currVal_29:any = 'lastContactMonthSelector';
-    const currVal_30:any = _co.mentorReport.lastContactMonth;
-    _ck(_v,45,0,currVal_29,currVal_30);
-    const currVal_31:any = _co.contactMonths;
-    _ck(_v,50,0,currVal_31);
-    const currVal_32:boolean = (!_co.lastMonth.valid && _co.lastMonth.touched);
-    _ck(_v,54,0,currVal_32);
-    const currVal_40:any = 'inputSnapshot';
-    const currVal_41:any = '1';
-    _ck(_v,72,0,currVal_40,currVal_41);
-    const currVal_42:any = 'inputSnapshot';
-    const currVal_43:any = _co.mentorReport.mentorReportSnapshot;
-    _ck(_v,74,0,currVal_42,currVal_43);
-    const currVal_51:any = 'inputSnapshot';
-    const currVal_52:any = '0';
-    _ck(_v,85,0,currVal_51,currVal_52);
-    const currVal_53:any = 'inputSnapshot';
-    const currVal_54:any = _co.mentorReport.mentorReportSnapshot;
-    _ck(_v,87,0,currVal_53,currVal_54);
-    const currVal_62:any = 'inputSnapshot';
-    const currVal_63:any = '-1';
-    _ck(_v,98,0,currVal_62,currVal_63);
-    const currVal_64:any = 'inputSnapshot';
-    const currVal_65:any = _co.mentorReport.mentorReportSnapshot;
-    _ck(_v,100,0,currVal_64,currVal_65);
-    const currVal_66:any = _co.snapshot.hasError('required');
-    _ck(_v,107,0,currVal_66);
-    const currVal_76:any = 'inputFollowUp';
-    const currVal_77:any = _co.mentorReport.followUpNeeded;
-    _ck(_v,134,0,currVal_76,currVal_77);
-    const currVal_78:any = _ck(_v,141,0,'Entry cannot exceed 2000 characters in length.');
-    const currVal_79:any = 'inputFollowUp';
-    _ck(_v,140,0,currVal_78,currVal_79);
-    const currVal_87:any = 'inputSuccess';
-    const currVal_88:any = _co.mentorReport.recentSuccess;
-    _ck(_v,154,0,currVal_87,currVal_88);
-    const currVal_89:any = _ck(_v,161,0,'An entry is required, even if it is just N/A',
-        'Entry cannot exceed 2000 characters in length.');
-    const currVal_90:any = 'inputSuccess';
-    _ck(_v,160,0,currVal_89,currVal_90);
-    const currVal_98:any = 'inputSetback';
-    const currVal_99:any = _co.mentorReport.recentSetback;
-    _ck(_v,174,0,currVal_98,currVal_99);
-    const currVal_100:any = _ck(_v,181,0,'An entry is required, even if it is just N/A',
-        'Entry cannot exceed 2000 characters in length.');
-    const currVal_101:any = 'inputSetback';
-    _ck(_v,180,0,currVal_100,currVal_101);
-  },(_ck,_v) => {
-    var _co:i3.MonthlyReportsAddComponent = _v.component;
-    const currVal_2:any = i0.ɵnov(_v,17).ngClassUntouched;
-    const currVal_3:any = i0.ɵnov(_v,17).ngClassTouched;
-    const currVal_4:any = i0.ɵnov(_v,17).ngClassPristine;
-    const currVal_5:any = i0.ɵnov(_v,17).ngClassDirty;
-    const currVal_6:any = i0.ɵnov(_v,17).ngClassValid;
-    const currVal_7:any = i0.ɵnov(_v,17).ngClassInvalid;
-    const currVal_8:any = i0.ɵnov(_v,17).ngClassPending;
-    _ck(_v,13,0,currVal_2,currVal_3,currVal_4,currVal_5,currVal_6,currVal_7,currVal_8);
-    const currVal_10:any = _co.submitted;
-    _ck(_v,19,0,currVal_10);
-    const currVal_11:any = i0.ɵnov(_v,33).ngClassUntouched;
-    const currVal_12:any = i0.ɵnov(_v,33).ngClassTouched;
-    const currVal_13:any = i0.ɵnov(_v,33).ngClassPristine;
-    const currVal_14:any = i0.ɵnov(_v,33).ngClassDirty;
-    const currVal_15:any = i0.ɵnov(_v,33).ngClassValid;
-    const currVal_16:any = i0.ɵnov(_v,33).ngClassInvalid;
-    const currVal_17:any = i0.ɵnov(_v,33).ngClassPending;
-    _ck(_v,28,0,currVal_11,currVal_12,currVal_13,currVal_14,currVal_15,currVal_16,
-        currVal_17);
-    const currVal_22:any = i0.ɵnov(_v,47).ngClassUntouched;
-    const currVal_23:any = i0.ɵnov(_v,47).ngClassTouched;
-    const currVal_24:any = i0.ɵnov(_v,47).ngClassPristine;
-    const currVal_25:any = i0.ɵnov(_v,47).ngClassDirty;
-    const currVal_26:any = i0.ɵnov(_v,47).ngClassValid;
-    const currVal_27:any = i0.ɵnov(_v,47).ngClassInvalid;
-    const currVal_28:any = i0.ɵnov(_v,47).ngClassPending;
-    _ck(_v,42,0,currVal_22,currVal_23,currVal_24,currVal_25,currVal_26,currVal_27,
-        currVal_28);
-    const currVal_33:any = i0.ɵnov(_v,76).ngClassUntouched;
-    const currVal_34:any = i0.ɵnov(_v,76).ngClassTouched;
-    const currVal_35:any = i0.ɵnov(_v,76).ngClassPristine;
-    const currVal_36:any = i0.ɵnov(_v,76).ngClassDirty;
-    const currVal_37:any = i0.ɵnov(_v,76).ngClassValid;
-    const currVal_38:any = i0.ɵnov(_v,76).ngClassInvalid;
-    const currVal_39:any = i0.ɵnov(_v,76).ngClassPending;
-    _ck(_v,70,0,currVal_33,currVal_34,currVal_35,currVal_36,currVal_37,currVal_38,
-        currVal_39);
-    const currVal_44:any = i0.ɵnov(_v,89).ngClassUntouched;
-    const currVal_45:any = i0.ɵnov(_v,89).ngClassTouched;
-    const currVal_46:any = i0.ɵnov(_v,89).ngClassPristine;
-    const currVal_47:any = i0.ɵnov(_v,89).ngClassDirty;
-    const currVal_48:any = i0.ɵnov(_v,89).ngClassValid;
-    const currVal_49:any = i0.ɵnov(_v,89).ngClassInvalid;
-    const currVal_50:any = i0.ɵnov(_v,89).ngClassPending;
-    _ck(_v,83,0,currVal_44,currVal_45,currVal_46,currVal_47,currVal_48,currVal_49,
-        currVal_50);
-    const currVal_55:any = i0.ɵnov(_v,102).ngClassUntouched;
-    const currVal_56:any = i0.ɵnov(_v,102).ngClassTouched;
-    const currVal_57:any = i0.ɵnov(_v,102).ngClassPristine;
-    const currVal_58:any = i0.ɵnov(_v,102).ngClassDirty;
-    const currVal_59:any = i0.ɵnov(_v,102).ngClassValid;
-    const currVal_60:any = i0.ɵnov(_v,102).ngClassInvalid;
-    const currVal_61:any = i0.ɵnov(_v,102).ngClassPending;
-    _ck(_v,96,0,currVal_55,currVal_56,currVal_57,currVal_58,currVal_59,currVal_60,
-        currVal_61);
-    const currVal_67:any = _co.needsFollowUp;
-    _ck(_v,112,0,currVal_67);
-    const currVal_68:boolean = !_co.needsFollowUp;
-    _ck(_v,123,0,currVal_68);
-    const currVal_69:any = i0.ɵnov(_v,136).ngClassUntouched;
-    const currVal_70:any = i0.ɵnov(_v,136).ngClassTouched;
-    const currVal_71:any = i0.ɵnov(_v,136).ngClassPristine;
-    const currVal_72:any = i0.ɵnov(_v,136).ngClassDirty;
-    const currVal_73:any = i0.ɵnov(_v,136).ngClassValid;
-    const currVal_74:any = i0.ɵnov(_v,136).ngClassInvalid;
-    const currVal_75:any = i0.ɵnov(_v,136).ngClassPending;
-    _ck(_v,131,0,currVal_69,currVal_70,currVal_71,currVal_72,currVal_73,currVal_74,
-        currVal_75);
-    const currVal_80:any = i0.ɵnov(_v,156).ngClassUntouched;
-    const currVal_81:any = i0.ɵnov(_v,156).ngClassTouched;
-    const currVal_82:any = i0.ɵnov(_v,156).ngClassPristine;
-    const currVal_83:any = i0.ɵnov(_v,156).ngClassDirty;
-    const currVal_84:any = i0.ɵnov(_v,156).ngClassValid;
-    const currVal_85:any = i0.ɵnov(_v,156).ngClassInvalid;
-    const currVal_86:any = i0.ɵnov(_v,156).ngClassPending;
-    _ck(_v,151,0,currVal_80,currVal_81,currVal_82,currVal_83,currVal_84,currVal_85,
-        currVal_86);
-    const currVal_91:any = i0.ɵnov(_v,176).ngClassUntouched;
-    const currVal_92:any = i0.ɵnov(_v,176).ngClassTouched;
-    const currVal_93:any = i0.ɵnov(_v,176).ngClassPristine;
-    const currVal_94:any = i0.ɵnov(_v,176).ngClassDirty;
-    const currVal_95:any = i0.ɵnov(_v,176).ngClassValid;
-    const currVal_96:any = i0.ɵnov(_v,176).ngClassInvalid;
-    const currVal_97:any = i0.ɵnov(_v,176).ngClassPending;
-    _ck(_v,171,0,currVal_91,currVal_92,currVal_93,currVal_94,currVal_95,currVal_96,
-        currVal_97);
-    const currVal_102:any = _co.myForm.valid;
-    _ck(_v,197,0,currVal_102);
-  });
+          (null as any),(null as any))),(_l()(),i0.ɵted(-1,(null as any),['Year, Month, Snapshot and all text fields must be filled in correctly before saving.'])),
+      (_l()(),i0.ɵted(-1,(null as any),['\n        '])),(_l()(),i0.ɵted(-1,(null as any),
+          ['\n        '])),(_l()(),i0.ɵted(-1,(null as any),['\n      '])),(_l()(),
+          i0.ɵted(-1,(null as any),['\n    '])),(_l()(),i0.ɵted(-1,(null as any),['\n  '])),
+      (_l()(),i0.ɵted(-1,(null as any),['\n'])),(_l()(),i0.ɵted(-1,(null as any),['\n']))],
+      (_ck,_v) => {
+        var _co:i3.MonthlyReportsAddComponent = _v.component;
+        const currVal_0:any = _co.errorMessage;
+        _ck(_v,8,0,currVal_0);
+        const currVal_1:any = _co.successMessage;
+        _ck(_v,11,0,currVal_1);
+        const currVal_9:any = _co.myForm;
+        _ck(_v,15,0,currVal_9);
+        const currVal_18:any = 'lastContactYearSelector';
+        const currVal_19:any = _co.mentorReport.lastContactYear;
+        _ck(_v,31,0,currVal_18,currVal_19);
+        const currVal_20:any = _co.contactYears;
+        _ck(_v,36,0,currVal_20);
+        const currVal_21:boolean = (!_co.lastYear.valid && _co.lastYear.touched);
+        _ck(_v,40,0,currVal_21);
+        const currVal_29:any = 'lastContactMonthSelector';
+        const currVal_30:any = _co.mentorReport.lastContactMonth;
+        _ck(_v,45,0,currVal_29,currVal_30);
+        const currVal_31:any = _co.contactMonths;
+        _ck(_v,50,0,currVal_31);
+        const currVal_32:boolean = (!_co.lastMonth.valid && _co.lastMonth.touched);
+        _ck(_v,54,0,currVal_32);
+        const currVal_40:any = 'inputSnapshot';
+        const currVal_41:any = '1';
+        _ck(_v,72,0,currVal_40,currVal_41);
+        const currVal_42:any = 'inputSnapshot';
+        const currVal_43:any = _co.mentorReport.mentorReportSnapshot;
+        _ck(_v,74,0,currVal_42,currVal_43);
+        const currVal_51:any = 'inputSnapshot';
+        const currVal_52:any = '0';
+        _ck(_v,85,0,currVal_51,currVal_52);
+        const currVal_53:any = 'inputSnapshot';
+        const currVal_54:any = _co.mentorReport.mentorReportSnapshot;
+        _ck(_v,87,0,currVal_53,currVal_54);
+        const currVal_62:any = 'inputSnapshot';
+        const currVal_63:any = '-1';
+        _ck(_v,98,0,currVal_62,currVal_63);
+        const currVal_64:any = 'inputSnapshot';
+        const currVal_65:any = _co.mentorReport.mentorReportSnapshot;
+        _ck(_v,100,0,currVal_64,currVal_65);
+        const currVal_66:any = _co.snapshot.hasError('required');
+        _ck(_v,107,0,currVal_66);
+        const currVal_76:any = 'inputFollowUp';
+        const currVal_77:any = _co.mentorReport.followUpNeeded;
+        _ck(_v,134,0,currVal_76,currVal_77);
+        const currVal_78:any = _ck(_v,141,0,'Entry cannot exceed 2000 characters in length.');
+        const currVal_79:any = 'inputFollowUp';
+        _ck(_v,140,0,currVal_78,currVal_79);
+        const currVal_87:any = 'inputSuccess';
+        const currVal_88:any = _co.mentorReport.recentSuccess;
+        _ck(_v,154,0,currVal_87,currVal_88);
+        const currVal_89:any = _ck(_v,161,0,'An entry is required, even if it is just N/A',
+            'Entry cannot exceed 2000 characters in length.');
+        const currVal_90:any = 'inputSuccess';
+        _ck(_v,160,0,currVal_89,currVal_90);
+        const currVal_98:any = 'inputSetback';
+        const currVal_99:any = _co.mentorReport.recentSetback;
+        _ck(_v,174,0,currVal_98,currVal_99);
+        const currVal_100:any = _ck(_v,181,0,'An entry is required, even if it is just N/A',
+            'Entry cannot exceed 2000 characters in length.');
+        const currVal_101:any = 'inputSetback';
+        _ck(_v,180,0,currVal_100,currVal_101);
+      },(_ck,_v) => {
+        var _co:i3.MonthlyReportsAddComponent = _v.component;
+        const currVal_2:any = i0.ɵnov(_v,17).ngClassUntouched;
+        const currVal_3:any = i0.ɵnov(_v,17).ngClassTouched;
+        const currVal_4:any = i0.ɵnov(_v,17).ngClassPristine;
+        const currVal_5:any = i0.ɵnov(_v,17).ngClassDirty;
+        const currVal_6:any = i0.ɵnov(_v,17).ngClassValid;
+        const currVal_7:any = i0.ɵnov(_v,17).ngClassInvalid;
+        const currVal_8:any = i0.ɵnov(_v,17).ngClassPending;
+        _ck(_v,13,0,currVal_2,currVal_3,currVal_4,currVal_5,currVal_6,currVal_7,currVal_8);
+        const currVal_10:any = _co.submitted;
+        _ck(_v,19,0,currVal_10);
+        const currVal_11:any = i0.ɵnov(_v,33).ngClassUntouched;
+        const currVal_12:any = i0.ɵnov(_v,33).ngClassTouched;
+        const currVal_13:any = i0.ɵnov(_v,33).ngClassPristine;
+        const currVal_14:any = i0.ɵnov(_v,33).ngClassDirty;
+        const currVal_15:any = i0.ɵnov(_v,33).ngClassValid;
+        const currVal_16:any = i0.ɵnov(_v,33).ngClassInvalid;
+        const currVal_17:any = i0.ɵnov(_v,33).ngClassPending;
+        _ck(_v,28,0,currVal_11,currVal_12,currVal_13,currVal_14,currVal_15,currVal_16,
+            currVal_17);
+        const currVal_22:any = i0.ɵnov(_v,47).ngClassUntouched;
+        const currVal_23:any = i0.ɵnov(_v,47).ngClassTouched;
+        const currVal_24:any = i0.ɵnov(_v,47).ngClassPristine;
+        const currVal_25:any = i0.ɵnov(_v,47).ngClassDirty;
+        const currVal_26:any = i0.ɵnov(_v,47).ngClassValid;
+        const currVal_27:any = i0.ɵnov(_v,47).ngClassInvalid;
+        const currVal_28:any = i0.ɵnov(_v,47).ngClassPending;
+        _ck(_v,42,0,currVal_22,currVal_23,currVal_24,currVal_25,currVal_26,currVal_27,
+            currVal_28);
+        const currVal_33:any = i0.ɵnov(_v,76).ngClassUntouched;
+        const currVal_34:any = i0.ɵnov(_v,76).ngClassTouched;
+        const currVal_35:any = i0.ɵnov(_v,76).ngClassPristine;
+        const currVal_36:any = i0.ɵnov(_v,76).ngClassDirty;
+        const currVal_37:any = i0.ɵnov(_v,76).ngClassValid;
+        const currVal_38:any = i0.ɵnov(_v,76).ngClassInvalid;
+        const currVal_39:any = i0.ɵnov(_v,76).ngClassPending;
+        _ck(_v,70,0,currVal_33,currVal_34,currVal_35,currVal_36,currVal_37,currVal_38,
+            currVal_39);
+        const currVal_44:any = i0.ɵnov(_v,89).ngClassUntouched;
+        const currVal_45:any = i0.ɵnov(_v,89).ngClassTouched;
+        const currVal_46:any = i0.ɵnov(_v,89).ngClassPristine;
+        const currVal_47:any = i0.ɵnov(_v,89).ngClassDirty;
+        const currVal_48:any = i0.ɵnov(_v,89).ngClassValid;
+        const currVal_49:any = i0.ɵnov(_v,89).ngClassInvalid;
+        const currVal_50:any = i0.ɵnov(_v,89).ngClassPending;
+        _ck(_v,83,0,currVal_44,currVal_45,currVal_46,currVal_47,currVal_48,currVal_49,
+            currVal_50);
+        const currVal_55:any = i0.ɵnov(_v,102).ngClassUntouched;
+        const currVal_56:any = i0.ɵnov(_v,102).ngClassTouched;
+        const currVal_57:any = i0.ɵnov(_v,102).ngClassPristine;
+        const currVal_58:any = i0.ɵnov(_v,102).ngClassDirty;
+        const currVal_59:any = i0.ɵnov(_v,102).ngClassValid;
+        const currVal_60:any = i0.ɵnov(_v,102).ngClassInvalid;
+        const currVal_61:any = i0.ɵnov(_v,102).ngClassPending;
+        _ck(_v,96,0,currVal_55,currVal_56,currVal_57,currVal_58,currVal_59,currVal_60,
+            currVal_61);
+        const currVal_67:any = _co.needsFollowUp;
+        _ck(_v,112,0,currVal_67);
+        const currVal_68:boolean = !_co.needsFollowUp;
+        _ck(_v,123,0,currVal_68);
+        const currVal_69:any = i0.ɵnov(_v,136).ngClassUntouched;
+        const currVal_70:any = i0.ɵnov(_v,136).ngClassTouched;
+        const currVal_71:any = i0.ɵnov(_v,136).ngClassPristine;
+        const currVal_72:any = i0.ɵnov(_v,136).ngClassDirty;
+        const currVal_73:any = i0.ɵnov(_v,136).ngClassValid;
+        const currVal_74:any = i0.ɵnov(_v,136).ngClassInvalid;
+        const currVal_75:any = i0.ɵnov(_v,136).ngClassPending;
+        _ck(_v,131,0,currVal_69,currVal_70,currVal_71,currVal_72,currVal_73,currVal_74,
+            currVal_75);
+        const currVal_80:any = i0.ɵnov(_v,156).ngClassUntouched;
+        const currVal_81:any = i0.ɵnov(_v,156).ngClassTouched;
+        const currVal_82:any = i0.ɵnov(_v,156).ngClassPristine;
+        const currVal_83:any = i0.ɵnov(_v,156).ngClassDirty;
+        const currVal_84:any = i0.ɵnov(_v,156).ngClassValid;
+        const currVal_85:any = i0.ɵnov(_v,156).ngClassInvalid;
+        const currVal_86:any = i0.ɵnov(_v,156).ngClassPending;
+        _ck(_v,151,0,currVal_80,currVal_81,currVal_82,currVal_83,currVal_84,currVal_85,
+            currVal_86);
+        const currVal_91:any = i0.ɵnov(_v,176).ngClassUntouched;
+        const currVal_92:any = i0.ɵnov(_v,176).ngClassTouched;
+        const currVal_93:any = i0.ɵnov(_v,176).ngClassPristine;
+        const currVal_94:any = i0.ɵnov(_v,176).ngClassDirty;
+        const currVal_95:any = i0.ɵnov(_v,176).ngClassValid;
+        const currVal_96:any = i0.ɵnov(_v,176).ngClassInvalid;
+        const currVal_97:any = i0.ɵnov(_v,176).ngClassPending;
+        _ck(_v,171,0,currVal_91,currVal_92,currVal_93,currVal_94,currVal_95,currVal_96,
+            currVal_97);
+        const currVal_102:any = _co.myForm.valid;
+        _ck(_v,197,0,currVal_102);
+      });
 }
 export function View_MonthlyReportsAddComponent_Host_0(_l:any):i0.ɵViewDefinition {
-  return i0.ɵvid(0,[(_l()(),i0.ɵeld(0,(null as any),(null as any),1,'ng-component',
+  return i0.ɵvid(0,[(_l()(),i0.ɵeld(0,0,(null as any),(null as any),1,'ng-component',
       ([] as any[]),(null as any),(null as any),(null as any),View_MonthlyReportsAddComponent_0,
-      RenderType_MonthlyReportsAddComponent)),i0.ɵdid(114688,(null as any),0,i3.MonthlyReportsAddComponent,
+      RenderType_MonthlyReportsAddComponent)),i0.ɵdid(1,114688,(null as any),0,i3.MonthlyReportsAddComponent,
       [i6.ActivatedRoute,i6.Router,i7.SqlResource,i1.FormBuilder],(null as any),(null as any))],
       (_ck,_v) => {
         _ck(_v,1,0);
@@ -793,4 +799,4 @@ export function View_MonthlyReportsAddComponent_Host_0(_l:any):i0.ɵViewDefiniti
 }
 export const MonthlyReportsAddComponentNgFactory:i0.ComponentFactory<i3.MonthlyReportsAddComponent> = i0.ɵccf('ng-component',
     i3.MonthlyReportsAddComponent,View_MonthlyReportsAddComponent_Host_0,{},{},([] as any[]));
-//# sourceMappingURL=data:application/json;base64,eyJmaWxlIjoiL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC8rbWVudG9ycy9tb250aGx5LXJlcG9ydHMtYWRkL21vbnRobHktcmVwb3J0cy1hZGQuY29tcG9uZW50Lm5nZmFjdG9yeS50cyIsInZlcnNpb24iOjMsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIm5nOi8vL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC8rbWVudG9ycy9tb250aGx5LXJlcG9ydHMtYWRkL21vbnRobHktcmVwb3J0cy1hZGQuY29tcG9uZW50LnRzIiwibmc6Ly8vaG9tZS9ja2FwaWxsYS9EZXYvSm92ZW5lc0EtY2xpZW50LkNMSS9zcmMvYXBwLyttZW50b3JzL21vbnRobHktcmVwb3J0cy1hZGQvbW9udGhseS1yZXBvcnRzLWFkZC5jb21wb25lbnQuaHRtbCIsIm5nOi8vL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC8rbWVudG9ycy9tb250aGx5LXJlcG9ydHMtYWRkL21vbnRobHktcmVwb3J0cy1hZGQuY29tcG9uZW50LnRzLk1vbnRobHlSZXBvcnRzQWRkQ29tcG9uZW50X0hvc3QuaHRtbCJdLCJzb3VyY2VzQ29udGVudCI6WyIgIiwiPGRpdiBjbGFzcz1cInBhbmVsIHBhbmVsLXByaW1hcnlcIj5cbiAgPGRpdiBjbGFzcz1cInBhbmVsLWhlYWRpbmdcIiBzdHlsZT1cImZvbnQtc2l6ZTpsYXJnZVwiPlxuICAgIEFkZCBOZXcgTW9udGhseSBSZXBvcnRcbiAgPC9kaXY+XG4gIDxkaXYgY2xhc3M9XCJwYW5lbC1ib2R5XCI+XG4gICAgPGRpdiAqbmdJZj1cImVycm9yTWVzc2FnZVwiIGNsYXNzPVwiYWxlcnQgYWxlcnQtZGFuZ2VyXCI+e3tlcnJvck1lc3NhZ2V9fTwvZGl2PlxuICAgIDxkaXYgKm5nSWY9XCJzdWNjZXNzTWVzc2FnZVwiIGNsYXNzPVwiYWxlcnQgYWxlcnQtc3VjY2Vzc1wiPnt7c3VjY2Vzc01lc3NhZ2V9fTwvZGl2PlxuXG4gICAgPGZvcm0gW2Zvcm1Hcm91cF09XCJteUZvcm1cIj5cbiAgICAgIDxmaWVsZHNldCBbZGlzYWJsZWRdPVwic3VibWl0dGVkXCI+XG4gICAgICAgIDxkaXYgY2xhc3M9XCJmb3JtLWdyb3VwXCI+XG4gICAgICAgICAgPGRpdiBjbGFzcz1cImNvbnRyb2xzXCI+XG4gICAgICAgICAgICA8bGFiZWwgZm9yPVwibGFzdENvbnRhY3RZZWFyU2VsZWN0b3JcIj4gWWVhci9Nb250aCB5b3UgTGFzdCBDb21tdW5pY2F0ZWQgd2l0aCBTdHVkZW50PC9sYWJlbD5cbiAgICAgICAgICAgIDxzZWxlY3QgZm9ybUNvbnRyb2xOYW1lPVwibGFzdENvbnRhY3RZZWFyU2VsZWN0b3JcIiBbKG5nTW9kZWwpXT1cIm1lbnRvclJlcG9ydC5sYXN0Q29udGFjdFllYXJcIj5cbiAgICAgICAgICAgIDxvcHRpb24gKm5nRm9yPVwibGV0IHllYXIgb2YgY29udGFjdFllYXJzXCIgW3ZhbHVlXT1cInllYXIudmFsdWVcIj57e3llYXIubGFiZWx9fTwvb3B0aW9uPlxuICAgICAgICAgICAgPC9zZWxlY3Q+XG4gICAgICAgICAgICA8c3BhbiAqbmdJZj1cIiFsYXN0WWVhci52YWxpZCAmYW1wOyZhbXA7IGxhc3RZZWFyLnRvdWNoZWRcIiBjbGFzcz1cInJlZFwiPiBTZWxlY3QgWWVhcjwvc3Bhbj5cblxuICAgICAgICAgICAgPHNlbGVjdCBmb3JtQ29udHJvbE5hbWU9XCJsYXN0Q29udGFjdE1vbnRoU2VsZWN0b3JcIiBbKG5nTW9kZWwpXT1cIm1lbnRvclJlcG9ydC5sYXN0Q29udGFjdE1vbnRoXCI+XG4gICAgICAgICAgICA8b3B0aW9uICpuZ0Zvcj1cImxldCBtb250aCBvZiBjb250YWN0TW9udGhzXCIgW3ZhbHVlXT1cIm1vbnRoLnZhbHVlXCI+e3ttb250aC5sYWJlbH19PC9vcHRpb24+XG4gICAgICAgICAgICA8L3NlbGVjdD5cbiAgICAgICAgICAgIDxzcGFuICpuZ0lmPVwiIWxhc3RNb250aC52YWxpZCAmYW1wOyZhbXA7IGxhc3RNb250aC50b3VjaGVkXCIgY2xhc3M9XCJyZWRcIj5TZWxlY3QgTW9udGg8L3NwYW4+XG4gICAgICAgICAgPC9kaXY+XG4gICAgICAgIDwvZGl2PlxuXG4gICAgICAgIDxkaXYgY2xhc3M9XCJmb3JtLWdyb3VwXCI+XG4gICAgICAgICAgPGRpdiBjbGFzcz1cImNvbnRyb2xzXCI+XG4gICAgICAgICAgICA8bGFiZWw+IFN0dWRlbnQgU25hcHNob3Q6ICg8c3Bhbj5Ib3cgYXJlIHRoaW5ncyBnb2luZyBvdmVyYWxsIHdpdGggdGhlIHN0dWRlbnQ/PC9zcGFuPik8L2xhYmVsPlxuICAgICAgICAgICAgPGxhYmVsPlxuICAgICAgICAgICAgPGlucHV0IHR5cGU9XCJyYWRpb1wiIGlkPVwiaW5wdXRTbmFwc2hvdFwiXG4gICAgICAgICAgICBmb3JtQ29udHJvbE5hbWU9XCJpbnB1dFNuYXBzaG90XCJcbiAgICAgICAgICAgIFsobmdNb2RlbCldPVwibWVudG9yUmVwb3J0Lm1lbnRvclJlcG9ydFNuYXBzaG90XCIgdmFsdWU9XCIxXCI+XG4gICAgICAgICAgICAgPGltZyBzcmM9XCIvYXNzZXRzL2ltYWdlcy9ncmVlblNtaWxleS5qcGdcIiB3aWR0aD1cIjI0cHhcIiAvPlxuICAgICAgICAgICAgPC9sYWJlbD5cbiAgICAgICAgICAgIDxsYWJlbD4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDtcbiAgICAgICAgICAgIDxpbnB1dCB0eXBlPVwicmFkaW9cIiBpZD1cImlucHV0U25hcHNob3RcIlxuICAgICAgICAgICAgZm9ybUNvbnRyb2xOYW1lPVwiaW5wdXRTbmFwc2hvdFwiXG4gICAgICAgICAgICBbKG5nTW9kZWwpXT1cIm1lbnRvclJlcG9ydC5tZW50b3JSZXBvcnRTbmFwc2hvdFwiIHZhbHVlPVwiMFwiID5cbiAgICAgICAgICAgICAgICA8aW1nIHNyYz1cIi9hc3NldHMvaW1hZ2VzL25ldXRyYWxTbWlsZXkuanBnXCIgd2lkdGg9XCIyNHB4XCIgLz5cbiAgICAgICAgICAgIDwvbGFiZWw+XG4gICAgICAgICAgIDxsYWJlbD4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDtcbiAgICAgICAgICAgICAgPGlucHV0IHR5cGU9XCJyYWRpb1wiIGlkPVwiaW5wdXRTbmFwc2hvdFwiXG4gICAgICAgICAgICAgIGZvcm1Db250cm9sTmFtZT1cImlucHV0U25hcHNob3RcIlxuICAgICAgICAgICAgICBbKG5nTW9kZWwpXT1cIm1lbnRvclJlcG9ydC5tZW50b3JSZXBvcnRTbmFwc2hvdFwiIHZhbHVlPVwiLTFcIiA+XG4gICAgICAgICAgICAgICAgPGltZyBzcmM9XCIvYXNzZXRzL2ltYWdlcy9mcm93blNtaWxleS5qcGdcIiB3aWR0aD1cIjI0cHhcIiAvPlxuICAgICAgICAgICAgPHNwYW4gKm5nSWY9XCJzbmFwc2hvdC5oYXNFcnJvcigncmVxdWlyZWQnKVwiIGNsYXNzPVwicmVkXCI+UGxlYXNlIHNlbGVjdCBhIFNuYXBzaG90IGNvbG9yPC9zcGFuPlxuICAgICAgICAgICAgPC9sYWJlbD5cbiAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgPC9kaXY+XG5cbiAgICAgICAgPGRpdiBbaGlkZGVuXT1cInRoaXMubmVlZHNGb2xsb3dVcFwiPlxuICAgICAgICAgIDxidXR0b24gY2xhc3M9XCJidG4gYnRuLXByaW1hcnkgYnRuLXNtXCJcblxuICAgICAgICAgICAgICAgICAgKGNsaWNrKT1cIm9uTmVlZHNGb2xsb3dVcCgpXCJcbiAgICAgICAgICAgICAgICAgID5cbiAgICAgICAgICAgIE5lZWRzIEZvbGxvdyBVcFxuICAgICAgICAgIDwvYnV0dG9uPlxuICAgICAgICAgIDxzcGFuPiA8PCBDbGljayBoZXJlIHRvIGVudGVyIGEgZGVzY3JpcHRpb24gb2YgYW55IHNpdHVhdGlvbiB0aGF0IG5lZWRzIGZvbGxvdy11cCBieSBKb3ZlbmVzIEFkZWxhbnRlIGFkbWluaXN0cmF0aW9uLlxuICAgICAgICAgIDxiciAvPihIYWdhIGNsaWMgYXF1w60gcGFyYSBlbnRyYXIgZW4gdW5hIGRlc2NyaXBjacOzbiBkZSBjdWFscXVpZXIgc2l0dWFjacOzbiBxdWUgbmVjZXNpdGUgc2VndWltaWVudG8gcG9yIEpvdmVuZXMgQWRlbGFudGUgYWRtaW5pc3RyYWNpw7NuLilcbiAgICAgICAgICA8L3NwYW4+XG4gICAgICAgIDwvZGl2PlxuICAgICAgICA8ZGl2IFtoaWRkZW5dPVwiIXRoaXMubmVlZHNGb2xsb3dVcFwiIGNsYXNzPVwiY29udHJvbHNcIj5cblxuICAgICAgICAgIDxsYWJlbCBmb3I9XCJpbnB1dEZvbGxvd1VwXCI+PHNwYW4gY2xhc3M9XCJyZWQgZW1waGFzaXNcIj4gPj4+IERlc2NyaWJlIHRoZSBTaXR1YXRpb24gUmVxdWlyaW5nIEZvbGxvdyBVcDxiciAvPkRlc2NyaWJhIGxhIHNpdHVhY2nDs24gcXVlIG5lY2VzaXRlIHNlZ3VpbWllbnRvPC9zcGFuPjwvbGFiZWw+XG4gICAgICAgICAgPHRleHRhcmVhIGlkPVwiaW5wdXRGb2xsb3dVcFwiIGZvcm1Db250cm9sTmFtZT1cImlucHV0Rm9sbG93VXBcIiBbKG5nTW9kZWwpXT1cIm1lbnRvclJlcG9ydC5mb2xsb3dVcE5lZWRlZFwiIHR5cGU9XCJ0ZXh0XCIgY2xhc3M9XCJmb3JtLWNvbnRyb2wgaW5wdXQtc21cIlxuICAgICAgICAgICAgcGxhY2Vob2xkZXI9XCJGb2xsb3cgdXAgTmVlZGVkXCI+XG4gICAgICAgICAgPC90ZXh0YXJlYT5cbiAgICAgICAgICA8ZGlzcGxheS1lcnJvcnMgY29udHJvbD1cImlucHV0Rm9sbG93VXBcIiBjbGFzcz1cInJlZFwiXG4gICAgICAgICAgICBbZXJyb3JzXT1cIntcbiAgICAgICAgICAgICAgICAnbWF4bGVuZ3RoJzogJ0VudHJ5IGNhbm5vdCBleGNlZWQgMjAwMCBjaGFyYWN0ZXJzIGluIGxlbmd0aC4nXG4gICAgICAgICAgICAgICAgfVwiPjwvZGlzcGxheS1lcnJvcnM+XG4gICAgICAgIDwvZGl2PlxuXG4gICAgICAgIDxkaXYgY2xhc3M9XCJjb250cm9sc1wiPlxuICAgICAgICAgIDxsYWJlbCBmb3I9XCJpbnB1dFN1Y2Nlc3NcIj5EZXNjcmliZSBwb3NpdGl2ZSBldmVudHMgaW4gdGhlIHN0dWRlbnQncyBsaWZlIGR1cmluZyB0aGUgcGFzdCBtb250aDxiciAvPkRlc2NyaWJhIGxvZ3JvcyB5IGV2ZW50b3MgcG9zaXRpdm9zIGVuIGxhIHZpZGEgZGVsIGVzdHVkaWFudGU8L2xhYmVsPlxuICAgICAgICAgIDx0ZXh0YXJlYSBpZD1cImlucHV0U3VjY2Vzc1wiICNzdWNjZXNzIGZvcm1Db250cm9sTmFtZT1cImlucHV0U3VjY2Vzc1wiIFsobmdNb2RlbCldPVwibWVudG9yUmVwb3J0LnJlY2VudFN1Y2Nlc3NcIiB0eXBlPVwidGV4dFwiXG4gICAgICAgICAgICBjbGFzcz1cImZvcm0tY29udHJvbCBpbnB1dC1zbVwiIHBsYWNlaG9sZGVyPVwiKFNpIHVzdGVkIGhhYmxhIEluZ2xlcyBkZSBtYW5lcmEgZmx1aWRhLCBmYXZvciBkZSBoYWNlciBzdSByZXBvcnRlIGVuIGRpY2hvIGlkaW9tYS4pXCI+XG4gICAgICAgICAgPC90ZXh0YXJlYT5cbiAgICAgICAgICA8ZGlzcGxheS1lcnJvcnMgY29udHJvbD1cImlucHV0U3VjY2Vzc1wiIGNsYXNzPVwicmVkXCJcbiAgICAgICAgICAgIFtlcnJvcnNdPVwieydyZXF1aXJlZCc6ICdBbiBlbnRyeSBpcyByZXF1aXJlZCwgZXZlbiBpZiBpdCBpcyBqdXN0IE4vQScsXG4gICAgICAgICAgICAgICAgJ21heGxlbmd0aCc6ICdFbnRyeSBjYW5ub3QgZXhjZWVkIDIwMDAgY2hhcmFjdGVycyBpbiBsZW5ndGguJ1xuICAgICAgICAgICAgICAgIH1cIj48L2Rpc3BsYXktZXJyb3JzPlxuICAgICAgICA8L2Rpdj5cblxuICAgICAgICA8ZGl2IGNsYXNzPVwiY29udHJvbHNcIj5cbiAgICAgICAgICA8bGFiZWwgZm9yPVwiaW5wdXRTZXRiYWNrXCI+RGVzY3JpYmUgYW55IHNwZWNpYWwgY2hhbGxlbmdlcyBpbiB0aGUgc3R1ZGVudCdzIGxpZmUgZHVyaW5nIHRoZSBwYXN0IG1vbnRoPGJyIC8+RGVzY3JpYmEgcmV0b3MgeSBvYnN0w6FjdWxvcyBlbiBsYSB2aWRhIGRlbCBlc3R1ZGlhbnRlPC9sYWJlbD5cbiAgICAgICAgICA8dGV4dGFyZWEgaWQ9XCJpbnB1dFNldGJhY2tcIiAjc2V0YmFjayBmb3JtQ29udHJvbE5hbWU9XCJpbnB1dFNldGJhY2tcIiBbKG5nTW9kZWwpXT1cIm1lbnRvclJlcG9ydC5yZWNlbnRTZXRiYWNrXCIgdHlwZT1cInRleHRcIlxuICAgICAgICAgICAgY2xhc3M9XCJmb3JtLWNvbnRyb2wgaW5wdXQtc21cIiBwbGFjZWhvbGRlcj1cIihTaSB1c3RlZCBoYWJsYSBJbmdsZXMgZGUgbWFuZXJhIGZsdWlkYSwgZmF2b3IgZGUgaGFjZXIgc3UgcmVwb3J0ZSBlbiBkaWNobyBpZGlvbWEuKVwiPlxuICAgICAgICAgIDwvdGV4dGFyZWE+XG4gICAgICAgICAgPGRpc3BsYXktZXJyb3JzIGNvbnRyb2w9XCJpbnB1dFNldGJhY2tcIiBjbGFzcz1cInJlZFwiXG4gICAgICAgICAgICBbZXJyb3JzXT1cInsncmVxdWlyZWQnOiAnQW4gZW50cnkgaXMgcmVxdWlyZWQsIGV2ZW4gaWYgaXQgaXMganVzdCBOL0EnLFxuICAgICAgICAgICAgICAgICdtYXhsZW5ndGgnOiAnRW50cnkgY2Fubm90IGV4Y2VlZCAyMDAwIGNoYXJhY3RlcnMgaW4gbGVuZ3RoLidcbiAgICAgICAgICAgICAgICB9XCI+PC9kaXNwbGF5LWVycm9ycz5cbiAgICAgICAgPC9kaXY+XG5cbiAgICAgICAgPGRpdiBjbGFzcz1cImNvbC1tZC02IGNvbC1tZC1vZmZzZXQtMVwiPlxuICAgICAgICAgIDxzcGFuPlxuICAgICAgICAgIDxidXR0b24gY2xhc3M9XCJidG4gYnRuLXByaW1hcnlcIlxuICAgICAgICAgICAgICAgICAgc3R5bGU9XCJ3aWR0aDo4MHB4O21hcmdpbi1yaWdodDoxMHB4XCJcbiAgICAgICAgICAgICAgICAgIChjbGljayk9XCJvblN1Ym1pdCgpXCJcbiAgICAgICAgICAgICAgICAgID5cbiAgICAgICAgICAgIFNhdmVcbiAgICAgICAgICA8L2J1dHRvbj5cbiAgICAgICAgIDwvc3Bhbj4mbmJzcDtcbiAgICAgICAgICA8c3Bhbj5cbiAgICAgICAgICA8YnV0dG9uIGNsYXNzPVwiYnRuIGJ0bi1kZWZhdWx0XCJcbiAgICAgICAgICAgICAgICAgIHN0eWxlPVwid2lkdGg6NzBweFwiXG4gICAgICAgICAgICAgICAgICAoY2xpY2spPVwib25DYW5jZWwoKVwiPlxuICAgICAgICAgICAgQ2FuY2VsXG4gICAgICAgICAgPC9idXR0b24+XG4gICAgICAgICAgPGRpdiBjbGFzcz1cInJlZFwiIFtoaWRkZW5dPVwibXlGb3JtLnZhbGlkXCI+WWVhciwgTW9udGgsIFNuYXBzaG90IGFuZCBhbGwgdGV4dCBmaWVsZHMgbXVzdCBiZSBmaWxsZWQgaW4gY29ycmVjdGx5IGJlZm9yZSBzYXZpbmcuPC9kaXY+XG4gICAgICAgIDwvc3Bhbj5cbiAgICAgICAgPC9kaXY+XG4gICAgICA8L2ZpZWxkc2V0PlxuICAgIDwvZm9ybT5cbiAgPC9kaXY+XG48L2Rpdj5cbiIsIjxuZy1jb21wb25lbnQ+PC9uZy1jb21wb25lbnQ+Il0sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7b0JDS0k7TUFBQTtNQUFBLGdCQUFxRDs7O0lBQUE7SUFBQTs7OztvQkFDckQ7TUFBQTtNQUFBLGdCQUF3RDs7O0lBQUE7SUFBQTs7OztvQkFRaEQ7TUFBQSwrRUFBQTtNQUFBO01BQUEsMENBQUE7a0JBQUEsc0RBQStEO01BQUE7SUFBckI7SUFBMUMsV0FBMEMsU0FBMUM7SUFBMEM7SUFBMUMsV0FBMEMsU0FBMUM7O0lBQStEO0lBQUE7Ozs7b0JBRS9EO01BQUE7TUFBc0U7OztvQkFHdEU7TUFBQSwrRUFBQTtNQUFBO01BQUEsMENBQUE7a0JBQUEsc0RBQWtFO01BQUE7SUFBdEI7SUFBNUMsV0FBNEMsU0FBNUM7SUFBNEM7SUFBNUMsV0FBNEMsU0FBNUM7O0lBQWtFO0lBQUE7Ozs7b0JB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
+//# sourceMappingURL=data:application/json;base64,eyJmaWxlIjoiL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC8rbWVudG9ycy9tb250aGx5LXJlcG9ydHMtYWRkL21vbnRobHktcmVwb3J0cy1hZGQuY29tcG9uZW50Lm5nZmFjdG9yeS50cyIsInZlcnNpb24iOjMsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIm5nOi8vL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC8rbWVudG9ycy9tb250aGx5LXJlcG9ydHMtYWRkL21vbnRobHktcmVwb3J0cy1hZGQuY29tcG9uZW50LnRzIiwibmc6Ly8vaG9tZS9ja2FwaWxsYS9EZXYvSm92ZW5lc0EtY2xpZW50LkNMSS9zcmMvYXBwLyttZW50b3JzL21vbnRobHktcmVwb3J0cy1hZGQvbW9udGhseS1yZXBvcnRzLWFkZC5jb21wb25lbnQuaHRtbCIsIm5nOi8vL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC8rbWVudG9ycy9tb250aGx5LXJlcG9ydHMtYWRkL21vbnRobHktcmVwb3J0cy1hZGQuY29tcG9uZW50LnRzLk1vbnRobHlSZXBvcnRzQWRkQ29tcG9uZW50X0hvc3QuaHRtbCJdLCJzb3VyY2VzQ29udGVudCI6WyIgIiwiPGRpdiBjbGFzcz1cInBhbmVsIHBhbmVsLXByaW1hcnlcIj5cbiAgPGRpdiBjbGFzcz1cInBhbmVsLWhlYWRpbmdcIiBzdHlsZT1cImZvbnQtc2l6ZTpsYXJnZVwiPlxuICAgIEFkZCBOZXcgTW9udGhseSBSZXBvcnRcbiAgPC9kaXY+XG4gIDxkaXYgY2xhc3M9XCJwYW5lbC1ib2R5XCI+XG4gICAgPGRpdiAqbmdJZj1cImVycm9yTWVzc2FnZVwiIGNsYXNzPVwiYWxlcnQgYWxlcnQtZGFuZ2VyXCI+e3tlcnJvck1lc3NhZ2V9fTwvZGl2PlxuICAgIDxkaXYgKm5nSWY9XCJzdWNjZXNzTWVzc2FnZVwiIGNsYXNzPVwiYWxlcnQgYWxlcnQtc3VjY2Vzc1wiPnt7c3VjY2Vzc01lc3NhZ2V9fTwvZGl2PlxuXG4gICAgPGZvcm0gW2Zvcm1Hcm91cF09XCJteUZvcm1cIj5cbiAgICAgIDxmaWVsZHNldCBbZGlzYWJsZWRdPVwic3VibWl0dGVkXCI+XG4gICAgICAgIDxkaXYgY2xhc3M9XCJmb3JtLWdyb3VwXCI+XG4gICAgICAgICAgPGRpdiBjbGFzcz1cImNvbnRyb2xzXCI+XG4gICAgICAgICAgICA8bGFiZWwgZm9yPVwibGFzdENvbnRhY3RZZWFyU2VsZWN0b3JcIj4gWWVhci9Nb250aCB5b3UgTGFzdCBDb21tdW5pY2F0ZWQgd2l0aCBTdHVkZW50PC9sYWJlbD5cbiAgICAgICAgICAgIDxzZWxlY3QgZm9ybUNvbnRyb2xOYW1lPVwibGFzdENvbnRhY3RZZWFyU2VsZWN0b3JcIiBbKG5nTW9kZWwpXT1cIm1lbnRvclJlcG9ydC5sYXN0Q29udGFjdFllYXJcIj5cbiAgICAgICAgICAgIDxvcHRpb24gKm5nRm9yPVwibGV0IHllYXIgb2YgY29udGFjdFllYXJzXCIgW3ZhbHVlXT1cInllYXIudmFsdWVcIj57e3llYXIubGFiZWx9fTwvb3B0aW9uPlxuICAgICAgICAgICAgPC9zZWxlY3Q+XG4gICAgICAgICAgICA8c3BhbiAqbmdJZj1cIiFsYXN0WWVhci52YWxpZCAmYW1wOyZhbXA7IGxhc3RZZWFyLnRvdWNoZWRcIiBjbGFzcz1cInJlZFwiPiBTZWxlY3QgWWVhcjwvc3Bhbj5cblxuICAgICAgICAgICAgPHNlbGVjdCBmb3JtQ29udHJvbE5hbWU9XCJsYXN0Q29udGFjdE1vbnRoU2VsZWN0b3JcIiBbKG5nTW9kZWwpXT1cIm1lbnRvclJlcG9ydC5sYXN0Q29udGFjdE1vbnRoXCI+XG4gICAgICAgICAgICA8b3B0aW9uICpuZ0Zvcj1cImxldCBtb250aCBvZiBjb250YWN0TW9udGhzXCIgW3ZhbHVlXT1cIm1vbnRoLnZhbHVlXCI+e3ttb250aC5sYWJlbH19PC9vcHRpb24+XG4gICAgICAgICAgICA8L3NlbGVjdD5cbiAgICAgICAgICAgIDxzcGFuICpuZ0lmPVwiIWxhc3RNb250aC52YWxpZCAmYW1wOyZhbXA7IGxhc3RNb250aC50b3VjaGVkXCIgY2xhc3M9XCJyZWRcIj5TZWxlY3QgTW9udGg8L3NwYW4+XG4gICAgICAgICAgPC9kaXY+XG4gICAgICAgIDwvZGl2PlxuXG4gICAgICAgIDxkaXYgY2xhc3M9XCJmb3JtLWdyb3VwXCI+XG4gICAgICAgICAgPGRpdiBjbGFzcz1cImNvbnRyb2xzXCI+XG4gICAgICAgICAgICA8bGFiZWw+IFN0dWRlbnQgU25hcHNob3Q6ICg8c3Bhbj5Ib3cgYXJlIHRoaW5ncyBnb2luZyBvdmVyYWxsIHdpdGggdGhlIHN0dWRlbnQ/PC9zcGFuPik8L2xhYmVsPlxuICAgICAgICAgICAgPGxhYmVsPlxuICAgICAgICAgICAgPGlucHV0IHR5cGU9XCJyYWRpb1wiIGlkPVwiaW5wdXRTbmFwc2hvdFwiXG4gICAgICAgICAgICBmb3JtQ29udHJvbE5hbWU9XCJpbnB1dFNuYXBzaG90XCJcbiAgICAgICAgICAgIFsobmdNb2RlbCldPVwibWVudG9yUmVwb3J0Lm1lbnRvclJlcG9ydFNuYXBzaG90XCIgdmFsdWU9XCIxXCI+XG4gICAgICAgICAgICAgPGltZyBzcmM9XCIvYXNzZXRzL2ltYWdlcy9ncmVlblNtaWxleS5qcGdcIiB3aWR0aD1cIjI0cHhcIiAvPlxuICAgICAgICAgICAgPC9sYWJlbD5cbiAgICAgICAgICAgIDxsYWJlbD4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDtcbiAgICAgICAgICAgIDxpbnB1dCB0eXBlPVwicmFkaW9cIiBpZD1cImlucHV0U25hcHNob3RcIlxuICAgICAgICAgICAgZm9ybUNvbnRyb2xOYW1lPVwiaW5wdXRTbmFwc2hvdFwiXG4gICAgICAgICAgICBbKG5nTW9kZWwpXT1cIm1lbnRvclJlcG9ydC5tZW50b3JSZXBvcnRTbmFwc2hvdFwiIHZhbHVlPVwiMFwiID5cbiAgICAgICAgICAgICAgICA8aW1nIHNyYz1cIi9hc3NldHMvaW1hZ2VzL25ldXRyYWxTbWlsZXkuanBnXCIgd2lkdGg9XCIyNHB4XCIgLz5cbiAgICAgICAgICAgIDwvbGFiZWw+XG4gICAgICAgICAgIDxsYWJlbD4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDtcbiAgICAgICAgICAgICAgPGlucHV0IHR5cGU9XCJyYWRpb1wiIGlkPVwiaW5wdXRTbmFwc2hvdFwiXG4gICAgICAgICAgICAgIGZvcm1Db250cm9sTmFtZT1cImlucHV0U25hcHNob3RcIlxuICAgICAgICAgICAgICBbKG5nTW9kZWwpXT1cIm1lbnRvclJlcG9ydC5tZW50b3JSZXBvcnRTbmFwc2hvdFwiIHZhbHVlPVwiLTFcIiA+XG4gICAgICAgICAgICAgICAgPGltZyBzcmM9XCIvYXNzZXRzL2ltYWdlcy9mcm93blNtaWxleS5qcGdcIiB3aWR0aD1cIjI0cHhcIiAvPlxuICAgICAgICAgICAgPHNwYW4gKm5nSWY9XCJzbmFwc2hvdC5oYXNFcnJvcigncmVxdWlyZWQnKVwiIGNsYXNzPVwicmVkXCI+UGxlYXNlIHNlbGVjdCBhIFNuYXBzaG90IGNvbG9yPC9zcGFuPlxuICAgICAgICAgICAgPC9sYWJlbD5cbiAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgPC9kaXY+XG5cbiAgICAgICAgPGRpdiBbaGlkZGVuXT1cInRoaXMubmVlZHNGb2xsb3dVcFwiPlxuICAgICAgICAgIDxidXR0b24gY2xhc3M9XCJidG4gYnRuLXByaW1hcnkgYnRuLXNtXCJcblxuICAgICAgICAgICAgICAgICAgKGNsaWNrKT1cIm9uTmVlZHNGb2xsb3dVcCgpXCJcbiAgICAgICAgICAgICAgICAgID5cbiAgICAgICAgICAgIE5lZWRzIEZvbGxvdyBVcFxuICAgICAgICAgIDwvYnV0dG9uPlxuICAgICAgICAgIDxzcGFuPiA8PCBDbGljayBoZXJlIHRvIGVudGVyIGEgZGVzY3JpcHRpb24gb2YgYW55IHNpdHVhdGlvbiB0aGF0IG5lZWRzIGZvbGxvdy11cCBieSBKb3ZlbmVzIEFkZWxhbnRlIGFkbWluaXN0cmF0aW9uLlxuICAgICAgICAgIDxiciAvPihIYWdhIGNsaWMgYXF1w60gcGFyYSBlbnRyYXIgZW4gdW5hIGRlc2NyaXBjacOzbiBkZSBjdWFscXVpZXIgc2l0dWFjacOzbiBxdWUgbmVjZXNpdGUgc2VndWltaWVudG8gcG9yIEpvdmVuZXMgQWRlbGFudGUgYWRtaW5pc3RyYWNpw7NuLilcbiAgICAgICAgICA8L3NwYW4+XG4gICAgICAgIDwvZGl2PlxuICAgICAgICA8ZGl2IFtoaWRkZW5dPVwiIXRoaXMubmVlZHNGb2xsb3dVcFwiIGNsYXNzPVwiY29udHJvbHNcIj5cblxuICAgICAgICAgIDxsYWJlbCBmb3I9XCJpbnB1dEZvbGxvd1VwXCI+PHNwYW4gY2xhc3M9XCJyZWQgZW1waGFzaXNcIj4gPj4+IERlc2NyaWJlIHRoZSBTaXR1YXRpb24gUmVxdWlyaW5nIEZvbGxvdyBVcDxiciAvPkRlc2NyaWJhIGxhIHNpdHVhY2nDs24gcXVlIG5lY2VzaXRlIHNlZ3VpbWllbnRvPC9zcGFuPjwvbGFiZWw+XG4gICAgICAgICAgPHRleHRhcmVhIGlkPVwiaW5wdXRGb2xsb3dVcFwiIGZvcm1Db250cm9sTmFtZT1cImlucHV0Rm9sbG93VXBcIiBbKG5nTW9kZWwpXT1cIm1lbnRvclJlcG9ydC5mb2xsb3dVcE5lZWRlZFwiIHR5cGU9XCJ0ZXh0XCIgY2xhc3M9XCJmb3JtLWNvbnRyb2wgaW5wdXQtc21cIlxuICAgICAgICAgICAgcGxhY2Vob2xkZXI9XCJGb2xsb3cgdXAgTmVlZGVkXCI+XG4gICAgICAgICAgPC90ZXh0YXJlYT5cbiAgICAgICAgICA8YXBwLWRpc3BsYXktZXJyb3JzIGNvbnRyb2w9XCJpbnB1dEZvbGxvd1VwXCIgY2xhc3M9XCJyZWRcIlxuICAgICAgICAgICAgW2Vycm9yc109XCJ7XG4gICAgICAgICAgICAgICAgJ21heGxlbmd0aCc6ICdFbnRyeSBjYW5ub3QgZXhjZWVkIDIwMDAgY2hhcmFjdGVycyBpbiBsZW5ndGguJ1xuICAgICAgICAgICAgICAgIH1cIj48L2FwcC1kaXNwbGF5LWVycm9ycz5cbiAgICAgICAgPC9kaXY+XG5cbiAgICAgICAgPGRpdiBjbGFzcz1cImNvbnRyb2xzXCI+XG4gICAgICAgICAgPGxhYmVsIGZvcj1cImlucHV0U3VjY2Vzc1wiPkRlc2NyaWJlIHBvc2l0aXZlIGV2ZW50cyBpbiB0aGUgc3R1ZGVudCdzIGxpZmUgZHVyaW5nIHRoZSBwYXN0IG1vbnRoPGJyIC8+RGVzY3JpYmEgbG9ncm9zIHkgZXZlbnRvcyBwb3NpdGl2b3MgZW4gbGEgdmlkYSBkZWwgZXN0dWRpYW50ZTwvbGFiZWw+XG4gICAgICAgICAgPHRleHRhcmVhIGlkPVwiaW5wdXRTdWNjZXNzXCIgI3N1Y2Nlc3MgZm9ybUNvbnRyb2xOYW1lPVwiaW5wdXRTdWNjZXNzXCIgWyhuZ01vZGVsKV09XCJtZW50b3JSZXBvcnQucmVjZW50U3VjY2Vzc1wiIHR5cGU9XCJ0ZXh0XCJcbiAgICAgICAgICAgIGNsYXNzPVwiZm9ybS1jb250cm9sIGlucHV0LXNtXCIgcGxhY2Vob2xkZXI9XCIoU2kgdXN0ZWQgaGFibGEgSW5nbGVzIGRlIG1hbmVyYSBmbHVpZGEsIGZhdm9yIGRlIGhhY2VyIHN1IHJlcG9ydGUgZW4gZGljaG8gaWRpb21hLilcIj5cbiAgICAgICAgICA8L3RleHRhcmVhPlxuICAgICAgICAgIDxhcHAtZGlzcGxheS1lcnJvcnMgY29udHJvbD1cImlucHV0U3VjY2Vzc1wiIGNsYXNzPVwicmVkXCJcbiAgICAgICAgICAgIFtlcnJvcnNdPVwieydyZXF1aXJlZCc6ICdBbiBlbnRyeSBpcyByZXF1aXJlZCwgZXZlbiBpZiBpdCBpcyBqdXN0IE4vQScsXG4gICAgICAgICAgICAgICAgJ21heGxlbmd0aCc6ICdFbnRyeSBjYW5ub3QgZXhjZWVkIDIwMDAgY2hhcmFjdGVycyBpbiBsZW5ndGguJ1xuICAgICAgICAgICAgICAgIH1cIj48L2FwcC1kaXNwbGF5LWVycm9ycz5cbiAgICAgICAgPC9kaXY+XG5cbiAgICAgICAgPGRpdiBjbGFzcz1cImNvbnRyb2xzXCI+XG4gICAgICAgICAgPGxhYmVsIGZvcj1cImlucHV0U2V0YmFja1wiPkRlc2NyaWJlIGFueSBzcGVjaWFsIGNoYWxsZW5nZXMgaW4gdGhlIHN0dWRlbnQncyBsaWZlIGR1cmluZyB0aGUgcGFzdCBtb250aDxiciAvPkRlc2NyaWJhIHJldG9zIHkgb2JzdMOhY3Vsb3MgZW4gbGEgdmlkYSBkZWwgZXN0dWRpYW50ZTwvbGFiZWw+XG4gICAgICAgICAgPHRleHRhcmVhIGlkPVwiaW5wdXRTZXRiYWNrXCIgI3NldGJhY2sgZm9ybUNvbnRyb2xOYW1lPVwiaW5wdXRTZXRiYWNrXCIgWyhuZ01vZGVsKV09XCJtZW50b3JSZXBvcnQucmVjZW50U2V0YmFja1wiIHR5cGU9XCJ0ZXh0XCJcbiAgICAgICAgICAgIGNsYXNzPVwiZm9ybS1jb250cm9sIGlucHV0LXNtXCIgcGxhY2Vob2xkZXI9XCIoU2kgdXN0ZWQgaGFibGEgSW5nbGVzIGRlIG1hbmVyYSBmbHVpZGEsIGZhdm9yIGRlIGhhY2VyIHN1IHJlcG9ydGUgZW4gZGljaG8gaWRpb21hLilcIj5cbiAgICAgICAgICA8L3RleHRhcmVhPlxuICAgICAgICAgIDxhcHAtZGlzcGxheS1lcnJvcnMgY29udHJvbD1cImlucHV0U2V0YmFja1wiIGNsYXNzPVwicmVkXCJcbiAgICAgICAgICAgIFtlcnJvcnNdPVwieydyZXF1aXJlZCc6ICdBbiBlbnRyeSBpcyByZXF1aXJlZCwgZXZlbiBpZiBpdCBpcyBqdXN0IE4vQScsXG4gICAgICAgICAgICAgICAgJ21heGxlbmd0aCc6ICdFbnRyeSBjYW5ub3QgZXhjZWVkIDIwMDAgY2hhcmFjdGVycyBpbiBsZW5ndGguJ1xuICAgICAgICAgICAgICAgIH1cIj48L2FwcC1kaXNwbGF5LWVycm9ycz5cbiAgICAgICAgPC9kaXY+XG5cbiAgICAgICAgPGRpdiBjbGFzcz1cImNvbC1tZC02IGNvbC1tZC1vZmZzZXQtMVwiPlxuICAgICAgICAgIDxzcGFuPlxuICAgICAgICAgIDxidXR0b24gY2xhc3M9XCJidG4gYnRuLXByaW1hcnlcIlxuICAgICAgICAgICAgICAgICAgc3R5bGU9XCJ3aWR0aDo4MHB4O21hcmdpbi1yaWdodDoxMHB4XCJcbiAgICAgICAgICAgICAgICAgIChjbGljayk9XCJvblN1Ym1pdCgpXCJcbiAgICAgICAgICAgICAgICAgID5cbiAgICAgICAgICAgIFNhdmVcbiAgICAgICAgICA8L2J1dHRvbj5cbiAgICAgICAgIDwvc3Bhbj4mbmJzcDtcbiAgICAgICAgICA8c3Bhbj5cbiAgICAgICAgICA8YnV0dG9uIGNsYXNzPVwiYnRuIGJ0bi1kZWZhdWx0XCJcbiAgICAgICAgICAgICAgICAgIHN0eWxlPVwid2lkdGg6NzBweFwiXG4gICAgICAgICAgICAgICAgICAoY2xpY2spPVwib25DYW5jZWwoKVwiPlxuICAgICAgICAgICAgQ2FuY2VsXG4gICAgICAgICAgPC9idXR0b24+XG4gICAgICAgICAgPGRpdiBjbGFzcz1cInJlZFwiIFtoaWRkZW5dPVwibXlGb3JtLnZhbGlkXCI+WWVhciwgTW9udGgsIFNuYXBzaG90IGFuZCBhbGwgdGV4dCBmaWVsZHMgbXVzdCBiZSBmaWxsZWQgaW4gY29ycmVjdGx5IGJlZm9yZSBzYXZpbmcuPC9kaXY+XG4gICAgICAgIDwvc3Bhbj5cbiAgICAgICAgPC9kaXY+XG4gICAgICA8L2ZpZWxkc2V0PlxuICAgIDwvZm9ybT5cbiAgPC9kaXY+XG48L2Rpdj5cbiIsIjxuZy1jb21wb25lbnQ+PC9uZy1jb21wb25lbnQ+Il0sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7b0JDS0k7TUFBQTtNQUFBLGdCQUFxRDs7O0lBQUE7SUFBQTs7OztvQkFDckQ7TUFBQTtNQUFBLGdCQUF3RDs7O0lBQUE7SUFBQTs7OztvQkFRaEQ7TUFBQSwrRUFBQTtNQUFBO01BQUEsMENBQUE7bUJBQUEsc0RBQStEO01BQUE7SUFBckI7SUFBMUMsV0FBMEMsU0FBMUM7SUFBMEM7SUFBMUMsV0FBMEMsU0FBMUM7O0lBQStEO0lBQUE7Ozs7b0JBRS9EO01BQUE7TUFBc0U7OztvQkFHdEU7TUFBQSwrRUFBQTtNQUFBO01BQUEsMENBQUE7bUJBQUEsc0RBQWtFO01BQUE7SUFBdEI7SUFBNUMsV0FBNEMsU0FBNUM7SUFBNEM7SUFBNUMsV0FBNEMs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

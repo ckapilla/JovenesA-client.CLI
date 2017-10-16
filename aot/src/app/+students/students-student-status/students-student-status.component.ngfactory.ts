@@ -19,9 +19,9 @@ const styles_StudentsStudentStatusComponent:any[] = [i0.styles];
 export const RenderType_StudentsStudentStatusComponent:i1.RendererType2 = i1.ɵcrt({encapsulation:0,
     styles:styles_StudentsStudentStatusComponent,data:{}});
 function View_StudentsStudentStatusComponent_1(_l:any):i1.ɵViewDefinition {
-  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,(null as any),(null as any),1,'span',[['class',
+  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,0,(null as any),(null as any),1,'span',[['class',
       'alert alert-danger']],(null as any),(null as any),(null as any),(null as any),
-      (null as any))),(_l()(),i1.ɵted((null as any),['','']))],(null as any),(_ck,
+      (null as any))),(_l()(),i1.ɵted(1,(null as any),['','']))],(null as any),(_ck,
       _v) => {
     var _co:any = _v.component;
     const currVal_0:any = _co.errorMessage;
@@ -29,9 +29,9 @@ function View_StudentsStudentStatusComponent_1(_l:any):i1.ɵViewDefinition {
   });
 }
 function View_StudentsStudentStatusComponent_2(_l:any):i1.ɵViewDefinition {
-  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,(null as any),(null as any),1,'span',[['class',
+  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,0,(null as any),(null as any),1,'span',[['class',
       'alert alert-success']],(null as any),(null as any),(null as any),(null as any),
-      (null as any))),(_l()(),i1.ɵted((null as any),['','']))],(null as any),(_ck,
+      (null as any))),(_l()(),i1.ɵted(1,(null as any),['','']))],(null as any),(_ck,
       _v) => {
     var _co:any = _v.component;
     const currVal_0:any = _co.successMessage;
@@ -39,181 +39,187 @@ function View_StudentsStudentStatusComponent_2(_l:any):i1.ɵViewDefinition {
   });
 }
 function View_StudentsStudentStatusComponent_3(_l:any):i1.ɵViewDefinition {
-  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,(null as any),(null as any),5,'div',[['class',
+  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,0,(null as any),(null as any),5,'div',[['class',
       'text-center col-md-4 col-md-offset-4']],(null as any),(null as any),(null as any),
-      (null as any),(null as any))),(_l()(),i1.ɵted((null as any),['\n        '])),
-      (_l()(),i1.ɵeld(0,(null as any),(null as any),2,'loading-container',([] as any[]),
+      (null as any),(null as any))),(_l()(),i1.ɵted(-1,(null as any),['\n        '])),
+      (_l()(),i1.ɵeld(2,0,(null as any),(null as any),2,'loading-container',([] as any[]),
           (null as any),(null as any),(null as any),i2.View_LoadingContainerComponent_0,
-          i2.RenderType_LoadingContainerComponent)),i1.ɵdid(49152,(null as any),0,
-          i3.LoadingContainerComponent,([] as any[]),(null as any),(null as any)),
-      (_l()(),i1.ɵted((null as any),['\n        '])),(_l()(),i1.ɵted((null as any),
+          i2.RenderType_LoadingContainerComponent)),i1.ɵdid(3,49152,(null as any),
+          0,i3.LoadingContainerComponent,([] as any[]),(null as any),(null as any)),
+      (_l()(),i1.ɵted(-1,(null as any),['\n        '])),(_l()(),i1.ɵted(-1,(null as any),
           ['\n      ']))],(null as any),(null as any));
 }
 function View_StudentsStudentStatusComponent_5(_l:any):i1.ɵViewDefinition {
-  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,(null as any),(null as any),36,'tr',([] as any[]),
+  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,0,(null as any),(null as any),36,'tr',([] as any[]),
       (null as any),(null as any),(null as any),(null as any),(null as any))),(_l()(),
-      i1.ɵted((null as any),['\n              '])),(_l()(),i1.ɵeld(0,(null as any),
+      i1.ɵted(-1,(null as any),['\n              '])),(_l()(),i1.ɵeld(2,0,(null as any),
       (null as any),1,'td',[['class','centered']],(null as any),(null as any),(null as any),
-      (null as any),(null as any))),(_l()(),i1.ɵted((null as any),['\n                ',
-      '\n              '])),(_l()(),i1.ɵted((null as any),['\n              '])),(_l()(),
-      i1.ɵeld(0,(null as any),(null as any),1,'td',[['class','centered']],(null as any),
-          (null as any),(null as any),(null as any),(null as any))),(_l()(),i1.ɵted((null as any),
-      ['\n                ','\n              '])),(_l()(),i1.ɵted((null as any),['\n              '])),
-      (_l()(),i1.ɵeld(0,(null as any),(null as any),1,'td',[['class','centered']],
+      (null as any),(null as any))),(_l()(),i1.ɵted(3,(null as any),['\n                ',
+      '\n              '])),(_l()(),i1.ɵted(-1,(null as any),['\n              '])),
+      (_l()(),i1.ɵeld(5,0,(null as any),(null as any),1,'td',[['class','centered']],
           (null as any),(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i1.ɵted((null as any),['\n                ','/','\n              '])),
-      (_l()(),i1.ɵted((null as any),['\n              '])),(_l()(),i1.ɵeld(0,(null as any),
+      (_l()(),i1.ɵted(6,(null as any),['\n                ','\n              '])),
+      (_l()(),i1.ɵted(-1,(null as any),['\n              '])),(_l()(),i1.ɵeld(8,0,
+          (null as any),(null as any),1,'td',[['class','centered']],(null as any),
+          (null as any),(null as any),(null as any),(null as any))),(_l()(),i1.ɵted(9,
+          (null as any),['\n                ','/','\n              '])),(_l()(),i1.ɵted(-1,
+          (null as any),['\n              '])),(_l()(),i1.ɵeld(11,0,(null as any),
           (null as any),5,'td',[['style','text-align:center;white-space: nowrap']],
           (null as any),(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i1.ɵted((null as any),['\n                '])),(_l()(),i1.ɵeld(0,(null as any),
+      (_l()(),i1.ɵted(-1,(null as any),['\n                '])),(_l()(),i1.ɵeld(13,
+          0,(null as any),(null as any),0,'img',[['height','22']],[[8,'src',4]],(null as any),
+          (null as any),(null as any),(null as any))),(_l()(),i1.ɵted(-1,(null as any),
+          ['\n                  \n                '])),(_l()(),i1.ɵeld(15,0,(null as any),
           (null as any),0,'img',[['height','22']],[[8,'src',4]],(null as any),(null as any),
-          (null as any),(null as any))),(_l()(),i1.ɵted((null as any),['\n                  \n                '])),
-      (_l()(),i1.ɵeld(0,(null as any),(null as any),0,'img',[['height','22']],[[8,
+          (null as any),(null as any))),(_l()(),i1.ɵted(-1,(null as any),['\n              '])),
+      (_l()(),i1.ɵted(-1,(null as any),['\n              '])),(_l()(),i1.ɵeld(18,0,
+          (null as any),(null as any),1,'td',([] as any[]),(null as any),(null as any),
+          (null as any),(null as any),(null as any))),(_l()(),i1.ɵted(19,(null as any),
+          ['\n                ','\n              '])),(_l()(),i1.ɵted(-1,(null as any),
+          ['\n              '])),(_l()(),i1.ɵeld(21,0,(null as any),(null as any),
+          3,'td',[['style','text-align:center;white-space: nowrap']],(null as any),
+          (null as any),(null as any),(null as any),(null as any))),(_l()(),i1.ɵted(-1,
+          (null as any),['\n                '])),(_l()(),i1.ɵeld(23,0,(null as any),
+          (null as any),0,'img',[['height','22']],[[8,'src',4]],(null as any),(null as any),
+          (null as any),(null as any))),(_l()(),i1.ɵted(-1,(null as any),['\n              '])),
+      (_l()(),i1.ɵted(-1,(null as any),['\n\n\n              '])),(_l()(),i1.ɵeld(26,
+          0,(null as any),(null as any),1,'td',([] as any[]),(null as any),(null as any),
+          (null as any),(null as any),(null as any))),(_l()(),i1.ɵted(27,(null as any),
+          ['\n                ','\n              '])),(_l()(),i1.ɵted(-1,(null as any),
+          ['\n              '])),(_l()(),i1.ɵeld(29,0,(null as any),(null as any),
+          3,'td',[['class','centered']],(null as any),(null as any),(null as any),
+          (null as any),(null as any))),(_l()(),i1.ɵted(-1,(null as any),['\n                '])),
+      (_l()(),i1.ɵeld(31,0,(null as any),(null as any),0,'img',[['height','22']],[[8,
           'src',4]],(null as any),(null as any),(null as any),(null as any))),(_l()(),
-          i1.ɵted((null as any),['\n              '])),(_l()(),i1.ɵted((null as any),
-          ['\n              '])),(_l()(),i1.ɵeld(0,(null as any),(null as any),1,'td',
-          ([] as any[]),(null as any),(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i1.ɵted((null as any),['\n                ','\n              '])),(_l()(),
-          i1.ɵted((null as any),['\n              '])),(_l()(),i1.ɵeld(0,(null as any),
-          (null as any),3,'td',[['style','text-align:center;white-space: nowrap']],
-          (null as any),(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i1.ɵted((null as any),['\n                '])),(_l()(),i1.ɵeld(0,(null as any),
-          (null as any),0,'img',[['height','22']],[[8,'src',4]],(null as any),(null as any),
-          (null as any),(null as any))),(_l()(),i1.ɵted((null as any),['\n              '])),
-      (_l()(),i1.ɵted((null as any),['\n\n\n              '])),(_l()(),i1.ɵeld(0,(null as any),
-          (null as any),1,'td',([] as any[]),(null as any),(null as any),(null as any),
-          (null as any),(null as any))),(_l()(),i1.ɵted((null as any),['\n                ',
-          '\n              '])),(_l()(),i1.ɵted((null as any),['\n              '])),
-      (_l()(),i1.ɵeld(0,(null as any),(null as any),3,'td',[['class','centered']],
-          (null as any),(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i1.ɵted((null as any),['\n                '])),(_l()(),i1.ɵeld(0,(null as any),
-          (null as any),0,'img',[['height','22']],[[8,'src',4]],(null as any),(null as any),
-          (null as any),(null as any))),(_l()(),i1.ɵted((null as any),['\n              '])),
-      (_l()(),i1.ɵted((null as any),['\n\n              '])),(_l()(),i1.ɵeld(0,(null as any),
-          (null as any),1,'td',([] as any[]),(null as any),(null as any),(null as any),
-          (null as any),(null as any))),(_l()(),i1.ɵted((null as any),['\n                ',
-          '\n              '])),(_l()(),i1.ɵted((null as any),['\n            ']))],
-      (null as any),(_ck,_v) => {
-        const currVal_0:any = _v.context.$implicit.esStatus;
-        _ck(_v,3,0,currVal_0);
-        const currVal_1:any = _v.context.$implicit.yearJoinedJa;
-        _ck(_v,6,0,currVal_1);
-        const currVal_2:any = _v.context.$implicit.gradYear;
-        const currVal_3:any = _v.context.$implicit.gradMonth;
-        _ck(_v,9,0,currVal_2,currVal_3);
-        const currVal_4:any = i1.ɵinlineInterpolate(1,'/assets/images/',_v.context.$implicit.gpaStatus,
-            '.jpg');
-        _ck(_v,13,0,currVal_4);
-        const currVal_5:any = i1.ɵinlineInterpolate(1,'/assets/images/',_v.context.$implicit.gradeRptStatus,
-            '.jpg');
-        _ck(_v,15,0,currVal_5);
-        const currVal_6:any = _v.context.$implicit.mentorName;
-        _ck(_v,19,0,currVal_6);
-        const currVal_7:any = i1.ɵinlineInterpolate(1,'/assets/images/',_v.context.$implicit.timelyMentorMeetingStatus,
-            '.jpg');
-        _ck(_v,23,0,currVal_7);
-        const currVal_8:any = _v.context.$implicit.sponsorName;
-        _ck(_v,27,0,currVal_8);
-        const currVal_9:any = i1.ɵinlineInterpolate(1,'/assets/images/',_v.context.$implicit.timelyStudentLetterStatus,
-            '.jpg');
-        _ck(_v,31,0,currVal_9);
-        const currVal_10:any = _v.context.$implicit.universityAbbrev;
-        _ck(_v,35,0,currVal_10);
-      });
+          i1.ɵted(-1,(null as any),['\n              '])),(_l()(),i1.ɵted(-1,(null as any),
+          ['\n\n              '])),(_l()(),i1.ɵeld(34,0,(null as any),(null as any),
+          1,'td',([] as any[]),(null as any),(null as any),(null as any),(null as any),
+          (null as any))),(_l()(),i1.ɵted(35,(null as any),['\n                ','\n              '])),
+      (_l()(),i1.ɵted(-1,(null as any),['\n            ']))],(null as any),(_ck,_v) => {
+    const currVal_0:any = _v.context.$implicit.esStatus;
+    _ck(_v,3,0,currVal_0);
+    const currVal_1:any = _v.context.$implicit.yearJoinedJa;
+    _ck(_v,6,0,currVal_1);
+    const currVal_2:any = _v.context.$implicit.gradYear;
+    const currVal_3:any = _v.context.$implicit.gradMonth;
+    _ck(_v,9,0,currVal_2,currVal_3);
+    const currVal_4:any = i1.ɵinlineInterpolate(1,'/assets/images/',_v.context.$implicit.gpaStatus,
+        '.jpg');
+    _ck(_v,13,0,currVal_4);
+    const currVal_5:any = i1.ɵinlineInterpolate(1,'/assets/images/',_v.context.$implicit.gradeRptStatus,
+        '.jpg');
+    _ck(_v,15,0,currVal_5);
+    const currVal_6:any = _v.context.$implicit.mentorName;
+    _ck(_v,19,0,currVal_6);
+    const currVal_7:any = i1.ɵinlineInterpolate(1,'/assets/images/',_v.context.$implicit.timelyMentorMeetingStatus,
+        '.jpg');
+    _ck(_v,23,0,currVal_7);
+    const currVal_8:any = _v.context.$implicit.sponsorName;
+    _ck(_v,27,0,currVal_8);
+    const currVal_9:any = i1.ɵinlineInterpolate(1,'/assets/images/',_v.context.$implicit.timelyStudentLetterStatus,
+        '.jpg');
+    _ck(_v,31,0,currVal_9);
+    const currVal_10:any = _v.context.$implicit.universityAbbrev;
+    _ck(_v,35,0,currVal_10);
+  });
 }
 function View_StudentsStudentStatusComponent_4(_l:any):i1.ɵViewDefinition {
-  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,(null as any),(null as any),51,'div',([] as any[]),
+  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,0,(null as any),(null as any),51,'div',([] as any[]),
       (null as any),(null as any),(null as any),(null as any),(null as any))),(_l()(),
-      i1.ɵted((null as any),['\n        '])),(_l()(),i1.ɵeld(0,(null as any),(null as any),
-      48,'table',[['class','table']],(null as any),(null as any),(null as any),(null as any),
-      (null as any))),(_l()(),i1.ɵted((null as any),['\n\n          '])),(_l()(),i1.ɵeld(0,
-      (null as any),(null as any),39,'thead',([] as any[]),(null as any),(null as any),
-      (null as any),(null as any),(null as any))),(_l()(),i1.ɵted((null as any),['\n            '])),
-      (_l()(),i1.ɵeld(0,(null as any),(null as any),36,'tr',([] as any[]),(null as any),
-          (null as any),(null as any),(null as any),(null as any))),(_l()(),i1.ɵted((null as any),
-          ['\n\n              '])),(_l()(),i1.ɵeld(0,(null as any),(null as any),1,
-          'td',[['class','centered']],(null as any),(null as any),(null as any),(null as any),
-          (null as any))),(_l()(),i1.ɵted((null as any),['Estado'])),(_l()(),i1.ɵted((null as any),
-          ['\n              '])),(_l()(),i1.ɵeld(0,(null as any),(null as any),1,'td',
-          [['class','centered']],(null as any),(null as any),(null as any),(null as any),
-          (null as any))),(_l()(),i1.ɵted((null as any),['Desde'])),(_l()(),i1.ɵted((null as any),
-          ['\n              '])),(_l()(),i1.ɵeld(0,(null as any),(null as any),3,'td',
-          [['class','centered']],(null as any),(null as any),(null as any),(null as any),
-          (null as any))),(_l()(),i1.ɵted((null as any),['Grad'])),(_l()(),i1.ɵeld(0,
-          (null as any),(null as any),0,'br',([] as any[]),(null as any),(null as any),
-          (null as any),(null as any),(null as any))),(_l()(),i1.ɵted((null as any),
-          [' Año/Mes'])),(_l()(),i1.ɵted((null as any),['\n              '])),(_l()(),
-          i1.ɵeld(0,(null as any),(null as any),3,'td',[['class','centered']],(null as any),
-              (null as any),(null as any),(null as any),(null as any))),(_l()(),i1.ɵted((null as any),
-          ['  Calificaciones'])),(_l()(),i1.ɵeld(0,(null as any),(null as any),0,'br',
-          ([] as any[]),(null as any),(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i1.ɵted((null as any),['Promedio a Tiempo'])),(_l()(),i1.ɵted((null as any),
-          ['\n\n\n              '])),(_l()(),i1.ɵeld(0,(null as any),(null as any),
+      i1.ɵted(-1,(null as any),['\n        '])),(_l()(),i1.ɵeld(2,0,(null as any),
+      (null as any),48,'table',[['class','table']],(null as any),(null as any),(null as any),
+      (null as any),(null as any))),(_l()(),i1.ɵted(-1,(null as any),['\n\n          '])),
+      (_l()(),i1.ɵeld(4,0,(null as any),(null as any),39,'thead',([] as any[]),(null as any),
+          (null as any),(null as any),(null as any),(null as any))),(_l()(),i1.ɵted(-1,
+          (null as any),['\n            '])),(_l()(),i1.ɵeld(6,0,(null as any),(null as any),
+          36,'tr',([] as any[]),(null as any),(null as any),(null as any),(null as any),
+          (null as any))),(_l()(),i1.ɵted(-1,(null as any),['\n\n              '])),
+      (_l()(),i1.ɵeld(8,0,(null as any),(null as any),1,'td',[['class','centered']],
+          (null as any),(null as any),(null as any),(null as any),(null as any))),
+      (_l()(),i1.ɵted(-1,(null as any),['Estado'])),(_l()(),i1.ɵted(-1,(null as any),
+          ['\n              '])),(_l()(),i1.ɵeld(11,0,(null as any),(null as any),
           1,'td',[['class','centered']],(null as any),(null as any),(null as any),
-          (null as any),(null as any))),(_l()(),i1.ɵted((null as any),['Mentor'])),
-      (_l()(),i1.ɵted((null as any),['\n              '])),(_l()(),i1.ɵeld(0,(null as any),
+          (null as any),(null as any))),(_l()(),i1.ɵted(-1,(null as any),['Desde'])),
+      (_l()(),i1.ɵted(-1,(null as any),['\n              '])),(_l()(),i1.ɵeld(14,0,
+          (null as any),(null as any),3,'td',[['class','centered']],(null as any),
+          (null as any),(null as any),(null as any),(null as any))),(_l()(),i1.ɵted(-1,
+          (null as any),['Grad'])),(_l()(),i1.ɵeld(16,0,(null as any),(null as any),
+          0,'br',([] as any[]),(null as any),(null as any),(null as any),(null as any),
+          (null as any))),(_l()(),i1.ɵted(-1,(null as any),[' Año/Mes'])),(_l()(),
+          i1.ɵted(-1,(null as any),['\n              '])),(_l()(),i1.ɵeld(19,0,(null as any),
           (null as any),3,'td',[['class','centered']],(null as any),(null as any),
-          (null as any),(null as any),(null as any))),(_l()(),i1.ɵted((null as any),
-          ['  Reunión de'])),(_l()(),i1.ɵeld(0,(null as any),(null as any),0,'br',
+          (null as any),(null as any),(null as any))),(_l()(),i1.ɵted(-1,(null as any),
+          ['  Calificaciones'])),(_l()(),i1.ɵeld(21,0,(null as any),(null as any),
+          0,'br',([] as any[]),(null as any),(null as any),(null as any),(null as any),
+          (null as any))),(_l()(),i1.ɵted(-1,(null as any),['Promedio a Tiempo'])),
+      (_l()(),i1.ɵted(-1,(null as any),['\n\n\n              '])),(_l()(),i1.ɵeld(24,
+          0,(null as any),(null as any),1,'td',[['class','centered']],(null as any),
+          (null as any),(null as any),(null as any),(null as any))),(_l()(),i1.ɵted(-1,
+          (null as any),['Mentor'])),(_l()(),i1.ɵted(-1,(null as any),['\n              '])),
+      (_l()(),i1.ɵeld(27,0,(null as any),(null as any),3,'td',[['class','centered']],
+          (null as any),(null as any),(null as any),(null as any),(null as any))),
+      (_l()(),i1.ɵted(-1,(null as any),['  Reunión de'])),(_l()(),i1.ɵeld(29,0,(null as any),
+          (null as any),0,'br',([] as any[]),(null as any),(null as any),(null as any),
+          (null as any),(null as any))),(_l()(),i1.ɵted(-1,(null as any),['Mentor este Mes '])),
+      (_l()(),i1.ɵted(-1,(null as any),['\n\n              '])),(_l()(),i1.ɵeld(32,
+          0,(null as any),(null as any),1,'td',[['class','centered']],(null as any),
+          (null as any),(null as any),(null as any),(null as any))),(_l()(),i1.ɵted(-1,
+          (null as any),['Padrino'])),(_l()(),i1.ɵted(-1,(null as any),['\n              '])),
+      (_l()(),i1.ɵeld(35,0,(null as any),(null as any),3,'td',[['class','centered']],
+          (null as any),(null as any),(null as any),(null as any),(null as any))),
+      (_l()(),i1.ɵted(-1,(null as any),['Carta Padrino'])),(_l()(),i1.ɵeld(37,0,(null as any),
+          (null as any),0,'br',([] as any[]),(null as any),(null as any),(null as any),
+          (null as any),(null as any))),(_l()(),i1.ɵted(-1,(null as any),['ene. 2017'])),
+      (_l()(),i1.ɵted(-1,(null as any),['\n              '])),(_l()(),i1.ɵeld(40,0,
+          (null as any),(null as any),1,'td',([] as any[]),(null as any),(null as any),
+          (null as any),(null as any),(null as any))),(_l()(),i1.ɵted(-1,(null as any),
+          ['Univ'])),(_l()(),i1.ɵted(-1,(null as any),['\n            '])),(_l()(),
+          i1.ɵted(-1,(null as any),['\n          '])),(_l()(),i1.ɵted(-1,(null as any),
+          ['\n          '])),(_l()(),i1.ɵeld(45,0,(null as any),(null as any),4,'tbody',
           ([] as any[]),(null as any),(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i1.ɵted((null as any),['Mentor este Mes '])),(_l()(),i1.ɵted((null as any),
-          ['\n\n              '])),(_l()(),i1.ɵeld(0,(null as any),(null as any),1,
-          'td',[['class','centered']],(null as any),(null as any),(null as any),(null as any),
-          (null as any))),(_l()(),i1.ɵted((null as any),['Padrino'])),(_l()(),i1.ɵted((null as any),
-          ['\n              '])),(_l()(),i1.ɵeld(0,(null as any),(null as any),3,'td',
-          [['class','centered']],(null as any),(null as any),(null as any),(null as any),
-          (null as any))),(_l()(),i1.ɵted((null as any),['Carta Padrino'])),(_l()(),
-          i1.ɵeld(0,(null as any),(null as any),0,'br',([] as any[]),(null as any),
-              (null as any),(null as any),(null as any),(null as any))),(_l()(),i1.ɵted((null as any),
-          ['ene. 2017'])),(_l()(),i1.ɵted((null as any),['\n              '])),(_l()(),
-          i1.ɵeld(0,(null as any),(null as any),1,'td',([] as any[]),(null as any),
-              (null as any),(null as any),(null as any),(null as any))),(_l()(),i1.ɵted((null as any),
-          ['Univ'])),(_l()(),i1.ɵted((null as any),['\n            '])),(_l()(),i1.ɵted((null as any),
-          ['\n          '])),(_l()(),i1.ɵted((null as any),['\n          '])),(_l()(),
-          i1.ɵeld(0,(null as any),(null as any),4,'tbody',([] as any[]),(null as any),
-              (null as any),(null as any),(null as any),(null as any))),(_l()(),i1.ɵted((null as any),
-          ['\n            '])),(_l()(),i1.ɵand(16777216,(null as any),(null as any),
-          1,(null as any),View_StudentsStudentStatusComponent_5)),i1.ɵdid(802816,(null as any),
-          0,i4.NgForOf,[i1.ViewContainerRef,i1.TemplateRef,i1.IterableDiffers],{ngForOf:[0,
-              'ngForOf']},(null as any)),(_l()(),i1.ɵted((null as any),['\n          '])),
-      (_l()(),i1.ɵted((null as any),['\n        '])),(_l()(),i1.ɵted((null as any),
-          ['\n      ']))],(_ck,_v) => {
+      (_l()(),i1.ɵted(-1,(null as any),['\n            '])),(_l()(),i1.ɵand(16777216,
+          (null as any),(null as any),1,(null as any),View_StudentsStudentStatusComponent_5)),
+      i1.ɵdid(48,802816,(null as any),0,i4.NgForOf,[i1.ViewContainerRef,i1.TemplateRef,
+          i1.IterableDiffers],{ngForOf:[0,'ngForOf']},(null as any)),(_l()(),i1.ɵted(-1,
+          (null as any),['\n          '])),(_l()(),i1.ɵted(-1,(null as any),['\n        '])),
+      (_l()(),i1.ɵted(-1,(null as any),['\n      ']))],(_ck,_v) => {
     var _co:any = _v.component;
     const currVal_0:any = _co.studentDTOs;
     _ck(_v,48,0,currVal_0);
   },(null as any));
 }
 export function View_StudentsStudentStatusComponent_0(_l:any):i1.ɵViewDefinition {
-  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,(null as any),(null as any),26,'div',[['class',
+  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,0,(null as any),(null as any),26,'div',[['class',
       'panel panel-primary']],(null as any),(null as any),(null as any),(null as any),
-      (null as any))),(_l()(),i1.ɵted((null as any),['\n  '])),(_l()(),i1.ɵeld(0,(null as any),
-      (null as any),1,'div',[['class','panel-heading'],['style','font-size:large']],
+      (null as any))),(_l()(),i1.ɵted(-1,(null as any),['\n  '])),(_l()(),i1.ɵeld(2,
+      0,(null as any),(null as any),1,'div',[['class','panel-heading'],['style','font-size:large']],
       (null as any),(null as any),(null as any),(null as any),(null as any))),(_l()(),
-      i1.ɵted((null as any),['\n    Mi Estado\n  '])),(_l()(),i1.ɵted((null as any),
-      ['\n  '])),(_l()(),i1.ɵeld(0,(null as any),(null as any),20,'div',[['class',
+      i1.ɵted(-1,(null as any),['\n    Mi Estado\n  '])),(_l()(),i1.ɵted(-1,(null as any),
+      ['\n  '])),(_l()(),i1.ɵeld(5,0,(null as any),(null as any),20,'div',[['class',
       'panel-body']],(null as any),(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i1.ɵted((null as any),['\n    '])),(_l()(),i1.ɵand(16777216,(null as any),
-          (null as any),1,(null as any),View_StudentsStudentStatusComponent_1)),i1.ɵdid(16384,
-          (null as any),0,i4.NgIf,[i1.ViewContainerRef,i1.TemplateRef],{ngIf:[0,'ngIf']},
-          (null as any)),(_l()(),i1.ɵted((null as any),['\n    '])),(_l()(),i1.ɵand(16777216,
-          (null as any),(null as any),1,(null as any),View_StudentsStudentStatusComponent_2)),
-      i1.ɵdid(16384,(null as any),0,i4.NgIf,[i1.ViewContainerRef,i1.TemplateRef],{ngIf:[0,
-          'ngIf']},(null as any)),(_l()(),i1.ɵted((null as any),['\n\n    '])),(_l()(),
-          i1.ɵeld(0,(null as any),(null as any),1,'div',([] as any[]),(null as any),
-              (null as any),(null as any),(null as any),(null as any))),(_l()(),i1.ɵted((null as any),
-          ['\n\n    '])),(_l()(),i1.ɵted((null as any),['\n    '])),(_l()(),i1.ɵeld(0,
-          (null as any),(null as any),8,'div',([] as any[]),(null as any),(null as any),
-          (null as any),(null as any),(null as any))),i1.ɵdid(16384,(null as any),
-          0,i4.NgSwitch,([] as any[]),{ngSwitch:[0,'ngSwitch']},(null as any)),(_l()(),
-          i1.ɵted((null as any),['\n      '])),(_l()(),i1.ɵand(16777216,(null as any),
-          (null as any),1,(null as any),View_StudentsStudentStatusComponent_3)),i1.ɵdid(278528,
-          (null as any),0,i4.NgSwitchCase,[i1.ViewContainerRef,i1.TemplateRef,i4.NgSwitch],
-          {ngSwitchCase:[0,'ngSwitchCase']},(null as any)),(_l()(),i1.ɵted((null as any),
-          ['\n      '])),(_l()(),i1.ɵand(16777216,(null as any),(null as any),1,(null as any),
-          View_StudentsStudentStatusComponent_4)),i1.ɵdid(278528,(null as any),0,i4.NgSwitchCase,
-          [i1.ViewContainerRef,i1.TemplateRef,i4.NgSwitch],{ngSwitchCase:[0,'ngSwitchCase']},
-          (null as any)),(_l()(),i1.ɵted((null as any),['\n    '])),(_l()(),i1.ɵted((null as any),
-          ['\n  '])),(_l()(),i1.ɵted((null as any),['\n\n\n  l\n']))],(_ck,_v) => {
+      (_l()(),i1.ɵted(-1,(null as any),['\n    '])),(_l()(),i1.ɵand(16777216,(null as any),
+          (null as any),1,(null as any),View_StudentsStudentStatusComponent_1)),i1.ɵdid(8,
+          16384,(null as any),0,i4.NgIf,[i1.ViewContainerRef,i1.TemplateRef],{ngIf:[0,
+              'ngIf']},(null as any)),(_l()(),i1.ɵted(-1,(null as any),['\n    '])),
+      (_l()(),i1.ɵand(16777216,(null as any),(null as any),1,(null as any),View_StudentsStudentStatusComponent_2)),
+      i1.ɵdid(11,16384,(null as any),0,i4.NgIf,[i1.ViewContainerRef,i1.TemplateRef],
+          {ngIf:[0,'ngIf']},(null as any)),(_l()(),i1.ɵted(-1,(null as any),['\n\n    '])),
+      (_l()(),i1.ɵeld(13,0,(null as any),(null as any),1,'div',([] as any[]),(null as any),
+          (null as any),(null as any),(null as any),(null as any))),(_l()(),i1.ɵted(-1,
+          (null as any),['\n\n    '])),(_l()(),i1.ɵted(-1,(null as any),['\n    '])),
+      (_l()(),i1.ɵeld(16,0,(null as any),(null as any),8,'div',([] as any[]),(null as any),
+          (null as any),(null as any),(null as any),(null as any))),i1.ɵdid(17,16384,
+          (null as any),0,i4.NgSwitch,([] as any[]),{ngSwitch:[0,'ngSwitch']},(null as any)),
+      (_l()(),i1.ɵted(-1,(null as any),['\n      '])),(_l()(),i1.ɵand(16777216,(null as any),
+          (null as any),1,(null as any),View_StudentsStudentStatusComponent_3)),i1.ɵdid(20,
+          278528,(null as any),0,i4.NgSwitchCase,[i1.ViewContainerRef,i1.TemplateRef,
+              i4.NgSwitch],{ngSwitchCase:[0,'ngSwitchCase']},(null as any)),(_l()(),
+          i1.ɵted(-1,(null as any),['\n      '])),(_l()(),i1.ɵand(16777216,(null as any),
+          (null as any),1,(null as any),View_StudentsStudentStatusComponent_4)),i1.ɵdid(23,
+          278528,(null as any),0,i4.NgSwitchCase,[i1.ViewContainerRef,i1.TemplateRef,
+              i4.NgSwitch],{ngSwitchCase:[0,'ngSwitchCase']},(null as any)),(_l()(),
+          i1.ɵted(-1,(null as any),['\n    '])),(_l()(),i1.ɵted(-1,(null as any),['\n  '])),
+      (_l()(),i1.ɵted(-1,(null as any),['\n\n\n  l\n']))],(_ck,_v) => {
     var _co:i5.StudentsStudentStatusComponent = _v.component;
     const currVal_0:any = _co.errorMessage;
     _ck(_v,8,0,currVal_0);
@@ -228,15 +234,15 @@ export function View_StudentsStudentStatusComponent_0(_l:any):i1.ɵViewDefinitio
   },(null as any));
 }
 export function View_StudentsStudentStatusComponent_Host_0(_l:any):i1.ɵViewDefinition {
-  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,(null as any),(null as any),1,'ng-component',
+  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,0,(null as any),(null as any),1,'ng-component',
       ([] as any[]),(null as any),(null as any),(null as any),View_StudentsStudentStatusComponent_0,
-      RenderType_StudentsStudentStatusComponent)),i1.ɵdid(114688,(null as any),0,i5.StudentsStudentStatusComponent,
-      [i6.ActivatedRoute,i7.SqlResource,i6.Router,i8.SessionService],(null as any),
-      (null as any))],(_ck,_v) => {
+      RenderType_StudentsStudentStatusComponent)),i1.ɵdid(1,114688,(null as any),0,
+      i5.StudentsStudentStatusComponent,[i6.ActivatedRoute,i7.SqlResource,i6.Router,
+          i8.SessionService],(null as any),(null as any))],(_ck,_v) => {
     _ck(_v,1,0);
   },(null as any));
 }
 export const StudentsStudentStatusComponentNgFactory:i1.ComponentFactory<i5.StudentsStudentStatusComponent> = i1.ɵccf('ng-component',
     i5.StudentsStudentStatusComponent,View_StudentsStudentStatusComponent_Host_0,{},
     {},([] as any[]));
-//# sourceMappingURL=data:application/json;base64,eyJmaWxlIjoiL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC8rc3R1ZGVudHMvc3R1ZGVudHMtc3R1ZGVudC1zdGF0dXMvc3R1ZGVudHMtc3R1ZGVudC1zdGF0dXMuY29tcG9uZW50Lm5nZmFjdG9yeS50cyIsInZlcnNpb24iOjMsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIm5nOi8vL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC8rc3R1ZGVudHMvc3R1ZGVudHMtc3R1ZGVudC1zdGF0dXMvc3R1ZGVudHMtc3R1ZGVudC1zdGF0dXMuY29tcG9uZW50LnRzIiwibmc6Ly8vaG9tZS9ja2FwaWxsYS9EZXYvSm92ZW5lc0EtY2xpZW50LkNMSS9zcmMvYXBwLytzdHVkZW50cy9zdHVkZW50cy1zdHVkZW50LXN0YXR1cy9zdHVkZW50cy1zdHVkZW50LXN0YXR1cy5jb21wb25lbnQuaHRtbCIsIm5nOi8vL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC8rc3R1ZGVudHMvc3R1ZGVudHMtc3R1ZGVudC1zdGF0dXMvc3R1ZGVudHMtc3R1ZGVudC1zdGF0dXMuY29tcG9uZW50LnRzLlN0dWRlbnRzU3R1ZGVudFN0YXR1c0NvbXBvbmVudF9Ib3N0Lmh0bWwiXSwic291cmNlc0NvbnRlbnQiOlsiICIsIjxkaXYgY2xhc3M9XCJwYW5lbCBwYW5lbC1wcmltYXJ5XCI+XG4gIDxkaXYgY2xhc3M9XCJwYW5lbC1oZWFkaW5nXCIgc3R5bGU9XCJmb250LXNpemU6bGFyZ2VcIj5cbiAgICBNaSBFc3RhZG9cbiAgPC9kaXY+XG4gIDxkaXYgY2xhc3M9XCJwYW5lbC1ib2R5XCI+XG4gICAgPHNwYW4gKm5nSWY9XCJlcnJvck1lc3NhZ2VcIiBjbGFzcz1cImFsZXJ0IGFsZXJ0LWRhbmdlclwiPnt7ZXJyb3JNZXNzYWdlfX08L3NwYW4+XG4gICAgPHNwYW4gKm5nSWY9XCJzdWNjZXNzTWVzc2FnZVwiIGNsYXNzPVwiYWxlcnQgYWxlcnQtc3VjY2Vzc1wiPnt7c3VjY2Vzc01lc3NhZ2V9fTwvc3Bhbj5cblxuICAgIDxkaXY+XG5cbiAgICA8L2Rpdj5cbiAgICA8ZGl2IFtuZ1N3aXRjaF09XCJpc0xvYWRpbmdcIj5cbiAgICAgIDxkaXYgKm5nU3dpdGNoQ2FzZT1cInRydWVcIiBjbGFzcz1cInRleHQtY2VudGVyIGNvbC1tZC00IGNvbC1tZC1vZmZzZXQtNFwiPlxuICAgICAgICA8bG9hZGluZy1jb250YWluZXI+XG4gICAgICAgIDwvbG9hZGluZy1jb250YWluZXI+XG4gICAgICA8L2Rpdj5cbiAgICAgIDxkaXYgKm5nU3dpdGNoQ2FzZT1cImZhbHNlXCI+XG4gICAgICAgIDx0YWJsZSBjbGFzcz1cInRhYmxlXCI+XG5cbiAgICAgICAgICA8dGhlYWQ+XG4gICAgICAgICAgICA8dHI+XG5cbiAgICAgICAgICAgICAgPHRkIGNsYXNzPSdjZW50ZXJlZCc+RXN0YWRvPC90ZD5cbiAgICAgICAgICAgICAgPHRkIGNsYXNzPSdjZW50ZXJlZCc+RGVzZGU8L3RkPlxuICAgICAgICAgICAgICA8dGQgY2xhc3M9J2NlbnRlcmVkJz5HcmFkPGJyIC8+IEHDsW8vTWVzPC90ZD5cbiAgICAgICAgICAgICAgPHRkIGNsYXNzPSdjZW50ZXJlZCc+Jm5ic3A7Jm5ic3A7Q2FsaWZpY2FjaW9uZXM8YnIgLz5Qcm9tZWRpbyZuYnNwO2EmbmJzcDtUaWVtcG88L3RkPlxuXG5cbiAgICAgICAgICAgICAgPHRkIGNsYXNzPSdjZW50ZXJlZCc+TWVudG9yPC90ZD5cbiAgICAgICAgICAgICAgPHRkIGNsYXNzPSdjZW50ZXJlZCc+Jm5ic3A7Jm5ic3A7UmV1bmnDs24gZGU8YnIvPk1lbnRvciBlc3RlIE1lcyA8L3RkPlxuXG4gICAgICAgICAgICAgIDx0ZCBjbGFzcz0nY2VudGVyZWQnPlBhZHJpbm88L3RkPlxuICAgICAgICAgICAgICA8dGQgY2xhc3M9J2NlbnRlcmVkJz5DYXJ0YSBQYWRyaW5vPGJyIC8+ZW5lLiAyMDE3PC90ZD5cbiAgICAgICAgICAgICAgPHRkPlVuaXY8L3RkPlxuICAgICAgICAgICAgPC90cj5cbiAgICAgICAgICA8L3RoZWFkPlxuICAgICAgICAgIDx0Ym9keT5cbiAgICAgICAgICAgIDx0ciAqbmdGb3I9XCJsZXQgc3R1ZGVudCBvZiBzdHVkZW50RFRPcywgbGV0IGkgPSBpbmRleFwiPlxuICAgICAgICAgICAgICA8dGQgY2xhc3M9J2NlbnRlcmVkJz5cbiAgICAgICAgICAgICAgICB7eyBzdHVkZW50LmVzU3RhdHVzIH19XG4gICAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgICAgIDx0ZCBjbGFzcz0nY2VudGVyZWQnPlxuICAgICAgICAgICAgICAgIHt7IHN0dWRlbnQueWVhckpvaW5lZEphfX1cbiAgICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgICAgICAgPHRkIGNsYXNzPSdjZW50ZXJlZCc+XG4gICAgICAgICAgICAgICAge3sgc3R1ZGVudC5ncmFkWWVhcn19L3t7IHN0dWRlbnQuZ3JhZE1vbnRofX1cbiAgICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgICAgICAgPHRkIHN0eWxlPVwidGV4dC1hbGlnbjpjZW50ZXI7d2hpdGUtc3BhY2U6IG5vd3JhcFwiPlxuICAgICAgICAgICAgICAgIDxpbWcgc3JjPVwiL2Fzc2V0cy9pbWFnZXMve3tzdHVkZW50LmdwYVN0YXR1c319LmpwZ1wiIGhlaWdodD1cIjIyXCI+XG4gICAgICAgICAgICAgICAgJm5ic3A7Jm5ic3A7XG4gICAgICAgICAgICAgICAgPGltZyBzcmM9XCIvYXNzZXRzL2ltYWdlcy97e3N0dWRlbnQuZ3JhZGVScHRTdGF0dXN9fS5qcGdcIiBoZWlnaHQ9XCIyMlwiPlxuICAgICAgICAgICAgICA8L3RkPlxuICAgICAgICAgICAgICA8dGQ+XG4gICAgICAgICAgICAgICAge3sgc3R1ZGVudC5tZW50b3JOYW1lIH19XG4gICAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgICAgIDx0ZCBzdHlsZT1cInRleHQtYWxpZ246Y2VudGVyO3doaXRlLXNwYWNlOiBub3dyYXBcIj5cbiAgICAgICAgICAgICAgICA8aW1nIHNyYz1cIi9hc3NldHMvaW1hZ2VzL3t7c3R1ZGVudC50aW1lbHlNZW50b3JNZWV0aW5nU3RhdHVzfX0uanBnXCIgaGVpZ2h0PVwiMjJcIj5cbiAgICAgICAgICAgICAgPC90ZD5cblxuXG4gICAgICAgICAgICAgIDx0ZD5cbiAgICAgICAgICAgICAgICB7eyBzdHVkZW50LnNwb25zb3JOYW1lIH19XG4gICAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgICAgIDx0ZCBjbGFzcz0nY2VudGVyZWQnPlxuICAgICAgICAgICAgICAgIDxpbWcgc3JjPVwiL2Fzc2V0cy9pbWFnZXMve3tzdHVkZW50LnRpbWVseVN0dWRlbnRMZXR0ZXJTdGF0dXN9fS5qcGdcIiBoZWlnaHQ9XCIyMlwiPlxuICAgICAgICAgICAgICA8L3RkPlxuXG4gICAgICAgICAgICAgIDx0ZD5cbiAgICAgICAgICAgICAgICB7eyBzdHVkZW50LnVuaXZlcnNpdHlBYmJyZXYgfX1cbiAgICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgICAgIDwvdHI+XG4gICAgICAgICAgPC90Ym9keT5cbiAgICAgICAgPC90YWJsZT5cbiAgICAgIDwvZGl2PlxuICAgIDwvZGl2PlxuICA8L2Rpdj5cblxuXG4gIGxcbiIsIjxuZy1jb21wb25lbnQ+PC9uZy1jb21wb25lbnQ+Il0sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O29CQ0tJO01BQUE7TUFBQSxnQkFBc0Q7OztJQUFBO0lBQUE7Ozs7b0JBQ3REO01BQUE7TUFBQSxnQkFBeUQ7OztJQUFBO0lBQUE7Ozs7b0JBTXZEO01BQUE7TUFBQSw4QkFBdUU7TUFDckU7VUFBQTtpREFBQSxVQUFBO3VDQUFBO01BQW1CLCtDQUNDO1VBQUE7OztvQkF1QmhCO01BQUEsd0VBQXVEO2FBQUEsc0NBQ3JEO01BQUE7TUFBQSw4QkFBcUI7TUFBQSxzQkFFaEIscURBQ0w7YUFBQTtVQUFBLDBEQUFxQjtNQUFBLDRDQUVoQjtN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
+//# sourceMappingURL=data:application/json;base64,eyJmaWxlIjoiL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC8rc3R1ZGVudHMvc3R1ZGVudHMtc3R1ZGVudC1zdGF0dXMvc3R1ZGVudHMtc3R1ZGVudC1zdGF0dXMuY29tcG9uZW50Lm5nZmFjdG9yeS50cyIsInZlcnNpb24iOjMsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIm5nOi8vL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC8rc3R1ZGVudHMvc3R1ZGVudHMtc3R1ZGVudC1zdGF0dXMvc3R1ZGVudHMtc3R1ZGVudC1zdGF0dXMuY29tcG9uZW50LnRzIiwibmc6Ly8vaG9tZS9ja2FwaWxsYS9EZXYvSm92ZW5lc0EtY2xpZW50LkNMSS9zcmMvYXBwLytzdHVkZW50cy9zdHVkZW50cy1zdHVkZW50LXN0YXR1cy9zdHVkZW50cy1zdHVkZW50LXN0YXR1cy5jb21wb25lbnQuaHRtbCIsIm5nOi8vL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC8rc3R1ZGVudHMvc3R1ZGVudHMtc3R1ZGVudC1zdGF0dXMvc3R1ZGVudHMtc3R1ZGVudC1zdGF0dXMuY29tcG9uZW50LnRzLlN0dWRlbnRzU3R1ZGVudFN0YXR1c0NvbXBvbmVudF9Ib3N0Lmh0bWwiXSwic291cmNlc0NvbnRlbnQiOlsiICIsIjxkaXYgY2xhc3M9XCJwYW5lbCBwYW5lbC1wcmltYXJ5XCI+XG4gIDxkaXYgY2xhc3M9XCJwYW5lbC1oZWFkaW5nXCIgc3R5bGU9XCJmb250LXNpemU6bGFyZ2VcIj5cbiAgICBNaSBFc3RhZG9cbiAgPC9kaXY+XG4gIDxkaXYgY2xhc3M9XCJwYW5lbC1ib2R5XCI+XG4gICAgPHNwYW4gKm5nSWY9XCJlcnJvck1lc3NhZ2VcIiBjbGFzcz1cImFsZXJ0IGFsZXJ0LWRhbmdlclwiPnt7ZXJyb3JNZXNzYWdlfX08L3NwYW4+XG4gICAgPHNwYW4gKm5nSWY9XCJzdWNjZXNzTWVzc2FnZVwiIGNsYXNzPVwiYWxlcnQgYWxlcnQtc3VjY2Vzc1wiPnt7c3VjY2Vzc01lc3NhZ2V9fTwvc3Bhbj5cblxuICAgIDxkaXY+XG5cbiAgICA8L2Rpdj5cbiAgICA8ZGl2IFtuZ1N3aXRjaF09XCJpc0xvYWRpbmdcIj5cbiAgICAgIDxkaXYgKm5nU3dpdGNoQ2FzZT1cInRydWVcIiBjbGFzcz1cInRleHQtY2VudGVyIGNvbC1tZC00IGNvbC1tZC1vZmZzZXQtNFwiPlxuICAgICAgICA8bG9hZGluZy1jb250YWluZXI+XG4gICAgICAgIDwvbG9hZGluZy1jb250YWluZXI+XG4gICAgICA8L2Rpdj5cbiAgICAgIDxkaXYgKm5nU3dpdGNoQ2FzZT1cImZhbHNlXCI+XG4gICAgICAgIDx0YWJsZSBjbGFzcz1cInRhYmxlXCI+XG5cbiAgICAgICAgICA8dGhlYWQ+XG4gICAgICAgICAgICA8dHI+XG5cbiAgICAgICAgICAgICAgPHRkIGNsYXNzPSdjZW50ZXJlZCc+RXN0YWRvPC90ZD5cbiAgICAgICAgICAgICAgPHRkIGNsYXNzPSdjZW50ZXJlZCc+RGVzZGU8L3RkPlxuICAgICAgICAgICAgICA8dGQgY2xhc3M9J2NlbnRlcmVkJz5HcmFkPGJyIC8+IEHDsW8vTWVzPC90ZD5cbiAgICAgICAgICAgICAgPHRkIGNsYXNzPSdjZW50ZXJlZCc+Jm5ic3A7Jm5ic3A7Q2FsaWZpY2FjaW9uZXM8YnIgLz5Qcm9tZWRpbyZuYnNwO2EmbmJzcDtUaWVtcG88L3RkPlxuXG5cbiAgICAgICAgICAgICAgPHRkIGNsYXNzPSdjZW50ZXJlZCc+TWVudG9yPC90ZD5cbiAgICAgICAgICAgICAgPHRkIGNsYXNzPSdjZW50ZXJlZCc+Jm5ic3A7Jm5ic3A7UmV1bmnDs24gZGU8YnIvPk1lbnRvciBlc3RlIE1lcyA8L3RkPlxuXG4gICAgICAgICAgICAgIDx0ZCBjbGFzcz0nY2VudGVyZWQnPlBhZHJpbm88L3RkPlxuICAgICAgICAgICAgICA8dGQgY2xhc3M9J2NlbnRlcmVkJz5DYXJ0YSBQYWRyaW5vPGJyIC8+ZW5lLiAyMDE3PC90ZD5cbiAgICAgICAgICAgICAgPHRkPlVuaXY8L3RkPlxuICAgICAgICAgICAgPC90cj5cbiAgICAgICAgICA8L3RoZWFkPlxuICAgICAgICAgIDx0Ym9keT5cbiAgICAgICAgICAgIDx0ciAqbmdGb3I9XCJsZXQgc3R1ZGVudCBvZiBzdHVkZW50RFRPcywgbGV0IGkgPSBpbmRleFwiPlxuICAgICAgICAgICAgICA8dGQgY2xhc3M9J2NlbnRlcmVkJz5cbiAgICAgICAgICAgICAgICB7eyBzdHVkZW50LmVzU3RhdHVzIH19XG4gICAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgICAgIDx0ZCBjbGFzcz0nY2VudGVyZWQnPlxuICAgICAgICAgICAgICAgIHt7IHN0dWRlbnQueWVhckpvaW5lZEphfX1cbiAgICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgICAgICAgPHRkIGNsYXNzPSdjZW50ZXJlZCc+XG4gICAgICAgICAgICAgICAge3sgc3R1ZGVudC5ncmFkWWVhcn19L3t7IHN0dWRlbnQuZ3JhZE1vbnRofX1cbiAgICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgICAgICAgPHRkIHN0eWxlPVwidGV4dC1hbGlnbjpjZW50ZXI7d2hpdGUtc3BhY2U6IG5vd3JhcFwiPlxuICAgICAgICAgICAgICAgIDxpbWcgc3JjPVwiL2Fzc2V0cy9pbWFnZXMve3tzdHVkZW50LmdwYVN0YXR1c319LmpwZ1wiIGhlaWdodD1cIjIyXCI+XG4gICAgICAgICAgICAgICAgJm5ic3A7Jm5ic3A7XG4gICAgICAgICAgICAgICAgPGltZyBzcmM9XCIvYXNzZXRzL2ltYWdlcy97e3N0dWRlbnQuZ3JhZGVScHRTdGF0dXN9fS5qcGdcIiBoZWlnaHQ9XCIyMlwiPlxuICAgICAgICAgICAgICA8L3RkPlxuICAgICAgICAgICAgICA8dGQ+XG4gICAgICAgICAgICAgICAge3sgc3R1ZGVudC5tZW50b3JOYW1lIH19XG4gICAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgICAgIDx0ZCBzdHlsZT1cInRleHQtYWxpZ246Y2VudGVyO3doaXRlLXNwYWNlOiBub3dyYXBcIj5cbiAgICAgICAgICAgICAgICA8aW1nIHNyYz1cIi9hc3NldHMvaW1hZ2VzL3t7c3R1ZGVudC50aW1lbHlNZW50b3JNZWV0aW5nU3RhdHVzfX0uanBnXCIgaGVpZ2h0PVwiMjJcIj5cbiAgICAgICAgICAgICAgPC90ZD5cblxuXG4gICAgICAgICAgICAgIDx0ZD5cbiAgICAgICAgICAgICAgICB7eyBzdHVkZW50LnNwb25zb3JOYW1lIH19XG4gICAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgICAgIDx0ZCBjbGFzcz0nY2VudGVyZWQnPlxuICAgICAgICAgICAgICAgIDxpbWcgc3JjPVwiL2Fzc2V0cy9pbWFnZXMve3tzdHVkZW50LnRpbWVseVN0dWRlbnRMZXR0ZXJTdGF0dXN9fS5qcGdcIiBoZWlnaHQ9XCIyMlwiPlxuICAgICAgICAgICAgICA8L3RkPlxuXG4gICAgICAgICAgICAgIDx0ZD5cbiAgICAgICAgICAgICAgICB7eyBzdHVkZW50LnVuaXZlcnNpdHlBYmJyZXYgfX1cbiAgICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgICAgIDwvdHI+XG4gICAgICAgICAgPC90Ym9keT5cbiAgICAgICAgPC90YWJsZT5cbiAgICAgIDwvZGl2PlxuICAgIDwvZGl2PlxuICA8L2Rpdj5cblxuXG4gIGxcbiIsIjxuZy1jb21wb25lbnQ+PC9uZy1jb21wb25lbnQ+Il0sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O29CQ0tJO01BQUE7TUFBQSxnQkFBc0Q7OztJQUFBO0lBQUE7Ozs7b0JBQ3REO01BQUE7TUFBQSxnQkFBeUQ7OztJQUFBO0lBQUE7Ozs7b0JBTXZEO01BQUE7TUFBQSw4QkFBdUU7TUFDckU7VUFBQTtpREFBQSxVQUFBO1VBQUE7TUFBbUIsa0RBQ0M7VUFBQTs7O29CQXVCaEI7TUFBQSx3RUFBdUQ7YUFBQSx5Q0FDckQ7TUFBQTtNQUFBLDhCQUFxQjtNQUFBLHNCQUVoQjtNQUNMO1VBQUE7TUFBcUI7TUFFaEIsd0RBQ0w7VUFBQTtVQUFB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

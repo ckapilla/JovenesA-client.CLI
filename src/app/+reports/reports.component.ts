@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
-import { Auth } from '../app_shared/services/auth.service';
+import { AuthService } from '../app_shared/services/auth.service';
 /**
  * This class represents the lazy loaded ReportsComponent.
  */
 @Component({
   moduleId: module.id,
-  selector: 'ja-reports',
+  selector: 'app-reports',
   templateUrl: 'reports.component.html',
   styleUrls: ['reports.component.css']
 })
 export class ReportsComponent {
 
-  constructor(public auth: Auth) {
+  constructor(public auth: AuthService) {
 
   }
   public onLoginClick = ($event: Event) => {
@@ -20,9 +20,8 @@ export class ReportsComponent {
   }
 
   public onLogoutClick = ($event: Event) => {
-   	    console.log('onLogoutClick');
-        $event.preventDefault(); // don't navigate to href.
-        this.auth.logout();
+    console.log('onLogoutClick');
+    $event.preventDefault(); // don't navigate to href.
+    this.auth.logout();
   }
-
 }

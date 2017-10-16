@@ -13,13 +13,13 @@ const styles_StudentsHomeComponent:any[] = [i0.styles];
 export const RenderType_StudentsHomeComponent:i1.RendererType2 = i1.ɵcrt({encapsulation:0,
     styles:styles_StudentsHomeComponent,data:{}});
 export function View_StudentsHomeComponent_0(_l:any):i1.ɵViewDefinition {
-  return i1.ɵvid(0,[(_l()(),i1.ɵted((null as any),['\nBienvenidos a la red privada para estudiantes de Jóvenes Adelante\n\n']))],
+  return i1.ɵvid(0,[(_l()(),i1.ɵted(-1,(null as any),['\nBienvenidos a la red privada para estudiantes de Jóvenes Adelante\n\n']))],
       (null as any),(null as any));
 }
 export function View_StudentsHomeComponent_Host_0(_l:any):i1.ɵViewDefinition {
-  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,(null as any),(null as any),1,'ng-component',
+  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,0,(null as any),(null as any),1,'ng-component',
       ([] as any[]),(null as any),(null as any),(null as any),View_StudentsHomeComponent_0,
-      RenderType_StudentsHomeComponent)),i1.ɵdid(49152,(null as any),0,i2.StudentsHomeComponent,
+      RenderType_StudentsHomeComponent)),i1.ɵdid(1,49152,(null as any),0,i2.StudentsHomeComponent,
       ([] as any[]),(null as any),(null as any))],(null as any),(null as any));
 }
 export const StudentsHomeComponentNgFactory:i1.ComponentFactory<i2.StudentsHomeComponent> = i1.ɵccf('ng-component',

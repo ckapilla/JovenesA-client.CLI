@@ -17,24 +17,25 @@ const styles_MentorsComponent:any[] = [i0.styles];
 export const RenderType_MentorsComponent:i1.RendererType2 = i1.ɵcrt({encapsulation:0,
     styles:styles_MentorsComponent,data:{}});
 export function View_MentorsComponent_0(_l:any):i1.ɵViewDefinition {
-  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,(null as any),(null as any),1,'mentors-navbar',
+  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,0,(null as any),(null as any),1,'mentors-navbar',
       ([] as any[]),(null as any),(null as any),(null as any),i2.View_MentorsNavbarComponent_0,
-      i2.RenderType_MentorsNavbarComponent)),i1.ɵdid(49152,(null as any),0,i3.MentorsNavbarComponent,
-      [i4.SessionService],(null as any),(null as any)),(_l()(),i1.ɵted((null as any),
-      ['\n'])),(_l()(),i1.ɵeld(16777216,(null as any),(null as any),1,'router-outlet',
+      i2.RenderType_MentorsNavbarComponent)),i1.ɵdid(1,49152,(null as any),0,i3.MentorsNavbarComponent,
+      [i4.SessionService],(null as any),(null as any)),(_l()(),i1.ɵted(-1,(null as any),
+      ['\n'])),(_l()(),i1.ɵeld(3,16777216,(null as any),(null as any),1,'router-outlet',
       ([] as any[]),(null as any),(null as any),(null as any),(null as any),(null as any))),
-      i1.ɵdid(212992,(null as any),0,i5.RouterOutlet,[i5.ChildrenOutletContexts,i1.ViewContainerRef,
-          i1.ComponentFactoryResolver,[8,(null as any)],i1.ChangeDetectorRef],(null as any),
-          (null as any)),(_l()(),i1.ɵted((null as any),['\n']))],(_ck,_v) => {
-    _ck(_v,4,0);
-  },(null as any));
+      i1.ɵdid(4,212992,(null as any),0,i5.RouterOutlet,[i5.ChildrenOutletContexts,
+          i1.ViewContainerRef,i1.ComponentFactoryResolver,[8,(null as any)],i1.ChangeDetectorRef],
+          (null as any),(null as any)),(_l()(),i1.ɵted(-1,(null as any),['\n']))],
+      (_ck,_v) => {
+        _ck(_v,4,0);
+      },(null as any));
 }
 export function View_MentorsComponent_Host_0(_l:any):i1.ɵViewDefinition {
-  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,(null as any),(null as any),1,'ng-component',
+  return i1.ɵvid(0,[(_l()(),i1.ɵeld(0,0,(null as any),(null as any),1,'ng-component',
       ([] as any[]),(null as any),(null as any),(null as any),View_MentorsComponent_0,
-      RenderType_MentorsComponent)),i1.ɵdid(49152,(null as any),0,i6.MentorsComponent,
+      RenderType_MentorsComponent)),i1.ɵdid(1,49152,(null as any),0,i6.MentorsComponent,
       ([] as any[]),(null as any),(null as any))],(null as any),(null as any));
 }
 export const MentorsComponentNgFactory:i1.ComponentFactory<i6.MentorsComponent> = i1.ɵccf('ng-component',
     i6.MentorsComponent,View_MentorsComponent_Host_0,{},{},([] as any[]));
-//# sourceMappingURL=data:application/json;base64,eyJmaWxlIjoiL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC8rbWVudG9ycy9tZW50b3JzLmNvbXBvbmVudC5uZ2ZhY3RvcnkudHMiLCJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJuZzovLy9ob21lL2NrYXBpbGxhL0Rldi9Kb3ZlbmVzQS1jbGllbnQuQ0xJL3NyYy9hcHAvK21lbnRvcnMvbWVudG9ycy5jb21wb25lbnQudHMiLCJuZzovLy9ob21lL2NrYXBpbGxhL0Rldi9Kb3ZlbmVzQS1jbGllbnQuQ0xJL3NyYy9hcHAvK21lbnRvcnMvbWVudG9ycy5jb21wb25lbnQuaHRtbCIsIm5nOi8vL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC8rbWVudG9ycy9tZW50b3JzLmNvbXBvbmVudC50cy5NZW50b3JzQ29tcG9uZW50X0hvc3QuaHRtbCJdLCJzb3VyY2VzQ29udGVudCI6WyIgIiwiPG1lbnRvcnMtbmF2YmFyPjwvbWVudG9ycy1uYXZiYXI+XG48cm91dGVyLW91dGxldD48L3JvdXRlci1vdXRsZXQ+XG4iLCI8bmctY29tcG9uZW50PjwvbmctY29tcG9uZW50PiJdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7b0JDQUE7TUFBQTswQ0FBQSxVQUFBO01BQUEsaURBQWlDO01BQUEsU0FDakM7TUFBQTthQUFBO3NDQUFBO1VBQUEsZUFBK0I7SUFBL0I7Ozs7b0JDREE7TUFBQTtpQ0FBQSxVQUFBO01BQUE7OzsifQ==
+//# sourceMappingURL=data:application/json;base64,eyJmaWxlIjoiL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC8rbWVudG9ycy9tZW50b3JzLmNvbXBvbmVudC5uZ2ZhY3RvcnkudHMiLCJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJuZzovLy9ob21lL2NrYXBpbGxhL0Rldi9Kb3ZlbmVzQS1jbGllbnQuQ0xJL3NyYy9hcHAvK21lbnRvcnMvbWVudG9ycy5jb21wb25lbnQudHMiLCJuZzovLy9ob21lL2NrYXBpbGxhL0Rldi9Kb3ZlbmVzQS1jbGllbnQuQ0xJL3NyYy9hcHAvK21lbnRvcnMvbWVudG9ycy5jb21wb25lbnQuaHRtbCIsIm5nOi8vL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC8rbWVudG9ycy9tZW50b3JzLmNvbXBvbmVudC50cy5NZW50b3JzQ29tcG9uZW50X0hvc3QuaHRtbCJdLCJzb3VyY2VzQ29udGVudCI6WyIgIiwiPG1lbnRvcnMtbmF2YmFyPjwvbWVudG9ycy1uYXZiYXI+XG48cm91dGVyLW91dGxldD48L3JvdXRlci1vdXRsZXQ+XG4iLCI8bmctY29tcG9uZW50PjwvbmctY29tcG9uZW50PiJdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7b0JDQUE7TUFBQTswQ0FBQSxVQUFBO01BQUEsaURBQWlDO01BQUEsU0FDakM7TUFBQTthQUFBOzBEQUFBO1VBQUEsNkJBQStCOztRQUEvQjs7OztvQkNEQTtNQUFBO2lDQUFBLFVBQUE7TUFBQTs7OyJ9

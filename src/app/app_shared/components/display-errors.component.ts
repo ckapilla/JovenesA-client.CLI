@@ -9,7 +9,7 @@ import 'rxjs/add/operator/catch';
 
 @Component({
   template: `<div>{{currentError}}</div>`,
-  selector: 'display-errors'
+  selector: 'app-display-errors'
 })
 export class DisplayErrorsComponent {
   @Input() errors: Object;
@@ -19,7 +19,7 @@ export class DisplayErrorsComponent {
   constructor(@Host() private myFormGroupDirective: FormGroupDirective) {}
   get currentError() {
     this.myFormGroup = this.myFormGroupDirective.control;
-    let control = this.myFormGroup.controls[this.control];
+    const control = this.myFormGroup.controls[this.control];
     //console.log(control);
     let errorMessages: Array<string> = [];
     if (control && (control.touched || !control.pristine)) {

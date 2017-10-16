@@ -65,10 +65,10 @@
           <textarea id="inputFollowUp" formControlName="inputFollowUp" [(ngModel)]="mentorReport.followUpNeeded" type="text" class="form-control input-sm"
             placeholder="Follow up Needed">
           </textarea>
-          <display-errors control="inputFollowUp" class="red"
+          <app-display-errors control="inputFollowUp" class="red"
             [errors]="{
                 'maxlength': 'Entry cannot exceed 2000 characters in length.'
-                }"></display-errors>
+                }"></app-display-errors>
         </div>
 
         <div class="controls">
@@ -76,10 +76,10 @@
           <textarea id="inputSuccess" #success formControlName="inputSuccess" [(ngModel)]="mentorReport.recentSuccess" type="text"
             class="form-control input-sm" placeholder="(Si usted habla Ingles de manera fluida, favor de hacer su reporte en dicho idioma.)">
           </textarea>
-          <display-errors control="inputSuccess" class="red"
+          <app-display-errors control="inputSuccess" class="red"
             [errors]="{'required': 'An entry is required, even if it is just N/A',
                 'maxlength': 'Entry cannot exceed 2000 characters in length.'
-                }"></display-errors>
+                }"></app-display-errors>
         </div>
 
         <div class="controls">
@@ -87,10 +87,10 @@
           <textarea id="inputSetback" #setback formControlName="inputSetback" [(ngModel)]="mentorReport.recentSetback" type="text"
             class="form-control input-sm" placeholder="(Si usted habla Ingles de manera fluida, favor de hacer su reporte en dicho idioma.)">
           </textarea>
-          <display-errors control="inputSetback" class="red"
+          <app-display-errors control="inputSetback" class="red"
             [errors]="{'required': 'An entry is required, even if it is just N/A',
                 'maxlength': 'Entry cannot exceed 2000 characters in length.'
-                }"></display-errors>
+                }"></app-display-errors>
         </div>
 
         <div class="col-md-6 col-md-offset-1">

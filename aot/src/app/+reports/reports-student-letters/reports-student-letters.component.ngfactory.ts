@@ -18,9 +18,9 @@ const styles_ReportsStudentLettersComponent:any[] = ([] as any[]);
 export const RenderType_ReportsStudentLettersComponent:i0.RendererType2 = i0.ɵcrt({encapsulation:2,
     styles:styles_ReportsStudentLettersComponent,data:{}});
 function View_ReportsStudentLettersComponent_1(_l:any):i0.ɵViewDefinition {
-  return i0.ɵvid(0,[(_l()(),i0.ɵeld(0,(null as any),(null as any),1,'span',[['class',
+  return i0.ɵvid(0,[(_l()(),i0.ɵeld(0,0,(null as any),(null as any),1,'span',[['class',
       'alert alert-danger']],(null as any),(null as any),(null as any),(null as any),
-      (null as any))),(_l()(),i0.ɵted((null as any),['','']))],(null as any),(_ck,
+      (null as any))),(_l()(),i0.ɵted(1,(null as any),['','']))],(null as any),(_ck,
       _v) => {
     var _co:any = _v.component;
     const currVal_0:any = _co.errorMessage;
@@ -28,9 +28,9 @@ function View_ReportsStudentLettersComponent_1(_l:any):i0.ɵViewDefinition {
   });
 }
 function View_ReportsStudentLettersComponent_2(_l:any):i0.ɵViewDefinition {
-  return i0.ɵvid(0,[(_l()(),i0.ɵeld(0,(null as any),(null as any),1,'span',[['class',
+  return i0.ɵvid(0,[(_l()(),i0.ɵeld(0,0,(null as any),(null as any),1,'span',[['class',
       'alert alert-success']],(null as any),(null as any),(null as any),(null as any),
-      (null as any))),(_l()(),i0.ɵted((null as any),['','']))],(null as any),(_ck,
+      (null as any))),(_l()(),i0.ɵted(1,(null as any),['','']))],(null as any),(_ck,
       _v) => {
     var _co:any = _v.component;
     const currVal_0:any = _co.successMessage;
@@ -38,41 +38,43 @@ function View_ReportsStudentLettersComponent_2(_l:any):i0.ɵViewDefinition {
   });
 }
 function View_ReportsStudentLettersComponent_3(_l:any):i0.ɵViewDefinition {
-  return i0.ɵvid(0,[(_l()(),i0.ɵeld(0,(null as any),(null as any),5,'div',[['class',
+  return i0.ɵvid(0,[(_l()(),i0.ɵeld(0,0,(null as any),(null as any),5,'div',[['class',
       'text-center col-md-4 col-md-offset-4']],(null as any),(null as any),(null as any),
-      (null as any),(null as any))),(_l()(),i0.ɵted((null as any),['\n        '])),
-      (_l()(),i0.ɵeld(0,(null as any),(null as any),2,'loading-container',([] as any[]),
+      (null as any),(null as any))),(_l()(),i0.ɵted(-1,(null as any),['\n        '])),
+      (_l()(),i0.ɵeld(2,0,(null as any),(null as any),2,'loading-container',([] as any[]),
           (null as any),(null as any),(null as any),i1.View_LoadingContainerComponent_0,
-          i1.RenderType_LoadingContainerComponent)),i0.ɵdid(49152,(null as any),0,
-          i2.LoadingContainerComponent,([] as any[]),(null as any),(null as any)),
-      (_l()(),i0.ɵted((null as any),['\n        '])),(_l()(),i0.ɵted((null as any),
+          i1.RenderType_LoadingContainerComponent)),i0.ɵdid(3,49152,(null as any),
+          0,i2.LoadingContainerComponent,([] as any[]),(null as any),(null as any)),
+      (_l()(),i0.ɵted(-1,(null as any),['\n        '])),(_l()(),i0.ɵted(-1,(null as any),
           ['\n      ']))],(null as any),(null as any));
 }
 function View_ReportsStudentLettersComponent_5(_l:any):i0.ɵViewDefinition {
-  return i0.ɵvid(0,[(_l()(),i0.ɵeld(0,(null as any),(null as any),22,'tr',([] as any[]),
+  return i0.ɵvid(0,[(_l()(),i0.ɵeld(0,0,(null as any),(null as any),22,'tr',([] as any[]),
       (null as any),(null as any),(null as any),(null as any),(null as any))),(_l()(),
-      i0.ɵted((null as any),['\n              '])),(_l()(),i0.ɵeld(0,(null as any),
+      i0.ɵted(-1,(null as any),['\n              '])),(_l()(),i0.ɵeld(2,0,(null as any),
       (null as any),1,'td',([] as any[]),(null as any),(null as any),(null as any),
-      (null as any),(null as any))),(_l()(),i0.ɵted((null as any),['\n                ',
-      '\n              '])),(_l()(),i0.ɵted((null as any),['\n            '])),(_l()(),
-      i0.ɵeld(0,(null as any),(null as any),1,'td',([] as any[]),(null as any),(null as any),
-          (null as any),(null as any),(null as any))),(_l()(),i0.ɵted((null as any),
-      ['\n                ','\n              '])),(_l()(),i0.ɵted((null as any),['\n              '])),
-      (_l()(),i0.ɵeld(0,(null as any),(null as any),1,'td',([] as any[]),(null as any),
-          (null as any),(null as any),(null as any),(null as any))),(_l()(),i0.ɵted((null as any),
-          ['\n                ','\n              '])),(_l()(),i0.ɵted((null as any),
-          ['\n              '])),(_l()(),i0.ɵeld(0,(null as any),(null as any),1,'td',
-          ([] as any[]),(null as any),(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i0.ɵted((null as any),['\n                ','\n              '])),(_l()(),
-          i0.ɵted((null as any),['\n              '])),(_l()(),i0.ɵeld(0,(null as any),
-          (null as any),1,'td',([] as any[]),(null as any),(null as any),(null as any),
-          (null as any),(null as any))),(_l()(),i0.ɵted((null as any),['\n                ',
-          '\n              '])),(_l()(),i0.ɵted((null as any),['\n              '])),
-      (_l()(),i0.ɵeld(0,(null as any),(null as any),1,'td',([] as any[]),(null as any),
-          (null as any),(null as any),(null as any),(null as any))),(_l()(),i0.ɵted((null as any),
-          ['\n                ','\n              '])),(_l()(),i0.ɵted((null as any),
-          ['\n              '])),(_l()(),i0.ɵeld(0,(null as any),(null as any),1,'td',
-          [['class','link']],(null as any),[[(null as any),'click']],(_v,en,$event) => {
+      (null as any),(null as any))),(_l()(),i0.ɵted(3,(null as any),['\n                ',
+      '\n              '])),(_l()(),i0.ɵted(-1,(null as any),['\n            '])),
+      (_l()(),i0.ɵeld(5,0,(null as any),(null as any),1,'td',([] as any[]),(null as any),
+          (null as any),(null as any),(null as any),(null as any))),(_l()(),i0.ɵted(6,
+          (null as any),['\n                ','\n              '])),(_l()(),i0.ɵted(-1,
+          (null as any),['\n              '])),(_l()(),i0.ɵeld(8,0,(null as any),(null as any),
+          1,'td',([] as any[]),(null as any),(null as any),(null as any),(null as any),
+          (null as any))),(_l()(),i0.ɵted(9,(null as any),['\n                ','\n              '])),
+      (_l()(),i0.ɵted(-1,(null as any),['\n              '])),(_l()(),i0.ɵeld(11,0,
+          (null as any),(null as any),1,'td',([] as any[]),(null as any),(null as any),
+          (null as any),(null as any),(null as any))),(_l()(),i0.ɵted(12,(null as any),
+          ['\n                ','\n              '])),(_l()(),i0.ɵted(-1,(null as any),
+          ['\n              '])),(_l()(),i0.ɵeld(14,0,(null as any),(null as any),
+          1,'td',([] as any[]),(null as any),(null as any),(null as any),(null as any),
+          (null as any))),(_l()(),i0.ɵted(15,(null as any),['\n                ','\n              '])),
+      (_l()(),i0.ɵted(-1,(null as any),['\n              '])),(_l()(),i0.ɵeld(17,0,
+          (null as any),(null as any),1,'td',([] as any[]),(null as any),(null as any),
+          (null as any),(null as any),(null as any))),(_l()(),i0.ɵted(18,(null as any),
+          ['\n                ','\n              '])),(_l()(),i0.ɵted(-1,(null as any),
+          ['\n              '])),(_l()(),i0.ɵeld(20,0,(null as any),(null as any),
+          1,'td',[['class','link']],(null as any),[[(null as any),'click']],(_v,en,
+              $event) => {
             var ad:boolean = true;
             var _co:any = _v.component;
             if (('click' === en)) {
@@ -80,8 +82,8 @@ function View_ReportsStudentLettersComponent_5(_l:any):i0.ɵViewDefinition {
               ad = (pd_0 && ad);
             }
             return ad;
-          },(null as any),(null as any))),(_l()(),i0.ɵted((null as any),['\n                ',
-          '\n              '])),(_l()(),i0.ɵted((null as any),['\n            ']))],
+          },(null as any),(null as any))),(_l()(),i0.ɵted(21,(null as any),['\n                ',
+          '\n              '])),(_l()(),i0.ɵted(-1,(null as any),['\n            ']))],
       (null as any),(_ck,_v) => {
         const currVal_0:any = (_v.context.index + 1);
         _ck(_v,3,0,currVal_0);
@@ -100,78 +102,81 @@ function View_ReportsStudentLettersComponent_5(_l:any):i0.ɵViewDefinition {
       });
 }
 function View_ReportsStudentLettersComponent_4(_l:any):i0.ɵViewDefinition {
-  return i0.ɵvid(0,[(_l()(),i0.ɵeld(0,(null as any),(null as any),37,'div',([] as any[]),
+  return i0.ɵvid(0,[(_l()(),i0.ɵeld(0,0,(null as any),(null as any),37,'div',([] as any[]),
       (null as any),(null as any),(null as any),(null as any),(null as any))),(_l()(),
-      i0.ɵted((null as any),['\n        '])),(_l()(),i0.ɵeld(0,(null as any),(null as any),
-      34,'table',[['class','table']],(null as any),(null as any),(null as any),(null as any),
-      (null as any))),(_l()(),i0.ɵted((null as any),['\n\n          '])),(_l()(),i0.ɵeld(0,
-      (null as any),(null as any),25,'thead',([] as any[]),(null as any),(null as any),
-      (null as any),(null as any),(null as any))),(_l()(),i0.ɵted((null as any),['\n            '])),
-      (_l()(),i0.ɵeld(0,(null as any),(null as any),22,'tr',([] as any[]),(null as any),
-          (null as any),(null as any),(null as any),(null as any))),(_l()(),i0.ɵted((null as any),
-          ['\n              '])),(_l()(),i0.ɵted((null as any),['\n              '])),
-      (_l()(),i0.ɵeld(0,(null as any),(null as any),0,'td',([] as any[]),(null as any),
-          (null as any),(null as any),(null as any),(null as any))),(_l()(),i0.ɵted((null as any),
-          ['\n              '])),(_l()(),i0.ɵeld(0,(null as any),(null as any),1,'td',
+      i0.ɵted(-1,(null as any),['\n        '])),(_l()(),i0.ɵeld(2,0,(null as any),
+      (null as any),34,'table',[['class','table']],(null as any),(null as any),(null as any),
+      (null as any),(null as any))),(_l()(),i0.ɵted(-1,(null as any),['\n\n          '])),
+      (_l()(),i0.ɵeld(4,0,(null as any),(null as any),25,'thead',([] as any[]),(null as any),
+          (null as any),(null as any),(null as any),(null as any))),(_l()(),i0.ɵted(-1,
+          (null as any),['\n            '])),(_l()(),i0.ɵeld(6,0,(null as any),(null as any),
+          22,'tr',([] as any[]),(null as any),(null as any),(null as any),(null as any),
+          (null as any))),(_l()(),i0.ɵted(-1,(null as any),['\n              '])),
+      (_l()(),i0.ɵted(-1,(null as any),['\n              '])),(_l()(),i0.ɵeld(9,0,
+          (null as any),(null as any),0,'td',([] as any[]),(null as any),(null as any),
+          (null as any),(null as any),(null as any))),(_l()(),i0.ɵted(-1,(null as any),
+          ['\n              '])),(_l()(),i0.ɵeld(11,0,(null as any),(null as any),
+          1,'td',([] as any[]),(null as any),(null as any),(null as any),(null as any),
+          (null as any))),(_l()(),i0.ɵted(-1,(null as any),['Student Name'])),(_l()(),
+          i0.ɵted(-1,(null as any),['\n              '])),(_l()(),i0.ɵeld(14,0,(null as any),
+          (null as any),1,'td',([] as any[]),(null as any),(null as any),(null as any),
+          (null as any),(null as any))),(_l()(),i0.ɵted(-1,(null as any),['Sponsor Group Name'])),
+      (_l()(),i0.ɵted(-1,(null as any),['\n              '])),(_l()(),i0.ɵeld(17,0,
+          (null as any),(null as any),1,'td',([] as any[]),(null as any),(null as any),
+          (null as any),(null as any),(null as any))),(_l()(),i0.ɵted(-1,(null as any),
+          ['Primary Sponsor Name'])),(_l()(),i0.ɵted(-1,(null as any),['\n              '])),
+      (_l()(),i0.ɵeld(20,0,(null as any),(null as any),1,'td',([] as any[]),(null as any),
+          (null as any),(null as any),(null as any),(null as any))),(_l()(),i0.ɵted(-1,
+          (null as any),['Sponsor Email'])),(_l()(),i0.ɵted(-1,(null as any),['\n              '])),
+      (_l()(),i0.ɵeld(23,0,(null as any),(null as any),1,'td',([] as any[]),(null as any),
+          (null as any),(null as any),(null as any),(null as any))),(_l()(),i0.ɵted(-1,
+          (null as any),['Sponsor Phone'])),(_l()(),i0.ɵted(-1,(null as any),['\n              '])),
+      (_l()(),i0.ɵeld(26,0,(null as any),(null as any),1,'td',([] as any[]),(null as any),
+          (null as any),(null as any),(null as any),(null as any))),(_l()(),i0.ɵted(-1,
+          (null as any),['Latest Letter'])),(_l()(),i0.ɵted(-1,(null as any),['\n            '])),
+      (_l()(),i0.ɵted(-1,(null as any),['\n          '])),(_l()(),i0.ɵted(-1,(null as any),
+          ['\n          '])),(_l()(),i0.ɵeld(31,0,(null as any),(null as any),4,'tbody',
           ([] as any[]),(null as any),(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i0.ɵted((null as any),['Student Name'])),(_l()(),i0.ɵted((null as any),
-          ['\n              '])),(_l()(),i0.ɵeld(0,(null as any),(null as any),1,'td',
-          ([] as any[]),(null as any),(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i0.ɵted((null as any),['Sponsor Group Name'])),(_l()(),i0.ɵted((null as any),
-          ['\n              '])),(_l()(),i0.ɵeld(0,(null as any),(null as any),1,'td',
-          ([] as any[]),(null as any),(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i0.ɵted((null as any),['Primary Sponsor Name'])),(_l()(),i0.ɵted((null as any),
-          ['\n              '])),(_l()(),i0.ɵeld(0,(null as any),(null as any),1,'td',
-          ([] as any[]),(null as any),(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i0.ɵted((null as any),['Sponsor Email'])),(_l()(),i0.ɵted((null as any),
-          ['\n              '])),(_l()(),i0.ɵeld(0,(null as any),(null as any),1,'td',
-          ([] as any[]),(null as any),(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i0.ɵted((null as any),['Sponsor Phone'])),(_l()(),i0.ɵted((null as any),
-          ['\n              '])),(_l()(),i0.ɵeld(0,(null as any),(null as any),1,'td',
-          ([] as any[]),(null as any),(null as any),(null as any),(null as any),(null as any))),
-      (_l()(),i0.ɵted((null as any),['Latest Letter'])),(_l()(),i0.ɵted((null as any),
-          ['\n            '])),(_l()(),i0.ɵted((null as any),['\n          '])),(_l()(),
-          i0.ɵted((null as any),['\n          '])),(_l()(),i0.ɵeld(0,(null as any),
-          (null as any),4,'tbody',([] as any[]),(null as any),(null as any),(null as any),
-          (null as any),(null as any))),(_l()(),i0.ɵted((null as any),['\n            '])),
-      (_l()(),i0.ɵand(16777216,(null as any),(null as any),1,(null as any),View_ReportsStudentLettersComponent_5)),
-      i0.ɵdid(802816,(null as any),0,i3.NgForOf,[i0.ViewContainerRef,i0.TemplateRef,
-          i0.IterableDiffers],{ngForOf:[0,'ngForOf']},(null as any)),(_l()(),i0.ɵted((null as any),
-          ['\n          '])),(_l()(),i0.ɵted((null as any),['\n        '])),(_l()(),
-          i0.ɵted((null as any),['\n      ']))],(_ck,_v) => {
+      (_l()(),i0.ɵted(-1,(null as any),['\n            '])),(_l()(),i0.ɵand(16777216,
+          (null as any),(null as any),1,(null as any),View_ReportsStudentLettersComponent_5)),
+      i0.ɵdid(34,802816,(null as any),0,i3.NgForOf,[i0.ViewContainerRef,i0.TemplateRef,
+          i0.IterableDiffers],{ngForOf:[0,'ngForOf']},(null as any)),(_l()(),i0.ɵted(-1,
+          (null as any),['\n          '])),(_l()(),i0.ɵted(-1,(null as any),['\n        '])),
+      (_l()(),i0.ɵted(-1,(null as any),['\n      ']))],(_ck,_v) => {
     var _co:any = _v.component;
     const currVal_0:any = _co.latestStudentLetters;
     _ck(_v,34,0,currVal_0);
   },(null as any));
 }
 export function View_ReportsStudentLettersComponent_0(_l:any):i0.ɵViewDefinition {
-  return i0.ɵvid(0,[(_l()(),i0.ɵeld(0,(null as any),(null as any),23,'div',[['class',
+  return i0.ɵvid(0,[(_l()(),i0.ɵeld(0,0,(null as any),(null as any),23,'div',[['class',
       'panel panel-primary']],(null as any),(null as any),(null as any),(null as any),
-      (null as any))),(_l()(),i0.ɵted((null as any),['\n  '])),(_l()(),i0.ɵeld(0,(null as any),
-      (null as any),1,'div',[['class','panel-heading'],['style','font-size:large']],
+      (null as any))),(_l()(),i0.ɵted(-1,(null as any),['\n  '])),(_l()(),i0.ɵeld(2,
+      0,(null as any),(null as any),1,'div',[['class','panel-heading'],['style','font-size:large']],
       (null as any),(null as any),(null as any),(null as any),(null as any))),(_l()(),
-      i0.ɵted((null as any),['\n    Latest Student Sponsor Letters\n  '])),(_l()(),
-      i0.ɵted((null as any),['\n  '])),(_l()(),i0.ɵeld(0,(null as any),(null as any),
+      i0.ɵted(-1,(null as any),['\n    Latest Student Sponsor Letters\n  '])),(_l()(),
+      i0.ɵted(-1,(null as any),['\n  '])),(_l()(),i0.ɵeld(5,0,(null as any),(null as any),
       17,'div',[['class','panel-body']],(null as any),(null as any),(null as any),
-      (null as any),(null as any))),(_l()(),i0.ɵted((null as any),['\n    '])),(_l()(),
-      i0.ɵand(16777216,(null as any),(null as any),1,(null as any),View_ReportsStudentLettersComponent_1)),
-      i0.ɵdid(16384,(null as any),0,i3.NgIf,[i0.ViewContainerRef,i0.TemplateRef],{ngIf:[0,
-          'ngIf']},(null as any)),(_l()(),i0.ɵted((null as any),['\n    '])),(_l()(),
-          i0.ɵand(16777216,(null as any),(null as any),1,(null as any),View_ReportsStudentLettersComponent_2)),
-      i0.ɵdid(16384,(null as any),0,i3.NgIf,[i0.ViewContainerRef,i0.TemplateRef],{ngIf:[0,
-          'ngIf']},(null as any)),(_l()(),i0.ɵted((null as any),['\n\n\n    '])),(_l()(),
-          i0.ɵeld(0,(null as any),(null as any),8,'div',([] as any[]),(null as any),
-              (null as any),(null as any),(null as any),(null as any))),i0.ɵdid(16384,
+      (null as any),(null as any))),(_l()(),i0.ɵted(-1,(null as any),['\n    '])),
+      (_l()(),i0.ɵand(16777216,(null as any),(null as any),1,(null as any),View_ReportsStudentLettersComponent_1)),
+      i0.ɵdid(8,16384,(null as any),0,i3.NgIf,[i0.ViewContainerRef,i0.TemplateRef],
+          {ngIf:[0,'ngIf']},(null as any)),(_l()(),i0.ɵted(-1,(null as any),['\n    '])),
+      (_l()(),i0.ɵand(16777216,(null as any),(null as any),1,(null as any),View_ReportsStudentLettersComponent_2)),
+      i0.ɵdid(11,16384,(null as any),0,i3.NgIf,[i0.ViewContainerRef,i0.TemplateRef],
+          {ngIf:[0,'ngIf']},(null as any)),(_l()(),i0.ɵted(-1,(null as any),['\n\n\n    '])),
+      (_l()(),i0.ɵeld(13,0,(null as any),(null as any),8,'div',([] as any[]),(null as any),
+          (null as any),(null as any),(null as any),(null as any))),i0.ɵdid(14,16384,
           (null as any),0,i3.NgSwitch,([] as any[]),{ngSwitch:[0,'ngSwitch']},(null as any)),
-      (_l()(),i0.ɵted((null as any),['\n      '])),(_l()(),i0.ɵand(16777216,(null as any),
-          (null as any),1,(null as any),View_ReportsStudentLettersComponent_3)),i0.ɵdid(278528,
-          (null as any),0,i3.NgSwitchCase,[i0.ViewContainerRef,i0.TemplateRef,i3.NgSwitch],
-          {ngSwitchCase:[0,'ngSwitchCase']},(null as any)),(_l()(),i0.ɵted((null as any),
-          ['\n      '])),(_l()(),i0.ɵand(16777216,(null as any),(null as any),1,(null as any),
-          View_ReportsStudentLettersComponent_4)),i0.ɵdid(278528,(null as any),0,i3.NgSwitchCase,
-          [i0.ViewContainerRef,i0.TemplateRef,i3.NgSwitch],{ngSwitchCase:[0,'ngSwitchCase']},
-          (null as any)),(_l()(),i0.ɵted((null as any),['\n    '])),(_l()(),i0.ɵted((null as any),
-          ['\n  '])),(_l()(),i0.ɵted((null as any),['\n\n\n  l\n']))],(_ck,_v) => {
+      (_l()(),i0.ɵted(-1,(null as any),['\n      '])),(_l()(),i0.ɵand(16777216,(null as any),
+          (null as any),1,(null as any),View_ReportsStudentLettersComponent_3)),i0.ɵdid(17,
+          278528,(null as any),0,i3.NgSwitchCase,[i0.ViewContainerRef,i0.TemplateRef,
+              i3.NgSwitch],{ngSwitchCase:[0,'ngSwitchCase']},(null as any)),(_l()(),
+          i0.ɵted(-1,(null as any),['\n      '])),(_l()(),i0.ɵand(16777216,(null as any),
+          (null as any),1,(null as any),View_ReportsStudentLettersComponent_4)),i0.ɵdid(20,
+          278528,(null as any),0,i3.NgSwitchCase,[i0.ViewContainerRef,i0.TemplateRef,
+              i3.NgSwitch],{ngSwitchCase:[0,'ngSwitchCase']},(null as any)),(_l()(),
+          i0.ɵted(-1,(null as any),['\n    '])),(_l()(),i0.ɵted(-1,(null as any),['\n  '])),
+      (_l()(),i0.ɵted(-1,(null as any),['\n\n\n  l\n']))],(_ck,_v) => {
     var _co:i4.ReportsStudentLettersComponent = _v.component;
     const currVal_0:any = _co.errorMessage;
     _ck(_v,8,0,currVal_0);
@@ -186,15 +191,15 @@ export function View_ReportsStudentLettersComponent_0(_l:any):i0.ɵViewDefinitio
   },(null as any));
 }
 export function View_ReportsStudentLettersComponent_Host_0(_l:any):i0.ɵViewDefinition {
-  return i0.ɵvid(0,[(_l()(),i0.ɵeld(0,(null as any),(null as any),1,'ng-component',
+  return i0.ɵvid(0,[(_l()(),i0.ɵeld(0,0,(null as any),(null as any),1,'ng-component',
       ([] as any[]),(null as any),(null as any),(null as any),View_ReportsStudentLettersComponent_0,
-      RenderType_ReportsStudentLettersComponent)),i0.ɵdid(114688,(null as any),0,i4.ReportsStudentLettersComponent,
-      [i5.SqlReports,i6.Router,i7.SessionService],(null as any),(null as any))],(_ck,
-      _v) => {
+      RenderType_ReportsStudentLettersComponent)),i0.ɵdid(1,114688,(null as any),0,
+      i4.ReportsStudentLettersComponent,[i5.SqlReports,i6.Router,i7.SessionService],
+      (null as any),(null as any))],(_ck,_v) => {
     _ck(_v,1,0);
   },(null as any));
 }
 export const ReportsStudentLettersComponentNgFactory:i0.ComponentFactory<i4.ReportsStudentLettersComponent> = i0.ɵccf('ng-component',
     i4.ReportsStudentLettersComponent,View_ReportsStudentLettersComponent_Host_0,{},
     {},([] as any[]));
-//# sourceMappingURL=data:application/json;base64,eyJmaWxlIjoiL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC8rcmVwb3J0cy9yZXBvcnRzLXN0dWRlbnQtbGV0dGVycy9yZXBvcnRzLXN0dWRlbnQtbGV0dGVycy5jb21wb25lbnQubmdmYWN0b3J5LnRzIiwidmVyc2lvbiI6Mywic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsibmc6Ly8vaG9tZS9ja2FwaWxsYS9EZXYvSm92ZW5lc0EtY2xpZW50LkNMSS9zcmMvYXBwLytyZXBvcnRzL3JlcG9ydHMtc3R1ZGVudC1sZXR0ZXJzL3JlcG9ydHMtc3R1ZGVudC1sZXR0ZXJzLmNvbXBvbmVudC50cyIsIm5nOi8vL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC8rcmVwb3J0cy9yZXBvcnRzLXN0dWRlbnQtbGV0dGVycy9yZXBvcnRzLXN0dWRlbnQtbGV0dGVycy5jb21wb25lbnQuaHRtbCIsIm5nOi8vL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC8rcmVwb3J0cy9yZXBvcnRzLXN0dWRlbnQtbGV0dGVycy9yZXBvcnRzLXN0dWRlbnQtbGV0dGVycy5jb21wb25lbnQudHMuUmVwb3J0c1N0dWRlbnRMZXR0ZXJzQ29tcG9uZW50X0hvc3QuaHRtbCJdLCJzb3VyY2VzQ29udGVudCI6WyIgIiwiPGRpdiBjbGFzcz1cInBhbmVsIHBhbmVsLXByaW1hcnlcIj5cbiAgPGRpdiBjbGFzcz1cInBhbmVsLWhlYWRpbmdcIiBzdHlsZT1cImZvbnQtc2l6ZTpsYXJnZVwiPlxuICAgIExhdGVzdCBTdHVkZW50IFNwb25zb3IgTGV0dGVyc1xuICA8L2Rpdj5cbiAgPGRpdiBjbGFzcz1cInBhbmVsLWJvZHlcIj5cbiAgICA8c3BhbiAqbmdJZj1cImVycm9yTWVzc2FnZVwiIGNsYXNzPVwiYWxlcnQgYWxlcnQtZGFuZ2VyXCI+e3tlcnJvck1lc3NhZ2V9fTwvc3Bhbj5cbiAgICA8c3BhbiAqbmdJZj1cInN1Y2Nlc3NNZXNzYWdlXCIgY2xhc3M9XCJhbGVydCBhbGVydC1zdWNjZXNzXCI+e3tzdWNjZXNzTWVzc2FnZX19PC9zcGFuPlxuXG5cbiAgICA8ZGl2IFtuZ1N3aXRjaF09XCJpc0xvYWRpbmdcIj5cbiAgICAgIDxkaXYgKm5nU3dpdGNoQ2FzZT1cInRydWVcIiBjbGFzcz1cInRleHQtY2VudGVyIGNvbC1tZC00IGNvbC1tZC1vZmZzZXQtNFwiPlxuICAgICAgICA8bG9hZGluZy1jb250YWluZXI+XG4gICAgICAgIDwvbG9hZGluZy1jb250YWluZXI+XG4gICAgICA8L2Rpdj5cbiAgICAgIDxkaXYgKm5nU3dpdGNoQ2FzZT1cImZhbHNlXCI+XG4gICAgICAgIDx0YWJsZSBjbGFzcz1cInRhYmxlXCI+XG5cbiAgICAgICAgICA8dGhlYWQ+XG4gICAgICAgICAgICA8dHI+XG4gICAgICAgICAgICAgIDwhLS08dGQ+SWQ8L3RkPi0tPlxuICAgICAgICAgICAgICA8dGQ+PC90ZD5cbiAgICAgICAgICAgICAgPHRkPlN0dWRlbnQgTmFtZTwvdGQ+XG4gICAgICAgICAgICAgIDx0ZD5TcG9uc29yIEdyb3VwIE5hbWU8L3RkPlxuICAgICAgICAgICAgICA8dGQ+UHJpbWFyeSBTcG9uc29yIE5hbWU8L3RkPlxuICAgICAgICAgICAgICA8dGQ+U3BvbnNvciBFbWFpbDwvdGQ+XG4gICAgICAgICAgICAgIDx0ZD5TcG9uc29yIFBob25lPC90ZD5cbiAgICAgICAgICAgICAgPHRkPkxhdGVzdCZuYnNwO0xldHRlcjwvdGQ+XG4gICAgICAgICAgICA8L3RyPlxuICAgICAgICAgIDwvdGhlYWQ+XG4gICAgICAgICAgPHRib2R5PlxuICAgICAgICAgICAgPHRyICpuZ0Zvcj1cImxldCBsbXIgb2YgbGF0ZXN0U3R1ZGVudExldHRlcnMsIGxldCBpID0gaW5kZXhcIj5cbiAgICAgICAgICAgICAgPHRkPlxuICAgICAgICAgICAgICAgIHt7IGkrMSB9fVxuICAgICAgICAgICAgICA8L3RkPlxuICAgICAgICAgICAgPHRkPlxuICAgICAgICAgICAgICAgIHt7IGxtci5zdHVkZW50TmFtZSB9fVxuICAgICAgICAgICAgICA8L3RkPlxuICAgICAgICAgICAgICA8dGQ+XG4gICAgICAgICAgICAgICAge3sgbG1yLnNwb25zb3JHcm91cE5hbWUgfX1cbiAgICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgICAgICAgPHRkPlxuICAgICAgICAgICAgICAgIHt7IGxtci5wcmltYXJ5U3BvbnNvck5hbWUgfX1cbiAgICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgICAgICAgPHRkPlxuICAgICAgICAgICAgICAgIHt7IGxtci5zcG9uc29yRW1haWwgfX1cbiAgICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgICAgICAgPHRkPlxuICAgICAgICAgICAgICAgIHt7IGxtci5zcG9uc29yUGhvbmUgfX1cbiAgICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgICAgICAgPHRkIChjbGljayk9J2dvdG9TdHVkZW50TGV0dGVyKGxtci5zdHVkZW50SWQpJyBjbGFzcz0nbGluayc+XG4gICAgICAgICAgICAgICAge3sgbG1yLmxhdGVzdE1vbnRoIH19XG4gICAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgICA8L3RyPlxuICAgICAgICAgIDwvdGJvZHk+XG4gICAgICAgIDwvdGFibGU+XG4gICAgICA8L2Rpdj5cbiAgICA8L2Rpdj5cbiAgPC9kaXY+XG5cblxuICBsXG4iLCI8bmctY29tcG9uZW50PjwvbmctY29tcG9uZW50PiJdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O29CQ0tJO01BQUE7TUFBQSxnQkFBc0Q7OztJQUFBO0lBQUE7Ozs7b0JBQ3REO01BQUE7TUFBQSxnQkFBeUQ7OztJQUFBO0lBQUE7Ozs7b0JBSXZEO01BQUE7TUFBQSw4QkFBdUU7TUFDckU7VUFBQTtpREFBQSxVQUFBO3VDQUFBO01BQW1CLCtDQUNDO1VBQUE7OztvQkFrQmhCO01BQUEsd0VBQTREO2FBQUEsc0NBQzFEO01BQUE7TUFBQSw4QkFBSTtNQUFBLHNCQUVDLG1EQUNQO2FBQUE7VUFBQSw0Q0FBSTtNQUFBLDRDQUVHO01BQ0w7VUFBQSwwREFBSTtVQUFBLDRDQUVDO1VBQUEsdUJBQ0w7VUFBQTtNQUFJLDBFQUVDO2lCQUFBLHNDQUNMO1VBQUE7VUFBQSw4QkFBSTtVQUFBLHNCQUVDO01BQ0w7VUFBQSwwREFBSTtVQUFBLDRDQUVDO1VBQUEsdUJBQ0w7VUFBQTtZQUFBO1lBQUE7WUFBSTtjQUFBO2NBQUE7WUFBQTtZQUFKO1VBQUEsZ0NBQTREO1VBQUEsc0JBRXZEOztRQXBCRDtRQUFBO1FBR0Y7UUFBQTtRQUdFO1FBQUE7UUFHQTtRQUFBO1FBR0E7UUFBQTtRQUdBO1FBQUE7UUFHd0Q7UUFBQTs7OztvQkFuQ3BFO01BQUEsd0VBQTJCO2FBQUEsZ0NBQ3pCO01BQUE7TUFBQSxnQkFBcUIsbURBRW5CO01BQUE7TUFBQSw0Q0FBTztNQUNMO1VBQUEsMERBQUk7VUFBQSx1QkFDZ0I7TUFDbEI7VUFBQSwwREFBUztVQUFBLHVCQUNUO1VBQUE7TUFBSSxpREFBaUI7VUFBQSx1QkFDckI7VUFBQTtNQUFJLHVEQUF1QjtVQUFBLHVCQUMzQjtVQUFBO01BQUkseURBQXlCO1VBQUEsdUJBQzdCO1VBQUE7TUFBSSxrREFBa0I7VUFBQSx1QkFDdEI7VUFBQTtNQUFJLGtEQUFrQjtVQUFBLHVCQUN0QjtVQUFBO01BQUksa0RBQXVCO1VBQUEscUJBQ3hCLGlEQUNDO2lCQUFBLGtDQUNSO1VBQUE7VUFBQSw4QkFBTztNQUNMO2FBQUE7NEJBQUEseUNBc0JLO1VBQUEsbUJBQ0MsK0NBQ0Y7aUJBQUE7O0lBeEJBO0lBQUosWUFBSSxTQUFKOzs7O29CQTlCWjtNQUFBO01BQUEsZ0JBQWlDLHlDQUMvQjtNQUFBO01BQUEsd0VBQW1EO2FBQUEsOERBRTdDO2FBQUEsMEJBQ047TUFBQTtNQUFBLDhCQUF3QiwyQ0FDdEI7YUFBQTthQUFBO1VBQUEsd0JBQTZFLDJDQUM3RTtpQkFBQTthQUFBO1VBQUEsd0JBQWtGLCtDQUdsRjtpQkFBQTtjQUFBLGlFQUFBO1VBQUE7TUFBNEIsNkNBQzFCO1VBQUEsNkVBQUE7VUFBQTtVQUFBLGlEQUdNO1VBQUEsZUFDTjtVQUFBLCtDQUFBO1VBQUE7VUFBQSxlQXlDTSwyQ0FDRjtVQUFBLFdBQ0Y7O0lBcERFO0lBQU4sV0FBTSxTQUFOO0lBQ007SUFBTixZQUFNLFNBQU47SUFHSztJQUFMLFlBQUssU0FBTDtJQUNPO0lBQUwsWUFBSyxTQUFMO0lBSUs7SUFBTCxZQUFLLFNBQUw7Ozs7b0JDZE47TUFBQTsrQ0FBQSxVQUFBO01BQUE7O0lBQUE7Ozs7OyJ9
+//# sourceMappingURL=data:application/json;base64,eyJmaWxlIjoiL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC8rcmVwb3J0cy9yZXBvcnRzLXN0dWRlbnQtbGV0dGVycy9yZXBvcnRzLXN0dWRlbnQtbGV0dGVycy5jb21wb25lbnQubmdmYWN0b3J5LnRzIiwidmVyc2lvbiI6Mywic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsibmc6Ly8vaG9tZS9ja2FwaWxsYS9EZXYvSm92ZW5lc0EtY2xpZW50LkNMSS9zcmMvYXBwLytyZXBvcnRzL3JlcG9ydHMtc3R1ZGVudC1sZXR0ZXJzL3JlcG9ydHMtc3R1ZGVudC1sZXR0ZXJzLmNvbXBvbmVudC50cyIsIm5nOi8vL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC8rcmVwb3J0cy9yZXBvcnRzLXN0dWRlbnQtbGV0dGVycy9yZXBvcnRzLXN0dWRlbnQtbGV0dGVycy5jb21wb25lbnQuaHRtbCIsIm5nOi8vL2hvbWUvY2thcGlsbGEvRGV2L0pvdmVuZXNBLWNsaWVudC5DTEkvc3JjL2FwcC8rcmVwb3J0cy9yZXBvcnRzLXN0dWRlbnQtbGV0dGVycy9yZXBvcnRzLXN0dWRlbnQtbGV0dGVycy5jb21wb25lbnQudHMuUmVwb3J0c1N0dWRlbnRMZXR0ZXJzQ29tcG9uZW50X0hvc3QuaHRtbCJdLCJzb3VyY2VzQ29udGVudCI6WyIgIiwiPGRpdiBjbGFzcz1cInBhbmVsIHBhbmVsLXByaW1hcnlcIj5cbiAgPGRpdiBjbGFzcz1cInBhbmVsLWhlYWRpbmdcIiBzdHlsZT1cImZvbnQtc2l6ZTpsYXJnZVwiPlxuICAgIExhdGVzdCBTdHVkZW50IFNwb25zb3IgTGV0dGVyc1xuICA8L2Rpdj5cbiAgPGRpdiBjbGFzcz1cInBhbmVsLWJvZHlcIj5cbiAgICA8c3BhbiAqbmdJZj1cImVycm9yTWVzc2FnZVwiIGNsYXNzPVwiYWxlcnQgYWxlcnQtZGFuZ2VyXCI+e3tlcnJvck1lc3NhZ2V9fTwvc3Bhbj5cbiAgICA8c3BhbiAqbmdJZj1cInN1Y2Nlc3NNZXNzYWdlXCIgY2xhc3M9XCJhbGVydCBhbGVydC1zdWNjZXNzXCI+e3tzdWNjZXNzTWVzc2FnZX19PC9zcGFuPlxuXG5cbiAgICA8ZGl2IFtuZ1N3aXRjaF09XCJpc0xvYWRpbmdcIj5cbiAgICAgIDxkaXYgKm5nU3dpdGNoQ2FzZT1cInRydWVcIiBjbGFzcz1cInRleHQtY2VudGVyIGNvbC1tZC00IGNvbC1tZC1vZmZzZXQtNFwiPlxuICAgICAgICA8bG9hZGluZy1jb250YWluZXI+XG4gICAgICAgIDwvbG9hZGluZy1jb250YWluZXI+XG4gICAgICA8L2Rpdj5cbiAgICAgIDxkaXYgKm5nU3dpdGNoQ2FzZT1cImZhbHNlXCI+XG4gICAgICAgIDx0YWJsZSBjbGFzcz1cInRhYmxlXCI+XG5cbiAgICAgICAgICA8dGhlYWQ+XG4gICAgICAgICAgICA8dHI+XG4gICAgICAgICAgICAgIDwhLS08dGQ+SWQ8L3RkPi0tPlxuICAgICAgICAgICAgICA8dGQ+PC90ZD5cbiAgICAgICAgICAgICAgPHRkPlN0dWRlbnQgTmFtZTwvdGQ+XG4gICAgICAgICAgICAgIDx0ZD5TcG9uc29yIEdyb3VwIE5hbWU8L3RkPlxuICAgICAgICAgICAgICA8dGQ+UHJpbWFyeSBTcG9uc29yIE5hbWU8L3RkPlxuICAgICAgICAgICAgICA8dGQ+U3BvbnNvciBFbWFpbDwvdGQ+XG4gICAgICAgICAgICAgIDx0ZD5TcG9uc29yIFBob25lPC90ZD5cbiAgICAgICAgICAgICAgPHRkPkxhdGVzdCZuYnNwO0xldHRlcjwvdGQ+XG4gICAgICAgICAgICA8L3RyPlxuICAgICAgICAgIDwvdGhlYWQ+XG4gICAgICAgICAgPHRib2R5PlxuICAgICAgICAgICAgPHRyICpuZ0Zvcj1cImxldCBsbXIgb2YgbGF0ZXN0U3R1ZGVudExldHRlcnMsIGxldCBpID0gaW5kZXhcIj5cbiAgICAgICAgICAgICAgPHRkPlxuICAgICAgICAgICAgICAgIHt7IGkrMSB9fVxuICAgICAgICAgICAgICA8L3RkPlxuICAgICAgICAgICAgPHRkPlxuICAgICAgICAgICAgICAgIHt7IGxtci5zdHVkZW50TmFtZSB9fVxuICAgICAgICAgICAgICA8L3RkPlxuICAgICAgICAgICAgICA8dGQ+XG4gICAgICAgICAgICAgICAge3sgbG1yLnNwb25zb3JHcm91cE5hbWUgfX1cbiAgICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgICAgICAgPHRkPlxuICAgICAgICAgICAgICAgIHt7IGxtci5wcmltYXJ5U3BvbnNvck5hbWUgfX1cbiAgICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgICAgICAgPHRkPlxuICAgICAgICAgICAgICAgIHt7IGxtci5zcG9uc29yRW1haWwgfX1cbiAgICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgICAgICAgPHRkPlxuICAgICAgICAgICAgICAgIHt7IGxtci5zcG9uc29yUGhvbmUgfX1cbiAgICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgICAgICAgPHRkIChjbGljayk9J2dvdG9TdHVkZW50TGV0dGVyKGxtci5zdHVkZW50SWQpJyBjbGFzcz0nbGluayc+XG4gICAgICAgICAgICAgICAge3sgbG1yLmxhdGVzdE1vbnRoIH19XG4gICAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgICA8L3RyPlxuICAgICAgICAgIDwvdGJvZHk+XG4gICAgICAgIDwvdGFibGU+XG4gICAgICA8L2Rpdj5cbiAgICA8L2Rpdj5cbiAgPC9kaXY+XG5cblxuICBsXG4iLCI8bmctY29tcG9uZW50PjwvbmctY29tcG9uZW50PiJdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O29CQ0tJO01BQUE7TUFBQSxnQkFBc0Q7OztJQUFBO0lBQUE7Ozs7b0JBQ3REO01BQUE7TUFBQSxnQkFBeUQ7OztJQUFBO0lBQUE7Ozs7b0JBSXZEO01BQUE7TUFBQSw4QkFBdUU7TUFDckU7VUFBQTtpREFBQSxVQUFBO1VBQUE7TUFBbUIsa0RBQ0M7VUFBQTs7O29CQWtCaEI7TUFBQSx3RUFBNEQ7YUFBQSx5Q0FDMUQ7TUFBQTtNQUFBLDhCQUFJO01BQUEsc0JBRUM7TUFDUDtVQUFBLDBEQUFJO1VBQUEsMERBRUc7VUFBQSxxQ0FDTDtVQUFBO1VBQUEsZ0JBQUk7TUFFQyx3REFDTDtVQUFBO1VBQUEsNENBQUk7VUFBQSw0Q0FFQztVQUFBLHVCQUNMO1VBQUE7VUFBQSxnQkFBSTtNQUVDLHdEQUNMO1VBQUE7VUFBQSw0Q0FBSTtVQUFBLDRDQUVDO1VBQUEsdUJBQ0w7VUFBQTtvQkFBQTtZQUFBO1lBQUE7WUFBSTtjQUFBO2NBQUE7WUFBQTtZQUFKO1VBQUEsZ0NBQTREO1VBQUEsc0JBRXZEOztRQXBCRDtRQUFBO1FBR0Y7UUFBQTtRQUdFO1FBQUE7UUFHQTtRQUFBO1FBR0E7UUFBQTtRQUdBO1FBQUE7UUFHd0Q7UUFBQTs7OztvQkFuQ3BFO01BQUEsd0VBQTJCO2FBQUEsbUNBQ3pCO01BQUE7TUFBQSw4QkFBcUI7TUFFbkI7VUFBQSwwREFBTztVQUFBLG1DQUNMO1VBQUE7VUFBQSxnQkFBSTtNQUNnQix3REFDbEI7VUFBQTtVQUFBLDRDQUFTO1VBQUEsdUJBQ1Q7VUFBQTtVQUFBLGdCQUFJLG9EQUFpQjtpQkFBQSx5Q0FDckI7VUFBQTtVQUFBLDhCQUFJO01BQXVCLHdEQUMzQjtVQUFBO1VBQUEsNENBQUk7VUFBQSwyQkFBeUI7TUFDN0I7VUFBQSwwREFBSTtVQUFBLGtDQUFrQjtNQUN0QjtVQUFBLDBEQUFJO1VBQUEsa0NBQWtCO01BQ3RCO1VBQUEsMERBQUk7VUFBQSxrQ0FBdUI7TUFDeEIsb0RBQ0M7VUFBQSxtQkFDUjtVQUFBO01BQU8sc0RBQ0w7VUFBQTthQUFBOzRCQUFBLHlDQXNCSztVQUFBLGlDQUNDO01BQ0Y7O0lBeEJBO0lBQUosWUFBSSxTQUFKOzs7O29CQTlCWjtNQUFBO01BQUEsZ0JBQWlDLDRDQUMvQjtNQUFBO01BQUEsd0VBQW1EO2FBQUEsaUVBRTdDO2FBQUEsNkJBQ047TUFBQTtNQUFBLDhCQUF3QjtNQUN0QjthQUFBO1VBQUEsaUNBQTZFO01BQzdFO2FBQUE7VUFBQSxpQ0FBa0Y7TUFHbEY7VUFBQSxpRUFBQTtVQUFBO01BQTRCLGdEQUMxQjtVQUFBLDZFQUFBO1VBQUE7eUJBQUEsbURBR007aUJBQUEsaUNBQ047VUFBQSw2RUFBQTtVQUFBO3lCQUFBLG1EQXlDTTtpQkFBQSwrQkFDRjtNQUNGOztJQXBERTtJQUFOLFdBQU0sU0FBTjtJQUNNO0lBQU4sWUFBTSxTQUFOO0lBR0s7SUFBTCxZQUFLLFNBQUw7SUFDTztJQUFMLFlBQUssU0FBTDtJQUlLO0lBQUwsWUFBSyxTQUFMOzs7O29CQ2ROO01BQUE7K0NBQUEsVUFBQTt3Q0FBQTtNQUFBO0lBQUE7Ozs7OyJ9

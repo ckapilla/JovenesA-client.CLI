@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
-import { Auth } from '../app_shared/services/auth.service';
+import { AuthService } from '../app_shared/services/auth.service';
 /**
  * This class represents the lazy loaded StudentsComponent.
  */
 @Component({
   moduleId: module.id,
-  selector: 'ja-students',
+  selector: 'app-students',
   templateUrl: 'students.component.html',
   styleUrls: ['students.component.css']
 })
 export class StudentsComponent {
 
-  constructor(public auth: Auth) {
+  constructor(public auth: AuthService) {
 
   }
   public onLoginClick = ($event: Event) => {

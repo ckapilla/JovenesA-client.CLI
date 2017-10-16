@@ -18,7 +18,7 @@ export const AppSharedModuleNgFactory:i0.NgModuleFactory<i1.AppSharedModule> = i
           i2.NgLocalization,i2.NgLocaleLocalization,[i0.LOCALE_ID]),i0.ɵmpd(4608,i3.FormBuilder,
           i3.FormBuilder,([] as any[])),i0.ɵmpd(4608,i3.ɵi,i3.ɵi,([] as any[])),i0.ɵmpd(512,
           i2.CommonModule,i2.CommonModule,([] as any[])),i0.ɵmpd(512,i4.RouterModule,
-          i4.RouterModule,[[2,i4.ɵa],[2,i4.Router]]),i0.ɵmpd(512,i3.ɵbc,i3.ɵbc,([] as any[])),
+          i4.RouterModule,[[2,i4.ɵa],[2,i4.Router]]),i0.ɵmpd(512,i3.ɵba,i3.ɵba,([] as any[])),
           i0.ɵmpd(512,i3.ReactiveFormsModule,i3.ReactiveFormsModule,([] as any[])),
           i0.ɵmpd(512,i3.FormsModule,i3.FormsModule,([] as any[])),i0.ɵmpd(512,i1.AppSharedModule,
               i1.AppSharedModule,([] as any[]))]);

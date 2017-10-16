@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import { LatestMentorReports } from '../report-models/latest-mentor-reports';
 import { LatestMentorReports2 } from '../report-models/latest-mentor-reports2';
 import { LatestStudentLetters } from '../report-models/latest-student-letters';
 import { LatestStudentLetters2 } from '../report-models/latest-student-letters2';
-import { AuthHttp } from 'angular2-jwt/angular2-jwt';
+//import { AuthHttp } from 'angular2-jwt/angular2-jwt';
 import { WebApiPrefixService } from '../../../app_shared/services/web-api-prefix.service';
 
 @Injectable()
 export class SqlReports {
   WebApiPrefix: string;
 
-  constructor(private http: AuthHttp,
-              private _http: Http,
+  constructor(//private http: AuthHttp,
+              private http: HttpClient,
               private webApiPrefixService: WebApiPrefixService) {
 
     console.log('sqlReports constructor');
