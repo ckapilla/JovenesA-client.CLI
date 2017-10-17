@@ -27,7 +27,8 @@ export class AuthService {
 
   lock = new Auth0Lock(AUTH_CONFIG.clientID, AUTH_CONFIG.domain, {
     theme: {
-      logo: 'http://privada.jovenesadelante.org/assets/images/JovenesLogo.png',
+      // TODO https not working
+      logo: 'https://privada.jovenesadelante.org/assets/images/JovenesLogo.png',
       primaryColor: '#106cc8',
     },
     languageDictionary: LOCK_DICTIONARY
