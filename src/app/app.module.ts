@@ -25,21 +25,7 @@ import { ReportsModule } from './+reports/reports.module';
 import { AppSharedModule } from './app_shared/app_shared.module';
 import { SessionService } from './app_shared/services/session.service';
 import { SqlResource } from './app_shared/services/sql-resource';
-import { WebApiPrefixService } from './app_shared/services/web-api-prefix.service';
-
-// export declare const WEB_API_LOCAL: InjectionToken<string>;
-// export declare const WEB_API_AZURE: InjectionToken<string>;
-
-
-// export function AuthHttpFactory (http: Http) {
-//   // console.log(' *************************************************** New AuthHttp');
-//       return new AuthHttp(new AuthConfig(), http);
-// }
-
-export function sqlResourceFactory (http: HttpClient, webApiPrefixService: WebApiPrefixService) {
-    console.log(' *************************************************** New SqlResource');
-       return new SqlResource(http, webApiPrefixService);
- }
+import { UrlService } from './app_shared/services/url.service';
 
 @NgModule({
   imports: [
@@ -48,7 +34,6 @@ export function sqlResourceFactory (http: HttpClient, webApiPrefixService: WebAp
     HttpClientModule,
     appRouting,
     appRoutingProviders,
-    // RouterModule,
     ReactiveFormsModule,
     HomeModule,
     AdminsModule,
@@ -71,48 +56,11 @@ export function sqlResourceFactory (http: HttpClient, webApiPrefixService: WebAp
       provide: APP_BASE_HREF,
       useValue: '/'
     },
-    // {
-    //   provide: WEB_API_LOCAL,
-    //   useValue: 'http://192.168.1.69:45456/api/'
-    // },
-    // {
-    //   provide: WEB_API_AZURE,
-    //   useValue: 'https://jovenesadelantewebapi.azurewebsites.net/api/v1/'
-    // },
     Location,
-    // AUTH_PROVIDERS,
-    // {
-    //   provide: AuthHttp,
-    //   useFactory(http: Http) {
-    //     return new AuthHttp(new AuthConfig(), http);
-    //   },
-    //   deps: [Http]
-    // },
-    // {
-    //   provide: AuthHttp,
-    //   useFactory: AuthHttpFactory,
-    //   deps: [Http]
-    // },
-
     AuthService,
-    // {
-    //   provide: SessionService,
-    //   useFactory() {
-    //     console.log('New SessionService##');
-    //     return new SessionService();
-    //   }
-    // },
     SessionService,
     SqlResource,
-    // {
-    //   provide: SqlResource,
-    //   useFactory: sqlResourceFactory, // (http: AuthHttp, _http: Http) {
-    //   //   console.log(' *************************************************** New SqlResource');
-    //   //   return new SqlResource(http, _http);
-    //   // }// ,
-    //   deps: [AuthHttp, Http]
-    // },
-    WebApiPrefixService,
+    UrlService,
     CanActivateViaAdminAuthGuard,
     CanActivateViaMentorAuthGuard,
     CanActivateViaStudentAuthGuard,

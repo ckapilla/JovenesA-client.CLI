@@ -6,16 +6,14 @@ import { LatestMentorReports2 } from '../report-models/latest-mentor-reports2';
 import { LatestStudentLetters } from '../report-models/latest-student-letters';
 import { LatestStudentLetters2 } from '../report-models/latest-student-letters2';
 //import { AuthHttp } from 'angular2-jwt/angular2-jwt';
-import { WebApiPrefixService } from '../../../app_shared/services/web-api-prefix.service';
+import { UrlService } from '../../../app_shared/services/url.service';
 
 @Injectable()
 export class SqlReports {
   WebApiPrefix: string;
 
-  constructor(//private http: AuthHttp,
-              private http: HttpClient,
-              private webApiPrefixService: WebApiPrefixService) {
-
+  constructor(private http: HttpClient,
+    private webApiPrefixService: UrlService) {
     console.log('sqlReports constructor');
     this.WebApiPrefix = webApiPrefixService.getWebApiPrefix();
 }
@@ -24,7 +22,6 @@ export class SqlReports {
     const url = this.WebApiPrefix + 'reports/latest_mentor_reports';
     console.log('sending AuthHttp get request for LatestMentorReports with ' + url);
     return this.http.get(url)
-      .map((response: Response) => response.json())
       .catch(this.handleError);
   }
 
@@ -32,7 +29,6 @@ export class SqlReports {
     const url = this.WebApiPrefix + 'reports/latest_mentor_reports2';
     console.log('sending AuthHttp get request for LatestMentorReports with ' + url);
     return this.http.get(url)
-      .map((response: Response) => response.json())
       .catch(this.handleError);
   }
 
@@ -41,7 +37,6 @@ export class SqlReports {
     const url = this.WebApiPrefix + 'reports/latest_student_letters';
     console.log('sending AuthHttp get request for LatestStudentLetters with ' + url);
     return this.http.get(url)
-      .map((response: Response) => response.json())
       .catch(this.handleError);
   }
 
@@ -49,7 +44,6 @@ export class SqlReports {
     const url = this.WebApiPrefix + 'reports/latest_student_letters2';
     console.log('sending AuthHttp get request for LatestStudentLetters2 with ' + url);
     return this.http.get(url)
-      .map((response: Response) => response.json())
       .catch(this.handleError);
   }
 

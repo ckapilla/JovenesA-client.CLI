@@ -15,16 +15,14 @@ import { SponsorLetter } from '../models/sponsor-letter';
 import { MentorReportByMonth } from '../models/mentor-report-by-month';
 import { MentorReportFollowUp } from '../models/mentor-report-follow-up';
 // import { AuthHttp } from 'angular2-jwt/angular2-jwt';
-import { WebApiPrefixService } from './web-api-prefix.service';
+import { UrlService } from './url.service';
 
 @Injectable()
 export class SqlResource {
   WebApiPrefix: string;
 
-  constructor(// private http: AuthHttp,
-              private http: HttpClient,
-              private webApiPrefixService: WebApiPrefixService) {
-
+  constructor(private http: HttpClient,
+    private webApiPrefixService: UrlService) {
     console.log('sqlResource constructor');
     this.WebApiPrefix = webApiPrefixService.getWebApiPrefix();
 
@@ -39,7 +37,7 @@ public getStudent(studentId: Number): Observable<Student> {
   const url = this.WebApiPrefix + 'students/' + studentId;
   console.log('sending AuthHttp get request for Student');
   return this.http.get(url)
-  ///////  .map((response: Response) => response.json())
+
     .catch(this.handleError
     );
 }
@@ -49,7 +47,7 @@ public getStudentDTO(studentId: number): Observable<StudentDTO> {
 // statusId: vm.selectedStatus.statusId, gradYear: vm.selectedGradYear.year, yearJoinedJA: vm.selectedYearJoined.year },
   console.log('sending AuthHttp get request for Students');
   return this.http.get(url)
-  ///////  .map((response: Response) => response.json())
+
     .catch(this.handleError);
 }
 
@@ -61,7 +59,7 @@ public getStudentDTOsByStatusAndYear(statusId: string, yearJoinedJA: string, gra
   + '/' + gradYear;
   console.log('sending AuthHttp get request for Students with url ' + url);
   return this.http.get(url)
-  ///////  .map((response: Response) => response.json())
+
     .catch(this.handleError);
 }
 
@@ -69,7 +67,7 @@ public getStudentsForMentor(mentorId: Number): Observable<RptStudentMentor[]> {
   const url = this.WebApiPrefix + 'students/for_mentor/' + mentorId;
   console.log('sending AuthHttp get request for StudentsForMentor');
   return this.http.get(url)
-  ///////  .map((response: Response) => response.json())
+
     .catch(this.handleError);
 }
 
@@ -77,7 +75,7 @@ public getSponsorsForStudent(studentId: number) {
   const url = this.WebApiPrefix + 'students/sponsors_for/' + studentId;
   console.log('sending AuthHttp get request ' +  url);
   return this.http.get(url)
-  ///////  .map((response: Response) => response.json())
+
     .catch(this.handleError);
 }
 
@@ -131,7 +129,6 @@ public updateStudent(student: Student): Observable<any> {
     const url = this.WebApiPrefix + 'members/communications/' + memberId;
     console.log('sending AuthHttp get request for Communications For Member with url', url);
     return this.http.get(url)
-    ///////  .map((response: Response) => response.json())
       .catch(this.handleError);
   }
 
@@ -143,7 +140,6 @@ public updateStudent(student: Student): Observable<any> {
     // statusId: vm.selectedStatus.statusId, gradYear: vm.selectedGradYear.year, yearJoinedJA: vm.selectedYearJoined.year },
         console.log('sending AuthHttp get request with url ' + url);
         return this.http.get(url)
-        ///////  .map((response: Response) => response.json())
           .catch(this.handleError);
       }
 
@@ -180,7 +176,6 @@ public updateStudent(student: Student): Observable<any> {
         const url = this.WebApiPrefix + 'admins/' + adminId;
         console.log('sending AuthHttp get request for Admin to ' + url);
         return this.http.get(url)
-        ///////  .map((response: Response) => response.json())
           .catch(this.handleError
           );
       }
@@ -204,7 +199,7 @@ public updateStudent(student: Student): Observable<any> {
         const url = this.WebApiPrefix + 'mentors/' + mentorId;
         console.log('sending AuthHttp get request for Mentor');
         return this.http.get(url)
-        ///////  .map((response: Response) => response.json())
+
           .catch(this.handleError);
       }
 
@@ -236,7 +231,6 @@ public getMentorReport(mentorReportId: number): Observable <RptMentorReport>  {
     const url = this.WebApiPrefix + 'mentor_reports/' + mentorReportId;
     console.log('sending AuthHttp get request for MentorReport with ' + url);
     return this.http.get(url)
-    ///////  .map((response: Response) => response.json())
       .catch(this.handleError);
   }
 
@@ -244,7 +238,6 @@ public getMentorReport(mentorReportId: number): Observable <RptMentorReport>  {
     const url = this.WebApiPrefix + 'mentor_reports/' + mentorId + '/' + studentId;
     console.log('sending AuthHttp get request for MentorReports with ' + url);
     return this.http.get(url)
-    ///////  .map((response: Response) => response.json())
       .catch(this.handleError);
   }
 
@@ -252,7 +245,6 @@ public getMentorReport(mentorReportId: number): Observable <RptMentorReport>  {
     const url = this.WebApiPrefix + 'mentor_reports/follow_up';
     console.log('sending AuthHttp get request with ' + url);
     return this.http.get(url)
-    ///////  .map((response: Response) => response.json())
       .catch(this.handleError);
   }
 
@@ -300,7 +292,6 @@ public getMentorReport(mentorReportId: number): Observable <RptMentorReport>  {
                         + '&highlightStatusId=' + highlightStatusId;
     console.log('sending AuthHttp get request for MentorReportsByMonth with ' + url);
     return this.http.get(url)
-  ///////  .map((response: Response) => response.json())
     .catch(this.handleError);
 }
 
@@ -313,7 +304,6 @@ public getMentorReport(mentorReportId: number): Observable <RptMentorReport>  {
     const url = this.WebApiPrefix + 'student_sponsor_letters/' + studentId + '/' + sponsorId;
     console.log('sending AuthHttp get request for SponsorLetters with ' + url);
     return this.http.get(url)
-    ///////  .map((response: Response) => response.json())
       .catch(this.handleError);
   }
 

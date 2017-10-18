@@ -6,6 +6,7 @@ import { SqlResource } from '../../app_shared/services/sql-resource';
 import 'rxjs/add/operator/take';
 import { AUTH_CONFIG } from './auth0-variables';
 import { LOCK_DICTIONARY } from './auth0-lock-dictionary';
+import { UrlService } from './url.service';
 
 // Avoid name not found warnings
 declare var Auth0Lock: any;
@@ -23,35 +24,14 @@ export class AuthService {
   email: string;
   nickname: string;
   authenticated: boolean;
+  lock: any;
 
 
-  lock = new Auth0Lock(AUTH_CONFIG.clientID, AUTH_CONFIG.domain, {
-    theme: {
-      // TODO https not working
-      logo: 'https://privada.jovenesadelante.org/assets/images/JovenesLogo.png',
-      primaryColor: '#106cc8',
-    },
-    languageDictionary: LOCK_DICTIONARY
-    // auth: {
-    //   //redirectUrl: this.getRedirectUrl(),
-    //   responseType: 'token',
-    //   //redirect: true, // redirectUrl is ignored
-    //   //redirect: false,
-    //   sso:false
-    // },
-
-  }); // end new lock
-
-  // auth1= new Auth0({
-  //   domain:       'mine.auth0.com',
-  //   clientID:     'dsa7d77dsa7d7',
-  //   callbackURL:  'http://my-app.com/callback',
-  //   responseType: 'token'
-  // });
 
   constructor(
     zone: NgZone,
     private router: Router,
+    public urlService: UrlService,
     public session: SessionService,
     public sqlResource: SqlResource) {
 
@@ -64,6 +44,23 @@ export class AuthService {
     this.sqlResource = sqlResource
     console.log(this.session);
     console.log(this.sqlResource);
+
+    this.lock = new Auth0Lock(AUTH_CONFIG.clientID, AUTH_CONFIG.domain, {
+      theme: {
+        // TODO https not working
+        logo: urlService.getClientUrl() + '/assets/images/JovenesLogo.png',
+        primaryColor: '#106cc8',
+      },
+      languageDictionary: LOCK_DICTIONARY
+      // auth: {
+      //   //redirectUrl: this.getRedirectUrl(),
+      //   responseType: 'token',
+      //   //redirect: true, // redirectUrl is ignored
+      //   //redirect: false,
+      //   sso:false
+      // },
+    }); // end new lock
+
 
     this.lock.on('authorization_error', (auth_error: any) => {
       console.log('authorization_error event received');
@@ -236,15 +233,14 @@ export class AuthService {
     localStorage.clear();
     this.zoneImpl.run(() => this.userProfile = undefined);
     //this.router.navigate(['']);
-    setTimeout(function() {
-      console.log('in timeout callback');
+    console.log('returen to address: ' + 'http://ckapilla.auth0.com/v2/logout?returnTo=' + this.urlService.getClientUrl());
+    setTimeout(() => {
+      console.log('in timeout callback with return to address ' +
+      'http://ckapilla.auth0.com/v2/logout?returnTo=' + this.urlService.getClientUrl());
       document.location.href =
-      'http://ckapilla.auth0.com/v2/logout?returnTo=http%3A%2F%2Fprivada.jovenesadelante.org';
+      'http://ckapilla.auth0.com/v2/logout?returnTo=' + this.urlService.getClientUrl();
       }
-      , 500);
-    //window.location.href =
-    //'https://ckapilla.auth0.com/v2/logout?client_id=pwC5E08ZZFytctumrhmI2bFmakYRGhD';
-    //'https://ckapilla.auth0.com/v2/logout?client_id=pwC5E08ZZFytctumrhmI2bFmakYRGhD2&returnTo=http%3A%2F%2Fprivada.jovenesadelante.org';
+      , 50);
   }
 
 
