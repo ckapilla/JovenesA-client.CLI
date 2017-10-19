@@ -4,8 +4,7 @@ import { Router } from '@angular/router';
 import { SessionService } from './session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource';
 import 'rxjs/add/operator/take';
-import { AUTH_CONFIG } from './auth0-variables';
-import { LOCK_DICTIONARY } from './auth0-lock-dictionary';
+import { AUTH_CONFIG, LOCK_DICTIONARY } from './auth0-config';
 import { UrlService } from './url.service';
 
 // Avoid name not found warnings
