@@ -69,10 +69,12 @@ export class AuthService {
     this.lock.on('authenticated', (authResult: any) => {
       console.log('got authenticated event!');
       this.authenticated = true;
+
       console.log('token>>>');
       console.log(authResult.idToken);
-
+      console.log('token = ' + authResult.idToken);
       this.setSession(authResult);
+      console.log('after setSession');
 
 
       // Call get userInfo with the token in authResult
@@ -80,7 +82,7 @@ export class AuthService {
       this.lock.getUserInfo(authResult.accessToken, (error: any, profile: any) => {
         if (error) {
           // Handle error
-          alert(error);
+          console.log(error);
           return;
         }
         // If authentication is successful, set up a 'session' by saving the items
@@ -96,6 +98,7 @@ export class AuthService {
           // this.zoneImpl.run(() => this.userProfile = profile); // enter Angular zone and assign userProfile
           this.userProfile = profile;
           this.extractUserProfileElements();
+          this.UpdateLastLogin();
           console.log('checking for failed route of ');
           if (this.session.getFailedRoute() > '') {
             console.log('navigating to failed route: ' + this.session.getFailedRoute());
@@ -164,7 +167,7 @@ export class AuthService {
     console.log('expiresAt: ' + expiresAt);
     localStorage.setItem('access_token', authResult.access_token);
     localStorage.setItem('id_token', authResult.idToken);
-    localStorage.setItem('expires_at', expiresAt);
+    // localStorage.setItem('expires_at', expiresAt);
   }
 
   public extractUserProfileElements(): void {
@@ -209,8 +212,8 @@ export class AuthService {
     }
   }
 
-  public UpdateLastLogin(id: number): void {
-    // console.log('calling SqlResource UpdateLastLogin');
+  public UpdateLastLogin(): void {
+    console.log('calling SqlResource UpdateLastLogin with useId' + this.session.userId);
     this.sqlResource.UpdateLastLogin(this.session.userId)
       .subscribe(
       data => {/*console.log('');*/ },

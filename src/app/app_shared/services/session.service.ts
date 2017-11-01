@@ -76,6 +76,7 @@ export class SessionService {
     }
 
     public setUserId(Id: number): void {
+      console.log('setUserId = ' + Id);
       this.userId = Id;
     }
 

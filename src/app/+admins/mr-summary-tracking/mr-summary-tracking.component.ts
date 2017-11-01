@@ -109,12 +109,16 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
       console.log('summary param = ' +  summary);
       if (month !== undefined) {
         this.selectedSponsorSummaryStatus =  summary;
+      } else {
+        this.selectedSponsorSummaryStatus =  '0';
       }
 
       const highlight = this.route.snapshot.queryParams['highlight'];
       console.log('highlight param = ' +  highlight);
       if (highlight !== undefined) {
         this.selectedHighlightStatus =  highlight;
+      } else {
+        this.selectedHighlightStatus =  '0';
       }
 
     this.fetchFilteredData();

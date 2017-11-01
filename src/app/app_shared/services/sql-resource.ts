@@ -161,11 +161,11 @@ public updateStudent(student: Student): Observable<any> {
 
       public UpdateLastLogin(userId: number): Observable<any> {
         const url = this.WebApiPrefix + 'members' + '/LastLogin/' + userId;
-        // console.log('sending AuthHttp get request to set LastLogin datetime');
+        console.log('sending AuthHttp put request to set LastLogin datetime');
         return this.http.put(url, null)
           .map(
               (response: Response) => {
-                ; // console.log('updateLastLogin success; no json expected ');
+                ;  console.log('updateLastLogin success; no json expected ');
                 })
           .catch(this.handleError
           );

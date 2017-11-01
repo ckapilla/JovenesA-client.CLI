@@ -9,7 +9,7 @@ export class UrlService {
     console.log('webapiPrefix constructor');
 
     let backendEnv: string;
-    backendEnv = 'AzureProd'
+    backendEnv = 'AzureTestxxxx';
 
     console.log('window: ' + window.location.hostname);
     if (window.location.hostname.toLocaleLowerCase() === 'privada.jovenesadelante.org'
@@ -29,7 +29,7 @@ export class UrlService {
       this.clientUrl = 'http://localhost:3000';
     }
     console.log('>>>webapi prefix: ' + this.webApiPrefix);
-    console.log('>>>myUrl: ' + this.clientUrl);
+    console.log('>>>clientUrl: ' + this.clientUrl);
   }
   public getWebApiPrefix(): string {
     return this.webApiPrefix;

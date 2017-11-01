@@ -49,7 +49,8 @@ export class CanActivateViaMentorAuthGuard implements CanActivate {
     } else {
       console.log('link to Mentor but not authenticated -- need login');
       //localStorage.setItem('redirect_url', state.url);
-      this.auth.login();
+      // this.auth.login();
+      location.reload(true);
       return false;
     }
   }

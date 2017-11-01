@@ -96,7 +96,7 @@ export class MentorReportSummaryUpdatesComponent
     ngOnInit() {
 
 
-    let mentorReportId = this.currRoute.snapshot.params['mentorReportId'];
+    const mentorReportId = this.currRoute.snapshot.params['mentorReportId'];
     console.log('sqlResource with MentorReportId: ' + mentorReportId);
     this.isLoading = true;
     this.sqlResource.getMentorReport(mentorReportId)
@@ -105,7 +105,7 @@ export class MentorReportSummaryUpdatesComponent
         err => console.error('Subscribe error: ' + err),
         () => { console.log('done with data MentorReport>>');
                 console.log(this.mentorReport);
-                this.savedHighlightStatusId = this.mentorReport.followUpStatusId;
+                this.savedHighlightStatusId = this.mentorReport.highlightStatusId;
                 this.savedSponsorSummaryStatusId = this.mentorReport.sponsorSummaryStatusId;
                 console.log('<<');
               this.isLoading = false;
@@ -173,15 +173,15 @@ export class MentorReportSummaryUpdatesComponent
     }
 
     navigateBackInContext() {
-      let target = '/admins/mentor-reports/summary-tracking';
+      const target = '/admins/mentor-reports/summary-tracking';
       console.log('after Submit or Cancel navigating to ' + target);
-      let reportDate = new Date(this.mentorReport.reportDateTime);
+      const reportDate = new Date(this.mentorReport.reportDateTime);
 
       let reportMonth = reportDate.getMonth() + 1;  // JS Date months are zero based
       if (reportDate.getDate() <= 2) {
         reportMonth--;
       }
-      let navigationExtras: NavigationExtras = {
+      const navigationExtras: NavigationExtras = {
         queryParams: { id: 'id' + this.mentorReport.mentorReportId,
                         month:  reportMonth,
                         summary: this.savedSponsorSummaryStatusId,
@@ -189,7 +189,7 @@ export class MentorReportSummaryUpdatesComponent
                       }
       };
 
-      this.router.navigate([target],navigationExtras);
+      this.router.navigate([target], navigationExtras);
     }
 
 
