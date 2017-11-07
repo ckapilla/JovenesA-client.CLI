@@ -17,7 +17,8 @@ cd ..
 
 
 echo "populate aot folder"
-node_modules/.bin/ngc -p tsconfig-aot.json
+#node_modules/.bin/ngc -p tsconfig-aot.json
+node_modules/.bin/ngc -p src/tsconfig-app.json
 ls -lat aot
 
 

@@ -1,15 +1,18 @@
 const fs = require('fs');
 const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ProgressPlugin = require('webpack/lib/ProgressPlugin');
+const CircularDependencyPlugin = require('circular-dependency-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const postcssUrl = require('postcss-url');
 const cssnano = require('cssnano');
+const customProperties = require('postcss-custom-properties');
 
 const { NoEmitOnErrorsPlugin, SourceMapDevToolPlugin, NamedModulesPlugin } = require('webpack');
-const { GlobCopyWebpackPlugin, BaseHrefWebpackPlugin } = require('@angular/cli/plugins/webpack');
-const { CommonsChunkPlugin, UglifyJsPlugin } = require('webpack').optimize;
-const { AotPlugin } = require('@ngtools/webpack');
+const { NamedLazyChunksWebpackPlugin, BaseHrefWebpackPlugin } = require('@angular/cli/plugins/webpack');
+const { CommonsChunkPlugin } = require('webpack').optimize;
+const { AngularCompilerPlugin } = require('@ngtools/webpack');
 
 const nodeModules = path.join(process.cwd(), 'node_modules');
 const realNodeModules = fs.realpathSync(nodeModules);
@@ -51,13 +54,19 @@ const postcssPlugins = function () {
                 }
             }),
             autoprefixer(),
+            customProperties({ preserve: true })
         ].concat(minimizeCss ? [cssnano(minimizeOptions)] : []);
     };
 
 
 
 
-module.exports = {
+module.exports = (env) => {
+
+  env = env || {};
+  console.log('in module exports with env.BUILD = ' + env.BUILD);
+
+  return ( {
   "resolve": {
     "extensions": [
       ".ts",
@@ -67,7 +76,12 @@ module.exports = {
       "./node_modules",
       "./node_modules"
     ],
-    "symlinks": true
+    "symlinks": true,
+    "mainFields": [
+      "browser",
+      "module",
+      "main"
+    ]
   },
   "resolveLoader": {
     "modules": [
@@ -89,35 +103,35 @@ module.exports = {
   "output": {
     "path": path.join(process.cwd(), "dist"),
     "filename": "[name].bundle.js",
-    "chunkFilename": "[id].chunk.js"
+    "chunkFilename": "[id].chunk.js",
+    "crossOriginLoading": false
   },
   "module": {
     "rules": [
       {
-        test: /\.ts$/,
-        loader: '@ngtools/webpack',
-      },
-      {
-        "enforce": "pre",
-        "test": /\.js$/,
-        "loader": "source-map-loader",
-        "exclude": [
-          /\/node_modules\//
-        ]
-      },
-      {
-        "test": /\.json$/,
-        "loader": "json-loader"
+        "test": /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
+        "loader": "@ngtools/webpack"
       },
       {
         "test": /\.html$/,
         "loader": "raw-loader"
       },
       {
-        "test": /\.(jpg|png|webp|gif|otf|ttf|woff|woff2|cur|ani)$/,
-        "loader": "url-loader?name=[name].[hash:20].[ext]&limit=10000"
+        "test": /\.(eot|svg|cur)$/,
+        "loader": "file-loader",
+        "options": {
+          "name": "[name].[hash:20].[ext]",
+          "limit": 10000
+        }
       },
-      // .css$ exclude styles.css
+      {
+        "test": /\.(jpg|png|webp|gif|otf|ttf|woff|woff2|ani)$/,
+        "loader": "url-loader",
+        "options": {
+          "name": "[name].[hash:20].[ext]",
+          "limit": 10000
+        }
+      },
       {
         "exclude": [
           path.join(process.cwd(), "src/styles.css")
@@ -141,39 +155,6 @@ module.exports = {
           }
         ]
       },
-      // .scss$ | .sass$ exclude styles.css
-      {
-        "exclude": [
-          path.join(process.cwd(), "src/styles.css")
-        ],
-        "test": /\.scss$|\.sass$/,
-        "use": [
-          "exports-loader?module.exports.toString()",
-          {
-            "loader": "css-loader",
-            "options": {
-              "sourceMap": false,
-              "importLoaders": 1
-            }
-          },
-          {
-            "loader": "postcss-loader",
-            "options": {
-              "ident": "postcss",
-              "plugins": postcssPlugins
-            }
-          },
-          {
-            "loader": "sass-loader",
-            "options": {
-              "sourceMap": false,
-              "precision": 8,
-              "includePaths": []
-            }
-          }
-        ]
-      },
-      // .css include styles.css
       {
         "include": [
           path.join(process.cwd(), "src/styles.css")
@@ -193,38 +174,6 @@ module.exports = {
             "options": {
               "ident": "postcss",
               "plugins": postcssPlugins
-            }
-          }
-        ]
-      },
-      // .scss$ | .sass$ include styes.css
-      {
-        "include": [
-          path.join(process.cwd(), "src/styles.css")
-        ],
-        "test": /\.scss$|\.sass$/,
-        "use": [
-          "style-loader",
-          {
-            "loader": "css-loader",
-            "options": {
-              "sourceMap": false,
-              "importLoaders": 1
-            }
-          },
-          {
-            "loader": "postcss-loader",
-            "options": {
-              "ident": "postcss",
-              "plugins": postcssPlugins
-            }
-          },
-          {
-            "loader": "sass-loader",
-            "options": {
-              "sourceMap": false,
-              "precision": 8,
-              "includePaths": []
             }
           }
         ]
@@ -233,24 +182,35 @@ module.exports = {
   },
   "plugins": [
     new NoEmitOnErrorsPlugin(),
-    new GlobCopyWebpackPlugin({
-      "patterns": [
-        "assets",
-        "favicon.ico"
-      ],
-      "globOptions": {
-        "cwd": path.join(process.cwd(), "src"),
-        "dot": true,
-        "ignore": "**/.gitkeep"
+    new CopyWebpackPlugin([
+      {
+        "context": "src",
+        "to": "",
+        "from": {
+          "glob": "assets/**/*",
+          "dot": true
+        }
+      },
+      {
+        "context": "src",
+        "to": "",
+        "from": {
+          "glob": "favicon.ico",
+          "dot": true
+        }
       }
+    ], {
+      "ignore": [
+        ".gitkeep"
+      ],
+      "debug": "warning"
     }),
     new ProgressPlugin(),
-    new SourceMapDevToolPlugin({
-      "filename": "[file].map[query]",
-      "moduleFilenameTemplate": "[resource-path]",
-      "fallbackModuleFilenameTemplate": "[resource-path]?[hash]",
-      "sourceRoot": "webpack:///"
+    new CircularDependencyPlugin({
+      "exclude": /(\\|\/)node_modules(\\|\/)/,
+      "failOnError": false
     }),
+    new NamedLazyChunksWebpackPlugin(),
     new HtmlWebpackPlugin({
       "template": "./src/index.html",
       "filename": "./index.html",
@@ -281,10 +241,6 @@ module.exports = {
     }),
     new BaseHrefWebpackPlugin({}),
     new CommonsChunkPlugin({
-      "minChunks": 2,
-      "async": "common"
-    }),
-    new CommonsChunkPlugin({
       "name": [
         "inline"
       ],
@@ -304,29 +260,38 @@ module.exports = {
         "main"
       ]
     }),
-    new NamedModulesPlugin({}),
-    new UglifyJsPlugin ({
-        beautify: false,
-        mangle: {
-            screw_ie8: true,
-            keep_fnames: true
-        },
-        compress: {
-            warnings: false,
-            screw_ie8: true
-        },
-        comments: false
+    new SourceMapDevToolPlugin({
+      "filename": "[file].map[query]",
+      "moduleFilenameTemplate": "[resource-path]",
+      "fallbackModuleFilenameTemplate": "[resource-path]?[hash]",
+      "sourceRoot": "webpack:///"
     }),
-    new AotPlugin({
-      "mainPath": "./src/main.ts",
+    new CommonsChunkPlugin({
+      "name": [
+        "main"
+      ],
+      "minChunks": 2,
+      "async": "common"
+    }),
+    new NamedModulesPlugin({}),
+    new AngularCompilerPlugin({
+      "tsConfigPath": "src/tsconfig.app.json",
+      /* "entryModule": path.join(process.cwd(), 'src/AppModule#AppModule'), */
+      "basePath": "./",
+      /* optional if entryModule is supplied: "mainPath": "main.ts", */
+      /*
       "hostReplacementPaths": {
         "environments/environment.ts": "environments/environment.ts"
       },
-      "exclude": [],
-      "tsConfigPath": "./tsconfig-aot.json",
-      "skipCodeGeneration": true,
-      "entryModule": __dirname + '/src/app/app.module.ts#AppModule'
-    }),
+      */
+      /* "sourceMap": true */
+      /* "compilerOptions": {} */
+    })
+    // if (env == 'prod') {
+    //   plugins = [
+    //   new webpack.optimize.UglifyJsPlugin({});
+    //   }
+
   ],
   "node": {
     "fs": "empty",
@@ -342,4 +307,5 @@ module.exports = {
   "devServer": {
     "historyApiFallback": true
   }
+  });
 };

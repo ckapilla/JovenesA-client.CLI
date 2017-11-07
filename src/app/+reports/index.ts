@@ -3,7 +3,6 @@
  */
 
 export * from './reports.component';
-export * from './reports.routing';
 export * from './reports-home/reports-home.component';
 export * from './reports-mentor-reports/reports-mentor-reports.component';
 export * from './reports-mentor-reports2/reports-mentor-reports2.component';

@@ -12,7 +12,5 @@ export * from './monthly-reports/monthly-reports.component';
 
 export * from './monthly-reports-add/monthly-reports-add.component';
 
-export * from './mentors.routing';
-
 export * from './shared/mentors-navbar/index';
 
