@@ -17,11 +17,11 @@ cd ..
 
 
 echo "populate aot folder"
-#node_modules/.bin/ngc -p tsconfig-aot.json
-node_modules/.bin/ngc -p src/tsconfig-app.json
+node_modules/.bin/ngc -p ./tsconfig.aot.json
+#node_modules/.bin/ngc -p src/tsconfig.app.json
 ls -lat aot
 
 
-echo "populate dist folder"
-npm run build
-ls -lat dist
+#echo "populate dist folder"
+#npm run build
+#ls -lat dist

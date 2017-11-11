@@ -5,9 +5,7 @@ import { SessionService } from '../../app_shared/services/session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource';
 import { MentorReportByMonth } from '../../app_shared/models/mentor-report-by-month';
 
-interface SELECTITEM {
-   value: string; label: string;
-}
+import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 
 @Component({
   moduleId: module.id,

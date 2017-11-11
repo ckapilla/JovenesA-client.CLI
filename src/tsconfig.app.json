@@ -1,10 +1,9 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "target": "es5",
+    "outDir": "../dist",
     "module": "es2015",
-    "moduleResolution": "node",
-    "baseUrl": "./",
+    "baseUrl": "",
     "types": []
   },
   "exclude": [

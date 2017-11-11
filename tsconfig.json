@@ -2,12 +2,14 @@
   "compileOnSave": false,
   "compilerOptions": {
     "outDir": "./dist",
+    "baseUrl": ".",
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es5",
+    "listEmittedFiles": true,
     "typeRoots": [
       "node_modules/@types"
     ],

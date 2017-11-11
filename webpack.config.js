@@ -13,6 +13,7 @@ const { NoEmitOnErrorsPlugin, SourceMapDevToolPlugin, NamedModulesPlugin } = req
 const { NamedLazyChunksWebpackPlugin, BaseHrefWebpackPlugin } = require('@angular/cli/plugins/webpack');
 const { CommonsChunkPlugin } = require('webpack').optimize;
 const { AngularCompilerPlugin } = require('@ngtools/webpack');
+const { AotPlugin } = require('@ngtools/webpack');
 
 const nodeModules = path.join(process.cwd(), 'node_modules');
 const realNodeModules = fs.realpathSync(nodeModules);
@@ -101,7 +102,7 @@ module.exports = (env) => {
     ]
   },
   "output": {
-    "path": path.join(process.cwd(), "dist"),
+    "path": path.join(process.cwd(), "dist/aot"),
     "filename": "[name].bundle.js",
     "chunkFilename": "[id].chunk.js",
     "crossOriginLoading": false
@@ -275,15 +276,23 @@ module.exports = (env) => {
     }),
     new NamedModulesPlugin({}),
     new AngularCompilerPlugin({
-      "tsConfigPath": "src/tsconfig.app.json",
-      /* "entryModule": path.join(process.cwd(), 'src/AppModule#AppModule'), */
+      /* not AOT: */
+      "tsConfigPath": "tsconfig.aot.json",
+      "mainPath": "main.ts",
+
+      "exclude": [],
+      "skipCodeGeneration": false,
+      /* AOT:
+      "tsConfigPath": "./tsconfig.aot.json",
+      */
+      "entryModule": path.join(process.cwd(), 'src/app/AppModule#AppModule'),
       "basePath": "./",
       /* optional if entryModule is supplied: "mainPath": "main.ts", */
-      /*
-      "hostReplacementPaths": {
-        "environments/environment.ts": "environments/environment.ts"
-      },
-      */
+      // "genDir": "aot",
+      // "hostReplacementPaths": {
+      //   "environments/environment.ts": "environments/environment.ts"
+      // }
+
       /* "sourceMap": true */
       /* "compilerOptions": {} */
     })

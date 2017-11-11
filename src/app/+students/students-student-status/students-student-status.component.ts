@@ -8,9 +8,7 @@ import { SessionService } from '../../app_shared/services/session.service';
 
 import { StudentDTO } from '../../app_shared/models/studentDTO';
 
-interface SELECTITEM {
-   value: string; label: string;
-}
+import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 
 @Component({
   moduleId: module.id,

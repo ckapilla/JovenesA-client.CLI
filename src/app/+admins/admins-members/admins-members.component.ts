@@ -7,10 +7,7 @@ import { SqlResource } from '../../app_shared/services/sql-resource';
 import { SessionService } from '../../app_shared/services/session.service';
 
 import { MemberStudentRelations } from '../../app_shared/models/member-student-relations';
-
-interface SELECTITEM {
-   value: string; label: string;
-}
+import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 
 @Component({
   moduleId: module.id,

@@ -5,9 +5,7 @@ import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from
 import { SqlResource } from '../../app_shared/services/sql-resource';
 import { SponsorLetter } from '../../app_shared/models/sponsor-letter';
 
-interface SELECTITEM {
-   value: string; label: string;
-}
+import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 
 @Component({
   moduleId: module.id,

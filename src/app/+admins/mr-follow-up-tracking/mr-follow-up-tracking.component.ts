@@ -5,9 +5,7 @@ import { Router } from '@angular/router';
 import { SessionService } from '../../app_shared/services/session.service';
 import { MentorReportFollowUp } from '../../app_shared/models/mentor-report-follow-up';
 
-interface SELECTITEM {
-   value: string; label: string;
-}
+import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 
 @Component({
   moduleId: module.id,
