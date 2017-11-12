@@ -7,6 +7,7 @@
     "start": "webpack-dev-server --port=3000",
     "build": "webpack",
     "build.aot": "./aot.sh",
+    "build.aot2dist": "webpack --config webpack.config.aot2dist",
     "build.prod": "webpack --env.BUILD=prod ",
     "test": "karma start ./karma.conf.js",
     "lint": "ng lint",

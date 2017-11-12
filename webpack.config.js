@@ -92,7 +92,7 @@ module.exports = (env) => {
   },
   "entry": {
     "main": [
-      "./src/main.ts"
+      "./src/main.aot.ts"
     ],
     "polyfills": [
       "./src/polyfills.ts"
@@ -276,24 +276,18 @@ module.exports = (env) => {
     }),
     new NamedModulesPlugin({}),
     new AngularCompilerPlugin({
-      /* not AOT: */
-      "tsConfigPath": "tsconfig.aot.json",
-      "mainPath": "main.ts",
+      "tsConfigPath": "./tsconfig.aot.json",
+      "mainPath": "./src/main.aot.ts",
 
       "exclude": [],
-      "skipCodeGeneration": false,
-      /* AOT:
-      "tsConfigPath": "./tsconfig.aot.json",
-      */
-      "entryModule": path.join(process.cwd(), 'src/app/AppModule#AppModule'),
-      "basePath": "./",
-      /* optional if entryModule is supplied: "mainPath": "main.ts", */
-      // "genDir": "aot",
-      // "hostReplacementPaths": {
-      //   "environments/environment.ts": "environments/environment.ts"
-      // }
+      "skipCodeGeneration": true,
+      "entryModule": path.join(process.cwd(), 'src/app/app.module#AppModule'),
+      "genDir": "aot",
+      "hostReplacementPaths": {
+        "environments/environment.ts": "environments/environment.ts"
+      },
 
-      /* "sourceMap": true */
+      "sourceMap": true
       /* "compilerOptions": {} */
     })
     // if (env == 'prod') {
