@@ -8,6 +8,7 @@ rollup.sh
 /dist
 /dist.test
 /dist.prod
+/dist.ngtools
 /tmp
 /out-tsc
 /aot

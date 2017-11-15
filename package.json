@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "webpack-dev-server --port=3000",
-    "build": "webpack",
+    "build": "webpack --config webpack.ngtools.config.js",
     "build.aot": "./aot.sh",
     "build.aot2dist": "webpack --config webpack.config.aot2dist",
     "build.prod": "webpack --env.BUILD=prod ",

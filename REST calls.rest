@@ -1,0 +1,40 @@
+
+GET http://jovenesadelantewebapi.azurewebsites.net/api/reports/latest_student_letters2
+
+
+###
+
+GET http://192.168.1.69:45456/api/students/1005/2016/2020
+
+###
+GET http://jovenesadelantewebapi.azurewebsites.net/api/students/1005/2016/2020
+
+
+
+###
+GET http://jovenesadelantewebapi.azurewebsites.net/api/students/1005/2016/2020
+
+###
+GET http://jovenesadelantewebapi.azurewebsites.net/api/students/1005/0/0
+
+###
+POST http://jovenesadelantewebapitest.azurewebsites.net/api/mentor_reports
+content-Type: application/json
+
+{
+    MentorId: 1216,
+    StudentId: 275,
+    LastContactDate: null,
+    LastContactYear: "2017",
+    LastContactMonth: "10",
+    MentorReportSnapshot: 0,
+    ReasonForDelay: null,
+    FollowUpNeeded: "Follow Up Needed at {{$timestamp}}",
+    RecentSuccess: "Recent Success at {{$timestamp}}",
+    RecentSetback: "Recent Setback at {{$timestamp}}",
+    SponsorSummary: null,
+    SponsorSummaryStatusId: 2086,
+    SponsorSummarySentDateTime: null,
+    FollowUpStatusId: 0,
+    HighlightStatusId: 0
+}

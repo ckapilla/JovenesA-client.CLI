@@ -38,9 +38,9 @@ export class ReportsMentorReportsComponent implements OnInit {
     console.log('in fetchData for LatestMentorReports');
     this.sqlReports.getLatestMentorReports()
       .subscribe(
-        data => {this.latestMentorReports = data;},
+        data => {this.latestMentorReports = data; },
         err => console.error('Subscribe error: ' + err),
-        () => { console.log('done'); console.log(this.latestMentorReports[0]); this.isLoading = false;}
+        () => { console.log('done'); console.log(this.latestMentorReports[0]); this.isLoading = false; }
       );
   }
   gotoStudent(id: number, studentName: string) {

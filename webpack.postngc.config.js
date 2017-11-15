@@ -12,7 +12,7 @@ const customProperties = require('postcss-custom-properties');
 const { NoEmitOnErrorsPlugin, SourceMapDevToolPlugin, NamedModulesPlugin } = require('webpack');
 const { NamedLazyChunksWebpackPlugin, BaseHrefWebpackPlugin } = require('@angular/cli/plugins/webpack');
 const { CommonsChunkPlugin } = require('webpack').optimize;
-const { AngularCompilerPlugin } = require('@ngtools/webpack');
+// const { AngularCompilerPlugin } = require('@ngtools/webpack');
 // const { AotPlugin } = require('@ngtools/webpack');
 
 const nodeModules = path.join(process.cwd(), 'node_modules');
@@ -70,7 +70,7 @@ module.exports = (env) => {
   return ( {
   "resolve": {
     "extensions": [
-      ".ts",
+     // ".ts",
       ".js"
     ],
     "modules": [
@@ -92,17 +92,19 @@ module.exports = (env) => {
   },
   "entry": {
     "main": [
-      "./src/main.ts"
+      //"./src/main.ts"
+      "./dist.aot/src/main.js"
     ],
     "polyfills": [
-      "./src/polyfills.ts"
+      //"./src/polyfills.ts"
+      "./dist.aot/src/polyfills.js"
     ],
     "styles": [
       "./src/styles.css"
     ]
   },
   "output": {
-    "path": path.join(process.cwd(), "dist.ngtools"),
+    "path": path.join(process.cwd(), "dist"),
     "filename": "[name].bundle.js",
     "chunkFilename": "[id].chunk.js",
     "crossOriginLoading": false
@@ -112,20 +114,22 @@ module.exports = (env) => {
       // {
       //   "test": /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
       //   "loader": "@ngtools/webpack"
+      // "options": {
+      //   "tsConfigPath": "src/tsconfig.XXXapp.json",
+      // }
+      // },
+      // {
+      //   test: /\.ts$/,
+      //   loader: '@ngtools/webpack',
       // },
       {
-        test: /\.ts$/,
-        loader: '@ngtools/webpack',
+        "enforce": "pre",
+        "test": /\.js$/,
+        "loader": "source-map-loader",
+        "exclude": [
+          /\/node_modules\//
+        ]
       },
-      // {
-      //   "enforce": "pre",
-      //   "test": /\.js$/,
-      //   "loader": "source-map-loader",
-      //   "exclude": [
-      //     path.join(process.cwd(), 'node_modules'),
-
-      //   ]
-      // },
       {
         "test": /\.html$/,
         "loader": "raw-loader"
@@ -288,24 +292,29 @@ module.exports = (env) => {
       "async": "common"
     }),
     new NamedModulesPlugin({}),
-    new AngularCompilerPlugin({
-      // see https://www.npmjs.com/package/@ngtools/webpack
-      "tsConfigPath": "./tsconfig.ngtools.json",
-      "basePath": ".", // equals default fo tsConfigPath root
-      "entryModule": path.join(process.cwd(), 'src/app/app.module#AppModule'),
-      "mainPath": "./src/main.ts",
-      "skipCodeGeneration": false, // default
-      "typeChecking": "true",
-      "exclude": [],
-      // "sourceMap": true,
-      "hostReplacementPaths": {
-        "environments/environment.ts": "environments/environment.ts"
-      },
-      "hostReplacementPaths": {
-        "environments/environment.ts": "environments/environment.ts"
-      },
-      // /* "compilerOptions": {} */
-    })
+    // new AngularCompilerPlugin({
+    //   "mainPath": "./src/main.aot.ts",
+    //   "hostReplacementPaths": {
+    //     "environments/environment.ts": "environments/environment.ts"
+    //   },
+    //   "exclude": [],
+    //   "tsConfigPath": "./tsconfig.json",
+    //   "skipCodeGeneration": true,
+    //   // "entryModule": __dirname + '/src/app/app.module.ts#AppModule'
+    //   // "tsConfigPath": "./tsconfig.aot.json",
+    //   // "mainPath": "./src/main.aot.ts",
+
+    //   // "exclude": [],
+    //   // "skipCodeGeneration": true,
+    //   "entryModule": path.join(process.cwd(), 'src/app/app.module#AppModule'),
+    //   // "genDir": "aot",
+    //   // "hostReplacementPaths": {
+    //   //   "environments/environment.ts": "environments/environment.ts"
+    //   // },
+
+    //   // "sourceMap": true
+    //   // /* "compilerOptions": {} */
+    // })
     // if (env == 'prod') {
     //   plugins = [
     //   new webpack.optimize.UglifyJsPlugin({});
