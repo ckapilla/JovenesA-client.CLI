@@ -49,12 +49,11 @@ export class CanActivateViaMentorAuthGuard implements CanActivate {
         return false;
       }
     } else {
-      console.log('link to Mentor but not authenticated -- save retry url:');
-      console.log(state.url.substr(0, 8));
-      localStorage.setItem('unauthenticated_retry_url', state.url.substr(0, 8));
+      console.log('link to Mentor but not authenticated -- save /mentors retry url:');
+      localStorage.setItem('unauthenticated_retry_url', '/mentors');
       // console.log('navigate to [ ]');
       // this.router.navigate(['']);
-      //this.auth.login();
+      this.auth.login();
       //location.reload(true);
       return false;
     }

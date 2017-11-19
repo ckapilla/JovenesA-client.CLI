@@ -80,21 +80,9 @@ export class AuthService {
       this.authenticated = true;
       this.extractExpireDtFromAuthResult(authResult);
       this.retrieveAndExtractUserProfile(authResult);
-      if (this.session.getFailedAuthorizationRoute()  > '') {
-        console.log('have failed authorization route, retrying ');
-        this.router.navigateByUrl(this.session.getFailedAuthorizationRoute());
-      }
 
-      // Redirect to retryUrl if there is a saved url that has been set
-
-      // this.UpdateLastLogin();
-      this.checkForUnauthenticateRetryUrl();
-
-      // console.log('setting timeout for retry URL')
-      // setTimeout(() => {
-      //   console.log('in timeout callback with RetryURl');
-      //   this.checkForUnauthenticateRetryUrl();        }
-      //   , 1000);
+      // instead of doing navigate retries here,
+      // the need to be done in the above retrieveAndExtract callback
 
     });
 
@@ -177,6 +165,22 @@ export class AuthService {
       } else {
         console.log('getUserInfo with token expired');
       }
+
+
+      if (this.session.getFailedAuthorizationRoute()  > '') {
+        console.log('have failed authorization route, retrying ');
+        this.router.navigateByUrl(this.session.getFailedAuthorizationRoute());
+      }
+
+      // Redirect to retryUrl if there is a saved url that has been set
+
+      // this.UpdateLastLogin();
+      this.checkForUnauthenticateRetryUrl();
+
+
+
+
+
     });
   }
 
