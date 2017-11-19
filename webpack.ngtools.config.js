@@ -67,265 +67,271 @@ module.exports = (env) => {
   env = env || {};
   console.log('in module exports with env.BUILD = ' + env.BUILD);
 
-  return ( {
-  "resolve": {
-    "extensions": [
-      ".ts",
-      ".js"
-    ],
-    "modules": [
-      "./node_modules",
-      "./node_modules"
-    ],
-    "symlinks": true,
-    "mainFields": [
-      "browser",
-      "module",
-      "main"
-    ]
-  },
-  "resolveLoader": {
-    "modules": [
-      "./node_modules",
-      "./node_modules"
-    ]
-  },
-  "entry": {
-    "main": [
-      "./src/main.ts"
-    ],
-    "polyfills": [
-      "./src/polyfills.ts"
-    ],
-    "styles": [
-      "./src/styles.css"
-    ]
-  },
-  "output": {
-    "path": path.join(process.cwd(), "dist.ngtools"),
-    "filename": "[name].bundle.js",
-    "chunkFilename": "[id].chunk.js",
-    "crossOriginLoading": false
-  },
-  "module": {
-    "rules": [
-      // {
-      //   "test": /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
-      //   "loader": "@ngtools/webpack"
-      // },
-      {
-        test: /\.ts$/,
-        loader: '@ngtools/webpack',
-      },
-      // {
-      //   "enforce": "pre",
-      //   "test": /\.js$/,
-      //   "loader": "source-map-loader",
-      //   "exclude": [
-      //     path.join(process.cwd(), 'node_modules'),
-
-      //   ]
-      // },
-      {
-        "test": /\.html$/,
-        "loader": "raw-loader"
-      },
-      {
-        "test": /\.(eot|svg|cur)$/,
-        "loader": "file-loader",
-        "options": {
-          "name": "[name].[hash:20].[ext]",
-          "limit": 10000
-        }
-      },
-      {
-        "test": /\.(jpg|png|webp|gif|otf|ttf|woff|woff2|ani)$/,
-        "loader": "url-loader",
-        "options": {
-          "name": "[name].[hash:20].[ext]",
-          "limit": 10000
-        }
-      },
-      {
-        "exclude": [
-          path.join(process.cwd(), "src/styles.css")
-        ],
-        "test": /\.css$/,
-        "use": [
-          "exports-loader?module.exports.toString()",
-          {
-            "loader": "css-loader",
-            "options": {
-              "sourceMap": false,
-              "importLoaders": 1
-            }
-          },
-          {
-            "loader": "postcss-loader",
-            "options": {
-              "ident": "postcss",
-              "plugins": postcssPlugins
-            }
-          }
-        ]
-      },
-      {
-        "include": [
-          path.join(process.cwd(), "src/styles.css")
-        ],
-        "test": /\.css$/,
-        "use": [
-          "style-loader",
-          {
-            "loader": "css-loader",
-            "options": {
-              "sourceMap": false,
-              "importLoaders": 1
-            }
-          },
-          {
-            "loader": "postcss-loader",
-            "options": {
-              "ident": "postcss",
-              "plugins": postcssPlugins
-            }
-          }
-        ]
-      }
-    ]
-  },
-  "plugins": [
-    new NoEmitOnErrorsPlugin(),
-    new CopyWebpackPlugin([
-      {
-        "context": "src",
-        "to": "",
-        "from": {
-          "glob": "assets/**/*",
-          "dot": true
-        }
-      },
-      {
-        "context": "src",
-        "to": "",
-        "from": {
-          "glob": "favicon.ico",
-          "dot": true
-        }
-      }
-    ], {
-      "ignore": [
-        ".gitkeep"
+  const config = {
+    resolve: {
+      extensions: [
+        ".ts",
+        ".js"
       ],
-      "debug": "warning"
-    }),
-    new ProgressPlugin(),
-    new CircularDependencyPlugin({
-      "exclude": /(\\|\/)node_modules(\\|\/)/,
-      "failOnError": false
-    }),
-    new NamedLazyChunksWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      "template": "./src/index.html",
-      "filename": "./index.html",
-      "hash": false,
-      "inject": true,
-      "compile": true,
-      "favicon": false,
-      "minify": false,
-      "cache": true,
-      "showErrors": true,
-      "chunks": "all",
-      "excludeChunks": [],
-      "title": "Webpack App",
-      "xhtml": true,
-      "chunksSortMode": function sort(left, right) {
-        let leftIndex = entryPoints.indexOf(left.names[0]);
-        let rightindex = entryPoints.indexOf(right.names[0]);
-        if (leftIndex > rightindex) {
-            return 1;
-        }
-        else if (leftIndex < rightindex) {
-            return -1;
-        }
-        else {
-            return 0;
-        }
-    }
-    }),
-    new BaseHrefWebpackPlugin({}),
-    new CommonsChunkPlugin({
-      "name": [
-        "inline"
+      modules: [
+        "./node_modules",
+        "./node_modules"
       ],
-      "minChunks": null
-    }),
-    new CommonsChunkPlugin({
-      "name": [
-        "vendor"
-      ],
-      "minChunks": (module) => {
-                return module.resource
-                    && (module.resource.startsWith(nodeModules)
-                        || module.resource.startsWith(genDirNodeModules)
-                        || module.resource.startsWith(realNodeModules));
-            },
-      "chunks": [
+      symlinks: true,
+      mainFields: [
+        "browser",
+        "module",
         "main"
       ]
-    }),
-    new SourceMapDevToolPlugin({
-      "filename": "[file].map[query]",
-      "moduleFilenameTemplate": "[resource-path]",
-      "fallbackModuleFilenameTemplate": "[resource-path]?[hash]",
-      "sourceRoot": "webpack:///"
-    }),
-    new CommonsChunkPlugin({
-      "name": [
-        "main"
+    },
+    resolveLoader: {
+      modules: [
+        "./node_modules",
+        "./node_modules"
+      ]
+    },
+    entry: {
+      main: [
+        "./src/main.ts"
       ],
-      "minChunks": 2,
-      "async": "common"
-    }),
-    new NamedModulesPlugin({}),
-    new AngularCompilerPlugin({
-      // see https://www.npmjs.com/package/@ngtools/webpack
-      "tsConfigPath": "./tsconfig.ngtools.json",
-      "basePath": ".", // equals default fo tsConfigPath root
-      "entryModule": path.join(process.cwd(), 'src/app/app.module#AppModule'),
-      "mainPath": "./src/main.ts",
-      "skipCodeGeneration": false, // default
-      "typeChecking": "true",
-      "exclude": [],
-      // "sourceMap": true,
-      "hostReplacementPaths": {
-        "environments/environment.ts": "environments/environment.ts"
-      },
-      "hostReplacementPaths": {
-        "environments/environment.ts": "environments/environment.ts"
-      },
-      // /* "compilerOptions": {} */
-    }),
-    new UglifyJsPlugin()
-    // if (env == 'prod') {
-    //   plugins = [
-    //   new webpack.optimize.UglifyJsPlugin({});
-    //   }
+      polyfills: [
+        "./src/polyfills.ts"
+      ],
+      styles: [
+        "./src/styles.css"
+      ]
+    },
+    output: {
+      path: path.join(process.cwd(), "dist.ngtools"),
+      filename: "[name].bundle.js",
+      chunkFilename: "[id].chunk.js",
+      crossOriginLoading: false
+    },
+    module: {
+      rules: [
+        // {
+        //    test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
+        //    loader: "@ngtools/webpack"
+        // },
+        {
+          test: /\.ts$/,
+          loader: '@ngtools/webpack',
+        },
+        // {
+        //    enforce: "pre",
+        //    test: /\.js$/,
+        //    loader: "source-map-loader",
+        //    exclude: [
+        //     path.join(process.cwd(), 'node_modules'),
 
-  ],
-  "node": {
-    "fs": "empty",
-    "global": true,
-    "crypto": "empty",
-    "tls": "empty",
-    "net": "empty",
-    "process": true,
-    "module": false,
-    "clearImmediate": false,
-    "setImmediate": false
-  },
-  "devServer": {
-    "historyApiFallback": true
+        //   ]
+        // },
+        {
+          test: /\.html$/,
+          loader: "raw-loader"
+        },
+        {
+          test: /\.(eot|svg|cur)$/,
+          loader: "file-loader",
+          options: {
+            name: "[name].[hash:20].[ext]",
+            limit: 10000
+          }
+        },
+        {
+          test: /\.(jpg|png|webp|gif|otf|ttf|woff|woff2|ani)$/,
+          loader: "url-loader",
+          options: {
+            name: "[name].[hash:20].[ext]",
+            limit: 10000
+          }
+        },
+        {
+          exclude: [
+            path.join(process.cwd(), "src/styles.css")
+          ],
+          test: /\.css$/,
+          use: [
+            "exports-loader?module.exports.toString()",
+            {
+              loader:  "css-loader",
+              options: {
+                sourceMap: false,
+                importLoaders: 1
+              }
+            },
+            {
+              loader: "postcss-loader",
+              options: {
+                ident: "postcss",
+                plugins: postcssPlugins
+              }
+            }
+          ]
+        },
+        {
+          include: [
+            path.join(process.cwd(), "src/styles.css")
+          ],
+          test: /\.css$/,
+          use: [
+            "style-loader",
+            {
+              loader: "css-loader",
+              options: {
+                sourceMap: false,
+                importLoaders: 1
+              }
+            },
+            {
+              loader: "postcss-loader",
+              options: {
+                ident: "postcss",
+                plugins: postcssPlugins
+              }
+            }
+          ]
+        }
+      ]
+    },
+    plugins: [
+      new NoEmitOnErrorsPlugin(),
+      new CopyWebpackPlugin([
+        {
+          context: "src",
+          to: "",
+          from: {
+            glob: "assets/**/*",
+            dot: true
+          }
+        },
+        {
+          context: "src",
+          to: "",
+          from: {
+            glob: "favicon.ico",
+            dot: true
+          }
+        }
+      ], {
+        ignore: [
+          ".gitkeep"
+        ],
+        debug: "warning"
+      }),
+      new ProgressPlugin(),
+      new CircularDependencyPlugin({
+        exclude: /(\\|\/)node_modules(\\|\/)/,
+        failOnError: false
+      }),
+      new NamedLazyChunksWebpackPlugin(),
+      new HtmlWebpackPlugin({
+        template: "./src/index.html",
+        filename:  "./index.html",
+        hash: false,
+        inject: true,
+        compile: true,
+        favicon: false,
+        minify: false,
+        cache: true,
+        showErrors: true,
+        chunks: "all",
+        excludeChunks: [],
+        title: "Webpack App",
+        xhtml: true,
+        chunksSortMode: function sort(left, right) {
+          let leftIndex = entryPoints.indexOf(left.names[0]);
+          let rightindex = entryPoints.indexOf(right.names[0]);
+          if (leftIndex > rightindex) {
+              return 1;
+          }
+          else if (leftIndex < rightindex) {
+              return -1;
+          }
+          else {
+              return 0;
+          }
+      }
+      }),
+      new BaseHrefWebpackPlugin({}),
+      new CommonsChunkPlugin({
+        name: [
+          "inline"
+        ],
+        minChunks: null
+      }),
+      new CommonsChunkPlugin({
+        name: [
+          "vendor"
+        ],
+        minChunks: (module) => {
+                  return module.resource
+                      && (module.resource.startsWith(nodeModules)
+                          || module.resource.startsWith(genDirNodeModules)
+                          || module.resource.startsWith(realNodeModules));
+              },
+        chunks: [
+          "main"
+        ]
+      }),
+      new SourceMapDevToolPlugin({
+        filename: "[file].map[query]",
+        moduleFilenameTemplate: "[resource-path]",
+        fallbackModuleFilenameTemplate: "[resource-path]?[hash]",
+        sourceRoot: "webpack:///"
+      }),
+      new CommonsChunkPlugin({
+        name: [
+          "main"
+        ],
+        minChunks: 2,
+        async: "common"
+      }),
+      new NamedModulesPlugin({})
+    ],
+    node: {
+      fs: "empty",
+      global: true,
+      crypto: "empty",
+      tls: "empty",
+      net: "empty",
+      process: true,
+      module: false,
+      clearImmediate: false,
+      setImmediate: false
+    },
+    devServer: {
+      historyApiFallback: true
+    }
   }
-  });
+  console.log(config.plugins.length);
+
+  if (env.BUILD == "prod") {
+    console.log('************************have prod build********');
+    config.plugins.push(new UglifyJsPlugin());
+    config.plugins.push(new AngularCompilerPlugin({
+      tsConfigPath: "./tsconfig.ngtools.json",
+      basePath:  ".", // equals default fo tsConfigPath root
+      entryModule: path.join(process.cwd(), 'src/app/app.module#AppModule'),
+      mainPath: "./src/main.ts",
+      skipCodeGeneration: false, // default
+      typeChecking: "true",
+      exclude: []
+    }));
+  } else if (env.BUILD === "aot") {
+    console.log('************************have aot build********');
+    config.plugins.push(new AngularCompilerPlugin({
+      tsConfigPath: "./tsconfig.ngtools.json",
+      basePath:  ".", // equals default fo tsConfigPath root
+      entryModule: path.join(process.cwd(), 'src/app/app.module#AppModule'),
+      mainPath: "./src/main.ts",
+      skipCodeGeneration: false, // default
+      typeChecking: "true",
+      exclude: []
+      }));
+  }
+
+  console.log(config.plugins.length);
+  return config;
+
 };

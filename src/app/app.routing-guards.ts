@@ -23,8 +23,8 @@ export class CanActivateViaAdminAuthGuard implements CanActivate {
       }
     } else {
       console.log('Not authenticated -- Can\'t Activate Admin');
-      //localStorage.setItem('redirect_url', state.url);
-      this.auth.login();
+      localStorage.setItem('unauthenticated_retry_url', state.url);
+      //this.auth.login();
       //this.router.navigate(['']);
       return false;
     }
@@ -35,22 +35,27 @@ export class CanActivateViaMentorAuthGuard implements CanActivate {
   constructor(private auth: AuthService, private router: Router, private session: SessionService) {}
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-
+    console.log('canActivate for /mentors');
     if (this.auth.isAuthenticated()) {
+      // following has issue of race condition with callback to get profile
       if (this.session.isMentor()) {
         console.log('Authenticated and Can Activate Mentor');
         return true;
       } else {
         console.log('Authenticated but unauthorized for Mentor');
         // if this is on startup, will need to try navigate again after profile is loaded
-        this.session.setFailedRoute('mentors');
+        this.session.setFailedAuthorizationRoute('mentors');
+        this.router.navigate(['']);
         return false;
       }
     } else {
-      console.log('link to Mentor but not authenticated -- need login');
-      //localStorage.setItem('redirect_url', state.url);
-      // this.auth.login();
-      location.reload(true);
+      console.log('link to Mentor but not authenticated -- save retry url:');
+      console.log(state.url.substr(0, 8));
+      localStorage.setItem('unauthenticated_retry_url', state.url.substr(0, 8));
+      // console.log('navigate to [ ]');
+      // this.router.navigate(['']);
+      //this.auth.login();
+      //location.reload(true);
       return false;
     }
   }
@@ -69,12 +74,13 @@ export class CanActivateViaStudentAuthGuard implements CanActivate {
       } else {
         console.log('Authenticated but unauthorized for Student');
         // if this is on startup, will need to try navigate again after profile is loaded
-        this.session.setFailedRoute('students');
+        this.session.setFailedAuthorizationRoute('students');
         return false;
       }
     } else {
       console.log('link to Student but not authenticated -- need login');
-      this.auth.login();
+      localStorage.setItem('unauthenticated_retry_url', state.url);
+      //this.auth.login();
       return false;
     }
   }

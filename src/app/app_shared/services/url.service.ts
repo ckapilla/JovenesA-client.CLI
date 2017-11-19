@@ -6,12 +6,12 @@ export class UrlService {
   clientUrl: string;
 
   constructor() {
-    console.log('webapiPrefix constructor');
+    // console.log('UrlService constructor');
 
     let backendEnv: string;
     backendEnv = 'AzureTestXXXX';
 
-    console.log('window: ' + window.location.hostname);
+    // console.log('window: ' + window.location.hostname);
     if (window.location.hostname.toLocaleLowerCase() === 'privada.jovenesadelante.org'
               || backendEnv === 'AzureProd') {
       this.webApiPrefix = 'http://jovenesadelantewebapi.azurewebsites.net/api/';

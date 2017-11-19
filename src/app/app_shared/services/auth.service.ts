@@ -15,200 +15,254 @@ declare var Auth0: any;
 export class AuthService {
 
   userProfile: Object;
-  zoneImpl: NgZone;
-  adminStatus: number;
-  mentorStatus: number;
-  studentId: number;
-  sponsorStatus: number;
+  authResult: Object;
+  // zoneImpl: NgZone;
+  // adminStatus: number;
+  // mentorStatus: number;
+  // studentId: number;
+  // sponsorStatus: number;
+  expiresAtDt: string;
+  expiresAtNum: number;
   email: string;
   nickname: string;
   authenticated: boolean;
   lock: any;
 
 
-
   constructor(
-    zone: NgZone,
+    // zone: NgZone,
     private router: Router,
     public urlService: UrlService,
     public session: SessionService,
     public sqlResource: SqlResource) {
 
-    console.log('Auth constructor before stored session assignment');
-    this.zoneImpl = zone;
+    console.log('Auth constructor before stored token check');
     this.authenticated = false;
-    // in case this is a page refresh, check to see if we have a saved profile
-    // this.checkRestoreUserProfile(); // JSON.parse(localStorage.getItem('profile'));
     this.session = session;
     this.sqlResource = sqlResource
-    console.log(this.session);
-    console.log(this.sqlResource);
+
+    // if not authenticated, check to see if we have a saved profile
+    if (session.getUserId() === 0) {
+      console.log('no current session so check for stored authResult');
+      this.checkRestoreSavedAuthData();
+    }
+    console.log('@@@@session: ' + session.getUserId());
 
     this.lock = new Auth0Lock(AUTH_CONFIG.clientID, AUTH_CONFIG.domain, {
       theme: {
-        // TODO https not working
         logo: urlService.getClientUrl() + '/assets/images/JovenesLogo.png',
         primaryColor: '#106cc8',
       },
-      languageDictionary: LOCK_DICTIONARY
-      // auth: {
-      //   //redirectUrl: this.getRedirectUrl(),
-      //   responseType: 'token',
-      //   //redirect: true, // redirectUrl is ignored
-      //   //redirect: false,
+      languageDictionary: LOCK_DICTIONARY,
+      // force Lock to use Auth0's new (2017) authentication pipeline
+      // oidcConformant: true,
+      auth: {
+        params: {  },
+        scope: 'openid email',
+        // with this, use lock.resumeAuth in handleRedirectWithHash:
+        // autoParseHash: false
+        redirect: true,
+        redirectUrl: urlService.getClientUrl(),
+        responseType: 'token',
       //   sso:false
-      // },
+      }
     }); // end new lock
-
 
     this.lock.on('authorization_error', (auth_error: any) => {
       console.log('authorization_error event received');
     });
 
-    // Listening for the authenticated event
+    // authResult contains: accessToken, idToken, state, refreshToken and idTokenPayload.
     this.lock.on('authenticated', (authResult: any) => {
       console.log('got authenticated event!');
+      this.storeAuthResultToStorage(authResult);
+
       this.authenticated = true;
+      this.extractExpireDtFromAuthResult(authResult);
+      this.retrieveAndExtractUserProfile(authResult);
+      if (this.session.getFailedAuthorizationRoute()  > '') {
+        console.log('have failed authorization route, retrying ');
+        this.router.navigateByUrl(this.session.getFailedAuthorizationRoute());
+      }
 
-      console.log('token>>>');
-      console.log(authResult.idToken);
-      console.log('token = ' + authResult.idToken);
-      this.setSession(authResult);
-      console.log('after setSession');
+      // Redirect to retryUrl if there is a saved url that has been set
 
+      // this.UpdateLastLogin();
+      this.checkForUnauthenticateRetryUrl();
 
-      // Call get userInfo with the token in authResult
-      console.log('calling lock.getUserInfo');
-      this.lock.getUserInfo(authResult.accessToken, (error: any, profile: any) => {
-        if (error) {
-          // Handle error
-          console.log(error);
-          return;
-        }
-        // If authentication is successful, set up a 'session' by saving the items
-        // in local storage
-        console.log('in getUserInfo callback with profile>>');
+      // console.log('setting timeout for retry URL')
+      // setTimeout(() => {
+      //   console.log('in timeout callback with RetryURl');
+      //   this.checkForUnauthenticateRetryUrl();        }
+      //   , 1000);
 
-        if (this.isAuthenticated()) {
-          console.log('###in Authenticated getUserInfo callback with profile>>');
-          console.log(profile);
-          console.log('###setting AUth0 profile to local storage');
-          localStorage.setItem('profile', JSON.stringify(profile));
-
-          // this.zoneImpl.run(() => this.userProfile = profile); // enter Angular zone and assign userProfile
-          this.userProfile = profile;
-          this.extractUserProfileElements();
-          this.UpdateLastLogin();
-          console.log('checking for failed route of ');
-          if (this.session.getFailedRoute() > '') {
-            console.log('navigating to failed route: ' + this.session.getFailedRoute());
-            this.router.navigate([this.session.getFailedRoute()]);
-          }
-          // Redirect if there is a saved url to do so.
-          // var redirectUrl: string = localStorage.getItem('redirect_url');
-          // if(redirectUrl !== undefined ) {
-          //   console.log('redirecting to ' + redirectUrl);
-          //   this.router.navigate([redirectUrl]);
-          //   localStorage.removeItem('redirect_url');
-          // }
-        } else {
-          console.log('isAuthenticated returned false');
-        }
-        console.log('end of getUserInfo handler');
-      }); // end getUserInfo
-      console.log('end of authenticated event handler1');
     });
-    console.log('end of authenticated event handler definition'); // end authenticated event handler
 
+    // this.handleAuthenticationWithHash();
+  }  // end constructor
 
-    // console.log('before call to handleRedirectWithHash');
-    //this.handleRedirectWithAuthHash();
-  }
-
-  // public handleRedirectWithAuthHash() {
-  //   console.log('in handleRedirectWithAuthHash');
-  //   this.router.events.take(1).subscribe(event => {
-  //     console.log('in handleRedirectWithAuthHash subscribe event with hash ' + window.location.hash);
-  //     // 7/23/2017 workaround for url not being found
-  //     if (/access_token/.test(event['url']) || /error/.test(event['url'])) {
-  //       console.log('handleRedirectWithAuthHash has token or error, parsing authResult');
-  //       const authResult = this.auth0.parseHash(window.location.hash);
-  //       if (authResult && authResult.idToken) {
-  //         console.log('manual emit authenticated');
-  //         this.lock.emit('authenticated', authResult);
-  //       }
-  //       if (authResult && authResult.error) {
-  //         this.lock.emit('authorization_error', authResult);
-  //       }
-  //     }
-  //   });
-  // }
 
   public login() {
     // Show the Auth0 Lock widget
     this.lock.show();
   }
 
-  public isAuthenticated() {
-    // Check if there's an unexpired JWT
-    // console.log('isAuthenticated: ' + tokenNotExpired());
-//    return tokenNotExpired();
-    return this.authenticated;
-    // const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
-    // console.log('expiresAt: ' + expiresAt);
-    // const isNotExpired = new Date().getTime() < expiresAt;
-    // console.log('isAuthenticated has ' + Date.now.toString() + ' ' + expiresAt);
-    // console.log(isNotExpired);
-    // return isNotExpired; // tokenNotExpired();
-  }
+/*
+  checkRestore saved Auth Data from local storage
+*/
 
-  private setSession(authResult: any) {
-    const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
-    console.log('expiresAt: ' + expiresAt);
-    localStorage.setItem('access_token', authResult.access_token);
-    localStorage.setItem('id_token', authResult.idToken);
-    // localStorage.setItem('expires_at', expiresAt);
-  }
-
-  public extractUserProfileElements(): void {
-    console.log('in extractUserProfileElements with userProfile:');
-    console.log(this.userProfile);
-    if (this.userProfile !== null && this.userProfile !== undefined) {
-      const app_metadata = (<any>this.userProfile)['app_metadata'];
-      this.adminStatus = (<any>app_metadata)['adminStatus'];
-      this.session.setAdminStatus(this.adminStatus);
-      console.log('isAdmin: ' + this.session.isAdmin());
-      localStorage.setItem('isAdmin', this.session.isAdmin().toString());
-
-      this.mentorStatus = (<any>app_metadata)['mentorStatus'];
-      this.session.setMentorStatus(this.mentorStatus);
-      console.log('isMentor: ' + this.session.isMentor());
-      localStorage.setItem('isMentor', this.session.isMentor().toString());
-
-      this.studentId = (<any>app_metadata)['studentId'];
-      this.session.setStudentId(this.studentId);
-      console.log('studentId: ' + this.session.getStudentId());
-      localStorage.setItem('studentId', this.session.getStudentId().toString());
-
-      this.session.setUserId((<any>this.userProfile)['user_id'].substr('auth0|'.length));
-      console.log('userId: ' + this.session.userId);
-      localStorage.setItem('userId', this.session.userId.toString());
-
-
-      this.email = (<any>this.userProfile)['email'];
-      this.nickname = (<any>this.userProfile)['nickname'];
+  private checkRestoreSavedAuthData() {
+    this.authResult = this.checkRestoreAuthResult();
+    if (this.authResult) {
+      console.log('checkRestore has saved authResult:');
+      // console.log(this.authResult);
+      this.extractExpireDtFromAuthResult(this.authResult);
+      this.userProfile = this.checkRestoreProfile();
+      if (this.userProfile) {
+        console.log('checkRestore has saved userProfile');
+        // console.log(this.userProfile);
+        this.extractElementsFromUserProfile(this.userProfile);
+        this.authenticated = true;
+      }
     }
+  }
+
+  private storeAuthResultToStorage(authResult: any) {
+    localStorage.setItem('authResult', JSON.stringify(authResult));
+  }
+
+  public checkRestoreAuthResult(): any {
+    return JSON.parse(localStorage.getItem('authResult'));
   }
 
   public checkRestoreUserProfile(): void {
     this.userProfile = JSON.parse(localStorage.getItem('profile'));
-    console.log('check restor profile>>>>>>>');
+  }
 
-    if (this.userProfile === null) {
-      console.log('emptyProfile, do not parse');
+  private extractExpireDtFromAuthResult(authResult: any) {
+
+      // console.log('idToken>>>');
+      // console.log(authResult.idToken);
+      // console.log('accessToken>>>');
+      // console.log(authResult.accessToken);
+    // console.log('authResult idTokenPayload');
+    // console.log(authResult.idTokenPayload);
+    // console.log('authResult aud');
+    // console.log(authResult.idTokenPayload.aud);
+
+    if (authResult.idTokenPayload) {
+      this.expiresAtNum = (authResult.idTokenPayload.exp * 1000);
+      this.expiresAtDt = '' + (new Date(authResult.idTokenPayload.exp * 1000));
+      console.log('authResult ExpiresAt:');
+      console.log(this.expiresAtDt);
+    }
+
+  }
+
+  private retrieveAndExtractUserProfile(authResult: any) {
+    // Call get userInfo with the token in authResult
+    console.log('calling lock.getUserInfo');
+    this.lock.getUserInfo(authResult.accessToken, (error: any, profile: any) => {
+      if (error) {
+        // Handle error
+        console.log(error);
+        return;
+      }
+      // use token to call getUserInfo, save and parse profile
+      console.log('in getUserInfo with profile>>');
+      if (this.isTokenUnexpired()) {
+        console.log('savingProfile');
+        this.saveProfileToLocalStorage(profile);
+        this.extractElementsFromUserProfile(profile)
+      } else {
+        console.log('getUserInfo with token expired');
+      }
+    });
+  }
+
+  private checkForUnauthenticateRetryUrl() {
+    const retryUrl: string = localStorage.getItem('unauthenticated_retry_url');
+    if (retryUrl) {
+      console.log('navigating to unauthenticated_retry_url: ' + retryUrl);
+      this.router.navigate([retryUrl]);
+      localStorage.removeItem('unauthenticated_retry_url');
+    }
+  }
+
+  private saveProfileToLocalStorage(profile: any) {
+    console.log('###setting AUth0 profile to local storage');
+    localStorage.setItem('profile', JSON.stringify(profile));
+    this.userProfile = profile;
+  }
+
+  public checkRestoreProfile(): any  {
+    const x = JSON.parse(localStorage.getItem('profile'));
+    return x;
+  }
+
+  // with angular router we need to not do autoParse
+  // and to interupt router proccessing and complete the parse ourselves
+  // https://github.com/auth0/lock/pull/790
+  // see https://github.com/auth0-samples/auth0-angularjs2-systemjs-sample/issues/40
+  public handleAuthenticationWithHash() {
+    console.log('in handleRedirectWithAuthHash');
+    this.router.events
+        .filter(event => event.constructor.name === 'NavigationStart')
+        .filter(event => (/access_token|id_token|error/).test(event['url']))
+        .subscribe(event => {
+      console.log('in handleRedirectWithAuthHash subscribe event with hash ' + window.location.hash);
+      //const authResult = this.auth0.parseHash(window.location.hash);
+      // use following in conjunction with autoParseHash: false option setting
+      this.lock.resumeAuth(window.location.hash, (error, authResult) => {
+        if (authResult && authResult.idToken) {
+          console.log('resumeAuthh successfully authenticated');
+          // this.lock.emit('authenticated', authResult);
+        }
+        if (authResult && authResult.error) {
+          this.lock.emit('authorization_error', authResult);
+        }
+      });
+    });
+  }
+
+  public isAuthenticated() {
+    return this.authenticated; // && this.isTokenUnexpired();
+  }
+
+  public isTokenUnexpired() {
+    // abort if not set or not authenticated
+    if (!this.expiresAtNum || !this.authenticated) {
+      // console.log('isTokenUnexpired has null');
+      return false;
     } else {
-      console.log(this.userProfile);
-      this.extractUserProfileElements();
+      // console.log('isTokenUnexpired Dt has ' + new Date().toString() + ' ' + this.expiresAtDt);
+      // console.log('isTokenUnexpired num has ' + new Date().getTime() + ' ' + expiresAtNum);
+      const isNotExpired = this.expiresAtNum > new Date().getTime();
+      return isNotExpired;
+    }
+
+  }
+
+
+  public extractElementsFromUserProfile(userProfile: any): void {
+    console.log('in extractUserProfileElements with userProfile:');
+    console.log(userProfile);
+    if (userProfile !== null && userProfile !== undefined) {
+      const app_metadata = (<any>userProfile)['app_metadata'];
+      this.session.setAdminStatus((<any>app_metadata)['adminStatus']);
+      // console.log('isAdmin: ' + this.session.isAdmin());
+
+      this.session.setMentorStatus((<any>app_metadata)['mentorStatus']);
+      console.log('isMentor: ' + this.session.isMentor());
+
+      this.session.setStudentId((<any>app_metadata)['studentId']);
+      // console.log('studentId: ' + this.session.getStudentId());
+
+      this.session.setUserId((<any>userProfile)['user_id'].substr('auth0|'.length));
+      // console.log('userId: ' + this.session.userId);
+
+      this.email = (<any>userProfile)['email'];
+      this.nickname = (<any>userProfile)['nickname'];
     }
   }
 
@@ -233,7 +287,9 @@ export class AuthService {
     //localStorage.removeItem('profile');
     //localStorage.removeItem('id_token');
     localStorage.clear();
-    this.zoneImpl.run(() => this.userProfile = undefined);
+    //this.zoneImpl.run(() => this.userProfile = undefined);
+    this.authResult = undefined;
+    this.userProfile = undefined;
     //this.router.navigate(['']);
     console.log('returen to address: ' + 'http://ckapilla.auth0.com/v2/logout?returnTo=' + this.urlService.getClientUrl());
     setTimeout(() => {

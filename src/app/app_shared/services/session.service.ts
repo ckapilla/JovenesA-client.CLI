@@ -9,12 +9,12 @@ export class SessionService {
     userId: number;
     assignedStudentId: number;
     assignedStudentName: string;
-    failedRoute: string;
+    failedAuthorizationRoute: string;
 
     constructor() {
         // this.loading$ = new Observable(observer => this._observer = observer)
         // .share();
-        console.log('SessionService constructor 4');
+        // console.log('SessionService constructor 4');
         this.userId = 0;
         this.assignedStudentId = 0;
     }
@@ -56,11 +56,14 @@ export class SessionService {
     }
 
     public isStudent(): boolean {
-      if (this.studentId === undefined) {
+      if (!this.studentId) {
+        console.log('Is student -- have studentId: ' + this.studentId);
         return false;
       } else {
+        console.log('Not student -- have studentId: ' + this.studentId);
         return this.studentId !== 0 ;
       }
+
     }
 
     public setSponsorStatus( status: number): void {
@@ -68,7 +71,7 @@ export class SessionService {
     }
 
     public isSponsor(): boolean {
-      if (this.sponsorStatus === undefined) {
+      if (!this.sponsorStatus) {
         return false;
       } else {
         return this.sponsorStatus === 1015;
@@ -100,13 +103,13 @@ export class SessionService {
       return this.assignedStudentName;
     }
 
-    public setFailedRoute(route: string): void {
-      this.failedRoute = route;
+    public setFailedAuthorizationRoute(route: string): void {
+      this.failedAuthorizationRoute = route;
     }
 
-    public getFailedRoute(): string {
+    public getFailedAuthorizationRoute(): string {
       // console.log('getFailedRoute returning ' + this.failedRoute);
-      return this.failedRoute;
+      return this.failedAuthorizationRoute;
     }
 
 }

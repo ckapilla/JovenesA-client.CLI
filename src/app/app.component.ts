@@ -22,11 +22,9 @@ export class AppComponent {
                 sqlResource: SqlResource
                 ) {
     // if (session.getUserId() === 0) {
-    //   auth.restoreUserProfileFromLocalStorage();
+    //   auth.tryGetAuthResultFromStorage();
     // }
-    console.log('appComponent constructor with AuthService');
-    console.log(auth);
-    console.log('@@@@session: ' + session.getUserId());
+    // console.log('@@@@session: ' + session.getUserId());
     // router.events
     //   //.filter(e => e instanceof NavigationEnd || e instanceof NavigationError)
     //   .subscribe(e => {
