@@ -160,6 +160,7 @@ export class AuthService {
       console.log('in getUserInfo with profile>>');
       if (this.isTokenUnexpired()) {
         console.log('savingProfile');
+
         this.saveProfileToLocalStorage(profile);
         this.extractElementsFromUserProfile(profile)
       } else {
@@ -173,7 +174,7 @@ export class AuthService {
       }
 
       // Redirect to retryUrl if there is a saved url that has been set
-
+      console.log('before checkForUnauthenticateRetryUrl');
       // this.UpdateLastLogin();
       this.checkForUnauthenticateRetryUrl();
 
@@ -186,6 +187,7 @@ export class AuthService {
 
   private checkForUnauthenticateRetryUrl() {
     const retryUrl: string = localStorage.getItem('unauthenticated_retry_url');
+    console.log('checkForUnauthenticateRetryUrl has retryUrl ' + retryUrl);
     if (retryUrl) {
       console.log('navigating to unauthenticated_retry_url: ' + retryUrl);
       this.router.navigate([retryUrl]);

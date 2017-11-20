@@ -23,7 +23,7 @@ export class CanActivateViaAdminAuthGuard implements CanActivate {
       }
     } else {
       console.log('Not authenticated -- Can\'t Activate Admin');
-      localStorage.setItem('unauthenticated_retry_url', state.url);
+      localStorage.setItem('unauthenticated_retry_url', '/adimins');
       //this.auth.login();
       //this.router.navigate(['']);
       return false;
@@ -51,10 +51,8 @@ export class CanActivateViaMentorAuthGuard implements CanActivate {
     } else {
       console.log('link to Mentor but not authenticated -- save /mentors retry url:');
       localStorage.setItem('unauthenticated_retry_url', '/mentors');
-      // console.log('navigate to [ ]');
-      // this.router.navigate(['']);
       this.auth.login();
-      //location.reload(true);
+
       return false;
     }
   }
@@ -78,7 +76,7 @@ export class CanActivateViaStudentAuthGuard implements CanActivate {
       }
     } else {
       console.log('link to Student but not authenticated -- need login');
-      localStorage.setItem('unauthenticated_retry_url', state.url);
+      localStorage.setItem('unauthenticated_retry_url', '/students');
       //this.auth.login();
       return false;
     }
