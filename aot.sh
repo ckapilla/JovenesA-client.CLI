@@ -1,11 +1,16 @@
 #!/bin/dash
 #!/bin/dash
 echo "Clean aot and dist folders"
+
+mkdir aot
+
 cd aot
-find -name "*" -delete
+find -name "*" -print
 cd ..
+
+mkdir dist
 cd dist
-find -name "*" -delete
+find -name "*" -print
 cd ..
 
 cd aot
