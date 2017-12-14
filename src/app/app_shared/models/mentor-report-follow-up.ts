@@ -10,7 +10,7 @@ export class MentorReportFollowUp {
         public mentorReportSnapshot: string,
         public lastContactYear: number,
         public lastContactMonth: number,
-        public ReportDate: string,
+        public reportDate: string,
 
         public followUpNeeded?: string,
         public followUpStatusId?: number,

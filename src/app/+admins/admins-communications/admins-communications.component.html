@@ -23,8 +23,8 @@
     </div>
     <div [ngSwitch]="isLoading">
       <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
-        <loading-container>
-        </loading-container>
+        <app-loading-container>
+        </app-loading-container>
       </div>
       <div *ngSwitchCase="false">
         <table class="table">

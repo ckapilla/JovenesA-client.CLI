@@ -5,7 +5,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'loading-container',
+    selector: 'app-loading-container',
     template: `
     <div>
 <style type='text/css'> width: 100%;

@@ -51,7 +51,7 @@ export class MentorReportsFollowUpTrackingComponent implements OnInit {
       .subscribe(
         data => {this.mentorReportsFollowUp = data; },
         err => console.error('Subscribe error: ' + err),
-        () => { console.log('done >>'); console.log(this.mentorReportsFollowUp[0]); console.log('<<'); this.isLoading = false;}
+        () => { console.log('done >>'); console.log(this.mentorReportsFollowUp[0]); console.log('<<'); this.isLoading = false; }
       );
   }
 

@@ -13,6 +13,7 @@ import { RptMentorReport } from '../models/mentor-report';
 import { RptStudentMentor } from '../models/student-mentor';
 import { SponsorLetter } from '../models/sponsor-letter';
 import { MentorReportByMonth } from '../models/mentor-report-by-month';
+import { MentorReportsStatusCount } from '../models/mentor-reports-status-count';
 import { MentorReportFollowUp } from '../models/mentor-report-follow-up';
 // import { AuthHttp } from 'angular2-jwt/angular2-jwt';
 import { UrlService } from './url.service';
@@ -293,6 +294,17 @@ public getMentorReport(mentorReportId: number): Observable <RptMentorReport>  {
     console.log('sending AuthHttp get request for MentorReportsByMonth with ' + url);
     return this.http.get(url)
     .catch(this.handleError);
+}
+
+public getMentorReportsStatusCounts(year: string, month: string): Observable <MentorReportsStatusCount[]>  {
+  const url = this.WebApiPrefix + 'mentor_reports/status_counts'
+                      + '?year=' + year
+                      + '&month=' + month;
+                      // + '&summaryStatusId=' + summaryStatusId
+                      // + '&highlightStatusId=' + highlightStatusId;
+  console.log('sending AuthHttp get request for MentorReportsStatusCounts with ' + url);
+  return this.http.get(url)
+  .catch(this.handleError);
 }
 
 //////////////////////////////////////////////////

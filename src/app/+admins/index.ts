@@ -12,6 +12,7 @@ export * from './admins-communications/admins-communications.component';
 export * from './admins-member/admins-member.component';
 export * from './mr-summary-tracking/mr-summary-tracking.component';
 export * from './mr-summary-updates/mr-summary-updates.component';
+export * from './mr-status-counts/mr-status-counts.component';
 export * from './mr-follow-up-tracking/mr-follow-up-tracking.component';
 export * from './mr-follow-up-updates/mr-follow-up-updates.component';
 export * from './shared/admins-navbar/index'

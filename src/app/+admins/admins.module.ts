@@ -10,6 +10,7 @@ import { AdminsMemberComponent } from './index';
 import { AdminsStudentsComponent } from './index';
 import { AdminsStudentComponent } from './index';
 import { MentorReportSummaryUpdatesComponent } from './index';
+import { MentorReportsStatusCountsComponent } from './index';
 import { MentorReportsSummaryTrackingComponent } from './index';
 import { MentorReportsFollowUpTrackingComponent } from './index';
 import { MentorReportFollowUpUpdatesComponent } from './index';
@@ -37,6 +38,7 @@ import { AdminsRouting } from './admins.routing';
         // AdminsGradeHistoryComponent,
 
         MentorReportsSummaryTrackingComponent,
+        MentorReportsStatusCountsComponent,
         MentorReportSummaryUpdatesComponent,
         MentorReportsFollowUpTrackingComponent,
         MentorReportFollowUpUpdatesComponent,

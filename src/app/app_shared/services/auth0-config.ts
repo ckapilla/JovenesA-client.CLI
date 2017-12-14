@@ -53,7 +53,7 @@ export const LOCK_DICTIONARY: any  = {
   submitLabel: 'Submit',
 
   blankErrorHint: 'Can\'t be blank / Requerido',
-  emailInputPlaceholder: 'something@youremail.com',
+  emailInputPlaceholder: 'your email / su correo electrónico',
   title: 'LogIn/Iniciar sesión',
 
   welcome: 'Welcome / Bienvenido %s!'

@@ -6,7 +6,9 @@ import { SessionService } from '../../app_shared/services/session.service';
 
 import { Communication } from '../../app_shared/models/communication';
 
-import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
+interface SELECTITEM {
+   value: string; label: string;
+}
 
 @Component({
   moduleId: module.id,
