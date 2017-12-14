@@ -26,11 +26,8 @@
             <option *ngFor="let status of highlightStatuses" [value]="status.value">{{status.label}}</option>
           </select>
 
-
-
-
         </div>
-        <app-status-counts>
+        <app-status-counts [year]=selectedYear [month]=selectedMonth>
         </app-status-counts>
 
     </div>

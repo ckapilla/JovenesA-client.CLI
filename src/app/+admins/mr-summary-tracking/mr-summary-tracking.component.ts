@@ -190,7 +190,7 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
     this.router.navigate(link);
   }
 
-  translationNeeded(lang1: number, lang2: number) : string {
+  translationNeeded(lang1: number, lang2: number): string {
     console.log(lang1, lang2);
     return (lang1 === lang2) ? '' : 'Translation Needed';
   }

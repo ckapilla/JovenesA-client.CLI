@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnChanges, EventEmitter, Input, Output } from '@angular/core';
 import { MentorReportsStatusCount } from '../../app_shared/models/mentor-reports-status-count';
 import { SqlResource } from '../../app_shared/services/sql-resource';
 
@@ -8,30 +8,47 @@ import { SqlResource } from '../../app_shared/services/sql-resource';
   templateUrl: './mr-status-counts.component.html'
 })
 
-export class MentorReportsStatusCountsComponent implements OnInit {
-  statusCounts: Array<MentorReportsStatusCount>;
+export class MentorReportsStatusCountsComponent implements OnChanges {
+  @Input() year: string;
+  @Input() month: string;
+  statusCounts: MentorReportsStatusCount[];
   errorMessage: string;
-  year: string;
-  month: string;
-
 
   constructor( private sqlResource: SqlResource) {
   }
 
-  public ngOnInit() {
-    this.year = '2017';
-    this.month = '10';
+  public ngOnChanges() {
 
+    // this.statusCounts = [{
+    //   reportYear: 2017,
+    //   reportMonth: 10,
+    //   sponsorSummaryStatusId: 2087,
+    //   sponsorSummaryStatus: 'NeedsReview',
+    //   statusCount: 44
+    // }, {
+    //     reportYear: 2017,
+    //     reportMonth: 10,
+    //     sponsorSummaryStatusId: 2088,
+    //     sponsorSummaryStatus: 'ReadyToSend',
+    //     statusCount: 7
+    //   }
+    // ];
+    console.log('ngOnChanges has fired, calling sqlResource with ');
+    console.log(this.year);
+    console.log(this.month);
     this.sqlResource.getMentorReportsStatusCounts(this.year, this.month)
       .subscribe(
         data => {
-            this.statusCounts = data; console.log(this.statusCounts);
+            this.statusCounts = data;
+            console.log('getStatusCounts returns: ');
+            console.log(this.statusCounts);
         },
         err => console.error('Subscribe error: ' + err),
         () => {
-                console.log('assigned-students loaded ' + this.statusCounts.length + ' rows');
+                console.log('statusCounts loaded ' + this.statusCounts.length + ' rows');
               }
       );
+
   }
 
 }

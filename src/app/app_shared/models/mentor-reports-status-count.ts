@@ -5,6 +5,6 @@ export class MentorReportsStatusCount {
           public reportMonth: number,
           public sponsorSummaryStatusId: number,
           public sponsorSummaryStatus: string,
-          public statusCount: string
+          public statusCount: number
         ) {}
   }
