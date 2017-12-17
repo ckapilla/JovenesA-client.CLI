@@ -55,9 +55,9 @@ export class ReportsMentorReports2Component implements OnInit {
     console.log('in fetchData for LatestMentorReports');
     this.sqlReports.getLatestMentorReports2()//this.selectedSponsorSummaryStatus)
       .subscribe(
-        data => {this.latestMentorReports2 = data;},
+        data => {this.latestMentorReports2 = data; },
         err => console.error('Subscribe error: ' + err),
-        () => { console.log('done'); console.log(this.latestMentorReports2[0]); this.isLoading = false;}
+        () => { console.log('done'); console.log(this.latestMentorReports2[0]); this.isLoading = false; }
       );
   }
 
@@ -86,11 +86,11 @@ export class ReportsMentorReports2Component implements OnInit {
   editSponsorSummary() {
     console.log('in mentor-reports2: sponsorSummaryEdit, ready to navigate');
     //this.studentId = this.session.getAssignedStudentId();
-    let target = '/reports/sponsor-summary-edit/' + this.latestMentorReports2[0].mentorReportId;
-    this.router.navigateByUrl(target);//, //{mentorId: this.mentorId, studentId: this.studentId}]);
+    const target = '/reports/sponsor-summary-edit/' + this.latestMentorReports2[0].mentorReportId;
+    this.router.navigateByUrl(target); //, //{mentorId: this.mentorId, studentId: this.studentId}]);
 
   }
-  translationNeeded(lang1: number, lang2: number) : string {
+  translationNeeded(lang1: number, lang2: number): string {
     console.log(lang1, lang2);
     return (lang1 === lang2) ? '' : 'Translation Needed';
   }

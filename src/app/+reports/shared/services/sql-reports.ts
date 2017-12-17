@@ -7,6 +7,7 @@ import { LatestStudentLetters } from '../report-models/latest-student-letters';
 import { LatestStudentLetters2 } from '../report-models/latest-student-letters2';
 //import { AuthHttp } from 'angular2-jwt/angular2-jwt';
 import { UrlService } from '../../../app_shared/services/url.service';
+import { SponsorSummaryStatusCount } from '../report-models/sponsor-summary-status-count';
 
 @Injectable()
 export class SqlReports {
@@ -46,6 +47,15 @@ export class SqlReports {
     return this.http.get(url)
       .catch(this.handleError);
   }
+
+  public getSponsorSummaryStatusCounts(reportType: string): Observable <SponsorSummaryStatusCount[]>  {
+    reportType = 'by_year_month';
+    const url = this.WebApiPrefix + 'reports/sponsor_summary_status_counts_' + reportType;
+    console.log('sending AuthHttp get request for SponsorSummarStatusCounts with ' + url);
+    return this.http.get(url)
+      .catch(this.handleError);
+  }
+
 
   private handleError (error: any) {
     console.log('sqlResource handle error');

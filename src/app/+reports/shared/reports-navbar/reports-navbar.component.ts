@@ -7,7 +7,7 @@ import { SessionService } from '../../../app_shared/services/session.service';
  */
 @Component({
   moduleId: module.id,
-  selector: 'reports-navbar',
+  selector: 'app-reports-navbar',
   templateUrl: './reports-navbar.component.html',
   styleUrls: ['./reports-navbar.component.css'],
   //xxdirectives: [ROUTER_DIRECTIVES]

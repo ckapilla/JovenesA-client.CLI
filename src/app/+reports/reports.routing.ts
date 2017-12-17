@@ -5,6 +5,7 @@ import { ReportsMentorReportsComponent } from './index';
 import { ReportsMentorReports2Component } from './index';
 import { ReportsStudentLettersComponent } from './index';
 import { ReportsStudentLetters2Component } from './index';
+import { ReportsSponsorSummariesComponent } from './index';
 import { CanActivateViaAdminAuthGuard } from '../app.routing-guards';
 
 const routes: Routes = [
@@ -33,6 +34,10 @@ const routes: Routes = [
         {
           path: 'student-letters2',
           component: ReportsStudentLetters2Component
+        },
+        {
+          path: 'sponsor-summaries',
+          component: ReportsSponsorSummariesComponent
         },
     ]
   }

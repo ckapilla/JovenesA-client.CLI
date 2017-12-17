@@ -30,9 +30,9 @@ export class ReportsStudentLetters2Component implements OnInit {
     console.log('in fetchData for LatestStudentLetters');
     this.sqlReports.getLatestStudentLetters2()
       .subscribe(
-        data => {this.latestStudentLetters2 = data;},
+        data => {this.latestStudentLetters2 = data; },
         err => console.error('Subscribe error: ' + err),
-        () => { console.log('done'); console.log(this.latestStudentLetters2[0]); this.isLoading = false;}
+        () => { console.log('done'); console.log(this.latestStudentLetters2[0]); this.isLoading = false; }
       );
   }
   // gotoStudent(id: number, studentName: string) {
