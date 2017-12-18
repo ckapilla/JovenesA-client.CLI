@@ -6,6 +6,7 @@ import { ReportsMentorReports2Component } from './index';
 import { ReportsStudentLettersComponent } from './index';
 import { ReportsStudentLetters2Component } from './index';
 import { ReportsSponsorSummariesComponent } from './index';
+import { ReportsSponsorSummaries2Component } from './index';
 import { CanActivateViaAdminAuthGuard } from '../app.routing-guards';
 
 const routes: Routes = [
@@ -38,6 +39,10 @@ const routes: Routes = [
         {
           path: 'sponsor-summaries',
           component: ReportsSponsorSummariesComponent
+        },
+        {
+          path: 'sponsor-summaries2',
+          component: ReportsSponsorSummaries2Component
         },
     ]
   }

@@ -21,11 +21,14 @@ import { AdminsModule } from './+admins/admins.module';
 import { MentorsModule } from './+mentors/mentors.module';
 import { StudentsModule } from './+students/students.module';
 import { ReportsModule } from './+reports/reports.module';
+import { SortableTableModule } from './_sortable-table/sortable-table.module';
+
 
 import { AppSharedModule } from './app_shared/app_shared.module';
 import { SessionService } from './app_shared/services/session.service';
 import { SqlResource } from './app_shared/services/sql-resource';
 import { UrlService } from './app_shared/services/url.service';
+import { SortService } from './app_shared/services/sort.service';
 
 @NgModule({
   imports: [
@@ -40,7 +43,8 @@ import { UrlService } from './app_shared/services/url.service';
     MentorsModule,
     StudentsModule,
     ReportsModule,
-    AppSharedModule.forRoot()
+    AppSharedModule.forRoot(),
+
   ],
 
   declarations: [
@@ -49,7 +53,7 @@ import { UrlService } from './app_shared/services/url.service';
 
   exports: [
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     {
@@ -61,11 +65,11 @@ import { UrlService } from './app_shared/services/url.service';
     SessionService,
     SqlResource,
     UrlService,
+    SortService,
     CanActivateViaAdminAuthGuard,
     CanActivateViaMentorAuthGuard,
     CanActivateViaStudentAuthGuard,
     ConfirmDeactivateGuard
-
   ],
   bootstrap: [AppComponent]
 })

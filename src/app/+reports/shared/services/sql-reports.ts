@@ -8,6 +8,8 @@ import { LatestStudentLetters2 } from '../report-models/latest-student-letters2'
 //import { AuthHttp } from 'angular2-jwt/angular2-jwt';
 import { UrlService } from '../../../app_shared/services/url.service';
 import { SponsorSummaryStatusCount } from '../report-models/sponsor-summary-status-count';
+import { SponsorSummaryCountByPerson } from '../report-models/sponsor-summary-count-by-person';
+
 
 @Injectable()
 export class SqlReports {
@@ -52,6 +54,13 @@ export class SqlReports {
     reportType = 'by_year_month';
     const url = this.WebApiPrefix + 'reports/sponsor_summary_status_counts_' + reportType;
     console.log('sending AuthHttp get request for SponsorSummarStatusCounts with ' + url);
+    return this.http.get(url)
+      .catch(this.handleError);
+  }
+
+  public getSponsorSummaryCountsByPerson(): Observable <SponsorSummaryCountByPerson[]>  {
+    const url = this.WebApiPrefix + 'reports/sponsor_summary_counts_by_person';
+    console.log('sending AuthHttp get request for SponsorSummarCountsByPerson with ' + url);
     return this.http.get(url)
       .catch(this.handleError);
   }

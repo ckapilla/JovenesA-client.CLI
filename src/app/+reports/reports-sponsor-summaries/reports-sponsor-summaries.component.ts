@@ -9,7 +9,7 @@ import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 
 @Component({
   moduleId: module.id,
-  templateUrl: './reports-sposor-summaries.component.html'
+  templateUrl: './reports-sponsor-summaries.component.html'
 })
 
 export class ReportsSponsorSummariesComponent implements OnInit {

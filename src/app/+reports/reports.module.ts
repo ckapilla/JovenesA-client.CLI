@@ -12,6 +12,7 @@ import { ReportsMentorReports2Component } from './index';
 import { ReportsStudentLettersComponent } from './index';
 import { ReportsStudentLetters2Component } from './index';
 import { ReportsSponsorSummariesComponent } from './index';
+import { ReportsSponsorSummaries2Component } from './index';
 
 @NgModule({
     imports: [
@@ -26,7 +27,8 @@ import { ReportsSponsorSummariesComponent } from './index';
       ReportsMentorReports2Component,
       ReportsStudentLettersComponent,
       ReportsStudentLetters2Component,
-      ReportsSponsorSummariesComponent
+      ReportsSponsorSummariesComponent,
+      ReportsSponsorSummaries2Component
     ],
     providers: [
       SqlReports,
