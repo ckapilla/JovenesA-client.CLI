@@ -6,18 +6,6 @@
     <span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
     <span *ngIf="successMessage" class="alert alert-success">{{successMessage}}</span>
 
-    <div>
-
-
-        <label for="ReportTypeSelector">Status:</label>
-        <select name="ReportTypeSelector" [(ngModel)]="selectedReportType" (change)="setSelectedReportType($event.target.value)">
-          <option *ngFor="let type of reportTypes" [value]="type.value">{{type.label}}</option>
-          </select>
-
-        <!--<button class="btn default-btn" (click)="fetchFilteredData()">Submit</button>-->
-
-
-    </div>
     <div [ngSwitch]="isLoading">
       <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
         <app-loading-container>
@@ -38,22 +26,22 @@
           </thead>
           <tbody>
             <tr *ngFor="let row of sponsorSummaryStatusCounts">
-              <td>
+              <td class="report-row">
                 {{ row.rowName }}
               </td>
-              <td class='centered'>
+              <td class='centered report-row'>
                 {{ row.NEEDS_SETUP }}
               </td>
-              <td class='centered'>
+              <td class='centered report-row'>
                 {{ row.NEEDS_REVIEW }}
               </td>
-              <td class='centered'>
+              <td class='centered report-row'>
                 {{ row.READY_TO_SEND }}
               </td>
-              <td class='centered'>
+              <td class='centered report-row'>
                 {{ row.SENT }}
               </td>
-              <td class='centered'>
+              <td class='centered report-row'>
                 {{ row.SKIPPED }}
               </td>
             </tr>

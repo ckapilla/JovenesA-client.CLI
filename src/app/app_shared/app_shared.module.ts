@@ -5,8 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderbarComponent } from './headerbar/index';
 import { DisplayErrorsComponent } from '../app_shared/components/display-errors.component';
 import { LoadingContainerComponent } from '../app_shared/components/loading-container.component';
-// import { SqlResource } from '../app_shared/services/sql-resource';
-
+import { SortableColumnComponent } from '../app_shared/components/sortable-column.component';
+import { SortableTableDirective } from '../app_shared/directives/sortable-table.directive';
 import { AlphaMonthPipe } from './pipes/alpha-month-pipe';
 import { AlphaLanguagePipe } from './pipes/alpha-language-pipe';
 import { TruncateDatePipe } from './pipes/truncate-date-pipe';
@@ -23,6 +23,8 @@ import { TruncateDatePipe } from './pipes/truncate-date-pipe';
     HeaderbarComponent,
     DisplayErrorsComponent,
     LoadingContainerComponent,
+    SortableColumnComponent,
+    SortableTableDirective,
     AlphaMonthPipe,
     AlphaLanguagePipe,
     TruncateDatePipe
@@ -34,6 +36,8 @@ import { TruncateDatePipe } from './pipes/truncate-date-pipe';
     HeaderbarComponent,
     DisplayErrorsComponent,
     LoadingContainerComponent,
+    SortableColumnComponent,
+    SortableTableDirective,
     AlphaMonthPipe,
     AlphaLanguagePipe,
     TruncateDatePipe

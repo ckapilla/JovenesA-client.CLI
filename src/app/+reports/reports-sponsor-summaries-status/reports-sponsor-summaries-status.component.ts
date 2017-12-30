@@ -9,13 +9,11 @@ import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 
 @Component({
   moduleId: module.id,
-  templateUrl: './reports-sponsor-summaries.component.html'
+  templateUrl: './reports-sponsor-summaries-status.component.html'
 })
 
-export class ReportsSponsorSummariesComponent implements OnInit {
-  reportTypes: SELECTITEM[];
+export class ReportsSponsorSummariesStatusComponent implements OnInit {
   sponsorSummaryStatusCounts: SponsorSummaryStatusCount[];
-  selectedReportType: string;
   isLoading: boolean;
   errorMessage: string;
   successMessage: string;
@@ -25,14 +23,6 @@ export class ReportsSponsorSummariesComponent implements OnInit {
               ) {
 
     console.log('Hi from student List Ctrl controller function');
-
-    this.reportTypes = [
-      { value: 'ByMonthYear', label: 'ByMonthYear' },
-      { value: 'ByStudent', label: 'ByStudent' },
-      { value: 'ByPledgeGroup', label: 'ByPledgeGroup' }
-    ];
-
-    this.selectedReportType = this.reportTypes[0].value; // ByMonthYear
 
     this.isLoading = false;
   }
@@ -44,18 +34,11 @@ export class ReportsSponsorSummariesComponent implements OnInit {
     this.fetchFilteredData();
   }
 
-  // can't rely on two way binding to have updated the selected values
-  // in time so we do it manually below
-  setSelectedReportType(reportType: string) {
-    // console.log('selected status: ' + status);
-    this.selectedReportType = reportType;
-    this.fetchFilteredData();
-  }
 
   fetchFilteredData() {
 
     this.isLoading = true;
-    this.sqlReports.getSponsorSummaryStatusCounts(this.selectedReportType)
+    this.sqlReports.getSponsorSummaryStatusCounts()
       .subscribe(
         data => { this.sponsorSummaryStatusCounts = data;
                 console.log(this.sponsorSummaryStatusCounts[0]); },

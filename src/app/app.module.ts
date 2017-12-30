@@ -21,8 +21,6 @@ import { AdminsModule } from './+admins/admins.module';
 import { MentorsModule } from './+mentors/mentors.module';
 import { StudentsModule } from './+students/students.module';
 import { ReportsModule } from './+reports/reports.module';
-import { SortableTableModule } from './_sortable-table/sortable-table.module';
-
 
 import { AppSharedModule } from './app_shared/app_shared.module';
 import { SessionService } from './app_shared/services/session.service';

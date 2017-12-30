@@ -1,6 +1,6 @@
 <div class="panel panel-primary">
   <div class="panel-heading" style="font-size:large">
-    Students by Status
+    Sponsor Summaries Total Sent
   </div>
   <div class="panel-body">
     <span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
@@ -11,37 +11,29 @@
         </app-loading-container>
       </div>
       <div *ngSwitchCase="false">
-        <table class="table">
+        <table app-sortable-table class="table" (sorted)="onSorted($event)">
 
           <thead>
             <tr>
-              <td></td>
-              <td>Needs Setup</td>
-              <td>Needs Review</td>
-              <td>Ready To Send</td>
-              <td>Sent</td>
-              <td>Skipped</td>
+              <th app-sortable-column="pledgeGroupName">Pledge Group</th>
+              <th app-sortable-column="studentName">Student</th>
+              <th app-sortable-column="mentorName">Mentor</th>
+              <th app-sortable-column="Sent">Total Sent</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let row of sponsorSummaryStatusCounts">
-              <td>
-                {{ row.rowName }}
+            <tr *ngFor="let row of sponsorSummarySentCounts">
+              <td class="report-row">
+                {{ row.pledgeGroupName }}
               </td>
-              <td class='centered'>
-                {{ row.NEEDS_SETUP }}
+              <td class="report-row">
+                {{ row.studentName }}
               </td>
-              <td class='centered'>
-                {{ row.NEEDS_REVIEW }}
+              <td class="report-row">
+                {{ row.mentorName }}
               </td>
-              <td class='centered'>
-                {{ row.READY_TO_SEND }}
-              </td>
-              <td class='centered'>
-                {{ row.SENT }}
-              </td>
-              <td class='centered'>
-                {{ row.SKIPPED }}
+              <td class="report-row" >
+                {{ row.sent }}
               </td>
             </tr>
           </tbody>
@@ -49,6 +41,7 @@
       </div>
     </div>
   </div>
+</div>
 
 
-  l
+l

@@ -3,18 +3,19 @@ import { Component, OnInit } from '@angular/core';
 
 import { SqlReports } from '../shared/services/sql-reports';
 
-import { SponsorSummaryCountByPerson } from '../shared/report-models/sponsor-summary-count-by-person';
+import { SponsorSummarySentCount } from '../shared/report-models/sponsor-summary-sent-count';
 
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 
 @Component({
   moduleId: module.id,
-  templateUrl: './reports-sponsor-summaries2.component.html'
+  templateUrl: './reports-sponsor-summaries-sent.component.html',
+  styleUrls: ['./reports-sponsor-summaries-sent.component.css']
 })
 
-export class ReportsSponsorSummaries2Component implements OnInit {
+export class ReportsSponsorSummariesSentComponent implements OnInit {
   reportTypes: SELECTITEM[];
-  sponsorSummaryCountsByPerson: SponsorSummaryCountByPerson[];
+  sponsorSummarySentCounts: SponsorSummarySentCount[];
   isLoading: boolean;
   errorMessage: string;
   successMessage: string;
@@ -24,6 +25,10 @@ export class ReportsSponsorSummaries2Component implements OnInit {
               ) {
     this.isLoading = false;
   }
+
+/*
+https://plnkr.co/edit/DITVzCSqHHB1uNrTxFit?p=info
+*/
 
 
   // ngOnInit(){
@@ -36,12 +41,12 @@ export class ReportsSponsorSummaries2Component implements OnInit {
   }
 
   fetchData() {
-
+    console.log('fetchData for SponsorSummarySentCounts')
     this.isLoading = true;
-    this.sqlReports.getSponsorSummaryCountsByPerson()
+    this.sqlReports.getSponsorSummarySentCounts()
       .subscribe(
-        data => { this.sponsorSummaryCountsByPerson = data;
-                console.log(this.sponsorSummaryCountsByPerson[0]); },
+        data => { this.sponsorSummarySentCounts = data;
+                console.log(this.sponsorSummarySentCounts[0]); },
         err => { this.errorMessage =  err } ,
         () => { console.log('done'); this.isLoading = false; }
       );

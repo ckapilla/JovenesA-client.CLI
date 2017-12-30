@@ -5,8 +5,8 @@ import { ReportsMentorReportsComponent } from './index';
 import { ReportsMentorReports2Component } from './index';
 import { ReportsStudentLettersComponent } from './index';
 import { ReportsStudentLetters2Component } from './index';
-import { ReportsSponsorSummariesComponent } from './index';
-import { ReportsSponsorSummaries2Component } from './index';
+import { ReportsSponsorSummariesStatusComponent } from './index';
+import { ReportsSponsorSummariesSentComponent } from './index';
 import { CanActivateViaAdminAuthGuard } from '../app.routing-guards';
 
 const routes: Routes = [
@@ -37,12 +37,12 @@ const routes: Routes = [
           component: ReportsStudentLetters2Component
         },
         {
-          path: 'sponsor-summaries',
-          component: ReportsSponsorSummariesComponent
+          path: 'sponsor-summaries-status',
+          component: ReportsSponsorSummariesStatusComponent
         },
         {
-          path: 'sponsor-summaries2',
-          component: ReportsSponsorSummaries2Component
+          path: 'sponsor-summaries-sent',
+          component: ReportsSponsorSummariesSentComponent
         },
     ]
   }
