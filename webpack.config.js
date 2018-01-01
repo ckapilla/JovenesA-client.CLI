@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ProgressPlugin = require('webpack/lib/ProgressPlugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
@@ -196,6 +197,7 @@ module.exports = (env) => {
   },
   "plugins": [
     new NoEmitOnErrorsPlugin(),
+    new CleanWebpackPlugin(['dist']),
     new CopyWebpackPlugin([
       {
         "context": "src",

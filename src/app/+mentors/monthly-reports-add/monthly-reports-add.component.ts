@@ -113,7 +113,12 @@ export class MonthlyReportsAddComponent
         this.mentorReport.studentId = this.currRoute.snapshot.params['studentId'];
         console.log('mentorId ' + this.mentorReport.mentorId);
         console.log('studentId ' + this.mentorReport.studentId);
+<<<<<<< HEAD
         this.mentorReport.lastContactYear = (Number)(this.contactYears[this.contactYears.length - 1].value);
+=======
+        // this.mentorReport.lastContactYear = (Number)(this.contactYears[this.contactYears.length - 1].value);
+        this.mentorReport.lastContactYear = (Number)(this.contactYears[0].value);
+>>>>>>> master
         this.mentorReport.lastContactMonth = 0;
         this.mentorReport.sponsorSummaryStatusId = 2086;
         console.log('zzz');
