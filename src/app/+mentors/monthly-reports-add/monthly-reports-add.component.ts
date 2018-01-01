@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router,ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
 
 import { SqlResource } from '../../app_shared/services/sql-resource';
@@ -42,8 +42,10 @@ export class MonthlyReportsAddComponent
         console.log('Hi from MonthlyReportsAddComponent');
      this.contactYears = [
       {value: '0', label: 'Select Year'},
-      {value: '2016', label: '2016'}, {value: '2017', label: '2017'}//,
-      //    {value: '2018', label: '2018'}, {value: '2019', label: '2015'},
+      // {value: '2016', label: '2016'} //,
+      {value: '2017', label: '2017'},
+      {value: '2018', label: '2018'}
+      //{value: '2019', label: '2015'},
       //    {value: '2020', label: '2020'}
     ];
 
@@ -112,7 +114,8 @@ export class MonthlyReportsAddComponent
         this.mentorReport.studentId = this.currRoute.snapshot.params['studentId'];
         console.log('mentorId ' + this.mentorReport.mentorId);
         console.log('studentId ' + this.mentorReport.studentId);
-        this.mentorReport.lastContactYear = (Number)(this.contactYears[this.contactYears.length-1].value);
+        // this.mentorReport.lastContactYear = (Number)(this.contactYears[this.contactYears.length - 1].value);
+        this.mentorReport.lastContactYear = (Number)(this.contactYears[0].value);
         this.mentorReport.lastContactMonth = 0;
         this.mentorReport.sponsorSummaryStatusId = 2086;
         console.log('zzz');
@@ -168,7 +171,7 @@ export class MonthlyReportsAddComponent
                   console.log(this.successMessage = <any>student);
                   this.submitted = true;
                   this.isLoading = false;
-                  const target = '/mentors/monthly-reports/' + this.mentorReport.mentorId;// + '/' + this.mentorReport.studentId;
+                  const target = '/mentors/monthly-reports/' + this.mentorReport.mentorId; // + '/' + this.mentorReport.studentId;
                   console.log('after call to addMentorReport; navigating to ' + target);
                   this.router.navigateByUrl(target);
               },
@@ -181,7 +184,7 @@ export class MonthlyReportsAddComponent
     }
 
     onCancel() {
-        const target = '/mentors/monthly-reports/' + this.mentorReport.mentorId;// + '/' + this.studentId;
+        const target = '/mentors/monthly-reports/' + this.mentorReport.mentorId; // + '/' + this.studentId;
         console.log('navigating to ' + target);
         this.router.navigateByUrl(target);
     }

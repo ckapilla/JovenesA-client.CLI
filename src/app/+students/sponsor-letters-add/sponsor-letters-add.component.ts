@@ -39,8 +39,8 @@ export class SponsorLettersAddComponent
         console.log('Hi from SponsorLettersAddComponent');
      this.periodYears = [
       // {value: '2016', label: '2016'},
-      {value: '2017', label: '2017'} // ,
-      //    {value: '2018', label: '2018'}, {value: '2019', label: '2015'},
+      // {value: '2017', label: '2017'} // ,
+      {value: '2018', label: '2018'} //, {value: '2019', label: '2015'},
       //    {value: '2020', label: '2020'}
     ];
 
@@ -97,7 +97,7 @@ export class SponsorLettersAddComponent
         this.sponsorLetter.studentId = this.currRoute.snapshot.params['studentId'];
         console.log('sponsorGroupId ' + this.sponsorLetter.sponsorGroupId);
         console.log('studentId ' + this.sponsorLetter.studentId);
-        this.sponsorLetter.letterYear = 2017;
+        this.sponsorLetter.letterYear = 2018;
         this.sponsorLetter.letterMonth = 1;
 
       this.addNewForm.valueChanges.subscribe(
