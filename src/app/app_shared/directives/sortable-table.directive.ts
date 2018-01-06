@@ -1,7 +1,10 @@
-import { Directive, OnInit, EventEmitter, Output, OnDestroy, Input } from '@angular/core';
+import { Directive, OnInit, EventEmitter, Output, OnDestroy, Input, HostListener } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
+import { ColumnSortService } from '../services/column-sort.service';
 
-import { SortService } from '../services/sort.service';
+/*
+http://www.carbonatethis.com/sort-table-columns-with-angular-and-typescript/
+*/
 
 @Directive({
   selector: '[appSortableTable]'
@@ -13,7 +16,7 @@ export class SortableTableDirective implements OnInit, OnDestroy {
 
   private columnSortedSubscription: Subscription;
 
-  constructor(private sortService: SortService) {}
+  constructor(private sortService: ColumnSortService) {}
 
     ngOnInit() {
         console.log('sortable-table onInit');

@@ -1,6 +1,6 @@
 <div class="panel panel-primary">
   <div class="panel-heading" style="font-size:large">
-    Sponsor Summaries Total Sent
+    Sponsor&nbsp;Summaries&nbsp;Sent
   </div>
   <div class="panel-body">
     <span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
@@ -11,14 +11,15 @@
         </app-loading-container>
       </div>
       <div *ngSwitchCase="false">
-        <table app-sortable-table class="table" (sorted)="onSorted($event)">
+
+        <table appSortableTable class="table">
 
           <thead>
             <tr>
-              <th app-sortable-column="pledgeGroupName">Pledge Group</th>
-              <th app-sortable-column="studentName">Student</th>
-              <th app-sortable-column="mentorName">Mentor</th>
-              <th app-sortable-column="Sent">Total Sent</th>
+              <th app-sortable-column="pledgeGroupName" sort-direction="asc" (onSortColumn)="onSortColumn($event)">Pledge Group</th>
+              <th app-sortable-column="studentName" (onSortColumn)="onSortColumn($event)">Student</th>
+              <th app-sortable-column="mentorName" (onSortColumn)="onSortColumn($event)">Mentor</th>
+              <th app-sortable-column="sent" (onSortColumn)="onSortColumn($event)">Total Sent</th>
             </tr>
           </thead>
           <tbody>

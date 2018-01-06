@@ -26,7 +26,7 @@ import { AppSharedModule } from './app_shared/app_shared.module';
 import { SessionService } from './app_shared/services/session.service';
 import { SqlResource } from './app_shared/services/sql-resource';
 import { UrlService } from './app_shared/services/url.service';
-import { SortService } from './app_shared/services/sort.service';
+import { ColumnSortService } from './app_shared/services/column-sort.service';
 
 @NgModule({
   imports: [
@@ -63,7 +63,7 @@ import { SortService } from './app_shared/services/sort.service';
     SessionService,
     SqlResource,
     UrlService,
-    SortService,
+    ColumnSortService,
     CanActivateViaAdminAuthGuard,
     CanActivateViaMentorAuthGuard,
     CanActivateViaStudentAuthGuard,

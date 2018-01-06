@@ -119,7 +119,7 @@ export class AdminsStudentsComponent implements OnInit {
     this.sqlResource.getStudentDTOsByStatusAndYear(this.selectedStatus, this.selectedYearJoined, this.selectedGradYear)
       .subscribe(
         data => { this.studentDTOs = data;  },
-        err => { this.errorMessage =  err } ,
+        err => { this.errorMessage =  err; } ,
         () => { console.log('done'); this.isLoading = false; }
       );
   }
