@@ -60,7 +60,7 @@ https://plnkr.co/edit/DITVzCSqHHB1uNrTxFit?p=info
 public onSortColumn(sortCriteria: SORTCRITERIA) {
     console.log('parent received sortColumnCLick event with ' + sortCriteria.sortColumn);
     return this.sponsorSummarySentCounts.sort((a, b) => {
-      if (sortCriteria.sortDirection === 'desc') {
+      if (sortCriteria.sortDirection === 'asc') {
         if (isNumber(a[sortCriteria.sortColumn])) {
           if (a[sortCriteria.sortColumn] === b[sortCriteria.sortColumn]) {
             return 0;
@@ -68,7 +68,7 @@ public onSortColumn(sortCriteria: SORTCRITERIA) {
             return (a[sortCriteria.sortColumn] > b[sortCriteria.sortColumn]) ? 1 : -1;
           }
         }
-        console.log('desc ' + a[sortCriteria.sortColumn] + ' ' + b[sortCriteria.sortColumn]);
+        // console.log('desc ' + a[sortCriteria.sortColumn] + ' ' + b[sortCriteria.sortColumn]);
         return a[sortCriteria.sortColumn].localeCompare(b[sortCriteria.sortColumn]);
         // if ( a[sortCriteria.sortColumn] < b[sortCriteria.sortColumn] ) { return -1; }
         // if ( a[sortCriteria.sortColumn] > b[sortCriteria.sortColumn] ) { return 1; }
@@ -81,7 +81,7 @@ public onSortColumn(sortCriteria: SORTCRITERIA) {
             return (a[sortCriteria.sortColumn] < b[sortCriteria.sortColumn]) ? 1 : -1;
           }
         }
-        console.log('asc ' + a[sortCriteria.sortColumn] + ' ' + b[sortCriteria.sortColumn]);
+        // console.log('asc ' + a[sortCriteria.sortColumn] + ' ' + b[sortCriteria.sortColumn]);
 
         return b[sortCriteria.sortColumn].localeCompare(a[sortCriteria.sortColumn]);
         // if ( a[sortCriteria.sortColumn] > b[sortCriteria.sortColumn] ) { return -1; }

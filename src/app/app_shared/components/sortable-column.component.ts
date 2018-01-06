@@ -15,8 +15,8 @@ import { ColumnSortService } from '../services/column-sort.service';
       }
     `],
     template:
-    `<span class="up-arrow" *ngIf="sortDirection === 'desc'"></span>
-    <span class="down-arrow" *ngIf="sortDirection === 'asc'"></span>
+    `<span class="up-arrow" *ngIf="sortDirection === 'asc'"></span>
+    <span class="down-arrow" *ngIf="sortDirection === 'desc'"></span>
     <ng-content></ng-content>`
 })
 export class SortableColumnComponent implements OnInit, OnDestroy {
