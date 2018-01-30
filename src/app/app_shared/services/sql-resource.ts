@@ -330,8 +330,8 @@ public getMentorReportsStatusCounts(year: string, month: string): Observable <Me
     const x = JSON.parse(body);
     body = JSON.stringify(x.sponsorLetter);
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    console.log('ready to put ' + url + ' body: ' + body + ' options ' + headers);
-    return this.http.put(url, body, { headers: headers })
+    console.log('ready to post ' + url + ' body: ' + body + ' options ' + headers);
+    return this.http.post(url, body, { headers: headers })
       //.map(this.extractData)
       .catch(this.handleError);
   }

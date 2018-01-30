@@ -104,7 +104,7 @@ export class MonthlyReportsAddComponent
         this.successMessage = '';
         this.submitted = false;
         this.needsFollowUp = false;
-    };
+    }
 
     ngOnInit() {
         console.log('monthlyReportsAdd ngOnInit');

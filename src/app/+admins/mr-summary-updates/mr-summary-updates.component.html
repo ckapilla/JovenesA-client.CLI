@@ -1,6 +1,6 @@
 <div class="panel panel-primary">
   <div class="panel-heading" style="font-size:large">
-    Review Sponsor Summary for {{mentorReport.studentName}}
+    Summary Review
   </div>
   <div class="panel-body">
     <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
@@ -21,9 +21,10 @@
           </div>
 
           <div class="controls">
-            <label for="summaryStatusSelector">Sponsor Summary Status:</label>
-            <select formControlName="summaryStatusSelector" class="form-control input-sm" [(ngModel)]="mentorReport.sponsorSummaryStatusId">
-              <option *ngFor="let status of sponsorSummaryStatuses" [value]="status.value">{{status.label}}</option>
+            <label for="summaryStatusSelector">Summary Status:</label>
+            <select formControlName="summaryStatusSelector" class="form-control input-sm"
+              [(ngModel)]="mentorReport.sponsorSummaryStatusId">
+              <option *ngFor="let status of summaryStatuses" [value]="status.value">{{status.label}}</option>
             </select>
             <app-display-errors control="summaryStatusSelector" class="red" [errors]="{
                   'required': 'Summary Status is required'
@@ -32,14 +33,16 @@
 
           <div class="controls">
             <label for="highlightStatusSelector">Highlight Status:</label>
-            <select formControlName="highlightStatusSelector" class="form-control input-sm" [(ngModel)]="mentorReport.highlightStatusId">
+            <select formControlName="highlightStatusSelector" class="form-control input-sm"
+              [(ngModel)]="mentorReport.highlightStatusId">
               <option *ngFor="let status of highlightStatuses" [value]="status.value">{{status.label}}</option>
             </select>
           </div>
 
           <div class="controls">
-            <label for="inputSummary">Sponsor Summary</label>
-            <textarea id="inputSummary" #summary formControlName="inputSummary" [(ngModel)]="mentorReport.sponsorSummary" type="text"
+            <label for="inputSummary">Summary</label>
+            <textarea id="inputSummary" #summary formControlName="inputSummary"
+              [(ngModel)]="mentorReport.sponsorSummary" type="text"
               class="form-control input-sm" placeholder="Summary from Above">
           </textarea>
             <app-display-errors control="inputSummary" class="red" [errors]="{'required': 'An entry is required, even if it is just N/A',

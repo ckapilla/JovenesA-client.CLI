@@ -8,10 +8,10 @@ import { SqlReports } from './shared/services/sql-reports';
 
 import { ReportsHomeComponent } from './reports-home/reports-home.component';
 import { ReportsMentorReportsComponent } from './index';
-import { ReportsMentorReports2Component } from './index';
+// import { ReportsMentorReports2Component } from './index';
 import { ReportsStudentLettersComponent } from './index';
 import { ReportsStudentLetters2Component } from './index';
-import { ReportsSponsorSummariesStatusComponent } from './index';
+// import { ReportsSponsorSummariesStatusComponent } from './index';
 import { ReportsSponsorSummariesSentComponent } from './index';
 
 @NgModule({
@@ -24,10 +24,10 @@ import { ReportsSponsorSummariesSentComponent } from './index';
       ReportsNavbarComponent,
       ReportsHomeComponent,
       ReportsMentorReportsComponent,
-      ReportsMentorReports2Component,
+      // ReportsMentorReports2Component,
       ReportsStudentLettersComponent,
       ReportsStudentLetters2Component,
-      ReportsSponsorSummariesStatusComponent,
+      // ReportsSponsorSummariesStatusComponent,
       ReportsSponsorSummariesSentComponent
     ],
     providers: [

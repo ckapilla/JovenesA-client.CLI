@@ -1,5 +1,5 @@
 <div class="panel panel-primary">
-  <div class="panel-heading" style="font-size:large"> Mentor Reports Sponsor Summary Tracking
+  <div class="panel-heading" style="font-size:large"> Mentor Report Summary Tracking
   </div>
 <div class="panel-body">
   <span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
@@ -16,9 +16,9 @@
             <option *ngFor="let month of months" [value]="month.value">{{month.label}}</option>
           </select>
 
-          <label for="SponsorSummaryStatusSelector">SponsorSummary Status:</label>
-          <select name="SponsorSummaryStatusSelector" [(ngModel)]="selectedSponsorSummaryStatus" (change)="setSelectedSponsorSummaryStatus($event.target.value)">
-            <option *ngFor="let status of sponsorSummaryStatuses" [value]="status.value">{{status.label}}</option>
+          <label for="MRSummaryStatusSelector">Summary Status:</label>
+          <select name="MRSummaryStatusSelector" [(ngModel)]="selectedMRSummaryStatus" (change)="setSelectedMRSummaryStatus($event.target.value)">
+            <option *ngFor="let status of mrSummaryStatuses" [value]="status.value">{{status.label}}</option>
           </select>
 
           <label for="highlightStatusSelector">&nbsp;Highlight Status:</label>
@@ -38,7 +38,8 @@
       </app-loading-container>
     </div>
     <div *ngSwitchCase="false">
-      <div class="row" style="border-bottom: 3px solid #ccc; margin-top: 2px;" *ngFor="let lmr of mentorReportByMonth, let i = index">
+      <div class="row" style="border-bottom: 3px solid #ccc; margin-top: 2px;"
+                  *ngFor="let lmr of mentorReportByMonth, let i = index">
 <div class="col-md-12">
 
   <div class="row" id= '{{"id" + lmr.mentorReportId}}'>
@@ -63,7 +64,7 @@
 
   <div class="row">
     <span class="padded">
-              &nbsp;Sponsor Summary Status: {{ lmr.sponsorSummaryStatus }}
+              &nbsp;Mentor Report Summary Status: {{ lmr.sponsorSummaryStatus }}
     </span>
     <span class="padded">
               &nbsp;Highlight Status: {{ lmr.highlightStatus }}
@@ -110,7 +111,7 @@
   </div>
   <div class="row">
     <div class="padded">
-           Sponsor Summary   <!--[{{ lmr.mentorPreferredLanguageId | alphaLanguage }} --&gt; {{ lmr.sponsorPreferredLanguageId | alphaLanguage }} {{ translationNeeded(lmr.mentorPreferredLanguageId,lmr.sponsorPreferredLanguageId) }}]-->
+           Summary   <!--[{{ lmr.mentorPreferredLanguageId | alphaLanguage }} --&gt; {{ lmr.mrPreferredLanguageId | alphaLanguage }} {{ translationNeeded(lmr.mentorPreferredLanguageId,lmr.mrPreferredLanguageId) }}]-->
     </div>
     <div class="col-md-10">
       {{ lmr.sponsorSummary }}

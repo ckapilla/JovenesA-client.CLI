@@ -35,14 +35,14 @@ export class MentorReportSummaryUpdatesComponent
     // contactYears: SELECTITEM[];
     // contactMonths: SELECTITEM[];
 
-    sponsorSummaryStatuses: SELECTITEM[];
+    summaryStatuses: SELECTITEM[];
     highlightStatuses: SELECTITEM[];
     followUpStatuses: SELECTITEM[];
     selectedYear: string;
     selectedMonth: string;
-    selectedSponsorSummaryStatus: string;
+    selectedSummaryStatus: string;
     selectedFollowUpStatus: string;
-    savedSponsorSummaryStatusId: number;
+    savedSummaryStatusId: number;
     savedHighlightStatusId: number;
 
     constructor(
@@ -54,7 +54,7 @@ export class MentorReportSummaryUpdatesComponent
 
 
 
-    this.sponsorSummaryStatuses = [
+    this.summaryStatuses = [
       { value: '0', label: '[None]' },
       { value: '2086', label: 'NeedsSetup' },
       { value: '2087', label: 'NeedsReview' },
@@ -72,7 +72,7 @@ export class MentorReportSummaryUpdatesComponent
 
         this.frmUpdate = _fb.group({
 
-            inputSummary: [''],//,Validators.compose([Validators.required, Validators.maxLength(2000)])],
+            inputSummary: [''], //,Validators.compose([Validators.required, Validators.maxLength(2000)])],
 
             summaryStatusSelector: [''],
 
@@ -84,12 +84,12 @@ export class MentorReportSummaryUpdatesComponent
         this.highlightStatus = this.frmUpdate.controls['highlightStatusSelector'];
 
 
-        this.mentorReport = new RptMentorReport();// MentorReportResource();
+        this.mentorReport = new RptMentorReport(); // MentorReportResource();
 
         this.errorMessage = '';
         this.successMessage = '';
         this.submitted = false;
-    };
+    }
 
     ngOnInit() {
 
@@ -99,12 +99,12 @@ export class MentorReportSummaryUpdatesComponent
     this.isLoading = true;
     this.sqlResource.getMentorReport(mentorReportId)
       .subscribe(
-        data => {this.mentorReport = data;},
+        data => {this.mentorReport = data; },
         err => console.error('Subscribe error: ' + err),
         () => { console.log('done with data MentorReport>>');
                 console.log(this.mentorReport);
                 this.savedHighlightStatusId = this.mentorReport.highlightStatusId;
-                this.savedSponsorSummaryStatusId = this.mentorReport.sponsorSummaryStatusId;
+                this.savedSummaryStatusId = this.mentorReport.sponsorSummaryStatusId;
                 console.log('<<');
               this.isLoading = false;
             }
@@ -143,7 +143,7 @@ export class MentorReportSummaryUpdatesComponent
             ++i;
           }
 
-          window.scrollTo(0,0);
+          window.scrollTo(0, 0);
           return false;
         }
 
@@ -175,18 +175,28 @@ export class MentorReportSummaryUpdatesComponent
       console.log('after Submit or Cancel navigating to ' + target);
       const reportDate = new Date(this.mentorReport.reportDateTime);
 
+      let reportYear = reportDate.getFullYear();
+      console.log('orig reportYear ' + reportYear);
       let reportMonth = reportDate.getMonth() + 1;  // JS Date months are zero based
+      console.log('orig reportMonth ' + reportMonth);
       if (reportDate.getDate() <= 2) {
         reportMonth--;
+        if (reportMonth === 0) {
+          reportMonth = 12;
+          reportYear--;
+        }
       }
+
+      console.log('adj reportMonth ' + reportMonth);
       const navigationExtras: NavigationExtras = {
         queryParams: { id: 'id' + this.mentorReport.mentorReportId,
+                        year: reportYear,
                         month:  reportMonth,
-                        summary: this.savedSponsorSummaryStatusId,
+                        summary: this.savedSummaryStatusId,
                         highlight: this.savedHighlightStatusId
                       }
       };
-
+      console.log(navigationExtras.queryParams);
       this.router.navigate([target], navigationExtras);
     }
 

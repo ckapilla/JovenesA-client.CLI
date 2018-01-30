@@ -75,7 +75,7 @@ export class MentorReportFollowUpUpdatesComponent
         this.errorMessage = '';
         this.successMessage = '';
         this.submitted = false;
-    };
+    }
 
     ngOnInit() {
 
@@ -140,11 +140,9 @@ export class MentorReportFollowUpUpdatesComponent
     navigateBackInContext() {
       const target = '/admins/mentor-reports/follow-up-tracking';
       console.log('after Submit or Cancel navigating to ' + target);
-      const reportDate = new Date(this.mentorReport.reportDateTime);
-      const reportMonth = reportDate.getMonth() + 1;  // JS Date months are zero based
+
       const navigationExtras: NavigationExtras = {
         queryParams: { id: 'id' + this.mentorReport.mentorReportId,
-                        month:  reportMonth,
                         summary: this.savedFollowUpStatusId
                       }
       };

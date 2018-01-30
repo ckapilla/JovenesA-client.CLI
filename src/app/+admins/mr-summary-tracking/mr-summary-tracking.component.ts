@@ -23,11 +23,11 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
   mentorReportStatuses: SELECTITEM[];
   years: SELECTITEM[];
   months: SELECTITEM[];
-  sponsorSummaryStatuses: SELECTITEM[];
+  mrSummaryStatuses: SELECTITEM[];
   highlightStatuses: SELECTITEM[];
   selectedYear: string;
   selectedMonth: string;
-  selectedSponsorSummaryStatus: string;
+  selectedMRSummaryStatus: string;
   selectedHighlightStatus: string;
 
   constructor(
@@ -39,7 +39,8 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
 
 
     this.years = [
-      { value: '2017', label: '2017' }
+      { value: '2017', label: '2017' },
+      { value: '2018', label: '2018' }
     ];
 
      this.months = [
@@ -58,7 +59,7 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
       {value: '12', label: 'Dec'}
     ];
 
-    this.sponsorSummaryStatuses = [
+    this.mrSummaryStatuses = [
       { value: '0', label: '[All]' },
       { value: '2086', label: 'NeedsSetup' },
       { value: '2087', label: 'NeedsReview' },
@@ -69,8 +70,8 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
 
       this.highlightStatuses = [
         { value: '0', label: '[All]' },
-        { value: '2105', label: 'Internal' },
-        { value: '2106', label: 'Internal/External' },
+        { value: '2105', label: 'Internal_Only' },
+        { value: '2106', label: 'Internal_External' },
       ];
 
 
@@ -82,10 +83,10 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
       // ];
 
     const today = new Date();
-    this.selectedYear = '' + today.getFullYear(); // '2017';
+    this.selectedYear =  '2017'; // '' + today.getFullYear(); //
     this.selectedMonth = '0'; // + today.getMonth() + 1;// '5';
 
-    this.selectedSponsorSummaryStatus = this.sponsorSummaryStatuses[0].value;
+    this.selectedMRSummaryStatus = this.mrSummaryStatuses[0].value;
     this.selectedHighlightStatus = this.highlightStatuses[0].value;
 
 
@@ -100,6 +101,12 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
   ngOnInit() {
     console.log('in OnInit');
 
+    const year = this.route.snapshot.queryParams['year'];
+    console.log('year param = ' +  year);
+    if (year !== undefined) {
+      this.selectedYear =  year;
+    }
+
       const month = this.route.snapshot.queryParams['month'];
       console.log('month param = ' +  month);
       if (month !== undefined) {
@@ -108,9 +115,9 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
       const summary = this.route.snapshot.queryParams['summary'];
       console.log('summary param = ' +  summary);
       if (month !== undefined) {
-        this.selectedSponsorSummaryStatus =  summary;
+        this.selectedMRSummaryStatus =  summary;
       } else {
-        this.selectedSponsorSummaryStatus =  '0';
+        this.selectedMRSummaryStatus =  '0';
       }
 
       const highlight = this.route.snapshot.queryParams['highlight'];
@@ -131,7 +138,7 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
     console.log('in fetchData for MentorReportsByMonth');
     this.sqlResource.getMentorReportsByMonth(this.selectedYear,
                   this.selectedMonth,
-                  this.selectedSponsorSummaryStatus,
+                  this.selectedMRSummaryStatus,
                   this.selectedHighlightStatus)
       .subscribe(
         data => {this.mentorReportByMonth = data; },
@@ -155,8 +162,8 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
         }
   }
 
-  setSelectedSponsorSummaryStatus(status: string) {
-    this.selectedSponsorSummaryStatus = status;
+  setSelectedMRSummaryStatus(status: string) {
+    this.selectedMRSummaryStatus = status;
     this.fetchFilteredData();
   }
 
