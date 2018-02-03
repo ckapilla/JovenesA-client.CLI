@@ -12,14 +12,22 @@
         public statusID?: number, // StatusID
         public gradYear?: number, // GradYear
         public gradMonth?: string, // GradMonth
-        public gradeRptStatus?: number, // GradeRptStatus
-        public gpaStatus?: number, // GPAStatus
-        public timelyMentorMeetingStatus?: number,
-        public timelyMentorReportStatus?: number,
+        public gradeRptStatus?: string, // GradeRptStatus
+        public gpaStatus?: string, // GPAStatus
+
+        public numericGradeRptStatus?: number,
+        public numericGPAStatus?: number,
+
+        public timelyMentorMeetingStatus?: string,
+        public timelyMentorReportStatus?: string,
+
+        public numericTimelyMentorMeetingStatus?: number,
+        public numericTimelyMentorReportStatus?: number,
+
         public studentAssessmentStatus?: number,
         public studentSnapshotStatus?: number,
         public mentorId?: number,  // MentorID
-        public mentorName?: string, // MentorName
+        public mentorName?: number, // MentorName
         public sponsorName?: string, // MentorName
         public sponsorId?: number,
         public timelyStudentLetterStatus?: string,

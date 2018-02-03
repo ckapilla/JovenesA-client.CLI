@@ -83,7 +83,7 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
       // ];
 
     const today = new Date();
-    this.selectedYear =  '2017'; // '' + today.getFullYear(); //
+    this.selectedYear =  '2018'; // '' + today.getFullYear(); //
     this.selectedMonth = '0'; // + today.getMonth() + 1;// '5';
 
     this.selectedMRSummaryStatus = this.mrSummaryStatuses[0].value;

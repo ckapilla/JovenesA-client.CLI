@@ -9,7 +9,7 @@ export class UrlService {
     // console.log('UrlService constructor');
 
     let backendEnv: string;
-    backendEnv = 'AzureProdXXX';
+    backendEnv = 'AzureProd';
 
     // console.log('window: ' + window.location.hostname);
     if (window.location.hostname.toLocaleLowerCase() === 'privada.jovenesadelante.org'

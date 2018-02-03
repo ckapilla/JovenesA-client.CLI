@@ -61,6 +61,7 @@ public onSortColumn(sortCriteria: SORTCRITERIA) {
     console.log('parent received sortColumnCLick event with ' + sortCriteria.sortColumn);
     return this.sponsorSummarySentCounts.sort((a, b) => {
       if (sortCriteria.sortDirection === 'asc') {
+        //console.log('asc ' + a[sortCriteria.sortColumn] + ' ' + b[sortCriteria.sortColumn]);
         if (isNumber(a[sortCriteria.sortColumn])) {
           if (a[sortCriteria.sortColumn] === b[sortCriteria.sortColumn]) {
             return 0;
@@ -70,10 +71,9 @@ public onSortColumn(sortCriteria: SORTCRITERIA) {
         }
         // console.log('desc ' + a[sortCriteria.sortColumn] + ' ' + b[sortCriteria.sortColumn]);
         return a[sortCriteria.sortColumn].localeCompare(b[sortCriteria.sortColumn]);
-        // if ( a[sortCriteria.sortColumn] < b[sortCriteria.sortColumn] ) { return -1; }
-        // if ( a[sortCriteria.sortColumn] > b[sortCriteria.sortColumn] ) { return 1; }
-        // return 0;
+
       } else {
+        console.log('desc ' + a[sortCriteria.sortColumn] + ' ' + b[sortCriteria.sortColumn]);
         if (isNumber(a[sortCriteria.sortColumn])) {
           if (a[sortCriteria.sortColumn] === b[sortCriteria.sortColumn]) {
             return 0;
@@ -81,12 +81,7 @@ public onSortColumn(sortCriteria: SORTCRITERIA) {
             return (a[sortCriteria.sortColumn] < b[sortCriteria.sortColumn]) ? 1 : -1;
           }
         }
-        // console.log('asc ' + a[sortCriteria.sortColumn] + ' ' + b[sortCriteria.sortColumn]);
-
         return b[sortCriteria.sortColumn].localeCompare(a[sortCriteria.sortColumn]);
-        // if ( a[sortCriteria.sortColumn] > b[sortCriteria.sortColumn] ) { return -1; }
-        // if ( a[sortCriteria.sortColumn] < b[sortCriteria.sortColumn] ) { return 1; }
-        // return 0;
       }
     });
   }
