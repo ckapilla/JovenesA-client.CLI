@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { SessionService } from '../../app_shared/services/session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource';
 import { MentorReportByMonth } from '../../app_shared/models/mentor-report-by-month';
+import { ParamMap } from '@angular/router/src/shared';
 
 interface SELECTITEM {
    value: string; label: string;
@@ -11,7 +12,8 @@ interface SELECTITEM {
 
 @Component({
   moduleId: module.id,
-  templateUrl: 'mr-summary-tracking.component.html'
+  templateUrl: 'mr-summary-tracking.component.html',
+  styleUrls: ['mr-summary-tracking.component.css']
 })
 export class MentorReportsSummaryTrackingComponent implements OnInit {
   mentorReportByMonth: MentorReportByMonth[];
@@ -70,8 +72,8 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
 
       this.highlightStatuses = [
         { value: '0', label: '[All]' },
-        { value: '2105', label: 'Internal_Only' },
-        { value: '2106', label: 'Internal_External' },
+        { value: '2105', label: 'Problems' },
+        { value: '2106', label: 'GoodNews' },
       ];
 
 
@@ -112,7 +114,7 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
       if (month !== undefined) {
         this.selectedMonth =  month;
       }
-      const summary = this.route.snapshot.queryParams['summary'];
+      const summary = this.route.snapshot.queryParams['summaryStatus'];
       console.log('summary param = ' +  summary);
       if (month !== undefined) {
         this.selectedMRSummaryStatus =  summary;
@@ -153,13 +155,17 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
   }
 
   scrollIntoView() {
-      const idSelector = '#' + this.route.snapshot.queryParams['id'];
+
+      console.log (this.route.snapshot.queryParams['id']);
+      if (this.route.snapshot.queryParams['id']) {
+        const idSelector = '#' + this.route.snapshot.queryParams['id'];
         console.log('id param = ' +  this.route.snapshot.queryParams['id']);
           const element = document.querySelector(idSelector);
           if (element) {
             console.log('querySelector returns element ' + element);
             element.scrollIntoView(true);
         }
+      }
   }
 
   setSelectedMRSummaryStatus(status: string) {
@@ -185,14 +191,19 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
     console.log('setting studentName to ' + studentName);
     this.session.setAssignedStudentName(studentName);
 
-    const link = ['/admins/students/student/' + id];
-    //const link = ['/admins/students/mentorReports/' + id];
+    // const link = ['/admins/students/student/' + id];
+    const link = ['admins/students/student', { id: id }];
+
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }
 
-  gotoMentorReport(id: number) {
-    const link = ['/admins/mentor-reports/summary-updates/' + id];
+  gotoReportSummary(id: number) {
+    //const link = ['/admins/mentor-reports/summary-updates?id=' + id + '&summaryStatus=' + 2087 + '&highlight=' + 2106];
+    const link: [string , { mentorReportId: number, summaryStatus: string, highlight: string}]
+      = ['/admins/mentor-reports/summary-updates',
+          { mentorReportId: id, summaryStatus: this.selectedMRSummaryStatus, highlight: this.selectedHighlightStatus}];
+
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }
@@ -200,6 +211,18 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
   translationNeeded(lang1: number, lang2: number): string {
     console.log(lang1, lang2);
     return (lang1 === lang2) ? '' : 'Translation Needed';
+  }
+
+  getHighlightColor(highlightStatusId: number): string {
+    console.log('in getHighlightColor with ' + highlightStatusId);
+    if (highlightStatusId === 2106) {
+      console.log('returning ' + 'green-row');
+      return 'green-row';
+    } else if (highlightStatusId === 2105) {
+      return 'red-row';
+    } else {
+      return '';
+    }
   }
 
 }

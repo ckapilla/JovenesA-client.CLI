@@ -47,7 +47,7 @@ const routes: Routes = [
           component: AdminsStudentsComponent
         },
         {
-          path: 'students/student/:id',
+          path: 'students/student', // /:id',
           component: AdminsStudentComponent
         },
         // {
@@ -59,7 +59,7 @@ const routes: Routes = [
           component: MentorReportsSummaryTrackingComponent
         },
         {
-          path: 'mentor-reports/summary-updates/:mentorReportId',
+          path: 'mentor-reports/summary-updates', // /:mentorReportId',
           component: MentorReportSummaryUpdatesComponent
         },
         {

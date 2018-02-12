@@ -122,8 +122,7 @@ export class AdminsStudentsComponent implements OnInit {
     this.isLoading = true;
     this.sqlResource.getStudentDTOsByStatusAndYear(this.selectedStatus, this.selectedYearJoined, this.selectedGradYear)
       .subscribe(
-        data => { console.log(data); this.studentDTOs = data.map(this.getNumericStatus);
-          console.log(this.studentDTOs); },
+        data => { this.studentDTOs = data.map(this.getNumericStatus); },
         err => { this.errorMessage =  err; } ,
         () => { console.log('done'); this.isLoading = false; }
       );
@@ -175,14 +174,15 @@ getNumericStatus(studentDTO: StudentDTO): StudentDTO {
     console.log('setting studentName to ' + studentName);
     this.session.setAssignedStudentName(studentName);
 
-    const link = ['/admins/students/student/' + id];
-    // const link = ['/admins/students/mentorReports/' + id];
+    //const link = ['/admins/students/student', id];
+    const link = ['admins/students/student', { id: id }];
+
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }
 
   gotoReport(id: number) {
-    const link = ['/admins/students/mentorReports/' + id];
+    const link = ['/admins/students/mentorReports', id];
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }

@@ -13,7 +13,7 @@ export class AssignedStudentsComponent implements OnInit {
   studentMentors: Array<RptStudentMentor>;
   smileys: Array<string> = [];
   studentId: number;
-  errorMessage: string = '';
+  errorMessage = '';
   @Output() onSelectedStudentName = new EventEmitter<string>();
   @Output() onSelectedStudentId = new EventEmitter<number>();
   //@Output() onNoAssignedStudents = new EventEmitter();
@@ -32,7 +32,7 @@ export class AssignedStudentsComponent implements OnInit {
   public ngOnInit() {
     this.sqlResource.getStudentsForMentor(this.session.getUserId())
       .subscribe(
-        data => {this.studentMentors = data; console.log(this.studentMentors);},
+        data => {this.studentMentors = data; console.log(this.studentMentors); },
         err => console.error('Subscribe error: ' + err),
         () => {
                 console.log('assigned-students loaded ' + this.studentMentors.length + ' rows');
@@ -55,7 +55,7 @@ export class AssignedStudentsComponent implements OnInit {
 
   public selectStudent(studentId: number, idx: number) {
     console.log('student selected studentId: ' + studentId + 'idx: ' + idx );
-    let studentName: string = this.studentMentors[idx].studentLastNames + ', ' + this.studentMentors[idx].studentFirstNames;
+    const studentName: string = this.studentMentors[idx].studentLastNames + ', ' + this.studentMentors[idx].studentFirstNames;
     this.studentId = studentId;
     this.onSelectedStudentId.emit(studentId);
     this.onSelectedStudentName.emit(studentName);
@@ -64,7 +64,7 @@ export class AssignedStudentsComponent implements OnInit {
   public setRowClasses(studentId: number) {
     //console.log('row StudentID is ' + studentId);
     //console.log('session Assigned student ID is ' + this.session.getAssignedStudentId());
-    let classes =  {
+    const classes =  {
       'success': studentId === this.studentId,
       'student-row': true,
       'clickable': true

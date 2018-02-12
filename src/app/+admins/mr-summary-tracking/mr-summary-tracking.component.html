@@ -40,11 +40,11 @@
     <div *ngSwitchCase="false">
       <div class="row" style="border-bottom: 3px solid #ccc; margin-top: 2px;"
                   *ngFor="let lmr of mentorReportByMonth, let i = index">
-<div class="col-md-12">
+<div class="col-md-12" [ngClass]="getHighlightColor(lmr.highlightStatusId)">
 
   <div class="row" id= '{{"id" + lmr.mentorReportId}}'>
           &nbsp;
-          <button class="btn default-btn"  (click)="gotoMentorReport(lmr.mentorReportId)">Review</button>
+          <button class="btn default-btn"  (click)="gotoReportSummary(lmr.mentorReportId)">Review</button>
         &nbsp;
 
     <span class="padded link">
@@ -93,7 +93,7 @@
       {{ lmr.followUpNeeded }}
     </div>
   </div>-->
-  <div class="row">
+  <!-- <div class="row">
     <div class="col-md2 padded">
       &nbsp;Positive Events:
     </div>
@@ -108,7 +108,7 @@
     <div class="col-md-10">
       {{ lmr.recentSetback }}
     </div>
-  </div>
+  </div> -->
   <div class="row">
     <div class="padded">
            Summary   <!--[{{ lmr.mentorPreferredLanguageId | alphaLanguage }} --&gt; {{ lmr.mrPreferredLanguageId | alphaLanguage }} {{ translationNeeded(lmr.mentorPreferredLanguageId,lmr.mrPreferredLanguageId) }}]-->

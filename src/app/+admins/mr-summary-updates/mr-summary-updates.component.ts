@@ -65,8 +65,8 @@ export class MentorReportSummaryUpdatesComponent
 
       this.highlightStatuses = [
         { value: '0', label: '[None]' },
-        { value: '2105', label: 'Internal' },
-        { value: '2106', label: 'Internal/External' },
+        { value: '2105', label: 'Problems' },
+        { value: '2106', label: 'GoodNews' },
       ];
 
 
@@ -93,9 +93,19 @@ export class MentorReportSummaryUpdatesComponent
 
     ngOnInit() {
 
-
     const mentorReportId = this.currRoute.snapshot.params['mentorReportId'];
     console.log('sqlResource with MentorReportId: ' + mentorReportId);
+
+    this.savedSummaryStatusId = this.currRoute.snapshot.params['summaryStatus'];
+    if (this.savedSummaryStatusId === undefined) {
+      this.savedSummaryStatusId = 0;
+    }
+
+    this.savedHighlightStatusId = this.currRoute.snapshot.params['highlight'];
+    if (this.savedHighlightStatusId === undefined) {
+      this.savedHighlightStatusId = 0;
+    }
+
     this.isLoading = true;
     this.sqlResource.getMentorReport(mentorReportId)
       .subscribe(
@@ -103,8 +113,6 @@ export class MentorReportSummaryUpdatesComponent
         err => console.error('Subscribe error: ' + err),
         () => { console.log('done with data MentorReport>>');
                 console.log(this.mentorReport);
-                this.savedHighlightStatusId = this.mentorReport.highlightStatusId;
-                this.savedSummaryStatusId = this.mentorReport.sponsorSummaryStatusId;
                 console.log('<<');
               this.isLoading = false;
             }
@@ -192,7 +200,7 @@ export class MentorReportSummaryUpdatesComponent
         queryParams: { id: 'id' + this.mentorReport.mentorReportId,
                         year: reportYear,
                         month:  reportMonth,
-                        summary: this.savedSummaryStatusId,
+                        summaryStatus: this.savedSummaryStatusId,
                         highlight: this.savedHighlightStatusId
                       }
       };
