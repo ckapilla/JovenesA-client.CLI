@@ -4,9 +4,10 @@ import { Component, OnInit } from '@angular/core';
 import { SqlReports } from '../shared/services/sql-reports';
 
 import { SponsorSummarySentCount } from '../shared/report-models/sponsor-summary-sent-count';
+import { ColumnSortService } from '../../app_shared/services/column-sort.service';
 
-import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 import { SORTCRITERIA } from '../../app_shared/interfaces/SORTCRITERIA';
+import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 import { isNumber } from 'util';
 
 
@@ -26,7 +27,8 @@ export class ReportsSponsorSummariesSentComponent implements OnInit {
   sortCriteria: SORTCRITERIA;
 
   constructor(
-              public sqlReports: SqlReports
+              public sqlReports: SqlReports,
+              private columnSorter: ColumnSortService
               ) {
     this.isLoading = false;
   }
@@ -57,38 +59,15 @@ https://plnkr.co/edit/DITVzCSqHHB1uNrTxFit?p=info
       );
   }
 
-public onSortColumn(sortCriteria: SORTCRITERIA) {
+  public onSortColumn(sortCriteria: SORTCRITERIA) {
     console.log('parent received sortColumnCLick event with ' + sortCriteria.sortColumn);
     return this.sponsorSummarySentCounts.sort((a, b) => {
-      if (sortCriteria.sortDirection === 'asc') {
-        //console.log('asc ' + a[sortCriteria.sortColumn] + ' ' + b[sortCriteria.sortColumn]);
-        if (isNumber(a[sortCriteria.sortColumn])) {
-          if (a[sortCriteria.sortColumn] === b[sortCriteria.sortColumn]) {
-            return 0;
-          } else {
-            return (a[sortCriteria.sortColumn] > b[sortCriteria.sortColumn]) ? 1 : -1;
-          }
-        }
-        // console.log('desc ' + a[sortCriteria.sortColumn] + ' ' + b[sortCriteria.sortColumn]);
-        return a[sortCriteria.sortColumn].localeCompare(b[sortCriteria.sortColumn]);
-
-      } else {
-        console.log('desc ' + a[sortCriteria.sortColumn] + ' ' + b[sortCriteria.sortColumn]);
-        if (isNumber(a[sortCriteria.sortColumn])) {
-          if (a[sortCriteria.sortColumn] === b[sortCriteria.sortColumn]) {
-            return 0;
-          } else {
-            return (a[sortCriteria.sortColumn] < b[sortCriteria.sortColumn]) ? 1 : -1;
-          }
-        }
-        return b[sortCriteria.sortColumn].localeCompare(a[sortCriteria.sortColumn]);
-      }
+      return this.columnSorter.compareValues(a, b, sortCriteria);
     });
   }
 
   onSorted($event) {
     console.log('sorted event received');
-    //this.fetchData();
   }
 
 }

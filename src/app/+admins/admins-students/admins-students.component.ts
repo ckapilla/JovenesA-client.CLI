@@ -196,7 +196,6 @@ getNumericStatus(studentDTO: StudentDTO): StudentDTO {
 
   onSorted($event) {
     console.log('sorted event received');
-    //this.fetchData();
   }
 
 }

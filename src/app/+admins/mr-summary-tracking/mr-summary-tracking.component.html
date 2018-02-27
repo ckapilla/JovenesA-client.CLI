@@ -21,11 +21,15 @@
             <option *ngFor="let status of mrSummaryStatuses" [value]="status.value">{{status.label}}</option>
           </select>
 
-          <label for="highlightStatusSelector">&nbsp;Highlight Status:</label>
-          <select name="highlightStatusSelector" [(ngModel)]="selectedHighlightStatus" (change)="setSelectedHighlightStatus($event.target.value)">
-            <option *ngFor="let status of highlightStatuses" [value]="status.value">{{status.label}}</option>
-          </select>
+          <label>&nbsp;Highlight Status:
+            <select name="highlightStatusSelector" [(ngModel)]="selectedHighlightStatus" (change)="setSelectedHighlightStatus($event.target.value)">
+              <option *ngFor="let status of highlightStatuses" [value]="status.value">{{status.label}}</option>
+            </select>
+          </label>
 
+          <span class="checkboxes">
+            &nbsp;&nbsp;<label><input type="checkbox" [(ngModel)]="displayOriginalFields">&nbsp;<span>Display Original Content</span></label>
+          </span>
         </div>
         <app-status-counts [year]=selectedYear [month]=selectedMonth>
         </app-status-counts>
@@ -93,7 +97,7 @@
       {{ lmr.followUpNeeded }}
     </div>
   </div>-->
-  <!-- <div class="row">
+  <div class="row" [hidden] = !displayOriginalFields>
     <div class="col-md2 padded">
       &nbsp;Positive Events:
     </div>
@@ -101,14 +105,14 @@
       {{ lmr.recentSuccess }}
     </div>
   </div>
-  <div class="row">
+  <div class="row" [hidden] = !displayOriginalFields>
     <div class="padded">
       &nbsp;Challenges:
     </div>
     <div class="col-md-10">
       {{ lmr.recentSetback }}
     </div>
-  </div> -->
+  </div>
   <div class="row">
     <div class="padded">
            Summary   <!--[{{ lmr.mentorPreferredLanguageId | alphaLanguage }} --&gt; {{ lmr.mrPreferredLanguageId | alphaLanguage }} {{ translationNeeded(lmr.mentorPreferredLanguageId,lmr.mrPreferredLanguageId) }}]-->

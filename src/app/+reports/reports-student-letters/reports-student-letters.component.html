@@ -18,13 +18,13 @@
           <thead>
             <tr>
               <!--<td>Id</td>-->
-              <td></td>
-              <td>Student Name</td>
-              <td>Sponsor Group Name</td>
-              <td>Primary Sponsor Name</td>
-              <td>Sponsor Email</td>
-              <td>Sponsor Phone</td>
-              <td>Latest&nbsp;Letter</td>
+              <th></th>
+              <th app-sortable-column="studentName" (onSortColumn)="onSortColumn($event)">Student Name</th>
+              <th app-sortable-column="sponsorGroupName" (onSortColumn)="onSortColumn($event)">Sponsor Group Name</th>
+              <th app-sortable-column="primarySponsorName" (onSortColumn)="onSortColumn($event)">Primary Sponsor Name</th>
+              <th app-sortable-column="sponsorEmail" (onSortColumn)="onSortColumn($event)">Sponsor Email</th>
+              <th app-sortable-column="sponsorPhone" (onSortColumn)="onSortColumn($event)">Sponsor Phone</th>
+              <th app-sortable-column="letterDateTime" (onSortColumn)="onSortColumn($event)">Latest&nbsp;Letter</th>
             </tr>
           </thead>
           <tbody>

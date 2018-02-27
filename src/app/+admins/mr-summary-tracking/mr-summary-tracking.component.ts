@@ -31,6 +31,7 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
   selectedMonth: string;
   selectedMRSummaryStatus: string;
   selectedHighlightStatus: string;
+  displayOriginalFields = false;
 
   constructor(
               public router: Router,
@@ -214,7 +215,7 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
   }
 
   getHighlightColor(highlightStatusId: number): string {
-    console.log('in getHighlightColor with ' + highlightStatusId);
+
     if (highlightStatusId === 2106) {
       console.log('returning ' + 'green-row');
       return 'green-row';

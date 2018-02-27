@@ -4,9 +4,14 @@ import { SqlReports } from '../shared/services/sql-reports';
 import { Router } from '@angular/router';
 import { SessionService } from '../../app_shared/services/session.service';
 import { LatestStudentLetters } from '../shared/report-models/latest-student-letters';
+import { ColumnSortService } from '../../app_shared/services/column-sort.service';
+
+import { SORTCRITERIA } from '../../app_shared/interfaces/SORTCRITERIA';
+
 @Component({
   moduleId: module.id,
-  templateUrl: 'reports-student-letters.component.html'
+  templateUrl: 'reports-student-letters.component.html',
+  styleUrls: ['reports-student-letters.css']
 })
 export class ReportsStudentLettersComponent implements OnInit {
     latestStudentLetters: LatestStudentLetters[];
@@ -17,10 +22,8 @@ export class ReportsStudentLettersComponent implements OnInit {
 
   constructor(public sqlReports: SqlReports,
               public router: Router,
-              public session: SessionService
-
-
-
+              public session: SessionService,
+              public columnSorter: ColumnSortService
   ) {
     this.smileys = [ '/assets/images/frownSmiley.jpg',
                     '/assets/images/neutralSmiley.jpg',
@@ -53,11 +56,22 @@ export class ReportsStudentLettersComponent implements OnInit {
   //   this.router.navigate(link);
   // }
 
-  gotoStudentletter(id: number) {
+  gotoStudentLetter(id: number) {
     const link = ['/admins/students/studentLetters/' + id];
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }
 
+
+  public onSortColumn(sortCriteria: SORTCRITERIA) {
+    console.log('parent received sortColumnCLick event with ' + sortCriteria.sortColumn);
+    return this.latestStudentLetters.sort((a, b) => {
+      return this.columnSorter.compareValues(a, b, sortCriteria);
+    });
+  }
+
+  onSorted($event) {
+    console.log('sorted event received');
+  }
 
 }

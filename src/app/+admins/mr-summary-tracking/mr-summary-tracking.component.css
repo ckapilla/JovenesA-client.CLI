@@ -1,2 +1,11 @@
 .green-row {background-color: #dff0d8;}
 .red-row {background-color: lightpink;}
+
+
+.checkboxes input {
+  vertical-align: middle;
+  padding-left: 3em;
+}
+.checkboxes label span {
+  vertical-align: middle;
+}

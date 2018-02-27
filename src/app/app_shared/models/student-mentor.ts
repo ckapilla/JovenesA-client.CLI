@@ -12,7 +12,7 @@
         public gPAStatus: string, // GPAStatus
         public timelyMentorMeetingStatus: string,
         public timelyMentorReportStatus: string,
-        public studentSnapshotStatus:  Number,
+        public studentSnapshotStatus: string,
         public universityName: string, // UniversityName
         public studentEmail: string,
         public studentPhone: string,
