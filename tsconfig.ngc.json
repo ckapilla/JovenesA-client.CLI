@@ -5,7 +5,7 @@
     "module": "es2015",
     "moduleResolution": "node",
     "sourceMap": true,
-    "rootDir": ".", // see https://github.com/Microsoft/TypeScript/issues/8245
+    "rootDir": ".",
     "rootDirs": [
       "src",
       "aot"
@@ -16,6 +16,7 @@
     "experimentalDecorators": true,
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
+
     "lib": [
       "es2015",
       "dom"
@@ -26,8 +27,6 @@
     ]
   },
   "files": [
-    // "./src/app/app.module.ts" /* this includes all dependents */
-    // ,"src/polyfills.ts"
     "src/main.aot.ts"
   ],
   "angularCompilerOptions": {

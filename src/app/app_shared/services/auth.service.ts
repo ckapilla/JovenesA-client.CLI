@@ -39,7 +39,7 @@ export class AuthService {
     console.log('Auth constructor before stored token check');
     this.authenticated = false;
     this.session = session;
-    this.sqlResource = sqlResource
+    this.sqlResource = sqlResource;
 
     // if not authenticated, check to see if we have a saved profile
     if (session.getUserId() === 0) {
@@ -162,7 +162,7 @@ export class AuthService {
         console.log('savingProfile');
 
         this.saveProfileToLocalStorage(profile);
-        this.extractElementsFromUserProfile(profile)
+        this.extractElementsFromUserProfile(profile);
       } else {
         console.log('getUserInfo with token expired');
       }

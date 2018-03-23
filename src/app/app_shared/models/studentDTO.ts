@@ -31,7 +31,10 @@
         public sponsorName?: string, // MentorName
         public sponsorId?: number,
         public timelyStudentLetterStatus?: string,
-        public universityAbbrev?: string
+        public universityAbbrev?: string,
+        public major?: string,
+        public joinedFromId?: number,
+        public joinedFrom?: string
 
       ) {}
 }

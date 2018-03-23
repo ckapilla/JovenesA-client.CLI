@@ -11,6 +11,7 @@
     "target": "es5",
     "module": "es2015",
     "listEmittedFiles": true,
+
     "typeRoots": [
       "node_modules/@types"
     ],
@@ -20,7 +21,7 @@
     ]
   },
   "files": [
-    "./src/app/app.module.ts", /* this includes all dependents */
+    "./src/app/app.module.ts",
     "src/polyfills.ts",
     "src/main.ts"
   ]

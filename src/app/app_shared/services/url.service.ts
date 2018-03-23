@@ -8,19 +8,20 @@ export class UrlService {
   constructor() {
     // console.log('UrlService constructor');
 
-    let backendEnv: string;
-    backendEnv = 'AzureProd';
+    const backendEnv: 'AzureProd' | 'AzureTest' | 'local' = 'AzureProd' as 'AzureProd' | 'AzureTest' | 'local';
 
     // console.log('window: ' + window.location.hostname);
+
     if (window.location.hostname.toLocaleLowerCase() === 'privada.jovenesadelante.org'
               || backendEnv === 'AzureProd') {
       this.webApiPrefix = 'http://jovenesadelantewebapi.azurewebsites.net/api/';
     } else if (window.location.hostname.toLocaleLowerCase() === 'jovenesadelantewebtest.azurewebsites.net'
               || backendEnv === 'AzureTest') {
       this.webApiPrefix = 'http://jovenesadelantewebapitest.azurewebsites.net/api/';
-    } else { // localhost
+    } else if (backendEnv === 'local') {
       this.webApiPrefix = 'http://192.168.1.69:45456/api/' ;
     }
+
     if (window.location.hostname.toLocaleLowerCase() === 'privada.jovenesadelante.org') {
       this.clientUrl = 'http://privada.jovenesadelante.org';
     } else if (window.location.hostname.toLocaleLowerCase() === 'jovenesadelantewebtest.azurewebsites.net') {

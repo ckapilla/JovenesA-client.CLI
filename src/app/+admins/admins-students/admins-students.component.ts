@@ -20,6 +20,7 @@ import { isNumber } from 'util';
 
 export class AdminsStudentsComponent implements OnInit {
   statuses: SELECTITEM[];
+  schoolTypes: SELECTITEM[];
   joinedYears: SELECTITEM[];
   gradYears: SELECTITEM[];
   selectedStatus: string;
@@ -47,6 +48,13 @@ export class AdminsStudentsComponent implements OnInit {
       { value: '1003', label: 'Dropped' },
       { value: '1004', label: 'Grad' },
       { value: '1005', label: 'Current' }
+    ];
+
+    this.schoolTypes = [
+      { value: '0', label: '' },
+      { value: '2056', label: 'Prepa' },
+      { value: '2057', label: 'Univ' },
+      { value: '2058', label: 'N/A' }
     ];
 
     this.joinedYears = [
@@ -165,6 +173,13 @@ getNumericStatus(studentDTO: StudentDTO): StudentDTO {
     studentDTO.numericGPAStatus = 2;
   } else if (studentDTO.gpaStatus === 'green') {
     studentDTO.numericGPAStatus = 3;
+  }
+
+  studentDTO.joinedFrom = 'N/A';
+  if (studentDTO.joinedFromId === 2056) {
+    studentDTO.joinedFrom = 'Prepa';
+  } else if (studentDTO.joinedFromId === 2057) {
+    studentDTO.joinedFrom = 'Univ';
   }
 
   return studentDTO;
