@@ -83,6 +83,17 @@
           </div>
         </div>
 
+        <div class="form-group" >
+          <div class="controls">
+            <label for="inputMajor">Major</label>
+            <input id="inputMajor"
+                  formControlName="inputMajor"
+                  [(ngModel)]="student.major"
+                  type="text" class="form-control input-sm" placeholder=""
+                  />
+          </div>
+        </div>
+
         <div class="form-group">
           <div class="controls">
           <label for="inputInitialInterview">Initial Interview:</label>
@@ -122,7 +133,7 @@
           <select formControlName="EnglishLevelSelector"
                   class="form-control input-sm"
               [(ngModel)]="student.englishSkillLevelId" >
-            <option *ngFor="let status of statuses" [value]="status.statusId">{{status.label}}</option>
+            <option *ngFor="let status of statuses" [value]="status.value">{{status.label}}</option>
           </select>
           </div>
         </div>

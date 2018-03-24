@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-// import {NgSwitch, NgSwitchCase } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { SqlResource } from '../../app_shared/services/sql-resource';
 import { Student } from '../../app_shared/models/student';
-// import {DisplayErrorsComponent } from '../../app_shared/components/app-display-errors.component';
+
+import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 
 @Component({
   moduleId: module.id,
@@ -19,7 +19,7 @@ export class StudentsProfileComponent implements OnInit {
   isLoading: boolean;
   submitted: boolean;
 
-  statuses: [{statusId: string, label: string}];
+  statuses: SELECTITEM[];
   errorMessage: string;
   successMessage: string;
   firstNames: string;
@@ -34,11 +34,11 @@ export class StudentsProfileComponent implements OnInit {
               ) {
     console.log('hi from profile.component constructor');
     this.statuses = [
-      { statusId: '1024', label: 'Nada' },
-      { statusId: '1025', label: 'Principiante' },
-      { statusId: '1026', label: 'Intermedio' },
-      { statusId: '1027', label: 'Avanzado' },
-      { statusId: '1028', label: 'Nativo' },
+      { value: '1024', label: 'Nada' },
+      { value: '1025', label: 'Principiante' },
+      { value: '1026', label: 'Intermedio' },
+      { value: '1027', label: 'Avanzado' },
+      { value: '1028', label: 'Nativo' },
     ];
 
     this.profileForm = formBuilder.group({

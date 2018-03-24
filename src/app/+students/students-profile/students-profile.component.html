@@ -45,7 +45,7 @@
             <label for="inputStudentPhone">Celular</label>
             <input id="inputStudentPhone"
                   formControlName="inputStudentPhone"
-                  [(ngModel)]="student.CellPhone"
+                  [(ngModel)]="student.cellPhone"
                   type="text" class="form-control input-sm" placeholder="Cell Phone: ###-###-####"
                   required maxlength="13" minlength="7"/>
             <app-display-errors control="inputStudentPhone" class="red"
@@ -62,8 +62,8 @@
           <label for="EnglishLevelSelector">Nivel de inglés:</label>
           <select formControlName="EnglishLevelSelector"
                   class="form-control input-sm"
-              [(ngModel)]="student.EnglishSkillLevelId" >
-            <option *ngFor="let status of statuses" [value]="status.statusId">{{status.label}}</option>
+              [(ngModel)]="student.englishSkillLevelId" >
+            <option *ngFor="let status of statuses" [value]="status.value">{{status.label}}</option>
           </select>
             <app-display-errors control="EnglishLevelSelector" class="red"
               [errors]="{

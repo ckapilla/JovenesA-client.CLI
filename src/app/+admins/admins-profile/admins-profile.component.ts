@@ -3,12 +3,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder,  Validators } from '@angular/forms';
 
 import { SqlResource } from '../../app_shared/services/sql-resource';
+import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 
 import { Admin } from '../shared/admin';
 
 @Component({
   moduleId: module.id,
-  selector: 'app-admin-profile',
   templateUrl: './admins-profile.component.html',
   styleUrls:  ['../../../assets/css/forms.css'],
 })
@@ -18,7 +18,7 @@ export class AdminsProfileComponent implements OnInit {
   isLoading: boolean;
   submitted: boolean;
 
-  statuses: [{statusId: string, label: string}];
+  statuses: SELECTITEM[];
   errorMessage: string;
   successMessage: string;
   firstNames: string;
@@ -36,11 +36,11 @@ export class AdminsProfileComponent implements OnInit {
               ) {
     console.log('hi from profile.component constructor');
     this.statuses = [
-      { statusId: '1024', label: 'None' },
-      { statusId: '1025', label: 'Basic' },
-      { statusId: '1026', label: 'Intermediate' },
-      { statusId: '1027', label: 'Advanced' },
-      { statusId: '1028', label: 'Native' },
+      { value: '1024', label: 'None' },
+      { value: '1025', label: 'Basic' },
+      { value: '1026', label: 'Intermediate' },
+      { value: '1027', label: 'Advanced' },
+      { value: '1028', label: 'Native' },
     ];
 
     this.profileForm = formBuilder.group({

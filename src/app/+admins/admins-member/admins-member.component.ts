@@ -5,6 +5,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SqlResource } from '../../app_shared/services/sql-resource';
 import { Member } from '../../app_shared/models/member';
 
+import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
+
 @Component({
   moduleId: module.id,
   templateUrl: './admins-member.component.html',
@@ -16,7 +18,7 @@ export class AdminsMemberComponent implements OnInit {
   isLoading: boolean;
   submitted: boolean;
 
-  statuses: [{statusId: string, label: string}];
+  statuses: SELECTITEM[];
   errorMessage: string;
   successMessage: string;
   firstNames: string;
@@ -33,11 +35,11 @@ export class AdminsMemberComponent implements OnInit {
               ) {
     console.log('hi from profile.component constructor');
     this.statuses = [
-      { statusId: '1024', label: 'None' },
-      { statusId: '1025', label: 'Basic' },
-      { statusId: '1026', label: 'Intermediate' },
-      { statusId: '1027', label: 'Advanced' },
-      { statusId: '1028', label: 'Native' },
+      { value: '1024', label: 'None' },
+      { value: '1025', label: 'Basic' },
+      { value: '1026', label: 'Intermediate' },
+      { value: '1027', label: 'Advanced' },
+      { value: '1028', label: 'Native' },
     ];
 
     this.profileForm = formBuilder.group({
@@ -113,7 +115,7 @@ export class AdminsMemberComponent implements OnInit {
   mentorReportsReview() {
     const id = this.currRoute.snapshot.params['id'];
     this.router.navigate(['/admins/students/mentorReports/' + id  + '/']); //this.studentId ]);
-  };
+  }
 
   public hasChanges() {
       // if have changes then ask for confirmation
