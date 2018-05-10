@@ -3,13 +3,13 @@ import './operators';
 import { Router } from '@angular/router';
 import { AuthService } from './app_shared/services/auth.service';
 import { SessionService } from './app_shared/services/session.service';
-import { SqlResource } from './app_shared/services/sql-resource';
+import { SqlResource } from './app_shared/services/sql-resource.service';
 /**
  * This class represents the main application component. Within the @Routes annotation is the configuration of the
  * applications routes, configuring the paths for the lazy loaded components (HomeComponent, AboutComponent).
  */
 @Component({
-  moduleId: module.id,
+
   selector: 'app-ja',
   templateUrl: 'app.component.html'
 })

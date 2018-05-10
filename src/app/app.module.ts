@@ -16,15 +16,15 @@ import { CanActivateViaAdminAuthGuard,
           CanActivateViaStudentAuthGuard,
           ConfirmDeactivateGuard  } from './app.routing-guards';
 // every module that has a routing component needs to be imported here
-import { HomeModule } from './+home/home.module';
-import { AdminsModule } from './+admins/admins.module';
-import { MentorsModule } from './+mentors/mentors.module';
-import { StudentsModule } from './+students/students.module';
-import { ReportsModule } from './+reports/reports.module';
+import { HomeModule } from './home/home.module';
+import { AdminsModule } from './admins/admins.module';
+import { MentorsModule } from './mentors/mentors.module';
+import { StudentsModule } from './students/students.module';
+import { ReportsModule } from './reports/reports.module';
 
 import { AppSharedModule } from './app_shared/app_shared.module';
 import { SessionService } from './app_shared/services/session.service';
-import { SqlResource } from './app_shared/services/sql-resource';
+import { SqlResource } from './app_shared/services/sql-resource.service';
 import { UrlService } from './app_shared/services/url.service';
 import { ColumnSortService } from './app_shared/services/column-sort.service';
 

@@ -1,0 +1,53 @@
+<div *ngIf="errorMessage" class="alert alert-danger">
+  {{errorMessage}}</div>
+
+<assigned-sponsors
+  (onSelectedSponsorName)="onSelectedSponsorName($event)" 
+  (onSelectedSponsorId)="onSelectedSponsorId($event)"
+  >
+</assigned-sponsors>
+
+<div [ngSwitch]="isLoading">
+  <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
+    <app-loading-container>
+    </app-loading-container>
+  </div>
+  <div *ngSwitchCase="false">
+    <div *ngIf="!errorMessage" class="panel panel-primary">
+      <div class="panel-heading" style="font-size:large">
+        <span>Tus cartas anteriores</span>
+        <span>
+          <span>
+            <span class="btn btn-default active" (click)="sponsorLetterAdd()" style="margin-left:10px">
+              Añadir Nueva Carta
+            </span>
+          </span>
+        </span>
+      </div>
+      <div class="panel-body">
+
+        <div class="row" style="border-bottom: 3px solid #ccc; margin-top: 2px;" *ngFor="let i of sponsorLetters">
+          <div class="col-md-12">
+            <div class="row">
+
+              <span class="padded">
+                &nbsp;Fecha de la Carta: {{ i.letterDateTime | truncateDate }}
+              </span>
+              <span class="padded">
+                &nbsp;Período: {{ i.letterMonth | alphaMonth}}-{{ i.letterYear }}
+              </span>
+            </div>
+            <div class="row">
+              <div class="padded">
+                &nbsp;Texto de la Carta:
+              </div>
+              <div class="col-md-10">
+                {{ i.letterText }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

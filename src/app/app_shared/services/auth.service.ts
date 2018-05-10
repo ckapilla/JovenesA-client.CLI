@@ -2,8 +2,9 @@
 import { Injectable, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { SessionService } from './session.service';
-import { SqlResource } from '../../app_shared/services/sql-resource';
+import { SqlResource } from '../../app_shared/services/sql-resource.service';
 import 'rxjs/add/operator/take';
+import 'rxjs/add/operator/filter';
 import { AUTH_CONFIG, LOCK_DICTIONARY } from './auth0-config';
 import { UrlService } from './url.service';
 
@@ -217,7 +218,7 @@ export class AuthService {
         .filter(event => (/access_token|id_token|error/).test(event['url']))
         .subscribe(event => {
       console.log('in handleRedirectWithAuthHash subscribe event with hash ' + window.location.hash);
-      //const authResult = this.auth0.parseHash(window.location.hash);
+      // const authResult = this.auth0.parseHash(window.location.hash);
       // use following in conjunction with autoParseHash: false option setting
       this.lock.resumeAuth(window.location.hash, (error, authResult) => {
         if (authResult && authResult.idToken) {
@@ -290,13 +291,13 @@ export class AuthService {
     this.session.setMentorStatus(undefined);
     this.session.setSponsorStatus(undefined);
     this.session.setStudentId(undefined);
-    //localStorage.removeItem('profile');
-    //localStorage.removeItem('id_token');
+    // localStorage.removeItem('profile');
+    // localStorage.removeItem('id_token');
     localStorage.clear();
-    //this.zoneImpl.run(() => this.userProfile = undefined);
+    // this.zoneImpl.run(() => this.userProfile = undefined);
     this.authResult = undefined;
     this.userProfile = undefined;
-    //this.router.navigate(['']);
+    // this.router.navigate(['']);
     console.log('returen to address: ' + 'http://ckapilla.auth0.com/v2/logout?returnTo=' + this.urlService.getClientUrl());
     setTimeout(() => {
       console.log('in timeout callback with return to address ' +

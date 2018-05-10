@@ -19,7 +19,7 @@ export class UrlService {
               || backendEnv === 'AzureTest') {
       this.webApiPrefix = 'http://jovenesadelantewebapitest.azurewebsites.net/api/';
     } else if (backendEnv === 'local') {
-      this.webApiPrefix = 'http://192.168.1.69:45456/api/' ;
+      this.webApiPrefix = 'http://192.168.1.68:45456/api/' ;
     }
 
     if (window.location.hostname.toLocaleLowerCase() === 'privada.jovenesadelante.org') {

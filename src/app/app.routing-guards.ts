@@ -3,7 +3,7 @@ import { CanActivate, CanDeactivate,
       Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { AuthService } from './app_shared/services/auth.service';
 import { SessionService } from './app_shared/services/session.service';
-import { MonthlyReportsAddComponent } from './+mentors/monthly-reports-add/monthly-reports-add.component';
+import { MonthlyReportsAddComponent } from './mentors/monthly-reports-add/monthly-reports-add.component';
 
 @Injectable()
 export class CanActivateViaAdminAuthGuard implements CanActivate {
@@ -24,8 +24,8 @@ export class CanActivateViaAdminAuthGuard implements CanActivate {
     } else {
       console.log('Not authenticated -- Can\'t Activate Admin');
       localStorage.setItem('unauthenticated_retry_url', '/adimins');
-      //this.auth.login();
-      //this.router.navigate(['']);
+      // this.auth.login();
+      // this.router.navigate(['']);
       return false;
     }
   }
@@ -77,7 +77,7 @@ export class CanActivateViaStudentAuthGuard implements CanActivate {
     } else {
       console.log('link to Student but not authenticated -- need login');
       localStorage.setItem('unauthenticated_retry_url', '/students');
-      //this.auth.login();
+      // this.auth.login();
       return false;
     }
   }

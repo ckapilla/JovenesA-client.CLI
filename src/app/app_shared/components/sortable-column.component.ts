@@ -27,7 +27,7 @@ export class SortableColumnComponent implements OnInit, OnDestroy {
   sortDirection = '';
 
   @Output()
-onSortColumn: EventEmitter<SORTCRITERIA> = new EventEmitter<SORTCRITERIA>(); //creating an output event
+onSortColumn: EventEmitter<SORTCRITERIA> = new EventEmitter<SORTCRITERIA>(); // creating an output event
 
   sortCriteria: SORTCRITERIA;
   private columnSortedSubscription: Subscription;
