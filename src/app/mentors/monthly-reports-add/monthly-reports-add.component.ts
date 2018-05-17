@@ -41,7 +41,7 @@ export class MonthlyReportsAddComponent
 
         console.log('Hi from MonthlyReportsAddComponent');
      this.contactYears = [
-      {value: '0', label: 'Select Year'},
+      // {value: '0', label: 'Select Year'},
       // {value: '2016', label: '2016'},
       // {value: '2017', label: '2017'},
       {value: '2018', label: '2018'} // , {value: '2019', label: '2015'},

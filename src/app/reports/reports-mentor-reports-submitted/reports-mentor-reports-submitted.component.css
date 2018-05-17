@@ -1,0 +1,17 @@
+.report-row
+{
+  padding: 4px;
+}
+
+th[app-sortable-column] {
+  text-align: left;
+  cursor: pointer;
+}
+
+.up-arrow:before {
+content: "^";
+}
+
+.down-arrow:after {
+  content: "v";
+}

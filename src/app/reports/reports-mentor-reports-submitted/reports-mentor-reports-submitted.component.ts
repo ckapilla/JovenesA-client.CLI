@@ -3,21 +3,24 @@ import { Component, OnInit } from '@angular/core';
 
 import { SqlReports } from '../shared/services/sql-reports';
 
-import { SponsorSummarySentCount } from '../shared/report-models/sponsor-summary-sent-count';
+import { MentorReportSubmittedCount } from '../shared/report-models/mentor-report-submitted-count';
 import { ColumnSortService } from '../../app_shared/services/column-sort.service';
 
 import { SORTCRITERIA } from '../../app_shared/interfaces/SORTCRITERIA';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 import { isNumber } from 'util';
 
+
+
 @Component({
-  templateUrl: './reports-sponsor-summaries-sent.component.html',
-  styleUrls: ['./reports-sponsor-summaries-sent.component.css']
+
+  templateUrl: './reports-mentor-reports-submitted.component.html',
+  styleUrls: ['./reports-mentor-reports-submitted.component.css']
 })
 
-export class ReportsSponsorSummariesSentComponent implements OnInit {
+export class ReportsMentorReportsSubmittedComponent implements OnInit {
   reportTypes: SELECTITEM[];
-  sponsorSummarySentCounts: SponsorSummarySentCount[];
+  mentorReportSubmittedCounts: MentorReportSubmittedCount[];
   isLoading: boolean;
   errorMessage: string;
   successMessage: string;
@@ -45,12 +48,12 @@ https://plnkr.co/edit/DITVzCSqHHB1uNrTxFit?p=info
   }
 
   fetchData() {
-    console.log('fetchData for SponsorSummarySentCounts');
+    console.log('fetchData for MentorReportsSubmittedCounts');
     this.isLoading = true;
-    this.sqlReports.getSponsorSummarySentCounts()
+    this.sqlReports.getMentorReportSubmittedCounts()
       .subscribe(
-        data => { this.sponsorSummarySentCounts = data;
-                console.log(this.sponsorSummarySentCounts[0]); },
+        data => { this.mentorReportSubmittedCounts = data;
+                console.log(this.mentorReportSubmittedCounts[0]); },
         err => { this.errorMessage =  err; } ,
         () => { console.log('done'); this.isLoading = false; }
       );
@@ -58,7 +61,7 @@ https://plnkr.co/edit/DITVzCSqHHB1uNrTxFit?p=info
 
   public onSortColumn(sortCriteria: SORTCRITERIA) {
     console.log('parent received sortColumnCLick event with ' + sortCriteria.sortColumn);
-    return this.sponsorSummarySentCounts.sort((a, b) => {
+    return this.mentorReportSubmittedCounts.sort((a, b) => {
       return this.columnSorter.compareValues(a, b, sortCriteria);
     });
   }

@@ -13,6 +13,7 @@ import { ReportsStudentLettersComponent } from './index';
 import { ReportsStudentLetters2Component } from './index';
 // import { ReportsSponsorSummariesStatusComponent } from './index';
 import { ReportsSponsorSummariesSentComponent } from './index';
+import { ReportsMentorReportsSubmittedComponent } from './index';
 
 @NgModule({
     imports: [
@@ -28,7 +29,8 @@ import { ReportsSponsorSummariesSentComponent } from './index';
       ReportsStudentLettersComponent,
       ReportsStudentLetters2Component,
       // ReportsSponsorSummariesStatusComponent,
-      ReportsSponsorSummariesSentComponent
+      ReportsSponsorSummariesSentComponent,
+      ReportsMentorReportsSubmittedComponent
     ],
     providers: [
       SqlReports,

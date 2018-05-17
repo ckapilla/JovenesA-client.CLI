@@ -10,3 +10,4 @@ export * from './reports-student-letters/reports-student-letters.component';
 export * from './reports-student-letters2/reports-student-letters2.component';
 // export * from './reports-sponsor-summaries-status/reports-sponsor-summaries-status.component';
 export * from './reports-sponsor-summaries-sent/reports-sponsor-summaries-sent.component';
+export * from './reports-mentor-reports-submitted/reports-mentor-reports-submitted.component';

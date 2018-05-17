@@ -9,7 +9,7 @@ import { LatestStudentLetters2 } from '../report-models/latest-student-letters2'
 import { UrlService } from '../../../app_shared/services/url.service';
 import { SponsorSummaryStatusCount } from '../report-models/sponsor-summary-status-count';
 import { SponsorSummarySentCount } from '../report-models/sponsor-summary-sent-count';
-
+import { MentorReportSubmittedCount } from '../report-models/mentor-report-submitted-count';
 
 @Injectable()
 export class SqlReports {
@@ -63,6 +63,14 @@ export class SqlReports {
     return this.http.get<SponsorSummarySentCount[]>(url)
       .catch(this.handleError);
   }
+
+  public getMentorReportSubmittedCounts(): Observable <MentorReportSubmittedCount[]>  {
+    const url = this.WebApiPrefix + 'reports/mentor_report_submitted_counts';
+    console.log('sending AuthHttp get request for MentorReportSubmittedCounts with ' + url);
+    return this.http.get<MentorReportSubmittedCount[]>(url)
+      .catch(this.handleError);
+  }
+
 
 
   private handleError (error: any) {

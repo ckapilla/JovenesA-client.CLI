@@ -7,6 +7,7 @@ import { ReportsStudentLettersComponent } from './index';
 import { ReportsStudentLetters2Component } from './index';
 // import { ReportsSponsorSummariesStatusComponent } from './index';
 import { ReportsSponsorSummariesSentComponent } from './index';
+import { ReportsMentorReportsSubmittedComponent } from './index';
 import { CanActivateViaAdminAuthGuard } from '../app.routing-guards';
 
 const routes: Routes = [
@@ -29,13 +30,17 @@ const routes: Routes = [
         //   component: ReportsMentorReports2Component
         // },
         {
-          path: 'student-letters',
-          component: ReportsStudentLettersComponent
+          path: 'mentor-reports-submitted',
+          component: ReportsMentorReportsSubmittedComponent
         },
         {
-          path: 'student-letters2',
-          component: ReportsStudentLetters2Component
+          path: 'student-letters',
+          component: ReportsMentorReportsSubmittedComponent
         },
+        // {
+        //   path: 'student-letters2',
+        //   component: ReportsStudentLetters2Component
+        // },
         // {
         //   path: 'sponsor-summaries-status',
         //   component: ReportsSponsorSummariesStatusComponent

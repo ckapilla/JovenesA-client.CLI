@@ -1,6 +1,6 @@
 <div class="panel panel-primary">
   <div class="panel-heading" style="font-size:large">
-    Sponsor&nbsp;Summaries&nbsp;Sent
+    Mentor&nbsp;Reports&nbsp;Submitted
   </div>
   <div class="panel-body">
     <span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
@@ -16,26 +16,22 @@
 
           <thead>
             <tr>
-              <th app-sortable-column="pledgeGroupName" (onSortColumn)="onSortColumn($event)">Pledge Group</th>
-              <th app-sortable-column="studentName" (onSortColumn)="onSortColumn($event)">Student</th>
               <th app-sortable-column="mentorName" (onSortColumn)="onSortColumn($event)">Mentor</th>
-              <th app-sortable-column="sentCount"  sort-direction="asc" (onSortColumn)="onSortColumn($event)">Total Sent</th>
+              <th app-sortable-column="studentName" (onSortColumn)="onSortColumn($event)">Student</th>
+              <th app-sortable-column="submittedCount"  sort-direction="asc" (onSortColumn)="onSortColumn($event)">Total Submitted</th>
               <th app-sortable-column="latestDate" (onSortColumn)="onSortColumn($event)">Latest Month</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let row of sponsorSummarySentCounts">
+            <tr *ngFor="let row of mentorReportSubmittedCounts">
               <td class="report-row">
-                {{ row.pledgeGroupName }}
+                {{ row.mentorName }}
               </td>
               <td class="report-row">
                 {{ row.studentName }}
               </td>
-              <td class="report-row">
-                {{ row.mentorName }}
-              </td>
               <td class="report-row" >
-                {{ row.sentCount }}
+                {{ row.submittedCount }}
               </td>
               <td class="report-row" >
                   {{ row.latestDate | truncateDate }} 
