@@ -35,7 +35,7 @@ const routes: Routes = [
         },
         {
           path: 'student-letters',
-          component: ReportsMentorReportsSubmittedComponent
+          component: ReportsStudentLettersComponent
         },
         // {
         //   path: 'student-letters2',

@@ -176,13 +176,8 @@ export class AuthService {
 
       // Redirect to retryUrl if there is a saved url that has been set
       console.log('before checkForUnauthenticateRetryUrl');
-      // this.UpdateLastLogin();
+      this.UpdateLastLogin();
       this.checkForUnauthenticateRetryUrl();
-
-
-
-
-
     });
   }
 
