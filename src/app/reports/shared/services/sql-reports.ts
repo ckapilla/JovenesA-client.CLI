@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+
 import { LatestMentorReports } from '../report-models/latest-mentor-reports';
 import { LatestMentorReports2 } from '../report-models/latest-mentor-reports2';
 import { LatestStudentLetters } from '../report-models/latest-student-letters';
@@ -11,7 +13,7 @@ import { SponsorSummaryStatusCount } from '../report-models/sponsor-summary-stat
 import { SponsorSummarySentCount } from '../report-models/sponsor-summary-sent-count';
 import { MentorReportSubmittedCount } from '../report-models/mentor-report-submitted-count';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class SqlReports {
   WebApiPrefix: string;
 
@@ -24,54 +26,44 @@ export class SqlReports {
   public getLatestMentorReports(): Observable <LatestMentorReports[]>  {
     const url = this.WebApiPrefix + 'reports/latest_mentor_reports';
     console.log('sending AuthHttp get request for LatestMentorReports with ' + url);
-    return this.http.get<LatestMentorReports[]>(url)
-      .catch(this.handleError);
+    return this.http.get<LatestMentorReports[]>(url).pipe(catchError(this.handleError));
   }
 
   public getLatestMentorReports2(): Observable <LatestMentorReports2[]>  {
     const url = this.WebApiPrefix + 'reports/latest_mentor_reports2';
     console.log('sending AuthHttp get request for LatestMentorReports with ' + url);
-    return this.http.get<LatestMentorReports2[]> (url)
-      .catch(this.handleError);
+    return this.http.get<LatestMentorReports2[]> (url).pipe(catchError(this.handleError));
   }
-
 
   public getLatestStudentLetters(): Observable <LatestStudentLetters[]>  {
     const url = this.WebApiPrefix + 'reports/latest_student_letters';
     console.log('sending AuthHttp get request for LatestStudentLetters with ' + url);
-    return this.http.get<LatestStudentLetters[]>(url)
-      .catch(this.handleError);
+    return this.http.get<LatestStudentLetters[]>(url).pipe(catchError(this.handleError));
   }
 
   public getLatestStudentLetters2(): Observable <LatestStudentLetters2[]>  {
     const url = this.WebApiPrefix + 'reports/latest_student_letters2';
     console.log('sending AuthHttp get request for LatestStudentLetters2 with ' + url);
-    return this.http.get<LatestStudentLetters2[]>(url)
-      .catch(this.handleError);
+    return this.http.get<LatestStudentLetters2[]>(url).pipe(catchError(this.handleError));
   }
 
   public getSponsorSummaryStatusCounts(): Observable <SponsorSummaryStatusCount[]>  {
     const url = this.WebApiPrefix + 'reports/sponsor_summary_status_counts';
     console.log('sending AuthHttp get request for SponsorSummaryStatusCounts with ' + url);
-    return this.http.get<SponsorSummaryStatusCount[]>(url)
-      .catch(this.handleError);
+    return this.http.get<SponsorSummaryStatusCount[]>(url).pipe(catchError(this.handleError));
   }
 
   public getSponsorSummarySentCounts(): Observable <SponsorSummarySentCount[]>  {
     const url = this.WebApiPrefix + 'reports/sponsor_summary_sent_counts';
     console.log('sending AuthHttp get request for SponsorSummarSentCounts with ' + url);
-    return this.http.get<SponsorSummarySentCount[]>(url)
-      .catch(this.handleError);
+    return this.http.get<SponsorSummarySentCount[]>(url).pipe(catchError(this.handleError));
   }
 
   public getMentorReportSubmittedCounts(): Observable <MentorReportSubmittedCount[]>  {
     const url = this.WebApiPrefix + 'reports/mentor_report_submitted_counts';
     console.log('sending AuthHttp get request for MentorReportSubmittedCounts with ' + url);
-    return this.http.get<MentorReportSubmittedCount[]>(url)
-      .catch(this.handleError);
+    return this.http.get<MentorReportSubmittedCount[]>(url).pipe(catchError(this.handleError));
   }
-
-
 
   private handleError (error: any) {
     console.log('sqlResource handle error');

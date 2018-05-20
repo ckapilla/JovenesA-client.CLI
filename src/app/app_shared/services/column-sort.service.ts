@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 import { SORTCRITERIA } from '../interfaces/SORTCRITERIA';
 import { isNumber } from 'util';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ColumnSortService {
 
   private columnSortedSource = new Subject<SORTCRITERIA>();

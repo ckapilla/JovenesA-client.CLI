@@ -1,11 +1,7 @@
-
 import { Component, Input, Host } from '@angular/core';
 import {
   FormGroup,
   FormGroupDirective } from '@angular/forms';
-
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
 
 @Component({
   template: `<div>{{currentError}}</div>`,

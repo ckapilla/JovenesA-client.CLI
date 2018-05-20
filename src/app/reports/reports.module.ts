@@ -5,7 +5,6 @@ import { ReportsNavbarComponent } from './shared/reports-navbar/reports-navbar.c
 import { ReportsRouting } from './reports.routing';
 import { SqlReports } from './shared/services/sql-reports';
 
-
 import { ReportsHomeComponent } from './reports-home/reports-home.component';
 import { ReportsMentorReportsComponent } from './index';
 // import { ReportsMentorReports2Component } from './index';
@@ -31,9 +30,6 @@ import { ReportsMentorReportsSubmittedComponent } from './index';
       // ReportsSponsorSummariesStatusComponent,
       ReportsSponsorSummariesSentComponent,
       ReportsMentorReportsSubmittedComponent
-    ],
-    providers: [
-      SqlReports,
     ]
 })
 

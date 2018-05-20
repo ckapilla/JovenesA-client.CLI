@@ -5,7 +5,7 @@ import { AuthService } from './app_shared/services/auth.service';
 import { SessionService } from './app_shared/services/session.service';
 import { MonthlyReportsAddComponent } from './mentors/monthly-reports-add/monthly-reports-add.component';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class CanActivateViaAdminAuthGuard implements CanActivate {
   constructor(private auth: AuthService, private router: Router, private session: SessionService) {}
 
@@ -30,7 +30,7 @@ export class CanActivateViaAdminAuthGuard implements CanActivate {
     }
   }
 }
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class CanActivateViaMentorAuthGuard implements CanActivate {
   constructor(private auth: AuthService, private router: Router, private session: SessionService) {}
 
@@ -58,7 +58,7 @@ export class CanActivateViaMentorAuthGuard implements CanActivate {
   }
 }
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class CanActivateViaStudentAuthGuard implements CanActivate {
   constructor(private auth: AuthService, private router: Router, private session: SessionService) {}
 
@@ -83,7 +83,7 @@ export class CanActivateViaStudentAuthGuard implements CanActivate {
   }
 }
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ConfirmDeactivateGuard implements CanDeactivate<MonthlyReportsAddComponent> {
 
   canDeactivate(target: MonthlyReportsAddComponent) {

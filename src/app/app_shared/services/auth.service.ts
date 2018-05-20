@@ -3,8 +3,9 @@ import { Injectable, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { SessionService } from './session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
-import 'rxjs/add/operator/take';
-import 'rxjs/add/operator/filter';
+import { filter, catchError, } from 'rxjs/operators';
+import { of } from 'rxjs';
+// import 'rxjs/add/operator/filter';
 import { AUTH_CONFIG, LOCK_DICTIONARY } from './auth0-config';
 import { UrlService } from './url.service';
 
@@ -12,7 +13,7 @@ import { UrlService } from './url.service';
 declare var Auth0Lock: any;
 declare var Auth0: any;
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AuthService {
 
   userProfile: Object;
@@ -208,10 +209,12 @@ export class AuthService {
   // see https://github.com/auth0-samples/auth0-angularjs2-systemjs-sample/issues/40
   public handleAuthenticationWithHash() {
     console.log('in handleRedirectWithAuthHash');
-    this.router.events
-        .filter(event => event.constructor.name === 'NavigationStart')
-        .filter(event => (/access_token|id_token|error/).test(event['url']))
-        .subscribe(event => {
+    this.router.events.pipe(
+          filter(event => event.constructor.name === 'NavigationStart'),
+          filter(event => (/access_token|id_token|error/).test(event['url'])
+        ),
+        catchError(err => of ('Auth Error'))
+      ).subscribe(event => {
       console.log('in handleRedirectWithAuthHash subscribe event with hash ' + window.location.hash);
       // const authResult = this.auth0.parseHash(window.location.hash);
       // use following in conjunction with autoParseHash: false option setting

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import './operators';
 import { Router } from '@angular/router';
+import { catchError } from 'rxjs/operators';
+
 import { AuthService } from './app_shared/services/auth.service';
 import { SessionService } from './app_shared/services/session.service';
 import { SqlResource } from './app_shared/services/sql-resource.service';

@@ -1,5 +1,5 @@
 import { Directive, OnInit, EventEmitter, Output, OnDestroy, Input, HostListener } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { ColumnSortService } from '../services/column-sort.service';
 
 /*
