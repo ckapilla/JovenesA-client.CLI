@@ -22,6 +22,7 @@ export class MentorReportByMonth {
 
         public sponsorSummarySentDateTime?: Date,
         public sponsorFirstName?: string,
+        public pledgeGroupName?: string,
         public sponsorLastName?: string,
         public sponsorPreferredLanguageId?: number,
         public followUpStatusId?: number,
