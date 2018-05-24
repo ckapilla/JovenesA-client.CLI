@@ -9,7 +9,7 @@ import { CanActivateViaMentorAuthGuard } from '../app.routing-guards';
 
 const routes: Routes = [
   {
-    path: 'mentors',
+    path: '', // lazy loading
     component: MentorsComponent,
     canActivate: [CanActivateViaMentorAuthGuard],
     children: [

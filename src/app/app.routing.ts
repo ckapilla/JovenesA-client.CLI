@@ -7,6 +7,23 @@ const appRoutes: Routes = [
     path: 'Home/Mentors',
     redirectTo: '/mentors'
   },
+  {
+    path: 'admins',
+    loadChildren: './admins/admins.module#AdminsModule'
+  },
+  {
+    path: 'mentors',
+    loadChildren: './mentors/mentors.module#MentorsModule'
+  },
+  {
+    path: 'students',
+    loadChildren: './students/students.module#StudentsModule'
+  },
+  {
+    path: 'reports',
+    loadChildren: './reports/reports.module#ReportsModule'
+  },
+
   { path: '**', redirectTo: '' }
 ];
 

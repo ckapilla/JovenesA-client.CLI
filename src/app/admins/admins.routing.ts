@@ -17,7 +17,7 @@ import { CanActivateViaAdminAuthGuard } from '../app.routing-guards';
 
 const routes: Routes = [
   {
-    path: 'admins',
+    path: '', // lazy loading
     component: AdminsComponent,
     canActivate: [CanActivateViaAdminAuthGuard],
     children: [

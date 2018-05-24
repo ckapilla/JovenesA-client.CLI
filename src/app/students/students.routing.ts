@@ -8,7 +8,8 @@ import { CanActivateViaStudentAuthGuard } from '../app.routing-guards';
 
 const routes: Routes = [
   {
-    path: 'students',
+    // path: 'students', // non lazy loading
+    path: '', // lazy loading
     component: StudentsComponent,
     canActivate: [CanActivateViaStudentAuthGuard],
     children: [

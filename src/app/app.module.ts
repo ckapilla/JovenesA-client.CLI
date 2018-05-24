@@ -7,11 +7,11 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { appRouting, appRoutingProviders } from './app.routing';
 // every module that has a routing component needs to be imported here
-import { HomeModule } from './home/home.module';
-import { AdminsModule } from './admins/admins.module';
-import { MentorsModule } from './mentors/mentors.module';
-import { StudentsModule } from './students/students.module';
-import { ReportsModule } from './reports/reports.module';
+import { HomeModule } from './home/home.module';//
+// import { AdminsModule } from './admins/admins.module';
+// import { MentorsModule } from './mentors/mentors.module';
+// import { StudentsModule } from './students/students.module';
+// import { ReportsModule } from './reports/reports.module';
 import { AppSharedModule } from './app_shared/app_shared.module';
 
 @NgModule({
@@ -21,12 +21,11 @@ import { AppSharedModule } from './app_shared/app_shared.module';
     HttpClientModule,
     appRouting,
     appRoutingProviders,
-    ReactiveFormsModule,
     HomeModule,
-    AdminsModule,
-    MentorsModule,
-    StudentsModule,
-    ReportsModule,
+    // AdminsModule,
+    // MentorsModule,
+    // StudentsModule,
+    // ReportsModule,
     AppSharedModule.forRoot(),
   ],
 
