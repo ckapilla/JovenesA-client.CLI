@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, CanDeactivate,
-      Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, CanDeactivate, Router, RouterStateSnapshot } from '@angular/router';
 import { AuthService } from './app_shared/services/auth.service';
 import { SessionService } from './app_shared/services/session.service';
 import { MonthlyReportsAddComponent } from './mentors/monthly-reports-add/monthly-reports-add.component';
@@ -84,12 +83,17 @@ export class CanActivateViaStudentAuthGuard implements CanActivate {
 }
 
 @Injectable({ providedIn: 'root' })
-export class ConfirmDeactivateGuard implements CanDeactivate<MonthlyReportsAddComponent> {
+export class ConfirmDeactivateMonthlyReportAddGuard
+      implements CanDeactivate<MonthlyReportsAddComponent> {
 
-  canDeactivate(target: MonthlyReportsAddComponent) {
-    if (target.hasChanges()) {
-        return window.confirm('Do you really want to cancel?');
+  canDeactivate(component: MonthlyReportsAddComponent) : boolean {
+    if  (component.hasChanges()) {
+      console.log('XXXXXXXXXXXXXXXXXXXXXXXXCanDeactivate');
+      return window.confirm("You have unsaved changes. Click OK to leave the page without saving.\nTiene cambios no guardados. Haga clic OK para salir de la página sin guardar");
     }
     return true;
+
+
+
   }
 }

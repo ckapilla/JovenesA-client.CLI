@@ -204,7 +204,6 @@ export class MonthlyReportsAddComponent
         // ask if form is dirty and has not just been submitted
         console.log('hasChanges has submitted ' + this.submitted);
         console.log('hasChanges has form dirty ' + this.myForm.dirty);
-        console.log('hasChanges net is ' + this.myForm.dirty  || this.submitted);
         return this.myForm.dirty && !this.submitted;
     }
 

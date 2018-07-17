@@ -1,11 +1,7 @@
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { CanActivateViaMentorAuthGuard, ConfirmDeactivateMonthlyReportAddGuard } from '../app.routing-guards';
+import { MentorsComponent, MentorsHomeComponent, MentorsProfileComponent, MonthlyReportsAddComponent, MonthlyReportsComponent } from './index';
 
-import { MentorsHomeComponent } from './index';
-import { MentorsProfileComponent } from './index';
-import { MonthlyReportsComponent } from './index';
-import { MonthlyReportsAddComponent } from './index';
-import { MentorsComponent } from './index';
-import { CanActivateViaMentorAuthGuard } from '../app.routing-guards';
 
 const routes: Routes = [
   {
@@ -36,7 +32,8 @@ const routes: Routes = [
         },
         {
           path: 'monthly-reports-add/:mentorId/:studentId',
-          component: MonthlyReportsAddComponent
+          component: MonthlyReportsAddComponent,
+          canDeactivate: [ConfirmDeactivateMonthlyReportAddGuard]
         }
       ]
   }
