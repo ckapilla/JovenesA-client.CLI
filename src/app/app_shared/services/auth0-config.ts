@@ -29,7 +29,7 @@ export const LOCK_DICTIONARY: any  = {
 
   forgotPasswordTitle: 'Reset Password',
   forgotPasswordSubmitLabel: 'Send email / Enviar contraseña',
-  forgotPasswordAction: 'Forgot password / Olvidar contraseña?',
+  forgotPasswordAction: 'Set password / Establecer contraseña?',
   forgotPasswordInstructions: 'Please enter your email address. We will send you an email to reset your password.'
   + '/<br/>Por favor ingrese su dirección de correo. Le enviaremos las instrucciones para restablecer su contrseña.',
 
