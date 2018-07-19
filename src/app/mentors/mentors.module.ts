@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { AppSharedModule } from '../app_shared/app_shared.module';
-
-import { MentorsComponent } from './mentors.component';
-import { MentorsNavbarComponent } from './shared/mentors-navbar/mentors-navbar.component';
+import { AssignedStudentsComponent } from './assigned-students/assigned-students.component';
 import { MentorsHomeComponent } from './mentors-home/mentors-home.component';
 import { MentorsProfileComponent } from './mentors-profile/mentors-profile.component';
-import { MonthlyReportsComponent } from './monthly-reports/monthly-reports.component';
-import { MonthlyReportsAddComponent } from './monthly-reports-add/monthly-reports-add.component';
+import { MentorsComponent } from './mentors.component';
 import { MentorsRouting } from './mentors.routing';
-import { AssignedStudentsComponent } from './assigned-students/assigned-students.component';
+import { MonthlyReportsAddComponent } from './monthly-reports-add/monthly-reports-add.component';
+import { MonthlyReportsEditComponent } from './monthly-reports-edit/monthly-reports-edit.component';
+import { MonthlyReportsComponent } from './monthly-reports/monthly-reports.component';
+import { MentorsNavbarComponent } from './shared/mentors-navbar/mentors-navbar.component';
+
+
 
 @NgModule({
     imports: [
@@ -22,6 +24,7 @@ import { AssignedStudentsComponent } from './assigned-students/assigned-students
         MentorsProfileComponent,
         MonthlyReportsComponent,
         MonthlyReportsAddComponent,
+        MonthlyReportsEditComponent,
         AssignedStudentsComponent
         ],
 })
