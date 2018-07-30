@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError } from 'rxjs/operators';
-
 import { AuthService } from './app_shared/services/auth.service';
 import { SessionService } from './app_shared/services/session.service';
 import { SqlResource } from './app_shared/services/sql-resource.service';
+
 /**
  * This class represents the main application component. Within the @Routes annotation is the configuration of the
  * applications routes, configuring the paths for the lazy loaded components (HomeComponent, AboutComponent).
@@ -31,6 +30,7 @@ export class AppComponent {
     //   .subscribe(e => {
     //     console.log('event: ', e);
     //   });
+    auth.handleAuthentication();
 
   }
 }

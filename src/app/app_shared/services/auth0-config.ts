@@ -1,11 +1,15 @@
 interface AuthConfig {
   clientID: string;
   domain: string;
+  redirectUri: string;
+  callbackURL: string;
 }
 
 export const AUTH_CONFIG: AuthConfig = {
   clientID: 'pwC5E08ZZFytctumrhmI2bFmakYRGhD2',
-  domain: 'ckapilla.auth0.com'
+  domain: 'ckapilla.auth0.com',
+  redirectUri: '[set at runtime]',
+  callbackURL: 'https://ckapilla.auth0.com/login'
 };
 
 
