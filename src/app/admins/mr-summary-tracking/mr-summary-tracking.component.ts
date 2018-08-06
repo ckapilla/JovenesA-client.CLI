@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MentorReportByMonth } from '../../app_shared/models/mentor-report-by-month';
 import { SessionService } from '../../app_shared/services/session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
-import { MentorReportByMonth } from '../../app_shared/models/mentor-report-by-month';
-import { ParamMap } from '@angular/router/src/shared';
+
 
 interface SELECTITEM {
    value: string; label: string;
@@ -32,6 +31,7 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
   selectedMRSummaryStatus: string;
   selectedHighlightStatus: string;
   displayOriginalFields = false;
+  x: any;
 
   constructor(
               public router: Router,
@@ -98,11 +98,15 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
                     '/assets/images/greenSmiley.jpg',
                     '/assets/images/NA.jpg'
                     ];
-
   }
 
   ngOnInit() {
-    console.log('in OnInit');
+    console.log('onInit');
+    this.processRouteParams();
+  }
+
+  processRouteParams( ) {
+    console.log('summaryTraking setting filters form queryParams');
 
     const year = this.route.snapshot.queryParams['year'];
     console.log('year param = ' +  year);
@@ -217,7 +221,7 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
   getHighlightColor(highlightStatusId: number): string {
 
     if (highlightStatusId === 2106) {
-      console.log('returning ' + 'green-row');
+      // console.log('returning ' + 'green-row');
       return 'green-row';
     } else if (highlightStatusId === 2105) {
       return 'red-row';

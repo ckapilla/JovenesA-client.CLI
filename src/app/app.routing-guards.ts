@@ -9,7 +9,7 @@ export class CanActivateViaAdminAuthGuard implements CanActivate {
   constructor(private auth: AuthService, private router: Router, private session: SessionService) {}
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-
+    console.log('XXXXXXXXXXXXXXXXXXXX canActivate for Admin AuthGuard');
     if (this.auth.isAuthenticated()) {
       console.log('Can Activate Admin 1');
       if (this.session.isAdmin()) {
@@ -17,14 +17,15 @@ export class CanActivateViaAdminAuthGuard implements CanActivate {
         return true;
       } else {
         console.log('Authenticated but unauthorized for Admin');
-        this.router.navigate(['unauthorized']);
+        localStorage.setItem('unauthenticated_retry_url', '/admins/mentor-reports/summary-tracking?id=id2681&year=2018&month=6&summaryStatus=0&highlight=2106');
+        // this.router.navigate(['unauthorized']);
         return false;
       }
     } else {
       console.log('Not authenticated -- Can\'t Activate Admin');
-      localStorage.setItem('unauthenticated_retry_url', '/adimins');
-      // this.auth.login();
-      // this.router.navigate(['']);
+      localStorage.setItem('unauthenticated_retry_url', '/admins/mentor-reports/summary-tracking?id=id2681&year=2018&month=6&summaryStatus=0&highlight=2106');
+      this.router.navigate(['']);
+      this.auth.login();
       return false;
     }
   }

@@ -1,17 +1,6 @@
-import { Routes, RouterModule } from '@angular/router';
-import { AdminsHomeComponent } from './index';
-import { AdminsProfileComponent } from './index';
-import { AdminsMembersComponent } from './index';
-import { AdminsMemberComponent } from './index';
-import { AdminsCommunicationsComponent } from './index';
-import { AdminsStudentsComponent } from './index';
-import { AdminsStudentComponent } from './index';
-import { MentorReportsSummaryTrackingComponent } from './index';
-import { MentorReportSummaryUpdatesComponent } from './index';
-import { MentorReportsFollowUpTrackingComponent } from './index';
-import { MentorReportFollowUpUpdatesComponent } from './index';
-import { AdminsComponent } from './index';
+import { RouterModule, Routes } from '@angular/router';
 import { CanActivateViaAdminAuthGuard } from '../app.routing-guards';
+import { AdminsCommunicationsComponent, AdminsComponent, AdminsHomeComponent, AdminsMemberComponent, AdminsMembersComponent, AdminsProfileComponent, AdminsStudentComponent, AdminsStudentsComponent, MentorReportFollowUpUpdatesComponent, MentorReportsFollowUpTrackingComponent, MentorReportsSummaryTrackingComponent, MentorReportSummaryUpdatesComponent } from './index';
 
 // import { AdminsGradeHistoryComponent } from './index';
 
@@ -24,6 +13,10 @@ const routes: Routes = [
         {
           path: '',
           pathMatch: 'full',
+          component: MentorReportsSummaryTrackingComponent
+        },
+        {
+          path: 'home',
           component: AdminsHomeComponent
         },
         {
@@ -55,13 +48,20 @@ const routes: Routes = [
         //   component: AdminsGradeHistoryComponent
         // },
         {
+          path: 'mentor-reports/summary-tracking/:id/:year/:month/:summaryStatus/:highlight',
+          component: MentorReportsSummaryTrackingComponent
+        },
+
+        {
           path: 'mentor-reports/summary-tracking',
           component: MentorReportsSummaryTrackingComponent
         },
+
         {
           path: 'mentor-reports/summary-updates', // /:mentorReportId',
           component: MentorReportSummaryUpdatesComponent
         },
+
         {
           path: 'mentor-reports/follow-up-tracking',
           component: MentorReportsFollowUpTrackingComponent

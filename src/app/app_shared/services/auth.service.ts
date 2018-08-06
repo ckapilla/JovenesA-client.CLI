@@ -86,7 +86,7 @@ export class AuthService {
 
     this.expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
     console.log(this.expiresAt);
-    
+
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', this.expiresAt);
@@ -110,25 +110,24 @@ export class AuthService {
 
   private extractUserProfileFromAuthResult(authResult: any) {
     // Call get userInfo with the token in authResult
-    console.log('in extractUserProfileFromAuthResult');
-    console.log('calling userInfo with authResult.accessToken')
+    // console.log('in extractUserProfileFromAuthResult');
+    // console.log('calling userInfo with authResult.accessToken')
     this.auth0.client.userInfo(authResult.accessToken, (err:any , profile: any) => {
-    console.log('userInfo Callback')
+      // console.log('userInfo Callback')
 
-    if (err) {
-      // Handle error
-      console.log(err);
-      return;
-    }
-    console.log('in userInfo Callback with profile>>');
-    console.log(profile);
-    if (this.isTokenUnexpired()) {
-      console.log('set Session with Profile');
-      //this.saveProfileToLocalStorage(profile);
-      this.setUserProfileElementsToSession(profile);
-    } else {
-      console.log('getUserInfo with token expired');
-    }
+      if (err) {
+        // Handle error
+        console.log(err);
+        return;
+      }
+      console.log('in userInfo Callback with profile>>');
+      if (this.isTokenUnexpired()) {
+        console.log('Token Unexpired, so set Session with Profile');
+        //this.saveProfileToLocalStorage(profile);
+        this.setUserProfileElementsToSession(profile);
+      } else {
+        console.log('getUserInfo with token expired');
+      }
 
       if (this.session.getFailedAuthorizationRoute()  > '') {
         console.log('have failed authorization route, retrying ');
@@ -137,8 +136,8 @@ export class AuthService {
 
       // Redirect to retryUrl if there is a saved url that has been set
       console.log('before checkForUnauthenticateRetryUrl');
-      this.UpdateLastLogin();
       this.checkForUnauthenticateRetryUrl();
+      this.UpdateLastLogin();
     });
   }
 
@@ -147,8 +146,8 @@ export class AuthService {
     console.log('checkForUnauthenticateRetryUrl has retryUrl ' + retryUrl);
     if (retryUrl) {
       console.log('navigating to unauthenticated_retry_url: ' + retryUrl);
-      this.router.navigate([retryUrl]);
-      localStorage.removeItem('unauthenticated_retry_url');
+      this.router.navigateByUrl(retryUrl);
+      // localStorage.removeItem('unauthenticated_retry_url');
     }
   }
 
@@ -208,12 +207,12 @@ export class AuthService {
   }
 
   public UpdateLastLogin(): void {
-    console.log('calling SqlResource UpdateLastLogin with useId' + this.session.userId);
+    // console.log('calling SqlResource UpdateLastLogin with useId' + this.session.userId);
     this.sqlResource.UpdateLastLogin(this.session.userId)
       .subscribe(
       data => {/*console.log('');*/ },
       err => console.error('last login Subscribe error: ' + err),
-      () => { console.log('lastLogin set'); }
+      () => { }
       );
   }
 
