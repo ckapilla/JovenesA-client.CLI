@@ -75,8 +75,8 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
         { value: '0', label: '[All]' },
         { value: '2105', label: 'Problems' },
         { value: '2106', label: 'GoodNews' },
+        { value: '2109', label: 'Red/Green' }
       ];
-
 
       // this.followUpStatuses = [
       //   { value: '0', label: '[All]' },

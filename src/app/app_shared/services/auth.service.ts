@@ -53,7 +53,7 @@ export class AuthService {
   }
 
   public login(): void {
-    console.log('Redirect to the universal /authorize endpoint');
+    console.log('login Redirect to the Auth0 universal /authorize endpoint');
     this.auth0.authorize({
       scope: 'profile email'
     } );
@@ -129,10 +129,10 @@ export class AuthService {
         console.log('getUserInfo with token expired');
       }
 
-      if (this.session.getFailedAuthorizationRoute()  > '') {
-        console.log('have failed authorization route, retrying ');
-        this.router.navigateByUrl(this.session.getFailedAuthorizationRoute());
-      }
+      // if (this.session.getFailedAuthorizationRoute()  > '') {
+      //   console.log('have failed authorization route, retrying ');
+      //   this.router.navigateByUrl(this.session.getFailedAuthorizationRoute());
+      // }
 
       // Redirect to retryUrl if there is a saved url that has been set
       console.log('before checkForUnauthenticateRetryUrl');
@@ -147,7 +147,8 @@ export class AuthService {
     if (retryUrl) {
       console.log('navigating to unauthenticated_retry_url: ' + retryUrl);
       this.router.navigateByUrl(retryUrl);
-      // localStorage.removeItem('unauthenticated_retry_url');
+      console.log('')
+      localStorage.removeItem('unauthenticated_retry_url');
     }
   }
 

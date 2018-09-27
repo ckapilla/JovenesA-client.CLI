@@ -14,7 +14,7 @@ export class SessionService {
     constructor() {
         // this.loading$ = new Observable(observer => this._observer = observer)
         // .share();
-        // console.log('SessionService constructor 4');
+        console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&SessionService constructor');
         this.userId = 0;
         this.assignedStudentId = 0;
     }
@@ -103,13 +103,14 @@ export class SessionService {
       return this.assignedStudentName;
     }
 
-    public setFailedAuthorizationRoute(route: string): void {
-      this.failedAuthorizationRoute = route;
-    }
+    // public setFailedAuthorizationRoute(route: string): void {
+    //   console.log('setFailedRoute setting ' + route);
+    //   this.failedAuthorizationRoute = route;
+    // }
 
-    public getFailedAuthorizationRoute(): string {
-      // console.log('getFailedRoute returning ' + this.failedRoute);
-      return this.failedAuthorizationRoute;
-    }
+    // public getFailedAuthorizationRoute(): string {
+    //   console.log('getFailedRoute returning ' + this.failedAuthorizationRoute);
+    //   return this.failedAuthorizationRoute;
+    // }
 
 }

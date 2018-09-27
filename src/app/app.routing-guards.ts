@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanDeactivate, Router, RouterStateSnapshot } from '@angular/router';
 import { AuthService } from './app_shared/services/auth.service';
 import { SessionService } from './app_shared/services/session.service';
-import { MonthlyReportsAddComponent } from './mentors/monthly-reports-add/monthly-reports-add.component';
+import { MonthlyReportsAddComponent } from './mentors/index';
+import { MentorReportsSummaryTrackingComponent } from './admins/index';
 
 @Injectable({ providedIn: 'root' })
 export class CanActivateViaAdminAuthGuard implements CanActivate {
   constructor(private auth: AuthService, private router: Router, private session: SessionService) {}
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    console.log('XXXXXXXXXXXXXXXXXXXX canActivate for Admin AuthGuard');
+    console.log('canActivate for Admin AuthGuard with url' + state.url);
     if (this.auth.isAuthenticated()) {
       console.log('Can Activate Admin 1');
       if (this.session.isAdmin()) {
@@ -17,14 +18,14 @@ export class CanActivateViaAdminAuthGuard implements CanActivate {
         return true;
       } else {
         console.log('Authenticated but unauthorized for Admin');
-        localStorage.setItem('unauthenticated_retry_url', '/admins/mentor-reports/summary-tracking?id=id2681&year=2018&month=6&summaryStatus=0&highlight=2106');
+        localStorage.setItem('unauthenticated_retry_url', state.url); // '/admins/mentor-reports/summary-tracking?id=id2681&year=2018&month=6&summaryStatus=0&highlight=2109');
         // this.router.navigate(['unauthorized']);
         return false;
       }
     } else {
       console.log('Not authenticated -- Can\'t Activate Admin');
-      localStorage.setItem('unauthenticated_retry_url', '/admins/mentor-reports/summary-tracking?id=id2681&year=2018&month=6&summaryStatus=0&highlight=2106');
-      this.router.navigate(['']);
+      localStorage.setItem('unauthenticated_retry_url', state.url); //  '/admins/mentor-reports/summary-tracking?id=id2681&year=2018&month=6&summaryStatus=0&highlight=2109');
+      this.router.navigate(['']); // just to clean up url bar
       this.auth.login();
       return false;
     }
@@ -44,13 +45,15 @@ export class CanActivateViaMentorAuthGuard implements CanActivate {
       } else {
         console.log('Authenticated but unauthorized for Mentor');
         // if this is on startup, will need to try navigate again after profile is loaded
-        this.session.setFailedAuthorizationRoute('mentors');
-        this.router.navigate(['']);
+        // this.session.setFailedAuthorizationRoute('mentors');
+        localStorage.setItem('unauthenticated_retry_url', state.url); // '/mentors');
+        // this.router.navigate(['']);
         return false;
       }
     } else {
       console.log('link to Mentor but not authenticated -- save /mentors retry url:');
-      localStorage.setItem('unauthenticated_retry_url', '/mentors');
+      localStorage.setItem('unauthenticated_retry_url', state.url); // '/mentors');
+      this.router.navigate(['']); // just to clean up URL bar
       this.auth.login();
 
       return false;
@@ -71,7 +74,8 @@ export class CanActivateViaStudentAuthGuard implements CanActivate {
       } else {
         console.log('Authenticated but unauthorized for Student');
         // if this is on startup, will need to try navigate again after profile is loaded
-        this.session.setFailedAuthorizationRoute('students');
+        // this.session.setFailedAuthorizationRoute('students');
+        localStorage.setItem('unauthenticated_retry_url', '/students');
         return false;
       }
     } else {
@@ -89,12 +93,19 @@ export class ConfirmDeactivateMonthlyReportAddGuard
 
   canDeactivate(component: MonthlyReportsAddComponent) : boolean {
     if  (component.hasChanges()) {
-      console.log('XXXXXXXXXXXXXXXXXXXXXXXXCanDeactivate');
+      console.log('CanDeactivate');
       return window.confirm("You have unsaved changes. Click OK to leave the page without saving.\nTiene cambios no guardados. Haga clic OK para salir de la página sin guardar");
     }
     return true;
+  }
+}
+@Injectable({ providedIn: 'root' })
+export class ConfirmDeactivateSummaryTrackingGuard
+      implements CanDeactivate<MentorReportsSummaryTrackingComponent> {
 
-
-
+  canDeactivate(component: MentorReportsSummaryTrackingComponent): boolean {
+    console.log('CanDeactivate for Admins clearing unauthenticate_retry+url');
+    localStorage.removeItem('unauthenticated_retry_url');
+    return true;
   }
 }

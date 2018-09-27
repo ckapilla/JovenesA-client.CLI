@@ -1,5 +1,5 @@
 import { RouterModule, Routes } from '@angular/router';
-import { CanActivateViaAdminAuthGuard } from '../app.routing-guards';
+import { CanActivateViaAdminAuthGuard, ConfirmDeactivateSummaryTrackingGuard } from '../app.routing-guards';
 import { AdminsCommunicationsComponent, AdminsComponent, AdminsHomeComponent, AdminsMemberComponent, AdminsMembersComponent, AdminsProfileComponent, AdminsStudentComponent, AdminsStudentsComponent, MentorReportFollowUpUpdatesComponent, MentorReportsFollowUpTrackingComponent, MentorReportsSummaryTrackingComponent, MentorReportSummaryUpdatesComponent } from './index';
 
 // import { AdminsGradeHistoryComponent } from './index';
@@ -49,7 +49,8 @@ const routes: Routes = [
         // },
         {
           path: 'mentor-reports/summary-tracking/:id/:year/:month/:summaryStatus/:highlight',
-          component: MentorReportsSummaryTrackingComponent
+          component: MentorReportsSummaryTrackingComponent,
+          canDeactivate: [ConfirmDeactivateSummaryTrackingGuard]
         },
 
         {
