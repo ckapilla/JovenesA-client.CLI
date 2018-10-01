@@ -1,6 +1,9 @@
 import { RouterModule, Routes } from '@angular/router';
 import { CanActivateViaMentorAuthGuard, ConfirmDeactivateMonthlyReportAddGuard } from '../app.routing-guards';
-import { MentorsComponent, MentorsHomeComponent, MentorsProfileComponent, MonthlyReportsAddComponent, MonthlyReportsComponent } from './index';
+import {
+  MentorsComponent, MentorsHomeComponent, MentorsProfileComponent,
+    MonthlyReportsAddComponent, MonthlyReportsEditComponent, MonthlyReportsComponent
+} from './index';
 
 
 const routes: Routes = [
@@ -33,6 +36,11 @@ const routes: Routes = [
         {
           path: 'monthly-reports-add/:mentorId/:studentId',
           component: MonthlyReportsAddComponent,
+          canDeactivate: [ConfirmDeactivateMonthlyReportAddGuard]
+        },
+        {
+          path: 'monthly-reports-edit/:mentorReportId',
+          component: MonthlyReportsEditComponent,
           canDeactivate: [ConfirmDeactivateMonthlyReportAddGuard]
         }
       ]

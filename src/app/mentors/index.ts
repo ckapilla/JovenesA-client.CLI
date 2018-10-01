@@ -3,14 +3,10 @@
  */
 
 export * from './mentors.component';
-
 export * from './mentors-home/mentors-home.component';
-
 export * from './mentors-profile/mentors-profile.component';
-
 export * from './monthly-reports/monthly-reports.component';
-
 export * from './monthly-reports-add/monthly-reports-add.component';
-
+export * from './monthly-reports-edit/monthly-reports-edit.component';
 export * from './shared/mentors-navbar/index';
 

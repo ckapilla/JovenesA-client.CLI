@@ -28,7 +28,8 @@
       </div>
       <div class="panel-body">
 
-        <div class="row" style="border-bottom: 3px solid #ccc; margin-top: 2px;" *ngFor="let i of mentorReports">
+        <div class="row" style="border-bottom: 3px solid #ccc; margin-top: 2px;"
+          *ngFor="let i of mentorReports">
           <div class="col-md-12">
             <div class="row">
 
@@ -45,6 +46,14 @@
                 &nbsp;Student Snapshot:
                 <img src="{{smileys[i.mentorReportSnapshot+1]}}" width="24px" />
               </span>
+
+              <span *ngIf="i.sponsorSummaryStatusId==2086" class="padded">
+                <span class="btn btn-primary" (click)="monthlyReportEdit(i.mentorReportId )" style="margin-left:10px">
+                  Edit Report
+                </span>
+              </span>
+
+
             </div>
             <div class="row">
               <div class="padded">

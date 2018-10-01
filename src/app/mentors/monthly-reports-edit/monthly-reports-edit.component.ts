@@ -24,11 +24,13 @@ export class MonthlyReportsEditComponent
     followUp: AbstractControl;
     success: AbstractControl;
     challenge: AbstractControl;
+    reportId: AbstractControl;
     contactYears: SELECTITEM[];
     contactMonths: SELECTITEM[];
     errorMessage: string;
     successMessage: string;
     needsFollowUp: boolean;
+    mentorReportId: number;
 
 
     constructor(
@@ -64,16 +66,17 @@ export class MonthlyReportsEditComponent
           ];
 
         this.myForm = _fb.group({
-            lastContactYearSelector: ['', Validators.required],
+            lastContactYearSelector: ['2018', Validators.required],
             // lastContactMonthSelector: ['', this.validateMonth],
             lastContactMonthSelector: [''],
-            inputSnapshot: ['', Validators.required],
-            inputFollowUp: ['', Validators.compose(
+            inputSnapshot: [this.snapshot, Validators.required],
+            inputFollowUp: [this.followUp, Validators.compose(
                                 [Validators.maxLength(2000)])],
-            inputSuccess: ['', Validators.compose(
+            inputSuccess: [this.success, Validators.compose(
                                 [Validators.required, Validators.maxLength(2000)])],
-            inputSetback: ['', Validators.compose(
-                                [Validators.required, Validators.maxLength(2000)])],
+            inputSetback: [this.challenge, Validators.compose(
+                [Validators.required, Validators.maxLength(2000)])],
+            mentorReportId: [this.reportId]
 
         });
 
@@ -83,8 +86,7 @@ export class MonthlyReportsEditComponent
         this.followUp = this.myForm.controls['inputFollowUp'];
         this.success = this.myForm.controls['inputSuccess'];
         this.challenge = this.myForm.controls['inputSetback'];
-
-
+        this.reportId = this.myForm.controls['mentorReportId']
 
         this.mentorReport = new RptMentorReport();
         this.mentorReport.mentorId = 0;
@@ -113,25 +115,29 @@ export class MonthlyReportsEditComponent
         // console.log('mentorId ' + this.mentorReport.mentorId);
         // console.log('studentId ' + this.mentorReport.studentId);
 
-        const id = this.currRoute.snapshot.params['mentorReportId'];
-        console.log('calling sqlResource with mentorReportId: ' + id);
+        this.mentorReportId = this.currRoute.snapshot.params['mentorReportId'];
+        console.log('calling sqlResource with mentorReportId: ' + this.mentorReportId);
         this.isLoading = true;
-        this.sqlResource.getMentorReport(id)
+        this.sqlResource.getMentorReport(this.mentorReportId)
           .subscribe(
             data => {this.mentorReport = data; },
             err => console.error('Subscribe error: ' + err),
             () => {console.log('done loading');
-                  this.isLoading = false;
-                  }
+                this.isLoading = false;
+                console.log('setting reportId to ' + this.mentorReportId);
+                this.reportId.setValue(this.mentorReportId);
+                this.lastYear.setValue(this.mentorReport.lastContactYear);
+                this.lastMonth.setValue(this.mentorReport.lastContactMonth);
+                this.snapshot.setValue(this.mentorReport.mentorReportSnapshot);
+                this.followUp.setValue(this.mentorReport.followUpHistory);
+                this.success.setValue(this.mentorReport.recentSuccess);
+                this.challenge.setValue(this.mentorReport.recentSetback);
+                }
           );
-
-
-
         // this.mentorReport.lastContactYear = (Number)(this.contactYears[this.contactYears.length - 1].value);
         // this.mentorReport.lastContactYear = (Number)(this.contactYears[0].value);
-        // this.mentorReport.lastContactMonth = 0;
         // this.mentorReport.sponsorSummaryStatusId = 2086;
-        console.log('zzz');
+        console.log('after init form values');
       this.myForm.valueChanges.subscribe(
           (form: any) => {
                             this.errorMessage = '';
@@ -174,16 +180,22 @@ export class MonthlyReportsEditComponent
           window.scrollTo(0, 0);
           return false;
         }
+        //this.mentorReport.mentorId = this.reportId.value;
+        this.mentorReport.recentSetback = this.challenge.value;
+        this.mentorReport.recentSuccess = this.success.value;
+        this.mentorReport.mentorReportSnapshot = this.snapshot.value;
+        this.mentorReport.lastContactYear = this.lastYear.value;
+        this.mentorReport.lastContactMonth = this.lastMonth.value;
+        this.mentorReport.followUpHistory = this.followUp.value;
 
-
-    this.sqlResource.editMentorReport(this.mentorReport)
+        this.sqlResource.editMentorReport(this.mentorReport)
           .subscribe(
               (student) => {
                   console.log(this.successMessage = <any>student);
                   this.submitted = true;
                   this.isLoading = false;
                   const target = '/mentors/monthly-reports/' + this.mentorReport.mentorId; // + '/' + this.mentorReport.studentId;
-                  console.log('after call to addMentorReport; navigating to ' + target);
+                  console.log('after call to editMentorReport; navigating to ' + target);
                   this.router.navigateByUrl(target);
               },
               (error) =>  {

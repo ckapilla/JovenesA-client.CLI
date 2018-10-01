@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
-import { SessionService } from '../../app_shared/services/session.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RptMentorReport } from '../../app_shared/models/mentor-report';
+import { SessionService } from '../../app_shared/services/session.service';
+import { SqlResource } from '../../app_shared/services/sql-resource.service';
+
 
 @Component({
 
@@ -17,6 +17,7 @@ export class MonthlyReportsComponent implements OnInit {
 
   studentId: number;
   mentorId: number;
+  mentorReportId: number;
   mentorReports: Array<RptMentorReport>;
   smileys: Array<string>;
   studentName: string;
@@ -62,11 +63,18 @@ export class MonthlyReportsComponent implements OnInit {
       );
   }
 
-
   monthlyReportAdd() {
     console.log('in monthly-reports: monthlyReportAdd, ready to navigate');
     if (this.studentId !== null) {
       const target = '/mentors/monthly-reports-add/' + this.mentorId + '/' + this.studentId;
+      this.router.navigateByUrl(target); // , //{mentorId: this.mentorId, studentId: this.studentId}]);
+    }
+  }
+
+  monthlyReportEdit(mentorReportId: number) {
+    console.log('in monthly-reports: monthlyReportEdit, ready to navigate');
+    if (this.studentId !== null) {
+      const target = '/mentors/monthly-reports-edit/' + mentorReportId;
       this.router.navigateByUrl(target); // , //{mentorId: this.mentorId, studentId: this.studentId}]);
     }
   }
