@@ -116,7 +116,7 @@ export class MonthlyReportsEditComponent
         // console.log('studentId ' + this.mentorReport.studentId);
 
         this.mentorReportId = this.currRoute.snapshot.params['mentorReportId'];
-        console.log('calling sqlResource with mentorReportId: ' + this.mentorReportId);
+        console.log('calling sqlRenpsource with mentorReportId: ' + this.mentorReportId);
         this.isLoading = true;
         this.sqlResource.getMentorReport(this.mentorReportId)
           .subscribe(

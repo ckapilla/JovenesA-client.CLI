@@ -1,23 +1,23 @@
-import { Injectable, Inject, InjectionToken } from '@angular/core';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Admin } from '../models/admin';
-import { Mentor } from '../models/mentor';
-import { Member } from '../models/member';
-import { Student } from '../models/student';
-import { StudentDTO } from '../models/studentDTO';
-import { MemberStudentRelations } from '../models/member-student-relations';
-
 import { Communication } from '../models/communication';
+import { Member } from '../models/member';
+import { MemberStudentRelations } from '../models/member-student-relations';
+import { Mentor } from '../models/mentor';
 import { RptMentorReport } from '../models/mentor-report';
+import { MentorReportByMonth } from '../models/mentor-report-by-month';
+import { MentorReportFollowUp } from '../models/mentor-report-follow-up';
+import { MentorReportsStatusCount } from '../models/mentor-reports-status-count';
+import { SponsorLetter } from '../models/sponsor-letter';
+import { Student } from '../models/student';
 import { RptStudentMentor } from '../models/student-mentor';
 import { RptStudentSponsor } from '../models/student-sponsor';
-import { SponsorLetter } from '../models/sponsor-letter';
-import { MentorReportByMonth } from '../models/mentor-report-by-month';
-import { MentorReportsStatusCount } from '../models/mentor-reports-status-count';
-import { MentorReportFollowUp } from '../models/mentor-report-follow-up';
+import { StudentDTO } from '../models/studentDTO';
 import { UrlService } from './url.service';
+
 
 
 @Injectable({ providedIn: 'root' })
@@ -225,13 +225,13 @@ public getMentorReport(mentorReportId: number): Observable <RptMentorReport>  {
                           mentorId: number,
                           studentId: number): Observable<RptMentorReport> {
 
-    const url = this.WebApiPrefix + 'mentor_reports/' + mentorReport.mentorReportId ;
+    const url = this.WebApiPrefix + 'mentor_reports'; // + mentorReport.mentorReportId ;
     let body = JSON.stringify({ mentorReport });
     // strip outer 'mentor' name
     const x = JSON.parse(body);
     body = JSON.stringify(x.mentorReport);
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    console.log('ready to put ' + url + ' body: ' + body + ' options ' + headers);
+    //console.log('ready to put ' + url + ' body: ' + body + ' options ' + headers);
     return this.http.put(url, body, { headers: headers })
   }
 
@@ -240,24 +240,25 @@ public getMentorReport(mentorReportId: number): Observable <RptMentorReport>  {
       mentorId: number,
       studentId: number): Observable<RptMentorReport> {
 
-    const url = this.WebApiPrefix + 'mentor_reports';
+    const url = this.WebApiPrefix + 'mengit tor_reports';
     let body = JSON.stringify({ mentorReport });
     // strip outer 'mentor' name
     const x = JSON.parse(body);
     body = JSON.stringify(x.mentorReport);
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    console.log('ready to put ' + url + ' body: ' + body + ' options ' + headers);
+    // console.log('ready to post ' + url + ' body: ' + body + ' options ' + headers);
     return this.http.post(url, body, { headers: headers })
   }
   public editMentorReport(mentorReport: RptMentorReport): Observable<RptMentorReport> {
 
-  const url = this.WebApiPrefix + 'mentor_reports';
+   const url = this.WebApiPrefix + 'mentor_reports';
+  console.log('editMentorReport ' + url);
   let body = JSON.stringify({ mentorReport });
   // strip outer 'mentor' name
   const x = JSON.parse(body);
   body = JSON.stringify(x.mentorReport);
   const headers = new HttpHeaders().set('Content-Type', 'application/json');
-  console.log('ready to put ' + url + ' body: ' + body + ' options ' + headers);
+  // console.log('ready to put ' + url + ' body: ' + body + ' options ' + headers);
   return this.http.put(url, body, { headers: headers })
 }
 

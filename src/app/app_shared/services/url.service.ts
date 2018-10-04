@@ -9,8 +9,8 @@ export class UrlService {
     // console.log('UrlService constructor');
 
     const backendEnv: 'AzureProd' | 'AzureTest' | 'local'
-      = 'local' as 'AzureProd' | 'AzureTest' | 'local';
-      // = 'local' as 'AzureProd' | 'AzureTest' | 'local';
+     = 'AzureProd' as 'AzureProd' | 'AzureTest' | 'local';
+     // = 'local' as 'AzureProd' | 'AzureTest' | 'local';
 
     // console.log('window: ' + window.location.hostname);
 
