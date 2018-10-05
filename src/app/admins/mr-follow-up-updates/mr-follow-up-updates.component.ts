@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
-import { FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
-
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
-import { RptMentorReport } from '../../app_shared/models/mentor-report';
-
+import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
+import { RptMentorReport } from '../../app_shared/models/mentor-report';
+import { SessionService } from '../../app_shared/services/session.service';
+import { SqlResource } from '../../app_shared/services/sql-resource.service';
+
+
+
 
 @Component({
 
@@ -30,13 +32,15 @@ export class MentorReportFollowUpUpdatesComponent
 
     selectedFollowUpStatus: string;
     savedFollowUpStatusId: number;
+    studentName: string;
 
 
     constructor(
-              public currRoute: ActivatedRoute,
-              private router: Router,
-              public sqlResource: SqlResource,
-              private _fb: FormBuilder
+        public currRoute: ActivatedRoute,
+        private router: Router,
+        public sqlResource: SqlResource,
+        private _fb: FormBuilder,
+        private session: SessionService
     ) {
 
 
@@ -75,6 +79,7 @@ export class MentorReportFollowUpUpdatesComponent
         this.errorMessage = '';
         this.successMessage = '';
         this.submitted = false;
+        this.studentName = this.session.getStudentInContextName();
     }
 
     ngOnInit() {
@@ -82,6 +87,7 @@ export class MentorReportFollowUpUpdatesComponent
 
     const mentorReportId = this.currRoute.snapshot.params['mentorReportId'];
     console.log('sqlResource with MentorReportId: ' + mentorReportId);
+    this.studentName = this.session.getStudentInContextName();
     this.isLoading = true;
     this.sqlResource.getMentorReport(mentorReportId)
       .subscribe(
@@ -103,6 +109,7 @@ export class MentorReportFollowUpUpdatesComponent
                             // console.log('form change event');
           }
       );
+
     }
 
     onSubmit()  {
@@ -115,9 +122,7 @@ export class MentorReportFollowUpUpdatesComponent
           return false;
         }
 
-        this.sqlResource.updateMentorReport(this.mentorReport,
-                                        this.mentorReport.mentorId,
-                                        this.mentorReport.studentId)
+        this.sqlResource.updateMentorReport(this.mentorReport)
             .subscribe(
                 (student) => {
                     console.log(this.successMessage = <any>student);

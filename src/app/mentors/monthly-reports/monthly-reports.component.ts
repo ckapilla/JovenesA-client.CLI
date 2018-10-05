@@ -48,6 +48,7 @@ export class MonthlyReportsComponent implements OnInit {
   onSelectedStudentName(studentName: string) {
     // console.log('$$$$$$$ got selected NAME event');
     this.studentName = '' + studentName;
+    this.session.setStudentInContextName(studentName);
   }
 
   onSelectedStudentId(studentId: number) {

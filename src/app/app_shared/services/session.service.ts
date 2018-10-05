@@ -95,11 +95,11 @@ export class SessionService {
       return this.assignedStudentId;
     }
 
-    public setAssignedStudentName(name: string): void {
+    public setStudentInContextName(name: string): void {
       this.assignedStudentName = name;
     }
 
-    public getAssignedStudentName(): string {
+    public getStudentInContextName(): string {
       return this.assignedStudentName;
     }
 

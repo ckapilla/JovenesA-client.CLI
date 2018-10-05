@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
 import { Router } from '@angular/router';
+import { SqlResource } from '../../app_shared/services/sql-resource.service';
 import { SessionService } from '../../app_shared/services/session.service';
 import { MentorReportFollowUp } from '../../app_shared/models/mentor-report-follow-up';
 
@@ -18,6 +17,7 @@ export class MentorReportsFollowUpTrackingComponent implements OnInit {
   followUpStatuses: SELECTITEM[];
   errorMessage: string;
   successMessage: string;
+  studentName: string;
 
   constructor(public sqlResource: SqlResource,
               public router: Router,
@@ -63,7 +63,7 @@ export class MentorReportsFollowUpTrackingComponent implements OnInit {
 
   gotoStudent(id: number, studentName: string) {
     console.log('setting studentName to ' + studentName);
-    this.session.setAssignedStudentName(studentName);
+    this.session.setStudentInContextName(studentName);
 
     const link = ['/admins/students/student/' + id];
     // const link = ['/admins/students/mentorReports/' + id];

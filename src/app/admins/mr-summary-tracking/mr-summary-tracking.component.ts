@@ -4,10 +4,8 @@ import { MentorReportByMonth } from '../../app_shared/models/mentor-report-by-mo
 import { SessionService } from '../../app_shared/services/session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
+import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 
-interface SELECTITEM {
-   value: string; label: string;
-}
 
 @Component({
 
@@ -32,6 +30,7 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
   selectedHighlightStatus: string;
   displayOriginalFields = false;
   x: any;
+  studentName: string;
 
   constructor(
               public router: Router,
@@ -194,7 +193,7 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
 
   gotoStudent(id: number, studentName: string) {
     console.log('setting studentName to ' + studentName);
-    this.session.setAssignedStudentName(studentName);
+    this.session.setStudentInContextName(studentName);
 
     // const link = ['/admins/students/student/' + id];
     const link = ['admins/students/student', { id: id }];
@@ -203,8 +202,9 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
     this.router.navigate(link);
   }
 
-  gotoReportSummary(id: number) {
+  gotoReportSummary(id: number, studentName: string) {
     // const link = ['/admins/mentor-reports/summary-updates?id=' + id + '&summaryStatus=' + 2087 + '&highlight=' + 2106];
+    this.session.setStudentInContextName(studentName);
     const link: [string , { mentorReportId: number, summaryStatus: string, highlight: string}]
       = ['/admins/mentor-reports/summary-updates',
           { mentorReportId: id, summaryStatus: this.selectedMRSummaryStatus, highlight: this.selectedHighlightStatus}];

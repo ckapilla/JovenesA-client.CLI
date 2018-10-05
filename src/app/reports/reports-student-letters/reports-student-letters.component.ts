@@ -46,15 +46,6 @@ export class ReportsStudentLettersComponent implements OnInit {
         () => { console.log('done'); console.log(this.latestStudentLetters[0]); this.isLoading = false; }
       );
   }
-  // gotoStudent(id: number, studentName: string) {
-  //   console.log('setting studentName to ' + studentName);
-  //   this.session.setAssignedStudentName(studentName);
-
-  //   const link = ['/admins/students/student/' + id];
-  //   //const link = ['/admins/students/StudentLetters/' + id];
-  //   console.log('navigating to ' + link);
-  //   this.router.navigate(link);
-  // }
 
   gotoStudentLetter(id: number) {
     const link = ['/admins/students/studentLetters/' + id];

@@ -221,9 +221,7 @@ public getMentorReport(mentorReportId: number): Observable <RptMentorReport>  {
 
   }
 
-  public updateMentorReport(mentorReport: RptMentorReport,
-                          mentorId: number,
-                          studentId: number): Observable<RptMentorReport> {
+  public updateMentorReport(mentorReport: RptMentorReport): Observable<RptMentorReport> {
 
     const url = this.WebApiPrefix + 'mentor_reports'; // + mentorReport.mentorReportId ;
     let body = JSON.stringify({ mentorReport });
@@ -240,7 +238,7 @@ public getMentorReport(mentorReportId: number): Observable <RptMentorReport>  {
       mentorId: number,
       studentId: number): Observable<RptMentorReport> {
 
-    const url = this.WebApiPrefix + 'mengit tor_reports';
+    const url = this.WebApiPrefix + 'mentor_reports';
     let body = JSON.stringify({ mentorReport });
     // strip outer 'mentor' name
     const x = JSON.parse(body);
@@ -249,18 +247,18 @@ public getMentorReport(mentorReportId: number): Observable <RptMentorReport>  {
     // console.log('ready to post ' + url + ' body: ' + body + ' options ' + headers);
     return this.http.post(url, body, { headers: headers })
   }
-  public editMentorReport(mentorReport: RptMentorReport): Observable<RptMentorReport> {
+//   public editMentorReport(mentorReport: RptMentorReport): Observable<RptMentorReport> {
 
-   const url = this.WebApiPrefix + 'mentor_reports';
-  console.log('editMentorReport ' + url);
-  let body = JSON.stringify({ mentorReport });
-  // strip outer 'mentor' name
-  const x = JSON.parse(body);
-  body = JSON.stringify(x.mentorReport);
-  const headers = new HttpHeaders().set('Content-Type', 'application/json');
-  // console.log('ready to put ' + url + ' body: ' + body + ' options ' + headers);
-  return this.http.put(url, body, { headers: headers })
-}
+//    const url = this.WebApiPrefix + 'mentor_reports';
+//   console.log('editMentorReport ' + url);
+//   let body = JSON.stringify({ mentorReport });
+//   // strip outer 'mentor' name
+//   const x = JSON.parse(body);
+//   body = JSON.stringify(x.mentorReport);
+//   const headers = new HttpHeaders().set('Content-Type', 'application/json');
+//   // console.log('ready to put ' + url + ' body: ' + body + ' options ' + headers);
+//   return this.http.put(url, body, { headers: headers })
+// }
 
   public getMentorReportsByMonth(year: string, month: string,
     summaryStatusId: string, highlightStatusId: string): Observable <MentorReportByMonth[]>  {

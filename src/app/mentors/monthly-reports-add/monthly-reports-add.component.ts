@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
-
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
-import { RptMentorReport } from '../../app_shared/models/mentor-report';
-
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
+import { RptMentorReport } from '../../app_shared/models/mentor-report';
+import { SessionService } from '../../app_shared/services/session.service';
+import { SqlResource } from '../../app_shared/services/sql-resource.service';
+
+
 
 @Component({
 
@@ -30,13 +31,15 @@ export class MonthlyReportsAddComponent
     errorMessage: string;
     successMessage: string;
     needsFollowUp: boolean;
+    studentName: string;
 
 
     constructor(
               public currRoute: ActivatedRoute,
               private router: Router,
               public sqlResource: SqlResource,
-              private _fb: FormBuilder
+              private _fb: FormBuilder,
+              private session: SessionService
     ) {
 
         console.log('Hi from MonthlyReportsAddComponent');
@@ -104,6 +107,7 @@ export class MonthlyReportsAddComponent
         this.successMessage = '';
         this.submitted = false;
         this.needsFollowUp = false;
+        this.studentName = this.session.getStudentInContextName();
     }
 
     ngOnInit() {

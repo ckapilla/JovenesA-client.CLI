@@ -3,9 +3,8 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 import { ActivatedRoute, Router } from '@angular/router';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 import { RptMentorReport } from '../../app_shared/models/mentor-report';
+import { SessionService } from '../../app_shared/services/session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
-
-
 
 @Component({
   templateUrl: './monthly-reports-edit.component.html'
@@ -31,13 +30,15 @@ export class MonthlyReportsEditComponent
     successMessage: string;
     needsFollowUp: boolean;
     mentorReportId: number;
+    studentName: string;
 
 
     constructor(
               public currRoute: ActivatedRoute,
               private router: Router,
               public sqlResource: SqlResource,
-              private _fb: FormBuilder
+              private _fb: FormBuilder,
+              private session: SessionService
     ) {
 
         console.log('Hi from MonthlyReportsAddComponent');
@@ -66,7 +67,7 @@ export class MonthlyReportsEditComponent
           ];
 
         this.myForm = _fb.group({
-            lastContactYearSelector: ['2018', Validators.required],
+            lastContactYearSelector: ['2018',  Validators.required],
             // lastContactMonthSelector: ['', this.validateMonth],
             lastContactMonthSelector: [''],
             inputSnapshot: [this.snapshot, Validators.required],
@@ -77,9 +78,9 @@ export class MonthlyReportsEditComponent
             inputSetback: [this.challenge, Validators.compose(
                 [Validators.required, Validators.maxLength(2000)])],
             mentorReportId: [this.reportId]
-
         });
-
+        this.myForm.get('lastContactYearSelector').disable();
+        this.myForm.get('lastContactMonthSelector').disable();
         this.lastYear = this.myForm.controls['lastContactYearSelector'];
         this.lastMonth = this.myForm.controls['lastContactMonthSelector'];
         this.snapshot = this.myForm.controls['inputSnapshot'];
@@ -105,6 +106,7 @@ export class MonthlyReportsEditComponent
         this.successMessage = '';
         this.submitted = false;
         this.needsFollowUp = false;
+        this.studentName = this.session.getStudentInContextName();
     }
 
     ngOnInit() {
@@ -188,7 +190,7 @@ export class MonthlyReportsEditComponent
         this.mentorReport.lastContactMonth = this.lastMonth.value;
         this.mentorReport.followUpHistory = this.followUp.value;
 
-        this.sqlResource.editMentorReport(this.mentorReport)
+        this.sqlResource.updateMentorReport(this.mentorReport)
           .subscribe(
               (student) => {
                   console.log(this.successMessage = <any>student);

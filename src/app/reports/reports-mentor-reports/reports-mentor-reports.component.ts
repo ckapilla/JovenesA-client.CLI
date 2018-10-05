@@ -45,7 +45,7 @@ export class ReportsMentorReportsComponent implements OnInit {
   }
   gotoStudent(id: number, studentName: string) {
     console.log('setting studentName to ' + studentName);
-    this.session.setAssignedStudentName(studentName);
+    this.session.setStudentInContextName(studentName);
 
     const link = ['/admins/students/student/' + id];
     // const link = ['/admins/students/mentorReports/' + id];
