@@ -264,10 +264,10 @@ import { Component } from '@angular/core';
     </div>`
 })
 export class LoadingContainerComponent {
-    //@Input() isLoading: boolean;
+    // @Input() isLoading: boolean;
 
     constructor() {
-        //console.log("passed in isLoading is " + this.isLoading);
+        // console.log("passed in isLoading is " + this.isLoading);
 
     }
 }

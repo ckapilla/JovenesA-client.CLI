@@ -35,7 +35,7 @@ export class ReportsStudentLetters2Component implements OnInit {
         () => { console.log('done'); console.log(this.latestStudentLetters2[0]); this.isLoading = false; }
       );
   }
-  
+
   gotoStudentletter(id: number) {
     const link = ['/admins/students/studentLetters/' + id];
     console.log('navigating to ' + link);

@@ -43,7 +43,7 @@ export class MentorReportSummaryUpdatesComponent
     selectedFollowUpStatus: string;
     savedSummaryStatusId: number;
     savedHighlightStatusId: number;
-    studentName: string
+  studentName: string;
 
     constructor(
       public currRoute: ActivatedRoute,

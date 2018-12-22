@@ -38,17 +38,17 @@ export const LOCK_DICTIONARY: any  = {
   + '/<br/>Por favor ingrese su dirección de correo. Le enviaremos las instrucciones para restablecer su contrseña.',
 
 
-  //lastLoginInstructions: 'Last time you logged in with /<br/>La última vez inició sesión con',
+  // lastLoginInstructions: 'Last time you logged in with /<br/>La última vez inició sesión con',
   lastLoginInstructions: 'Click on your email address below /<br/>Haz clic en su dirección de correo:',
   loginLabel: 'LogIn/Iniciar sesión',
   LoginSubmitLabel: 'LogIn/Iniciar sesión',
 
-  //notYourAccountAction: 'Not your account? / ¿No es su cuenta?',
+  // notYourAccountAction: 'Not your account? / ¿No es su cuenta?',
   notYourAccountAction: 'Use different acct or change Password / Cambiar cuenta o contraseña',
   // notYourAccountAction: 'Use different account or Change Password / Usar otra cuenta o Cambiar contraseña',
 
   passwordInputPlaceholder: 'your password / su contraseña',
-   //welcome: 'Not / ¿No es %s?',
+   // welcome: 'Not / ¿No es %s?',
 
   retryLabel: 'Retry',
   sentLabel: 'Sent!',
@@ -62,5 +62,5 @@ export const LOCK_DICTIONARY: any  = {
 
   welcome: 'Welcome / Bienvenido %s!'
 
-  //welcome: 'Other Account / Otra cuenta?'
+  // welcome: 'Other Account / Otra cuenta?'
 };

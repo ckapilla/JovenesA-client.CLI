@@ -7,8 +7,8 @@
         public firstNames?: string,
 
         public nickName?: string, // NickName
-        //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        //public FullName // FullName
+        // [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        // public FullName // FullName
         public curp?: string, // CURP
         public rfc?: string, // RFC
         public bankAccount?: string, // BankAccount
@@ -36,7 +36,7 @@
         public englishSkillLevelId?: number, // EnglishSkillLevelID
         public photoUrl?: string, // PhotoURL
         public updateDtTm?: Date, // UpdateDtTm
-        //public byte[] Timestamp?: string, // Timestamp
+        // public byte[] Timestamp?: string, // Timestamp
         public emergencyContactName?: string, // EmergencyContactName
         public emergencyContactPhone?: string, // EmergencyContactPhone
         public postalCode?: string, // PostalCode

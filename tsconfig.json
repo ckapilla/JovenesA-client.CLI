@@ -8,6 +8,9 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "plugins": [
+      { "name": "typescript-tslint-plugin" }
+    ],
     "target": "es5",
     "paths": {
       "auth0-js": ["node_modules/auth0-js/build/auth0.js"],

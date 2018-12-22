@@ -41,7 +41,7 @@ export class AuthService {
   private checkRestoreSavedAuthData() {
     this.authResult = this.checkRestoreAuthResult();
     if (this.authResult) {
-      console.log('checkRestore with expiresAt: ')
+      console.log('checkRestore with expiresAt: ');
       this.expiresAt = localStorage.getItem('expires_at');
       console.log(this.expiresAt);
       console.log('checkRestore has saved authResult:');
@@ -59,16 +59,16 @@ export class AuthService {
     } );
   }
 
-  public handleAuthentication(): void {
-    console.log('calling ParseHash')
-    this.auth0.parseHash((err, authResult) => {
-      console.log('in parseHash callBack with authResult' + authResult);
-      if (authResult && authResult.accessToken && authResult.idToken) {
+   public handleAuthentication(): void {
+    console.log('calling ParseHash');
+    this.auth0.parseHash((err, _authResult) => {
+      console.log('in parseHash callBack with authResult' + _authResult);
+      if (_authResult && _authResult.accessToken && _authResult.idToken) {
         console.log('in parseHash with authResult tokens');
         this.authenticated = true;
-        this.setSession(authResult);
-        this.storeAuthResultToStorage(authResult);
-        this.extractUserProfileFromAuthResult(authResult);
+        this.setSession(_authResult);
+        this.storeAuthResultToStorage(_authResult);
+        this.extractUserProfileFromAuthResult(_authResult);
         window.location.hash = '';
       } else if (err) {
         console.log(err);
@@ -112,7 +112,7 @@ export class AuthService {
     // Call get userInfo with the token in authResult
     // console.log('in extractUserProfileFromAuthResult');
     // console.log('calling userInfo with authResult.accessToken')
-    this.auth0.client.userInfo(authResult.accessToken, (err:any , profile: any) => {
+    this.auth0.client.userInfo(authResult.accessToken, (err: any , profile: any) => {
       // console.log('userInfo Callback')
 
       if (err) {
@@ -123,7 +123,7 @@ export class AuthService {
       console.log('in userInfo Callback with profile>>');
       if (this.isTokenUnexpired()) {
         console.log('Token Unexpired, so set Session with Profile');
-        //this.saveProfileToLocalStorage(profile);
+        // this.saveProfileToLocalStorage(profile);
         this.setUserProfileElementsToSession(profile);
       } else {
         console.log('getUserInfo with token expired');
@@ -147,7 +147,7 @@ export class AuthService {
     if (retryUrl) {
       console.log('navigating to unauthenticated_retry_url: ' + retryUrl);
       this.router.navigateByUrl(retryUrl);
-      console.log('')
+      console.log('');
       localStorage.removeItem('unauthenticated_retry_url');
     }
   }
@@ -173,13 +173,13 @@ export class AuthService {
       console.log('in handleRedirectWithAuthHash subscribe event with hash ' + window.location.hash);
       const authResult = this.auth0.parseHash(window.location.hash);
       // use following in conjunction with autoParseHash: false option setting
-      this.auth0.resumeAuth(window.location.hash, (error, authResult) => {
-        if (authResult && authResult.idToken) {
+      this.auth0.resumeAuth(window.location.hash, (error, _authResult) => {
+        if (_authResult && _authResult.idToken) {
           console.log('resumeAuthh successfully authenticated');
           // this.lock.emit('authenticated', authResult);
         }
-        if (authResult && authResult.error) {
-          this.auth0.emit('authorization_error', authResult);
+        if (_authResult && _authResult.error) {
+          this.auth0.emit('authorization_error', _authResult);
         }
       });
     });
@@ -248,12 +248,12 @@ export class AuthService {
 
   private isTokenUnexpired(): boolean {
     // abort if not set or not authenticated
-    if (!this.expiresAt) { //|| !this.authenticated) {
-      //console.log('isTokenUnexpired has null');
+    if (!this.expiresAt) { // || !this.authenticated) {
+      // console.log('isTokenUnexpired has null');
       return false;
     } else {
       const now: string = new Date().getTime() + '';
-      //console.log('isTokenUnexpired num has ' + now + ' ' + this.expiresAt);
+      // console.log('isTokenUnexpired num has ' + now + ' ' + this.expiresAt);
       const isNotExpired = this.expiresAt > now;
       return isNotExpired;
     }

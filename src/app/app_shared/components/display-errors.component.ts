@@ -16,7 +16,7 @@ export class DisplayErrorsComponent {
   get currentError() {
     this.myFormGroup = this.myFormGroupDirective.control;
     const control = this.myFormGroup.controls[this.control];
-    //console.log(control);
+    // console.log(control);
     let errorMessages: Array<string> = [];
     if (control && (control.touched || !control.pristine)) {
 

@@ -4,8 +4,7 @@ import { RptStudentSponsor } from '../../app_shared/models/student-sponsor';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
 @Component({
-  // tslint:disable-next-line:component-selector
-  selector: 'assigned-sponsors',
+  selector: 'app-assigned-sponsors',
   templateUrl: './assigned-sponsors.component.html',
   styleUrls:  ['./assigned-sponsors.component.css'],
 })

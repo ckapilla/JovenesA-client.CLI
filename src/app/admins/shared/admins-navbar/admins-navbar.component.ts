@@ -6,8 +6,7 @@ import { SessionService } from '../../../app_shared/services/session.service';
  */
 @Component({
 
-  // tslint:disable-next-line:component-selector
-  selector: 'admins-navbar',
+  selector: 'app-admins-navbar',
   templateUrl: 'admins-navbar.component.html',
   styleUrls: ['admins-navbar.component.css'],
 })

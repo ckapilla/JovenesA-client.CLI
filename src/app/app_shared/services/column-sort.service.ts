@@ -19,7 +19,7 @@ export class ColumnSortService {
 
   compareValues(a: any, b: any, sortCriteria: SORTCRITERIA) {
     if (sortCriteria.sortDirection === 'asc') {
-      //console.log('asc ' + a[sortCriteria.sortColumn] + ' ' + b[sortCriteria.sortColumn]);
+      // console.log('asc ' + a[sortCriteria.sortColumn] + ' ' + b[sortCriteria.sortColumn]);
       if (isNumber(a[sortCriteria.sortColumn])) {
         if (a[sortCriteria.sortColumn] === b[sortCriteria.sortColumn]) {
           return 0;

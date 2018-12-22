@@ -1,9 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnDestroy, HostListener } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { SORTCRITERIA } from '../../app_shared/interfaces/SORTCRITERIA';
 import { ColumnSortService } from '../services/column-sort.service';
 
 @Component({
+// tslint:disable-next-line: component-selector
     selector: '[app-sortable-column]',
     styles: [`
     .up-arrow:after {
@@ -20,11 +21,12 @@ import { ColumnSortService } from '../services/column-sort.service';
     <ng-content></ng-content>`
 })
 export class SortableColumnComponent implements OnInit, OnDestroy {
+// tslint:disable-next-line: no-input-rename
   @Input('app-sortable-column')
   columnName: string;
-
+// tslint:disable-next-line: no-input-rename
   @Input('sort-direction')
-  sortDirection = '';
+  sortDirection: string;
 
   @Output()
 onSortColumn: EventEmitter<SORTCRITERIA> = new EventEmitter<SORTCRITERIA>(); // creating an output event

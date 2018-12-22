@@ -18,13 +18,15 @@ export class CanActivateViaAdminAuthGuard implements CanActivate {
         return true;
       } else {
         console.log('Authenticated but unauthorized for Admin');
-        localStorage.setItem('unauthenticated_retry_url', state.url); // '/admins/mentor-reports/summary-tracking?id=id2681&year=2018&month=6&summaryStatus=0&highlight=2109');
+        localStorage.setItem('unauthenticated_retry_url', state.url);
+        // '/admins/mentor-reports/summary-tracking?id=id2681&year=2018&month=6&summaryStatus=0&highlight=2109');
         // this.router.navigate(['unauthorized']);
         return false;
       }
     } else {
       console.log('Not authenticated -- Can\'t Activate Admin');
-      localStorage.setItem('unauthenticated_retry_url', state.url); //  '/admins/mentor-reports/summary-tracking?id=id2681&year=2018&month=6&summaryStatus=0&highlight=2109');
+      localStorage.setItem('unauthenticated_retry_url', state.url);
+      //  '/admins/mentor-reports/summary-tracking?id=id2681&year=2018&month=6&summaryStatus=0&highlight=2109');
       this.router.navigate(['']); // just to clean up url bar
       this.auth.login();
       return false;
@@ -91,10 +93,11 @@ export class CanActivateViaStudentAuthGuard implements CanActivate {
 export class ConfirmDeactivateMonthlyReportAddGuard
       implements CanDeactivate<MonthlyReportsAddComponent> {
 
-  canDeactivate(component: MonthlyReportsAddComponent) : boolean {
+  canDeactivate(component: MonthlyReportsAddComponent): boolean {
     if  (component.hasChanges()) {
       console.log('CanDeactivate');
-      return window.confirm("You have unsaved changes. Click OK to leave the page without saving.\nTiene cambios no guardados. Haga clic OK para salir de la página sin guardar");
+      // tslint:disable-next-line:max-line-length
+      return window.confirm('You have unsaved changes. Click OK to leave the page without saving.\nTiene cambios no guardados. Haga clic OK para salir de la página sin guardar');
     }
     return true;
   }

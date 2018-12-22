@@ -45,7 +45,7 @@ public getStudentDTO(studentId: number): Observable<StudentDTO> {
   const url = this.WebApiPrefix  + 'students/DTO/' + studentId;
 // statusId: vm.selectedStatus.statusId, gradYear: vm.selectedGradYear.year, yearJoinedJA: vm.selectedYearJoined.year },
   console.log('sending AuthHttp get request for Students');
-  return this.http.get<StudentDTO>(url)
+  return this.http.get<StudentDTO>(url);
 }
 
 public getStudentDTOsByStatusAndYear(statusId: string, yearJoinedJA: string, gradYear: string): Observable<StudentDTO[]> {
@@ -85,7 +85,7 @@ public updateStudent(student: Student): Observable<any> {
       .set('Content-Type', 'application/json')
       .set('authorization', returnedToken);
   console.log('ready to put ' + url + ' body: ' + body + ' options ' + headers);
-  return this.http.put(url, body, { headers: headers })
+  return this.http.put(url, body, { headers: headers });
 }
 
 //////////////////////////////////////////////////
@@ -134,7 +134,7 @@ public updateStudent(student: Student): Observable<any> {
         body = JSON.stringify(x.member);
         const headers = new HttpHeaders().set('Content-Type', 'application/json');
         console.log('put member with url ' + url);
-        return this.http.put(url, body, { headers: headers })
+        return this.http.put(url, body, { headers: headers });
       }
 
 
@@ -167,7 +167,7 @@ public updateStudent(student: Student): Observable<any> {
         body = JSON.stringify(x.admin);
         console.log('in putAdmin');
         const headers = new HttpHeaders().set('Content-Type', 'application/json');
-        return this.http.put(url, body, { headers: headers })
+        return this.http.put(url, body, { headers: headers });
       }
 ////////////////////////////// mentors
       public getMentor(mentorId: Number): Observable<Mentor> {
@@ -188,7 +188,7 @@ public updateStudent(student: Student): Observable<any> {
         body = JSON.stringify(x.mentor);
         const headers = new HttpHeaders().set('Content-Type', 'application/json');
         console.log('put mentor with url ' + url);
-        return this.http.put(url, body, { headers: headers })
+        return this.http.put(url, body, { headers: headers });
 
       }
 
@@ -229,8 +229,8 @@ public getMentorReport(mentorReportId: number): Observable <RptMentorReport>  {
     const x = JSON.parse(body);
     body = JSON.stringify(x.mentorReport);
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    //console.log('ready to put ' + url + ' body: ' + body + ' options ' + headers);
-    return this.http.put(url, body, { headers: headers })
+    // console.log('ready to put ' + url + ' body: ' + body + ' options ' + headers);
+    return this.http.put(url, body, { headers: headers });
   }
 
 
@@ -245,7 +245,7 @@ public getMentorReport(mentorReportId: number): Observable <RptMentorReport>  {
     body = JSON.stringify(x.mentorReport);
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     // console.log('ready to post ' + url + ' body: ' + body + ' options ' + headers);
-    return this.http.post(url, body, { headers: headers })
+    return this.http.post(url, body, { headers: headers });
   }
 //   public editMentorReport(mentorReport: RptMentorReport): Observable<RptMentorReport> {
 
@@ -307,7 +307,7 @@ public getMentorReportsStatusCounts(year: string, month: string): Observable <Me
     body = JSON.stringify(x.sponsorLetter);
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     console.log('ready to post ' + url + ' body: ' + body + ' options ' + headers);
-    return this.http.post(url, body, { headers: headers })
+    return this.http.post(url, body, { headers: headers });
 
   }
 

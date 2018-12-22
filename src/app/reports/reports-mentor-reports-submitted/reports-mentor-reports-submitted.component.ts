@@ -32,10 +32,6 @@ export class ReportsMentorReportsSubmittedComponent implements OnInit {
 https://plnkr.co/edit/DITVzCSqHHB1uNrTxFit?p=info
 */
 
-  // ngOnInit(){
-  //   this.fetchData({sortColumn: 'id', sortDirection:'asc'});
-  // }
-
   ngOnInit() {
     console.log('ngOnInit');
     this.fetchData();

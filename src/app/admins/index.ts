@@ -15,6 +15,6 @@ export * from './mr-summary-updates/mr-summary-updates.component';
 export * from './mr-status-counts/mr-status-counts.component';
 export * from './mr-follow-up-tracking/mr-follow-up-tracking.component';
 export * from './mr-follow-up-updates/mr-follow-up-updates.component';
-export * from './shared/admins-navbar/index'
+export * from './shared/admins-navbar/index';
 
 // export * from './admins-grade-history/admins-grade-history.component';

@@ -87,7 +87,7 @@ export class MonthlyReportsEditComponent
         this.followUp = this.myForm.controls['inputFollowUp'];
         this.success = this.myForm.controls['inputSuccess'];
         this.challenge = this.myForm.controls['inputSetback'];
-        this.reportId = this.myForm.controls['mentorReportId']
+        this.reportId = this.myForm.controls['mentorReportId'];
 
         this.mentorReport = new RptMentorReport();
         this.mentorReport.mentorId = 0;
@@ -182,7 +182,7 @@ export class MonthlyReportsEditComponent
           window.scrollTo(0, 0);
           return false;
         }
-        //this.mentorReport.mentorId = this.reportId.value;
+        // this.mentorReport.mentorId = this.reportId.value;
         this.mentorReport.recentSetback = this.challenge.value;
         this.mentorReport.recentSuccess = this.success.value;
         this.mentorReport.mentorReportSnapshot = this.snapshot.value;
