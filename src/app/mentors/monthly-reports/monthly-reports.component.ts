@@ -21,7 +21,7 @@ export class MonthlyReportsComponent implements OnInit {
   mentorReports: Array<RptMentorReport>;
   smileys: Array<string>;
   studentName: string;
-
+  haveCurrentReport: boolean;
   constructor(
               public currRoute: ActivatedRoute,
               private router: Router,
@@ -44,6 +44,7 @@ export class MonthlyReportsComponent implements OnInit {
         // may be undefined at this point:
         console.log('studentId ' + this.studentId);
         this.isLoading = true;
+        this.haveCurrentReport = false;
   }
   onSelectedStudentName(studentName: string) {
     // console.log('$$$$$$$ got selected NAME event');
@@ -59,16 +60,27 @@ export class MonthlyReportsComponent implements OnInit {
         data => {this.mentorReports = data; },
         err => console.error('Subscribe error: ' + err),
         () => {console.log('done: ');
-         this.isLoading = false;
+          this.isLoading = false;
+          for (let x of this.mentorReports) {
+            if (x.sponsorSummaryStatusId === 2086) {
+              console.log('current report found; disable add function')
+              this.haveCurrentReport = true;
+            }
+          }
+
         }
       );
   }
 
   monthlyReportAdd() {
-    console.log('in monthly-reports: monthlyReportAdd, ready to navigate');
-    if (this.studentId !== null) {
-      const target = '/mentors/monthly-reports-add/' + this.mentorId + '/' + this.studentId;
-      this.router.navigateByUrl(target); // , //{mentorId: this.mentorId, studentId: this.studentId}]);
+    if (this.haveCurrentReport) {
+      alert('There is already a report filed for this month. Please use the edit button to edit it. / Ya hay un informe presentado para este mes. Por favor, utilice el botón Editar para editarlo. ');
+    } else {
+      console.log('in monthly-reports: monthlyReportAdd, ready to navigate');
+      if (this.studentId !== null) {
+        const target = '/mentors/monthly-reports-add/' + this.mentorId + '/' + this.studentId;
+        this.router.navigateByUrl(target); // , //{mentorId: this.mentorId, studentId: this.studentId}]);
+      }
     }
   }
 

@@ -34,6 +34,6 @@ export const appRoutingProviders: any[] = [
 export const appRouting: ModuleWithProviders =
   RouterModule.forRoot(appRoutes, {
     // onSameUrlNavigation: 'reload',
-    enableTracing: false
+    enableTracing: true
   });
 

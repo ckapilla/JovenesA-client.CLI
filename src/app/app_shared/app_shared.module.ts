@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { DisplayErrorsComponent } from '../app_shared/components/display-errors.component';
 import { LoadingContainerComponent } from '../app_shared/components/loading-container.component';
+import { MentorReportsListComponent } from '../app_shared/components/mentor-reports-list.component';
 import { SortableColumnComponent } from '../app_shared/components/sortable-column.component';
 import { SortableTableDirective } from '../app_shared/directives/sortable-table.directive';
 import { AuthService } from '../app_shared/services/auth.service';
@@ -24,6 +25,7 @@ import { TruncateDatePipe } from './pipes/truncate-date-pipe';
     HeaderbarComponent,
     DisplayErrorsComponent,
     LoadingContainerComponent,
+    MentorReportsListComponent,
     SortableColumnComponent,
     SortableTableDirective,
     AlphaMonthPipe,
@@ -38,6 +40,7 @@ import { TruncateDatePipe } from './pipes/truncate-date-pipe';
     HeaderbarComponent,
     DisplayErrorsComponent,
     LoadingContainerComponent,
+    MentorReportsListComponent,
     SortableColumnComponent,
     SortableTableDirective,
     AlphaMonthPipe,

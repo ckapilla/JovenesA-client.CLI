@@ -1,8 +1,11 @@
+<div class="btn btn-primary btn-xs"
+(click)="location.back()">
+Back To Student Profile
+</div>
+<div>&nbsp;</div>
+
 <div *ngIf="errorMessage" class="alert alert-danger">
   {{errorMessage}}</div>
-
-<assigned-students (onSelectedStudentName)="onSelectedStudentName($event)" (onSelectedStudentId)="onSelectedStudentId($event)">
-</assigned-students>
 
 <div [ngSwitch]="isLoading">
   <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
@@ -15,11 +18,6 @@
         <span>Past Reports for </span>
         <span>{{studentName}}</span>
         <span>
-          <span>
-            <span class="btn btn-default active" (click)="monthlyReportAdd()" style="margin-left:10px">
-              Add New Report
-            </span>
-          </span>
         </span>
       </div>
       <app-mentor-reports-list [mentorReports]="mentorReports"></app-mentor-reports-list>

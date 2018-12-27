@@ -1,22 +1,8 @@
 import { NgModule } from '@angular/core';
-
 import { AppSharedModule } from '../app_shared/app_shared.module';
-import { AdminsComponent } from './index';
-import { AdminsHomeComponent } from './index';
-import { AdminsProfileComponent } from './index';
-import { AdminsMembersComponent } from './index';
-import { AdminsCommunicationsComponent } from './index';
-import { AdminsMemberComponent } from './index';
-import { AdminsStudentsComponent } from './index';
-import { AdminsStudentComponent } from './index';
-import { MentorReportSummaryUpdatesComponent } from './index';
-import { MentorReportsStatusCountsComponent } from './index';
-import { MentorReportsSummaryTrackingComponent } from './index';
-import { MentorReportsFollowUpTrackingComponent } from './index';
-import { MentorReportFollowUpUpdatesComponent } from './index';
-
-import { AdminsNavbarComponent } from './shared/admins-navbar/admins-navbar.component';
 import { AdminsRouting } from './admins.routing';
+import { AdminsCommunicationsComponent, AdminsComponent, AdminsHomeComponent, AdminsMemberComponent, AdminsMembersComponent, AdminsProfileComponent, AdminsStudentComponent, AdminsStudentMRsComponent, AdminsStudentsComponent, MentorReportFollowUpUpdatesComponent, MentorReportsFollowUpTrackingComponent, MentorReportsStatusCountsComponent, MentorReportsSummaryTrackingComponent, MentorReportSummaryUpdatesComponent } from './index';
+import { AdminsNavbarComponent } from './shared/admins-navbar/admins-navbar.component';
 
 // import { AdminsGradeHistoryComponent } from './index';
 
@@ -34,6 +20,7 @@ import { AdminsRouting } from './admins.routing';
         AdminsMemberComponent,
         AdminsStudentsComponent,
         AdminsStudentComponent,
+        AdminsStudentMRsComponent,
 
         // AdminsGradeHistoryComponent,
 
@@ -43,6 +30,10 @@ import { AdminsRouting } from './admins.routing';
         MentorReportsFollowUpTrackingComponent,
         MentorReportFollowUpUpdatesComponent,
         AdminsNavbarComponent
-        ],
+    ],
+    exports: [
+        AdminsStudentMRsComponent
+    ]
+
 })
 export class AdminsModule { }

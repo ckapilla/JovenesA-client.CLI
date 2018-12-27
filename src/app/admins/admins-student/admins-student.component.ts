@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
-
 import { Student } from '../../app_shared/models/student';
+import { SqlResource } from '../../app_shared/services/sql-resource.service';
+
+
 
 
 @Component({
@@ -115,7 +115,7 @@ export class AdminsStudentComponent implements OnInit {
 
   mentorReportsReview() {
     const id = this.currRoute.snapshot.params['id'];
-    this.router.navigate(['/admins/students/mentorReports/' + id  + '/']);
+    this.router.navigate(['/admins/students/student/mentorReports/' + id  + '/']);
   }
 
   public hasChanges() {

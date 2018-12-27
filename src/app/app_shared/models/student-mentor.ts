@@ -16,6 +16,7 @@
         public universityName: string, // UniversityName
         public studentEmail: string,
         public studentPhone: string,
-        public mentorEmail: string
+        public mentorEmail: string,
+        public sponsorPreferredLanbuage
       ) {}
  }

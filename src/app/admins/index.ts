@@ -7,6 +7,7 @@ export * from './admins-home/admins-home.component';
 export * from './admins-profile/admins-profile.component';
 export * from './admins-students/admins-students.component';
 export * from './admins-student/admins-student.component';
+export * from './admins-student-mrs/admins-student-mrs.component';
 export * from './admins-members/admins-members.component';
 export * from './admins-communications/admins-communications.component';
 export * from './admins-member/admins-member.component';

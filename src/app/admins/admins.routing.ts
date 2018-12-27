@@ -1,7 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { CanActivateViaAdminAuthGuard, ConfirmDeactivateSummaryTrackingGuard } from '../app.routing-guards';
 // tslint:disable-next-line: max-line-length
-import { AdminsCommunicationsComponent, AdminsComponent, AdminsHomeComponent, AdminsMemberComponent, AdminsMembersComponent, AdminsProfileComponent, AdminsStudentComponent, AdminsStudentsComponent, MentorReportFollowUpUpdatesComponent, MentorReportsFollowUpTrackingComponent, MentorReportsSummaryTrackingComponent, MentorReportSummaryUpdatesComponent } from './index';
+import { AdminsCommunicationsComponent, AdminsComponent, AdminsHomeComponent, AdminsMemberComponent, AdminsMembersComponent, AdminsProfileComponent, AdminsStudentComponent, AdminsStudentMRsComponent, AdminsStudentsComponent, MentorReportFollowUpUpdatesComponent, MentorReportsFollowUpTrackingComponent, MentorReportsSummaryTrackingComponent, MentorReportSummaryUpdatesComponent } from './index';
 
 // import { AdminsGradeHistoryComponent } from './index';
 
@@ -14,7 +14,7 @@ const routes: Routes = [
         {
           path: '',
           pathMatch: 'full',
-          component: MentorReportsSummaryTrackingComponent
+          component: AdminsHomeComponent
         },
         {
           path: 'home',
@@ -44,10 +44,10 @@ const routes: Routes = [
           path: 'students/student', // /:id',
           component: AdminsStudentComponent
       },
-    //   {
-    //     path: 'students/mentorReports', // /:id',
-    //     component: AdminsStudentMentorReportsComponent
-    //  },
+      {
+        path: 'students/student/mentorReports/:id',
+        component: AdminsStudentMRsComponent
+     },
         // {
         //   path: 'students/grade-history/:id',
         //   component: AdminsGradeHistoryComponent
