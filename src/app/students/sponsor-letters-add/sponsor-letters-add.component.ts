@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
-
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
-import { SponsorLetter } from '../../app_shared/models/sponsor-letter';
-
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
+import { SponsorLetter } from '../../app_shared/models/sponsor-letter';
+import { SqlResource } from '../../app_shared/services/sql-resource.service';
+
+
 
 @Component({
 
@@ -40,7 +40,8 @@ export class SponsorLettersAddComponent
      this.periodYears = [
       // {value: '2016', label: '2016'},
       // {value: '2017', label: '2017'} // ,
-      {value: '2018', label: '2018'} // , {value: '2019', label: '2015'},
+         { value: '2018', label: '2018' },
+         { value: '2019', label: '2019' },
       //    {value: '2020', label: '2020'}
     ];
 

@@ -54,6 +54,7 @@ export class MonthlyReportsComponent implements OnInit {
 
   onSelectedStudentId(studentId: number) {
     console.log('$$$$$$$ got selectedId event');
+    this.haveCurrentReport = false;
     this.studentId = studentId;
     this.sqlResource.getMentorReportDTOs(this.mentorId, studentId)
       .subscribe(
@@ -63,7 +64,7 @@ export class MonthlyReportsComponent implements OnInit {
           this.isLoading = false;
           for (let x of this.mentorReports) {
             if (x.sponsorSummaryStatusId === 2086) {
-              console.log('current report found; disable add function')
+              console.log('current report found; disable add function');
               this.haveCurrentReport = true;
             }
           }

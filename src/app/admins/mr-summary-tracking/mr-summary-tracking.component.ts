@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 import { MentorReportByMonth } from '../../app_shared/models/mentor-report-by-month';
 import { SessionService } from '../../app_shared/services/session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
-import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 
 
 @Component({
@@ -42,7 +42,8 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
 
     this.years = [
       { value: '2017', label: '2017' },
-      { value: '2018', label: '2018' }
+      { value: '2018', label: '2018' },
+      { value: '2019', label: '2019' }
     ];
 
      this.months = [
@@ -85,7 +86,7 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
       // ];
 
     const today = new Date();
-    this.selectedYear =  '2018'; // '' + today.getFullYear(); //
+    this.selectedYear =  '2019'; // '' + today.getFullYear(); //
     this.selectedMonth = '0'; // + today.getMonth() + 1;// '5';
 
     this.selectedMRSummaryStatus = this.mrSummaryStatuses[0].value;

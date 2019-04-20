@@ -47,7 +47,8 @@ export class MonthlyReportsAddComponent
       // {value: '0', label: 'Select Year'},
       // {value: '2016', label: '2016'},
       // {value: '2017', label: '2017'},
-      {value: '2018', label: '2018'} // , {value: '2019', label: '2015'},
+         { value: '2018', label: '2018' },
+         { value: '2019', label: '2019' },
       //    {value: '2020', label: '2020'}
     ];
 
@@ -118,7 +119,7 @@ export class MonthlyReportsAddComponent
         console.log('mentorId ' + this.mentorReport.mentorId);
         console.log('studentId ' + this.mentorReport.studentId);
         // this.mentorReport.lastContactYear = (Number)(this.contactYears[this.contactYears.length - 1].value);
-        this.mentorReport.lastContactYear = (Number)(this.contactYears[0].value);
+        this.mentorReport.lastContactYear = 2019;
         this.mentorReport.lastContactMonth = 0;
         this.mentorReport.sponsorSummaryStatusId = 2086;
         console.log('zzz');
