@@ -236,12 +236,12 @@ export class AuthService {
     this.authResult = undefined;
     this.userProfile = undefined;
     // this.router.navigate(['']);
-    console.log('return to address: ' + 'http://ckapilla.auth0.com/v2/logout?returnTo=' + this.urlService.getClientUrl());
+    console.log('return to address: ' + 'https://ckapilla.auth0.com/v2/logout?returnTo=' + this.urlService.getClientUrl());
     setTimeout(() => {
       console.log('in timeout callback with return to address ' +
-      'http://ckapilla.auth0.com/v2/logout?returnTo=' + this.urlService.getClientUrl());
+      'https://ckapilla.auth0.com/v2/logout?returnTo=' + this.urlService.getClientUrl());
       document.location.href =
-      'http://ckapilla.auth0.com/v2/logout?returnTo=' + this.urlService.getClientUrl();
+      'https://ckapilla.auth0.com/v2/logout?returnTo=' + this.urlService.getClientUrl();
       }
       , 50);
   }

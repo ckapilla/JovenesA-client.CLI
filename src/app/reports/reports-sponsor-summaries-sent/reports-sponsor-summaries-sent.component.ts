@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { SqlReports } from '../shared/services/sql-reports';
 
 import { SponsorSummarySentCount } from '../shared/report-models/sponsor-summary-sent-count';
@@ -24,6 +24,7 @@ export class ReportsSponsorSummariesSentComponent implements OnInit {
   sortCriteria: SORTCRITERIA;
 
   constructor(
+              public router: Router,
               public sqlReports: SqlReports,
               private columnSorter: ColumnSortService
               ) {
@@ -62,5 +63,11 @@ https://plnkr.co/edit/DITVzCSqHHB1uNrTxFit?p=info
   onSorted($event) {
     console.log('sorted event received');
   }
+
+  mentorReportsReview(id: number) {
+    this.router.navigate(['/admins/students/student/mentorReports/' + id  + '/']);
+  }
+
+
 
 }
