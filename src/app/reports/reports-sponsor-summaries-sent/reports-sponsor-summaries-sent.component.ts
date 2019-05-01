@@ -1,14 +1,13 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
+import { SORTCRITERIA } from '../../app_shared/interfaces/SORTCRITERIA';
+import { ColumnSortService } from '../../app_shared/services/column-sort.service';
+import { SponsorSummarySentCount } from '../shared/report-models/sponsor-summary-sent-count';
 import { SqlReports } from '../shared/services/sql-reports';
 
-import { SponsorSummarySentCount } from '../shared/report-models/sponsor-summary-sent-count';
-import { ColumnSortService } from '../../app_shared/services/column-sort.service';
 
-import { SORTCRITERIA } from '../../app_shared/interfaces/SORTCRITERIA';
-import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
-import { isNumber } from 'util';
 
 @Component({
   templateUrl: './reports-sponsor-summaries-sent.component.html',
@@ -64,8 +63,9 @@ https://plnkr.co/edit/DITVzCSqHHB1uNrTxFit?p=info
     console.log('sorted event received');
   }
 
-  mentorReportsReview(id: number) {
-    this.router.navigate(['/admins/students/student/mentorReports/' + id  + '/']);
+ mentorReportsReview(studentId: number, studentName: string) {
+   console.log('mentorReportsReview clicked with studentId' + studentId);
+   this.router.navigate(['/admins/students/student/mentorReports/' + studentId + '/' + studentName]);
   }
 
 

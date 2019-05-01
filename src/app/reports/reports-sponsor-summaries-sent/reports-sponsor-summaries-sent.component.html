@@ -17,6 +17,7 @@
           <thead>
             <tr>
               <th app-sortable-column="pledgeGroupName" (onSortColumn)="onSortColumn($event)">Pledge Group</th>
+              <th app-sortable-column="studentId" (onSortColumn)="onSortColumn($event)">StudentId</th>
               <th app-sortable-column="studentName" (onSortColumn)="onSortColumn($event)">Student</th>
               <th app-sortable-column="mentorName" (onSortColumn)="onSortColumn($event)">Mentor</th>
               <th app-sortable-column="sentCount"  sort-direction="asc" (onSortColumn)="onSortColumn($event)">Total Sent</th>
@@ -29,6 +30,9 @@
                 {{ row.pledgeGroupName }}
               </td>
               <td class="report-row">
+                {{ row.studentId }}
+              </td>
+              <td class="report-row">
                 {{ row.studentName }}
               </td>
               <td class="report-row">
@@ -37,7 +41,7 @@
               <td class="report-row" >
                 {{ row.sentCount }}
               </td>
-              <td class="report-row" >
+              <td (click)="mentorReportsReview(row.studentId, row.studentName)" class="report-row link" >
                   {{ row.latestDate | truncateDate }}
                 </td>
             </tr>

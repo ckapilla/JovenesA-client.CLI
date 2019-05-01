@@ -115,7 +115,7 @@ export class AdminsStudentComponent implements OnInit {
 
   mentorReportsReview() {
     const id = this.currRoute.snapshot.params['id'];
-    this.router.navigate(['/admins/students/student/mentorReports/' + id  + '/']);
+    this.router.navigate(['/admins/students/student/mentorReports/' + id  + '/' + this.student.firstNames + ' ' + this.student.lastNames ]);
   }
 
   public hasChanges() {

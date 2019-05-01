@@ -8,13 +8,13 @@ export class UrlService {
   constructor() {
     // console.log('UrlService constructor');
 
-    const backendEnv: 'AzureProd' | 'AzureTest' | 'UbuntuDev' | 'UbuntuTest' | 'UbuntuProd' | 'local'
-     = 'UbuntuTest' as 'AzureProd' | 'AzureTest' | 'UbuntuDev' | 'UbuntuTest' | 'UbuntuProd' | 'local';
+    const backendEnv:  'UbuntuDev' | 'UbuntuTest' | 'UbuntuProd' | 'local'
+     = 'UbuntuProd' as  'UbuntuDev' | 'UbuntuTest' | 'UbuntuProd' | 'local';
     // console.log('window: ' + window.location.hostname);
     const hostName = window.location.hostname.toLocaleLowerCase();
 
     if (hostName === 'privada.jovenesadelante.org'
-              || backendEnv === 'AzureProd') {
+              || backendEnv === 'UbuntuProd') {
       this.webApiPrefix = 'https://JAWebAPI.jovenesadelante.org/api/';
     } else if (hostName === 'privada-dev.jovensadelante.org'
       || backendEnv === 'UbuntuDev') {
@@ -24,12 +24,8 @@ export class UrlService {
       || backendEnv === 'UbuntuTest') {
       this.webApiPrefix = 'https://JAWebAPI.jovenesadelante.org/api/';
       console.log(this.webApiPrefix);
-    } else if (hostName === 'privada-prod.jovensadelante.org'
-      || backendEnv === 'UbuntuProd') {
-      this.webApiPrefix = 'https://JAWebAPI.jovenesadelante.org/api/';
-      console.log(this.webApiPrefix);
     } else if (backendEnv === 'local') {
-      this.webApiPrefix = 'http://192.168.1.70:45456/api/' ;
+      this.webApiPrefix = 'http://192.168.1.70:5000/api/' ;
     }
 
     if (hostName === 'privada.jovenesadelante.org') {

@@ -34,9 +34,12 @@ export class AdminsStudentMRsComponent implements OnInit {
     //  not here this.mentorId = this.currRoute.snapshot.params['mentorId'];
      this.mentorId = 0; // 2208;
     console.log('mentorId ' + this.mentorId);
-    this.studentId = this.currRoute.snapshot.params['id'];
-    this.studentName = this.session.getStudentInContextName();
-    console.log('studentId  ' + this.studentId);
+     this.studentId = this.currRoute.snapshot.params['id'];
+    this.studentName = this.currRoute.snapshot.params['studentName'];
+     if (this.studentName === '') {
+      this.studentName = this.session.getStudentInContextName();
+    }
+   console.log('studentId  ' + this.studentId);
     this.isLoading = true;
     this.sqlResource.getMentorReportDTOs(this.mentorId, this.studentId)
       .subscribe(

@@ -45,7 +45,7 @@ const routes: Routes = [
           component: AdminsStudentComponent
       },
       {
-        path: 'students/student/mentorReports/:id',
+        path: 'students/student/mentorReports/:id/:studentName',
         component: AdminsStudentMRsComponent
      },
         // {
