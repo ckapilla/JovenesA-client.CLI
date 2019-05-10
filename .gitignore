@@ -1,4 +1,10 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
+src/assets/images/Celebrate.JPG
+        src/assets/images/NeedsAttention1.JPG
+        src/assets/images/NeedsAttention2.JPG
+        src/assets/images/ThumbsUp1.JPG
+        src/assets/images/ThumbsUp2.JPGs
+
 
 #rollup trials
 rollup-config.js
