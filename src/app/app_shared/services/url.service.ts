@@ -6,39 +6,21 @@ export class UrlService {
   clientUrl: string;
 
   constructor() {
-    // console.log('UrlService constructor');
 
-    const backendEnv:  'UbuntuDev' | 'UbuntuTest' | 'UbuntuProd' | 'local'
-     = 'UbuntuProd' as  'UbuntuDev' | 'UbuntuTest' | 'UbuntuProd' | 'local';
-    // console.log('window: ' + window.location.hostname);
+    console.log('urlService constructor has' + window.location.hostname);
     const hostName = window.location.hostname.toLocaleLowerCase();
 
-    if (hostName === 'privada.jovenesadelante.org'
-              || backendEnv === 'UbuntuProd') {
-      this.webApiPrefix = 'https://JAWebAPI.jovenesadelante.org/api/';
-    } else if (hostName === 'privada-dev.jovensadelante.org'
-      || backendEnv === 'UbuntuDev') {
-      this.webApiPrefix = 'https://JAWebAPI.jovenesadelante.org/api/';
-      console.log(this.webApiPrefix);
-    } else if (hostName === 'privada-test.jovensadelante.org'
-      || backendEnv === 'UbuntuTest') {
-      this.webApiPrefix = 'https://JAWebAPI.jovenesadelante.org/api/';
-      console.log(this.webApiPrefix);
-    } else if (backendEnv === 'local') {
-      this.webApiPrefix = 'http://192.168.1.70:5000/api/' ;
-    }
-
     if (hostName === 'privada.jovenesadelante.org') {
+      this.webApiPrefix = 'https://JAWebAPI.jovenesadelante.org/api/';
       this.clientUrl = 'https://privada.jovenesadelante.org';
     } else if (hostName === 'privada-dev.jovenesadelante.org') {
+      this.webApiPrefix = 'https://JAWebAPI-dev.jovenesadelante.org/api/';
       this.clientUrl = 'https://privada-dev.jovenesadelante.org';
-    } else if (hostName === 'privada-test.jovenesadelante.org') {
-      this.clientUrl = 'https://privada-test.jovenesadelante.org';
-    } else if (hostName === 'privada-prod.jovenesadelante.org') {
-      this.clientUrl = 'https://privada-prod.jovenesadelante.org';
-    } else { // localhost
+    } else if (hostName ===  'localhost') {
+      this.webApiPrefix = 'http://192.168.1.70:5000/api/';
       this.clientUrl = 'http://localhost:3000';
     }
+
     console.log('>>>webapi prefix: ' + this.webApiPrefix);
     console.log('>>>clientUrl: ' + this.clientUrl);
   }
