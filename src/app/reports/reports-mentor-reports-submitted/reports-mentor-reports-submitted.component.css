@@ -6,12 +6,14 @@
 th[app-sortable-column] {
   text-align: left;
   cursor: pointer;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
 }
 
 .up-arrow:before {
-content: "^";
+content: "^&nbsp;";
 }
 
 .down-arrow:after {
-  content: "v";
+  content: "v&nbsp;&nbsp;";
 }

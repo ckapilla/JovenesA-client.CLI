@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
-import { Member } from '../../app_shared/models/member';
-
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
+import { Member } from '../../app_shared/models/member';
+import { SqlResource } from '../../app_shared/services/sql-resource.service';
+
 
 @Component({
 
@@ -46,13 +46,15 @@ export class AdminsMemberComponent implements OnInit {
       inputMemberFName: ['', Validators.compose(
                   [Validators.required, Validators.maxLength(30)])],
       inputMemberLName: ['', Validators.compose(
-                  [Validators.required, Validators.maxLength(30)])],
+        [Validators.required, Validators.maxLength(30)])],
+      inputMemberEmail: ['', Validators.compose(
+          [Validators.required, Validators.maxLength(50)])],
       inputMemberSMAPhone: [''],
       inputMemberNonSMAPhone: [''],
       inputInitialInterview: ['', Validators.maxLength(2000)],
-      inputMemberStory: ['', Validators.maxLength(2000)],
+      inputComments: ['', Validators.maxLength(2000)],
       EnglishLevelSelector: [''],
-      SpanishLevelSelector: [''],
+      SpanishLevelSelector: ['']
     });
     this.member = new Member();
 

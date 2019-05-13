@@ -58,6 +58,22 @@
               }"></app-display-errors>
           </div>
         </div>
+        <div class="form-group">
+          <div class="controls">
+            <label for="inputMemberEmail">Email (Please coordinate any changes with the member, for logging in.)</label>
+            <input id="inputMemberEmail"
+                   formControlName="inputMemberEmail"
+                   [(ngModel)]="member.email"
+                   type="text" class="form-control input-sm" placeholder="Email Address"
+                   />
+            <app-display-errors control="inputMemberLName" class="red"
+              [errors]="{
+                'required': 'Email address is required',
+                'maxlength': 'Email address cannot exceed 50 characters in length.'
+              }"></app-display-errors>
+          </div>
+        </div>
+
 
         <div class="form-group" >
           <div class="controls">
@@ -105,6 +121,18 @@
           </div>
         </div>
 
+        <div class="controls">
+          <label for="inputComments">Comments (Private)</label>
+          <textarea id="inputComments" #success formControlName="inputComments" [(ngModel)]="member.comments" type="text"
+            class="form-control input-sm" placeholder="">
+          </textarea>
+          <app-display-errors control="inputComments" class="red"
+            [errors]="{'maxlength': 'Entry cannot exceed 2000 characters in length.'
+                }"></app-display-errors>
+        </div>
+
+
+
         <div class="form-group">
           <div class="controls">
             <button class="btn btn-primary"
@@ -114,6 +142,8 @@
             </button> <span class="red" [hidden]="profileForm.valid">All required fields must be filled in before saving.</span>
           </div>
         </div>
+
+
     </form>
     </div>
   </div>

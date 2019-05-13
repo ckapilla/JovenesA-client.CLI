@@ -5,7 +5,7 @@ import { catchError, map } from 'rxjs/operators';
 import { Admin } from '../models/admin';
 import { Communication } from '../models/communication';
 import { Member } from '../models/member';
-import { MemberStudentRelations } from '../models/member-student-relations';
+import { MemberWithAnyRelatedStudent } from '../models/member-with-any-related-student';
 import { Mentor } from '../models/mentor';
 import { RptMentorReport } from '../models/mentor-report';
 import { MentorReportByMonth } from '../models/mentor-report-by-month';
@@ -115,13 +115,13 @@ public updateStudent(student: Student): Observable<any> {
     return this.http.get<Communication[]>(url).pipe(catchError(this.handleError));
   }
 
-  public getMemberStudentRelations(type: string): Observable<MemberStudentRelations[]> {
+  public getMemberWithAnyRelatedStudent(type: string, status: number): Observable<MemberWithAnyRelatedStudent[]> {
 
         const url = this.WebApiPrefix
-        + 'members/student_relations/' + type;
+        + 'members/student_relations/' + type + '/' + status;
     // statusId: vm.selectedStatus.statusId, gradYear: vm.selectedGradYear.year, yearJoinedJA: vm.selectedYearJoined.year },
         console.log('sending AuthHttp get request with url ' + url);
-        return this.http.get<MemberStudentRelations[]>(url).pipe(catchError(this.handleError));
+        return this.http.get<MemberWithAnyRelatedStudent[]>(url).pipe(catchError(this.handleError));
       }
 
       public updateMember(member: Member): Observable<Member> {

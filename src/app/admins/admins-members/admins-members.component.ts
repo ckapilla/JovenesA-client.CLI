@@ -1,60 +1,62 @@
 
 import { Component, OnInit } from '@angular/core';
-
 import { Router } from '@angular/router';
-
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
+import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
+import { SORTCRITERIA } from '../../app_shared/interfaces/SORTCRITERIA';
+import { MemberWithAnyRelatedStudent } from '../../app_shared/models/member-with-any-related-student';
+import { ColumnSortService } from '../../app_shared/services/column-sort.service';
 import { SessionService } from '../../app_shared/services/session.service';
+import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
-import { MemberStudentRelations } from '../../app_shared/models/member-student-relations';
-
-interface SELECTITEM {
-   value: string; label: string;
-}
 
 @Component({
-
   templateUrl: './admins-members.component.html',
+  styleUrls: ['./admins-members.component.css']
 })
 
 export class AdminsMembersComponent implements OnInit {
   types: SELECTITEM[];
   _selectedType: SELECTITEM;
+  statuses: SELECTITEM[];
+  _selectedStatus: SELECTITEM;
   smileys: string[];
-  members: MemberStudentRelations[];
+  members: MemberWithAnyRelatedStudent[];
   isLoading: boolean;
   errorMessage: string;
   successMessage: string;
+  sortCriteria: SORTCRITERIA;
+
+
 
   constructor(
               public sqlResource: SqlResource,
               public router: Router,
-              private session: SessionService
+              private session: SessionService,
+              private columnSorter: ColumnSortService
               ) {
 
     console.log('Hi from member List Ctrl controller function');
 
+    this.statuses = [
+      { value: '0', label: '[All]' },
+      { value: '1015', label: 'Active' },
+      { value: '1016', label: 'Inactive Temporary' },
+      { value: '1017', label: 'Inactive Permanent' },
+      { value: '2055', label: 'Deceased' }
+    ];
+    console.log('constructor statuses[1] = ' + this.statuses[1].value);
     this.types = [
-
-
-      { value: '1012', label: 'Employee' },
-      // { value: '1011', label: 'ESOLTutor' },
-      { value: '1010', label: 'Mentor' },
-      { value: '2072', label: 'NonPerson' },
-      { value: '2041', label: 'Pledger' },
-      { value: '2040', label: 'President' },
-
       { value: '2068', label: 'Admin' },
+      { value: '1012', label: 'Employee' },
+      { value: '1010', label: 'Mentor' },
+      // { value: '2072', label: 'NonPerson' },
+      { value: '2041', label: 'Pledger' },
+      // { value: '2040', label: 'President' },
       // { value: '2067', label: '[All]' },
       { value: '1009', label: 'Sponsor' },
       // { value: '2069', label: 'Student' },
       { value: '1008', label: 'Volunteer' }
     ];
-
-
-    // this.selectedTypeLabel = this.types[3].label;
-    // this.gradeRptsStatus = 'yellowWarning.jpg'
-    // this.gpaStatus = 'greenCheck.jpg'
 
     this.smileys = [ '/assets/images/frownSmiley.jpg',
                     '/assets/images/neutralSmiley.jpg',
@@ -65,38 +67,44 @@ export class AdminsMembersComponent implements OnInit {
 
   }
 
-  set selectedType(value: SELECTITEM) {
-    // console.log('selected type: ' + objValue);
-    this._selectedType = value;
-    this.fetchFilteredData(value.label);
+  public set selectedStatus(status: SELECTITEM) {
+    this._selectedStatus = status;
+    this.fetchFilteredData();
   }
 
-  get selectedType(): SELECTITEM {
+  public get selectedStatus() {
+    return this._selectedStatus;
+  }
+
+  public set selectedType(type: SELECTITEM) {
+    this._selectedType = type;
+    this.fetchFilteredData();
+  }
+  public get selectedType() {
     return this._selectedType;
   }
 
   ngOnInit() {
     console.log('ngOnInit');
-    this.selectedType = this.types[6];
-    this.fetchFilteredData(this.selectedType.label);
+    console.log('types[2] = ' + this.types[2].label);
+    this._selectedType = this.types[2];
+    console.log('statuses[1] = ' + this.statuses[1].value);
+    this._selectedStatus = this.statuses[1];
+    this.fetchFilteredData();
   }
 
   // can't rely on two way binding to have updated the selected values
   // in time so we do it manually below
 
 
-  fetchFilteredData(type: string) {
-    // console.log('sqlResource for getMembers: ' +
-    //        'status: ' + this.selectedStatus + ' ' +
-    //        'yearjoined: ' + this.selectedYearJoined +  + ' ' +
-    //        'gradyear: ' + this.selectedGradYear
-    //        );
+  fetchFilteredData() {
     this.isLoading = true;
-    this.sqlResource.getMemberStudentRelations(type)
+    console.log('in fetchFilteredData');
+    this.sqlResource.getMemberWithAnyRelatedStudent(this.selectedType.label, Number(this.selectedStatus.value))
       .subscribe(
         data => { this.members = data; },
         err => this.errorMessage = err,
-        () => { console.log('done'); this.isLoading = false; }
+        () => { console.log('done' + this.members[0].memberStatusId); this.isLoading = false; }
       );
   }
   gotoMember(id: number, memberName: string) {
@@ -107,10 +115,35 @@ export class AdminsMembersComponent implements OnInit {
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }
+  gotoStudent(id: number, studentName: string) {
+    console.log('setting studentName to ' + studentName);
+    this.session.setStudentInContextName(studentName);
 
-  gotoCommunications(id: number, memberName: string) {
-    const link = ['/admins/members/communications/' + id];
+    // const link = ['/admins/students/student', id];
+    const link = ['admins/students/student', { id: id }];
+
     console.log('navigating to ' + link);
     this.router.navigate(link);
+  }
+
+
+
+  // gotoCommunications(id: number, memberName: string) {
+  //   const link = ['/admins/members/communications/' + id];
+  //   console.log('navigating to ' + link);
+  //   this.router.navigate(link);
+  // }
+
+  public onSortColumn(sortCriteria: SORTCRITERIA) {
+    console.log(
+      'parent received sortColumnCLick event with ' + sortCriteria.sortColumn
+    );
+    return this.members.sort((a, b) => {
+      return this.columnSorter.compareValues(a, b, sortCriteria);
+    });
+  }
+
+  onSorted($event) {
+    console.log('sorted event received');
   }
 }

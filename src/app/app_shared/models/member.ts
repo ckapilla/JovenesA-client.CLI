@@ -35,6 +35,7 @@
 
         public LastLoginDateTime?: Date,
         public NumberOfLogins?: number,
-        public preferredLanguageId?: number
+        public preferredLanguageId?: number,
+        public comments?: string
       ) {}
 }

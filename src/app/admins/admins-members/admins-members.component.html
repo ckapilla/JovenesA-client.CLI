@@ -8,16 +8,18 @@
 
     <div>
       <form>
-
         <label for="TypeSelector">Type:</label>
-        <select name="TypeSelector" [(ngModel)]="selectedType"
-        >
-          <!--(change)="setSelectedType($event.target.value)">-->
+        <select name="TypeSelector" [(ngModel)]="selectedType">
           <option *ngFor="let type of types" [ngValue]="type">{{type.label}}</option>
-          </select>
-
-        <!--<button class="btn default-btn" (click)="fetchFilteredData()">Submit</button>-->
+        </select>
+        &nbsp;
+        <label for="StatusSelector">Status:</label>
+        <select name="StatusSelector" [(ngModel)]="selectedStatus">
+            <option *ngFor="let status of statuses" [ngValue]="status">{{status.label}}</option>
+        </select>
       </form>
+
+
 
     </div>
     <div [ngSwitch]="isLoading">
@@ -26,16 +28,18 @@
         </app-loading-container>
       </div>
       <div *ngSwitchCase="false">
-        <table class="table">
+        <table appSortableTable class="table">
 
           <thead>
             <tr>
-              <!--<td>Id</td>-->
-              <td></td>
-              <td>Member</td>
-              <td>Email</td>
-              <td>Related Student</td>
-              <td>Communication History</td>
+              <!--<th app-sortable-column="mentorName" (onSortColumn)="onSortColumn($event)">Id</th>-->
+              <th></th>
+              <th app-sortable-column="memberName" (onSortColumn)="onSortColumn($event)">Member</th>
+              <th app-sortable-column="memberStatus" (onSortColumn)="onSortColumn($event)">Member Status</th>
+              <th app-sortable-column="email" (onSortColumn)="onSortColumn($event)">Email</th>
+              <th app-sortable-column="relatedStudentName" (onSortColumn)="onSortColumn($event)">Related Student</th>
+              <th app-sortable-column="relatedStudentStatus" (onSortColumn)="onSortColumn($event)" >Student Status</th>
+              <!-- <th app-sortable-column="mentorName" (onSortColumn)="onSortColumn($event)">Communication History</th> -->
             </tr>
           </thead>
           <tbody>
@@ -47,14 +51,20 @@
                 {{ member.lastNames }}, {{ member.firstNames }}
               </td>
               <td >
+                {{member.memberStatus}}
+              </td>
+              <td >
                 <a href='mailto:{{ member.email }}'>{{ member.email }}</a>
               </td>
-              <td>
+              <td (click)='gotoStudent(member.relatedStudentId, member.relatedStudentName)' class='link'>
                 {{ member.relatedStudentName }}
               </td>
-              <td (click)='gotoCommunications(member.memberId, member.firstNames + " " + member.lastNames)' class='link' >
-                Communication History
+              <td>
+                {{member.relatedStudentStatus}}
               </td>
+              <!-- <td (click)='gotoCommunications(member.memberId, member.firstNames + " " + member.lastNames)' class='link' >
+                Communication History
+              </td> -->
             </tr>
           </tbody>
         </table>
