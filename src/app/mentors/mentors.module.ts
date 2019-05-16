@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { AppSharedModule } from '../app_shared/app_shared.module';
-import { AssignedStudentsComponent } from './assigned-students/assigned-students.component';
 import { MentorsHomeComponent } from './mentors-home/mentors-home.component';
 import { MentorsProfileComponent } from './mentors-profile/mentors-profile.component';
 import { MentorsComponent } from './mentors.component';
@@ -24,8 +23,7 @@ import { MentorsNavbarComponent } from './shared/mentors-navbar/mentors-navbar.c
         MentorsProfileComponent,
         MonthlyReportsComponent,
         MonthlyReportsAddComponent,
-        MonthlyReportsEditComponent,
-        AssignedStudentsComponent
+        MonthlyReportsEditComponent
         ],
 })
 

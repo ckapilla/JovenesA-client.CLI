@@ -1,9 +1,10 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { SessionService } from '../../app_shared/services/session.service';
-import { RptStudentMentor } from '../../app_shared/models/student-mentor';
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
+import { SessionService } from '../../services/session.service';
+import { RptStudentMentor } from '../../models/student-mentor';
+import { SqlResource } from '../../services/sql-resource.service';
 
 @Component({
+// tslint:disable-next-line: component-selector
   selector: 'assigned-students',
   templateUrl: './assigned-students.component.html'
 })

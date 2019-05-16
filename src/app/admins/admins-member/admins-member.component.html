@@ -1,151 +1,123 @@
-  <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
-  <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
-  <div [ngSwitch]="isLoading">
-    <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
-      <app-loading-container>
-      </app-loading-container>
-    </div>
-    <div *ngSwitchCase="false">
-
-    <form [formGroup]="profileForm" class="form-horizontal" >
-
+<div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+<div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <form [formGroup]="profileForm" class="form-horizontal ">
         <div class="form-group">
           <span class="controls">
             <span class="btn btn-primary btn-xs"
-            (click)="location.back()">
-            &lt;&lt; Back
+                  (click)="location.back()">
+              &lt;&lt; Back
             </span>
           </span>
-
-          <!--<span class="controls">
-            <span class="btn btn-primary btn-xs"
-            (click)="mentorReportsReview()">
-            Mentor Reports
-            </span>
-          </span>-->
-
         </div>
-
 
         <div class="form-group">
           <div class="controls">
             <label for="inputMemberFName">First Name(s)</label>
-            <input id="inputMemberFName"
-                  formControlName="inputMemberFName"
-                  [(ngModel)]="member.firstNames"
-                  class="form-control input-sm" type="text" placeholder="First Name"
-                  />
+            <input id="inputMemberFName" formControlName="inputMemberFName"
+                   [(ngModel)]="member.firstNames"
+                   class="form-control input-sm" type="text" placeholder="First Name" />
             <app-display-errors control="inputMemberFName" class="red"
-              [errors]="{
+                                [errors]="{
                 'required': 'First name is required',
                 'maxlength': 'Member First name cannot exceed 30 characters in length.'
               }"></app-display-errors>
           </div>
-        </div>
 
-        <div class="form-group">
           <div class="controls">
             <label for="inputMemberLName">Last Name(s)</label>
-            <input id="inputMemberLName"
-                   formControlName="inputMemberLName"
+            <input id="inputMemberLName" formControlName="inputMemberLName"
                    [(ngModel)]="member.lastNames"
-                   type="text" class="form-control input-sm" placeholder="Last Name"
-                   />
+                   type="text" class="form-control input-sm" placeholder="Last Name" />
             <app-display-errors control="inputMemberLName" class="red"
-              [errors]="{
+                                [errors]="{
                 'required': 'Last name is required',
                 'maxlength': 'Member Last name cannot exceed 30 characters in length.'
               }"></app-display-errors>
           </div>
-        </div>
-        <div class="form-group">
+
           <div class="controls">
             <label for="inputMemberEmail">Email (Please coordinate any changes with the member, for logging in.)</label>
-            <input id="inputMemberEmail"
-                   formControlName="inputMemberEmail"
+            <input id="inputMemberEmail" formControlName="inputMemberEmail"
                    [(ngModel)]="member.email"
-                   type="text" class="form-control input-sm" placeholder="Email Address"
-                   />
+                   type="text" class="form-control input-sm" placeholder="Email Address" />
             <app-display-errors control="inputMemberLName" class="red"
-              [errors]="{
+                                [errors]="{
                 'required': 'Email address is required',
                 'maxlength': 'Email address cannot exceed 50 characters in length.'
               }"></app-display-errors>
           </div>
-        </div>
 
-
-        <div class="form-group" >
           <div class="controls">
             <label for="inputMemberSMAPhone">SMA Phone</label>
-            <input id="inputMemberSMAPhone"
-                  formControlName="inputMemberSMAPhone"
-                  [(ngModel)]="member.sma_Phone"
-                  type="text" class="form-control input-sm" placeholder="Best Phone Number when in SMA"
-                  />
-            </div>
-        </div>
+            <input id="inputMemberSMAPhone" formControlName="inputMemberSMAPhone"
+                   [(ngModel)]="member.sma_Phone"
+                   type="text" class="form-control input-sm" placeholder="Best Phone Number when in SMA" />
+          </div>
 
 
-        <div class="form-group" >
           <div class="controls">
             <label for="inputMemberNonSMAPhone">Non-SMA Phone</label>
-            <input id="inputMemberNonSMAPhone"
-                  formControlName="inputMemberNonSMAPhone"
-                  [(ngModel)]="member.nonSma_Phone"
-                  type="text" class="form-control input-sm" placeholder="Best Phone Number when not in SMA"
-                  />
+            <input id="inputMemberNonSMAPhone" formControlName="inputMemberNonSMAPhone"
+                   [(ngModel)]="member.nonSma_Phone"
+                   type="text" class="form-control input-sm" placeholder="Best Phone Number when not in SMA" />
           </div>
-        </div>
 
-
-        <div class="form-group">
           <div class="controls">
-          <label for="EnglishLevelSelector">English Level:</label>
-          <select formControlName="EnglishLevelSelector"
-                  class="form-control input-sm"
-              [(ngModel)]="member.englishSkillLevelId" >
-            <option *ngFor="let status of statuses" [value]="status.value">{{status.label}}</option>
-          </select>
+            <label for="EnglishLevelSelector">English Level:</label>
+            <select formControlName="EnglishLevelSelector"
+                    class="form-control input-sm"
+                    [(ngModel)]="member.englishSkillLevelId">
+              <option *ngFor="let status of statuses"
+                      [value]="status.value">{{status.label}}</option>
+            </select>
           </div>
-        </div>
 
-        <div class="form-group">
           <div class="controls">
-          <label for="SpanishLevelSelector">Spanish Level:</label>
-          <select formControlName="SpanishLevelSelector"
-                  class="form-control input-sm"
-              [(ngModel)]="member.spanishSkillLevelId" >
-            <option *ngFor="let status of statuses" [value]="status.value">{{status.label}}</option>
-          </select>
+            <label for="SpanishLevelSelector">Spanish Level:</label>
+            <select formControlName="SpanishLevelSelector"
+                    class="form-control input-sm"
+                    [(ngModel)]="member.spanishSkillLevelId">
+              <option *ngFor="let status of statuses" [value]="status.value">{{status.label}}</option>
+            </select>
           </div>
-        </div>
 
-        <div class="controls">
-          <label for="inputComments">Comments (Private)</label>
-          <textarea id="inputComments" #success formControlName="inputComments" [(ngModel)]="member.comments" type="text"
-            class="form-control input-sm" placeholder="">
+          <div class="controls">
+            <label for="inputComments">Comments (Private -- for Admins only)</label>
+            <textarea id="inputComments" #success formControlName="inputComments" [(ngModel)]="member.comments"
+                      type="text"
+                      class="form-control input-sm" placeholder="">
           </textarea>
-          <app-display-errors control="inputComments" class="red"
-            [errors]="{'maxlength': 'Entry cannot exceed 2000 characters in length.'
+            <app-display-errors control="inputComments" class="red"
+                                [errors]="{'maxlength': 'Entry cannot exceed 2000 characters in length.'
                 }"></app-display-errors>
+          </div>
         </div>
-
-
-
         <div class="form-group">
           <div class="controls">
             <button class="btn btn-primary"
-            (click)="saveProfile()"
-            [disabled]="!profileForm.valid">
-            Save
-            </button> <span class="red" [hidden]="profileForm.valid">All required fields must be filled in before saving.</span>
+                    (click)="saveProfile()"
+                    [disabled]="!profileForm.valid">
+              Save
+            </button> <span class="red" [hidden]="profileForm.valid">All required fields must be filled in before
+              saving.</span>
           </div>
         </div>
+      </form>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+          <span class="bold">
+        </span>
+      <mentee-list>
+      </mentee-list>
+      </div>
+      <div class="row">
+          <span class="bold"></span>
+          </div>
 
-
-    </form>
     </div>
   </div>
-
-
+</div>
