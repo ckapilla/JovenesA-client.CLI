@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RptStudentMentor } from '../../models/student-mentor';
+import { StudentDTO } from '../../models/studentDTO';
 import { SessionService } from '../../services/session.service';
 import { SqlResource } from '../../services/sql-resource.service';
 
 @Component({
 // tslint:disable-next-line: component-selector
-  selector: 'mentee-list',
-  templateUrl: './mentee-list.component.html'
+  selector: 'mentored-students',
+  templateUrl: './mentored-students.component.html'
 })
 
-export class MenteeListComponent implements OnInit {
-  studentMentors: Array<RptStudentMentor>;
+export class MentoredStudentComponent implements OnInit {
+  students: Array<StudentDTO>;
   smileys: Array<string> = [];
   studentId: number;
   errorMessage = '';
@@ -30,21 +30,21 @@ export class MenteeListComponent implements OnInit {
     const id = this.currRoute.snapshot.params['id'];
     this.sqlResource.getStudentsForMentor(id)
       .subscribe(
-        data => {this.studentMentors = data; console.log(this.studentMentors); },
+        data => {this.students = data; console.log(this.students); },
         err => console.error('Subscribe error: ' + err),
         () => {
-          console.log('mentee-list loaded ' + this.studentMentors.length + ' rows');
-          if (this.studentMentors.length > 0) {
-            console.log(this.studentMentors[0].studentFirstNames);
+          console.log('mentored-students loaded ' + this.students.length + ' rows');
+          if (this.students.length > 0) {
+            console.log(this.students[0].studentName);
             this.haveData = true;
           } else {
             //
           }
         });
   }
-  gotoStudent(id: number, studentLastNames: string, studentFirstNames: string) {
-    const studentName = studentLastNames + ', ' + studentFirstNames;
-    console.log('setting studentName to ' +studentName);
+  gotoStudent(id: number, studentName: string) { // }, studentFirstNames: string) {
+    // const studentName; // = studentLastNames + ', ' + studentFirstNames;
+    console.log('setting studentName to ' + studentName);
     this.session.setStudentInContextName(studentName)
     const link = ['admins/students/student', { id: id }];
 

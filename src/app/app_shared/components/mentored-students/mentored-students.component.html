@@ -7,11 +7,11 @@
         </tr>
       </thead>
       <tbody>
-            <tr *ngFor="let item of studentMentors, let i = index"
+            <tr *ngFor="let item of students, let i = index"
               id="item.studentId"
               (click)='selectStudent(item.studentId, i)'>
-              <td (click)='gotoStudent(item.studentId, item.studentLastNames)' class='link'>
-                {{item.studentLastNames}}, {{item.studentFirstNames}}
+              <td (click)='gotoStudent(item.studentId, item.studentName)' class='link'>
+                {{item.studentName}}
                 </td>
             </tr>
       </tbody>

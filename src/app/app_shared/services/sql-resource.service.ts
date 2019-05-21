@@ -13,7 +13,7 @@ import { MentorReportFollowUp } from '../models/mentor-report-follow-up';
 import { MentorReportsStatusCount } from '../models/mentor-reports-status-count';
 import { SponsorLetter } from '../models/sponsor-letter';
 import { Student } from '../models/student';
-import { RptStudentMentor } from '../models/student-mentor';
+import { StudentMentorDTO } from '../models/student-mentor';
 import { RptStudentSponsor } from '../models/student-sponsor';
 import { StudentDTO } from '../models/studentDTO';
 import { UrlService } from './url.service';
@@ -58,10 +58,16 @@ public getStudentDTOsByStatusAndYear(statusId: string, yearJoinedJA: string, gra
   return this.http.get<StudentDTO[]>(url).pipe(catchError(this.handleError));
 }
 
-public getStudentsForMentor(mentorId: Number): Observable<RptStudentMentor[]> {
+// public getStudentsForMentor(mentorId: Number): Observable<StudentMentorDTO[]> {
+//   const url = this.WebApiPrefix + 'students/for_mentor/' + mentorId;
+//   console.log('sending AuthHttp get request for StudentsForMentor');
+//   return this.http.get<StudentMentorDTO[]>(url).pipe(catchError(this.handleError));
+// }
+
+public getStudentsForMentor(mentorId: Number): Observable<StudentDTO[]> {
   const url = this.WebApiPrefix + 'students/for_mentor/' + mentorId;
   console.log('sending AuthHttp get request for StudentsForMentor');
-  return this.http.get<RptStudentMentor[]>(url).pipe(catchError(this.handleError));
+  return this.http.get<StudentDTO[]>(url).pipe(catchError(this.handleError));
 }
 
 public getStudentsForSponsor(sponsorId: Number): Observable<RptStudentSponsor[]> {

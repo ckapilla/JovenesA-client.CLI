@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { SessionService } from '../../services/session.service';
-import { RptStudentMentor } from '../../models/student-mentor';
+import { StudentDTO } from '../../models/studentDTO';
 import { SqlResource } from '../../services/sql-resource.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { SqlResource } from '../../services/sql-resource.service';
 })
 
 export class AssignedStudentsComponent implements OnInit {
-  studentMentors: Array<RptStudentMentor>;
+  students: Array<StudentDTO>;
   smileys: Array<string> = [];
   studentId: number;
   errorMessage = '';
@@ -32,11 +32,11 @@ export class AssignedStudentsComponent implements OnInit {
   public ngOnInit() {
     this.sqlResource.getStudentsForMentor(this.session.getUserId())
       .subscribe(
-        data => {this.studentMentors = data; console.log(this.studentMentors); },
+        data => {this.students = data; console.log(this.students); },
         err => console.error('Subscribe error: ' + err),
         () => {
-                console.log('assigned-students loaded ' + this.studentMentors.length + ' rows');
-                if (this.studentMentors.length > 0 ) {
+                console.log('assigned-students loaded ' + this.students.length + ' rows');
+                if (this.students.length > 0 ) {
                   this.selectFirstRow();
                 } else {
                   this.errorMessage = 'No Assigned Students for this mentor.';
@@ -47,15 +47,15 @@ export class AssignedStudentsComponent implements OnInit {
   }
 
   selectFirstRow() {
-      console.log('First row Id is ' + this.studentMentors[0].studentId  +  ' ' +
-              this.studentMentors[0].studentFirstNames + ' ' + this.studentMentors[0].studentLastNames );
-      this.setRowClasses(+this.studentMentors[0].studentId );
-      this.selectStudent(+this.studentMentors[0].studentId , 0);
+    console.log('First row Id is ' + this.students[0].studentId + ' ' +
+      this.students[0].studentName); // + ' ' + this.students[0].studentLastNames );
+      this.setRowClasses(+this.students[0].studentId );
+      this.selectStudent(+this.students[0].studentId , 0);
   }
 
   public selectStudent(studentId: number, idx: number) {
     console.log('student selected studentId: ' + studentId + 'idx: ' + idx );
-    const studentName: string = this.studentMentors[idx].studentLastNames + ', ' + this.studentMentors[idx].studentFirstNames;
+    const studentName: string = this.students[idx].studentName; //  + ', ' + this.studentMentors[idx].studentFirstNames;
     this.studentId = studentId;
     this.onSelectedStudentId.emit(studentId);
     this.onSelectedStudentName.emit(studentName);

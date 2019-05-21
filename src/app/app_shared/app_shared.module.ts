@@ -9,7 +9,7 @@ import { MentorReportsListComponent } from '../app_shared/components/mentor-repo
 import { SortableColumnComponent } from '../app_shared/components/sortable-column.component';
 import { SortableTableDirective } from '../app_shared/directives/sortable-table.directive';
 import { AuthService } from '../app_shared/services/auth.service';
-import { MenteeListComponent } from './components/mentee-list/mentee-list.component';
+import { MentoredStudentComponent } from './components/mentored-students/mentored-students.component';
 import { SponsoredStudentsComponent } from './components/sponsored-students/sponsored-students';
 import { HeaderbarComponent } from './headerbar/index';
 import { AlphaLanguagePipe } from './pipes/alpha-language-pipe';
@@ -29,7 +29,7 @@ import { TruncateDatePipe } from './pipes/truncate-date-pipe';
     DisplayErrorsComponent,
     LoadingContainerComponent,
     AssignedStudentsComponent,
-    MenteeListComponent,
+    MentoredStudentComponent,
     SponsoredStudentsComponent,
     MentorReportsListComponent,
     SortableColumnComponent,
@@ -47,7 +47,7 @@ import { TruncateDatePipe } from './pipes/truncate-date-pipe';
     DisplayErrorsComponent,
     LoadingContainerComponent,
     AssignedStudentsComponent,
-    MenteeListComponent,
+    MentoredStudentComponent,
     SponsoredStudentsComponent,
     MentorReportsListComponent,
     SortableColumnComponent,

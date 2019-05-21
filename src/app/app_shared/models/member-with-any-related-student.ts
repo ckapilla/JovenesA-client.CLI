@@ -5,9 +5,8 @@
         public lastNames: string,
         public firstNames: string,
         public email: string,
-        // public memberTypeId: number,
-        public memberType: string,
 
+        public memberType: string,
         public memberStatusId: number,
         public memberStatus: string,
 

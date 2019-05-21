@@ -33,7 +33,7 @@ export class SponsoredStudentsComponent implements OnInit {
         data => {this.studentsForSponsor = data; console.log(this.studentsForSponsor); },
         err => console.error('Subscribe error: ' + err),
         () => {
-          console.log('mentee-list loaded ' + this.studentsForSponsor.length + ' rows');
+          console.log('sponsored-students loaded ' + this.studentsForSponsor.length + ' rows');
           if (this.studentsForSponsor.length > 0) {
             console.log(this.studentsForSponsor[0].studentFirstNames);
             this.haveData = true;

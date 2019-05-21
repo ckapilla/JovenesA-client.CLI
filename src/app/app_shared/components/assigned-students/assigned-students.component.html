@@ -12,11 +12,11 @@
       </thead>
       <tbody>
 
-            <tr *ngFor="let item of studentMentors, let i = index" 
-              [ngClass]="setRowClasses(item.studentId)"  
-              id="item.studentId" 
+            <tr *ngFor="let item of students, let i = index"
+              [ngClass]="setRowClasses(item.studentId)"
+              id="item.studentId"
               (click)='selectStudent(item.studentId, i)'>
-              <td>{{item.studentLastNames}}, {{item.studentFirstNames}}</td>
+              <td>{{item.studentName}}</td>
               <!--<td>{{item.studentEmail}}</td>-->
               <td><img src='../../../assets/images/{{item.timelyMentorMeetingStatus}}.jpg' height='22'></td>
               <td><img src='../../../assets/images/{{item.timelyMentorReportStatus}}.jpg' height='22'></td>
