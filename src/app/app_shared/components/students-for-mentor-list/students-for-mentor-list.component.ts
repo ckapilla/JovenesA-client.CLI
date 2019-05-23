@@ -6,11 +6,11 @@ import { SqlResource } from '../../services/sql-resource.service';
 
 @Component({
 // tslint:disable-next-line: component-selector
-  selector: 'mentored-students',
-  templateUrl: './mentored-students.component.html'
+  selector: 'students-for-mentor-list',
+  templateUrl: './students-for-mentor-list.component.html'
 })
 
-export class MentoredStudentComponent implements OnInit {
+export class StudentsForMentorListComponent implements OnInit {
   students: Array<StudentDTO>;
   smileys: Array<string> = [];
   studentId: number;
@@ -33,7 +33,7 @@ export class MentoredStudentComponent implements OnInit {
         data => {this.students = data; console.log(this.students); },
         err => console.error('Subscribe error: ' + err),
         () => {
-          console.log('mentored-students loaded ' + this.students.length + ' rows');
+          console.log('students-for-mentor-list loaded ' + this.students.length + ' rows');
           if (this.students.length > 0) {
             console.log(this.students[0].studentName);
             this.haveData = true;

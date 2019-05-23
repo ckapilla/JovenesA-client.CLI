@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StudentDTO } from '../../models/studentDTO';
+import { StudentSponsorXRef } from '../../models/student-sponsor-xref';
 import { SessionService } from '../../services/session.service';
 import { SqlResource } from '../../services/sql-resource.service';
-import { StudentSponsorXRef } from '../../models/student-sponsor-xref';
 
 @Component({
 // tslint:disable-next-line: component-selector
-  selector: 'students-for-sponsor',
-  templateUrl: './students-for-sponsor.html'
+  selector: 'students-for-sponsor-list',
+  templateUrl: './students-for-sponsor-list.html'
 })
 
 export class StudentsForSponsorComponent implements OnInit {
@@ -34,7 +33,7 @@ export class StudentsForSponsorComponent implements OnInit {
         data => {this.studentsForSponsor = data; console.log(this.studentsForSponsor); },
         err => console.error('Subscribe error: ' + err),
         () => {
-          console.log('students-for-sponsor loaded ' + this.studentsForSponsor.length + ' rows');
+          console.log('students-for-sponsor-list loaded ' + this.studentsForSponsor.length + ' rows');
           if (this.studentsForSponsor.length > 0) {
             console.log(this.studentsForSponsor[0].studentName);
             this.haveData = true;

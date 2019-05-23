@@ -7,6 +7,8 @@ export class StudentSponsorXRef {
     public sponsorId: number | null,
     public sponsorName: string,
     public sponsorStatusId: number,
-    public sponsorStatus: string
+    public sponsorStatus: string,
+    public sponsorGroupId: number | null,
+    public sponsorGroupName: string
   ) { }
 }

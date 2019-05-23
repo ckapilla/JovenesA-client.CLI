@@ -2,15 +2,15 @@ import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { AssignedStudentsComponent } from '../app_shared/components/assigned-students/assigned-students.component';
+import { StudentsForMentorGridComponent } from './components/students-for-mentor-grid/students-for-mentor-grid.component';
 import { DisplayErrorsComponent } from '../app_shared/components/display-errors.component';
 import { LoadingContainerComponent } from '../app_shared/components/loading-container.component';
 import { MentorReportsListComponent } from '../app_shared/components/mentor-reports-list.component';
 import { SortableColumnComponent } from '../app_shared/components/sortable-column.component';
 import { SortableTableDirective } from '../app_shared/directives/sortable-table.directive';
 import { AuthService } from '../app_shared/services/auth.service';
-import { MentoredStudentComponent } from './components/mentored-students/mentored-students.component';
-import { StudentsForSponsorComponent } from './components/students-for-sponsor/students-for-sponsor';
+import { StudentsForMentorListComponent } from './components/students-for-mentor-list/students-for-mentor-list.component';
+import { StudentsForSponsorComponent } from './components/students-for-sponsor-list/students-for-sponsor-list';
 import { HeaderbarComponent } from './headerbar/index';
 import { AlphaLanguagePipe } from './pipes/alpha-language-pipe';
 import { AlphaMonthPipe } from './pipes/alpha-month-pipe';
@@ -28,8 +28,8 @@ import { TruncateDatePipe } from './pipes/truncate-date-pipe';
     HeaderbarComponent,
     DisplayErrorsComponent,
     LoadingContainerComponent,
-    AssignedStudentsComponent,
-    MentoredStudentComponent,
+    StudentsForMentorGridComponent,
+    StudentsForMentorListComponent,
     StudentsForSponsorComponent,
     MentorReportsListComponent,
     SortableColumnComponent,
@@ -46,8 +46,8 @@ import { TruncateDatePipe } from './pipes/truncate-date-pipe';
     HeaderbarComponent,
     DisplayErrorsComponent,
     LoadingContainerComponent,
-    AssignedStudentsComponent,
-    MentoredStudentComponent,
+    StudentsForMentorGridComponent,
+    StudentsForMentorListComponent,
     StudentsForSponsorComponent,
     MentorReportsListComponent,
     SortableColumnComponent,

@@ -1,15 +1,15 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { SessionService } from '../../services/session.service';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { StudentDTO } from '../../models/studentDTO';
+import { SessionService } from '../../services/session.service';
 import { SqlResource } from '../../services/sql-resource.service';
 
 @Component({
 // tslint:disable-next-line: component-selector
-  selector: 'assigned-students',
-  templateUrl: './assigned-students.component.html'
+  selector: 'students-for-mentor-grid',
+  templateUrl: './students-for-mentor-grid.component.html'
 })
 
-export class AssignedStudentsComponent implements OnInit {
+export class StudentsForMentorGridComponent implements OnInit {
   students: Array<StudentDTO>;
   smileys: Array<string> = [];
   studentId: number;
@@ -35,11 +35,11 @@ export class AssignedStudentsComponent implements OnInit {
         data => {this.students = data; console.log(this.students); },
         err => console.error('Subscribe error: ' + err),
         () => {
-                console.log('assigned-students loaded ' + this.students.length + ' rows');
+                console.log('students-for-mentor-grid loaded ' + this.students.length + ' rows');
                 if (this.students.length > 0 ) {
                   this.selectFirstRow();
                 } else {
-                  this.errorMessage = 'No Assigned Students for this mentor.';
+                  this.errorMessage = 'No Assigned Students.';
                   // this.onNoAssignedStudents.emit();
                 }
               }

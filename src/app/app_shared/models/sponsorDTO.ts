@@ -1,10 +1,10 @@
 export class SponsorDTO {
     constructor(
-      sponsorId: number | null,
-      sponsorName: string,
-      sponsorStatusId: number,
-      sponsorStatus: string,
-      sponsorRequiredLanguage: string,
-      sponsorPreferredLanguage: string
+      public sponsorId: number | null,
+      public sponsorName: string,
+      public sponsorStatusId: number,
+      public sponsorStatus: string,
+      public sponsorRequiredLanguage: string,
+      public sponsorPreferredLanguage: string
     ) {}
   }

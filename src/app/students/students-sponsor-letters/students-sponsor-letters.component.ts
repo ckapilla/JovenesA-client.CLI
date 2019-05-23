@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
-import { SessionService } from '../../app_shared/services/session.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SponsorLetter } from '../../app_shared/models/sponsor-letter';
-import { StudentDTO} from '../../app_shared/models/studentDTO';
+import { StudentDTO } from '../../app_shared/models/studentDTO';
+import { SessionService } from '../../app_shared/services/session.service';
+import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
 
 @Component({
-
   templateUrl: './students-sponsor-letters.component.html',
   styleUrls: ['./students-sponsor-letters.component.css'],
 })
@@ -21,7 +19,7 @@ export class StudentsSponsorLettersComponent implements OnInit {
   student: StudentDTO;
   sponsorLetters: Array<SponsorLetter>;
   sponsorName: string;
-  sponsorId: number;
+  sponsorGroupId: number;
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -34,7 +32,6 @@ export class StudentsSponsorLettersComponent implements OnInit {
 
   ngOnInit() {
     console.log('sponsorLetters ngOnInit');
-
     this.studentId = this.currRoute.snapshot.params['id'];
     // may be undefined at this point:
     console.log('studentId ' + this.studentId);
@@ -42,14 +39,14 @@ export class StudentsSponsorLettersComponent implements OnInit {
   }
 
   onSelectedSponsorName(sponsorName: string) {
-    // console.log('$$$$$$$ got selected NAME event');
+    console.log('$$$$$$$ got selected NAME event');
     this.sponsorName = '' + sponsorName;
   }
 
-  onSelectedSponsorId(sponsorId: number) {
-    console.log('$$$$$$$ got selectedId event sponsorId: ' + sponsorId);
-    this.sponsorId = sponsorId;
-    this.sqlResource.getSponsorLetters( this.studentId, sponsorId)
+  onSelectedSponsorId(sponsorGroupId: number) {
+    console.log('$$$$$$$ got selectedId event sponsorGroupId: ' + sponsorGroupId);
+    this.sponsorGroupId = sponsorGroupId;
+    this.sqlResource.getSponsorLetters( this.studentId, sponsorGroupId)
       .subscribe(
       data => { this.sponsorLetters = data; },
       err => console.error('Subscribe error: ' + err),
@@ -60,7 +57,7 @@ export class StudentsSponsorLettersComponent implements OnInit {
   }
 
   sponsorLetterAdd() {
-    const target = 'students/sponsor-letters-add/' + this.studentId  + '/' + this.sponsorId;
+    const target = 'students/sponsor-letters-add/' + this.studentId  + '/' + this.sponsorGroupId;
     console.log('in students-sponsor-letters: ready to navigate to' + target);
     this.router.navigateByUrl(target);
   }
