@@ -1,11 +1,11 @@
 <div *ngIf="errorMessage" class="alert alert-danger">
   {{errorMessage}}</div>
 
-<app-assigned-sponsors
+<app-sponsors-for-student>
   (onSelectedSponsorName)="onSelectedSponsorName($event)"
   (onSelectedSponsorId)="onSelectedSponsorId($event)"
   >
-</app-assigned-sponsors>
+</app-sponsors-for-student>
 
 <div [ngSwitch]="isLoading">
   <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">

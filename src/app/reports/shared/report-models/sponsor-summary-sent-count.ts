@@ -1,7 +1,7 @@
 export class SponsorSummarySentCount {
 
       constructor(
-        public pledgeGroupName: string,
+        public sponsorGroupName: string,
         public studentId: number,
         public studentName: string,
         public mentorName: string,

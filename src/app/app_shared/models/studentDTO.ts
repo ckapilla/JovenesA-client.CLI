@@ -1,7 +1,6 @@
  export class StudentDTO {
 
       constructor(
-
         public studentId: number, // StudentID (Primary key)
         public studentName: string, // StudentName
         public email: string, // Email

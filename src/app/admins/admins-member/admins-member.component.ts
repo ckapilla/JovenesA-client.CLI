@@ -70,10 +70,14 @@ export class AdminsMemberComponent implements OnInit {
     this.isLoading = true;
     this.sqlResource.getMember(id)
       .subscribe(
-        data => {this.member = data; },
+        data => {
+          this.member = data;
+        },
         err => console.error('Subscribe error: ' + err),
         () => { console.log('getMember is done');
-                this.isLoading = false; }
+          this.isLoading = false;
+          window.scrollTo(0, 0);
+        }
       );
 
       this.profileForm.valueChanges.subscribe(

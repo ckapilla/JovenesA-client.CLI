@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 
 @Injectable({ providedIn: 'root' })
 export class SessionService {
@@ -10,6 +11,7 @@ export class SessionService {
     assignedStudentId: number;
     assignedStudentName: string;
     failedAuthorizationRoute: string;
+  mostRecentMemberType: SELECTITEM;
 
     constructor() {
         // this.loading$ = new Observable(observer => this._observer = observer)
@@ -112,5 +114,12 @@ export class SessionService {
     //   console.log('getFailedRoute returning ' + this.failedAuthorizationRoute);
     //   return this.failedAuthorizationRoute;
     // }
+    public setMemberType( memberType: SELECTITEM): void {
+      this.mostRecentMemberType = memberType;
+    }
+
+    public getMemberType(): SELECTITEM {
+      return this.mostRecentMemberType;
+    }
 
 }

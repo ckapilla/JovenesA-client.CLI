@@ -22,7 +22,7 @@ export class MentoredStudentComponent implements OnInit {
     private router: Router,
     private currRoute: ActivatedRoute) {
 
-    console.log('in MenteeListComponent constructor');
+    console.log('in MentoredStudentComponent constructor');
   }
 
   public ngOnInit() {

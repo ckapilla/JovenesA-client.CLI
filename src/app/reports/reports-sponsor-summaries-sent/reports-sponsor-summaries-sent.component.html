@@ -16,8 +16,7 @@
 
           <thead>
             <tr>
-              <th app-sortable-column="pledgeGroupName" (onSortColumn)="onSortColumn($event)">Pledge Group</th>
-              <th app-sortable-column="studentId" (onSortColumn)="onSortColumn($event)">StudentId</th>
+              <th app-sortable-column="sponsorGroupName" (onSortColumn)="onSortColumn($event)">Sponsor Group</th>
               <th app-sortable-column="studentName" (onSortColumn)="onSortColumn($event)">Student</th>
               <th app-sortable-column="mentorName" (onSortColumn)="onSortColumn($event)">Mentor</th>
               <th app-sortable-column="sentCount"  sort-direction="asc" (onSortColumn)="onSortColumn($event)">Total Sent</th>
@@ -27,10 +26,7 @@
           <tbody>
             <tr *ngFor="let row of sponsorSummarySentCounts">
               <td class="report-row">
-                {{ row.pledgeGroupName }}
-              </td>
-              <td class="report-row">
-                {{ row.studentId }}
+                {{ row.sponsorGroupName }}
               </td>
               <td class="report-row">
                 {{ row.studentName }}

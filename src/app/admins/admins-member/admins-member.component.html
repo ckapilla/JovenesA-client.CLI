@@ -2,7 +2,7 @@
 <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4">
       <form [formGroup]="profileForm" class="form-horizontal ">
         <div class="form-group">
           <span class="controls">
@@ -107,13 +107,15 @@
         </div>
       </form>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-2">
       <div class="row">
       <mentored-students></mentored-students>
       </div>
       <div class="row">
-        <sponsored-students></sponsored-students>
+       <students-for-sponsor></students-for-sponsor>
       </div>
     </div>
   </div>
+
+
 </div>

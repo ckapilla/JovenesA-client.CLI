@@ -1,0 +1,12 @@
+export class StudentSponsorXRef {
+  constructor(
+    public studentId: number,
+    public studentName: string,
+    public studentStatusId: number,
+    public studentStatus: string,
+    public sponsorId: number | null,
+    public sponsorName: string,
+    public sponsorStatusId: number,
+    public sponsorStatus: string
+  ) { }
+}

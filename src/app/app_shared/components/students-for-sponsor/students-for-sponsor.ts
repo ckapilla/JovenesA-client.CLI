@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RptStudentSponsor } from '../../models/student-sponsor';
+import { StudentDTO } from '../../models/studentDTO';
 import { SessionService } from '../../services/session.service';
 import { SqlResource } from '../../services/sql-resource.service';
+import { StudentSponsorXRef } from '../../models/student-sponsor-xref';
 
 @Component({
 // tslint:disable-next-line: component-selector
-  selector: 'sponsored-students',
-  templateUrl: './sponsored-students.html'
+  selector: 'students-for-sponsor',
+  templateUrl: './students-for-sponsor.html'
 })
 
-export class SponsoredStudentsComponent implements OnInit {
-  studentsForSponsor: Array<RptStudentSponsor>;
+export class StudentsForSponsorComponent implements OnInit {
+  studentsForSponsor: Array<StudentSponsorXRef>;
   smileys: Array<string> = [];
   studentId: number;
   errorMessage = '';
@@ -33,19 +34,18 @@ export class SponsoredStudentsComponent implements OnInit {
         data => {this.studentsForSponsor = data; console.log(this.studentsForSponsor); },
         err => console.error('Subscribe error: ' + err),
         () => {
-          console.log('sponsored-students loaded ' + this.studentsForSponsor.length + ' rows');
+          console.log('students-for-sponsor loaded ' + this.studentsForSponsor.length + ' rows');
           if (this.studentsForSponsor.length > 0) {
-            console.log(this.studentsForSponsor[0].studentFirstNames);
+            console.log(this.studentsForSponsor[0].studentName);
             this.haveData = true;
           } else {
             //
           }
         });
   }
-  gotoStudent(id: number, studentLastNames: string, studentFirstNames: string) {
-    const studentName = studentLastNames + ', ' + studentFirstNames;
-    console.log('setting studentName to ' +studentName);
-    this.session.setStudentInContextName(studentName)
+  gotoStudent(id: number, studentName: string) {
+    console.log('setting studentName to ' + studentName);
+    this.session.setStudentInContextName(studentName);
     const link = ['admins/students/student', { id: id }];
 
     console.log('navigating to ' + link);

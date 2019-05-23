@@ -3,7 +3,7 @@
     <table class="table table-condensed">
       <thead>
         <tr>
-          <th *ngIf = haveData>Mentored Students</th>
+          <th *ngIf = haveData>Mentored Students / status</th>
         </tr>
       </thead>
       <tbody>
@@ -11,7 +11,7 @@
               id="item.studentId"
               (click)='selectStudent(item.studentId, i)'>
               <td (click)='gotoStudent(item.studentId, item.studentName)' class='link'>
-                {{item.studentName}}
+                {{item.studentName}} / {{item.status}}
                 </td>
             </tr>
       </tbody>

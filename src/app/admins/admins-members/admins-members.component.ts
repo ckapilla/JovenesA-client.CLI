@@ -78,6 +78,7 @@ export class AdminsMembersComponent implements OnInit {
 
   public set selectedType(type: SELECTITEM) {
     this._selectedType = type;
+    this.session.setMemberType(type);
     this.fetchFilteredData();
   }
   public get selectedType() {
@@ -87,7 +88,13 @@ export class AdminsMembersComponent implements OnInit {
   ngOnInit() {
     console.log('ngOnInit');
     console.log('types[2] = ' + this.types[2].label);
-    this._selectedType = this.types[2];
+    const memType = this.session.getMemberType();
+    let idx = 2;
+    if (memType) {
+      idx = this.types.findIndex(x => x.value === memType.value);
+      console.log('setting MemberType to saved ' + memType);
+    }
+    this._selectedType = this.types[idx];
     console.log('statuses[1] = ' + this.statuses[1].value);
     this._selectedStatus = this.statuses[1];
     this.fetchFilteredData();
@@ -125,8 +132,6 @@ export class AdminsMembersComponent implements OnInit {
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }
-
-
 
   // gotoCommunications(id: number, memberName: string) {
   //   const link = ['/admins/members/communications/' + id];

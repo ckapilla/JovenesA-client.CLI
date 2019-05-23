@@ -5,7 +5,7 @@ import { FormGroup, FormBuilder,  Validators } from '@angular/forms';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 
-import { Admin } from '../shared/admin';
+import { Admin } from '../../app_shared/models/admin';
 
 @Component({
 

@@ -17,8 +17,9 @@ export class UrlService {
       this.webApiPrefix = 'https://JAWebAPI-dev.jovenesadelante.org/api/';
       this.clientUrl = 'https://privada-dev.jovenesadelante.org';
     } else if (hostName ===  'localhost') {
-      // this.webApiPrefix = 'http://192.168.1.70:2369/api/';
-      this.webApiPrefix = 'https://JAWebAPI-dev.jovenesadelante.org/api/';
+      this.webApiPrefix = 'http://192.168.1.70:2369/api/';
+      // this.webApiPrefix = 'https://JAWebAPI-dev.jovenesadelante.org/api/';
+      // this.webApiPrefix = 'https://JAWebAPI.jovenesadelante.org/api/';
       this.clientUrl = 'http://localhost:3000';
     }
 
