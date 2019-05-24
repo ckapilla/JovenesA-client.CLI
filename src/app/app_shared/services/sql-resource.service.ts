@@ -81,7 +81,11 @@ public getSponsorsForStudent(studentId: number): Observable<StudentSponsorXRef[]
   console.log('sending AuthHttp get request ' +  url);
   return this.http.get<StudentSponsorXRef[]>(url).pipe(catchError(this.handleError));
 }
-
+public getSponsorGroupsForStudent(studentId: number): Observable<StudentSponsorXRef[]> {
+  const url = this.WebApiPrefix + 'students/sponsor_groups_for/' + studentId;
+  console.log('sending AuthHttp get request ' +  url);
+  return this.http.get<StudentSponsorXRef[]>(url).pipe(catchError(this.handleError));
+}
 public updateStudent(student: Student): Observable<any> {
   const url = this.WebApiPrefix + 'students/' + student.studentId;
   let body = JSON.stringify({ student });

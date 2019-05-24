@@ -8,7 +8,7 @@
       </thead>
       <tbody>
 
-            <tr *ngFor="let item of sponsors, let i = index"
+            <tr *ngFor="let item of sponsorGroups, let i = index"
               [ngClass]="setRowClasses(item.sponsorGroupId)"
               id="item.sponsorGroupId"
               (click)='selectSponsor(item.sponsorGroupId, i)'>

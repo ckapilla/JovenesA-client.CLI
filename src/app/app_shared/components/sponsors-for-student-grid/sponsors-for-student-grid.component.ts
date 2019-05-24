@@ -23,7 +23,7 @@ export class SponsorsForStudentGridComponent implements OnInit {
   }
 
   public ngOnInit() {
-    this.sqlResource.getSponsorsForStudent(this.session.getStudentId())
+    this.sqlResource.getSponsorGroupsForStudent(this.session.getStudentId())
       .subscribe(
         data => { this.sponsorGroups = data; console.log(this.sponsorGroups[0]); },
         err => console.error('Subscribe error: ' + err),
@@ -40,18 +40,18 @@ export class SponsorsForStudentGridComponent implements OnInit {
   }
 
   selectFirstRow() {
-    console.log('First row Id is ' + this.sponsorGroups[0].sponsorId + ' ' +
-      this.sponsorGroups[0].sponsorName); // + ' ' + this.sponsorGroups[0].sponsorLastNames );
-      this.setRowClasses(+this.sponsorGroups[0].sponsorId );
-      this.selectSponsor(+this.sponsorGroups[0].sponsorId , 0);
+    console.log('First row Id is ' + this.sponsorGroups[0].sponsorGroupId + ' ' +
+      this.sponsorGroups[0].sponsorGroupName); // + ' ' + this.sponsorGroups[0].sponsorLastNames );
+      this.setRowClasses(+this.sponsorGroups[0].sponsorGroupId );
+      this.selectSponsor(+this.sponsorGroups[0].sponsorGroupId , 0);
   }
 
-  public selectSponsor(sponsorId: number, idx: number) {
-    console.log('sponsor selected sponsorId: ' + sponsorId + 'idx: ' + idx );
-    const sponsorName: string = this.sponsorGroups[idx].sponsorName; //  + ', ' + this.sponsorMentors[idx].sponsorFirstNames;
-    this.sponsorGroupId = sponsorId;
-    this.onSelectedSponsorGroupId.emit(sponsorId);
-    this.onSelectedSponsorGroupName.emit(sponsorName);
+  public selectSponsor(sponsorGroupId: number, idx: number) {
+    console.log('sponsor selected sponsorGroupId: ' + sponsorGroupId + 'idx: ' + idx );
+    const sponsorGroupName: string = this.sponsorGroups[idx].sponsorName; //  + ', ' + this.sponsorMentors[idx].sponsorFirstNames;
+    this.sponsorGroupId = sponsorGroupId;
+    this.onSelectedSponsorGroupId.emit(sponsorGroupId);
+    this.onSelectedSponsorGroupName.emit(sponsorGroupName);
 
   }
   public setRowClasses(sponsorGroupId: number) {

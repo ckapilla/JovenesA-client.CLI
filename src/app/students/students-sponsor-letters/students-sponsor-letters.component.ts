@@ -18,7 +18,7 @@ export class StudentsSponsorLettersComponent implements OnInit {
   studentId: number;
   student: StudentDTO;
   sponsorLetters: Array<SponsorLetter>;
-  sponsorName: string;
+  sponsorGroupName: string;
   sponsorGroupId: number;
 
   constructor(
@@ -38,12 +38,12 @@ export class StudentsSponsorLettersComponent implements OnInit {
     this.isLoading = true;
   }
 
-  onSelectedSponsorName(sponsorName: string) {
+  onSelectedSponsorGroupName(sponsorGroupName: string) {
     console.log('$$$$$$$ got selected NAME event');
-    this.sponsorName = '' + sponsorName;
+    this.sponsorGroupName = '' + sponsorGroupName;
   }
 
-  onSelectedSponsorId(sponsorGroupId: number) {
+  onSelectedSponsorGroupId(sponsorGroupId: number) {
     console.log('$$$$$$$ got selectedId event sponsorGroupId: ' + sponsorGroupId);
     this.sponsorGroupId = sponsorGroupId;
     this.sqlResource.getSponsorLetters( this.studentId, sponsorGroupId)
