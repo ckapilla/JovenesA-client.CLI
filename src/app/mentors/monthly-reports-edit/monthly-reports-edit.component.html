@@ -10,15 +10,13 @@
       <fieldset [disabled]="submitted">
         <div class="form-group">
           <div class="controls">
-            <label for="lastContactYearSelector"> Year/Month you Last Communicated with Student</label>
-            <select formControlName="lastContactYearSelector"
-            >
+            <label for="lastContactYearSelector"> Year/Month you Last Communicated with Student<br/>Año/Mes la última vez que se comunicó con el estudiante&nbsp</label>
+            <select formControlName="lastContactYearSelector" [(ngModel)]="mentorReport.lastContactYear">
             <option *ngFor="let year of contactYears" [value]="year.value">{{year.label}}</option>
             </select>
             <span *ngIf="!lastYear.valid &amp;&amp; lastYear.touched" class="red"> Select Year</span>
 
-            <select formControlName="lastContactMonthSelector"
-            >
+            <select formControlName="lastContactMonthSelector" [(ngModel)]="mentorReport.lastContactMonth">
             <option *ngFor="let month of contactMonths" [value]="month.value">{{month.label}}</option>
             </select>
             <span *ngIf="!lastMonth.valid &amp;&amp; lastMonth.touched" class="red">Select Month</span>
@@ -27,26 +25,28 @@
 
         <div class="form-group">
           <div class="controls">
-            <label> Student Snapshot: (<span>How are things going overall with the student?</span>)</label>
-            <label>
+            <label> Student Emoji: (How are things going overall with the student?)<br/>Emoji de Estudiante: (cómo van las cosas en general con el estudiante?)</label>
+            <label>&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="radio" id="inputSnapshot"
             formControlName="inputSnapshot"
 
             value="1"  checked=true >
              <img src="/assets/images/greenSmiley.jpg" width="24px" />
-
+             Bueno
             </label>
             <label>&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="radio" id="inputSnapshot"
             formControlName="inputSnapshot"
             value="0" >
                 <img src="/assets/images/neutralSmiley.jpg" width="24px" />
+                Neutral
             </label>
            <label>&nbsp;&nbsp;&nbsp;&nbsp;
               <input type="radio" id="inputSnapshot"
               formControlName="inputSnapshot"
               value="-1" >
                 <img src="/assets/images/frownSmiley.jpg" width="24px" />
+                Problemas
             <span *ngIf="snapshot.hasError('required')" class="red">Please select a Snapshot color</span>
             </label>
           </div>
@@ -57,7 +57,7 @@
 
                   (click)="onNeedsFollowUp()"
                   >
-            Needs Follow Up
+            Needs Follow Up / Requiere seguimiento
           </button>
           <span> << Click here to enter a description of any situation that needs follow-up by Jovenes Adelante administration.
           <br />(Haga clic aquí para entrar en una descripción de cualquier situación que necesite seguimiento por Jovenes Adelante administración.)

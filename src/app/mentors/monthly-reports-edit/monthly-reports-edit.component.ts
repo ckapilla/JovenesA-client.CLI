@@ -80,8 +80,7 @@ export class MonthlyReportsEditComponent
                 [Validators.required, Validators.maxLength(2000)])],
             mentorReportId: [this.reportId]
         });
-        this.myForm.get('lastContactYearSelector').disable();
-        this.myForm.get('lastContactMonthSelector').disable();
+
         this.lastYear = this.myForm.controls['lastContactYearSelector'];
         this.lastMonth = this.myForm.controls['lastContactMonthSelector'];
         this.snapshot = this.myForm.controls['inputSnapshot'];
@@ -135,6 +134,7 @@ export class MonthlyReportsEditComponent
                 this.followUp.setValue(this.mentorReport.followUpHistory);
                 this.success.setValue(this.mentorReport.recentSuccess);
                 this.challenge.setValue(this.mentorReport.recentSetback);
+                this.studentName = this.session.getStudentInContextName();
                 }
           );
         // this.mentorReport.lastContactYear = (Number)(this.contactYears[this.contactYears.length - 1].value);
