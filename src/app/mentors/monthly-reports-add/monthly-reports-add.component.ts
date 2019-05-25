@@ -53,7 +53,7 @@ export class MonthlyReportsAddComponent
     ];
 
      this.contactMonths = [
-      {value: '0', label: 'Select Month'},
+      {value: '0', label: 'Month/Mes'},
       {value: '1', label: 'Jan/Enero'},
       {value: '2', label: 'Feb/Feb'},
       {value: '3', label: 'Mar/Marzo'},
@@ -122,7 +122,7 @@ export class MonthlyReportsAddComponent
         this.mentorReport.lastContactYear = 2019;
         this.mentorReport.lastContactMonth = 0;
         this.mentorReport.sponsorSummaryStatusId = 2086;
-        console.log('zzz');
+
       this.myForm.valueChanges.subscribe(
           (form: any) => {
                             this.errorMessage = '';
@@ -147,20 +147,7 @@ export class MonthlyReportsAddComponent
           let i = 0;
           this.errorMessage = '';
 
-          if (!this.lastYear.valid || !this.lastMonth.valid) {
-           this.errorMessage = this.errorMessage + 'Year and month must be selected from drop-downs. ';
-           ++i;
-          }
 
-          if (!this.snapshot.valid) {
-            this.errorMessage = this.errorMessage + 'A green, yellow or red snapshot icon must be selected. ';
-            ++i;
-          }
-
-          if ((this.needsFollowUp && !this.followUp.valid) || !this.success.valid || !this.challenge.valid) {
-            this.errorMessage = this.errorMessage + 'All text boxes must be filled in . ';
-            ++i;
-          }
 
           window.scrollTo(0, 0);
           return false;

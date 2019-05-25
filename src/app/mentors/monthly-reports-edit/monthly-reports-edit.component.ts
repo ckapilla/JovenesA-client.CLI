@@ -46,13 +46,13 @@ export class MonthlyReportsEditComponent
       // {value: '0', label: 'Select Year'},
       // {value: '2016', label: '2016'},
       // {value: '2017', label: '2017'},
-         { value: '2018', label: '2018' },
+      //   { value: '2018', label: '2018' },
          { value: '2019', label: '2019' },
       //    {value: '2020', label: '2020'}
     ];
 
      this.contactMonths = [
-      {value: '0', label: 'Select Month'},
+      {value: '0', label: 'Month/Mes'},
       {value: '1', label: 'Jan/Enero'},
       {value: '2', label: 'Feb/Feb'},
       {value: '3', label: 'Mar/Marzo'},
@@ -166,20 +166,19 @@ export class MonthlyReportsEditComponent
           this.errorMessage = '';
 
           if (!this.lastYear.valid || !this.lastMonth.valid) {
-           this.errorMessage = this.errorMessage + 'Year and month must be selected from drop-downs. ';
-           ++i;
-          }
-
-          if (!this.snapshot.valid) {
-            this.errorMessage = this.errorMessage + 'A green, yellow or red snapshot icon must be selected. ';
+            this.errorMessage = this.errorMessage + 'Year and month must be selected from drop-downs.<br /> Año y mes deben ser seleccionados de listas desplegables';
             ++i;
-          }
+           }
 
-          if ((this.needsFollowUp && !this.followUp.valid) || !this.success.valid || !this.challenge.valid) {
-            this.errorMessage = this.errorMessage + 'All text boxes must be filled in . ';
-            ++i;
-          }
+           if (!this.snapshot.valid) {
+             this.errorMessage = this.errorMessage + 'A green, yellow or red emoji must be selected.<br />Se debe seleccionar un Emoji rojo, verde o amarillo';
+             ++i;
+           }
 
+           if ((this.needsFollowUp && !this.followUp.valid) || !this.success.valid || !this.challenge.valid) {
+             this.errorMessage = this.errorMessage + 'All text boxes must be filled in. <br /> Todos los cuadros de texto deben rellenarse';
+             ++i;
+           }
           window.scrollTo(0, 0);
           return false;
         }

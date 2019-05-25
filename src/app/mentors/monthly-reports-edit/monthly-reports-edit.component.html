@@ -29,14 +29,15 @@
             <label>&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="radio" id="inputSnapshot"
             formControlName="inputSnapshot"
-
+            [(ngModel)]="mentorReport.mentorReportSnapshot"
             value="1"  checked=true >
              <img src="/assets/images/greenSmiley.jpg" width="24px" />
-             Bueno
+             Todo Bien
             </label>
             <label>&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="radio" id="inputSnapshot"
             formControlName="inputSnapshot"
+            [(ngModel)]="mentorReport.mentorReportSnapshot"
             value="0" >
                 <img src="/assets/images/neutralSmiley.jpg" width="24px" />
                 Neutral
@@ -44,6 +45,7 @@
            <label>&nbsp;&nbsp;&nbsp;&nbsp;
               <input type="radio" id="inputSnapshot"
               formControlName="inputSnapshot"
+              [(ngModel)]="mentorReport.mentorReportSnapshot"
               value="-1" >
                 <img src="/assets/images/frownSmiley.jpg" width="24px" />
                 Problemas
@@ -90,8 +92,8 @@
             class="form-control input-sm" placeholder="(Si usted habla Ingles de manera fluida, favor de hacer su reporte en dicho idioma.)">
           </textarea>
           <app-display-errors control="inputSuccess" class="red"
-            [errors]="{'required': 'An entry is required, even if it is just N/A',
-                'maxlength': 'Entry cannot exceed 2000 characters in length.'
+          [errors]="{'required': 'An entry is required, even if it is just N/A.<br />Se requiere una entrada, aun si es sólo N/A.',
+          'maxlength': 'Entry cannot exceed 2000 characters in length.<br />La entrada no puede exceder 2000 caracteres del largo.'
                 }"></app-display-errors>
         </div>
 
@@ -102,8 +104,8 @@
             class="form-control input-sm" placeholder="(Si usted habla Ingles de manera fluida, favor de hacer su reporte en dicho idioma.)">
           </textarea>
           <app-display-errors control="inputSetback" class="red"
-            [errors]="{'required': 'An entry is required, even if it is just N/A',
-                'maxlength': 'Entry cannot exceed 2000 characters in length.'
+          [errors]="{'required': 'An entry is required, even if it is just N/A.<br />Se requiere una entrada, aun si es sólo N/A.',
+          'maxlength': 'Entry cannot exceed 2000 characters in length.<br />La entrada no puede exceder 2000 caracteres del largo.'
                 }"></app-display-errors>
         </div>
 
@@ -123,7 +125,7 @@
                   (click)="onCancel()">
             Cancel
           </button>
-          <div class="red" [hidden]="myForm.valid">Year, Month, Snapshot and all text fields must be filled in correctly before saving.</div>
+          <div class="red" [hidden]="myForm.valid && myForm.dirty">Year, Month, Emoji and all text fields must be filled in before saving.<br />Año, mes, Emoji y todos los campos de texto deben rellenarse antes de guardar.</div>
         </span>
         </div>
       </fieldset>

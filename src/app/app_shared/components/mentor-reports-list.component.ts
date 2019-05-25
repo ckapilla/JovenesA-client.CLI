@@ -28,7 +28,7 @@ import { RptMentorReport } from '../models/mentor-report';
         </span>
         <span *ngIf="i.sponsorSummaryStatusId==2086" class="padded">
         <span class="btn btn-primary" (click)="monthlyReportEdit(i.mentorReportId )" style="margin-left:10px">
-          Edit Report
+          Edit Report / Editar informe
         </span>
       </span>
 
