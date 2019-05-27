@@ -2,15 +2,16 @@ import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { StudentsForMentorGridComponent } from './components/students-for-mentor-grid/students-for-mentor-grid.component';
-import { DisplayErrorsComponent } from '../app_shared/components/display-errors.component';
-import { LoadingContainerComponent } from '../app_shared/components/loading-container.component';
-import { MentorReportsListComponent } from '../app_shared/components/mentor-reports-list.component';
-import { SortableColumnComponent } from '../app_shared/components/sortable-column.component';
-import { SortableTableDirective } from '../app_shared/directives/sortable-table.directive';
-import { AuthService } from '../app_shared/services/auth.service';
+import { DisplayErrorsComponent } from './components/display-errors.component';
+import { LoadingContainerComponent } from './components/loading-container.component';
+import { MentorReportsListComponent } from './components/mentor-reports-list.component';
+import { SortableColumnComponent } from './components/sortable-column.component';
+import { SortableTableDirective } from './directives/sortable-table.directive';
+import { AuthService } from './services/auth.service';
 import { StudentsForMentorListComponent } from './components/students-for-mentor-list/students-for-mentor-list.component';
 import { StudentsForSponsorComponent } from './components/students-for-sponsor-list/students-for-sponsor-list';
+import { StudentsForMentorGridComponent } from './components/students-for-mentor-grid/students-for-mentor-grid.component';
+import { StudentSelectorComponent } from './components/student-selector/student-selector.component';
 import { HeaderbarComponent } from './headerbar/index';
 import { AlphaLanguagePipe } from './pipes/alpha-language-pipe';
 import { AlphaMonthPipe } from './pipes/alpha-month-pipe';
@@ -31,6 +32,7 @@ import { TruncateDatePipe } from './pipes/truncate-date-pipe';
     StudentsForMentorGridComponent,
     StudentsForMentorListComponent,
     StudentsForSponsorComponent,
+    StudentSelectorComponent,
     MentorReportsListComponent,
     SortableColumnComponent,
     SortableTableDirective,
@@ -49,6 +51,7 @@ import { TruncateDatePipe } from './pipes/truncate-date-pipe';
     StudentsForMentorGridComponent,
     StudentsForMentorListComponent,
     StudentsForSponsorComponent,
+    StudentSelectorComponent,
     MentorReportsListComponent,
     SortableColumnComponent,
     SortableTableDirective,

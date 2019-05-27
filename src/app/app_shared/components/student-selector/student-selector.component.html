@@ -1,0 +1,4 @@
+<label for="StudentSelector">Student:</label>
+<select name="StudentSelector" (change)="setSelectedStudent($event.target.value)">
+  <option *ngFor="let student of students" [value]="student.studentId">{{student.studentName}}</option>
+  </select>

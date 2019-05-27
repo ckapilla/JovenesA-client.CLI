@@ -13,9 +13,9 @@ import { MentorReportFollowUp } from '../models/mentor-report-follow-up';
 import { MentorReportsStatusCount } from '../models/mentor-reports-status-count';
 import { SponsorLetter } from '../models/sponsor-letter';
 import { Student } from '../models/student';
-import { SponsorDTO } from '../models/sponsorDTO';
-import { StudentDTO } from '../models/studentDTO';
 import { StudentSponsorXRef } from '../models/student-sponsor-xref';
+import { StudentDTO } from '../models/studentDTO';
+import { StudentMiniDTO } from '../models/studentMiniDTO';
 import { UrlService } from './url.service';
 
 
@@ -56,6 +56,12 @@ public getStudentDTOsByStatusAndYear(statusId: string, yearJoinedJA: string, gra
   + '/' + gradYear;
   console.log('sending AuthHttp get request for Students with url ' + url);
   return this.http.get<StudentDTO[]>(url).pipe(catchError(this.handleError));
+}
+
+public getCurrentStudentMiniDTOs(): Observable<StudentMiniDTO[]> {
+  const url = this.WebApiPrefix + 'students/names';
+  console.log('sending AuthHttp get request for Students');
+  return this.http.get<StudentMiniDTO[]>(url).pipe(catchError(this.handleError));
 }
 
 // public getStudentsForMentor(mentorId: Number): Observable<StudentMentorDTO[]> {
@@ -223,7 +229,7 @@ public getMentorReport(mentorReportId: number): Observable <RptMentorReport>  {
 
   }
 
-  public getMentorReportDTOs(mentorId: number, studentId: number): Observable <RptMentorReport[]>  {
+  public getMentorReportRPTs(mentorId: number, studentId: number): Observable <RptMentorReport[]>  {
     const url = this.WebApiPrefix + 'mentor_reports/' + mentorId + '/' + studentId;
     console.log('sending AuthHttp get request for MentorReports with ' + url);
     return this.http.get<RptMentorReport[]>(url).pipe(catchError(this.handleError));

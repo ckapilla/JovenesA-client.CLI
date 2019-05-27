@@ -41,7 +41,7 @@ export class AdminsStudentMRsComponent implements OnInit {
     }
    console.log('studentId  ' + this.studentId);
     this.isLoading = true;
-    this.sqlResource.getMentorReportDTOs(this.mentorId, this.studentId)
+    this.sqlResource.getMentorReportRPTs(this.mentorId, this.studentId)
       .subscribe(
         data => {this.mentorReports = data; },
         err => console.error('Subscribe error: ' + err),
