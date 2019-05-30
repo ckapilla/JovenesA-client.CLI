@@ -2,23 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
-import { MentorReportRPT } from '../../app_shared/models/mentor-report';
 import { SessionService } from '../../app_shared/services/session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
 
-
-
 @Component({
-
-  templateUrl: './mr-follow-up-updates.component.html',
-  styleUrls: ['../../../assets/css/forms.css'],
+  selector: 'app-follow-up-events',
+  templateUrl: './follow-up-events.component.html',
+  styleUrls: ['./follow-up-events.component.css']
 })
+export class FollowUpEventsComponent implements OnInit {
 
-export class MentorReportFollowUpUpdatesComponent
-        implements OnInit {
     frmUpdate: FormGroup;
-    mentorReport: MentorReportRPT;
     isLoading: boolean;
     submitted: boolean;
 
@@ -53,28 +48,17 @@ export class MentorReportFollowUpUpdatesComponent
 
 
         this.frmUpdate = _fb.group({
-
-            followUpNeeded  : [''],
-            followUpHistory  : [''],
+            description  : [''],
             followUpStatusSelector: [''],
 
         });
 
         this.frmUpdate = _fb.group({
-
-            inputFollowUpHistory: [''], // ,Validators.compose([Validators.required, Validators.maxLength(2000)])],
-
             followUpStatusSelector: [''],
-
-            inputFollowUpNeeded: ['']
+            inputDescription: ['']
         });
 
-
-        this.followUpHistory = this.frmUpdate.controls['inputFollowUpHistory'];
         this.followUpStatusSelector = this.frmUpdate.controls['followUpStatusSelector'];
-        this.followUpNeeded = this.frmUpdate.controls['inputFollowUpNeeded'];
-
-        this.mentorReport = new MentorReportRPT(); // MentorReportResource();
 
         this.errorMessage = '';
         this.successMessage = '';
@@ -84,22 +68,7 @@ export class MentorReportFollowUpUpdatesComponent
 
     ngOnInit() {
 
-
-    const mentorReportId = this.currRoute.snapshot.params['mentorReportId'];
-    console.log('sqlResource with MentorReportId: ' + mentorReportId);
-    this.studentName = this.session.getStudentInContextName();
     this.isLoading = true;
-    this.sqlResource.getMentorReport(mentorReportId)
-      .subscribe(
-        data => {this.mentorReport = data; },
-        err => console.error('Subscribe error: ' + err),
-        () => { console.log('done with data MentorReport>>');
-                console.log(this.mentorReport);
-                this.savedFollowUpStatusId = this.mentorReport.followUpStatusId;
-                console.log('<<');
-              this.isLoading = false;
-            }
-      );
 
       this.frmUpdate.valueChanges.subscribe(
           (form: any) => {
@@ -114,7 +83,6 @@ export class MentorReportFollowUpUpdatesComponent
 
     onSubmit()  {
         console.log('Hi from mentor ReportReview Submit');
-        // console.log(this.mentorReport);
 
         if (this.frmUpdate.invalid) {
           this.errorMessage = '';
@@ -122,19 +90,19 @@ export class MentorReportFollowUpUpdatesComponent
           return false;
         }
 
-        this.sqlResource.updateMentorReport(this.mentorReport)
-            .subscribe(
-                (student) => {
-                    console.log(this.successMessage = <any>student);
-                    this.submitted = true;
-                    this.isLoading = false;
-                    this.navigateBackInContext();
-                },
-                (error) =>  {
-                    console.log(this.errorMessage = <any>error);
-                    this.isLoading = false;
-                }
-            );
+        // this.sqlResource.updateMentorReport(this.mentorReport)
+        //     .subscribe(
+        //         (student) => {
+        //             console.log(this.successMessage = <any>student);
+        //             this.submitted = true;
+        //             this.isLoading = false;
+        //             this.navigateBackInContext();
+        //         },
+        //         (error) =>  {
+        //             console.log(this.errorMessage = <any>error);
+        //             this.isLoading = false;
+        //         }
+        //     );
         return false;
     }
 
@@ -143,13 +111,13 @@ export class MentorReportFollowUpUpdatesComponent
     }
 
     navigateBackInContext() {
-      const target = '/admins/mentor-reports/follow-up-tracking';
+      const target = '/admins/follow-up-events';
       console.log('after Submit or Cancel navigating to ' + target);
 
       const navigationExtras: NavigationExtras = {
-        queryParams: { id: 'id' + this.mentorReport.mentorReportId,
-                        summary: this.savedFollowUpStatusId
-                      }
+        // queryParams: { id: 'id' + this.mentorReport.mentorReportId,
+        //                 summary: this.savedFollowUpStatusId
+        //               }
       };
 
       this.router.navigate([target], navigationExtras);

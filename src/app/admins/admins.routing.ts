@@ -1,9 +1,8 @@
 import { RouterModule, Routes } from '@angular/router';
 import { CanActivateViaAdminAuthGuard, ConfirmDeactivateSummaryTrackingGuard } from '../app.routing-guards';
-import { FollowUpTrackingComponent } from './follow-up-tracking/follow-up-tracking.component';
 // tslint:disable-next-line: max-line-length
-import { AdminsCommunicationsComponent, AdminsComponent, AdminsHomeComponent, AdminsMemberComponent, AdminsMembersComponent, AdminsProfileComponent, AdminsStudentComponent, AdminsStudentMRsComponent, AdminsStudentsComponent, MentorReportFollowUpUpdatesComponent, MentorReportsFollowUpTrackingComponent, MentorReportsSummaryTrackingComponent, MentorReportSummaryUpdatesComponent } from './index';
-// import { AdminsGradeHistoryComponent } from './index';
+import { AdminsCommunicationsComponent, AdminsComponent, AdminsHomeComponent, AdminsMemberComponent, AdminsMembersComponent, AdminsProfileComponent, AdminsStudentComponent, AdminsStudentMRsComponent, AdminsStudentsComponent, FollowUpEventsComponent, FollowUpRequestsComponent, MentorReportsSummaryTrackingComponent, MentorReportSummaryUpdatesComponent } from './index';
+
 
 const routes: Routes = [
   {
@@ -67,20 +66,14 @@ const routes: Routes = [
           path: 'mentor-reports/summary-updates', // /:mentorReportId',
           component: MentorReportSummaryUpdatesComponent
         },
-
         {
-          path: 'mentor-reports/follow-up-tracking',
-          component: MentorReportsFollowUpTrackingComponent
+          path: 'follow-up-requests',
+          component: FollowUpRequestsComponent
         },
         {
-          path: 'mentor-reports/follow-up-updates/:mentorReportId',
-          component: MentorReportFollowUpUpdatesComponent
+          path: 'follow-up-events',
+          component: FollowUpEventsComponent
         },
-        {
-          path: 'follow-up-tracking',
-          component: FollowUpTrackingComponent
-        },
-
 
       ]
   }

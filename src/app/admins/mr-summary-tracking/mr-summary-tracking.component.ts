@@ -156,7 +156,6 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
         }, 0);
         this.isLoading = false; }
       );
-
   }
 
   scrollIntoView() {

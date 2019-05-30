@@ -4,12 +4,12 @@ import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Admin } from '../models/admin';
 import { Communication } from '../models/communication';
+import { FollowUpRequestRPT } from '../models/follow-up-requestRPT';
 import { Member } from '../models/member';
 import { MemberWithAnyRelatedStudent } from '../models/member-with-any-related-student';
 import { Mentor } from '../models/mentor';
-import { RptMentorReport } from '../models/mentor-report';
+import { MentorReportRPT } from '../models/mentor-report';
 import { MentorReportByMonth } from '../models/mentor-report-by-month';
-import { MentorReportFollowUp } from '../models/mentor-report-follow-up';
 import { MentorReportsStatusCount } from '../models/mentor-reports-status-count';
 import { SponsorLetter } from '../models/sponsor-letter';
 import { Student } from '../models/student';
@@ -222,28 +222,21 @@ public updateStudent(student: Student): Observable<any> {
 //////////////////////////////////////////////////
 
 
-public getMentorReport(mentorReportId: number): Observable <RptMentorReport>  {
+public getMentorReport(mentorReportId: number): Observable <MentorReportRPT>  {
     const url = this.WebApiPrefix + 'mentor_reports/' + mentorReportId;
     console.log('sending AuthHttp get request for MentorReport with ' + url);
     return this.http.get(url).pipe(catchError(this.handleError));
 
   }
 
-  public getMentorReportRPTs(mentorId: number, studentId: number): Observable <RptMentorReport[]>  {
+  public getMentorReportRPTs(mentorId: number, studentId: number): Observable <MentorReportRPT[]>  {
     const url = this.WebApiPrefix + 'mentor_reports/' + mentorId + '/' + studentId;
     console.log('sending AuthHttp get request for MentorReports with ' + url);
-    return this.http.get<RptMentorReport[]>(url).pipe(catchError(this.handleError));
+    return this.http.get<MentorReportRPT[]>(url).pipe(catchError(this.handleError));
 
   }
 
-  public getMentorReportsFollowUpStatus(): Observable <MentorReportFollowUp[]>  {
-    const url = this.WebApiPrefix + 'mentor_reports/follow_up';
-    console.log('sending AuthHttp get request with ' + url);
-    return this.http.get<MentorReportFollowUp[]>(url).pipe(catchError(this.handleError));
-
-  }
-
-  public updateMentorReport(mentorReport: RptMentorReport): Observable<RptMentorReport> {
+  public updateMentorReport(mentorReport: MentorReportRPT): Observable<MentorReportRPT> {
 
     const url = this.WebApiPrefix + 'mentor_reports'; // + mentorReport.mentorReportId ;
     let body = JSON.stringify({ mentorReport });
@@ -256,9 +249,9 @@ public getMentorReport(mentorReportId: number): Observable <RptMentorReport>  {
   }
 
 
-  public addMentorReport(mentorReport: RptMentorReport,
+  public addMentorReport(mentorReport: MentorReportRPT,
       mentorId: number,
-      studentId: number): Observable<RptMentorReport> {
+      studentId: number): Observable<MentorReportRPT> {
 
     const url = this.WebApiPrefix + 'mentor_reports';
     let body = JSON.stringify({ mentorReport });
@@ -269,7 +262,7 @@ public getMentorReport(mentorReportId: number): Observable <RptMentorReport>  {
     // console.log('ready to post ' + url + ' body: ' + body + ' options ' + headers);
     return this.http.post(url, body, { headers: headers });
   }
-//   public editMentorReport(mentorReport: RptMentorReport): Observable<RptMentorReport> {
+//   public editMentorReport(mentorReport: MentorReportRPT): Observable<MentorReportRPT> {
 
 //    const url = this.WebApiPrefix + 'mentor_reports';
 //   console.log('editMentorReport ' + url);
@@ -319,7 +312,7 @@ public getMentorReportsStatusCounts(year: string, month: string): Observable <Me
 
   public postSponsorLetter(sponsorLetter: SponsorLetter,
                           studentId: number,
-                          sponsorGroupId: number): Observable<RptMentorReport> {
+                          sponsorGroupId: number): Observable<MentorReportRPT> {
 
     const url = this.WebApiPrefix + 'student_sponsor_letters/' + studentId + '/' + sponsorGroupId;
     console.log('in postSponsorLetter with url ' + url );
@@ -333,6 +326,12 @@ public getMentorReportsStatusCounts(year: string, month: string): Observable <Me
 
   }
 
+  public getFollowUpRequests(): Observable <FollowUpRequestRPT[]>  {
+    const url = this.WebApiPrefix + 'follow_up/requests';
+    console.log('sending AuthHttp get request with ' + url);
+    return this.http.get<FollowUpRequestRPT[]>(url).pipe(catchError(this.handleError));
+
+  }
 
 //////////////////////////////////////////////////
 /// Utilities

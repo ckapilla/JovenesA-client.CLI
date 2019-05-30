@@ -1,0 +1,94 @@
+<div class="panel panel-primary">
+  <div class="panel-heading" style="font-size:large"> Active Follow-Up Requests
+  </div>
+  <div class="panel-body">
+    <span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
+    <span *ngIf="successMessage" class="alert alert-success">{{successMessage}}</span>
+    <div [ngSwitch]="isLoading">
+      <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
+        <app-loading-container>
+        </app-loading-container>
+      </div>
+      <div *ngSwitchCase="false">
+        <div class="row" style="border-bottom: 3px solid #ccc; margin-top: 2px;"
+             *ngFor="let request of followUpRequests, let i = index">
+          <div class="col-md-12">
+            <div class="row" id='{{"id" + request.followUpRequestId}}'>
+
+              <!-- <button class="btn default-btn" (click)="gotoFollowUpUpdate(request.followUpRequestId)">Review</button>
+              &nbsp; -->
+              <span class="padded">
+                &nbsp;Request Status:
+                <!--</div>
+                  <div class="col-md-10">-->
+                <!--<label for="FollowUpStatusSelector">FollowUp Status:</label>
+                    <select name="FollowUpStatusSelector" enabled="false" [(ngModel)]="request.followUpStatusId">
+                      <option *ngFor="let status of followUpStatuses" [value]="status.value">{{status.label}}</option>
+                    </select>-->
+                [{{ request.requestStatus }}]
+              </span>
+              <span class="padded">
+                &nbsp;Request Date:
+                [ {{ request.requestDateTime | truncateDate }} ]
+              </span>
+              <span class="padded">
+                &nbsp;Student: [
+                <span class="link" (click)='gotoStudent(request.studentId, request.studentName)' class='link'>
+                  {{ request.studentName }}
+                </span>
+                ]
+              </span>
+            </div>
+
+            <div class="row">
+                <span class="padded">
+                    &nbsp; Requested By:
+                    [ {{ request.requestedBy }} ]
+                    /
+                     [ {{ request.requestedByRole }} ]
+                  </span>
+                <span class="padded">
+                    &nbsp;Assigned To:
+                    [ {{ request.assignedTo }} ]
+                  </span>
+              <span class="padded">
+                &nbsp;Target Date:
+                [ {{ request.targetDate | truncateDate }} ]
+              </span>
+
+
+              <span class="checkboxes">
+                  &nbsp;&nbsp;<label><input type="checkbox" [(ngModel)]="displayEventDetails">&nbsp;<span>View History</span></label>
+                </span>
+
+
+            </div>
+
+            <div class="row">
+              <div class="padded">
+                &nbsp;Description:
+              </div>
+              <div class="col-md-10 padded">
+                {{ request.description_English }}
+              </div>
+              <div class="col-md-10 padded">
+                {{ request.description_Spanish }}
+              </div>
+            </div>
+            <div>
+                <div class="row" [hidden]=!displayEventDetails>
+                    <div class="col-md2 padded">
+                      &nbsp;EventDetail record 1
+                    </div>
+                    <div class="col-md-10">
+                      EventDetail Record 2
+                    </div>
+                  </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

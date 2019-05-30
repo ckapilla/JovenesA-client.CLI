@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
-import { RptMentorReport } from '../../app_shared/models/mentor-report';
+import { MentorReportRPT } from '../../app_shared/models/mentor-report';
 import { SessionService } from '../../app_shared/services/session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
@@ -16,7 +16,7 @@ import { SqlResource } from '../../app_shared/services/sql-resource.service';
 export class MonthlyReportsAddComponent
         implements OnInit {
     myForm: FormGroup;
-    mentorReport: RptMentorReport;
+    mentorReport: MentorReportRPT;
     isLoading: boolean;
     submitted: boolean;
 
@@ -91,7 +91,7 @@ export class MonthlyReportsAddComponent
 
 
 
-        this.mentorReport = new RptMentorReport();
+        this.mentorReport = new MentorReportRPT();
         this.mentorReport.mentorId = 0;
         this.mentorReport.studentId = 0;
         // SQL Server will adjust the time to UTC by adding TimezoneOffset

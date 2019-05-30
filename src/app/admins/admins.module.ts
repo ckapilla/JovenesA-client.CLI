@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { AppSharedModule } from '../app_shared/app_shared.module';
 import { AdminsRouting } from './admins.routing';
-import { AdminsCommunicationsComponent, AdminsComponent, AdminsHomeComponent, AdminsMemberComponent, AdminsMembersComponent, AdminsProfileComponent, AdminsStudentComponent, AdminsStudentMRsComponent, AdminsStudentsComponent, MentorReportFollowUpUpdatesComponent, MentorReportsFollowUpTrackingComponent, MentorReportsStatusCountsComponent, MentorReportsSummaryTrackingComponent, MentorReportSummaryUpdatesComponent } from './index';
+// tslint:disable-next-line: max-line-length
+import { AdminsCommunicationsComponent, AdminsComponent, AdminsHomeComponent, AdminsMemberComponent, AdminsMembersComponent, AdminsProfileComponent, AdminsStudentComponent, AdminsStudentMRsComponent, AdminsStudentsComponent, FollowUpEventsComponent, FollowUpRequestsComponent, MentorReportsStatusCountsComponent, MentorReportsSummaryTrackingComponent, MentorReportSummaryUpdatesComponent } from './index';
 import { AdminsNavbarComponent } from './shared/admins-navbar/admins-navbar.component';
-import { FollowUpTrackingComponent } from './follow-up-tracking/follow-up-tracking.component';
+
 
 // import { AdminsGradeHistoryComponent } from './index';
 
@@ -22,16 +23,12 @@ import { FollowUpTrackingComponent } from './follow-up-tracking/follow-up-tracki
         AdminsStudentsComponent,
         AdminsStudentComponent,
         AdminsStudentMRsComponent,
-
-        // AdminsGradeHistoryComponent,
-
         MentorReportsSummaryTrackingComponent,
         MentorReportsStatusCountsComponent,
         MentorReportSummaryUpdatesComponent,
-        MentorReportsFollowUpTrackingComponent,
-        MentorReportFollowUpUpdatesComponent,
         AdminsNavbarComponent,
-        FollowUpTrackingComponent
+        FollowUpRequestsComponent,
+        FollowUpEventsComponent
     ],
     exports: [
         AdminsStudentMRsComponent

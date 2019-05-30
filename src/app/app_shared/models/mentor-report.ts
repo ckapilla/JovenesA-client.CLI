@@ -1,4 +1,4 @@
-  export class RptMentorReport {
+  export class MentorReportRPT {
 
       constructor(
         public mentorReportId?: number,

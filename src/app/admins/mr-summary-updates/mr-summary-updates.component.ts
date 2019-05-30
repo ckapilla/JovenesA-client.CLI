@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
-import { FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
+import { MentorReportRPT } from '../../app_shared/models/mentor-report';
 import { SessionService } from '../../app_shared/services/session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
-import { RptMentorReport } from '../../app_shared/models/mentor-report';
-import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 
 @Component({
 
@@ -15,7 +15,7 @@ import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 export class MentorReportSummaryUpdatesComponent
         implements OnInit {
     frmUpdate: FormGroup;
-    mentorReport: RptMentorReport;
+    mentorReport: MentorReportRPT;
     isLoading: boolean;
     submitted: boolean;
     errorMessage: string;
@@ -83,7 +83,7 @@ export class MentorReportSummaryUpdatesComponent
         this.highlightStatus = this.frmUpdate.controls['highlightStatusSelector'];
 
 
-        this.mentorReport = new RptMentorReport(); // MentorReportResource();
+        this.mentorReport = new MentorReportRPT(); // MentorReportResource();
 
         this.errorMessage = '';
         this.successMessage = '';

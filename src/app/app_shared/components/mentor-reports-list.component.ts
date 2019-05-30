@@ -1,7 +1,7 @@
 
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { RptMentorReport } from '../models/mentor-report';
+import { MentorReportRPT } from '../models/mentor-report';
 
 @Component({
   selector: 'app-mentor-reports-list',
@@ -64,7 +64,7 @@ import { RptMentorReport } from '../models/mentor-report';
 export class MentorReportsListComponent {
 
   @Input()
-  mentorReports: RptMentorReport[];
+  mentorReports: MentorReportRPT[];
   smileys: Array<string>;
   studentId: number;
 

@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RptMentorReport } from '../../app_shared/models/mentor-report';
+import { MentorReportRPT } from '../../app_shared/models/mentor-report';
 import { SessionService } from '../../app_shared/services/session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
@@ -18,7 +18,7 @@ export class AdminsStudentMRsComponent implements OnInit {
   studentId: number;
   mentorId: number;
   mentorReportId: number;
-  mentorReports: Array<RptMentorReport>;
+  mentorReports: Array<MentorReportRPT>;
   studentName: string;
 
   constructor(

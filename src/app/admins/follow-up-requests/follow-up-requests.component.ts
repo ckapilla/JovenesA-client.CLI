@@ -1,30 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
-import { SessionService } from '../../app_shared/services/session.service';
-import { MentorReportFollowUp } from '../../app_shared/models/mentor-report-follow-up';
-
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
+import { FollowUpRequestRPT } from '../../app_shared/models/follow-up-requestRPT';
+import { SessionService } from '../../app_shared/services/session.service';
+import { SqlResource } from '../../app_shared/services/sql-resource.service';
+
 
 @Component({
-
-  templateUrl: 'mr-follow-up-tracking.component.html',
+  selector: 'app-follow-up-requests',
+  styleUrls: ['./follow-up-requests.component.css'],
+  templateUrl: 'follow-up-requests.component.html'
 })
-export class MentorReportsFollowUpTrackingComponent implements OnInit {
-  mentorReportsFollowUp: MentorReportFollowUp[];
+export class FollowUpRequestsComponent implements OnInit {
+  followUpRequests: FollowUpRequestRPT[];
   isLoading: boolean;
   smileys: Array<string>;
   followUpStatuses: SELECTITEM[];
   errorMessage: string;
   successMessage: string;
   studentName: string;
+  displayEventDetails: false;
 
   constructor(public sqlResource: SqlResource,
               public router: Router,
               public session: SessionService
-
-
-
   ) {
 
     this.followUpStatuses = [
@@ -33,33 +32,26 @@ export class MentorReportsFollowUpTrackingComponent implements OnInit {
       { value: '2092', label: 'Assigned'},
       { value: '2104', label: 'Closed'}
     ];
-    this.smileys = [ '/assets/images/frownSmiley.jpg',
-                    '/assets/images/neutralSmiley.jpg',
-                    '/assets/images/greenSmiley.jpg',
-                    '/assets/images/NA.jpg'
-                    ];
   }
 
   ngOnInit() {
+
     this.fetchData();
   }
 
   fetchData() {
     this.isLoading = true;
     console.log('in fetchData for MentorReportsFollowUp');
-    this.sqlResource.getMentorReportsFollowUpStatus()
+    this.sqlResource.getFollowUpRequests()
       .subscribe(
-        data => {this.mentorReportsFollowUp = data; },
+        data => { this.followUpRequests = data; },
         err => console.error('Subscribe error: ' + err),
-        () => { console.log('done >>'); console.log(this.mentorReportsFollowUp[0]); console.log('<<'); this.isLoading = false; }
+        () => {
+          console.log('done >>'); console.log(this.followUpRequests[0]); console.log('<<');
+          this.isLoading = false;
+        }
       );
   }
-
-  // setSelectedSponsorSummaryStatus(status: string) {
-  //   // console.log('selected status: ' + status);
-  //   this.selectedSponsorSummaryStatus = status;
-  //   this.fetchFilteredData();
-  // }
 
   gotoStudent(id: number, studentName: string) {
     console.log('setting studentName to ' + studentName);
@@ -72,7 +64,7 @@ export class MentorReportsFollowUpTrackingComponent implements OnInit {
   }
 
   gotoFollowUpUpdate(id: number) {
-    const link = ['/admins/mentor-reports/follow-up-updates/' + id];
+    const link = ['/admins/follow-up-events/follow-up-events/' + id];
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }
