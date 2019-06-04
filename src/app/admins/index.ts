@@ -17,4 +17,6 @@ export * from './mr-status-counts/mr-status-counts.component';
 export * from './mr-follow-up-updates/mr-follow-up-updates.component';
 export * from './shared/admins-navbar/index';
 export * from './follow-up-requests/follow-up-requests.component';
+export * from './follow-up-requests-add/follow-up-requests-add.component';
+export * from './follow-up-events-add/follow-up-events-add.component';
 export * from './follow-up-events/follow-up-events.component';

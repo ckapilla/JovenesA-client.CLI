@@ -4,9 +4,11 @@ import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Admin } from '../models/admin';
 import { Communication } from '../models/communication';
+import { FollowUpRequest } from '../models/follow-up-request';
 import { FollowUpRequestRPT } from '../models/follow-up-requestRPT';
 import { Member } from '../models/member';
 import { MemberWithAnyRelatedStudent } from '../models/member-with-any-related-student';
+import { MemberMiniDTO } from '../models/memberMiniDTO';
 import { Mentor } from '../models/mentor';
 import { MentorReportRPT } from '../models/mentor-report';
 import { MentorReportByMonth } from '../models/mentor-report-by-month';
@@ -63,17 +65,18 @@ public getCurrentStudentMiniDTOs(): Observable<StudentMiniDTO[]> {
   console.log('sending AuthHttp get request for Students');
   return this.http.get<StudentMiniDTO[]>(url).pipe(catchError(this.handleError));
 }
-
-// public getStudentsForMentor(mentorId: Number): Observable<StudentMentorDTO[]> {
-//   const url = this.WebApiPrefix + 'students/for_mentor/' + mentorId;
-//   console.log('sending AuthHttp get request for StudentsForMentor');
-//   return this.http.get<StudentMentorDTO[]>(url).pipe(catchError(this.handleError));
-// }
+public getCurrentMemberMiniDTOs(role: string): Observable<MemberMiniDTO[]> {
+  const url = this.WebApiPrefix + 'members/names/' + role;
+  console.log('sending AuthHttp get request for Members with url ' + url);
+  return this.http.get<MemberMiniDTO[]>(url).pipe(catchError(this.handleError));
+}
 
 public getStudentsForMentor(mentorId: Number): Observable<StudentDTO[]> {
   const url = this.WebApiPrefix + 'students/for_mentor/' + mentorId;
   console.log('sending AuthHttp get request for StudentsForMentor');
-  return this.http.get<StudentDTO[]>(url).pipe(catchError(this.handleError));
+  const xx = this.http.get<StudentDTO[]>(url).pipe(catchError(this.handleError));
+  console.log (xx);
+  return xx;
 }
 
 public getStudentsForSponsor(sponsorId: Number): Observable<StudentSponsorXRef[]> {
@@ -325,14 +328,29 @@ public getMentorReportsStatusCounts(year: string, month: string): Observable <Me
     return this.http.post(url, body, { headers: headers });
 
   }
+  //////////////////////////////////////////////////
+///  FollowUpController
+//////////////////////////////////////////////////
+
 
   public getFollowUpRequests(): Observable <FollowUpRequestRPT[]>  {
     const url = this.WebApiPrefix + 'follow_up/requests';
     console.log('sending AuthHttp get request with ' + url);
     return this.http.get<FollowUpRequestRPT[]>(url).pipe(catchError(this.handleError));
+  }
+  public postFollowUpRequest(followUpRequest: FollowUpRequest): Observable<FollowUpRequest> {
+
+    const url = this.WebApiPrefix + 'follow_up';
+    console.log('in postFollowUpRequest with url ' + url );
+    let body = JSON.stringify({ followUpRequest });
+    // strip outer 'mentor' name
+    const x = JSON.parse(body);
+    body = JSON.stringify(x.followUpRequest);
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    console.log('ready to post ' + url + ' body: ' + body + ' options ' + headers);
+    return this.http.post(url, body, { headers: headers });
 
   }
-
 //////////////////////////////////////////////////
 /// Utilities
 //////////////////////////////////////////////////

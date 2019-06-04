@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { StudentMiniDTO } from '../../models/studentMiniDTO';
 import { SqlResource } from '../../services/sql-resource.service';
-
+// import { map } from 'rxjs/operators';
 @Component({
 // tslint:disable-next-line: component-selector
   selector: 'app-student-selector',
@@ -12,7 +12,7 @@ export class StudentSelectorComponent implements OnInit {
   students: Array<StudentMiniDTO>;
   errorMessage = '';
   haveData: boolean;
-
+  @Output() onSelectedStudentId = new EventEmitter<number>();
   constructor(
     private sqlResource: SqlResource) {
   }
@@ -20,10 +20,14 @@ export class StudentSelectorComponent implements OnInit {
     this.haveData = false;
     this.sqlResource.getCurrentStudentMiniDTOs()
       .subscribe(
-        data => {this.students = data; console.log(this.students); },
+        data => {
+          this.students = data;
+        },
         err => console.error('Subscribe error: ' + err),
         () => {
-          console.log('student-selector loaded ' + this.students.length + ' rows');
+          console.log('student selector has All students: ' + this.students.length);
+          this.students = this.students.filter(s => s.studentName !== 'N/A, N/A');
+          console.log('student selector has Current students: ' + this.students.length);
           if (this.students.length > 0) {
             console.log(this.students[0].studentName);
             this.haveData = true;
@@ -32,5 +36,8 @@ export class StudentSelectorComponent implements OnInit {
           }
         });
   }
-
+  public setSelectedStudent(studentId: string) {
+    console.log('selected studentId is set to ' + studentId);
+    this.onSelectedStudentId.emit(+ studentId);
+  }
 }

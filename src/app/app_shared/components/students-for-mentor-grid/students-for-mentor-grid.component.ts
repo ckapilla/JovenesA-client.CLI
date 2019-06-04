@@ -32,10 +32,15 @@ export class StudentsForMentorGridComponent implements OnInit {
   public ngOnInit() {
     this.sqlResource.getStudentsForMentor(this.session.getUserId())
       .subscribe(
-        data => {this.students = data; console.log(this.students); },
+        data => {
+        this.students = data;
+      },
         err => console.error('Subscribe error: ' + err),
         () => {
-                console.log('students-for-mentor-grid loaded ' + this.students.length + ' rows');
+          console.log('studentsForMentorGrid has All students: ' + this.students.length);
+          console.log(this.students);
+          this.students = this.students.filter(s => s.statusId === 1005);
+          console.log('studentsForMentorGrid has Current students: ' + this.students.length);
                 if (this.students.length > 0 ) {
                   this.selectFirstRow();
                 } else {

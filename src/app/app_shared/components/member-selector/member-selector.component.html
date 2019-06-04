@@ -1,0 +1,15 @@
+
+
+<label for="requestorRoleSelector">Requestor Role: </label>
+<select formControlName="requestorRoleSelector" class="form-control input-sm"
+          (change)="setSelectedRole($event.target.value)">
+          <option [value]="null">Select Role</option>
+  <option *ngFor="let roleId of requestorRoles" [value]="roleId.value">{{roleId.label}}</option>
+</select>
+
+<label for="MemberSelector">Requestor: </label>
+<select formControlName="MemberSelector" [disabled] = "!haveMemberType" class="form-control input-sm"
+          (change) = "setSelectedMember($event.target.value)">
+          <option [value]="null">Select Member</option>
+  <option *ngFor="let member of members" [value]="member.memberId">{{member.memberName}}</option>
+  </select>

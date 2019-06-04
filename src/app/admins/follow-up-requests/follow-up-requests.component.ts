@@ -41,7 +41,7 @@ export class FollowUpRequestsComponent implements OnInit {
 
   fetchData() {
     this.isLoading = true;
-    console.log('in fetchData for MentorReportsFollowUp');
+    console.log('in fetchData for FollowUpRequests');
     this.sqlResource.getFollowUpRequests()
       .subscribe(
         data => { this.followUpRequests = data; },
@@ -57,14 +57,19 @@ export class FollowUpRequestsComponent implements OnInit {
     console.log('setting studentName to ' + studentName);
     this.session.setStudentInContextName(studentName);
 
-    const link = ['/admins/students/student/' + id];
-    // const link = ['/admins/students/mentorReports/' + id];
+    const link = ['admins/students/student', { id: id }];
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }
 
+  followUpRequestAdd() {
+    console.log('in follow-up-requests: FollowUpRequestAdd, ready to navigate');
+    const target = '/admins/follow-up-requests-add';
+    this.router.navigateByUrl(target);
+}
+
   gotoFollowUpUpdate(id: number) {
-    const link = ['/admins/follow-up-events/follow-up-events/' + id];
+    const link = ['/admins/follow-up-events/follow-up-events' + id];
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }

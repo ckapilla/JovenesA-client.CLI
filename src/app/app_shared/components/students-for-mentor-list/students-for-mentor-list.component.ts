@@ -30,10 +30,12 @@ export class StudentsForMentorListComponent implements OnInit {
     const id = this.currRoute.snapshot.params['id'];
     this.sqlResource.getStudentsForMentor(id)
       .subscribe(
-        data => {this.students = data; console.log(this.students); },
+        data => {
+          this.students = data;
+         },
         err => console.error('Subscribe error: ' + err),
         () => {
-          console.log('students-for-mentor-list loaded ' + this.students.length + ' rows');
+          console.log('studentsForMentorList has All students: ' + this.students.length);
           if (this.students.length > 0) {
             console.log(this.students[0].studentName);
             this.haveData = true;
@@ -45,7 +47,7 @@ export class StudentsForMentorListComponent implements OnInit {
   gotoStudent(id: number, studentName: string) { // }, studentFirstNames: string) {
     // const studentName; // = studentLastNames + ', ' + studentFirstNames;
     console.log('setting studentName to ' + studentName);
-    this.session.setStudentInContextName(studentName)
+    this.session.setStudentInContextName(studentName);
     const link = ['admins/students/student', { id: id }];
 
     console.log('navigating to ' + link);

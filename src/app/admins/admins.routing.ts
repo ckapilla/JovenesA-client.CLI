@@ -1,8 +1,8 @@
 import { RouterModule, Routes } from '@angular/router';
 import { CanActivateViaAdminAuthGuard, ConfirmDeactivateSummaryTrackingGuard } from '../app.routing-guards';
-// tslint:disable-next-line: max-line-length
-import { AdminsCommunicationsComponent, AdminsComponent, AdminsHomeComponent, AdminsMemberComponent, AdminsMembersComponent, AdminsProfileComponent, AdminsStudentComponent, AdminsStudentMRsComponent, AdminsStudentsComponent, FollowUpEventsComponent, FollowUpRequestsComponent, MentorReportsSummaryTrackingComponent, MentorReportSummaryUpdatesComponent } from './index';
-
+import { AdminsCommunicationsComponent, AdminsComponent, AdminsHomeComponent, AdminsMemberComponent, AdminsMembersComponent, AdminsProfileComponent } from './index';
+import { AdminsStudentComponent,  AdminsStudentsComponent, FollowUpEventsComponent, FollowUpRequestsComponent, FollowUpEventsAddComponent, FollowUpRequestsAddComponent } from './index';
+import { AdminsStudentMRsComponent, MentorReportsStatusCountsComponent,  MentorReportsSummaryTrackingComponent, MentorReportSummaryUpdatesComponent } from './index';
 
 const routes: Routes = [
   {
@@ -74,7 +74,14 @@ const routes: Routes = [
           path: 'follow-up-events',
           component: FollowUpEventsComponent
         },
-
+        {
+          path: 'follow-up-requests-add',
+          component: FollowUpRequestsAddComponent
+        },
+        {
+          path: 'follow-up-events-add',
+          component: FollowUpEventsAddComponent
+        },
       ]
   }
 ];

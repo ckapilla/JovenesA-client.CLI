@@ -8,7 +8,7 @@
         public status: string, // Status
         public esStatus: string, // Status
         public yearJoinedJa?: number, // YearJoinedJA
-        public statusID?: number, // StatusID
+        public statusId?: number, // StatusID
         public gradYear?: number, // GradYear
         public gradMonth?: string, // GradMonth
         public gradeRptStatus?: string, // GradeRptStatus

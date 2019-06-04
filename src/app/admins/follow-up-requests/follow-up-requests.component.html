@@ -10,11 +10,15 @@
         </app-loading-container>
       </div>
       <div *ngSwitchCase="false">
+          <span class="btn btn-default active" (click)="followUpRequestAdd()" style="margin-left:10px">
+              Add New FollowUpRequest
+            </span>
+
+
         <div class="row" style="border-bottom: 3px solid #ccc; margin-top: 2px;"
              *ngFor="let request of followUpRequests, let i = index">
           <div class="col-md-12">
             <div class="row" id='{{"id" + request.followUpRequestId}}'>
-
               <!-- <button class="btn default-btn" (click)="gotoFollowUpUpdate(request.followUpRequestId)">Review</button>
               &nbsp; -->
               <span class="padded">
@@ -55,13 +59,6 @@
                 &nbsp;Target Date:
                 [ {{ request.targetDate | truncateDate }} ]
               </span>
-
-
-              <span class="checkboxes">
-                  &nbsp;&nbsp;<label><input type="checkbox" [(ngModel)]="displayEventDetails">&nbsp;<span>View History</span></label>
-                </span>
-
-
             </div>
 
             <div class="row">

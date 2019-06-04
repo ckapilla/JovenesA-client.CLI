@@ -72,17 +72,13 @@ export class MentorReportSummaryUpdatesComponent
         this.frmUpdate = _fb.group({
 
             inputSummary: [''], // ,Validators.compose([Validators.required, Validators.maxLength(2000)])],
-
             summaryStatusSelector: [''],
-
             highlightStatusSelector: ['']
         });
 
         this.summary = this.frmUpdate.controls['inputSummary'];
         this.summaryStatus = this.frmUpdate.controls['summaryStatusSelector'];
         this.highlightStatus = this.frmUpdate.controls['highlightStatusSelector'];
-
-
         this.mentorReport = new MentorReportRPT(); // MentorReportResource();
 
         this.errorMessage = '';
