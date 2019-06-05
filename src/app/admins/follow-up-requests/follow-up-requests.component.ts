@@ -19,18 +19,18 @@ export class FollowUpRequestsComponent implements OnInit {
   errorMessage: string;
   successMessage: string;
   studentName: string;
-  displayEventDetails: false;
+  displayEventDetails: true;
 
   constructor(public sqlResource: SqlResource,
-              public router: Router,
-              public session: SessionService
+    public router: Router,
+    public session: SessionService
   ) {
 
     this.followUpStatuses = [
       { value: '0', label: '[All]' },
-      { value: '2091', label: 'Requested'},
-      { value: '2092', label: 'Assigned'},
-      { value: '2104', label: 'Closed'}
+      { value: '2091', label: 'Requested' },
+      { value: '2092', label: 'Assigned' },
+      { value: '2104', label: 'Closed' }
     ];
   }
 
@@ -66,7 +66,7 @@ export class FollowUpRequestsComponent implements OnInit {
     console.log('in follow-up-requests: FollowUpRequestAdd, ready to navigate');
     const target = '/admins/follow-up-requests-add';
     this.router.navigateByUrl(target);
-}
+  }
 
   gotoFollowUpUpdate(id: number) {
     const link = ['/admins/follow-up-events/follow-up-events' + id];
@@ -74,5 +74,10 @@ export class FollowUpRequestsComponent implements OnInit {
     this.router.navigate(link);
   }
 
-
+  viewAddDetails(id: number) {
+    const link = ['/admins/follow-up-events-add'];
+    console.log('navigating to ' + link);
+    this.router.navigate(link);
+  }
 }
+

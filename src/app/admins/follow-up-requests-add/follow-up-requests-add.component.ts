@@ -98,7 +98,7 @@ export class FollowUpRequestsAddComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('Hi from mentor FollowUpRequests Submit');
+    console.log('Hi from FollowUpRequests Submit');
 
     if (this.myForm.invalid) {
       this.errorMessage = '';
@@ -119,7 +119,26 @@ export class FollowUpRequestsAddComponent implements OnInit {
           console.log(this.errorMessage = <any>error);
           this.isLoading = false;
         }
-      );
+    );
+
+
+
+    // this.sqlResource.postFollowUpEvent(this.followUpRequest)
+    //   .subscribe(
+    //     (request) => {
+    //       console.log(this.successMessage = <any>request);
+    //       this.submitted = true;
+    //       this.isLoading = false;
+    //       const target = '/admins/follow-up-requests';
+    //       console.log('after call to addFollowUpRequest; navigating to ' + target);
+    //       this.router.navigateByUrl(target);
+    //     },
+    //     (error) => {
+    //       console.log(this.errorMessage = <any>error);
+    //       this.isLoading = false;
+    //     }
+    // );
+
     return false;
   }
 
@@ -128,7 +147,7 @@ onCancel() {
 }
 
 navigateBackInContext() {
-  const target = '/admins/follow-up';
+  const target = '/admins/follow-up-requests';
   console.log('after Submit or Cancel navigating to ' + target);
 
   const navigationExtras: NavigationExtras = {

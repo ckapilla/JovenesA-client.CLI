@@ -1,20 +1,24 @@
-<div class="panel panel-primary">
-  <div class="panel-heading" style="font-size:large"> Active Follow-Up Requests
+<span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
+<span *ngIf="successMessage" class="alert alert-success">{{successMessage}}</span>
+<div [ngSwitch]="isLoading">
+  <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
+    <app-loading-container>
+    </app-loading-container>
   </div>
-  <div class="panel-body">
-    <span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
-    <span *ngIf="successMessage" class="alert alert-success">{{successMessage}}</span>
-    <div [ngSwitch]="isLoading">
-      <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
-        <app-loading-container>
-        </app-loading-container>
-      </div>
-      <div *ngSwitchCase="false">
-          <span class="btn btn-default active" (click)="followUpRequestAdd()" style="margin-left:10px">
+  <div *ngSwitchCase="false">
+    <div *ngIf="!errorMessage" class="panel panel-primary">
+      <div class="panel-heading" style="font-size:large">
+        <span>Current Requests / Solicitudes Corrientes </span>
+        <span>{{studentName}}</span>
+        <span>
+          <span>
+            <span class="btn btn-default active" (click)="followUpRequestAdd()" style="margin-left:10px">
               Add New FollowUpRequest
             </span>
-
-
+          </span>
+        </span>
+      </div>
+      <div class="panel-body">
         <div class="row" style="border-bottom: 3px solid #ccc; margin-top: 2px;"
              *ngFor="let request of followUpRequests, let i = index">
           <div class="col-md-12">
@@ -23,12 +27,6 @@
               &nbsp; -->
               <span class="padded">
                 &nbsp;Request Status:
-                <!--</div>
-                  <div class="col-md-10">-->
-                <!--<label for="FollowUpStatusSelector">FollowUp Status:</label>
-                    <select name="FollowUpStatusSelector" enabled="false" [(ngModel)]="request.followUpStatusId">
-                      <option *ngFor="let status of followUpStatuses" [value]="status.value">{{status.label}}</option>
-                    </select>-->
                 [{{ request.requestStatus }}]
               </span>
               <span class="padded">
@@ -45,20 +43,27 @@
             </div>
 
             <div class="row">
-                <span class="padded">
-                    &nbsp; Requested By:
-                    [ {{ request.requestedBy }} ]
-                    /
-                     [ {{ request.requestedByRole }} ]
-                  </span>
-                <span class="padded">
-                    &nbsp;Assigned To:
-                    [ {{ request.assignedTo }} ]
-                  </span>
+              <span class="padded">
+                &nbsp; Requested By:
+                [ {{ request.requestedBy }} ]
+                /
+                [ {{ request.requestedByRole }} ]
+              </span>
+              <span class="padded">
+                &nbsp;Assigned To:
+                [ {{ request.assignedTo }} ]
+              </span>
               <span class="padded">
                 &nbsp;Target Date:
                 [ {{ request.targetDate | truncateDate }} ]
               </span>
+              <span class="padded">
+                <span class="btn btn-primary" (click)="viewAddDetails(request.followUpRequestId)" style="margin-left:10px">
+                  View/Add Details
+                </span>
+              </span>
+
+
             </div>
 
             <div class="row">
@@ -73,19 +78,18 @@
               </div>
             </div>
             <div>
-                <div class="row" [hidden]=!displayEventDetails>
-                    <div class="col-md2 padded">
-                      &nbsp;EventDetail record 1
-                    </div>
-                    <div class="col-md-10">
-                      EventDetail Record 2
-                    </div>
-                  </div>
-
-
+              <div class="row" >
+                <div class="col-md-10 padded">
+                EventDetail record 1
+                </div>
+                <div class="col-md-10 padded">
+                  EventDetail Record 2
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>

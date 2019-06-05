@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Admin } from '../models/admin';
 import { Communication } from '../models/communication';
+import { FollowUpEvent } from '../models/follow-up-event';
+import { FollowUpEventRPT } from '../models/follow-up-eventRPT';
 import { FollowUpRequest } from '../models/follow-up-request';
 import { FollowUpRequestRPT } from '../models/follow-up-requestRPT';
 import { Member } from '../models/member';
@@ -334,13 +336,12 @@ public getMentorReportsStatusCounts(year: string, month: string): Observable <Me
 
 
   public getFollowUpRequests(): Observable <FollowUpRequestRPT[]>  {
-    const url = this.WebApiPrefix + 'follow_up/requests';
+    const url = this.WebApiPrefix + 'follow_up_requests';
     console.log('sending AuthHttp get request with ' + url);
     return this.http.get<FollowUpRequestRPT[]>(url).pipe(catchError(this.handleError));
   }
   public postFollowUpRequest(followUpRequest: FollowUpRequest): Observable<FollowUpRequest> {
-
-    const url = this.WebApiPrefix + 'follow_up';
+    const url = this.WebApiPrefix + 'follow_up_requests';
     console.log('in postFollowUpRequest with url ' + url );
     let body = JSON.stringify({ followUpRequest });
     // strip outer 'mentor' name
@@ -349,8 +350,25 @@ public getMentorReportsStatusCounts(year: string, month: string): Observable <Me
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     console.log('ready to post ' + url + ' body: ' + body + ' options ' + headers);
     return this.http.post(url, body, { headers: headers });
-
   }
+  public getFollowUpEvents(followUpRequestId: number): Observable <FollowUpEventRPT[]>  {
+    const url = this.WebApiPrefix + 'follow_up_events/' + followUpRequestId ;
+    console.log('sending AuthHttp get request with ' + url);
+    return this.http.get<FollowUpRequestRPT[]>(url).pipe(catchError(this.handleError));
+  }
+
+  public postFollowUpEvent(followUpEvent: FollowUpEvent): Observable<FollowUpEvent> {
+    const url = this.WebApiPrefix + 'follow_up_events';
+    console.log('in postFollowUpEvent with url ' + url );
+    let body = JSON.stringify({ followUpEvent: followUpEvent });
+    // strip outer 'mentor' name
+    const x = JSON.parse(body);
+    body = JSON.stringify(x.followUpEventt);
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    console.log('ready to post ' + url + ' body: ' + body + ' options ' + headers);
+    return this.http.post(url, body, { headers: headers });
+  }
+
 //////////////////////////////////////////////////
 /// Utilities
 //////////////////////////////////////////////////

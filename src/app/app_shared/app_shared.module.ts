@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { DisplayErrorsComponent } from './components/display-errors.component';
 import { LoadingContainerComponent } from './components/loading-container.component';
 import { MemberSelectorComponent } from './components/member-selector/member-selector.component';
-import { MentorReportsListComponent } from './components/mentor-reports-list.component';
+import { MentorReportsListComponent } from './components/mentor-reports-list/mentor-reports-list.component';
 import { SortableColumnComponent } from './components/sortable-column.component';
 import { StudentSelectorComponent } from './components/student-selector/student-selector.component';
 import { StudentsForMentorGridComponent } from './components/students-for-mentor-grid/students-for-mentor-grid.component';

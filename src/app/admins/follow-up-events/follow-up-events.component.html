@@ -1,3 +1,36 @@
-<p>
-  follow-up-events works!
-</p>
+<div class="panel-body">
+
+  <div class="row" style="border-bottom: 3px solid #ccc; margin-top: 2px;"
+       *ngFor="let i of followUpEvents">
+    <div class="col-md-12">
+      <div class="row">
+
+        <span class="padded">
+          &nbsp;Request Status:
+          {{ i.requestStatus }}
+        </span>
+        <span class="padded">
+          &nbsp;Assigned To:
+          {{ i.assignedTo }}
+        </span>
+
+      </div>
+
+      <div class="row">
+        <div class="col-md2 padded">
+          &nbsp;Comments (English):
+        </div>
+        <div class="col-md-10">
+          {{ i.comments_English }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="padded">
+          &nbsp;Comments (Spanish):
+        </div>
+        <div class="col-md-10">
+          {{ i.comments_Spanish }}
+        </div>
+      </div>
+    </div>
+  </div>
