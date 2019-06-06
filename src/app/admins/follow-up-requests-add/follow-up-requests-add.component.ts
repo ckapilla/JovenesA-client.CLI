@@ -5,6 +5,7 @@ import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 import { FollowUpRequest } from '../../app_shared/models/follow-up-request';
 import { SessionService } from '../../app_shared/services/session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
+import { FollowUpEvent } from 'src/app/app_shared/models/follow-up-event';
 
 @Component({
   selector: 'app-follow-up-requests-add',
@@ -71,6 +72,7 @@ export class FollowUpRequestsAddComponent implements OnInit {
 
     this.followUpRequest = new FollowUpRequest();
     this.followUpRequest.studentId = 0;
+
     // SQL Server will adjust the time to UTC by adding TimezoneOffset
     // we want to store local time so we adjust for that.
     const now = new Date();
@@ -85,7 +87,6 @@ export class FollowUpRequestsAddComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.isLoading = true;
     this.myForm.valueChanges.subscribe(
       (form: any) => {
@@ -107,10 +108,11 @@ export class FollowUpRequestsAddComponent implements OnInit {
     }
     this.sqlResource.postFollowUpRequest(this.followUpRequest)
       .subscribe(
-        (request) => {
+        (request:) => {
           console.log(this.successMessage = <any>request);
           this.submitted = true;
           this.isLoading = false;
+          this.submitInitialEvent(request);
           const target = '/admins/follow-up-requests';
           console.log('after call to addFollowUpRequest; navigating to ' + target);
           this.router.navigateByUrl(target);
@@ -119,70 +121,80 @@ export class FollowUpRequestsAddComponent implements OnInit {
           console.log(this.errorMessage = <any>error);
           this.isLoading = false;
         }
-    );
-
-
-
-    // this.sqlResource.postFollowUpEvent(this.followUpRequest)
-    //   .subscribe(
-    //     (request) => {
-    //       console.log(this.successMessage = <any>request);
-    //       this.submitted = true;
-    //       this.isLoading = false;
-    //       const target = '/admins/follow-up-requests';
-    //       console.log('after call to addFollowUpRequest; navigating to ' + target);
-    //       this.router.navigateByUrl(target);
-    //     },
-    //     (error) => {
-    //       console.log(this.errorMessage = <any>error);
-    //       this.isLoading = false;
-    //     }
-    // );
-
+      );
     return false;
   }
 
-onCancel() {
-  this.navigateBackInContext();
-}
+  onCancel() {
+    this.navigateBackInContext();
+  }
 
-navigateBackInContext() {
-  const target = '/admins/follow-up-requests';
-  console.log('after Submit or Cancel navigating to ' + target);
 
-  const navigationExtras: NavigationExtras = {
-    // queryParams: { id: 'id' + this.followUpRequest.followUpRequestId,
-    //                 summary: this.savedFollowUpStatusId
-    //               }
-  };
+  submitInitialEvent(request: FollowUpRequest) {
+    let initialEvent: FollowUpEvent = new FollowUpEvent();
+    initialEvent.followUpRequestId = request.followUpRequestId;
+    initialEvent.eventDateTime = request.requestDateTime;
+    // initialEvent.assignedToId = 0;
+    // initialEvent.assignedToRoleId = 0;
+    initialEvent.enteredById = this.session.getUserId();
+    initialEvent.requestStatusId = 2091;  // requested
+    initialEvent.comments_English = 'Initial request';
+    initialEvent.comments_Spanish = 'Entrada inicial';
 
-  this.router.navigate([target], navigationExtras);
-}
+    this.sqlResource.postFollowUpEvent(initialEvent)
+      .subscribe(
+        (event) => {
+          console.log(this.successMessage = <any>event);
+          this.submitted = true;
+          this.isLoading = false;
+          const target = '/admins/follow-up-requests';
+          console.log('after call to addFollowUpEvent; navigating to ' + target);
+          this.router.navigateByUrl(target);
+        },
+        (error) => {
+          console.log(this.errorMessage = <any>error);
+          this.isLoading = false;
+        }
+      );
+  }
 
-    public hasChanges() {
-  // if have changes then ask for confirmation
-  // ask if form is dirty and has not just been submitted
-  console.log('hasChanges has submitted ' + this.submitted);
-  console.log('hasChanges has form dirty ' + this.myForm.dirty);
-  console.log('hasChanges net is ' + this.myForm.dirty || this.submitted);
-  return this.myForm.dirty && !this.submitted;
-}
+  navigateBackInContext() {
+    const target = '/admins/follow-up-requests';
+    console.log('after Submit or Cancel navigating to ' + target);
+
+    const navigationExtras: NavigationExtras = {
+      // queryParams: { id: 'id' + this.followUpRequest.followUpRequestId,
+      //                 summary: this.savedFollowUpStatusId
+      //               }
+    };
+
+    this.router.navigate([target], navigationExtras);
+  }
+
+  public hasChanges() {
+    // if have changes then ask for confirmation
+    // ask if form is dirty and has not just been submitted
+    console.log('hasChanges has submitted ' + this.submitted);
+    console.log('hasChanges has form dirty ' + this.myForm.dirty);
+    console.log('hasChanges net is ' + this.myForm.dirty || this.submitted);
+    return this.myForm.dirty && !this.submitted;
+  }
 
   public onSelectedStudentId(studentId: number) {
-  this.followUpRequest.studentId = studentId;
-  console.log('container form has studentId ' + studentId);
-}
+    this.followUpRequest.studentId = studentId;
+    console.log('container form has studentId ' + studentId);
+  }
 
 
   public onSelectedRoleId(roleId: number) {
     this.followUpRequest.requestorRoleId = roleId;
-  console.log('container form has reqeustorRoleId ' + roleId);
-}
+    console.log('container form has reqeustorRoleId ' + roleId);
+  }
 
   public onSelectedMemberId(memberId: number) {
-  this.followUpRequest.requestorId = memberId;
-  console.log('container form has reqeustorMemberId ' + memberId);
-}
+    this.followUpRequest.requestorId = memberId;
+    console.log('container form has reqeustorMemberId ' + memberId);
+  }
 
 
 
