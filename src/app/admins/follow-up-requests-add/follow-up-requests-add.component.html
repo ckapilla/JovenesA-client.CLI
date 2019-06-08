@@ -10,39 +10,21 @@
       <fieldset [disabled]="submitted">
 
         <div class="form-group">
-          <div class="controls">
-            <app-student-selector
-            (onSelectedStudentId)="onSelectedStudentId($event)"
-            >
-            </app-student-selector>
-          </div>
-
 
 
           <div class="controls">
             <app-member-selector
+            [memberTypeLabel] = "Requestor"
             (onSelectedRoleId)="onSelectedRoleId($event)"
             (onSelectedMemberId)="onSelectedMemberId($event)"
             >
             </app-member-selector>
           </div>
 
-
-
-          <!-- <div class="controls">
-            <label for="requestStatusSelector">Follow-Up Status:</label>
-            <select formControlName="requestStatusSelector" class="form-control input-sm"
-                    [(ngModel)]="followUpRequest.requestStatusId">
-              <option *ngFor="let status of requestStatuses" [value]="status.value">{{status.label}}</option>
-            </select>
-            <app-display-errors control="requestStatusSelector" class="red" [errors]="{
-              'required': 'Summary Status is required'
-            }"></app-display-errors>
-          </div> -->
           <div class="controls">
-              <label for="target_date">Target Date</label>
-              <input id="target_date" #success formControlName="target_date"
-                       [(ngModel)]="followUpRequest.targetDate"
+              <label>Target Date</label>
+              <input #success formControlName="targetDate"
+                        [(ngModel)]= "followUpRequest.targetDate"
                         type="text"
                         class="form-control input-sm"
                         placeholder="Date Required (or none)"/>
@@ -50,8 +32,8 @@
             </div>
 
           <div class="controls">
-            <label for="description_English">Description (English)</label>
-            <input id="description_English" #success formControlName="description_English"
+            <label>Description (English)</label>
+            <input #success formControlName="description_English"
                      [(ngModel)]="followUpRequest.description_English"
                       type="text"
                       class="form-control input-sm"
@@ -59,8 +41,8 @@
 
           </div>
           <div class="controls">
-            <label for="description_Spanish">Description (Spanish)</label>
-            <input id="description_Spanish" #success formControlName="description_Spanish"
+            <label>Description (Spanish)</label>
+            <input #success formControlName="description_Spanish"
                      [(ngModel)]="followUpRequest.description_Spanish"
                       type="text"
                       class="form-control input-sm"
@@ -73,7 +55,7 @@
               <button class="btn btn-primary"
                       style="width:80px;margin-right:10px"
                       (click)="onSubmit()">
-                Save
+                Submit
               </button>
             </span>&nbsp;
             <span>
@@ -83,8 +65,6 @@
                       (click)="onCancel()">
                 Cancel
               </button>
-              <div class="red">All fields must be filled in before
-                saving.</div>
             </span>
           </div>
         </div>

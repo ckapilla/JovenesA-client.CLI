@@ -1,8 +1,6 @@
 import { RouterModule, Routes } from '@angular/router';
 import { CanActivateViaAdminAuthGuard, ConfirmDeactivateSummaryTrackingGuard } from '../app.routing-guards';
-import { AdminsCommunicationsComponent, AdminsComponent, AdminsHomeComponent, AdminsMemberComponent, AdminsMembersComponent, AdminsProfileComponent } from './index';
-import { AdminsStudentComponent,  AdminsStudentsComponent, FollowUpEventsComponent, FollowUpRequestsComponent, FollowUpEventsAddComponent, FollowUpRequestsAddComponent } from './index';
-import { AdminsStudentMRsComponent, MentorReportsStatusCountsComponent,  MentorReportsSummaryTrackingComponent, MentorReportSummaryUpdatesComponent } from './index';
+import { AdminsCommunicationsComponent, AdminsComponent, AdminsHomeComponent, AdminsMemberComponent, AdminsMembersComponent, AdminsProfileComponent, AdminsStudentComponent, AdminsStudentMRsComponent, AdminsStudentsComponent, FollowUpEventsAddComponent, FollowUpEventsComponent, FollowUpRequestsAddComponent, FollowUpRequestsComponent, MentorReportsSummaryTrackingComponent, MentorReportSummaryUpdatesComponent } from './index';
 
 const routes: Routes = [
   {
@@ -79,7 +77,7 @@ const routes: Routes = [
           component: FollowUpRequestsAddComponent
         },
         {
-          path: 'follow-up-events-add',
+          path: 'follow-up-events-add/:requestId',
           component: FollowUpEventsAddComponent
         },
       ]

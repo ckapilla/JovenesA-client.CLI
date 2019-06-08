@@ -68,16 +68,10 @@ export class FollowUpRequestsComponent implements OnInit {
     this.router.navigateByUrl(target);
   }
 
-  gotoFollowUpUpdate(id: number) {
-    const link = ['/admins/follow-up-events/follow-up-events' + id];
+  viewAddDetails(requestId: number) {
+    const link = '/admins/follow-up-events-add/' +  requestId;
     console.log('navigating to ' + link);
-    this.router.navigate(link);
-  }
-
-  viewAddDetails(id: number) {
-    const link = ['/admins/follow-up-events-add'];
-    console.log('navigating to ' + link);
-    this.router.navigate(link);
+    this.router.navigateByUrl(link);
   }
 }
 

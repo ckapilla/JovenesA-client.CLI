@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { FollowUpEvent } from 'src/app/app_shared/models/follow-up-event';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 import { FollowUpRequest } from '../../app_shared/models/follow-up-request';
 import { SessionService } from '../../app_shared/services/session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
-import { FollowUpEvent } from 'src/app/app_shared/models/follow-up-event';
 
 @Component({
   selector: 'app-follow-up-requests-add',
@@ -63,7 +63,7 @@ export class FollowUpRequestsAddComponent implements OnInit {
       studentSelector: [''],
       requestorRoleSelector: [''],
       requestorSelector: [''],
-      target_date: [''],
+      targetDate: [''],
       description_English: [''],
       description_Spanish: [''],
     });
@@ -108,18 +108,17 @@ export class FollowUpRequestsAddComponent implements OnInit {
     }
     this.sqlResource.postFollowUpRequest(this.followUpRequest)
       .subscribe(
-        (request:) => {
-          console.log(this.successMessage = <any>request);
-          this.submitted = true;
-          this.isLoading = false;
-          this.submitInitialEvent(request);
-          const target = '/admins/follow-up-requests';
-          console.log('after call to addFollowUpRequest; navigating to ' + target);
-          this.router.navigateByUrl(target);
+        (response) => {
+          console.log('followUp Request completed -- sending Initial Event with response');
+          console.log(response.followUpRequest);
+          this.submitInitialEvent(response.followUpRequest);
         },
         (error) => {
           console.log(this.errorMessage = <any>error);
-          this.isLoading = false;
+         this.isLoading = false;
+        },
+        () => {
+
         }
       );
     return false;
@@ -131,7 +130,9 @@ export class FollowUpRequestsAddComponent implements OnInit {
 
 
   submitInitialEvent(request: FollowUpRequest) {
-    let initialEvent: FollowUpEvent = new FollowUpEvent();
+    console.log('in submitInitialEvent with FollowUpRequest');
+    console.log(request);
+    const initialEvent: FollowUpEvent = new FollowUpEvent();
     initialEvent.followUpRequestId = request.followUpRequestId;
     initialEvent.eventDateTime = request.requestDateTime;
     // initialEvent.assignedToId = 0;
@@ -140,21 +141,28 @@ export class FollowUpRequestsAddComponent implements OnInit {
     initialEvent.requestStatusId = 2091;  // requested
     initialEvent.comments_English = 'Initial request';
     initialEvent.comments_Spanish = 'Entrada inicial';
+    console.log('ready to submit intitial event with');
+    console.log(initialEvent);
 
     this.sqlResource.postFollowUpEvent(initialEvent)
       .subscribe(
-        (event) => {
-          console.log(this.successMessage = <any>event);
+        (response) => {
+          console.log('have response to followUpRequest post with response ');
+          console.log(response);
+
+        },
+        (error) => {
+          console.log(this.errorMessage = <any>error);
+          this.isLoading = false;
+        },
+        () => {
           this.submitted = true;
           this.isLoading = false;
           const target = '/admins/follow-up-requests';
           console.log('after call to addFollowUpEvent; navigating to ' + target);
           this.router.navigateByUrl(target);
-        },
-        (error) => {
-          console.log(this.errorMessage = <any>error);
-          this.isLoading = false;
         }
+
       );
   }
 
@@ -194,6 +202,11 @@ export class FollowUpRequestsAddComponent implements OnInit {
   public onSelectedMemberId(memberId: number) {
     this.followUpRequest.requestorId = memberId;
     console.log('container form has reqeustorMemberId ' + memberId);
+  }
+
+  public onTargetDateSet(target_date: Date) {
+    this.followUpRequest.targetDate = target_date;
+    console.log('new TargetDate ' + target_date);
   }
 
 

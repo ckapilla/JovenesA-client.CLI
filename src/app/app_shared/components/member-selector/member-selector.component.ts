@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 import { SELECTITEM } from '../../interfaces/SELECTITEM';
 import { MemberMiniDTO } from '../../models/memberMiniDTO';
 import { SqlResource } from '../../services/sql-resource.service';
@@ -17,7 +17,7 @@ export class MemberSelectorComponent implements OnInit {
   // @Output() onSelectedStudentName = new EventEmitter<string>();
   @Output() onSelectedRoleId = new EventEmitter<number>();
   @Output() onSelectedMemberId = new EventEmitter<number>();
-
+  @Input() memberTypeLabel: string;
   constructor(
     private sqlResource: SqlResource) {
 
@@ -52,7 +52,7 @@ export class MemberSelectorComponent implements OnInit {
     console.log('in fetchMembers');
     this.sqlResource.getCurrentMemberMiniDTOs(role)
     .subscribe(
-      data => { this.members = data; console.log(this.members); },
+      data => { this.members = data; },
       err => console.error('Subscribe error: ' + err),
       () => {
         console.log('member-selector loaded ' + this.members.length + ' rows');

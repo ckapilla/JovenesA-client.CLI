@@ -1,6 +1,6 @@
 <div class="panel panel-primary">
   <div class="panel-heading" style="font-size:large">
-    Add New FollowUp Request
+    Add New FollowUp Request Detail
   </div>
   <div class="panel-body">
     <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
@@ -9,11 +9,19 @@
     <form [formGroup]="myForm">
       <fieldset [disabled]="submitted">
 
+          <div class="controls">
+            <app-member-selector
+
+            (onSelectedRoleId)="onSelectedRoleId($event)"
+            (onSelectedMemberId)="onSelectedMemberId($event)"
+            >
+            </app-member-selector>
+          </div>
+
         <div class="form-group">
           <div class="controls">
             <label for="statusSelector">Follow-Up Status:</label>
-            <select formControlName="statusSelector" class="form-control input-sm"
-                    [(ngModel)]="followUpEvent.statusId">
+            <select formControlName="statusSelector" class="form-control input-sm">
               <option *ngFor="let status of followUpStatuses" [value]="status.value">{{status.label}}</option>
             </select>
             <app-display-errors control="statusSelector" class="red" [errors]="{
@@ -23,16 +31,30 @@
 
 
           <div class="controls">
-            <label for="inputDescription_English">Description (English)</label>
-            <textarea id="inputDescription_English" #success formControlName="inputDescription_English"
+              <app-member-selector
+              [memberTypeLabel] = "AssignedTo"
+              (onSelectedRoleId)="onSelectedRoleId($event)"
+              (onSelectedMemberId)="onSelectedMemberId($event)"
+              >
+              </app-member-selector>
+            </div>
+
+
+
+          <div class="controls">
+            <label for="comments_English">Comments (English)</label>
+            <textarea id="comments_English" #success formControlName="comments_English"
+                      (blur) = "onComments_EnglishChanged(comments_English)"
                       type="text"
                       class="form-control input-sm"
                       placeholder="">
               </textarea>
           </div>
+
           <div class="controls">
-            <label for="inputDescription_Spanish">Description (Spanish)</label>
-            <textarea id="inputDescription_Spanish" #success formControlName="inputDescription_Spanish"
+            <label for="comments_Spanish">Comments (Spanish)</label>
+            <textarea id="comments_Spanish" #success formControlName="comments_Spanish"
+                      (blur) = "onComments_SpanishChanged(comments_Spanish)"
                       type="text"
                       class="form-control input-sm"
                       placeholder="">
@@ -45,7 +67,7 @@
               <button class="btn btn-primary"
                       style="width:80px;margin-right:10px"
                       (click)="onSubmit()">
-                Save
+                Submit
               </button>
             </span>&nbsp;
             <span>
@@ -55,8 +77,6 @@
                       (click)="onCancel()">
                 Cancel
               </button>
-              <div class="red">All fields must be filled in before
-                saving.</div>
             </span>
           </div>
         </div>

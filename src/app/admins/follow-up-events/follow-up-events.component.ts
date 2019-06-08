@@ -26,8 +26,8 @@ export class FollowUpEventsComponent implements OnInit {
   ) {
 
     this.followUpStatuses = [
-      { value: '0', label: '[All]' },
-      { value: '2091', label: 'Evented' },
+      // { value: '0', label: '[All]' },
+      { value: '2091', label: 'Requested' },
       { value: '2092', label: 'Assigned' },
       { value: '2104', label: 'Closed' }
     ];
@@ -52,16 +52,16 @@ export class FollowUpEventsComponent implements OnInit {
       );
   }
 
-  followUpEventAdd() {
+  followUpEventAdd(requestId: number) {
     console.log('in follow-up-events: FollowUpEventAdd, ready to navigate');
-    const target = '/admins/follow-up-events-add';
+    const target = '/admins/follow-up-events-add/' + requestId ;
     this.router.navigateByUrl(target);
   }
 
-  gotoFollowUpUpdate(id: number) {
-    const link = ['/admins/follow-up-events/follow-up-events' + id];
-    console.log('navigating to ' + link);
-    this.router.navigate(link);
-  }
+  // gotoFollowUpUpdate(id: number) {
+  //   const link = ['/admins/follow-up-events/follow-up-events' + id];
+  //   console.log('navigating to ' + link);
+  //   this.router.navigate(link);
+  // }
 }
 

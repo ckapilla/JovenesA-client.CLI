@@ -340,11 +340,11 @@ public getMentorReportsStatusCounts(year: string, month: string): Observable <Me
     console.log('sending AuthHttp get request with ' + url);
     return this.http.get<FollowUpRequestRPT[]>(url).pipe(catchError(this.handleError));
   }
-  public postFollowUpRequest(followUpRequest: FollowUpRequest): Observable<FollowUpRequest> {
+  public postFollowUpRequest(followUpRequest: FollowUpRequest): Observable<any> {
     const url = this.WebApiPrefix + 'follow_up_requests';
     console.log('in postFollowUpRequest with url ' + url );
     let body = JSON.stringify({ followUpRequest });
-    // strip outer 'mentor' name
+    // strip outer key name
     const x = JSON.parse(body);
     body = JSON.stringify(x.followUpRequest);
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
@@ -361,9 +361,10 @@ public getMentorReportsStatusCounts(year: string, month: string): Observable <Me
     const url = this.WebApiPrefix + 'follow_up_events';
     console.log('in postFollowUpEvent with url ' + url );
     let body = JSON.stringify({ followUpEvent: followUpEvent });
-    // strip outer 'mentor' name
+    // strip outer key name
     const x = JSON.parse(body);
-    body = JSON.stringify(x.followUpEventt);
+    body = JSON.stringify(x.followUpEvent);
+    console.log('and final body ' + body);
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     console.log('ready to post ' + url + ' body: ' + body + ' options ' + headers);
     return this.http.post(url, body, { headers: headers });
