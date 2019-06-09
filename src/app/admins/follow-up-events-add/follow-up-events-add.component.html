@@ -11,7 +11,7 @@
 
           <div class="controls">
             <app-member-selector
-
+            [memberTypeLabel]="'Assigned To'"
             (onSelectedRoleId)="onSelectedRoleId($event)"
             (onSelectedMemberId)="onSelectedMemberId($event)"
             >
@@ -32,7 +32,7 @@
 
           <div class="controls">
               <app-member-selector
-              [memberTypeLabel] = "AssignedTo"
+              [memberTypeLabel] = "'Assigned To'"
               (onSelectedRoleId)="onSelectedRoleId($event)"
               (onSelectedMemberId)="onSelectedMemberId($event)"
               >
@@ -44,7 +44,7 @@
           <div class="controls">
             <label for="comments_English">Comments (English)</label>
             <textarea id="comments_English" #success formControlName="comments_English"
-                      (blur) = "onComments_EnglishChanged(comments_English)"
+                      [(ngModel)]="followUpEvent.comments_English"
                       type="text"
                       class="form-control input-sm"
                       placeholder="">
@@ -54,7 +54,7 @@
           <div class="controls">
             <label for="comments_Spanish">Comments (Spanish)</label>
             <textarea id="comments_Spanish" #success formControlName="comments_Spanish"
-                      (blur) = "onComments_SpanishChanged(comments_Spanish)"
+                      [(ngModel)]="followUpEvent.comments_Spanish"
                       type="text"
                       class="form-control input-sm"
                       placeholder="">

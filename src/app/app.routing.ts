@@ -9,19 +9,19 @@ const appRoutes: Routes = [
   },
   {
     path: 'admins',
-    loadChildren: './admins/admins.module#AdminsModule'
+    loadChildren: () => import('./admins/admins.module').then(m => m.AdminsModule)
   },
   {
     path: 'mentors',
-    loadChildren: './mentors/mentors.module#MentorsModule'
+    loadChildren: () => import('./mentors/mentors.module').then(m => m.MentorsModule)
   },
   {
     path: 'students',
-    loadChildren: './students/students.module#StudentsModule'
+    loadChildren: () => import('./students/students.module').then(m => m.StudentsModule)
   },
   {
     path: 'reports',
-    loadChildren: './reports/reports.module#ReportsModule'
+    loadChildren: () => import('./reports/reports.module').then(m => m.ReportsModule)
   },
 
   { path: '**', redirectTo: '' }

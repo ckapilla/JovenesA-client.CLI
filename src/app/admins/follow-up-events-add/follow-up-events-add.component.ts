@@ -158,18 +158,5 @@ export class FollowUpEventsAddComponent implements OnInit {
     console.log('container form has AssignedToId ' + memberId);
   }
 
-  public onSelectedRequestStatus(statusId: number) {
-    this.followUpEvent.requestStatusId = statusId;
-    console.log('new statusId ' + statusId);
-  }
-  public onComments_EnglishChanged(comments_English: string) {
-    this.followUpEvent.comments_English = comments_English;
-    console.log('Comments_English has value ' + this.myForm.value.comments_English);
-  }
-
-  public onComments_SpanishChanged(comments_Spanish) {
-    this.followUpEvent.comments_Spanish = comments_Spanish;
-    console.log('Comments_English has value ' + this.myForm.value.comments_Spanish);
-  }
 
 }

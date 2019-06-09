@@ -2,6 +2,8 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
+    "importHelpers": true,
+    "module": "esnext",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -11,7 +13,7 @@
     "plugins": [
       { "name": "typescript-tslint-plugin" }
     ],
-    "target": "es5",
+    "target": "es2015",
     "paths": {
       "auth0-js": ["node_modules/auth0-js/build/auth0.js"],
       "@app/*": ["app/*"],
