@@ -64,7 +64,6 @@ export class StudentsForMentorGridComponent implements OnInit {
     this.studentId = studentId;
     this.onSelectedStudentId.emit(studentId);
     this.onSelectedStudentName.emit(studentName);
-
   }
   public setRowClasses(studentId: number) {
     // console.log('row StudentID is ' + studentId);

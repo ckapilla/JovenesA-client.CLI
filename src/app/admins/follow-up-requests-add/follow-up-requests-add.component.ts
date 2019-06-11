@@ -139,8 +139,8 @@ export class FollowUpRequestsAddComponent implements OnInit {
     // initialEvent.assignedToRoleId = 0;
     initialEvent.enteredById = this.session.getUserId();
     initialEvent.requestStatusId = 2091;  // requested
-    initialEvent.comments_English = 'Initial request';
-    initialEvent.comments_Spanish = 'Entrada inicial';
+    initialEvent.comments_English = 'Initial request received';
+    initialEvent.comments_Spanish = 'Solicitud inicial recibida';
     console.log('ready to submit intitial event with');
     console.log(initialEvent);
 

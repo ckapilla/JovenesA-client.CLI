@@ -19,12 +19,10 @@
         </span>
       </div>
       <div class="panel-body">
-        <div class="row" style="border-bottom: 3px solid #ccc; margin-top: 2px;"
+        <div class="row" style="border-bottom: 4px solid #aaa; margin-top: 2px;"
              *ngFor="let request of followUpRequests, let i = index">
           <div class="col-md-12">
             <div class="row" id='{{"id" + request.followUpRequestId}}'>
-              <!-- <button class="btn default-btn" (click)="gotoFollowUpUpdate(request.followUpRequestId)">Review</button>
-              &nbsp; -->
               <span class="padded">
                 &nbsp;Request Status:
                 [{{ request.requestStatus }}]
@@ -45,9 +43,7 @@
             <div class="row">
               <span class="padded">
                 &nbsp; Requested By:
-                [ {{ request.requestedBy }} ]
-                /
-                [ {{ request.requestedByRole }} ]
+                [ {{ request.requestor }} ({{ request.requestorRole }}) ]
               </span>
               <span class="padded">
                 &nbsp;Assigned To:
@@ -58,33 +54,34 @@
                 [ {{ request.targetDate | truncateDate }} ]
               </span>
               <span class="padded">
-                <span class="btn btn-primary" (click)="viewAddDetails(request.followUpRequestId)" style="margin-left:10px">
-                  View/Add Details
+                <span class="btn btn-primary" (click)="viewAddDetails(request.followUpRequestId)"
+                      style="margin-left:10px">
+                  Add Details
                 </span>
               </span>
-
-
             </div>
 
-            <div class="row">
+            <div class="row" style="border-bottom: 2px solid #ccc; margin-top: 1px;">
               <div class="padded">
-                &nbsp;Description:
+                &nbsp;Description / Descripción:
               </div>
-              <div class="col-md-10 padded">
+              <div class="col-md-10">
                 {{ request.description_English }}
               </div>
-              <div class="col-md-10 padded">
+              <div class="col-md-10">
                 {{ request.description_Spanish }}
               </div>
             </div>
-            <div>
-              <div class="row" >
-                <div class="col-md-10 padded">
-                EventDetail record 1
-                </div>
-                <div class="col-md-10 padded">
-                  EventDetail Record 2
-                </div>
+
+            <div class="row" >
+                <div class="padded">
+                    &nbsp;Latest Comments / Últimos Comentarios:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Update Date: [{{request.eventDateTime | truncateDate }}]
+                  </div>
+              <div class="col-md-10" style="border-bottom: 1px solid #ccc;">
+                {{ request.comments_English }}
+              </div>
+              <div class="col-md-10">
+                {{ request.comments_Spanish }}
               </div>
             </div>
           </div>

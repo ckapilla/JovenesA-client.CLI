@@ -11,7 +11,7 @@
 
           <div class="controls">
             <app-member-selector
-            [memberTypeLabel]="'Assigned To'"
+            [memberTypeLabel]="'Assigned-to'"
             (onSelectedRoleId)="onSelectedRoleId($event)"
             (onSelectedMemberId)="onSelectedMemberId($event)"
             >
@@ -21,25 +21,15 @@
         <div class="form-group">
           <div class="controls">
             <label for="statusSelector">Follow-Up Status:</label>
-            <select formControlName="statusSelector" class="form-control input-sm">
+            <select formControlName="statusSelector" class="form-control input-sm"
+              [(ngModel)] = followUpEvent.requestStatusId
+            >
               <option *ngFor="let status of followUpStatuses" [value]="status.value">{{status.label}}</option>
             </select>
             <app-display-errors control="statusSelector" class="red" [errors]="{
               'required': 'Request Status is required'
               }"></app-display-errors>
           </div>
-
-
-          <div class="controls">
-              <app-member-selector
-              [memberTypeLabel] = "'Assigned To'"
-              (onSelectedRoleId)="onSelectedRoleId($event)"
-              (onSelectedMemberId)="onSelectedMemberId($event)"
-              >
-              </app-member-selector>
-            </div>
-
-
 
           <div class="controls">
             <label for="comments_English">Comments (English)</label>

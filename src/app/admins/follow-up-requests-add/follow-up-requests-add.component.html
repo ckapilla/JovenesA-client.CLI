@@ -10,7 +10,12 @@
       <fieldset [disabled]="submitted">
 
         <div class="form-group">
-
+          <div class="controls">
+            <app-student-selector
+            (onSelectedStudentId)="onSelectedStudentId($event)"
+            >
+            </app-student-selector>
+          </div>
 
           <div class="controls">
             <app-member-selector
