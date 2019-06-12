@@ -1,0 +1,7 @@
+.checkboxes input {
+  vertical-align: middle;
+  padding-left: 3em;
+}
+.checkboxes label span {
+  vertical-align: middle;
+}

@@ -106,7 +106,7 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
   }
 
   processRouteParams( ) {
-    console.log('summaryTraking setting filters form queryParams');
+    console.log('summaryTracking setting filters form queryParams');
 
     const year = this.route.snapshot.queryParams['year'];
     console.log('year param = ' +  year);

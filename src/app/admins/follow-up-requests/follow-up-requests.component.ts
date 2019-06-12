@@ -5,7 +5,6 @@ import { FollowUpRequestRPT } from '../../app_shared/models/follow-up-requestRPT
 import { SessionService } from '../../app_shared/services/session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
-
 @Component({
   selector: 'app-follow-up-requests',
   styleUrls: ['./follow-up-requests.component.css'],
@@ -19,7 +18,8 @@ export class FollowUpRequestsComponent implements OnInit {
   errorMessage: string;
   successMessage: string;
   studentName: string;
-  displayEventDetails: true;
+  displayCompleteHistory: true;
+
 
   constructor(public sqlResource: SqlResource,
     public router: Router,

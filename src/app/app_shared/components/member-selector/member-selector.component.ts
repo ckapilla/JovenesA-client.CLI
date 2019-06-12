@@ -14,7 +14,6 @@ export class MemberSelectorComponent implements OnInit {
   haveData: boolean;
   haveMemberType: boolean;
   requestorRoles: SELECTITEM[];
-  // @Output() onSelectedStudentName = new EventEmitter<string>();
   @Output() onSelectedRoleId = new EventEmitter<number>();
   @Output() onSelectedMemberId = new EventEmitter<number>();
   @Input() memberTypeLabel: string;
@@ -36,7 +35,6 @@ export class MemberSelectorComponent implements OnInit {
   public ngOnInit() {
     this.haveData = false;
     this.haveMemberType = false;
-
   }
 
   public setSelectedRole(roleId: string) {

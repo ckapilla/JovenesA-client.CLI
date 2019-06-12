@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
-import { FollowUpEventRPT } from '../../app_shared/models/follow-up-eventRPT';
-import { SessionService } from '../../app_shared/services/session.service';
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
+import { SELECTITEM } from '../../interfaces/SELECTITEM';
+import { FollowUpEventRPT } from '../../models/follow-up-eventRPT';
+import { SessionService } from '../../services/session.service';
+import { SqlResource } from '../../services/sql-resource.service';
 
 @Component({
   selector: 'app-follow-up-events',
@@ -19,6 +19,7 @@ export class FollowUpEventsComponent implements OnInit {
   successMessage: string;
   studentName: string;
   displayEventDetails: false;
+  @Input()followUpRequestId: number;
 
   constructor(public sqlResource: SqlResource,
     public router: Router,
@@ -40,8 +41,8 @@ export class FollowUpEventsComponent implements OnInit {
 
   fetchData() {
     this.isLoading = true;
-    console.log('in fetchData for FollowUpEvents');
-    this.sqlResource.getFollowUpEvents(1001)
+    console.log('in fetchData for FollowUpEvents with RequestId ' + this.followUpRequestId);
+    this.sqlResource.getFollowUpEvents(this.followUpRequestId)
       .subscribe(
         data => { this.followUpEvents = data; },
         err => console.error('Subscribe error: ' + err),
@@ -58,10 +59,5 @@ export class FollowUpEventsComponent implements OnInit {
     this.router.navigateByUrl(target);
   }
 
-  // gotoFollowUpUpdate(id: number) {
-  //   const link = ['/admins/follow-up-events/follow-up-events' + id];
-  //   console.log('navigating to ' + link);
-  //   this.router.navigate(link);
-  // }
 }
 

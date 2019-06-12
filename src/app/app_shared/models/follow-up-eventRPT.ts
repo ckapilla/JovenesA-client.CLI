@@ -1,17 +1,17 @@
 export class FollowUpEventRPT {
   constructor(
-    FollowUpEventId: number,
-    FollowUpRequestId: number | null,
-    EnteredById: number | null,
-    EnteredBy: string ,
-    AssignedToId: number | null,
-    AssignedTo: string,
-    AssignedToRoleId: number| null,
-    AssignedToRole: string,
-    RequestStatusId: number | null,
-    RequestStatus: string,
-    Comments_English: string,
-    Comments_Spanish: string,
-    EventDateTime: Date | string | null
+    public followUpEventId: number,
+    public followUpRequestId: number | null,
+    public enteredById: number | null,
+    public enteredBy: string ,
+    public assignedToId: number | null,
+    public assignedTo: string,
+    public assignedToRoleId: number| null,
+    public assignedToRole: string,
+    public requestStatusId: number | null,
+    public requestStatus: string,
+    public comments_English: string,
+    public comments_Spanish: string,
+    public eventDateTime: Date | string | null
   ) { }
 }

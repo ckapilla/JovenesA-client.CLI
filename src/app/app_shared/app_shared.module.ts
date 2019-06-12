@@ -11,6 +11,7 @@ import { StudentSelectorComponent } from './components/student-selector/student-
 import { StudentsForMentorGridComponent } from './components/students-for-mentor-grid/students-for-mentor-grid.component';
 import { StudentsForMentorListComponent } from './components/students-for-mentor-list/students-for-mentor-list.component';
 import { StudentsForSponsorComponent } from './components/students-for-sponsor-list/students-for-sponsor-list';
+import { FollowUpEventsComponent } from './components/follow-up-events/follow-up-events.component';
 import { SortableTableDirective } from './directives/sortable-table.directive';
 import { HeaderbarComponent } from './headerbar/index';
 import { AlphaLanguagePipe } from './pipes/alpha-language-pipe';
@@ -34,6 +35,7 @@ import { AuthService } from './services/auth.service';
     StudentsForMentorListComponent,
     StudentsForSponsorComponent,
     StudentSelectorComponent,
+    FollowUpEventsComponent,
     MemberSelectorComponent,
     MentorReportsListComponent,
     SortableColumnComponent,
@@ -50,12 +52,14 @@ import { AuthService } from './services/auth.service';
     HeaderbarComponent,
     DisplayErrorsComponent,
     LoadingContainerComponent,
+    MemberSelectorComponent,
     StudentsForMentorGridComponent,
     StudentsForMentorListComponent,
     StudentsForSponsorComponent,
     StudentSelectorComponent,
     MemberSelectorComponent,
     MentorReportsListComponent,
+    FollowUpEventsComponent,
     SortableColumnComponent,
     SortableTableDirective,
     AlphaMonthPipe,

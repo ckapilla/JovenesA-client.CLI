@@ -351,10 +351,11 @@ public getMentorReportsStatusCounts(year: string, month: string): Observable <Me
     console.log('ready to post ' + url + ' body: ' + body + ' options ' + headers);
     return this.http.post(url, body, { headers: headers });
   }
+
   public getFollowUpEvents(followUpRequestId: number): Observable <FollowUpEventRPT[]>  {
     const url = this.WebApiPrefix + 'follow_up_events/' + followUpRequestId ;
     console.log('sending AuthHttp get request with ' + url);
-    return this.http.get<FollowUpRequestRPT[]>(url).pipe(catchError(this.handleError));
+    return this.http.get<FollowUpEventRPT[]>(url).pipe(catchError(this.handleError));
   }
 
   public postFollowUpEvent(followUpEvent: FollowUpEvent): Observable<FollowUpEvent> {
