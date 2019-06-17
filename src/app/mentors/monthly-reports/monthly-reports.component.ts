@@ -62,9 +62,9 @@ export class MonthlyReportsComponent implements OnInit {
         err => console.error('Subscribe error: ' + err),
         () => {console.log('done: ');
           this.isLoading = false;
-          for (let x of this.mentorReports) {
+          for (const x of this.mentorReports) {
             if (x.sponsorSummaryStatusId === 2086) {
-              console.log('current report found; disable add function');
+              // console.log('current report found; disable add function');
               this.haveCurrentReport = true;
             }
           }

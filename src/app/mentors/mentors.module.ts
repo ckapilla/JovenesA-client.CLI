@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { AppSharedModule } from '../app_shared/app_shared.module';
+import { FollowUpRequestsAddComponent } from './follow-up-requests-add/follow-up-requests-add.component';
+import { FollowUpRequestsComponent } from './follow-up-requests/follow-up-requests.component';
 import { MentorsHomeComponent } from './mentors-home/mentors-home.component';
 import { MentorsProfileComponent } from './mentors-profile/mentors-profile.component';
 import { MentorsComponent } from './mentors.component';
@@ -23,7 +25,9 @@ import { MentorsNavbarComponent } from './shared/mentors-navbar/mentors-navbar.c
         MentorsProfileComponent,
         MonthlyReportsComponent,
         MonthlyReportsAddComponent,
-        MonthlyReportsEditComponent
+        MonthlyReportsEditComponent,
+        FollowUpRequestsAddComponent,
+        FollowUpRequestsComponent
         ],
 })
 

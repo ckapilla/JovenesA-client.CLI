@@ -335,8 +335,11 @@ public getMentorReportsStatusCounts(year: string, month: string): Observable <Me
 //////////////////////////////////////////////////
 
 
-  public getFollowUpRequests(): Observable <FollowUpRequestRPT[]>  {
-    const url = this.WebApiPrefix + 'follow_up_requests';
+  public getFollowUpRequests(studentId?: number): Observable <FollowUpRequestRPT[]>  {
+    let url = this.WebApiPrefix + 'follow_up_requests';
+    if (studentId) {
+      url = url + '?studentId=' + studentId;
+    }
     console.log('sending AuthHttp get request with ' + url);
     return this.http.get<FollowUpRequestRPT[]>(url).pipe(catchError(this.handleError));
   }

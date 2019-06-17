@@ -1,0 +1,22 @@
+<div class="panel-body">
+
+  <div class="row" style="border-bottom: 3px solid #ccc; margin-top: 2px;"
+       *ngFor="let i of followUpRequests">
+    <div class="col-md-12">
+      <div class="row">
+
+        <span class="padded">
+          &nbsp;Report Date: [{{ i.requestDateTime | truncateDate }}]
+        </span>
+        <span class="padded">
+          &nbsp;Status: [{{ i.requestStatus }}]
+        </span>
+        <span class="padded">
+            &nbsp;Assigned To: [{{ i.assignedTo }}]
+        </span>
+        <span class="padded">
+            Last Update: [{{ i.eventDateTime | truncateDate }}]
+        </span>
+
+    </div>
+  </div>

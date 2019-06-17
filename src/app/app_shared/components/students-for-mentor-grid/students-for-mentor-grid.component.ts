@@ -25,8 +25,7 @@ export class StudentsForMentorGridComponent implements OnInit {
     this.smileys[2] = 'greenSmiley.jpg';
     this.smileys[3] = 'NA.jpg';
 
-    console.log('in AssignedStudentsComponent constructor');
-    // session.setAssignedStudentId(223);
+    console.log('in StudentsForMentorGridComponent constructor');
   }
 
   public ngOnInit() {
@@ -54,12 +53,14 @@ export class StudentsForMentorGridComponent implements OnInit {
   selectFirstRow() {
     console.log('First row Id is ' + this.students[0].studentId + ' ' +
       this.students[0].studentName); // + ' ' + this.students[0].studentLastNames );
+      this.session.setAssignedStudentId(+this.students[0].studentId);
       this.setRowClasses(+this.students[0].studentId );
       this.selectStudent(+this.students[0].studentId , 0);
   }
 
   public selectStudent(studentId: number, idx: number) {
-    console.log('student selected studentId: ' + studentId + 'idx: ' + idx );
+    console.log('student selected studentId: ' + studentId + 'idx: ' + idx);
+    this.session.setAssignedStudentId(studentId);
     const studentName: string = this.students[idx].studentName; //  + ', ' + this.studentMentors[idx].studentFirstNames;
     this.studentId = studentId;
     this.onSelectedStudentId.emit(studentId);

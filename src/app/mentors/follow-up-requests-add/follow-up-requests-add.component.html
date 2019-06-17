@@ -1,0 +1,111 @@
+<div class="panel panel-primary">
+  <div class="panel-heading" style="font-size:large">
+    Add New FollowUp Request
+  </div>
+  <div class="panel-body">
+    <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+    <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
+
+    <form [formGroup]="myForm">
+      <fieldset [disabled]="submitted">
+
+        <div class="form-group">
+          <div class="controls">
+            <span>Student: </span>
+            <span>
+              {{studentName}}
+            </span>
+          </div>
+
+          <!-- <div class="controls">
+              <label>Target Date</label>
+              <input #success formControlName="targetDate"
+                        [(ngModel)]= "followUpRequest.targetDate"
+                        type="text"
+                        class="form-control input-sm"
+                        placeholder="Date Required (or none)"/>
+
+            </div> -->
+          <span>Please enter Description and Comments in English or Spanish</span>
+
+          <div class="controls">
+            <label>Description (English)</label>
+            <input #success formControlName="description_English"
+                   [(ngModel)]="followUpRequest.description_English"
+                   type="text"
+                   class="form-control input-sm"
+                   placeholder="Brief Description of Request" />
+
+            <!-- <span class="padded">
+              <span class="btn" (click)="translateFromSpanish(followUpRequest.description_Spanish)"
+                    style="margin-left:10px">
+                Translate From Spanish
+              </span>
+            </span> -->
+
+
+          </div>
+          <div class="controls">
+            <label>Description (Spanish)</label>
+            <input #success formControlName="description_Spanish"
+                   [(ngModel)]="followUpRequest.description_Spanish"
+                   type="text"
+                   class="form-control input-sm"
+                   placeholder="Description in brief" />
+          </div>
+
+          <div class="controls">
+            <label>Comments (English)</label>
+            <input #success formControlName="comments_English"
+                   [(ngModel)]="initialEvent.comments_English"
+                   type="text"
+                   class="form-control input-sm"
+                   placeholder="Full Description" />
+
+            <!-- <span class="padded">
+              <span class="btn" (click)="translateFromSpanish(followUpRequest.description_Spanish)"
+                    style="margin-left:10px">
+                Translate From Spanish
+              </span>
+            </span> -->
+
+
+          </div>
+          <div class="controls">
+            <label>Comments (Spanish)</label>
+            <input #success formControlName="comments_Spanish"
+                   [(ngModel)]="initialEvent.comments_Spanish"
+                   type="text"
+                   class="form-control input-sm"
+                   placeholder="Full Description" />
+          </div>
+
+
+
+        </div>
+
+
+
+        <div class="form-group">
+          <div class="col-md-6 col-md-offset-1">
+            <span>
+              <button class="btn btn-primary"
+                      style="width:80px;margin-right:10px"
+                      (click)="onSubmit()">
+                Submit
+              </button>
+            </span>&nbsp;
+            <span>
+              <button type="button"
+                      class="btn btn-default"
+                      style="width:70px"
+                      (click)="onCancel()">
+                Cancel
+              </button>
+            </span>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>

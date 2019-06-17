@@ -16,7 +16,10 @@ import { TranslationService } from '../../app_shared/services/translation.servic
 export class FollowUpRequestsAddComponent implements OnInit {
 
   myForm: FormGroup;
-  followUpRequest: FollowUpRequest;
+  followUpRequest: FollowUpRequest = new FollowUpRequest();
+  initialEvent: FollowUpEvent = new FollowUpEvent();
+  studentId: number;
+  studentName: string;
   isLoading: boolean;
   submitted: boolean;
 
@@ -68,13 +71,16 @@ export class FollowUpRequestsAddComponent implements OnInit {
       targetDate: [''],
       description_English: [''],
       description_Spanish: [''],
+      comments_English: [''],
+      comments_Spanish: [''],
     });
 
 
-
-    this.followUpRequest = new FollowUpRequest();
-    this.followUpRequest.studentId = 0;
-
+    this.followUpRequest.studentId = session.getAssignedStudentId();
+    this.followUpRequest.requestorRoleId = 1010;
+    this.followUpRequest.requestorId = this.session.getUserId();
+    // session.setStudentInContextName('Harvey W');
+    this.studentName = session.getStudentInContextName();
     // SQL Server will adjust the time to UTC by adding TimezoneOffset
     // we want to store local time so we adjust for that.
     const now = new Date();
@@ -134,19 +140,19 @@ export class FollowUpRequestsAddComponent implements OnInit {
   submitInitialEvent(request: FollowUpRequest) {
     console.log('in submitInitialEvent with FollowUpRequest');
     console.log(request);
-    const initialEvent: FollowUpEvent = new FollowUpEvent();
-    initialEvent.followUpRequestId = request.followUpRequestId;
-    initialEvent.eventDateTime = request.requestDateTime;
+
+    this.initialEvent.followUpRequestId = request.followUpRequestId;
+    this.initialEvent.eventDateTime = request.requestDateTime;
     // initialEvent.assignedToId = 0;
     // initialEvent.assignedToRoleId = 0;
-    initialEvent.enteredById = this.session.getUserId();
-    initialEvent.requestStatusId = 2091;  // requested
-    initialEvent.comments_English = 'Initial request received';
-    initialEvent.comments_Spanish = 'Solicitud inicial recibida';
+    this.initialEvent.enteredById = this.session.getUserId();
+    this.initialEvent.requestStatusId = 2091;  // requested
+    // this.initialEvent.comments_English = '';
+    // this.initialEvent.comments_Spanish = '';
     console.log('ready to submit intitial event with');
-    console.log(initialEvent);
+    console.log(this.initialEvent);
 
-    this.sqlResource.postFollowUpEvent(initialEvent)
+    this.sqlResource.postFollowUpEvent(this.initialEvent)
       .subscribe(
         (response) => {
           console.log('have response to followUpRequest post with response ');
@@ -160,8 +166,8 @@ export class FollowUpRequestsAddComponent implements OnInit {
         () => {
           this.submitted = true;
           this.isLoading = false;
-          const target = '/admins/follow-up-requests';
-          console.log('after call to addFollowUpEvent; navigating to ' + target);
+          const target = '/mentors/follow-up-requests';
+          console.log('after call to addFollowUpRequest for mentors; navigating to ' + target);
           this.router.navigateByUrl(target);
         }
 
@@ -190,26 +196,26 @@ export class FollowUpRequestsAddComponent implements OnInit {
     return this.myForm.dirty && !this.submitted;
   }
 
-  public onSelectedStudentId(studentId: number) {
-    this.followUpRequest.studentId = studentId;
-    console.log('container form has studentId ' + studentId);
-  }
+  // public onSelectedStudentId(studentId: number) {
+  //   this.followUpRequest.studentId = studentId;
+  //   console.log('container form has studentId ' + studentId);
+  // }
 
 
-  public onSelectedRoleId(roleId: number) {
-    this.followUpRequest.requestorRoleId = roleId;
-    console.log('container form has reqeustorRoleId ' + roleId);
-  }
+  // public onSelectedRoleId(roleId: number) {
+  //   this.followUpRequest.requestorRoleId = roleId;
+  //   console.log('container form has reqeustorRoleId ' + roleId);
+  // }
 
-  public onSelectedMemberId(memberId: number) {
-    this.followUpRequest.requestorId = memberId;
-    console.log('container form has reqeustorMemberId ' + memberId);
-  }
+  // public onSelectedMemberId(memberId: number) {
+  //   this.followUpRequest.requestorId = memberId;
+  //   console.log('container form has reqeustorMemberId ' + memberId);
+  // }
 
-  public onTargetDateSet(target_date: Date) {
-    this.followUpRequest.targetDate = target_date;
-    console.log('new TargetDate ' + target_date);
-  }
+  // public onTargetDateSet(target_date: Date) {
+  //   this.followUpRequest.targetDate = target_date;
+  //   console.log('new TargetDate ' + target_date);
+  // }
 
   public translateFromSpanish(spanishText: string) {
     this.xlator.translateFromSpanish(spanishText);

@@ -1,16 +1,15 @@
 
 import { Component, OnInit } from '@angular/core';
-
 import { Router } from '@angular/router';
-
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
-import { SessionService } from '../../app_shared/services/session.service';
+import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
+import { SORTCRITERIA } from '../../app_shared/interfaces/SORTCRITERIA';
 import { StudentDTO } from '../../app_shared/models/studentDTO';
 import { ColumnSortService } from '../../app_shared/services/column-sort.service';
+import { SessionService } from '../../app_shared/services/session.service';
+import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
-import { SORTCRITERIA } from '../../app_shared/interfaces/SORTCRITERIA';
-import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
-import { isNumber } from 'util';
+
+
 
 @Component({
 
@@ -132,7 +131,10 @@ export class AdminsStudentsComponent implements OnInit {
       .subscribe(
         data => { this.studentDTOs = data.map(this.getNumericStatus); },
         err => { this.errorMessage =  err; } ,
-        () => { console.log('done'); this.isLoading = false; }
+        () => {
+          this.studentDTOs = this.studentDTOs.filter(s => s.studentId !== 275); // N/A
+          console.log('done'); this.isLoading = false;
+        }
       );
   }
 
