@@ -1,8 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { CanActivateViaMentorAuthGuard, ConfirmDeactivateMonthlyReportAddGuard } from '../app.routing-guards';
 // tslint:disable-next-line: max-line-length
-import { FollowUpRequestsAddComponent, FollowUpRequestsComponent, MentorsComponent, MentorsHomeComponent, MentorsProfileComponent, MonthlyReportsAddComponent, MonthlyReportsComponent, MonthlyReportsEditComponent } from './index';
-
+import { FollowUpRequestsAddComponent, FollowUpRequestsComponent, ForumComponent, MentorsComponent, MentorsHomeComponent, MentorsProfileComponent, MonthlyReportsAddComponent, MonthlyReportsComponent, MonthlyReportsEditComponent } from './index';
 
 const routes: Routes = [
   {
@@ -49,6 +48,10 @@ const routes: Routes = [
       {
         path: 'follow-up-requests',
         component: FollowUpRequestsComponent
+      },
+      {
+        path: 'forum',
+        component: ForumComponent
       }
     ]
   }

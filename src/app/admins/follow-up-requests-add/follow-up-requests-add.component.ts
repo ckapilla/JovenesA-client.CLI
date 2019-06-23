@@ -57,7 +57,7 @@ export class FollowUpRequestsAddComponent implements OnInit {
       { value: '1013', label: 'Donor' },
       { value: '1007', label: 'Board Member' },
       { value: '2068', label: 'Admin' },
-      { value: '2069', label: 'Student' }
+      // { value: '2069', label: 'Student' }
     ];
 
 

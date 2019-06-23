@@ -68,11 +68,11 @@ export class FollowUpRequestsAddComponent implements OnInit {
       studentSelector: [''],
       requestorRoleSelector: [''],
       requestorSelector: [''],
-      targetDate: [''],
+      // targetDate: [''],
       description_English: [''],
-      description_Spanish: [''],
+      // description_Spanish: [''],
       comments_English: [''],
-      comments_Spanish: [''],
+      // comments_Spanish: [''],
     });
 
 
@@ -175,7 +175,7 @@ export class FollowUpRequestsAddComponent implements OnInit {
   }
 
   navigateBackInContext() {
-    const target = '/admins/follow-up-requests';
+    const target = '/mentors/follow-up-requests';
     console.log('after Submit or Cancel navigating to ' + target);
 
     const navigationExtras: NavigationExtras = {

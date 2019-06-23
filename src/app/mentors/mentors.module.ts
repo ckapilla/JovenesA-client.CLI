@@ -10,6 +10,7 @@ import { MonthlyReportsAddComponent } from './monthly-reports-add/monthly-report
 import { MonthlyReportsEditComponent } from './monthly-reports-edit/monthly-reports-edit.component';
 import { MonthlyReportsComponent } from './monthly-reports/monthly-reports.component';
 import { MentorsNavbarComponent } from './shared/mentors-navbar/mentors-navbar.component';
+import { ForumComponent } from './forum/forum.component';
 
 
 
@@ -27,7 +28,8 @@ import { MentorsNavbarComponent } from './shared/mentors-navbar/mentors-navbar.c
         MonthlyReportsAddComponent,
         MonthlyReportsEditComponent,
         FollowUpRequestsAddComponent,
-        FollowUpRequestsComponent
+        FollowUpRequestsComponent,
+        ForumComponent
         ],
 })
 
