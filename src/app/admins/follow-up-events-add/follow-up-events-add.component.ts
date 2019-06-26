@@ -127,7 +127,7 @@ export class FollowUpEventsAddComponent implements OnInit {
   }
 
   navigateBackInContext() {
-    const target = '/admins/follow-up-events';
+    const target = '/admins/follow-up-requests';
     console.log('after Submit or Cancel navigating to ' + target);
 
     const navigationExtras: NavigationExtras = {

@@ -106,7 +106,7 @@ export class SponsorLettersAddComponent
                             this.errorMessage = '';
                             this.successMessage = '';
                             this.submitted = false;
-                            console.log('form change event');
+                            // console.log('form change event');
           }
       );
     }

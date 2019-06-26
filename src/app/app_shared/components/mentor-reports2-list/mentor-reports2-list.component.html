@@ -1,0 +1,46 @@
+
+  <div class="panel-body">
+
+  <div class="row" style="border-bottom: 3px solid #ccc; margin-top: 2px;"
+    *ngFor="let i of mentorReports2">
+    <div class="col-md-12">
+      <div class="row">
+
+        <span class="padded">
+          &nbsp;Report Date:
+          {{ i.reportDateTime | truncateDate }}
+        </span>
+        <span class="padded">
+          &nbsp;Last Contact Month:
+
+        {{ i.lastContactMonth | alphaMonth}}-{{ i.lastContactYear }}
+        </span>
+        <span class="padded">
+          &nbsp;Emoji:
+          <img src="{{smileys[i.emoji+1]}}" width="24px" />
+        </span>
+        <span *ngIf="i.reviewedStatusId==2086" class="padded">
+        <span class="btn btn-primary" (click)="monthlyReportEdit(i.mentorReportId )" style="margin-left:10px">
+          Edit Report / Editar informe
+        </span>
+      </span>
+
+      </div>
+      <div class="row">
+        <div class="col-md2 padded">
+          &nbsp;Narrative (English):
+        </div>
+        <div class="col-md-10">
+          {{ i.narrative_English }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="padded">
+          &nbsp;Narrative (Spanish):
+        </div>
+        <div class="col-md-10">
+          {{ i.narrative_Spanish }}
+        </div>
+      </div>
+    </div>
+  </div>

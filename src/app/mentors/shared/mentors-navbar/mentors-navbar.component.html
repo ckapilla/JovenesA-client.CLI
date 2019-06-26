@@ -1,8 +1,7 @@
 <nav>
-  <a [routerLinkActive]="['active']" [routerLink]="['/mentors/home']">Welcome</a>
-  <a [routerLinkActive]="['active']" [routerLink]="['/mentors/profile', currUserId]">Profile</a>
-  <a [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{ exact: true }" [routerLink]="['/mentors']">Reports</a>
-  <a [routerLinkActive]="['active']" [routerLink]="['/mentors/follow-up-requests']">Request Assistance / Solicitar Asistencia</a>
-  <a [routerLinkActive]="['active']" [routerLink]="['/mentors/forum']">Discussion Forum</a>
+  <a [routerLinkActive]="['active']" [routerLink]="['/mentors/profile', currUserId]">[Profile/Perfil]</a>
+  <a [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{ exact: true }" [routerLink]="['/mentors']">[MonthlyReport/InformeMensual]</a>
+  <a [routerLinkActive]="['active']" [routerLink]="['/mentors/follow-up-requests']">[RequestAssistance/SolicitarAsistencia]</a>
+  <a [routerLinkActive]="['active']" [routerLink]="['/mentors/forum']">[Forum/Foro]</a>
 
 </nav>

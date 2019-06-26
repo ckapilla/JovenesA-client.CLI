@@ -11,5 +11,8 @@ export * from './mentors.component';
 export * from './monthly-reports-add/monthly-reports-add.component';
 export * from './monthly-reports-edit/monthly-reports-edit.component';
 export * from './monthly-reports/monthly-reports.component';
+export * from './monthly-reports2-add/monthly-reports2-add.component';
+export * from './monthly-reports2-edit/monthly-reports2-edit.component';
+export * from './monthly-reports2/monthly-reports2.component';
 export * from './shared/mentors-navbar/index';
 

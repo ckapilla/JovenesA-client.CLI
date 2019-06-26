@@ -5,9 +5,9 @@
         <tr>
           <th>Student Name</th>
           <!--<th>Email</th>-->
-          <th>Meeting Status</th>
-          <th>Report Status</th>
-          <th>Latest Snapshot</th>
+          <!-- <th>Meeting Status</th>
+          <th>Report Status</th> -->
+          <th>Latest Emoji</th>
         </tr>
       </thead>
       <tbody>
@@ -18,9 +18,9 @@
               (click)='selectStudent(item.studentId, i)'>
               <td>{{item.studentName}}</td>
               <!--<td>{{item.studentEmail}}</td>-->
-              <td><img src='../../../assets/images/{{item.timelyMentorMeetingStatus}}.jpg' height='22'></td>
-              <td><img src='../../../assets/images/{{item.timelyMentorReportStatus}}.jpg' height='22'></td>
-              <td><img src='../../../assets/images/{{smileys[item.studentSnapshotStatus + 1]}}' height='22'></td>
+              <!-- <td><img src='../../../assets/images/{{item.timelyMentorMeetingStatus}}.jpg' height='22'></td>
+              <td><img src='../../../assets/images/{{item.timelyMentorReportStatus}}.jpg' height='22'></td> -->
+              <td><img src='../../../assets/images/{{emojis[item.studentSnapshotStatus + 1]}}' height='22'></td>
             </tr>
       </tbody>
     </table>

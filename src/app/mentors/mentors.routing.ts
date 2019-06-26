@@ -1,7 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { CanActivateViaMentorAuthGuard, ConfirmDeactivateMonthlyReportAddGuard } from '../app.routing-guards';
 // tslint:disable-next-line: max-line-length
-import { FollowUpRequestsAddComponent, FollowUpRequestsComponent, ForumComponent, MentorsComponent, MentorsHomeComponent, MentorsProfileComponent, MonthlyReportsAddComponent, MonthlyReportsComponent, MonthlyReportsEditComponent } from './index';
+import { FollowUpRequestsAddComponent, FollowUpRequestsComponent, ForumComponent, MentorsComponent, MentorsProfileComponent, MonthlyReports2AddComponent, MonthlyReports2Component, MonthlyReports2EditComponent } from './index';
 
 const routes: Routes = [
   {
@@ -12,32 +12,32 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        component: MonthlyReportsComponent
+        component: MonthlyReports2Component
       },
-      {
-        path: 'home',
-        component: MentorsHomeComponent
-      },
+      // {
+      //   path: 'home',
+      //   component: MentorsHomeComponent
+      // },
       {
         path: 'profile/:id',
         component: MentorsProfileComponent
       },
       {
         path: 'monthly-reports/:mentorId',
-        component: MonthlyReportsComponent
+        component: MonthlyReports2Component
       },
       {
         path: 'monthly-reports', // use session userId
-        component: MonthlyReportsComponent
+        component: MonthlyReports2Component
       },
       {
         path: 'monthly-reports-add/:mentorId/:studentId',
-        component: MonthlyReportsAddComponent,
+        component: MonthlyReports2AddComponent,
         canDeactivate: [ConfirmDeactivateMonthlyReportAddGuard]
       },
       {
         path: 'monthly-reports-edit/:mentorReportId',
-        component: MonthlyReportsEditComponent,
+        component: MonthlyReports2EditComponent,
         canDeactivate: [ConfirmDeactivateMonthlyReportAddGuard]
       },
       {

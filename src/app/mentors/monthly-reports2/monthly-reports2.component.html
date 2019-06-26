@@ -13,19 +13,19 @@
     </app-loading-container>
   </div>
   <div *ngSwitchCase="false">
-    <div *ngIf="!errorMessage" class="panel panel-warning">
+    <div *ngIf="!errorMessage" class="panel panel-primary">
       <div class="panel-heading" style="font-size:large">
-        <span>Previous Requests / Pedirs Anteriores --  </span>
+        <span>Past Reports / Informes Anteriores --  </span>
         <span>{{studentName}}</span>
         <span>
           <span>
-            <span class="btn btn-default active" (click)="followUpRequestAdd()" style="margin-left:10px">
-              New Request / Nuevo Pedir
+            <span class="btn btn-default active" (click)="monthlyReportAdd()" style="margin-left:10px">
+              Add New Report /Añadir un Nuevo Informe
             </span>
           </span>
         </span>
       </div>
-<app-follow-up-requests-list  [followUpRequests]="followUpRequests" ></app-follow-up-requests-list>
+      <app-mentor-reports2-list [mentorReports2]="mentorReports2"></app-mentor-reports2-list>
     </div>
   </div>
 </div>

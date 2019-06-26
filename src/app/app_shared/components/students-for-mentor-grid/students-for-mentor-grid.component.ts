@@ -11,7 +11,7 @@ import { SqlResource } from '../../services/sql-resource.service';
 
 export class StudentsForMentorGridComponent implements OnInit {
   students: Array<StudentDTO>;
-  smileys: Array<string> = [];
+  emojis: Array<string> = [];
   studentId: number;
   errorMessage = '';
   @Output() onSelectedStudentName = new EventEmitter<string>();
@@ -20,10 +20,10 @@ export class StudentsForMentorGridComponent implements OnInit {
 
   constructor(public session: SessionService,
             private sqlResource: SqlResource) {
-    this.smileys[0] = 'frownSmiley.jpg';
-    this.smileys[1] = 'neutralSmiley.jpg';
-    this.smileys[2] = 'greenSmiley.jpg';
-    this.smileys[3] = 'NA.jpg';
+    this.emojis[0] = 'frownSmiley.jpg';
+    this.emojis[1] = 'neutralSmiley.jpg';
+    this.emojis[2] = 'greenSmiley.jpg';
+    this.emojis[3] = 'NA.jpg';
 
     console.log('in StudentsForMentorGridComponent constructor');
   }
