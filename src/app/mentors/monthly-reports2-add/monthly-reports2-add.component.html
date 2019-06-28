@@ -12,8 +12,8 @@
         Adelante administración.)
       </span>
     </div>
-    <form [formGroup]="myForm">
-      <fieldset [disabled]="submitted">
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+      <fieldset [disabled]="isSubmitted">
 
         <div class="form-group">
           <div class="controls">
@@ -91,7 +91,8 @@
 
         <div class="col-md-6 col-md-offset-1">
           <span>
-            <button class="btn btn-primary"
+            <button type="submit"
+                    class="btn btn-primary"
                     style="width:80px;margin-right:10px"
                     (click)="onSubmit()">
               Submit
@@ -110,5 +111,15 @@
         </div>
       </fieldset>
     </form>
+    <p>Form value</p>
+<pre><code>{{myForm.value | json}}</code></pre>
+
+
+<p>Form status</p>
+<pre><code>"{{myForm.status}}"</code></pre>
+
+<p>
+  Submitted?<br/>
+  {{isSubmitted ? 'Yes' : 'No'}}
   </div>
 </div>

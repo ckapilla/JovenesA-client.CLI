@@ -18,7 +18,7 @@ export class MonthlyReports2AddComponent
     myForm: FormGroup;
     mentorReport2: MentorReport2RPT = new MentorReport2RPT();
     isLoading: boolean;
-    submitted: boolean;
+    isSubmitted = false;
 
     lastYearCtl: AbstractControl;
     lastMonthCtl: AbstractControl;
@@ -71,23 +71,24 @@ export class MonthlyReports2AddComponent
 
         this.myForm = _fb.group({
             lastContactYearSelector: ['2019', Validators.required],
-            lastContactMonthSelector: ['0', this.validateMonth],
-            inputEmoji: [666, Validators.required], // use bogus integer value so change detection works
-            inputNarrative_English: ['', Validators.required],
+            lastContactMonthSelector: ['0', { validators: [this.validateMonth], updateOn: 'change' }],
+            // use bogus integer value so change detection works:
+            inputEmoji: [666, { validators: [Validators.required, this.validateEmojis], updateOn: 'change' }],
+            inputNarrative_English: ['', { validators: [Validators.required], updateOn: 'blur' }],
             inputNarrative_Spanish: [''],
             mentorReportId: [this.reportIdCtl]
-        });
+        }, {updateOn: 'blur'});
 
-        this.lastYearCtl = this.myForm.controls['lastContactYearSelector'];
-        this.lastMonthCtl = this.myForm.controls['lastContactMonthSelector'];
-        this.emojiCtl = this.myForm.controls['inputEmoji'];
-        this.narrative_EnglishCtl = this.myForm.controls['inputNarrative_English'];
-        this.narrative_SpanishCtl = this.myForm.controls['inputNarrative_Spanish'];
-        this.reportIdCtl = this.myForm.controls['mentorReportId'];
+        this.lastYearCtl = this.myForm.controls.lastContactYearSelector;
+        this.lastMonthCtl = this.myForm.controls.lastContactMonthSelector;
+        this.emojiCtl = this.myForm.controls.inputEmoji;
+        this.narrative_EnglishCtl = this.myForm.controls.inputNarrative_English;
+        this.narrative_SpanishCtl = this.myForm.controls.inputNarrative_Spanish;
+        this.reportIdCtl = this.myForm.controls.mentorReportId;
 
         this.errorMessage = '';
         this.successMessage = '';
-        this.submitted = false;
+        this.isSubmitted = false;
         this.studentName = this.session.getStudentInContextName();
     }
 
@@ -109,30 +110,30 @@ export class MonthlyReports2AddComponent
 
         this.myForm.valueChanges.subscribe(
             (form: any) => {
+                console.log('valueChanges fired for blur');
                 this.errorMessage = '';
                 this.successMessage = '';
-                this.submitted = false;
+                this.isSubmitted = false;
                 // console.log('form change event');
-                this.checkFormControlsAreValid();
+                this.checkFormControlsAreValid(false);
             }
         );
     }
-    checkFormControlsAreValid() {
+    checkFormControlsAreValid(bSubmitting: boolean) {
         console.log('checking for valid form controls');
         if (this.myForm.invalid) {
             let i = 0;
             this.errorMessage = '';
-            if ((!this.lastYearCtl.valid && this.lastYearCtl.touched) ||
-                (!this.lastMonthCtl.valid && this.lastMonthCtl.touched)) {
-                this.errorMessage = this.errorMessage + 'Year and month must be selected from drop-downs.<br /> A�o y mes deben ser seleccionados de listas desplegables';
+            if (!this.lastMonthCtl.valid && (this.lastMonthCtl.touched || bSubmitting)) {
+                this.errorMessage = this.errorMessage + 'Year and month must be selected from drop-downs. Año y mes deben ser seleccionados de listas desplegables';
                 ++i;
             }
-            if (!this.emojiCtl.valid && this.emojiCtl.touched) {
-                this.errorMessage = this.errorMessage + 'An emoji must be selected. Se debe seleccionar un Emoji';
+            if (!this.emojiCtl.valid && (this.emojiCtl.touched || bSubmitting)) {
+                this.errorMessage = this.errorMessage + ' | An emoji must be selected. Se debe seleccionar un Emoji';
                 ++i;
             }
-            if (!this.narrative_EnglishCtl.valid && this.narrative_EnglishCtl.touched) {
-                this.errorMessage = this.errorMessage + 'Description must be filled in. Descripcione debe rellenarse';
+            if (!this.narrative_EnglishCtl.valid && (this.narrative_EnglishCtl.touched || bSubmitting)) {
+                this.errorMessage = this.errorMessage + ' | Description must be filled in. Descripcione debe rellenarse';
                 ++i;
             }
             window.scrollTo(0, 0);
@@ -142,12 +143,14 @@ export class MonthlyReports2AddComponent
         }
     }
 
-
-    onSubmit() {
+    onSubmit(): void {
         console.log('Hi from mentor Report2 Submit');
         // console.log(this.mentorReport);
-        if (!this.checkFormControlsAreValid()) {
-            return false;
+        // if (!this.myForm.valid) {
+        //     return;
+        // }
+        if (!this.checkFormControlsAreValid(true)) {
+            return;
         }
 
         console.log('###before submitting update model with form control values');
@@ -163,7 +166,7 @@ export class MonthlyReports2AddComponent
             .subscribe(
                 (student) => {
                     console.log(this.successMessage = <any>student);
-                    this.submitted = true;
+                    this.isSubmitted = true;
                     this.isLoading = false;
                     const target = '/mentors/monthly-reports/' + this.mentorReport2.mentorId; // + '/' + this.mentorReport.studentId;
                     console.log('after call to addMentorReport; navigating to ' + target);
@@ -173,8 +176,9 @@ export class MonthlyReports2AddComponent
                     console.log(this.errorMessage = <any>error);
                     this.isLoading = false;
                 }
-            );
-        return false;
+        );
+        this.isSubmitted = true;
+        return;
     }
 
     onCancel() {
@@ -185,21 +189,26 @@ export class MonthlyReports2AddComponent
 
     validateMonth(control: FormControl): { [error: string]: any } {
         console.log('month validator ' + control.value);
-        const rtnVal: any = ('' + control.value === '0') ? { // can be either string or number
-            validateMonth: {
-                valid: false
-            }
-        } : null;
+        const rtnVal: any = ('' + control.value === '0')  // can be either string or number
+            ? { validateMonth: { valid: false } }
+            : null;
         console.log(rtnVal);
         return rtnVal;
     }
-
+    validateEmojis(control: FormControl): { [error: string]: any } {
+        console.log('emoji validator ' + control.value);
+        const rtnVal: any = (control.value === 666)
+            ? { validateEmojis: { valid: false } }
+            : null;
+        console.log(rtnVal);
+        return rtnVal;
+    }
     public hasChanges() {
         // if have changes then ask for confirmation
         // ask if form is dirty and has not just been submitted
-        console.log('hasChanges has submitted ' + this.submitted);
+        console.log('hasChanges has submitted ' + this.isSubmitted);
         console.log('hasChanges has form dirty ' + this.myForm.dirty);
-        return this.myForm.dirty && !this.submitted;
+        return this.myForm.dirty && !this.isSubmitted;
     }
 
 }

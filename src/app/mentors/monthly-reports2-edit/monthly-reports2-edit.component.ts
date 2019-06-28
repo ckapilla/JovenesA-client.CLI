@@ -15,7 +15,7 @@ export class MonthlyReports2EditComponent
   myForm: FormGroup;
   mentorReport2: MentorReport2RPT = new MentorReport2RPT();
   isLoading: boolean;
-  submitted: boolean;
+  isSubmitted: boolean;
 
   lastYearCtl: AbstractControl;
   lastMonthCtl: AbstractControl;
@@ -74,7 +74,7 @@ export class MonthlyReports2EditComponent
       inputNarrative_English: ['', Validators.required],
       inputNarrative_Spanish: [''],
       mentorReportId: [this.reportIdCtl]
-    });
+    }, {updateOn: 'blue'});
 
     this.lastYearCtl = this.myForm.controls['lastContactYearSelector'];
     this.lastMonthCtl = this.myForm.controls['lastContactMonthSelector'];
@@ -85,7 +85,7 @@ export class MonthlyReports2EditComponent
 
     this.errorMessage = '';
     this.successMessage = '';
-    this.submitted = false;
+    this.isSubmitted = false;
     this.studentName = this.session.getStudentInContextName();
   }
 
@@ -129,7 +129,7 @@ export class MonthlyReports2EditComponent
       (form: any) => {
         this.errorMessage = '';
         this.successMessage = '';
-        this.submitted = false;
+        this.isSubmitted = false;
         // console.log('form change event');
       }
     );
@@ -174,7 +174,7 @@ export class MonthlyReports2EditComponent
       .subscribe(
         (student) => {
           console.log(this.successMessage = <any>student);
-          this.submitted = true;
+          this.isSubmitted = true;
           this.isLoading = false;
           const target = '/mentors/monthly-reports/' + this.mentorReport2.mentorId; // + '/' + this.mentorReport.studentId;
           console.log('after call to editMentorReport; navigating to ' + target);
@@ -207,10 +207,10 @@ export class MonthlyReports2EditComponent
 
   public hasChanges() {
     // if have changes then ask for confirmation
-    // ask if form is dirty and has not just been submitted
-    console.log('hasChanges has submitted ' + this.submitted);
+    // ask if form is dirty and has not just been isSubmitted
+    console.log('hasChanges has submitted ' + this.isSubmitted);
     console.log('hasChanges has form dirty ' + this.myForm.dirty);
-    return this.myForm.dirty && !this.submitted;
+    return this.myForm.dirty && !this.isSubmitted;
   }
 
 }
