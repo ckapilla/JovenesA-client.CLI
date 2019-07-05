@@ -18,7 +18,6 @@ export class FollowUpRequestsComponent implements OnInit {
   successMessage: string;
   studentId: number;
   studentName: string;
-  displayCompleteHistory: true;
 
 
   constructor(public sqlResource: SqlResource,

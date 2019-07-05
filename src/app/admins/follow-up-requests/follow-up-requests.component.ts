@@ -52,26 +52,11 @@ export class FollowUpRequestsComponent implements OnInit {
         }
       );
   }
-
-  gotoStudent(id: number, studentName: string) {
-    console.log('setting studentName to ' + studentName);
-    this.session.setStudentInContextName(studentName);
-
-    const link = ['admins/students/student', { id: id }];
-    console.log('navigating to ' + link);
-    this.router.navigate(link);
-  }
-
   followUpRequestAdd() {
     console.log('in follow-up-requests: FollowUpRequestAdd, ready to navigate');
     const target = '/admins/follow-up-requests-add';
     this.router.navigateByUrl(target);
   }
 
-  viewAddDetails(requestId: number) {
-    const link = '/admins/follow-up-events-add/' +  requestId;
-    console.log('navigating to ' + link);
-    this.router.navigateByUrl(link);
-  }
 }
 

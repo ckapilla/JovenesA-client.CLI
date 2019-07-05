@@ -7,9 +7,6 @@ import { MentorsHomeComponent } from './mentors-home/mentors-home.component';
 import { MentorsProfileComponent } from './mentors-profile/mentors-profile.component';
 import { MentorsComponent } from './mentors.component';
 import { MentorsRouting } from './mentors.routing';
-import { MonthlyReportsAddComponent } from './monthly-reports-add/monthly-reports-add.component';
-import { MonthlyReportsEditComponent } from './monthly-reports-edit/monthly-reports-edit.component';
-import { MonthlyReportsComponent } from './monthly-reports/monthly-reports.component';
 import { MonthlyReports2AddComponent } from './monthly-reports2-add/monthly-reports2-add.component';
 import { MonthlyReports2EditComponent } from './monthly-reports2-edit/monthly-reports2-edit.component';
 import { MonthlyReports2Component } from './monthly-reports2/monthly-reports2.component';
@@ -27,11 +24,8 @@ import { MentorsNavbarComponent } from './shared/mentors-navbar/mentors-navbar.c
         MentorsNavbarComponent,
         MentorsHomeComponent,
         MentorsProfileComponent,
-        MonthlyReportsComponent,
         MonthlyReports2Component,
-        MonthlyReportsAddComponent,
         MonthlyReports2AddComponent,
-        MonthlyReportsEditComponent,
         MonthlyReports2EditComponent,
         FollowUpRequestsAddComponent,
         FollowUpRequestsComponent,

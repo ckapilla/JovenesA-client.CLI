@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanDeactivate, Router, RouterStateSnapshot } from '@angular/router';
+import { MentorReportsSummaryTrackingComponent } from './admins/index';
 import { AuthService } from './app_shared/services/auth.service';
 import { SessionService } from './app_shared/services/session.service';
-import { MonthlyReportsAddComponent } from './mentors/index';
-import { MentorReportsSummaryTrackingComponent } from './admins/index';
+import { MonthlyReports2AddComponent } from './mentors/index';
 
 @Injectable({ providedIn: 'root' })
 export class CanActivateViaAdminAuthGuard implements CanActivate {
@@ -91,9 +91,9 @@ export class CanActivateViaStudentAuthGuard implements CanActivate {
 
 @Injectable({ providedIn: 'root' })
 export class ConfirmDeactivateMonthlyReportAddGuard
-      implements CanDeactivate<MonthlyReportsAddComponent> {
+      implements CanDeactivate<MonthlyReports2AddComponent> {
 
-  canDeactivate(component: MonthlyReportsAddComponent): boolean {
+  canDeactivate(component: MonthlyReports2AddComponent): boolean {
     if  (component.hasChanges()) {
       console.log('CanDeactivate');
       // tslint:disable-next-line:max-line-length

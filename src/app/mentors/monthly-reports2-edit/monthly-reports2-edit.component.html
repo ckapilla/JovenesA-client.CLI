@@ -74,23 +74,21 @@
         </div>
 
         <div class="controls">
-          <label for="inputNarrative_English">Describe positive events or special challenges in the student's life
-            during the past month<br />Describa logros y eventos positivos o obstáculos en la vida del
-            estudiante</label>
+          <label for="inputNarrative_English">Positive events or special challenges in the student's life
+            during the past month</label>
           <textarea id="inputNarrative_English" #success formControlName="inputNarrative_English"
                     type="text"
 
                     class="form-control input-sm" placeholder="">
           </textarea>
           <app-display-errors control="inputNarrative_English" class="red"
-                              [errors]="{'required': 'An entry is required, even if it is just N/A. Se requiere una entrada, aun si es sólo N/A.',
-          'maxlength': 'Entry cannot exceed 4000 characters in length.<br />La entrada no puede exceder 4000 caracteres del largo.'
+                              [errors]="{'required': 'An entry is required, even if it is just N/A.',
+          'maxlength': 'Entry cannot exceed 4000 characters in length.'
                 }"></app-display-errors>
         </div>
 
-        <!-- <div class="controls">
-            <label for="inputNarrative_Spanish">Describe positive events or special challenges in the student's life
-              during the past month<br />Describa logros y eventos positivos o obstáculos en la vida del
+        <div class="controls">
+            <label for="inputNarrative_Spanish">Logros y eventos positivos o obstáculos en la vida del
               estudiante</label>
             <textarea id="inputNarrative_Spanish" #success formControlName="inputNarrative_Spanish"
                       type="text"
@@ -98,10 +96,10 @@
                       class="form-control input-sm" placeholder="">
             </textarea>
             <app-display-errors control="inputNarrative_Spanish" class="red"
-                                [errors]="{'required': 'An entry is required, even if it is just N/A.<br />Se requiere una entrada, aun si es sólo N/A.',
-            'maxlength': 'Entry cannot exceed 4000 characters in length.<br />La entrada no puede exceder 4000 caracteres del largo.'
+                                [errors]="{'required': 'Se requiere una entrada, aun si es sólo N/A.',
+            'maxlength': 'La entrada no puede exceder 4000 caracteres del largo.'
                   }"></app-display-errors>
-          </div> -->
+          </div>
 
         <div class="col-md-6 col-md-offset-1">
           <span>

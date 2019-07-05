@@ -21,81 +21,11 @@
             &nbsp;&nbsp;<input type="checkbox" [(ngModel)]="displayCompleteHistory">&nbsp;<span>Display Complete History</span>
           </span>
       </div>
-      <div class="panel-body">
-        <div class="row" style="border-bottom: 4px solid #aaa; margin-top: 2px;"
-             *ngFor="let request of followUpRequests, let i = index">
-          <div class="col-md-12">
-            <div class="row" id='{{"id" + request.followUpRequestId}}'>
-            <span class="padded">
-                &nbsp;Request Date:
-                [ {{ request.requestDateTime | truncateDate }} ]
-              </span>
-              <span class="padded">
-                &nbsp;Request Status:
-                [{{ request.requestStatus }}]
-              </span>
-              <span class="padded">
-                &nbsp;Student: [
-                <span class="link" (click)='gotoStudent(request.studentId, request.studentName)' class='link'>
-                  {{ request.studentName }}
-                </span>
-                ]
-              </span>
-            </div>
+      <app-follow-up-requests-list  [followUpRequests]="followUpRequests"
+       [displayCompleteHistory]="displayCompleteHistory"
+       [showAddDetails]="true"
+       ></app-follow-up-requests-list>
 
-            <div class="row">
-              <span class="padded">
-                &nbsp; Requested By:
-                [ {{ request.requestor }} ({{ request.requestorRole }}) ]
-              </span>
-              <span class="padded">
-                &nbsp;Assigned To:
-                [ {{ request.assignedTo }} ]
-              </span>
-              <span class="padded">
-                &nbsp;Target Date:
-                [ {{ request.targetDate | truncateDate }} ]
-              </span>
-              <span class="padded">
-                <span class="btn btn-primary" (click)="viewAddDetails(request.followUpRequestId)"
-                      style="margin-left:10px">
-                  Add Details
-                </span>
-              </span>
-            </div>
-
-            <div class="row" style="border-bottom: 2px solid #ccc; margin-top: 1px;">
-              <div class="padded">
-                &nbsp;Description / Descripción:
-              </div>
-              <div class="col-md-10">
-                {{ request.description_English }}
-              </div>
-              <div class="col-md-10">
-                {{ request.description_Spanish }}
-              </div>
-            </div>
-            <div class="row" [hidden]=displayCompleteHistory>
-              <div class="padded">
-                    &nbsp;Latest Comments / Últimos Comentarios:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Update Date: [{{request.eventDateTime | truncateDate }}]
-                  </div>
-              <div class="col-md-10" style="border-bottom: 1px solid #ccc;">
-                {{ request.comments_English }}
-              </div>
-              <div class="col-md-10">
-                {{ request.comments_Spanish }}
-              </div>
-            </div>
-            <div [hidden]=!displayCompleteHistory>
-                <div class="padded">
-                    &nbsp;Comment History / Historial de comentarios:
-                  </div>
-              <app-follow-up-events [followUpRequestId]="request.followUpRequestId">
-              </app-follow-up-events>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </div>

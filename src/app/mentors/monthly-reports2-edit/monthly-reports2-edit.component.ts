@@ -7,7 +7,7 @@ import { SessionService } from '../../app_shared/services/session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
 @Component({
-  templateUrl: '../monthly-reports2-add/monthly-reports2-add.component.html'
+  templateUrl: '../monthly-reports2-edit/monthly-reports2-edit.component.html'
 })
 
 export class MonthlyReports2EditComponent
@@ -67,14 +67,14 @@ export class MonthlyReports2EditComponent
     ];
 
     this.myForm = _fb.group({
-      lastContactYearSelector: ['2018', Validators.required],
-      // lastContactMonthSelector: ['', this.validateMonth],
-      lastContactMonthSelector: [''],
-      inputEmoji: [666, Validators.required], // use bogus integer value so change detection works
-      inputNarrative_English: ['', Validators.required],
+      lastContactYearSelector: ['2019', Validators.required],
+      lastContactMonthSelector: ['0', { validators: [this.validateMonth], updateOn: 'change' }],
+      // use bogus integer value so change detection works:
+      inputEmoji: [666, { validators: [Validators.required, this.validateEmojis], updateOn: 'change' }],
+      inputNarrative_English: ['', { validators: [Validators.required], updateOn: 'blur' }],
       inputNarrative_Spanish: [''],
       mentorReportId: [this.reportIdCtl]
-    }, {updateOn: 'blue'});
+  });
 
     this.lastYearCtl = this.myForm.controls['lastContactYearSelector'];
     this.lastMonthCtl = this.myForm.controls['lastContactMonthSelector'];
@@ -168,6 +168,7 @@ export class MonthlyReports2EditComponent
     this.mentorReport2.emoji = this.emojiCtl.value;
     this.mentorReport2.narrative_English = this.narrative_EnglishCtl.value;
     this.mentorReport2.narrative_Spanish = this.narrative_SpanishCtl.value;
+    // this.mentorReport2.reviewedStatusId = 2086; // already is needs setup or wouldn't be here
 
 
     this.sqlResource.updateMentorReport2(this.mentorReport2)
@@ -204,7 +205,14 @@ export class MonthlyReports2EditComponent
     console.log(rtnVal);
     return rtnVal;
   }
-
+  validateEmojis(control: FormControl): { [error: string]: any } {
+    console.log('emoji validator ' + control.value);
+    const rtnVal: any = (control.value === 666)
+        ? { validateEmojis: { valid: false } }
+        : null;
+    console.log(rtnVal);
+    return rtnVal;
+}
   public hasChanges() {
     // if have changes then ask for confirmation
     // ask if form is dirty and has not just been isSubmitted

@@ -1,12 +1,18 @@
 <div *ngIf="errorMessage" class="alert alert-danger">
   {{errorMessage}}</div>
-
+  <div >
+    <h1>&nbsp;</h1>
+    <h4>&nbsp;</h4>
+      <h4 class=".text-info .bg-warning">Please Note: We are introducing a re-designed Mentor Report format, using different emoji's and only a single text field. Hopefully it will be self-explanatory.</h4>
+      <h4 class=".text-info .bg-warning">Nota importante: Estamos introduciendo un formato de informe de mentor rediseñado, utilizando diferentes emojis y solo un campo de texto. Esperemos que se autoexplicativo.</h4>
+      </div>
+      <h4>&nbsp;</h4>
+      <h4>&nbsp;</h4>
 <students-for-mentor-grid
 (onSelectedStudentName)="onSelectedStudentName($event)"
 (onSelectedStudentId)="onSelectedStudentId($event)"
 >
 </students-for-mentor-grid>
-
 <div [ngSwitch]="isLoading">
   <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
     <app-loading-container>

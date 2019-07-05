@@ -29,9 +29,9 @@ export class MonthlyReports2Component implements OnInit {
               public session: SessionService) {
 
     console.log('monthlyReports constructor');
-    this.smileys = [ '/assets/images/frownSmiley.jpg',
-                    '/assets/images/neutralSmiley.jpg',
-                    '/assets/images/greenSmiley.jpg',
+    this.smileys = [ '/assets/images/needsAttention.jpg',
+                    '/assets/images/thumbsUp.jpg',
+                    '/assets/images/celebrate.jpg',
                     '/assets/images/NA.jpg'
                     ];
   }

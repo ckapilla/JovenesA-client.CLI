@@ -77,7 +77,7 @@ export class MonthlyReports2AddComponent
             inputNarrative_English: ['', { validators: [Validators.required], updateOn: 'blur' }],
             inputNarrative_Spanish: [''],
             mentorReportId: [this.reportIdCtl]
-        }, {updateOn: 'blur'});
+        });
 
         this.lastYearCtl = this.myForm.controls.lastContactYearSelector;
         this.lastMonthCtl = this.myForm.controls.lastContactMonthSelector;
@@ -85,6 +85,7 @@ export class MonthlyReports2AddComponent
         this.narrative_EnglishCtl = this.myForm.controls.inputNarrative_English;
         this.narrative_SpanishCtl = this.myForm.controls.inputNarrative_Spanish;
         this.reportIdCtl = this.myForm.controls.mentorReportId;
+        this.mentorReport2.reviewedStatusId = 2086; // needs setup
 
         this.errorMessage = '';
         this.successMessage = '';
@@ -122,21 +123,21 @@ export class MonthlyReports2AddComponent
     checkFormControlsAreValid(bSubmitting: boolean) {
         console.log('checking for valid form controls');
         if (this.myForm.invalid) {
-            // let i = 0;
-            this.errorMessage = 'Some information is incorrect or missing.';
-            // this.errorMessage = '';
-            // if (!this.lastMonthCtl.valid && (this.lastMonthCtl.touched || bSubmitting)) {
-            //     this.errorMessage = this.errorMessage + 'Year and month must be selected from drop-downs. Año y mes deben ser seleccionados de listas desplegables';
-            //     ++i;
-            // }
-            // if (!this.emojiCtl.valid && (this.emojiCtl.touched || bSubmitting)) {
-            //     this.errorMessage = this.errorMessage + ' | An emoji must be selected. Se debe seleccionar un Emoji';
-            //     ++i;
-            // }
-            // if (!this.narrative_EnglishCtl.valid && (this.narrative_EnglishCtl.touched || bSubmitting)) {
-            //     this.errorMessage = this.errorMessage + ' | Description must be filled in. Descripcione debe rellenarse';
-            //     ++i;
-            // }
+            let i = 0;
+            // this.errorMessage = 'Some information is incorrect or missing.';
+            this.errorMessage = '';
+            if (!this.lastMonthCtl.valid && (this.lastMonthCtl.touched || bSubmitting)) {
+                this.errorMessage = this.errorMessage + 'Year and month must be selected from drop-downs. Año y mes deben ser seleccionados de listas desplegables';
+                ++i;
+            }
+            if (!this.emojiCtl.valid && (this.emojiCtl.touched || bSubmitting)) {
+                this.errorMessage = this.errorMessage + ' | An emoji must be selected. Se debe seleccionar un Emoji';
+                ++i;
+            }
+            if (!this.narrative_EnglishCtl.valid && (this.narrative_EnglishCtl.touched || bSubmitting)) {
+                this.errorMessage = this.errorMessage + ' | Description must be filled in. Descripcione debe rellenarse';
+                ++i;
+            }
             window.scrollTo(0, 0);
             return false;
         } else {

@@ -58,8 +58,8 @@ export class FollowUpEventsAddComponent implements OnInit {
     this.followUpEvent.enteredById = this.session.userId;
     // this.followUpEvent.assignedToRoleId =
     // this.followUpEvent.assignedToId =
-    this.followUpEvent.comments_English = '--';
-    this.followUpEvent.comments_Spanish = '--';
+    this.followUpEvent.comments_English = '';
+    this.followUpEvent.comments_Spanish = '';
 
 
     this.isLoading = true;
