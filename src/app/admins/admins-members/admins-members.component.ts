@@ -58,9 +58,9 @@ export class AdminsMembersComponent implements OnInit {
       { value: '1008', label: 'Volunteer' }
     ];
 
-    this.smileys = [ '/assets/images/frownSmiley.jpg',
-                    '/assets/images/neutralSmiley.jpg',
-                    '/assets/images/greenSmiley.jpg',
+    this.smileys = [ '/assets/images/needsAttention.jpg',
+                    '/assets/images/thumbsUp.jpg',
+                    '/assets/images/celebrate.jpg',
                     '/assets/images/NA.jpg'
                     ];
     this.isLoading = false;

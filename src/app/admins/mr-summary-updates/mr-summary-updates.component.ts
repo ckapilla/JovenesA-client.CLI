@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
-import { MentorReportRPT } from '../../app_shared/models/mentor-report';
+import { MentorReport2RPT } from '../../app_shared/models/mentor-report2';
 import { SessionService } from '../../app_shared/services/session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
@@ -15,7 +15,7 @@ import { SqlResource } from '../../app_shared/services/sql-resource.service';
 export class MentorReportSummaryUpdatesComponent
         implements OnInit {
     frmUpdate: FormGroup;
-    mentorReport: MentorReportRPT;
+    mentorReport: MentorReport2RPT;
     isLoading: boolean;
     submitted: boolean;
     errorMessage: string;
@@ -79,7 +79,7 @@ export class MentorReportSummaryUpdatesComponent
         this.summary = this.frmUpdate.controls['inputSummary'];
         this.summaryStatus = this.frmUpdate.controls['summaryStatusSelector'];
         this.highlightStatus = this.frmUpdate.controls['highlightStatusSelector'];
-        this.mentorReport = new MentorReportRPT(); // MentorReportResource();
+        this.mentorReport = new MentorReport2RPT(); // MentorReportResource();
 
         this.errorMessage = '';
         this.successMessage = '';
@@ -103,7 +103,7 @@ export class MentorReportSummaryUpdatesComponent
     }
 
     this.isLoading = true;
-    this.sqlResource.getMentorReport(mentorReportId)
+    this.sqlResource.getMentorReport2(mentorReportId)
       .subscribe(
         data => {this.mentorReport = data; },
         err => console.error('Subscribe error: ' + err),
@@ -152,7 +152,7 @@ export class MentorReportSummaryUpdatesComponent
         }
 
 
-        this.sqlResource.updateMentorReport(this.mentorReport)
+        this.sqlResource.updateMentorReport2(this.mentorReport)
             .subscribe(
                 (student) => {
                     console.log(this.successMessage = <any>student);

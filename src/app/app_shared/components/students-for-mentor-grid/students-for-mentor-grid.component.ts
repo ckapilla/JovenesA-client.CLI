@@ -20,9 +20,9 @@ export class StudentsForMentorGridComponent implements OnInit {
 
   constructor(public session: SessionService,
             private sqlResource: SqlResource) {
-    this.emojis[0] = 'frownSmiley.jpg';
-    this.emojis[1] = 'neutralSmiley.jpg';
-    this.emojis[2] = 'greenSmiley.jpg';
+    this.emojis[0] = 'needsAttention.jpg';
+    this.emojis[1] = 'thumbsUp.jpg';
+    this.emojis[2] = 'celebrate.jpg';
     this.emojis[3] = 'NA.jpg';
 
     console.log('in StudentsForMentorGridComponent constructor');

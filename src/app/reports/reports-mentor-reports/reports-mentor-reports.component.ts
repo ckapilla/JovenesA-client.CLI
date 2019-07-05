@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-
-import { SqlReports } from '../shared/services/sql-reports';
 import { Router } from '@angular/router';
 import { SessionService } from '../../app_shared/services/session.service';
 import { LatestMentorReports } from '../shared/report-models/latest-mentor-reports';
+import { SqlReports } from '../shared/services/sql-reports';
+
 @Component({
 
   templateUrl: 'reports-mentor-reports.component.html'
@@ -22,9 +22,9 @@ export class ReportsMentorReportsComponent implements OnInit {
 
 
   ) {
-    this.smileys = [ '/assets/images/frownSmiley.jpg',
-                    '/assets/images/neutralSmiley.jpg',
-                    '/assets/images/greenSmiley.jpg',
+    this.smileys = [ '/assets/images/needsAttention.jpg',
+                    '/assets/images/thumbsUp.jpg',
+                    '/assets/images/celebrate.jpg',
                     '/assets/images/NA.jpg'
                     ];
   }

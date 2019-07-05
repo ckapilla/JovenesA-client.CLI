@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MentorReportRPT } from '../../app_shared/models/mentor-report';
+import { MentorReport2RPT } from '../../app_shared/models/mentor-report2';
 import { SessionService } from '../../app_shared/services/session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
@@ -18,7 +18,7 @@ export class AdminsStudentMRsComponent implements OnInit {
   studentId: number;
   mentorId: number;
   mentorReportId: number;
-  mentorReports: Array<MentorReportRPT>;
+  mentorReports2: Array<MentorReport2RPT>;
   studentName: string;
 
   constructor(
@@ -41,9 +41,9 @@ export class AdminsStudentMRsComponent implements OnInit {
     }
    console.log('studentId  ' + this.studentId);
     this.isLoading = true;
-    this.sqlResource.getMentorReportRPTs(this.mentorId, this.studentId)
+    this.sqlResource.getMentorReport2RPTs(this.mentorId, this.studentId)
       .subscribe(
-        data => {this.mentorReports = data; },
+        data => {this.mentorReports2 = data; },
         err => console.error('Subscribe error: ' + err),
         () => {console.log('done: ');
         this.isLoading = false;

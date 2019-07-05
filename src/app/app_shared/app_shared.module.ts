@@ -7,7 +7,6 @@ import { FollowUpEventsComponent } from './components/follow-up-events/follow-up
 import { FollowUpRequestsListComponent } from './components/follow-up-requests-list/follow-up-requests-list.component';
 import { LoadingContainerComponent } from './components/loading-container.component';
 import { MemberSelectorComponent } from './components/member-selector/member-selector.component';
-import { MentorReportsListComponent } from './components/mentor-reports-list/mentor-reports-list.component';
 import { MentorReports2ListComponent } from './components/mentor-reports2-list/mentor-reports2-list.component';
 import { SortableColumnComponent } from './components/sortable-column.component';
 import { StudentSelectorComponent } from './components/student-selector/student-selector.component';
@@ -42,7 +41,6 @@ import { AuthService } from './services/auth.service';
     FollowUpEventsComponent,
     FollowUpRequestsListComponent,
     MemberSelectorComponent,
-    MentorReportsListComponent,
     MentorReports2ListComponent,
     SortableColumnComponent,
     SortableTableDirective,
@@ -64,7 +62,6 @@ import { AuthService } from './services/auth.service';
     StudentsForSponsorComponent,
     StudentSelectorComponent,
     MemberSelectorComponent,
-    MentorReportsListComponent,
     MentorReports2ListComponent,
     FollowUpEventsComponent,
     FollowUpRequestsListComponent,

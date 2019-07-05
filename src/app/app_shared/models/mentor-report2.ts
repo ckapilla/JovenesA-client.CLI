@@ -12,8 +12,12 @@
         public emoji?: number,
         public narrative_English?: string,
         public narrative_Spanish?: string,
+        public reviewedStatusId?: number,
+        public reviewedStatus?: string,
+        public sponsorGroupName?: string,
         public originalLanguageId?: number,
-        public reviewedStatusId?: number
+        public sponsorRequiredLanguageId?: number,
+        public sponsorPreferredLanguageId?: number
       ) {
 
       }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
-import { MentorReportByMonth } from '../../app_shared/models/mentor-report-by-month';
+import { MentorReport2RPT } from '../../app_shared/models/mentor-report2';
 import { SessionService } from '../../app_shared/services/session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
@@ -13,7 +13,7 @@ import { SqlResource } from '../../app_shared/services/sql-resource.service';
   styleUrls: ['mr-summary-tracking.component.css']
 })
 export class MentorReportsSummaryTrackingComponent implements OnInit {
-  mentorReportByMonth: MentorReportByMonth[];
+  mentorReportByMonth: MentorReport2RPT[];
   isLoading: boolean;
   smileys: Array<string>;
   public errorMessage: string;
@@ -93,9 +93,9 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
     this.selectedHighlightStatus = this.highlightStatuses[0].value;
 
 
-    this.smileys = [ '/assets/images/frownSmiley.jpg',
-                    '/assets/images/neutralSmiley.jpg',
-                    '/assets/images/greenSmiley.jpg',
+    this.smileys = [ '/assets/images/needsAttention.jpg',
+                    '/assets/images/thumbsUp.jpg',
+                    '/assets/images/celebrate.jpg',
                     '/assets/images/NA.jpg'
                     ];
   }
@@ -145,10 +145,9 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
     console.log('in fetchData for MentorReportsByMonth');
     this.sqlResource.getMentorReportsByMonth(this.selectedYear,
                   this.selectedMonth,
-                  this.selectedMRSummaryStatus,
-                  this.selectedHighlightStatus)
+                  this.selectedMRSummaryStatus)
       .subscribe(
-        data => {this.mentorReportByMonth = data; },
+        data => { this.mentorReportByMonth = data; console.log('mentorReportByMonth has'); console.log(this.mentorReportByMonth[0]); },
         err => console.error('Subscribe error: ' + err),
         () => { console.log('data loaded now set timeout for scroll');
         setTimeout(() => {

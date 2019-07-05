@@ -1,5 +1,5 @@
 <div class="panel panel-primary">
-  <div class="panel-heading" style="font-size:large"> Mentor Report Summary Tracking
+  <div class="panel-heading" style="font-size:large"> Mentor Report Review
   </div>
   <div class="panel-body">
     <span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
@@ -22,12 +22,12 @@
           <option *ngFor="let status of mrSummaryStatuses" [value]="status.value">{{status.label}}</option>
         </select>
 
-        <label>&nbsp;Highlight Status:
+        <!-- <label>&nbsp;Highlight Status:
           <select name="highlightStatusSelector" [(ngModel)]="selectedHighlightStatus"
                   (change)="setSelectedHighlightStatus($event.target.value)">
             <option *ngFor="let status of highlightStatuses" [value]="status.value">{{status.label}}</option>
           </select>
-        </label>
+        </label> -->
 
         <span class="checkboxes">
           &nbsp;&nbsp;<label><input type="checkbox" [(ngModel)]="displayOriginalFields">&nbsp;<span>Display Original
@@ -47,7 +47,7 @@
       <div *ngSwitchCase="false">
         <div class="row" style="border-bottom: 3px solid #ccc; margin-top: 2px;"
              *ngFor="let lmr of mentorReportByMonth, let i = index">
-          <div class="col-md-12" [ngClass]="getHighlightColor(lmr.highlightStatusId)">
+          <div class="col-md-12">
             <div class="row" id='{{"id" + lmr.mentorReportId}}'>
               &nbsp;
               <button class="btn default-btn"
@@ -64,18 +64,18 @@
               </span>
               <span class="padded">
                 [Sponsor:
-                {{ lmr.pledgeGroupName }} ]
+                {{ lmr.sponsorGroupName }} ]
               </span>
 
             </div>
 
             <div class="row">
               <span class="padded">
-                &nbsp;Mentor Report Summary Status: {{ lmr.sponsorSummaryStatus }}
+                &nbsp;Mentor Report Review Status: {{ lmr.reviewedStatus }}
               </span>
-              <span class="padded">
+              <!-- <span class="padded">
                 &nbsp;Highlight Status: {{ lmr.highlightStatus }}
-              </span>
+              </span> -->
             </div>
             <div class="row">
               <span class="padded">
@@ -84,12 +84,11 @@
               </span>
               <span class="padded">
                 &nbsp;Last Contact Month:
-
-                {{ lmr.latestMonth }}
+                {{ lmr.lastContactMonth | alphaMonth}}-{{ lmr.lastContactYear }}
               </span>
               <span class="padded">
-                &nbsp;Student Snapshot:
-                <img src="{{smileys[lmr.mentorReportSnapshot+1]}}" width="24px" />
+                &nbsp;Emoji:
+                <img src="{{smileys[lmr.emoji+1]}}" width="24px" />
               </span>
             </div>
             <!--<div class="row">
@@ -102,27 +101,18 @@
   </div>-->
             <div class="row" [hidden]=!displayOriginalFields>
               <div class="col-md2 padded">
-                &nbsp;Positive Events:
+                &nbsp;Description (English)
               </div>
               <div class="col-md-10">
-                {{ lmr.recentSuccess }}
+                {{ lmr.narrative_English }}
               </div>
             </div>
             <div class="row" [hidden]=!displayOriginalFields>
               <div class="padded">
-                &nbsp;Challenges:
+                &nbsp;Description (Spanish)
               </div>
               <div class="col-md-10">
-                {{ lmr.recentSetback }}
-              </div>
-            </div>
-            <div class="row">
-              <div class="padded">
-                Summary
-                <!--[{{ lmr.mentorPreferredLanguageId | alphaLanguage }} --&gt; {{ lmr.mrPreferredLanguageId | alphaLanguage }} {{ translationNeeded(lmr.mentorPreferredLanguageId,lmr.mrPreferredLanguageId) }}]-->
-              </div>
-              <div class="col-md-10">
-                {{ lmr.sponsorSummary }}
+                {{ lmr.narrative_Spanish }}
               </div>
             </div>
           </div>

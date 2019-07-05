@@ -1,14 +1,13 @@
 
 import { Component, OnInit } from '@angular/core';
-
-import { Router, ActivatedRoute } from '@angular/router';
-
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
-import { SessionService } from '../../app_shared/services/session.service';
-
+import { ActivatedRoute, Router } from '@angular/router';
 import { StudentDTO } from '../../app_shared/models/studentDTO';
+import { SessionService } from '../../app_shared/services/session.service';
+import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
-import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
+
+
+
 
 @Component({
 
@@ -33,9 +32,9 @@ export class StudentsStudentStatusComponent implements OnInit {
 
     console.log('Hi from student List Ctrl controller function');
 
-    this.smileys = [ '/assets/images/frownSmiley.jpg',
-                    '/assets/images/neutralSmiley.jpg',
-                    '/assets/images/greenSmiley.jpg',
+    this.smileys = [ '/assets/images/needsAttention.jpg',
+                    '/assets/images/thumbsUp.jpg',
+                    '/assets/images/celebrate.jpg',
                     '/assets/images/NA.jpg'
                     ];
     this.isLoading = false;

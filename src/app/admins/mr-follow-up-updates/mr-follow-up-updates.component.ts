@@ -89,7 +89,7 @@ export class MentorReportFollowUpUpdatesComponent
     console.log('sqlResource with MentorReportId: ' + mentorReportId);
     this.studentName = this.session.getStudentInContextName();
     this.isLoading = true;
-    this.sqlResource.getMentorReport(mentorReportId)
+    this.sqlResource.getMentorReport2(mentorReportId)
       .subscribe(
         data => {this.mentorReport = data; },
         err => console.error('Subscribe error: ' + err),
@@ -122,7 +122,7 @@ export class MentorReportFollowUpUpdatesComponent
           return false;
         }
 
-        this.sqlResource.updateMentorReport(this.mentorReport)
+        this.sqlResource.updateMentorReport2(this.mentorReport)
             .subscribe(
                 (student) => {
                     console.log(this.successMessage = <any>student);

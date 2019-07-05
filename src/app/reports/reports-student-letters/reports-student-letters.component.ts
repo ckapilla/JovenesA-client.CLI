@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-
-import { SqlReports } from '../shared/services/sql-reports';
 import { Router } from '@angular/router';
+import { SORTCRITERIA } from '../../app_shared/interfaces/SORTCRITERIA';
+import { ColumnSortService } from '../../app_shared/services/column-sort.service';
 import { SessionService } from '../../app_shared/services/session.service';
 import { LatestStudentLetters } from '../shared/report-models/latest-student-letters';
-import { ColumnSortService } from '../../app_shared/services/column-sort.service';
+import { SqlReports } from '../shared/services/sql-reports';
 
-import { SORTCRITERIA } from '../../app_shared/interfaces/SORTCRITERIA';
+
 
 @Component({
 
@@ -25,9 +25,9 @@ export class ReportsStudentLettersComponent implements OnInit {
               public session: SessionService,
               public columnSorter: ColumnSortService
   ) {
-    this.smileys = [ '/assets/images/frownSmiley.jpg',
-                    '/assets/images/neutralSmiley.jpg',
-                    '/assets/images/greenSmiley.jpg',
+    this.smileys = [ '/assets/images/needsAttention.jpg',
+                    '/assets/images/thumbsUp.jpg',
+                    '/assets/images/celebrate.jpg',
                     '/assets/images/NA.jpg'
                     ];
   }

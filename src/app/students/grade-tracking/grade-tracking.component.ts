@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Router } from '@angular/router';
 import { SessionService } from '../../app_shared/services/session.service';
+
 
 @Component({
 
@@ -16,9 +16,9 @@ export class GradeTrackingComponent implements OnInit {
   constructor(public router: Router,
               public session: SessionService
   ) {
-    this.smileys = [ '/assets/images/frownSmiley.jpg',
-                    '/assets/images/neutralSmiley.jpg',
-                    '/assets/images/greenSmiley.jpg',
+    this.smileys = [ '/assets/images/needsAttention.jpg',
+                    '/assets/images/thumbsUp.jpg',
+                    '/assets/images/celebrate.jpg',
                     '/assets/images/NA.jpg'
                     ];
   }

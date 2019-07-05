@@ -23,23 +23,26 @@
           <div class="controls">
             <label for="summaryStatusSelector">Summary Status:</label>
             <select formControlName="summaryStatusSelector" class="form-control input-sm"
-              [(ngModel)]="mentorReport.sponsorSummaryStatusId">
+              [(ngModel)]="mentorReport.reviewedStatusId">
               <option *ngFor="let status of summaryStatuses" [value]="status.value">{{status.label}}</option>
             </select>
             <app-display-errors control="summaryStatusSelector" class="red" [errors]="{
                   'required': 'Summary Status is required'
                 }"></app-display-errors>
           </div>
+          <div>
+            &nbsp;
+          </div>
 
-          <div class="controls">
+          <!-- <div class="controls">
             <label for="highlightStatusSelector">Highlight Status:</label>
             <select formControlName="highlightStatusSelector" class="form-control input-sm"
               [(ngModel)]="mentorReport.highlightStatusId">
               <option *ngFor="let status of highlightStatuses" [value]="status.value">{{status.label}}</option>
             </select>
-          </div>
+          </div> -->
 
-          <div class="controls">
+          <!-- <div class="controls">
             <label for="inputSummary">Summary</label>
             <textarea id="inputSummary" #summary formControlName="inputSummary"
               [(ngModel)]="mentorReport.sponsorSummary" type="text"
@@ -48,7 +51,7 @@
             <app-display-errors control="inputSummary" class="red" [errors]="{'required': 'An entry is required, even if it is just N/A',
                 'maxlength': 'Entry cannot exceed 2000 characters in length.'
                 }"></app-display-errors>
-          </div>
+          </div> -->
 
           <div class="col-md-6 col-md-offset-1">
             <span>

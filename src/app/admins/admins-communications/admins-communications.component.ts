@@ -1,10 +1,10 @@
 
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
-import { SessionService } from '../../app_shared/services/session.service';
-
+import { ActivatedRoute, Router } from '@angular/router';
 import { Communication } from '../../app_shared/models/communication';
+import { SessionService } from '../../app_shared/services/session.service';
+import { SqlResource } from '../../app_shared/services/sql-resource.service';
+
 
 interface SELECTITEM {
    value: string; label: string;
@@ -62,9 +62,9 @@ export class AdminsCommunicationsComponent implements OnInit {
     // this.gradeRptsStatus = 'yellowWarning.jpg'
     // this.gpaStatus = 'greenCheck.jpg'
 
-    this.smileys = [ '/assets/images/frownSmiley.jpg',
-                    '/assets/images/neutralSmiley.jpg',
-                    '/assets/images/greenSmiley.jpg',
+    this.smileys = [ '/assets/images/needsAttention.jpg',
+                    '/assets/images/thumbsUp.jpg',
+                    '/assets/images/celebrate.jpg',
                     '/assets/images/NA.jpg'
                     ];
     this.isLoading = false;
