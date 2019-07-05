@@ -1,6 +1,7 @@
 
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { constants } from '../../../app_shared/constants/constants';
 import { MentorReport2RPT } from '../../models/mentor-report2';
 
 @Component({
@@ -16,11 +17,7 @@ export class MentorReports2ListComponent {
 
   constructor(               private router: Router ) {
     console.log('###MentorReportsList constructor');
-    this.smileys = [ '/assets/images/needsAttention.jpg',
-                    '/assets/images/thumbsUp.jpg',
-                    '/assets/images/celebrate.jpg',
-                    '/assets/images/NA.jpg'
-    ];
+    this.smileys = constants.smileys;
   }
 
   monthlyReportEdit(mentorReportId: number) {

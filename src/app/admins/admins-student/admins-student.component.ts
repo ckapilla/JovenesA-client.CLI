@@ -2,12 +2,10 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { constants } from '../../app_shared/constants/constants';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 import { Student } from '../../app_shared/models/student';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
-
-
-
 
 @Component({
 
@@ -20,7 +18,7 @@ export class AdminsStudentComponent implements OnInit {
   isLoading: boolean;
   submitted: boolean;
 
-  statuses: SELECTITEM[];
+  languageStatuses: SELECTITEM[];
   errorMessage: string;
   successMessage: string;
   firstNames: string;
@@ -35,13 +33,7 @@ export class AdminsStudentComponent implements OnInit {
               public location: Location
               ) {
     console.log('hi from profile.component constructor');
-    this.statuses = [
-      { value: '1024', label: 'None' },
-      { value: '1025', label: 'Basic' },
-      { value: '1026', label: 'Intermediate' },
-      { value: '1027', label: 'Advanced' },
-      { value: '1028', label: 'Native' },
-    ];
+    this.languageStatuses = constants.languageStatuses;
 
     this.profileForm = formBuilder.group({
       inputStudentFName: ['', Validators.compose(

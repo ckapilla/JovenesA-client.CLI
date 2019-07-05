@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { constants } from '../../app_shared/constants/constants';
 import { MentorReport2RPT } from '../../app_shared/models/mentor-report2';
 import { SessionService } from '../../app_shared/services/session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
-
 
 @Component({
 
@@ -29,11 +29,7 @@ export class MonthlyReports2Component implements OnInit {
               public session: SessionService) {
 
     console.log('monthlyReports constructor');
-    this.smileys = [ '/assets/images/needsAttention.jpg',
-                    '/assets/images/thumbsUp.jpg',
-                    '/assets/images/celebrate.jpg',
-                    '/assets/images/NA.jpg'
-                    ];
+    this.smileys = constants.smileys;
   }
 
  ngOnInit() {

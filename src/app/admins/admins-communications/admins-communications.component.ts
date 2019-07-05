@@ -5,7 +5,6 @@ import { Communication } from '../../app_shared/models/communication';
 import { SessionService } from '../../app_shared/services/session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
-
 interface SELECTITEM {
    value: string; label: string;
 }
@@ -19,7 +18,6 @@ interface SELECTITEM {
 export class AdminsCommunicationsComponent implements OnInit {
   types: SELECTITEM[];
   _selectedType: SELECTITEM;
-  smileys: string[];
   communications: Communication[];
   isLoading: boolean;
   errorMessage: string;
@@ -61,12 +59,6 @@ export class AdminsCommunicationsComponent implements OnInit {
     // this.selectedTypeLabel = this.types[3].label;
     // this.gradeRptsStatus = 'yellowWarning.jpg'
     // this.gpaStatus = 'greenCheck.jpg'
-
-    this.smileys = [ '/assets/images/needsAttention.jpg',
-                    '/assets/images/thumbsUp.jpg',
-                    '/assets/images/celebrate.jpg',
-                    '/assets/images/NA.jpg'
-                    ];
     this.isLoading = false;
 
   }

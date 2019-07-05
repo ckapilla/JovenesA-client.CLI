@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { constants } from '../../app_shared/constants/constants';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 import { MentorReport2RPT } from '../../app_shared/models/mentor-report2';
 import { SessionService } from '../../app_shared/services/session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
-
-
 
 @Component({
 
@@ -44,30 +43,9 @@ export class MonthlyReports2AddComponent
     ) {
 
         console.log('Hi from MonthlyReportsAddComponent');
-        this.contactYears = [
-            // {value: '0', label: 'Select Year'},
-            // {value: '2016', label: '2016'},
-            // {value: '2017', label: '2017'},
-            // { value: '2018', label: '2018' },
-            { value: '2019', label: '2019' },
-            //    {value: '2020', label: '2020'}
-        ];
+        this.contactYears = constants.years;
 
-        this.contactMonths = [
-            { value: '0', label: 'Month/Mes' },
-            { value: '1', label: 'Jan/Enero' },
-            { value: '2', label: 'Feb/Feb' },
-            { value: '3', label: 'Mar/Marzo' },
-            { value: '4', label: 'Apr/Abr' },
-            { value: '5', label: 'May/Mayo' },
-            { value: '6', label: 'Jun/Jun' },
-            { value: '7', label: 'Jul/Jul' },
-            { value: '8', label: 'Aug/Agosto' },
-            { value: '9', label: 'Sep/Sept' },
-            { value: '10', label: 'Oct/Oct' },
-            { value: '11', label: 'Nov/Nov' },
-            { value: '12', label: 'Dec/Dic' }
-        ];
+        this.contactMonths = constants.months;
 
         this.myForm = _fb.group({
             lastContactYearSelector: ['2019', Validators.required],

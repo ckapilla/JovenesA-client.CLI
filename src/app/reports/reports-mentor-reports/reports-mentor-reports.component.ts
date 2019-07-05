@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { constants } from '../../app_shared/constants/constants';
 import { SessionService } from '../../app_shared/services/session.service';
 import { LatestMentorReports } from '../shared/report-models/latest-mentor-reports';
 import { SqlReports } from '../shared/services/sql-reports';
@@ -11,7 +12,7 @@ import { SqlReports } from '../shared/services/sql-reports';
 export class ReportsMentorReportsComponent implements OnInit {
     latestMentorReports: LatestMentorReports[];
   isLoading: boolean;
-  smileys: Array<string>;
+  smileys: string[];
   errorMessage: string;
   successMessage: string;
 
@@ -22,11 +23,7 @@ export class ReportsMentorReportsComponent implements OnInit {
 
 
   ) {
-    this.smileys = [ '/assets/images/needsAttention.jpg',
-                    '/assets/images/thumbsUp.jpg',
-                    '/assets/images/celebrate.jpg',
-                    '/assets/images/NA.jpg'
-                    ];
+    this.smileys = constants.smileys;
   }
 
   ngOnInit() {

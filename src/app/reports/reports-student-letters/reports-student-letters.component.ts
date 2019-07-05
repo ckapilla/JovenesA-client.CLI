@@ -16,7 +16,6 @@ import { SqlReports } from '../shared/services/sql-reports';
 export class ReportsStudentLettersComponent implements OnInit {
     latestStudentLetters: LatestStudentLetters[];
   isLoading: boolean;
-  smileys: Array<string>;
   errorMessage: string;
   successMessage: string;
 
@@ -24,13 +23,7 @@ export class ReportsStudentLettersComponent implements OnInit {
               public router: Router,
               public session: SessionService,
               public columnSorter: ColumnSortService
-  ) {
-    this.smileys = [ '/assets/images/needsAttention.jpg',
-                    '/assets/images/thumbsUp.jpg',
-                    '/assets/images/celebrate.jpg',
-                    '/assets/images/NA.jpg'
-                    ];
-  }
+  ) { }
 
   ngOnInit() {
     this.fetchData();

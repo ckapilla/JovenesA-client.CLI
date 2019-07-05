@@ -1,10 +1,10 @@
 
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { constants } from '../../app_shared/constants/constants';
 import { StudentDTO } from '../../app_shared/models/studentDTO';
 import { SessionService } from '../../app_shared/services/session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
-
 
 
 
@@ -32,11 +32,7 @@ export class StudentsStudentStatusComponent implements OnInit {
 
     console.log('Hi from student List Ctrl controller function');
 
-    this.smileys = [ '/assets/images/needsAttention.jpg',
-                    '/assets/images/thumbsUp.jpg',
-                    '/assets/images/celebrate.jpg',
-                    '/assets/images/NA.jpg'
-                    ];
+    this.smileys = constants.smileys;
     this.isLoading = false;
   }
 

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { constants } from '../../app_shared/constants/constants';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 import { MentorReport2RPT } from '../../app_shared/models/mentor-report2';
 import { SessionService } from '../../app_shared/services/session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
-
 
 
 @Component({
@@ -40,11 +40,7 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
   ) {
 
 
-    this.years = [
-      { value: '2017', label: '2017' },
-      { value: '2018', label: '2018' },
-      { value: '2019', label: '2019' }
-    ];
+    this.years = constants.years;
 
      this.months = [
       {value: '0', label: 'Select'},
@@ -93,11 +89,7 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
     this.selectedHighlightStatus = this.highlightStatuses[0].value;
 
 
-    this.smileys = [ '/assets/images/needsAttention.jpg',
-                    '/assets/images/thumbsUp.jpg',
-                    '/assets/images/celebrate.jpg',
-                    '/assets/images/NA.jpg'
-                    ];
+    this.smileys = constants.smileys;
   }
 
   ngOnInit() {

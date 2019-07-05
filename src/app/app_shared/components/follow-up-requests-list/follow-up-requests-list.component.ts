@@ -1,6 +1,7 @@
 
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { constants } from '../../../app_shared/constants/constants';
 import { FollowUpRequestRPT } from '../../models/follow-up-requestRPT';
 
 @Component({
@@ -19,11 +20,7 @@ export class FollowUpRequestsListComponent {
 
   constructor(               private router: Router ) {
     console.log('FollowUpRequestsListComponent constructor');
-    this.smileys = [ '/assets/images/needsAttention.jpg',
-                    '/assets/images/thumbsUp.jpg',
-                    '/assets/images/celebrate.jpg',
-                    '/assets/images/NA.jpg'
-                    ];
+    this.smileys = constants.smileys;
   }
 
   monthlyReportEdit(mentorReportId: number) {

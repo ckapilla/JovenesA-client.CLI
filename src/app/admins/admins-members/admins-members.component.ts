@@ -19,7 +19,6 @@ export class AdminsMembersComponent implements OnInit {
   _selectedType: SELECTITEM;
   statuses: SELECTITEM[];
   _selectedStatus: SELECTITEM;
-  smileys: string[];
   members: MemberWithAnyRelatedStudent[];
   isLoading: boolean;
   errorMessage: string;
@@ -57,12 +56,6 @@ export class AdminsMembersComponent implements OnInit {
       // { value: '2069', label: 'Student' },
       { value: '1008', label: 'Volunteer' }
     ];
-
-    this.smileys = [ '/assets/images/needsAttention.jpg',
-                    '/assets/images/thumbsUp.jpg',
-                    '/assets/images/celebrate.jpg',
-                    '/assets/images/NA.jpg'
-                    ];
     this.isLoading = false;
 
   }

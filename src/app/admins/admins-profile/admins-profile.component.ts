@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder,  Validators } from '@angular/forms';
-
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { constants } from '../../app_shared/constants/constants';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
-
 import { Admin } from '../../app_shared/models/admin';
+import { SqlResource } from '../../app_shared/services/sql-resource.service';
+
 
 @Component({
 
@@ -18,7 +18,7 @@ export class AdminsProfileComponent implements OnInit {
   isLoading: boolean;
   submitted: boolean;
 
-  statuses: SELECTITEM[];
+  languageStatuses: SELECTITEM[];
   errorMessage: string;
   successMessage: string;
   firstNames: string;
@@ -35,13 +35,7 @@ export class AdminsProfileComponent implements OnInit {
               public formBuilder: FormBuilder
               ) {
     console.log('hi from profile.component constructor');
-    this.statuses = [
-      { value: '1024', label: 'None' },
-      { value: '1025', label: 'Basic' },
-      { value: '1026', label: 'Intermediate' },
-      { value: '1027', label: 'Advanced' },
-      { value: '1028', label: 'Native' },
-    ];
+    this.languageStatuses = constants.languageStatuses;
 
     this.profileForm = formBuilder.group({
       inputAdminFName: ['', Validators.required],

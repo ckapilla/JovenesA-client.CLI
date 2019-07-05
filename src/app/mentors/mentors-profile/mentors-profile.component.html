@@ -81,7 +81,7 @@
           <select formControlName="SpanishLevelSelector"
                   class="form-control input-sm"
               [(ngModel)]="mentor.spanishSkillLevelId">
-            <option *ngFor="let status of statuses" [value]="status.value">{{status.label}}</option>
+            <option *ngFor="let status of languageStatuses" [value]="status.value">{{status.label}}</option>
           </select>
             <app-display-errors control="SpanishLevelSelector" class="red"
               [errors]="{
@@ -97,7 +97,7 @@
           <select formControlName="EnglishLevelSelector"
                   class="form-control input-sm"
               [(ngModel)]="mentor.englishSkillLevelId" >
-            <option *ngFor="let status of statuses" [value]="status.value">{{status.label}}</option>
+            <option *ngFor="let status of languageStatuses" [value]="status.value">{{status.label}}</option>
           </select>
             <app-display-errors control="EnglishLevelSelector" class="red"
               [errors]="{
