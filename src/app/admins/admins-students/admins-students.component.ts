@@ -18,20 +18,23 @@ import { SqlResource } from '../../app_shared/services/sql-resource.service';
 })
 
 export class AdminsStudentsComponent implements OnInit {
-  statuses: SELECTITEM[];
-  schoolTypes: SELECTITEM[];
-  joinedYears: SELECTITEM[];
-  gradYears: SELECTITEM[];
+
   selectedStatus: string;
   selectedYearJoined: string;
   selectedGradYear: string;
-  smileys: string[];
+
   studentDTO: StudentDTO;
   studentDTOs: StudentDTO[];
   isLoading: boolean;
   errorMessage: string;
   successMessage: string;
   sortCriteria: SORTCRITERIA;
+
+  readonly statuses: SELECTITEM[] = constants.studentStatuses;
+  readonly schoolTypes: SELECTITEM[] = constants.schoolTypes;
+  readonly joinedYears: SELECTITEM[] = constants.joinedYears;
+  readonly gradYears: SELECTITEM[] = constants.gradYears;
+  readonly smileys: string[] = constants.smileys;
 
   constructor(
               public sqlResource: SqlResource,
@@ -41,12 +44,6 @@ export class AdminsStudentsComponent implements OnInit {
               ) {
 
     console.log('Hi from student List Ctrl controller function');
-
-    this.statuses = constants.studentStatuses;
-    this.schoolTypes = constants.schoolTypes;
-    this.smileys = constants.smileys;
-    this.joinedYears = constants.joinedYears;
-    this.gradYears = constants.gradYears;
 
     this.selectedStatus = this.statuses[3].value; // Current
     this.selectedYearJoined = this.joinedYears[0].value; // All[this.joinedYears.length - 1]; // 2015 at time of writing

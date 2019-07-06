@@ -26,13 +26,13 @@ export class MonthlyReports2AddComponent
     narrative_EnglishCtl: AbstractControl;
     narrative_SpanishCtl: AbstractControl;
     reportIdCtl: AbstractControl;
-    contactYears: SELECTITEM[];
-    contactMonths: SELECTITEM[];
     errorMessage: string;
     successMessage: string;
     mentorReportId: number;
     studentName: string;
 
+    readonly contactYears: SELECTITEM[] = constants.years;
+    readonly contactMonths: SELECTITEM[] = constants.months;
 
     constructor(
         public currRoute: ActivatedRoute,
@@ -43,9 +43,6 @@ export class MonthlyReports2AddComponent
     ) {
 
         console.log('Hi from MonthlyReportsAddComponent');
-        this.contactYears = constants.years;
-
-        this.contactMonths = constants.months;
 
         this.myForm = _fb.group({
             lastContactYearSelector: ['2019', Validators.required],

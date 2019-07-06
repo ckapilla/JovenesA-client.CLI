@@ -1,7 +1,6 @@
 
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { constants } from '../../../app_shared/constants/constants';
 import { FollowUpRequestRPT } from '../../models/follow-up-requestRPT';
 
 @Component({
@@ -13,14 +12,11 @@ export class FollowUpRequestsListComponent {
   @Input() followUpRequests: FollowUpRequestRPT[];
   @Input() displayCompleteHistory: boolean;
   @Input() showAddDetails: boolean;
-  smileys: Array<string>;
+
   studentId: number;
-
-
 
   constructor(               private router: Router ) {
     console.log('FollowUpRequestsListComponent constructor');
-    this.smileys = constants.smileys;
   }
 
   monthlyReportEdit(mentorReportId: number) {

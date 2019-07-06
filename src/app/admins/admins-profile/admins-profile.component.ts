@@ -18,12 +18,13 @@ export class AdminsProfileComponent implements OnInit {
   isLoading: boolean;
   submitted: boolean;
 
-  languageStatuses: SELECTITEM[];
   errorMessage: string;
   successMessage: string;
   firstNames: string;
   lastNames: string;
   admin: Admin;
+
+  readonly languageStatuses: SELECTITEM[] = constants.languageStatuses;
   //
   // private curSegment: RouteSegment;
   //
@@ -35,7 +36,7 @@ export class AdminsProfileComponent implements OnInit {
               public formBuilder: FormBuilder
               ) {
     console.log('hi from profile.component constructor');
-    this.languageStatuses = constants.languageStatuses;
+
 
     this.profileForm = formBuilder.group({
       inputAdminFName: ['', Validators.required],

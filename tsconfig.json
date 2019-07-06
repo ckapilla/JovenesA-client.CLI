@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "incremental": true,
     "baseUrl": "./",
     "importHelpers": true,
     "module": "esnext",
