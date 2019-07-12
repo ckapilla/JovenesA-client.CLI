@@ -41,10 +41,10 @@ export class MonthlyReports2EditComponent
     private session: SessionService
   ) {
 
-    console.log('Hi from MonthlyReports2AddComponent');
+    console.log('Hi from MonthlyReports2EditComponent');
     this.contactYears = constants.years;
 
-    this.contactMonths = constants.years;
+    this.contactMonths = constants.months;
 
     this.myForm = _fb.group({
       lastContactYearSelector: ['2019', Validators.required],

@@ -33,44 +33,32 @@
 
         <div class="form-group">
 
-            <div class="controls">
-                <span> Student Emoji: (How are things going overall with the student?)<br />Emoji de Estudiante: (cómo van
+          <div class="controls">
+            <span> Student Emoji: (How are things going overall with the student?)<br />Emoji de Estudiante: (cómo van
               las cosas en general con el estudiante?)</span>>
-                <label>&nbsp;&nbsp;&nbsp;&nbsp;
-                  <input type="radio" id="inputEmoji"
-                         formControlName="inputEmoji"
-                     [checked]="emojiCtl.value==1"
-                     value=1>
-                  <img src="/assets/images/celebrate.jpg" width="32px" />
-                  Celebrar
-                </label>
-                <label>&nbsp;&nbsp;&nbsp;&nbsp;
-                  <input type="radio" id="inputEmoji"
-                         formControlName="inputEmoji"
-                     [checked]="emojiCtl.value==0"
-                     value=0>
-                  <img src="/assets/images/thumbsUp.jpg" width="30px" />
-                  Todo Bien
-                </label>
-                <label>&nbsp;&nbsp;&nbsp;&nbsp;
-                  <input type="radio" id="inputEmoji"
-                         formControlName="inputEmoji"
-                     [checked]="emojiCtl.value==-1"
-                     value=-1>
-                  <img src="/assets/images/needsAttention.jpg" width="30px" />
-                  Problemas
+            <label>&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="radio" id="inputEmoji" formControlName="inputEmoji" [checked]="emojiCtl.value==1" value=1>
+              <img src="/assets/images/celebrate.jpg" width="32px" />
+              Celebrar
+            </label>
+            <label>&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="radio" id="inputEmoji" formControlName="inputEmoji" [checked]="emojiCtl.value==0" value=0>
+              <img src="/assets/images/thumbsUp.jpg" width="30px" />
+              Todo Bien
+            </label>
+            <label>&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="radio" id="inputEmoji" formControlName="inputEmoji" [checked]="emojiCtl.value==-1" value=-1>
+              <img src="/assets/images/needsAttention.jpg" width="30px" />
+              Problemas
               <span *ngIf="emojiCtl.hasError('required')" class="red">Please select an emoji.</span>
-                </label>
-              </div>
+            </label>
+          </div>
 
 
         </div>
         <div hidden class="controls">
           <label for="mentorReportId">Id</label>
-          <textarea id="mentorReportId"
-                    formControlName="mentorReportId"
-                    type="text"
-                    class="form-control input-sm">
+          <textarea id="mentorReportId" formControlName="mentorReportId" type="text" class="form-control input-sm">
           </textarea>
         </div>
 
@@ -78,31 +66,22 @@
           <label for="inputNarrative_English">Describe positive events or special challenges in the student's life
             during the past month<br />Describa logros y eventos positivos o obstáculos en la vida del
             estudiante</label>
-          <textarea id="inputNarrative_English" #success formControlName="inputNarrative_English"
-                    type="text"
-
-                    class="form-control input-sm" placeholder="">
+          <textarea id="inputNarrative_English" #success formControlName="inputNarrative_English" type="text"
+            class="form-control input-sm" placeholder="">
           </textarea>
-          <app-display-errors control="inputNarrative_English" class="red"
-                              [errors]="{'required': 'An entry is required, even if it is just N/A. Se requiere una entrada, aun si es sólo N/A.',
+          <app-display-errors control="inputNarrative_English" class="red" [errors]="{'required': 'An entry is required, even if it is just N/A. Se requiere una entrada, aun si es sólo N/A.',
           'maxlength': 'Entry cannot exceed 4000 characters in length.<br />La entrada no puede exceder 4000 caracteres del largo.'
                 }"></app-display-errors>
         </div>
 
         <div class="col-md-6 col-md-offset-1">
           <span>
-            <button type="submit"
-                    class="btn btn-primary"
-                    style="width:80px;margin-right:10px"
-                    (click)="onSubmit()">
+            <button type="submit" class="btn btn-primary" style="width:80px;margin-right:10px" (click)="onSubmit()">
               Submit
             </button>
           </span>&nbsp;
           <span>
-            <button type="button"
-                    class="btn btn-default"
-                    style="width:70px"
-                    (click)="onCancel()">
+            <button type="button" class="btn btn-default" style="width:70px" (click)="onCancel()">
               Cancel
             </button>
             <div class="red" [hidden]="myForm.valid">Year, Month, Emoji and description must be
@@ -111,15 +90,14 @@
         </div>
       </fieldset>
     </form>
-    <p>Form value</p>
-<pre><code>{{myForm.value | json}}</code></pre>
+    <!-- <p>Form value</p>
+    <pre><code>{{myForm.value | json}}</code></pre>
 
 
-<p>Form status</p>
-<pre><code>"{{myForm.status}}"</code></pre>
+    <p>Form status</p>
+    <pre><code>"{{myForm.status}}"</code></pre>
 
-<p>
-  Submitted?<br/>
-  {{isSubmitted ? 'Yes' : 'No'}}
+    <p>Submitted?</p>
+      {{isSubmitted ? 'Yes' : 'No'}} -->
   </div>
 </div>

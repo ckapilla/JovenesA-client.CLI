@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Admin } from '../models/admin';
 import { Communication } from '../models/communication';
@@ -226,43 +226,18 @@ public updateStudent(student: Student): Observable<any> {
 ///  MentorReportsController
 //////////////////////////////////////////////////
 
-
-// public getMentorReport(mentorReportId: number): Observable <MentorReportRPT>  {
-//     const url = this.WebApiPrefix + 'mentor_reports/' + mentorReportId;
-//     console.log('sending AuthHttp get request for MentorReport with ' + url);
-//     return this.http.get(url).pipe(catchError(this.handleError));
-
-//   }
-
   public getMentorReport2(mentorReportId: number): Observable <MentorReport2RPT>  {
     const url = this.WebApiPrefix + 'mentor_reports2/' + mentorReportId;
     console.log('sending AuthHttp get request for MentorReport2 with ' + url);
     return this.http.get(url).pipe(catchError(this.handleError));
-
   }
-  // public getMentorReportRPTs(mentorId: number, studentId: number): Observable <MentorReportRPT[]>  {
-  //   const url = this.WebApiPrefix + 'mentor_reports/' + mentorId + '/' + studentId;
-  //   console.log('sending AuthHttp get request for MentorReports with ' + url);
-  //   return this.http.get<MentorReportRPT[]>(url).pipe(catchError(this.handleError));
 
-  // }
   public getMentorReport2RPTs(mentorId: number, studentId: number): Observable <MentorReport2RPT[]>  {
     const url = this.WebApiPrefix + 'mentor_reports2/' + mentorId + '/' + studentId;
     console.log('sending AuthHttp get request for MentorReports2 with ' + url);
-    return this.http.get<MentorReportRPT[]>(url).pipe(catchError(this.handleError));
-
+    return this.http.get<MentorReport2RPT[]>(url).pipe(catchError(this.handleError));
   }
-  // public updateMentorReport(mentorReport: MentorReportRPT): Observable<MentorReportRPT> {
 
-  //   const url = this.WebApiPrefix + 'mentor_reports'; // + mentorReport.mentorReportId ;
-  //   let body = JSON.stringify({ mentorReport });
-  //   // strip outer 'mentor' name
-  //   const x = JSON.parse(body);
-  //   body = JSON.stringify(x.mentorReport);
-  //   const headers = new HttpHeaders().set('Content-Type', 'application/json');
-  //   // console.log('ready to put ' + url + ' body: ' + body + ' options ' + headers);
-  //   return this.http.put(url, body, { headers: headers });
-  // }
   public updateMentorReport2(mentorReport: MentorReport2RPT): Observable<MentorReportRPT> {
 
     const url = this.WebApiPrefix + 'mentor_reports2'; // + mentorReport.mentorReportId ;
@@ -275,19 +250,7 @@ public updateStudent(student: Student): Observable<any> {
     return this.http.put(url, body, { headers: headers });
   }
 
-  // public addMentorReport(mentorReport: MentorReportRPT,
-  //     mentorId: number,
-  //     studentId: number): Observable<MentorReportRPT> {
 
-  //   const url = this.WebApiPrefix + 'mentor_reports';
-  //   let body = JSON.stringify({ mentorReport });
-  //   // strip outer 'mentor' name
-  //   const x = JSON.parse(body);
-  //   body = JSON.stringify(x.mentorReport);
-  //   const headers = new HttpHeaders().set('Content-Type', 'application/json');
-  //   // console.log('ready to post ' + url + ' body: ' + body + ' options ' + headers);
-  //   return this.http.post(url, body, { headers: headers });
-  // }
   public addMentorReport2(mentorReport: MentorReport2RPT,
     mentorId: number,
     studentId: number): Observable<MentorReport2RPT> {
@@ -302,19 +265,6 @@ public updateStudent(student: Student): Observable<any> {
   return this.http.post(url, body, { headers: headers });
 }
 
-
-  //   public editMentorReport(mentorReport: MentorReportRPT): Observable<MentorReportRPT> {
-
-//    const url = this.WebApiPrefix + 'mentor_reports';
-//   console.log('editMentorReport ' + url);
-//   let body = JSON.stringify({ mentorReport });
-//   // strip outer 'mentor' name
-//   const x = JSON.parse(body);
-//   body = JSON.stringify(x.mentorReport);
-//   const headers = new HttpHeaders().set('Content-Type', 'application/json');
-//   // console.log('ready to put ' + url + ' body: ' + body + ' options ' + headers);
-//   return this.http.put(url, body, { headers: headers })
-// }
 
   public getMentorReportsByMonth(year: string, month: string,
     reviewedStatusId: string): Observable <MentorReport2RPT[]>  {
@@ -335,7 +285,6 @@ public getMentorReportsStatusCounts(year: string, month: string): Observable <Me
                       // + '&highlightStatusId=' + highlightStatusId;
   console.log('sending AuthHttp get request for MentorReportsStatusCounts with ' + url);
   return this.http.get<MentorReportsStatusCount[]>(url).pipe(catchError(this.handleError));
-
 }
 
 //////////////////////////////////////////////////
@@ -347,7 +296,6 @@ public getMentorReportsStatusCounts(year: string, month: string): Observable <Me
     const url = this.WebApiPrefix + 'student_sponsor_letters/' + studentId + '/' + sponsorId;
     console.log('sending AuthHttp get request for SponsorLetters with ' + url);
     return this.http.get<SponsorLetter[]>(url).pipe(catchError(this.handleError));
-
   }
 
   public postSponsorLetter(sponsorLetter: SponsorLetter,
@@ -414,12 +362,6 @@ public getMentorReportsStatusCounts(year: string, month: string): Observable <Me
 //////////////////////////////////////////////////
 
 
-  // private extractData(res: Response) {
-  //   console.log('sqlResource extractData');
-  //   const body = res.json();
-  //   return body.data || { };
-  // }
-
   private handleError (error: any) {
     console.log('sqlResource handle error');
     const errMsg = (error.message) ? error.message :
@@ -430,7 +372,7 @@ public getMentorReportsStatusCounts(year: string, month: string): Observable <Me
     if (errMsg === 'No JWT present or has expired') {
       window.alert('Session has expired, please log in again.');
     }
-    return Observable.throw(errMsg);
+    return throwError(errMsg);
   }
 }
 

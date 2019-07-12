@@ -43,7 +43,7 @@ export class StudentsForMentorGridComponent implements OnInit {
                 if (this.students.length > 0 ) {
                   this.selectFirstRow();
                 } else {
-                  this.errorMessage = 'No Assigned Students.';
+                  this.errorMessage = 'No students are assigned at this time. / No hay estudiantes asignado en este momento';
                   // this.onNoAssignedStudents.emit();
                 }
               }

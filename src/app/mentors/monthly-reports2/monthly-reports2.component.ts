@@ -39,7 +39,6 @@ export class MonthlyReports2Component implements OnInit {
         console.log('mentorId ' + this.mentorId);
         // may be undefined at this point:
         console.log('studentId ' + this.studentId);
-        this.isLoading = true;
         this.haveCurrentReport = false;
   }
   onSelectedStudentName(studentName: string) {
@@ -50,6 +49,7 @@ export class MonthlyReports2Component implements OnInit {
 
   onSelectedStudentId(studentId: number) {
     console.log('$$$$$$$ got selectedId event');
+    this.isLoading = true;
     this.haveCurrentReport = false;
     this.studentId = studentId;
     this.sqlResource.getMentorReport2RPTs(this.mentorId, studentId)

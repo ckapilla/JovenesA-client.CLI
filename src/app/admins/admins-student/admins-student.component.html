@@ -134,7 +134,7 @@
           <select formControlName="EnglishLevelSelector"
                   class="form-control input-sm"
               [(ngModel)]="student.englishSkillLevelId" >
-            <option *ngFor="let status of statuses" [value]="status.value">{{status.label}}</option>
+            <option *ngFor="let status of languageStatuses" [value]="status.value">{{status.label}}</option>
           </select>
           </div>
         </div>
