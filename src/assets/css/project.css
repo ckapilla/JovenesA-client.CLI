@@ -112,27 +112,9 @@ color:#c2e5ff;
 }
 
 
-
-
-/*
-input, textarea{
-border-raidus:0px !important;
--webkit-border-radius:0px !important;
--moz-border-radius:0px !important;
-}
-
-textarea:focus, input:focus {
-box-shadow: none !important;
--moz-box-shadow: none !important;
--webkit-box-shadow: none !important;
-border-color:#aaa !important;
-outline: 0 !important;
-}
-*/
-
 /* Header */
 
-.sharepanel{
+.sharecard{
 background:#444;
 color:#ddd;
 display:none;
@@ -233,11 +215,11 @@ padding:5px 10px 5px 70px;
 	.attr{
 	text-align:left;
 	}
-  .fixedbar, .sharepanel, .foot, footer{
+  .fixedbar, .sharecard, .foot, footer{
   margin-left:-20px;
   margin-right:-20px;
   }
-  .sharepanel{
+  .sharecard{
   text-align:center;
   }
   .matter{

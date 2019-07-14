@@ -1,8 +1,8 @@
-<div class="panel panel-primary">
-  <div class="panel-heading" style="font-size:large">
+<div class="card bg-primary">
+  <div class="card-header text-white" style="font-size:large">
     Monthly Report for {{ studentName  }}
   </div>
-  <div class="panel-body">
+  <div class="card-body bg-white">
     <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
     <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
     <div>

@@ -1,8 +1,8 @@
-<div class="panel panel-primary">
-  <div class="panel-heading" style="font-size:large">
+<div class="card bg-primary">
+  <div class="card-header text-white" style="font-size:large">
     Students by Status
   </div>
-  <div class="panel-body">
+  <div class="card-body bg-white">
     <span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
     <span *ngIf="successMessage" class="alert alert-success">{{successMessage}}</span>
 
@@ -34,7 +34,7 @@
         </app-loading-container>
       </div>
       <div *ngSwitchCase="false">
-        <table class="table">
+        <table class="table-sm table-striped">
 
           <thead>
 
@@ -49,8 +49,8 @@
               <th app-sortable-column="gpaStatus" (onSortColumn)="onSortColumn($event)" >GPA</th>
               <th app-sortable-column="gradeRptStatus" (onSortColumn)="onSortColumn($event)" >Grades<br />OnTime</th>
               <th app-sortable-column="mentorName" (onSortColumn)="onSortColumn($event)" >Assigned Mentor</th>
-              <th app-sortable-column="numericTimelyMentorMeetingStatus" (onSortColumn)="onSortColumn($event)" >Mentor<br />Mtg</th>
-              <th app-sortable-column="numericTimelyMentorReportStatus" (onSortColumn)="onSortColumn($event)" >Mentor<br />Rpt</th>
+              <!-- <th app-sortable-column="numericTimelyMentorMeetingStatus" (onSortColumn)="onSortColumn($event)" >Mentor<br />Mtg</th>
+              <th app-sortable-column="numericTimelyMentorReportStatus" (onSortColumn)="onSortColumn($event)" >Mentor<br />Rpt</th> -->
               <th app-sortable-column="studentSnapshotStatus" (onSortColumn)="onSortColumn($event)" >Snapshot</th>
               <th app-sortable-column="sponsorName" (onSortColumn)="onSortColumn($event)" >Sponsor</th>
               <th app-sortable-column="timelyStudentLetterStatus" (onSortColumn)="onSortColumn($event)" >Sponsor Letters</th>
@@ -93,12 +93,12 @@
               <td>
                 {{ student.mentorName }}
               </td>
-              <td>
+              <!-- <td>
                 <img src="/assets/images/{{student.timelyMentorMeetingStatus}}.jpg" height="22">
               </td>
               <td>
                 <img src="/assets/images/{{student.timelyMentorReportStatus}}.jpg" height="22">
-              </td>
+              </td> -->
               <td style="text-align:center;white-space: nowrap">
                 <img src="{{smileys[student.studentSnapshotStatus + 1]}}" width="24" />
               </td>

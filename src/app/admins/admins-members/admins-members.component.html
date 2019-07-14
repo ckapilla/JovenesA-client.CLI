@@ -1,8 +1,8 @@
-<div class="panel panel-primary">
-  <div class="panel-heading" style="font-size:large">
+<div class="card bg-primary">
+  <div class="card-header text-white" style="font-size:large">
     Members by Type
   </div>
-  <div class="panel-body">
+  <div class="card-body bg-white">
     <span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
     <span *ngIf="successMessage" class="alert alert-success">{{successMessage}}</span>
 
@@ -28,7 +28,7 @@
         </app-loading-container>
       </div>
       <div *ngSwitchCase="false">
-        <table appSortableTable class="table">
+        <table appSortableTable class="table-sm table-striped">
 
           <thead>
             <tr>
