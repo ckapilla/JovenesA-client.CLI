@@ -52,7 +52,7 @@
               <!-- <th app-sortable-column="numericTimelyMentorMeetingStatus" (onSortColumn)="onSortColumn($event)" >Mentor<br />Mtg</th>
               <th app-sortable-column="numericTimelyMentorReportStatus" (onSortColumn)="onSortColumn($event)" >Mentor<br />Rpt</th> -->
               <th app-sortable-column="studentSnapshotStatus" (onSortColumn)="onSortColumn($event)" >Snapshot</th>
-              <th app-sortable-column="sponsorName" (onSortColumn)="onSortColumn($event)" >Sponsor</th>
+              <th app-sortable-column="" (onSortColumn)="onSortColumn($event)" >Sponsor</th>
               <th app-sortable-column="timelyStudentLetterStatus" (onSortColumn)="onSortColumn($event)" >Sponsor Letters</th>
               <th app-sortable-column="universityAbbrev" (onSortColumn)="onSortColumn($event)" >Univ</th>
               <!-- <th app-sortable-column="major" (onSortColumn)="onSortColumn($event)" >Major</th> -->
@@ -115,7 +115,7 @@
 
 
               <td>
-                {{ student.sponsorName }}
+                {{ student.sponsorGroupName }}
               </td>
               <td class='centered'>
                 <img src="/assets/images/{{student.timelyStudentLetterStatus}}.jpg" height="22">
