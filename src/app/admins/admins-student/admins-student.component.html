@@ -11,7 +11,7 @@
 
         <div class="form-group">
           <span class="controls">
-            <span class="btn btn-primary btn-xs"
+            <span class="btn btn-primary btn-sm"
             (click)="location.back()">
             &lt;&lt;&nbsp; Back
             </span>
@@ -19,7 +19,7 @@
           &nbsp;
 
           <span class="controls">
-            <span class="btn btn-primary btn-xs"
+            <span class="btn btn-primary btn-sm"
             (click)="mentorReportsReview()">
             Mentor Reports
             </span>
@@ -41,7 +41,7 @@
             <input id="inputStudentFName"
                   formControlName="inputStudentFName"
                   [(ngModel)]="student.firstNames"
-                  class="form-control input-sm" type="text" placeholder="First Name"
+                  class="form-control form-control-sm" type="text" placeholder="First Name"
                   />
             <app-display-errors control="inputStudentFName" class="red"
               [errors]="{
@@ -49,15 +49,13 @@
                 'maxlength': 'Student First name cannot exceed 30 characters in length.'
               }"></app-display-errors>
           </div>
-        </div>
 
-        <div class="form-group">
           <div class="controls">
             <label for="inputStudentLName">Last Name(s)</label>
             <input id="inputStudentLName"
                    formControlName="inputStudentLName"
                    [(ngModel)]="student.lastNames"
-                   type="text" class="form-control input-sm" placeholder="Last Name"
+                   type="text" class="form-control form-control-sm" placeholder="Last Name"
                    />
             <app-display-errors control="inputStudentLName" class="red"
               [errors]="{
@@ -65,15 +63,13 @@
                 'maxlength': 'Student Last name cannot exceed 30 characters in length.'
               }"></app-display-errors>
           </div>
-        </div>
 
-        <div class="form-group" >
           <div class="controls">
             <label for="inputStudentPhone">Cell Phone</label>
             <input id="inputStudentPhone"
                   formControlName="inputStudentPhone"
                   [(ngModel)]="student.cellPhone"
-                  type="text" class="form-control input-sm" placeholder="Best Phone Number: ###-###-####"
+                  type="text" class="form-control form-control-sm" placeholder="Best Phone Number: ###-###-####"
                   />
             <app-display-errors control="inputStudentPhone" class="red"
               [errors]="{
@@ -82,26 +78,22 @@
                 'maxlength': 'Cell Phone cannot exceed 13 characters in length.'
               }"></app-display-errors>
           </div>
-        </div>
 
-        <div class="form-group" >
           <div class="controls">
             <label for="inputMajor">Major</label>
             <input id="inputMajor"
                   formControlName="inputMajor"
                   [(ngModel)]="student.major"
-                  type="text" class="form-control input-sm" placeholder=""
+                  type="text" class="form-control form-control-sm" placeholder=""
                   />
           </div>
-        </div>
 
-        <div class="form-group">
           <div class="controls">
           <label for="inputInitialInterview">Initial Interview:</label>
           <textarea id="inputInitialInterview"
             formControlName="inputInitialInterview"
             [(ngModel)]="student.initialInterview" type="text"
-            class="form-control input-sm" placeholder="Intitial Interview with Student"
+            class="form-control form-control-sm" placeholder="Intitial Interview with Student"
             >
           </textarea>
           <app-display-errors  control="inputInitialInterview" class="red"
@@ -109,15 +101,13 @@
                 'maxlength': 'Initial Interview cannot exceed 2000 characters in length.'
               }"></app-display-errors>
           </div>
-        </div>
 
-        <div class="form-group">
           <div class="controls">
           <label for="inputStudentStory">Student Story:</label>
           <textarea id="inputStudentStory"
             formControlName="inputStudentStory"
             [(ngModel)]="student.studentStory" type="text"
-            class="form-control input-sm" placeholder="Consolidated Student Story"
+            class="form-control form-control-sm" placeholder="Consolidated Student Story"
             >
           </textarea>
           <app-display-errors control="inputStudentStory" class="red"
@@ -125,14 +115,11 @@
                 'maxlength': 'Student Story cannot exceed 2000 characters in length.'
               }"></app-display-errors>
           </div>
-        </div>
 
-
-        <div class="form-group">
           <div class="controls">
           <label for="EnglishLevelSelector">English Level:</label>
           <select formControlName="EnglishLevelSelector"
-                  class="form-control input-sm"
+                  class="form-control form-control-sm"
               [(ngModel)]="student.englishSkillLevelId" >
             <option *ngFor="let status of languageStatuses" [value]="status.value">{{status.label}}</option>
           </select>
