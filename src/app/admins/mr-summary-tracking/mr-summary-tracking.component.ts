@@ -59,12 +59,6 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
         { value: '2109', label: 'Red/Green' }
       ];
 
-      // this.followUpStatuses = [
-      //   { value: '0', label: '[All]' },
-      //   { value: '2091', label: 'Flagged' },
-      //   { value: '2092', label: 'Assigned' },
-      //   { value: '2104', label: 'Closed' },
-      // ];
 
     const today = new Date();
     this.selectedYear =  '2019'; // '' + today.getFullYear(); //

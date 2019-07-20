@@ -5,13 +5,6 @@
   <div class="card-body bg-white">
     <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
     <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
-    <div>
-      <span>(Click on [Request Assistance] above for any situation that needs follow-up by Jovenes Adelante
-        administration.)
-        <br />(Haga clic en [Solicitar Asistencia] arriba para cualquier situación que necesite seguimiento por Jovenes
-        Adelante administración.)
-      </span>
-    </div>
     <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
       <fieldset [disabled]="isSubmitted">
 

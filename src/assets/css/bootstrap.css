@@ -226,7 +226,7 @@
     display: inline-block;
     margin-bottom: 0.5rem;
     font-weight: 700;
-    max-width:
+    max-width: 100%;
   }
   
   button {
@@ -1528,7 +1528,7 @@
   
   .table th,
   .table td {
-    padding: 0.75rem;
+    padding: 0.4rem;
     vertical-align: top;
     border-top: 1px solid #dee2e6;
   }
@@ -6517,6 +6517,10 @@
     vertical-align: text-top !important;
   }
   
+ .btn-default {
+  background-color: #e6e6e6;
+}
+
   .bg-primary {
     background-color: #106cc8 !important;
   }
@@ -9894,6 +9898,11 @@
     color: #fcf8e3 !important;
   }
   
+  .text-for-warning {
+    color: #8a6d3b !important;
+  }
+  
+
   a.text-warning:hover, a.text-warning:focus {
     color: #ba8b00 !important;
   }

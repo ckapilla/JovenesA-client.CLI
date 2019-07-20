@@ -70,7 +70,7 @@ export class StudentsForMentorGridComponent implements OnInit {
     // console.log('row StudentID is ' + studentId);
     // console.log('session Assigned student ID is ' + this.session.getAssignedStudentId());
     const classes =  {
-      'success': studentId === this.studentId,
+      'table-success': studentId === this.studentId,
       'student-row': true,
       'clickable': true
     };

@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { constants } from '../../app_shared/constants/constants';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 import { SORTCRITERIA } from '../../app_shared/interfaces/SORTCRITERIA';
@@ -39,6 +39,7 @@ export class AdminsStudentsComponent implements OnInit {
   constructor(
               public sqlResource: SqlResource,
               public router: Router,
+              private route: ActivatedRoute,
               private session: SessionService,
               private columnSorter: ColumnSortService
               ) {
@@ -57,9 +58,19 @@ export class AdminsStudentsComponent implements OnInit {
 
   ngOnInit() {
     console.log('ngOnInit');
+    this.processRouteParams();
     this.fetchFilteredData();
   }
 
+  processRouteParams( ) {
+    console.log('students setting filters form queryParams');
+
+    const yearJoined = this.route.snapshot.queryParams['yearJoined'];
+    console.log('yearJoined param = ' +  yearJoined);
+    if (yearJoined !== undefined) {
+      this.selectedYearJoined =  yearJoined;
+    }
+  }
   // can't rely on two way binding to have updated the selected values
   // in time so we do it manually below
   setSelectedStatus(status: string) {
@@ -91,10 +102,23 @@ export class AdminsStudentsComponent implements OnInit {
         err => { this.errorMessage =  err; } ,
         () => {
           this.studentDTOs = this.studentDTOs.filter(s => s.studentId !== 275); // N/A
-          console.log('done'); this.isLoading = false;
+          console.log('data loaded now set timeout for scroll');
+          setTimeout(() => {
+            this.scrollIntoView();
+          }, 0);
+          this.isLoading = false;
         }
       );
   }
+
+scrollIntoView() {
+
+      const element = document.body;
+      if (element) {
+        element.scrollIntoView(true);
+      }
+}
+
 
 getNumericStatus(studentDTO: StudentDTO): StudentDTO {
 

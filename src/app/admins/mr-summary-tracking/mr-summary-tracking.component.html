@@ -54,7 +54,7 @@
                       (click)="gotoReportSummary(lmr.mentorReportId,lmr.studentName)">Review</button>
               &nbsp;
 
-              <span class="padded link">
+              <span (click)='gotoStudent(lmr.studentId, lmr.studentName)'  class="padded link">
                 [Student:
                 {{ lmr.studentName }} ]
               </span>

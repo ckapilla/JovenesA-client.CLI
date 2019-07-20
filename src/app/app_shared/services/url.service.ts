@@ -21,7 +21,7 @@ export class UrlService {
       // this.webApiPrefix = 'http://192.168.43.185:2369/api/'; // Development MOTO G
       // this.webApiPrefix = 'http://192.168.1.70:2368/api/'; // Production
       // this.webApiPrefix = 'https://JAWebAPI-dev.jovenesadelante.org/api/';
-      // this.webApiPrefix = 'https://JAWebAPI.jovenesadelante.org/api/';  // Production
+      this.webApiPrefix = 'https://JAWebAPI.jovenesadelante.org/api/';  // Production
       this.clientUrl = 'http://localhost:3000';
     }
 

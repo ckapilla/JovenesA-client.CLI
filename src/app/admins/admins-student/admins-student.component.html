@@ -1,142 +1,118 @@
-  <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
-  <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
-  <div [ngSwitch]="isLoading">
-    <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
-      <app-loading-container>
-      </app-loading-container>
-    </div>
-    <div *ngSwitchCase="false">
+<div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+<div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
+<div class="container-fluid">
+  <form [formGroup]="profileForm" class="form-horizontal">
+    <div class="row">
+      <div class="col">
 
-    <form [formGroup]="profileForm" class="form-horizontal" >
 
         <div class="form-group">
-          <span class="controls">
-            <span class="btn btn-primary btn-sm"
-            (click)="location.back()">
+          <span class="btn btn-primary btn-sm" (click)="location.back()">
             &lt;&lt;&nbsp; Back
-            </span>
           </span>
           &nbsp;
-
           <span class="controls">
-            <span class="btn btn-primary btn-sm"
-            (click)="mentorReportsReview()">
-            Mentor Reports
+            <span class="btn btn-primary btn-sm" (click)="mentorReportsReview()">
+              Mentor Reports
             </span>
           </span>
-          &nbsp;
-          <!-- <span class="controls">
-            <span class="btn btn-primary btn-xs"
-            (click)="gotoGradeHistory()">
-            Grade History
-            </span>
-          </span> -->
-
         </div>
 
-
         <div class="form-group">
-          <div class="controls">
-            <label for="inputStudentFName">First Name(s)</label>
-            <input id="inputStudentFName"
-                  formControlName="inputStudentFName"
-                  [(ngModel)]="student.firstNames"
-                  class="form-control form-control-sm" type="text" placeholder="First Name"
-                  />
-            <app-display-errors control="inputStudentFName" class="red"
-              [errors]="{
+          <label for="inputStudentFName">First Name(s)</label>
+          <input id="inputStudentFName" formControlName="inputStudentFName" [(ngModel)]="student.firstNames"
+            class="form-control form-control-sm" type="text" placeholder="First Name" />
+          <app-display-errors control="inputStudentFName" class="red" [errors]="{
                 'required': 'First name is required',
                 'maxlength': 'Student First name cannot exceed 30 characters in length.'
               }"></app-display-errors>
-          </div>
 
-          <div class="controls">
-            <label for="inputStudentLName">Last Name(s)</label>
-            <input id="inputStudentLName"
-                   formControlName="inputStudentLName"
-                   [(ngModel)]="student.lastNames"
-                   type="text" class="form-control form-control-sm" placeholder="Last Name"
-                   />
-            <app-display-errors control="inputStudentLName" class="red"
-              [errors]="{
+          <label for="inputStudentLName">Last Name(s)</label>
+          <input id="inputStudentLName" formControlName="inputStudentLName" [(ngModel)]="student.lastNames" type="text"
+            class="form-control form-control-sm" placeholder="Last Name" />
+          <app-display-errors control="inputStudentLName" class="red" [errors]="{
                 'required': 'Last name is required',
                 'maxlength': 'Student Last name cannot exceed 30 characters in length.'
               }"></app-display-errors>
-          </div>
 
-          <div class="controls">
-            <label for="inputStudentPhone">Cell Phone</label>
-            <input id="inputStudentPhone"
-                  formControlName="inputStudentPhone"
-                  [(ngModel)]="student.cellPhone"
-                  type="text" class="form-control form-control-sm" placeholder="Best Phone Number: ###-###-####"
-                  />
-            <app-display-errors control="inputStudentPhone" class="red"
-              [errors]="{
+          <label for="inputStudentPhone">Cell Phone</label>
+          <input id="inputStudentPhone" formControlName="inputStudentPhone" [(ngModel)]="student.cellPhone" type="text"
+            class="form-control form-control-sm" placeholder="Best Phone Number: ###-###-####" />
+          <app-display-errors control="inputStudentPhone" class="red" [errors]="{
                 'required': 'Cell Phone is required.',
                 'minlength': 'Cell Phone must be at least 7 characters in length.',
                 'maxlength': 'Cell Phone cannot exceed 13 characters in length.'
               }"></app-display-errors>
-          </div>
 
-          <div class="controls">
-            <label for="inputMajor">Major</label>
-            <input id="inputMajor"
-                  formControlName="inputMajor"
-                  [(ngModel)]="student.major"
-                  type="text" class="form-control form-control-sm" placeholder=""
-                  />
-          </div>
+          <label for="inputMajor">Major</label>
+          <input id="inputMajor" formControlName="inputMajor" [(ngModel)]="student.major" type="text"
+            class="form-control form-control-sm" placeholder="" />
 
-          <div class="controls">
           <label for="inputInitialInterview">Initial Interview:</label>
-          <textarea id="inputInitialInterview"
-            formControlName="inputInitialInterview"
-            [(ngModel)]="student.initialInterview" type="text"
-            class="form-control form-control-sm" placeholder="Intitial Interview with Student"
-            >
+          <textarea id="inputInitialInterview" formControlName="inputInitialInterview"
+            [(ngModel)]="student.initialInterview" type="text" class="form-control form-control-sm"
+            placeholder="Intitial Interview with Student">
           </textarea>
-          <app-display-errors  control="inputInitialInterview" class="red"
-              [errors]="{
+          <app-display-errors control="inputInitialInterview" class="red" [errors]="{
                 'maxlength': 'Initial Interview cannot exceed 2000 characters in length.'
               }"></app-display-errors>
-          </div>
 
-          <div class="controls">
           <label for="inputStudentStory">Student Story:</label>
-          <textarea id="inputStudentStory"
-            formControlName="inputStudentStory"
-            [(ngModel)]="student.studentStory" type="text"
-            class="form-control form-control-sm" placeholder="Consolidated Student Story"
-            >
+          <textarea id="inputStudentStory" formControlName="inputStudentStory" [(ngModel)]="student.studentStory"
+            type="text" class="form-control form-control-sm" placeholder="Consolidated Student Story">
           </textarea>
-          <app-display-errors control="inputStudentStory" class="red"
-              [errors]="{
+          <app-display-errors control="inputStudentStory" class="red" [errors]="{
                 'maxlength': 'Student Story cannot exceed 2000 characters in length.'
               }"></app-display-errors>
-          </div>
 
-          <div class="controls">
           <label for="EnglishLevelSelector">English Level:</label>
-          <select formControlName="EnglishLevelSelector"
-                  class="form-control form-control-sm"
-              [(ngModel)]="student.englishSkillLevelId" >
+          <select formControlName="EnglishLevelSelector" class="form-control form-control-sm"
+            [(ngModel)]="student.englishSkillLevelId">
             <option *ngFor="let status of languageStatuses" [value]="status.value">{{status.label}}</option>
           </select>
-          </div>
         </div>
 
         <div class="form-group">
-          <div class="controls">
-            <button class="btn btn-primary"
-            (click)="saveProfile()"
-            [disabled]="!profileForm.valid">
+          <button class="btn btn-primary" (click)="saveProfile()" [disabled]="!profileForm.valid">
             Save
-            </button> <span class="red" [hidden]="profileForm.valid">All required fields must be filled in before saving.</span>
-          </div>
+          </button> <span class="red" [hidden]="profileForm.valid">All required fields must be filled in before
+            saving.</span>
         </div>
-    </form>
+
+      </div>
+      <div class="col">
+        <div class="row">
+          <div style="width: 100%">
+            <img [src]="photoPathName">
+          </div>
+          <div>&nbsp;</div>
+          <!-- <label for="studentStatustatus">Status:</label> -->
+          <!-- <input id="studentStatus" formControlName="studentStatus" [(ngModel)]="student.statusId"
+            class="form-control form-control-sm" type="text" /> -->
+
+          <label for="YearJoinedJa">Year Joined</label>
+          <input id="yearJoinedJa" formControlName="yearJoinedJA" [(ngModel)]="student.yearJoinedJa"
+            class="form-control form-control-sm" type="text" />
+
+          <label for="joinedFrom">Joined From</label>
+          <input id="joinedFrom" formControlName="joinedFrom" [(ngModel)]="student.joinedFromId"
+            class="form-control form-control-sm" type="text" />
+
+          <label for="gradYear">Grad Year</label>
+          <input id="gradYear" formControlName="gradYear" [(ngModel)]="student.gradYear"
+            class="form-control form-control-sm" type="text" />
+
+          <label for="gradMonth">Grad Month</label>
+          <input id="gradMonth" formControlName="gradMonth" [(ngModel)]="student.gradMonth"
+            class="form-control form-control-sm" type="text" />
+
+        </div>
+      </div>
+      <div class="col">
+        <div class="row">
+          <app-sponsors-for-student-grid></app-sponsors-for-student-grid>
+        </div>
+      </div>
     </div>
-  </div>
-
-
+  </form>
+</div>
