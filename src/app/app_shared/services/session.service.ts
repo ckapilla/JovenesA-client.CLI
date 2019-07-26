@@ -12,6 +12,8 @@ export class SessionService {
   assignedStudentName: string;
   failedAuthorizationRoute: string;
   mostRecentMemberType: SELECTITEM;
+  selectedYearJoined: string;
+  selectedGradYear: string;
 
   constructor() {
     // this.loading$ = new Observable(observer => this._observer = observer)
@@ -19,6 +21,8 @@ export class SessionService {
     console.log('SessionService constructor');
     this.userId = 0;
     this.assignedStudentId = 0;
+    this.selectedYearJoined = '2019';
+    this.selectedGradYear = '0';
   }
 
 
@@ -123,5 +127,24 @@ export class SessionService {
   public getMemberType(): SELECTITEM {
     return this.mostRecentMemberType;
   }
+
+
+  public setSelectedYearJoined(yearJoined: string) {
+    this.selectedYearJoined = yearJoined;
+  }
+
+  public getSelectedYearJoined(): string {
+    return this.selectedYearJoined;
+  }
+
+  public setSelectedGradYear(gradYear: string) {
+    this.selectedGradYear = gradYear;
+  }
+
+  public getSelectedGradYear(): string {
+    return this.selectedGradYear;
+  }
+
+
 
 }

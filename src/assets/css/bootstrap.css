@@ -224,7 +224,8 @@
   
   label {
     display: inline-block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.2rem;
+    margin-right: 0.2rem;
     font-weight: 700;
     max-width: 100%;
   }
@@ -1980,8 +1981,8 @@
   }
   
   .form-control-sm {
-    height: calc(1.5em + 0.5rem + 2px);
-    padding: 0.25rem 0.5rem;
+    height: calc(1.5em + 0.5rem);
+    padding: 0.25rem 0.25rem;
     font-size: 0.875rem;
     line-height: 1.5;
     border-radius: 0.2rem;

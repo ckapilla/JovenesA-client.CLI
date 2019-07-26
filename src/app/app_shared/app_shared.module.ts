@@ -10,6 +10,7 @@ import { MemberSelectorComponent } from './components/member-selector/member-sel
 import { MentorReports2ListComponent } from './components/mentor-reports2-list/mentor-reports2-list.component';
 import { SortableColumnComponent } from './components/sortable-column.component';
 import { SponsorsForStudentGridComponent } from '../app_shared/components/sponsors-for-student-grid/sponsors-for-student-grid.component';
+import { MentorsForStudentListComponent } from '../app_shared/components/mentors-for-student-list/mentors-for-student-list.component';
 import { StudentSelectorComponent } from './components/student-selector/student-selector.component';
 import { StudentsForMentorGridComponent } from './components/students-for-mentor-grid/students-for-mentor-grid.component';
 import { StudentsForMentorListComponent } from './components/students-for-mentor-list/students-for-mentor-list.component';
@@ -46,6 +47,8 @@ import { AuthService } from './services/auth.service';
     SortableColumnComponent,
     SortableTableDirective,
     SponsorsForStudentGridComponent,
+    MentorsForStudentListComponent,
+    MentorsForStudentListComponent,
     AlphaMonthPipe,
     AlphaLanguagePipe,
     TruncateDatePipe
@@ -60,6 +63,7 @@ import { AuthService } from './services/auth.service';
     LoadingContainerComponent,
     MemberSelectorComponent,
     SponsorsForStudentGridComponent,
+    MentorsForStudentListComponent,
     StudentsForMentorGridComponent,
     StudentsForMentorListComponent,
     StudentsForSponsorComponent,

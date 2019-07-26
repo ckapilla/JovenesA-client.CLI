@@ -17,14 +17,23 @@ export class AdminsStudentComponent implements OnInit {
   data: Object;
   isLoading: boolean;
   submitted: boolean;
+  bReadOnly = true;
 
+  studentStatuses: SELECTITEM[];
   languageStatuses: SELECTITEM[];
+  joinedFromTypes: SELECTITEM[];
+  joinedYears: SELECTITEM[];
+  gradYears: SELECTITEM[];
+  prepas: SELECTITEM[];
+  universities: SELECTITEM[];
+
   errorMessage: string;
   successMessage: string;
   // firstNames: string;
   // lastNames: string;
   student: Student;
   photoPathName: string;
+  studentId: number;
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -35,24 +44,48 @@ export class AdminsStudentComponent implements OnInit {
   ) {
     console.log('hi from profile.component constructor');
     this.languageStatuses = constants.languageStatuses;
+    this.studentStatuses = constants.studentStatuses;
+    this.joinedFromTypes = constants.joinedFromTypes;
+    this.joinedYears = constants.joinedYears;
+    this.gradYears = constants.gradYears;
+    this.prepas = this.fetchPrepas();
+    this.universities = this.fetchPrepas();
 
     this.profileForm = formBuilder.group({
-      inputStudentFName: ['', Validators.compose(
-        [Validators.required, Validators.maxLength(30)])],
-      inputStudentLName: ['', Validators.compose(
-        [Validators.required, Validators.maxLength(30)])],
-      inputStudentPhone: ['', Validators.compose(
-        [Validators.required, Validators.minLength(7), Validators.maxLength(12)])],
-      inputInitialInterview: ['', Validators.maxLength(2000)],
-      inputStudentStory: ['', Validators.maxLength(2000)],
-      inputMajor: ['', Validators.maxLength(255)],
-      EnglishLevelSelector: [''],
-      studentStatus: [''],
-      yearJoinedJA: [''],
-      joinedFrom: [''],
-      gradYear: [''],
-      gradMonth: [''],
+      studentFName: [{value: ''},
+                Validators.compose([Validators.required, Validators.maxLength(30)])],
+      studentLName: [{value: ''},
+                Validators.compose([Validators.required, Validators.maxLength(30)])],
+      studentEmail: [{value: ''},
+                Validators.compose([Validators.required, Validators.maxLength(50)])],
+      cellPhone: [{value: ''}, 
+                Validators.compose([Validators.minLength(7), Validators.maxLength(13)])],
+      homePhone: [{value: ''}, 
+                Validators.compose([Validators.minLength(7), Validators.maxLength(13)])],
+      studentNickName: [{value: ''}, Validators.maxLength(20)],
+      // inputInitialInterview: [{value: ''}, Validators.maxLength(2000)],
+      // studentStory: [{value: ''}, Validators.maxLength(2000)],
+
+      emergencyContactPhone: [{value: ''}, 
+        Validators.compose([Validators.minLength(7), Validators.maxLength(13)])],
+      emergencyContactName: [{value: ''}],
+      major: [{value: ''}],
+      EnglishLevelSelector: [{value: ''}],
+      studentStatus: [{value: ''}],
+      yearJoinedJA: [{value: '', }],
+      joinedFrom: [{value: ''}],
+      prepa: [{value: ''}],
+      university: [{value: ''}],
+      gradYear: [{value: ''}],
+      gradMonth: [{value: ''}],
+      curp: [{value: ''}],
+      rfc: [{value: ''}],
+      bankAccount: [{value: ''}],
+      sponsorGroup: [{value: ''}],
+      mentor: [{value: ''}],
     });
+    this.profileForm.disable();
+
     this.student = new Student();
 
     this.errorMessage = '';
@@ -62,10 +95,10 @@ export class AdminsStudentComponent implements OnInit {
 
   ngOnInit() {
     console.log('admins Student ngOnInit');
-    const id = this.currRoute.snapshot.params['id'];
-    console.log('sqlResource with StudentId: ' + id);
+    this.studentId = this.currRoute.snapshot.params['id'];
+    console.log('sqlResource with StudentId: ' + this.studentId);
     this.isLoading = true;
-    this.sqlResource.getStudent(id)
+    this.sqlResource.getStudent(this.studentId)
       .subscribe(
         data => {
         this.student = data;
@@ -151,4 +184,25 @@ export class AdminsStudentComponent implements OnInit {
     const link = ['/admins/students/grade-history/' + id + '/'];
     this.router.navigate(link);
   }
+  setReadOnly() {
+    console.log('toggle readOnly');
+    if (this.profileForm.enabled) {
+      this.profileForm.disable();
+    } else {
+      this.profileForm.enable();
+    }
+  }
+
+  fetchPrepas(): SELECTITEM[] {
+    const prepas: SELECTITEM[] = [ {value: '5', label: 'CBTis 60'}, {value: '6', label: 'CECYTE SMA I'}
+  ];
+    return prepas;
+  }
+
+  fetchUniversities(): SELECTITEM[] {
+    const universities: SELECTITEM[] = [ {value: '37', label: 'UTNG'}, {value: '38', label: 'UCA'}
+  ];
+    return universities;
+  }
+
 }

@@ -31,7 +31,7 @@
         public addresss?: string, // Addresss
         public colonia?: string, // Colonia
         public initialInterview?: string, // InitialInterview
-        public sponsorId?: number, // SponsorID
+        public sponsorGroupId?: number, // SponsorID
         public statusId?: number, // StatusID
         public englishSkillLevelId?: number, // EnglishSkillLevelID
         public photoUrl?: string, // PhotoURL

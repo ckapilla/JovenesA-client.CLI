@@ -37,18 +37,18 @@ export class AdminsStudentsComponent implements OnInit {
   readonly smileys: string[] = constants.smileys;
 
   constructor(
-              public sqlResource: SqlResource,
-              public router: Router,
-              private route: ActivatedRoute,
-              private session: SessionService,
-              private columnSorter: ColumnSortService
-              ) {
+    public sqlResource: SqlResource,
+    public router: Router,
+    // private route: ActivatedRoute,
+    private session: SessionService,
+    private columnSorter: ColumnSortService
+  ) {
 
     console.log('Hi from student List Ctrl controller function');
 
     this.selectedStatus = this.statuses[3].value; // Current
-    this.selectedYearJoined = this.joinedYears[0].value; // All[this.joinedYears.length - 1]; // 2015 at time of writing
-    this.selectedGradYear = this.gradYears[0].value; // All
+    this.selectedYearJoined = '' + this.session.getSelectedYearJoined(); // this.joinedYears[0].value;
+    this.selectedGradYear = this.session.getSelectedGradYear(); // this.gradYears[0].value; // All
 
     // this.gradeRptsStatus = 'yellowWarning.jpg'
     // this.gpaStatus = 'greenCheck.jpg'
@@ -58,19 +58,19 @@ export class AdminsStudentsComponent implements OnInit {
 
   ngOnInit() {
     console.log('ngOnInit');
-    this.processRouteParams();
+    // this.processRouteParams();
     this.fetchFilteredData();
   }
 
-  processRouteParams( ) {
-    console.log('students setting filters form queryParams');
+  // processRouteParams() {
+  //   console.log('students setting filters form queryParams');
 
-    const yearJoined = this.route.snapshot.queryParams['yearJoined'];
-    console.log('yearJoined param = ' +  yearJoined);
-    if (yearJoined !== undefined) {
-      this.selectedYearJoined =  yearJoined;
-    }
-  }
+  //   const yearJoined = this.route.snapshot.queryParams['yearJoined'];
+  //   console.log('yearJoined param = ' + yearJoined);
+  //   if (yearJoined !== undefined) {
+  //     this.selectedYearJoined = yearJoined;
+  //   }
+  // }
   // can't rely on two way binding to have updated the selected values
   // in time so we do it manually below
   setSelectedStatus(status: string) {
@@ -79,12 +79,14 @@ export class AdminsStudentsComponent implements OnInit {
     this.fetchFilteredData();
   }
   setSelectedGradYear(year: string) {
-    // console.log('selected year: ' + year);
+    console.log('setting SelectedGradYear: ' + year);
+    this.session.setSelectedGradYear(year);
     this.selectedGradYear = year;
     this.fetchFilteredData();
   }
   setSelectedYearJoined(year: string) {
-    // console.log('selected year: ' + year);
+    console.log('setting SelectedYearJoined: ' + year);
+    this.session.setSelectedYearJoined(year);
     this.selectedYearJoined = year;
     this.fetchFilteredData();
   }
@@ -99,7 +101,7 @@ export class AdminsStudentsComponent implements OnInit {
     this.sqlResource.getStudentDTOsByStatusAndYear(this.selectedStatus, this.selectedYearJoined, this.selectedGradYear)
       .subscribe(
         data => { this.studentDTOs = data.map(this.getNumericStatus); },
-        err => { this.errorMessage =  err; } ,
+        err => { this.errorMessage = err; },
         () => {
           this.studentDTOs = this.studentDTOs.filter(s => s.studentId !== 275); // N/A
           console.log('data loaded now set timeout for scroll');
@@ -111,63 +113,63 @@ export class AdminsStudentsComponent implements OnInit {
       );
   }
 
-scrollIntoView() {
+  scrollIntoView() {
 
-      const element = document.body;
-      if (element) {
-        element.scrollIntoView(true);
-      }
-}
-
-
-getNumericStatus(studentDTO: StudentDTO): StudentDTO {
-
-  studentDTO.numericTimelyMentorMeetingStatus = 0;
-  if (studentDTO.timelyMentorMeetingStatus === 'red') {
-    studentDTO.numericTimelyMentorMeetingStatus = 1;
-  } else if (studentDTO.timelyMentorMeetingStatus === 'yellow') {
-    studentDTO.numericTimelyMentorMeetingStatus = 2;
-  } else if (studentDTO.timelyMentorMeetingStatus === 'green') {
-    studentDTO.numericTimelyMentorMeetingStatus = 3;
-  }
-
-  studentDTO.numericTimelyMentorReportStatus = 0;
-  if (studentDTO.timelyMentorReportStatus === 'red') {
-    studentDTO.numericTimelyMentorReportStatus = 1;
-  } else if (studentDTO.timelyMentorReportStatus === 'yellow') {
-    studentDTO.numericTimelyMentorReportStatus = 2;
-  } else if (studentDTO.timelyMentorReportStatus === 'green') {
-    studentDTO.numericTimelyMentorReportStatus = 3;
+    const element = document.body;
+    if (element) {
+      element.scrollIntoView(true);
+    }
   }
 
 
-  studentDTO.numericGradeRptStatus = 0;
-  if (studentDTO.gradeRptStatus === 'red') {
-    studentDTO.numericGradeRptStatus = 1;
-  } else if (studentDTO.gradeRptStatus === 'yellow') {
-    studentDTO.numericGradeRptStatus = 2;
-  } else if (studentDTO.gradeRptStatus === 'green') {
-    studentDTO.numericGradeRptStatus = 3;
-  }
+  getNumericStatus(studentDTO: StudentDTO): StudentDTO {
 
-  studentDTO.numericGPAStatus = 0;
-  if (studentDTO.gpaStatus === 'red') {
-    studentDTO.numericGPAStatus = 1;
-  } else if (studentDTO.gpaStatus === 'yellow') {
-    studentDTO.numericGPAStatus = 2;
-  } else if (studentDTO.gpaStatus === 'green') {
-    studentDTO.numericGPAStatus = 3;
-  }
+    studentDTO.numericTimelyMentorMeetingStatus = 0;
+    if (studentDTO.timelyMentorMeetingStatus === 'red') {
+      studentDTO.numericTimelyMentorMeetingStatus = 1;
+    } else if (studentDTO.timelyMentorMeetingStatus === 'yellow') {
+      studentDTO.numericTimelyMentorMeetingStatus = 2;
+    } else if (studentDTO.timelyMentorMeetingStatus === 'green') {
+      studentDTO.numericTimelyMentorMeetingStatus = 3;
+    }
 
-  studentDTO.joinedFrom = 'N/A';
-  if (studentDTO.joinedFromId === 2056) {
-    studentDTO.joinedFrom = 'Prepa';
-  } else if (studentDTO.joinedFromId === 2057) {
-    studentDTO.joinedFrom = 'Univ';
-  }
+    studentDTO.numericTimelyMentorReportStatus = 0;
+    if (studentDTO.timelyMentorReportStatus === 'red') {
+      studentDTO.numericTimelyMentorReportStatus = 1;
+    } else if (studentDTO.timelyMentorReportStatus === 'yellow') {
+      studentDTO.numericTimelyMentorReportStatus = 2;
+    } else if (studentDTO.timelyMentorReportStatus === 'green') {
+      studentDTO.numericTimelyMentorReportStatus = 3;
+    }
 
-  return studentDTO;
-}
+
+    studentDTO.numericGradeRptStatus = 0;
+    if (studentDTO.gradeRptStatus === 'red') {
+      studentDTO.numericGradeRptStatus = 1;
+    } else if (studentDTO.gradeRptStatus === 'yellow') {
+      studentDTO.numericGradeRptStatus = 2;
+    } else if (studentDTO.gradeRptStatus === 'green') {
+      studentDTO.numericGradeRptStatus = 3;
+    }
+
+    studentDTO.numericGPAStatus = 0;
+    if (studentDTO.gpaStatus === 'red') {
+      studentDTO.numericGPAStatus = 1;
+    } else if (studentDTO.gpaStatus === 'yellow') {
+      studentDTO.numericGPAStatus = 2;
+    } else if (studentDTO.gpaStatus === 'green') {
+      studentDTO.numericGPAStatus = 3;
+    }
+
+    studentDTO.joinedFrom = 'N/A';
+    if (studentDTO.joinedFromId === 2056) {
+      studentDTO.joinedFrom = 'Prepa';
+    } else if (studentDTO.joinedFromId === 2057) {
+      studentDTO.joinedFrom = 'Univ';
+    }
+
+    return studentDTO;
+  }
 
   gotoStudent(id: number, studentName: string) {
     console.log('setting studentName to ' + studentName);

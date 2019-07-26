@@ -81,6 +81,12 @@ public getStudentsForMentor(mentorId: Number): Observable<StudentDTO[]> {
   return xx;
 }
 
+public getMentorsForStudent(studentId: number): Observable<Mentor[]> {
+  const url = this.WebApiPrefix + 'students/mentors_for/' + studentId;
+  console.log('sending AuthHttp get request ' +  url);
+  return this.http.get<Mentor[]>(url).pipe(catchError(this.handleError));
+}
+
 public getStudentsForSponsor(sponsorId: Number): Observable<StudentSponsorXRef[]> {
   const url = this.WebApiPrefix + 'students/for_sponsor/' + sponsorId;
   console.log('sending AuthHttp get request for StudentsForMentor');

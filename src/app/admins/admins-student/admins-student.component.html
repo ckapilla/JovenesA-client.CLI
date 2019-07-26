@@ -1,6 +1,6 @@
 <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
 <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
-<div class="container-fluid">
+<div class="container-fluid" style="max-width:900px">
   <form [formGroup]="profileForm" class="form-horizontal">
     <div class="row">
       <div class="col">
@@ -11,72 +11,111 @@
             &lt;&lt;&nbsp; Back
           </span>
           &nbsp;
-          <span class="controls">
-            <span class="btn btn-primary btn-sm" (click)="mentorReportsReview()">
-              Mentor Reports
-            </span>
-          </span>
-        </div>
 
+          <span class="btn btn-primary btn-sm" (click)="mentorReportsReview()">
+            Mentor Reports
+          </span>
+
+          <label for="ckEditMode">
+            <input id="ckEditMode" type="checkbox" name="toggleReadOnly" (click)="setReadOnly()"
+              style="margin: 0 0 0 4px">
+            Editable</label>
+        </div>
         <div class="form-group">
-          <label for="inputStudentFName">First Name(s)</label>
-          <input id="inputStudentFName" formControlName="inputStudentFName" [(ngModel)]="student.firstNames"
+
+          <label for="studentFName">First Name(s)</label>
+          <input id="studentFName" formControlName="studentFName" [(ngModel)]="student.firstNames"
             class="form-control form-control-sm" type="text" placeholder="First Name" />
-          <app-display-errors control="inputStudentFName" class="red" [errors]="{
+          <app-display-errors control="studentFName" class="red" [errors]="{
                 'required': 'First name is required',
                 'maxlength': 'Student First name cannot exceed 30 characters in length.'
               }"></app-display-errors>
 
-          <label for="inputStudentLName">Last Name(s)</label>
-          <input id="inputStudentLName" formControlName="inputStudentLName" [(ngModel)]="student.lastNames" type="text"
+          <label for="studentLName">Last Name(s)</label>
+          <input id="studentLName" formControlName="studentLName" [(ngModel)]="student.lastNames" type="text"
             class="form-control form-control-sm" placeholder="Last Name" />
-          <app-display-errors control="inputStudentLName" class="red" [errors]="{
+          <app-display-errors control="studentLName" class="red" [errors]="{
                 'required': 'Last name is required',
                 'maxlength': 'Student Last name cannot exceed 30 characters in length.'
               }"></app-display-errors>
 
-          <label for="inputStudentPhone">Cell Phone</label>
-          <input id="inputStudentPhone" formControlName="inputStudentPhone" [(ngModel)]="student.cellPhone" type="text"
+          <label for="studentNickName">Last Name(s)</label>
+          <input id="studentNickName" formControlName="studentNickName" [(ngModel)]="student.nickName" type="text"
+            class="form-control form-control-sm" placeholder="Nickname" />
+          <app-display-errors control="studentNickName" class="red" [errors]="{
+                'maxlength': 'Nickname cannot exceed 20 characters in length.'
+              }"></app-display-errors>
+
+          <label for="studentEmail">Email</label>
+          <input id="studentEmail" formControlName="studentEmail" [(ngModel)]="student.email" type="text"
+            class="form-control form-control-sm" placeholder="Email Name" />
+          <app-display-errors control="studentEmail" class="red" [errors]="{
+                'required': 'Email is required',
+                'maxlength': 'Email cannot exceed 50 characters in length.'
+              }"></app-display-errors>
+
+
+          <label for="cellPhone">Cell Phone</label>
+          <input id="cellPhone" formControlName="cellPhone" [(ngModel)]="student.cellPhone" type="text"
             class="form-control form-control-sm" placeholder="Best Phone Number: ###-###-####" />
-          <app-display-errors control="inputStudentPhone" class="red" [errors]="{
-                'required': 'Cell Phone is required.',
+          <app-display-errors control="cellPhone" class="red" [errors]="{
                 'minlength': 'Cell Phone must be at least 7 characters in length.',
                 'maxlength': 'Cell Phone cannot exceed 13 characters in length.'
               }"></app-display-errors>
 
-          <label for="inputMajor">Major</label>
-          <input id="inputMajor" formControlName="inputMajor" [(ngModel)]="student.major" type="text"
-            class="form-control form-control-sm" placeholder="" />
 
-          <label for="inputInitialInterview">Initial Interview:</label>
-          <textarea id="inputInitialInterview" formControlName="inputInitialInterview"
-            [(ngModel)]="student.initialInterview" type="text" class="form-control form-control-sm"
-            placeholder="Intitial Interview with Student">
-          </textarea>
-          <app-display-errors control="inputInitialInterview" class="red" [errors]="{
-                'maxlength': 'Initial Interview cannot exceed 2000 characters in length.'
-              }"></app-display-errors>
+          <label for="homePhone">home Phone</label>
+          <input id="homePhone" formControlName="homePhone" [(ngModel)]="student.homePhone" type="text"
+            class="form-control form-control-sm" placeholder="Best Phone Number: ###-###-####" />
+          <app-display-errors control="homePhone" class="red" [errors]="{
+                    'minlength': 'Cell Phone must be at least 7 characters in length.',
+                    'maxlength': 'Cell Phone cannot exceed 13 characters in length.'
+                  }"></app-display-errors>
 
-          <label for="inputStudentStory">Student Story:</label>
-          <textarea id="inputStudentStory" formControlName="inputStudentStory" [(ngModel)]="student.studentStory"
-            type="text" class="form-control form-control-sm" placeholder="Consolidated Student Story">
-          </textarea>
-          <app-display-errors control="inputStudentStory" class="red" [errors]="{
-                'maxlength': 'Student Story cannot exceed 2000 characters in length.'
-              }"></app-display-errors>
 
           <label for="EnglishLevelSelector">English Level:</label>
           <select formControlName="EnglishLevelSelector" class="form-control form-control-sm"
             [(ngModel)]="student.englishSkillLevelId">
             <option *ngFor="let status of languageStatuses" [value]="status.value">{{status.label}}</option>
           </select>
-        </div>
 
-        <div class="form-group">
-          <button class="btn btn-primary" (click)="saveProfile()" [disabled]="!profileForm.valid">
-            Save
-          </button> <span class="red" [hidden]="profileForm.valid">All required fields must be filled in before
-            saving.</span>
+          <label for="emergencyContactName">Emergency Contact Name</label>
+          <input id="emergencyContactName" formControlName="emergencyContactName"
+            [(ngModel)]="student.emergencyContactName" type="text" class="form-control form-control-sm"
+            placeholder="Contact Person:" />
+          <app-display-errors control="emergencyContactName" class="red" [errors]="{
+                    'minlength': 'Name must be at least 5 characters in length.'
+                  }"></app-display-errors>
+
+          <label for="emergencyContactPhone">Emergency Contact Phone</label>
+          <input id="emergencyContactPhone" formControlName="emergencyContactPhone"
+            [(ngModel)]="student.emergencyContactPhone" type="text" class="form-control form-control-sm"
+            placeholder="Best Phone Number: ###-###-####" />
+          <app-display-errors control="emergencyContactPhone" class="red" [errors]="{
+                        'minlength': 'Phone number must be at least 7 characters in length.',
+                        'maxlength': 'Phone number cannot exceed 13 characters in length.'
+                      }"></app-display-errors>
+
+
+
+          <!-- <label for="inputInitialInterview">Initial Interview:</label>
+          <textarea id="inputInitialInterview" formControlName="inputInitialInterview"
+            [(ngModel)]="student.initialInterview" type="text" class="form-control form-control-sm"
+            placeholder="Intitial Interview with Student">
+          </textarea>
+          <app-display-errors control="inputInitialInterview" class="red" [errors]="{
+                'maxlength': 'Initial Interview cannot exceed 2000 characters in length.'
+              }"></app-display-errors> -->
+
+          <!-- <label for="studentStory">Student Story:</label>
+          <textarea id="studentStory" formControlName="studentStory" [(ngModel)]="student.studentStory"
+            type="text" class="form-control form-control-sm" placeholder="Consolidated Student Story">
+          </textarea>
+          <app-display-errors control="studentStory" class="red" [errors]="{
+                'maxlength': 'Student Story cannot exceed 2000 characters in length.'
+              }"></app-display-errors> -->
+
+
         </div>
 
       </div>
@@ -86,32 +125,107 @@
             <img [src]="photoPathName">
           </div>
           <div>&nbsp;</div>
-          <!-- <label for="studentStatustatus">Status:</label> -->
-          <!-- <input id="studentStatus" formControlName="studentStatus" [(ngModel)]="student.statusId"
-            class="form-control form-control-sm" type="text" /> -->
+        </div>
 
-          <label for="YearJoinedJa">Year Joined</label>
-          <input id="yearJoinedJa" formControlName="yearJoinedJA" [(ngModel)]="student.yearJoinedJa"
-            class="form-control form-control-sm" type="text" />
 
-          <label for="joinedFrom">Joined From</label>
-          <input id="joinedFrom" formControlName="joinedFrom" [(ngModel)]="student.joinedFromId"
-            class="form-control form-control-sm" type="text" />
+        <div class="row">
+          <div class="col-6" style="padding:0 2px 0 4px;">
+            <label for="studentStatus">Status</label>
+            <select id="studentStatus" formControlName="studentStatus" class="form-control form-control-sm"
+              [(ngModel)]="student.statusId">
+              <option *ngFor="let status of studentStatuses" [value]="status.value">{{status.label}}</option>
+            </select>
 
-          <label for="gradYear">Grad Year</label>
-          <input id="gradYear" formControlName="gradYear" [(ngModel)]="student.gradYear"
-            class="form-control form-control-sm" type="text" />
 
-          <label for="gradMonth">Grad Month</label>
-          <input id="gradMonth" formControlName="gradMonth" [(ngModel)]="student.gradMonth"
-            class="form-control form-control-sm" type="text" />
+            <label for="joinedFrom">Joined From</label>
+            <select id="joinedFrom" formControlName="joinedFrom" class="form-control form-control-sm"
+              [(ngModel)]="student.joinedFromId">
+              <option *ngFor="let status of joinedFromTypes" [value]="status.value">{{status.label}}</option>
+            </select>
+
+
+            <label for="gradYear">Grad Year</label>
+            <input id="gradYear" formControlName="gradYear" [(ngModel)]="student.gradYear"
+              class="form-control form-control-sm" type="text" />
+          </div>
+
+          <div class="col-6" style="padding:0 2px 0 4px;">
+
+            <label for="yearJoinedJA">Year Joined</label>
+            <select id="yearJoinedJA" formControlName="yearJoinedJA" [(ngModel)]="student.yearJoinedJa"
+              class="form-control form-control-sm">
+              <option *ngFor="let year of joinedYears" [value]="year.value">{{year.label}}</option>
+            </select>
+
+            <label for="university">University</label>
+            <select id="university" formControlName="university" [(ngModel)]="student.universityId"
+              class="form-control form-control-sm">
+              <option *ngFor="let status of universities" [value]="status.value">{{status.label}}</option>
+            </select>
+
+            <label for="gradMonth">Grad Month</label>
+            <input id="gradMonth" formControlName="gradMonth" [(ngModel)]="student.gradMonth"
+              class="form-control form-control-sm" type="text" />
+
+          </div>
+        </div>
+        <div class="row">
+
+          <label for="major">Major</label>
+          <input id="major" formControlName="major" [(ngModel)]="student.major" type="text"
+            class="form-control form-control-sm" placeholder="" />
+
+
+          <label for="prepa">Prepa</label>
+          <select id="prepa" formControlName="prepa" [(ngModel)]="student.prepaId" class="form-control form-control-sm">
+            <option *ngFor="let status of prepas" [value]="status.value">{{status.label}}</option>
+          </select>
+
+          <label for="curp">CURP</label>
+          <input id="curp" formControlName="curp" [(ngModel)]="student.curp" type="text"
+            class="form-control form-control-sm" placeholder="" />
+
+          <label for="rfc">RFC</label>
+          <input id="rfc" formControlName="rfc" [(ngModel)]="student.rfc" type="text"
+            class="form-control form-control-sm" placeholder="" />
+
+          <label for="bankAccount">Bank Account</label>
+          <input id="bankAccount" formControlName="bankAccount" [(ngModel)]="student.bankAccount" type="text"
+            class="form-control form-control-sm" placeholder="" />
+
 
         </div>
       </div>
+
       <div class="col">
-        <div class="row">
-          <app-sponsors-for-student-grid></app-sponsors-for-student-grid>
-        </div>
+
+          <app-sponsors-for-student-grid [studentId]="studentId">
+          </app-sponsors-for-student-grid>
+ 
+
+
+          <div class="form-group"></div>
+          <label for="sponsorGroup">Sponsor Group</label>
+          <select id="sponsorGroup" formControlName="sponsorGroup" [(ngModel)]="student.sponsorGroupId"
+            class="form-control form-control-sm">
+            <option *ngFor="let status of universities" [value]="status.value">{{status.label}}</option>
+          </select>
+
+          <label for="mentor">Mentor</label>
+          <select id="mentor" formControlName="mentor" [(ngModel)]="student.mentorId"
+            class="form-control form-control-sm">
+            <option *ngFor="let status of universities" [value]="status.value">{{status.label}}</option>
+          </select>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group">
+        <button class="btn btn-primary" *ngIf="bReadOnly" (click)="saveProfile()" [disabled]="!profileForm.valid">
+          Save
+        </button>
+        <span class="red" [hidden]="profileForm.valid || bReadOnly">All required fields must be filled in before
+          saving.</span>
       </div>
     </div>
   </form>
