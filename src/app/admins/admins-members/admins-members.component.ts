@@ -1,6 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { constants } from '../../app_shared/constants/constants';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 import { SORTCRITERIA } from '../../app_shared/interfaces/SORTCRITERIA';
 import { MemberWithAnyRelatedStudent } from '../../app_shared/models/member-with-any-related-student';
@@ -15,9 +16,9 @@ import { SqlResource } from '../../app_shared/services/sql-resource.service';
 })
 
 export class AdminsMembersComponent implements OnInit {
-  types: SELECTITEM[];
+  memberTypes: SELECTITEM[];
   _selectedType: SELECTITEM;
-  statuses: SELECTITEM[];
+  memberStatuses: SELECTITEM[];
   _selectedStatus: SELECTITEM;
   members: MemberWithAnyRelatedStudent[];
   isLoading: boolean;
@@ -25,39 +26,17 @@ export class AdminsMembersComponent implements OnInit {
   successMessage: string;
   sortCriteria: SORTCRITERIA;
 
-
-
   constructor(
-              public sqlResource: SqlResource,
-              public router: Router,
-              private session: SessionService,
-              private columnSorter: ColumnSortService
-              ) {
+    public sqlResource: SqlResource,
+    public router: Router,
+    private session: SessionService,
+    private columnSorter: ColumnSortService
+  ) {
 
     console.log('Hi from member List Ctrl controller function');
-
-    this.statuses = [
-      { value: '0', label: '[All]' },
-      { value: '1015', label: 'Active' },
-      { value: '1016', label: 'Inactive Temporary' },
-      { value: '1017', label: 'Inactive Permanent' },
-      { value: '2055', label: 'Deceased' }
-    ];
-    console.log('constructor statuses[1] = ' + this.statuses[1].value);
-    this.types = [
-      { value: '2068', label: 'Admin' },
-      { value: '1012', label: 'Employee' },
-      { value: '1010', label: 'Mentor' },
-      // { value: '2072', label: 'NonPerson' },
-      { value: '2041', label: 'Pledger' },
-      // { value: '2040', label: 'President' },
-      // { value: '2067', label: '[All]' },
-      { value: '1009', label: 'Sponsor' },
-      // { value: '2069', label: 'Student' },
-      { value: '1008', label: 'Volunteer' }
-    ];
+    this.memberStatuses = constants.memberStatuses;
+    this.memberTypes = constants.memberTypes;
     this.isLoading = false;
-
   }
 
   public set selectedStatus(status: SELECTITEM) {
@@ -80,16 +59,16 @@ export class AdminsMembersComponent implements OnInit {
 
   ngOnInit() {
     console.log('ngOnInit');
-    console.log('types[2] = ' + this.types[2].label);
+    console.log('types[2] = ' + this.memberTypes[2].label);
     const memType = this.session.getMemberType();
     let idx = 2;
     if (memType) {
-      idx = this.types.findIndex(x => x.value === memType.value);
+      idx = this.memberTypes.findIndex(x => x.value === memType.value);
       console.log('setting MemberType to saved ' + memType);
     }
-    this._selectedType = this.types[idx];
-    console.log('statuses[1] = ' + this.statuses[1].value);
-    this._selectedStatus = this.statuses[1];
+    this._selectedType = this.memberTypes[idx];
+    console.log('statuses[1] = ' + this.memberStatuses[1].value);
+    this._selectedStatus = this.memberStatuses[1];
     this.fetchFilteredData();
   }
 

@@ -1,121 +1,84 @@
 <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
 <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col">
       <form [formGroup]="profileForm" class="form-horizontal ">
         <div class="form-group">
-          <span class="controls">
-            <span class="btn btn-primary btn-xs"
-                  (click)="location.back()">
+            <span class="btn btn-primary btn-xs" (click)="location.back()">
               &lt;&lt; Back
             </span>
-          </span>
         </div>
 
         <div class="form-group">
-          <div class="controls">
-            <label for="inputMemberFName">First Name(s)</label>
-            <input id="inputMemberFName" formControlName="inputMemberFName"
-                   [(ngModel)]="member.firstNames"
-                   class="form-control input-sm" type="text" placeholder="First Name" />
-            <app-display-errors control="inputMemberFName" class="red"
-                                [errors]="{
+          <label for="inputMemberFName">First Name(s)</label>
+          <input id="inputMemberFName" formControlName="inputMemberFName" [(ngModel)]="member.firstNames"
+            class="form-control input-sm" type="text" placeholder="First Name" />
+          <app-display-errors control="inputMemberFName" class="red" [errors]="{
                 'required': 'First name is required',
                 'maxlength': 'Member First name cannot exceed 30 characters in length.'
               }"></app-display-errors>
-          </div>
 
-          <div class="controls">
-            <label for="inputMemberLName">Last Name(s)</label>
-            <input id="inputMemberLName" formControlName="inputMemberLName"
-                   [(ngModel)]="member.lastNames"
-                   type="text" class="form-control input-sm" placeholder="Last Name" />
-            <app-display-errors control="inputMemberLName" class="red"
-                                [errors]="{
+          <label for="inputMemberLName">Last Name(s)</label>
+          <input id="inputMemberLName" formControlName="inputMemberLName" [(ngModel)]="member.lastNames" type="text"
+            class="form-control input-sm" placeholder="Last Name" />
+          <app-display-errors control="inputMemberLName" class="red" [errors]="{
                 'required': 'Last name is required',
                 'maxlength': 'Member Last name cannot exceed 30 characters in length.'
               }"></app-display-errors>
-          </div>
 
-          <div class="controls">
-            <label for="inputMemberEmail">Email (Please coordinate any changes with the member, for logging in.)</label>
-            <input id="inputMemberEmail" formControlName="inputMemberEmail"
-                   [(ngModel)]="member.email"
-                   type="text" class="form-control input-sm" placeholder="Email Address" />
-            <app-display-errors control="inputMemberLName" class="red"
-                                [errors]="{
+          <label for="inputMemberEmail">Email (Please coordinate any changes with the member, for logging in.)</label>
+          <input id="inputMemberEmail" formControlName="inputMemberEmail" [(ngModel)]="member.email" type="text"
+            class="form-control input-sm" placeholder="Email Address" />
+          <app-display-errors control="inputMemberLName" class="red" [errors]="{
                 'required': 'Email address is required',
                 'maxlength': 'Email address cannot exceed 50 characters in length.'
               }"></app-display-errors>
-          </div>
 
-          <div class="controls">
-            <label for="inputMemberSMAPhone">SMA Phone</label>
-            <input id="inputMemberSMAPhone" formControlName="inputMemberSMAPhone"
-                   [(ngModel)]="member.sma_Phone"
-                   type="text" class="form-control input-sm" placeholder="Best Phone Number when in SMA" />
-          </div>
+          <label for="inputMemberSMAPhone">SMA Phone</label>
+          <input id="inputMemberSMAPhone" formControlName="inputMemberSMAPhone" [(ngModel)]="member.sma_Phone"
+            type="text" class="form-control input-sm" placeholder="Best Phone Number when in SMA" />
 
+          <label for="inputMemberNonSMAPhone">Non-SMA Phone</label>
+          <input id="inputMemberNonSMAPhone" formControlName="inputMemberNonSMAPhone" [(ngModel)]="member.nonSma_Phone"
+            type="text" class="form-control input-sm" placeholder="Best Phone Number when not in SMA" />
 
-          <div class="controls">
-            <label for="inputMemberNonSMAPhone">Non-SMA Phone</label>
-            <input id="inputMemberNonSMAPhone" formControlName="inputMemberNonSMAPhone"
-                   [(ngModel)]="member.nonSma_Phone"
-                   type="text" class="form-control input-sm" placeholder="Best Phone Number when not in SMA" />
-          </div>
+          <label for="EnglishLevelSelector">English Level:</label>
+          <select formControlName="EnglishLevelSelector" class="form-control input-sm"
+            [(ngModel)]="member.englishSkillLevelId">
+            <option *ngFor="let status of languageStatuses" [value]="status.value">{{status.label}}</option>
+          </select>
 
-          <div class="controls">
-            <label for="EnglishLevelSelector">English Level:</label>
-            <select formControlName="EnglishLevelSelector"
-                    class="form-control input-sm"
-                    [(ngModel)]="member.englishSkillLevelId">
-              <option *ngFor="let status of languageStatuses"
-                      [value]="status.value">{{status.label}}</option>
-            </select>
-          </div>
+          <label for="SpanishLevelSelector">Spanish Level:</label>
+          <select formControlName="SpanishLevelSelector" class="form-control input-sm"
+            [(ngModel)]="member.spanishSkillLevelId">
+            <option *ngFor="let status of languageStatuses" [value]="status.value">{{status.label}}</option>
+          </select>
 
-          <div class="controls">
-            <label for="SpanishLevelSelector">Spanish Level:</label>
-            <select formControlName="SpanishLevelSelector"
-                    class="form-control input-sm"
-                    [(ngModel)]="member.spanishSkillLevelId">
-              <option *ngFor="let status of languageStatuses" [value]="status.value">{{status.label}}</option>
-            </select>
-          </div>
-
-          <div class="controls">
-            <label for="inputComments">Comments (Private -- for Admins only)</label>
-            <textarea id="inputComments" #success formControlName="inputComments" [(ngModel)]="member.comments"
-                      type="text"
-                      class="form-control input-sm" placeholder="">
+          <label for="inputComments">Comments (Private -- for Admins only)</label>
+          <textarea id="inputComments" #success formControlName="inputComments" [(ngModel)]="member.comments"
+            type="text" class="form-control input-sm" placeholder="">
           </textarea>
-            <app-display-errors control="inputComments" class="red"
-                                [errors]="{'maxlength': 'Entry cannot exceed 2000 characters in length.'
+          <app-display-errors control="inputComments" class="red" [errors]="{'maxlength': 'Entry cannot exceed 2000 characters in length.'
                 }"></app-display-errors>
-          </div>
         </div>
         <div class="form-group">
-          <div class="controls">
-            <button class="btn btn-primary"
-                    (click)="saveProfile()"
-                    [disabled]="!profileForm.valid">
+            <button class="btn btn-primary" (click)="saveProfile()" [disabled]="!profileForm.valid">
               Save
             </button> <span class="red" [hidden]="profileForm.valid">All required fields must be filled in before
               saving.</span>
-          </div>
         </div>
       </form>
     </div>
-    <div class="col-md-2">
+    <div class="col">
       <div class="row">
-      <students-for-mentor-list></students-for-mentor-list>
-      </div>
-      <div class="row">
-       <students-for-sponsor-list></students-for-sponsor-list>
+        <students-for-sponsor-list></students-for-sponsor-list>
       </div>
     </div>
+    <div class="col">
+      <div class="row">
+        <students-for-mentor-list></students-for-mentor-list>
+      </div>
+    </div>    
   </div>
-
-
 </div>

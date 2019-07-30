@@ -41,22 +41,7 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
 
 
     this.years = constants.years;
-
-     this.months = [
-      {value: '0', label: 'Select'},
-      {value: '1', label: 'Jan'},
-      {value: '2', label: 'Feb'},
-      {value: '3', label: 'Mar'},
-      {value: '4', label: 'Apr'},
-      {value: '5', label: 'May'},
-      {value: '6', label: 'Jun'},
-      {value: '7', label: 'Jul'},
-      {value: '8', label: 'Aug'},
-      {value: '9', label: 'Sep'},
-      {value: '10', label: 'Oct'},
-      {value: '11', label: 'Nov'},
-      {value: '12', label: 'Dec'}
-    ];
+    this.months = constants.months;
 
     this.mrSummaryStatuses = [
       { value: '0', label: '[All]' },
@@ -74,12 +59,6 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
         { value: '2109', label: 'Red/Green' }
       ];
 
-      // this.followUpStatuses = [
-      //   { value: '0', label: '[All]' },
-      //   { value: '2091', label: 'Flagged' },
-      //   { value: '2092', label: 'Assigned' },
-      //   { value: '2104', label: 'Closed' },
-      // ];
 
     const today = new Date();
     this.selectedYear =  '2019'; // '' + today.getFullYear(); //

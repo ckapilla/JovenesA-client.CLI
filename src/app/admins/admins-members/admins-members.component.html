@@ -1,8 +1,8 @@
-<div class="panel panel-primary">
-  <div class="panel-heading" style="font-size:large">
+<div class="card bg-primary">
+  <div class="card-header text-white" style="font-size:large">
     Members by Type
   </div>
-  <div class="panel-body">
+  <div class="card-body bg-white">
     <span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
     <span *ngIf="successMessage" class="alert alert-success">{{successMessage}}</span>
 
@@ -10,12 +10,12 @@
       <form>
         <label for="TypeSelector">Type:</label>
         <select name="TypeSelector" [(ngModel)]="selectedType">
-          <option *ngFor="let type of types" [ngValue]="type">{{type.label}}</option>
+          <option *ngFor="let type of memberTypes" [ngValue]="type">{{type.label}}</option>
         </select>
         &nbsp;
         <label for="StatusSelector">Status:</label>
         <select name="StatusSelector" [(ngModel)]="selectedStatus">
-            <option *ngFor="let status of statuses" [ngValue]="status">{{status.label}}</option>
+          <option *ngFor="let status of memberStatuses" [ngValue]="status">{{status.label}}</option>
         </select>
       </form>
 
@@ -28,7 +28,7 @@
         </app-loading-container>
       </div>
       <div *ngSwitchCase="false">
-        <table appSortableTable class="table">
+        <table appSortableTable class="table-sm table-striped">
 
           <thead>
             <tr>
@@ -38,7 +38,7 @@
               <th app-sortable-column="memberStatus" (onSortColumn)="onSortColumn($event)">Member Status</th>
               <th app-sortable-column="email" (onSortColumn)="onSortColumn($event)">Email</th>
               <th app-sortable-column="relatedStudentName" (onSortColumn)="onSortColumn($event)">Related Student</th>
-              <th app-sortable-column="relatedStudentStatus" (onSortColumn)="onSortColumn($event)" >Student Status</th>
+              <th app-sortable-column="relatedStudentStatus" (onSortColumn)="onSortColumn($event)">Student Status</th>
               <!-- <th app-sortable-column="mentorName" (onSortColumn)="onSortColumn($event)">Communication History</th> -->
             </tr>
           </thead>
@@ -47,13 +47,13 @@
               <td>
                 {{ i+1 }}
               </td>
-              <td (click)='gotoMember(member.memberId, member.firstNames + " " + member.lastNames)' class='link' >
+              <td (click)='gotoMember(member.memberId, member.firstNames + " " + member.lastNames)' class='link'>
                 {{ member.lastNames }}, {{ member.firstNames }}
               </td>
-              <td >
+              <td>
                 {{member.memberStatus}}
               </td>
-              <td >
+              <td>
                 <a href='mailto:{{ member.email }}'>{{ member.email }}</a>
               </td>
               <td (click)='gotoStudent(member.relatedStudentId, member.relatedStudentName)' class='link'>

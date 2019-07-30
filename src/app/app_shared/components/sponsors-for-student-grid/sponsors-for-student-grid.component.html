@@ -3,16 +3,16 @@
     <table class="table table-condensed">
       <thead>
         <tr>
-          <th>Nombre de Padrino(s)</th>
+          <th>Individual Sponsor Name(s)</th>
         </tr>
       </thead>
       <tbody>
 
-            <tr *ngFor="let item of sponsorGroups, let i = index"
-              [ngClass]="setRowClasses(item.sponsorGroupId)"
-              id="item.sponsorGroupId"
-              (click)='selectSponsor(item.sponsorGroupId, i)'>
-              <td>{{item.sponsorGroupName}}</td>
+            <tr *ngFor="let item of sponsors, let i = index"
+              [ngClass]="setRowClasses(item.sponsorId)"
+              id="item.sponsorId"
+              (click)='selectSponsor(item.sponsorId, i)'>
+              <td>{{item.sponsorName}}</td>
             </tr>
       </tbody>
     </table>

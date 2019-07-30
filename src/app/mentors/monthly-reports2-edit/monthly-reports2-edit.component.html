@@ -1,17 +1,10 @@
-<div class="panel panel-primary">
-  <div class="panel-heading" style="font-size:large">
+<div class="card bg-primary">
+  <div class="card-header text-white" style="font-size:large">
     Monthly Report for {{ studentName  }}
   </div>
-  <div class="panel-body">
+  <div class="card-body bg-white">
     <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
     <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
-    <div>
-      <span>(Click on [Request Assistance] above for any situation that needs follow-up by Jovenes Adelante
-        administration.)
-        <br />(Haga clic en [Solicitar Asistencia] arriba para cualquier situación que necesite seguimiento por Jovenes
-        Adelante administración.)
-      </span>
-    </div>
     <form [formGroup]="myForm">
       <fieldset [disabled]="isSubmitted">
         <div class="form-group">
@@ -112,7 +105,7 @@
           <span>
             <button type="button"
                     class="btn btn-default"
-                    style="width:70px"
+                    style="width:75px"
                     (click)="onCancel()">
               Cancel
             </button>

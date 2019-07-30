@@ -19,13 +19,13 @@
     </app-loading-container>
   </div>
   <div *ngSwitchCase="false">
-    <div *ngIf="!errorMessage" class="panel panel-primary">
-      <div class="panel-heading" style="font-size:large">
+    <div *ngIf="!errorMessage" class="card bg-primary">
+      <div class="card-header text-white" style="font-size:large">
         <span>Past Reports / Informes Anteriores --  </span>
         <span>{{studentName}}</span>
         <span>
           <span>
-            <span class="btn btn-default active" (click)="monthlyReportAdd()" style="margin-left:10px">
+            <span class="btn btn-default active" (click)="monthlyReportAdd()" style="margin: 4px 0 0 10px">
               Add New Report /Añadir un Nuevo Informe
             </span>
           </span>

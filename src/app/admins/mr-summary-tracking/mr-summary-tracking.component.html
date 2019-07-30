@@ -1,7 +1,7 @@
-<div class="panel panel-primary">
-  <div class="panel-heading" style="font-size:large"> Mentor Report Review
+<div class="card bg-primary">
+  <div class="card-header text-white" style="font-size:large"> Mentor Report Review
   </div>
-  <div class="panel-body">
+  <div class="card-body bg-white">
     <span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
     <span *ngIf="successMessage" class="alert alert-success">{{successMessage}}</span>
 
@@ -13,6 +13,7 @@
           <option *ngFor="let year of years" [value]="year.value">{{year.label}}</option>
         </select>
         <select name="monthSelector" [(ngModel)]="selectedMonth" (change)="setSelectedMonth($event.target.value)">
+          <option value="0">[Select]</option>
           <option *ngFor="let month of months" [value]="month.value">{{month.label}}</option>
         </select>
 
@@ -50,11 +51,11 @@
           <div class="col-md-12">
             <div class="row" id='{{"id" + lmr.mentorReportId}}'>
               &nbsp;
-              <button class="btn default-btn"
+              <button class="btn default-btn btn-primary btn-sm"
                       (click)="gotoReportSummary(lmr.mentorReportId,lmr.studentName)">Review</button>
               &nbsp;
 
-              <span class="padded link">
+              <span (click)='gotoStudent(lmr.studentId, lmr.studentName)' class="padded link">
                 [Student:
                 {{ lmr.studentName }} ]
               </span>

@@ -27,7 +27,7 @@
         public studentSnapshotStatus?: number,
         public mentorId?: number,  // MentorID
         public mentorName?: number, // MentorName
-        public sponsorName?: string, // MentorName
+        public sponsorGroupName?: string, // MentorName
         public sponsorId?: number,
         public timelyStudentLetterStatus?: string,
         public universityAbbrev?: string,

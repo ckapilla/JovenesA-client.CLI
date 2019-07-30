@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { AppSharedModule } from '../app_shared/app_shared.module';
-import { SponsorsForStudentGridComponent } from '../app_shared/components/sponsors-for-student-grid/sponsors-for-student-grid.component';
 import { GradeTrackingComponent } from './grade-tracking/grade-tracking.component';
 import { StudentsNavbarComponent } from './shared/students-navbar/students-navbar.component';
 import { SponsorLettersAddComponent } from './sponsor-letters-add/sponsor-letters-add.component';
@@ -23,7 +22,6 @@ import { StudentsRouting } from './students.routing';
       StudentsProfileComponent,
       StudentsSponsorLettersComponent,
       SponsorLettersAddComponent,
-      SponsorsForStudentGridComponent,
       GradeTrackingComponent,
       StudentsStudentStatusComponent
     ]

@@ -6,47 +6,96 @@ import { constants } from '../../app_shared/constants/constants';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 import { Student } from '../../app_shared/models/student';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
-
 @Component({
 
   templateUrl: './admins-student.component.html',
-  styleUrls:  ['./admins-student.component.css'],
+  styleUrls: ['./admins-student.component.css'],
 })
 export class AdminsStudentComponent implements OnInit {
   profileForm: FormGroup;
   data: Object;
   isLoading: boolean;
   submitted: boolean;
+  bReadOnly = true;
 
+  studentStatuses: SELECTITEM[];
   languageStatuses: SELECTITEM[];
+  joinedFromTypes: SELECTITEM[];
+  joinedYears: SELECTITEM[];
+  gradYears: SELECTITEM[];
+  gradMonths: SELECTITEM[];
+  genders: SELECTITEM[];
+  prepas: SELECTITEM[];
+  universities: SELECTITEM[];
+  sponsorGroups: SELECTITEM[];
+  mentors: SELECTITEM[];
+
   errorMessage: string;
   successMessage: string;
-  firstNames: string;
-  lastNames: string;
+  // firstNames: string;
+  // lastNames: string;
   student: Student;
+  photoPathName: string;
+  studentIdParam: number;
 
   constructor(
-              public currRoute: ActivatedRoute,
-              private router: Router,
-              public sqlResource: SqlResource,
-              public formBuilder: FormBuilder,
-              public location: Location
-              ) {
+    public currRoute: ActivatedRoute,
+    private router: Router,
+    public sqlResource: SqlResource,
+    public formBuilder: FormBuilder,
+    public location: Location
+  ) {
     console.log('hi from profile.component constructor');
     this.languageStatuses = constants.languageStatuses;
+    this.studentStatuses = constants.studentStatuses;
+    this.joinedFromTypes = constants.joinedFromTypes;
+    this.joinedYears = constants.joinedYears;
+    this.gradYears = constants.gradYears;
+    this.gradMonths = constants.months;
+    this.genders = constants.genders;
+    this.prepas = this.fetchPrepas();
+    this.universities = this.fetchUniversities();
+    this.sponsorGroups = this.fetchSponsorGroups();
+    this.mentors = this.fetchMentors();
 
     this.profileForm = formBuilder.group({
-      inputStudentFName: ['', Validators.compose(
-                  [Validators.required, Validators.maxLength(30)])],
-      inputStudentLName: ['', Validators.compose(
-                  [Validators.required, Validators.maxLength(30)])],
-      inputStudentPhone: ['', Validators.compose(
-                  [Validators.required, Validators.minLength(7), Validators.maxLength(12)])],
-      inputInitialInterview: ['', Validators.maxLength(2000)],
-      inputStudentStory: ['', Validators.maxLength(2000)],
-      inputMajor: ['', Validators.maxLength(255)],
-      EnglishLevelSelector: [''],
+      studentId: '',
+      firstNames: ['',
+        Validators.compose([Validators.required, Validators.maxLength(30)])],
+      lastNames: [{ value: '' },
+      Validators.compose([Validators.required, Validators.maxLength(30)])],
+      email: [{ value: '' },
+      Validators.compose([Validators.required, Validators.email, Validators.maxLength(50)])],
+      cellPhone: [{ value: '' },
+      Validators.compose([Validators.minLength(7), Validators.maxLength(13)])],
+      homePhone: [{ value: '' },
+      Validators.compose([Validators.minLength(7), Validators.maxLength(13)])],
+      nickName: [{ value: '' }, Validators.maxLength(20)],
+      gender: ['',
+        Validators.compose([Validators.required, Validators.maxLength(1)])],
+      ja_Id: [{ value: '' }],
+      emergencyContactPhone: [{ value: '' },
+      Validators.compose([Validators.minLength(7), Validators.maxLength(13)])],
+      emergencyContactName: [{ value: '' }],
+      major: [{ value: '' }],
+      englishSkillLevelId: [{ value: '' }],
+      statusId: [{ value: '' }],
+      yearJoinedJa: [{ value: '', }],
+      joinedFromId: [{ value: '' }],
+      prepaId: [{ value: '' }],
+      universityId: [{ value: '' }],
+      gradYear: [{ value: '' }],
+      gradMonth: [{ value: '' }],
+      curp: [{ value: '' }],
+      rfc: [{ value: '' }],
+      bankAccount: [{ value: '' }],
+      sponsorGroupId: [{ value: '' }],
+      mentorId: [{ value: '' }],
+      // inputInitialInterview: [{value: ''}, Validators.maxLength(2000)],
+      // studentStory: [{value: ''}, Validators.maxLength(2000)],
     });
+    this.profileForm.disable();
+
     this.student = new Student();
 
     this.errorMessage = '';
@@ -56,49 +105,137 @@ export class AdminsStudentComponent implements OnInit {
 
   ngOnInit() {
     console.log('admins Student ngOnInit');
-    const id = this.currRoute.snapshot.params['id'];
-    console.log('sqlResource with StudentId: ' + id);
+    this.studentIdParam = this.currRoute.snapshot.params['id'];
+    console.log('sqlResource with studentIdParam: ' + this.studentIdParam);
     this.isLoading = true;
-    this.sqlResource.getStudent(id)
+    this.sqlResource.getStudent(this.studentIdParam)
       .subscribe(
-        data => {this.student = data; },
+        data => {
+          this.student = data;
+          this.photoPathName = '../../../assets/images/StudentPhotos/' + this.student.yearJoinedJa;
+          this.photoPathName = this.photoPathName + '/' + this.student.lastNames + ', ' + this.student.firstNames + '.jpg';
+          // this.photoPathName = this.photoPathName + '/' + 'CADENA RÍOS, CARLOS ANTONIO.jpg';
+          console.log('photoPathName is ' + this.photoPathName);
+          console.log(this.student);
+        },
         err => console.error('Subscribe error: ' + err),
-        () => { console.log('getStudent is done');
-                this.isLoading = false; }
-      );
+        () => {
+          console.log('getStudent is done now set timeout for scroll');
+          this.setFormValues(this.student);
+          setTimeout(() => {
+            this.scrollIntoView();
+          }, 0);
+          this.isLoading = false;
+        });
 
-      this.profileForm.valueChanges.subscribe(
-          (form: any) => {  this.errorMessage = '';
-                            this.successMessage = '';
-                            this.submitted = false;
-          }
-      );
+    this.profileForm.valueChanges.subscribe(
+      (form: any) => {
+        this.errorMessage = '';
+        this.successMessage = '';
+        this.submitted = false;
+      }
+    );
+  }
+
+  setFormValues(student: Student) {
+    console.log('setFormValues');
+    console.log('gender: ' + student.gender);
+    this.profileForm.setValue({
+      studentId: student.studentId,
+      firstNames: student.firstNames,
+      lastNames: student.lastNames,
+      email: student.email,
+      gender: student.gender,
+      cellPhone: student.cellPhone,
+      homePhone: student.homePhone,
+      nickName: student.nickName,
+      ja_Id: student.ja_Id,
+      emergencyContactPhone: student.emergencyContactPhone,
+      emergencyContactName: student.emergencyContactName,
+      major: student.major,
+      englishSkillLevelId: student.englishSkillLevelId,
+      statusId: student.statusId,
+      yearJoinedJa: student.yearJoinedJa,
+      joinedFromId: student.joinedFromId,
+      prepaId: student.prepaId,
+      universityId: student.universityId,
+      gradYear: student.gradYear,
+      gradMonth: student.gradMonth,
+      curp: student.curp,
+      rfc: student.rfc,
+      bankAccount: student.bankAccount,
+      sponsorGroupId: student.sponsorGroupId,
+      mentorId: student.mentorId,
+    });
+  }
+
+  assignFormValues(): void {
+    this.student = this.profileForm.value;
+
+    // const ctls = this.profileForm.controls;
+    // this.student.firstNames = ctls.firstNames.value;
+    // this.student.lastNames = ctls.lastNames.value;
+    // this.student.email = ctls.email.value;
+    // this.student.gender = ctls.gender.value;
+    // this.student.cellPhone = ctls.cellPhone.value;
+    // this.student.homePhone = ctls.homePhone.value;
+    // this.student.nickName = ctls.nickName.value;
+    // this.student.ja_Id = ctls.ja_Id.value;
+    // this.student.emergencyContactPhone = ctls.emergencyContactPhone.value;
+    // this.student.emergencyContactName = ctls.emergencyContactName.value;
+    // this.student.major = ctls.major.value;
+    // this.student.englishSkillLevelId = ctls.englishSkillLevelId.value;
+    // this.student.statusId = ctls.statusId.value;
+    // this.student.yearJoinedJa = ctls.yearJoinedJa.value;
+    // this.student.joinedFromId = ctls.joinedFromId.value;
+    // this.student.prepaId = ctls.prepaId.value;
+    // this.student.universityId = ctls.universityId.value;
+    // this.student.studentId = ctls.studentId.value;
+    // this.student.gradYear = ctls.gradYear.value;
+    // this.student.gradMonth = ctls.gradMonth.value;
+    // this.student.curp = ctls.curp.value;
+    // this.student.rfc = ctls.rfc.value;
+    // this.student.bankAccount = ctls.bankAccount.value;
+    // this.student.sponsorGroupId = ctls.sponsorGroupId.value;
+    // this.student.mentorId = ctls.mentorId.value;
+  }
+
+
+  scrollIntoView() {
+
+    const element = document.body;
+    if (element) {
+      element.scrollIntoView(true);
+    }
   }
 
   saveProfile(): boolean {
     console.log('saving admin student ');
     this.isLoading = true;
+    this.assignFormValues();
     this.sqlResource.updateStudent(this.student)
-        .subscribe(
-            (student) => {
-                // console.log('subscribe result in updateStudent');
-                // need timeout to avoid "Expression has changed error"
-                window.setTimeout( () => {
-                this.successMessage = 'Changes were saved successfully.'; }, 0);
-                // this.successMessage = 'Changes were saved successfully.';
-                this.submitted = true;
-                this.isLoading = false;
-                window.scrollTo(0, 0);
-                window.setTimeout( () => {// console.log('clearing success message');
-                              this.successMessage = ''; }, 3000);
-             },
-            (error) =>  {
-                console.log(this.errorMessage = <any>error);
-                this.isLoading = false;
-            }
-        );
-      // prevent default action of reload
-      return false;
+      .subscribe(
+        (student) => {
+          // console.log('subscribe result in updateStudent');
+          // need timeout to avoid "Expression has changed error"
+          window.setTimeout(() => {
+            this.successMessage = 'Changes were saved successfully.';
+          }, 0);
+          // this.successMessage = 'Changes were saved successfully.';
+          this.submitted = true;
+          this.isLoading = false;
+          window.scrollTo(0, 0);
+          window.setTimeout(() => {// console.log('clearing success message');
+            this.successMessage = '';
+          }, 3000);
+        },
+        (error) => {
+          console.log(this.errorMessage = <any>error);
+          this.isLoading = false;
+        }
+      );
+    // prevent default action of reload
+    return false;
   }
 
   backToStudentsList() {
@@ -107,16 +244,16 @@ export class AdminsStudentComponent implements OnInit {
 
   mentorReportsReview() {
     const id = this.currRoute.snapshot.params['id'];
-    this.router.navigate(['/admins/students/student/mentorReports/' + id  + '/' + this.student.firstNames + ' ' + this.student.lastNames ]);
+    this.router.navigate(['/admins/students/student/mentorReports/' + id + '/' + this.student.firstNames + ' ' + this.student.lastNames]);
   }
 
   public hasChanges() {
-      // if have changes then ask for confirmation
-      // ask if form is dirty and has not just been submitted
-      console.log('hasChanges has submitted ' + this.submitted);
-      console.log('hasChanges has form dirty ' + this.profileForm.dirty);
-      console.log('hasChanges net is ' + this.profileForm.dirty  || this.submitted);
-      return this.profileForm.dirty && !this.submitted;
+    // if have changes then ask for confirmation
+    // ask if form is dirty and has not just been submitted
+    console.log('hasChanges has submitted ' + this.submitted);
+    console.log('hasChanges has form dirty ' + this.profileForm.dirty);
+    console.log('hasChanges net is ' + this.profileForm.dirty || this.submitted);
+    return this.profileForm.dirty && !this.submitted;
   }
 
   gotoGradeHistory() {
@@ -124,4 +261,58 @@ export class AdminsStudentComponent implements OnInit {
     const link = ['/admins/students/grade-history/' + id + '/'];
     this.router.navigate(link);
   }
+  setReadOnly() {
+    console.log('toggle readOnly');
+    if (this.profileForm.enabled) {
+      this.profileForm.disable();
+    } else {
+      this.profileForm.enable();
+    }
+  }
+
+  fetchPrepas(): SELECTITEM[] {
+    this.sqlResource.getPrepaNames()
+      .subscribe(
+        data => { this.prepas = data; console.log('getPrepaNames'); console.log(this.prepas[0]); },
+        err => console.error('Subscribe error: ' + err),
+        () => {
+        }
+      );
+    return this.prepas;
+  }
+
+  fetchUniversities(): SELECTITEM[] {
+    this.sqlResource.getUniversityNames()
+      .subscribe(
+        data => { this.universities = data; console.log('getUniversityNames'); console.log(this.universities[0]); },
+        err => console.error('Subscribe error: ' + err),
+        () => {
+        }
+      );
+    return this.universities;
+  }
+
+  fetchSponsorGroups(): SELECTITEM[] {
+    this.sqlResource.getSponsorGroups()
+      .subscribe(
+        data => { this.sponsorGroups = data; console.log('getSponsorGroups'); console.log(this.sponsorGroups[0]); },
+        err => console.error('Subscribe error: ' + err),
+        () => {
+        }
+      );
+    return this.sponsorGroups;
+  }
+
+  fetchMentors(): SELECTITEM[] {
+    this.sqlResource.getMentorNames()
+      .subscribe(
+        data => { this.mentors = data; console.log('getMentorNames'); console.log(this.mentors[0]); },
+        err => console.error('Subscribe error: ' + err),
+        () => {
+        }
+      );
+    return this.mentors;
+  }
+
+
 }
