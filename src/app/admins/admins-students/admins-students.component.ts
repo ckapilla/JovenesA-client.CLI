@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { constants } from '../../app_shared/constants/constants';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 import { SORTCRITERIA } from '../../app_shared/interfaces/SORTCRITERIA';
@@ -30,7 +30,7 @@ export class AdminsStudentsComponent implements OnInit {
   successMessage: string;
   sortCriteria: SORTCRITERIA;
 
-  readonly statuses: SELECTITEM[] = constants.studentStatuses;
+  readonly studentStatuses: SELECTITEM[] = constants.studentStatuses;
   readonly schoolTypes: SELECTITEM[] = constants.schoolTypes;
   readonly joinedYears: SELECTITEM[] = constants.joinedYears;
   readonly gradYears: SELECTITEM[] = constants.gradYears;
@@ -46,7 +46,7 @@ export class AdminsStudentsComponent implements OnInit {
 
     console.log('Hi from student List Ctrl controller function');
 
-    this.selectedStatus = this.statuses[3].value; // Current
+    this.selectedStatus = this.studentStatuses[2].value; // Current
     this.selectedYearJoined = '' + this.session.getSelectedYearJoined(); // this.joinedYears[0].value;
     this.selectedGradYear = this.session.getSelectedGradYear(); // this.gradYears[0].value; // All
 

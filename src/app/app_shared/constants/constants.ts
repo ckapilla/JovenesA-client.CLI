@@ -12,7 +12,7 @@ export const constants = {
     { value: '2057', label: 'Univ' },
     { value: '2058', label: 'N/A' }
   ],
-  languageStatuses:  [
+  languageStatuses: [
     { value: '1024', label: 'None' },
     { value: '1025', label: 'Basic' },
     { value: '1026', label: 'Intermediate' },
@@ -20,7 +20,6 @@ export const constants = {
     { value: '1028', label: 'Native' },
   ],
   joinedYears: [
-    { value: '0', label: '[All]' },
     { value: '2019', label: '2019' },
     { value: '2018', label: '2018' },
     { value: '2017', label: '2017' },
@@ -41,7 +40,6 @@ export const constants = {
     { value: '2002', label: '2002' },
   ],
   gradYears: [
-    { value: '0', label: '[All]' },
     { value: '2024', label: '2024' },
     { value: '2023', label: '2023' },
     { value: '2022', label: '2022' },
@@ -70,30 +68,49 @@ export const constants = {
     { value: '2019', label: '2019' }
   ],
   months: [
-    {value: '0', label: 'Select'},
-    {value: '1', label: 'Jan'},
-    {value: '2', label: 'Feb'},
-    {value: '3', label: 'Mar'},
-    {value: '4', label: 'Apr'},
-    {value: '5', label: 'May'},
-    {value: '6', label: 'Jun'},
-    {value: '7', label: 'Jul'},
-    {value: '8', label: 'Aug'},
-    {value: '9', label: 'Sep'},
-    {value: '10', label: 'Oct'},
-    {value: '11', label: 'Nov'},
-    {value: '12', label: 'Dec'}
+    { value: '1', label: 'Jan' },
+    { value: '2', label: 'Feb' },
+    { value: '3', label: 'Mar' },
+    { value: '4', label: 'Apr' },
+    { value: '5', label: 'May' },
+    { value: '6', label: 'Jun' },
+    { value: '7', label: 'Jul' },
+    { value: '8', label: 'Aug' },
+    { value: '9', label: 'Sep' },
+    { value: '10', label: 'Oct' },
+    { value: '11', label: 'Nov' },
+    { value: '12', label: 'Dec' }
   ],
   studentStatuses: [
-    { value: '0', label: '[All]' },
     { value: '1003', label: 'Dropped' },
     { value: '1004', label: 'Grad' },
     { value: '1005', label: 'Current' }
   ],
+  memberStatuses: [
+    { value: '1015', label: 'Active' },
+    { value: '1016', label: 'Inactive Temporary' },
+    { value: '1017', label: 'Inactive Permanent' },
+    { value: '2055', label: 'Deceased' }
+  ],
+  memberTypes: [
+    { value: '2068', label: 'Admin' },
+    { value: '1012', label: 'Employee' },
+    { value: '1010', label: 'Mentor' },
+    // { value: '2072', label: 'NonPerson' },
+    { value: '2041', label: 'Pledger' },
+    // { value: '2040', label: 'President' },
+    // { value: '2067', label: '[All]' },
+    { value: '1009', label: 'Sponsor' },
+    // { value: '2069', label: 'Student' },
+    { value: '1008', label: 'Volunteer' }
+  ],
   joinedFromTypes: [
     { value: '2056', label: 'Prepa' },
     { value: '2057', label: 'University' },
-    { value: '2058', label: 'N/A'}
+    { value: '2058', label: 'N/A' }
+  ],
+  genders: [
+    { value: 'M', label: 'Male/Hombre' },
+    { value: 'F', label: 'Female/Mujer' },
   ]
 };
-

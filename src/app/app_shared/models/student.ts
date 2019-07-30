@@ -2,7 +2,7 @@
 
       constructor(
         public studentId?: number,
-        public aId?: string, // JA_ID
+        public ja_Id?: string, // JA_ID
         public lastNames?: string,
         public firstNames?: string,
 

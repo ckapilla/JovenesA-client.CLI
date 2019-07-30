@@ -13,6 +13,7 @@
           <option *ngFor="let year of years" [value]="year.value">{{year.label}}</option>
         </select>
         <select name="monthSelector" [(ngModel)]="selectedMonth" (change)="setSelectedMonth($event.target.value)">
+          <option value="0">[Select]</option>
           <option *ngFor="let month of months" [value]="month.value">{{month.label}}</option>
         </select>
 
@@ -54,7 +55,7 @@
                       (click)="gotoReportSummary(lmr.mentorReportId,lmr.studentName)">Review</button>
               &nbsp;
 
-              <span (click)='gotoStudent(lmr.studentId, lmr.studentName)'  class="padded link">
+              <span (click)='gotoStudent(lmr.studentId, lmr.studentName)' class="padded link">
                 [Student:
                 {{ lmr.studentName }} ]
               </span>

@@ -8,24 +8,25 @@
 
     <div>
 
+      <label for="StatusSelector">Status:</label>
+      <select name="StatusSelector" [(ngModel)]="selectedStatus" (change)="setSelectedStatus($event.target.value)">
+        <option value="0">[All]</option>
+        <option *ngFor="let status of studentStatuses" [value]="status.value">{{status.label}}</option>
+      </select>
 
-        <label for="StatusSelector">Status:</label>
-        <select name="StatusSelector" [(ngModel)]="selectedStatus" (change)="setSelectedStatus($event.target.value)">
-          <option *ngFor="let status of statuses" [value]="status.value">{{status.label}}</option>
-          </select>
+      <label for="YearJoinedSelector">Year Joined JA:</label>
+      <select name="YearJoinedSelector" [(ngModel)]="selectedYearJoined"
+              (change)="setSelectedYearJoined($event.target.value)">
+        <option value="0">[All]</option>
+        <option *ngFor="let year of joinedYears" [value]="year.value">{{year.label}}</option>
+      </select>
 
-        <label for="YearJoinedSelector">Year Joined JA:</label>
-        <select name="YearJoinedSelector" [(ngModel)]="selectedYearJoined" (change)="setSelectedYearJoined($event.target.value)">
-          <option *ngFor="let year of joinedYears" [value]="year.value">{{year.label}}</option>
-          </select>
-
-        <label for="GradYearSelector">Graduation Year:</label>
-        <select name="GradYearSelector" [(ngModel)]="selectedGradYear" (change)="setSelectedGradYear($event.target.value)">
-          <option *ngFor="let year of gradYears" [value]="year.value">{{year.label}}</option>
-          </select>
-
-        <!--<button class="btn default-btn" (click)="fetchFilteredData()">Submit</button>-->
-
+      <label for="GradYearSelector">Graduation Year:</label>
+      <select name="GradYearSelector" [(ngModel)]="selectedGradYear"
+              (change)="setSelectedGradYear($event.target.value)">
+        <option value="0">[All]</option>
+        <option *ngFor="let year of gradYears" [value]="year.value">{{year.label}}</option>
+      </select>
 
     </div>
     <div [ngSwitch]="isLoading">
@@ -35,26 +36,26 @@
       </div>
       <div *ngSwitchCase="false">
         <table class="table-sm table-striped">
-
           <thead>
-
             <tr>
               <!--<td>Id</td>-->
               <th></th>
-              <th app-sortable-column="studentName" sort-direction="asc" (onSortColumn)="onSortColumn($event)" >Student</th>
-              <th app-sortable-column="status" (onSortColumn)="onSortColumn($event)" >Status</th>
-              <th app-sortable-column="yearJoinedJa" (onSortColumn)="onSortColumn($event)" >Year<br /> Joined</th>
-              <th app-sortable-column="joinedFrom" (onSortColumn)="onSortColumn($event)" >Joined<br /> From</th>
-              <th app-sortable-column="gradYear" (onSortColumn)="onSortColumn($event)" >Grad<br /> Year/Mo</th>
-              <th app-sortable-column="gpaStatus" (onSortColumn)="onSortColumn($event)" >GPA</th>
-              <th app-sortable-column="gradeRptStatus" (onSortColumn)="onSortColumn($event)" >Grades<br />OnTime</th>
-              <th app-sortable-column="mentorName" (onSortColumn)="onSortColumn($event)" >Assigned Mentor</th>
+              <th app-sortable-column="studentName" sort-direction="asc" (onSortColumn)="onSortColumn($event)">Student
+              </th>
+              <th app-sortable-column="status" (onSortColumn)="onSortColumn($event)">Status</th>
+              <th app-sortable-column="yearJoinedJa" (onSortColumn)="onSortColumn($event)">Year<br /> Joined</th>
+              <th app-sortable-column="joinedFrom" (onSortColumn)="onSortColumn($event)">Joined<br /> From</th>
+              <th app-sortable-column="gradYear" (onSortColumn)="onSortColumn($event)">Grad<br /> Year/Mo</th>
+              <th app-sortable-column="gpaStatus" (onSortColumn)="onSortColumn($event)">GPA</th>
+              <th app-sortable-column="gradeRptStatus" (onSortColumn)="onSortColumn($event)">Grades<br />OnTime</th>
+              <th app-sortable-column="mentorName" (onSortColumn)="onSortColumn($event)">Assigned Mentor</th>
               <!-- <th app-sortable-column="numericTimelyMentorMeetingStatus" (onSortColumn)="onSortColumn($event)" >Mentor<br />Mtg</th>
               <th app-sortable-column="numericTimelyMentorReportStatus" (onSortColumn)="onSortColumn($event)" >Mentor<br />Rpt</th> -->
-              <th app-sortable-column="studentSnapshotStatus" (onSortColumn)="onSortColumn($event)" >Snapshot</th>
-              <th app-sortable-column="" (onSortColumn)="onSortColumn($event)" >Sponsor</th>
-              <th app-sortable-column="timelyStudentLetterStatus" (onSortColumn)="onSortColumn($event)" >Sponsor Letters</th>
-              <th app-sortable-column="universityAbbrev" (onSortColumn)="onSortColumn($event)" >Univ</th>
+              <th app-sortable-column="studentSnapshotStatus" (onSortColumn)="onSortColumn($event)">Snapshot</th>
+              <th app-sortable-column="" (onSortColumn)="onSortColumn($event)">Sponsor</th>
+              <th app-sortable-column="timelyStudentLetterStatus" (onSortColumn)="onSortColumn($event)">Sponsor Letters
+              </th>
+              <th app-sortable-column="universityAbbrev" (onSortColumn)="onSortColumn($event)">Univ</th>
               <!-- <th app-sortable-column="major" (onSortColumn)="onSortColumn($event)" >Major</th> -->
 
             </tr>
