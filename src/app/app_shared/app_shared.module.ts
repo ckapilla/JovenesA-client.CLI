@@ -2,20 +2,22 @@ import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { MentorsForStudentListComponent } from '../app_shared/components/mentors-for-student-list/mentors-for-student-list.component';
+import { SponsorsForStudentGridComponent } from '../app_shared/components/sponsors-for-student-grid/sponsors-for-student-grid.component';
 import { DisplayErrorsComponent } from './components/display-errors.component';
 import { FollowUpEventsComponent } from './components/follow-up-events/follow-up-events.component';
 import { FollowUpRequestsListComponent } from './components/follow-up-requests-list/follow-up-requests-list.component';
+import { GradeMonthsComponent } from './components/grade-months.component';
 import { LoadingContainerComponent } from './components/loading-container.component';
 import { MemberSelectorComponent } from './components/member-selector/member-selector.component';
 import { MentorReports2ListComponent } from './components/mentor-reports2-list/mentor-reports2-list.component';
 import { SortableColumnComponent } from './components/sortable-column.component';
-import { SponsorsForStudentGridComponent } from '../app_shared/components/sponsors-for-student-grid/sponsors-for-student-grid.component';
-import { MentorsForStudentListComponent } from '../app_shared/components/mentors-for-student-list/mentors-for-student-list.component';
+import { StudentGradesStatusComponent } from './components/student-grades-status.component';
+import { StudentMRStatusComponent } from './components/student-mr-status.component';
 import { StudentSelectorComponent } from './components/student-selector/student-selector.component';
 import { StudentsForMentorGridComponent } from './components/students-for-mentor-grid/students-for-mentor-grid.component';
 import { StudentsForMentorListComponent } from './components/students-for-mentor-list/students-for-mentor-list.component';
 import { StudentsForSponsorComponent } from './components/students-for-sponsor-list/students-for-sponsor-list';
-import { GradeMonthsComponent } from './components/grade-months.component';
 import { SortableTableDirective } from './directives/sortable-table.directive';
 import { HeaderbarComponent } from './headerbar/index';
 import { AlphaLanguagePipe } from './pipes/alpha-language-pipe';
@@ -32,7 +34,7 @@ import { AuthService } from './services/auth.service';
   imports: [
     CommonModule,
     RouterModule
-    ],
+  ],
   declarations: [
     HeaderbarComponent,
     DisplayErrorsComponent,
@@ -50,6 +52,8 @@ import { AuthService } from './services/auth.service';
     SponsorsForStudentGridComponent,
     MentorsForStudentListComponent,
     MentorsForStudentListComponent,
+    StudentGradesStatusComponent,
+    StudentMRStatusComponent,
     GradeMonthsComponent,
     AlphaMonthPipe,
     AlphaLanguagePipe,
@@ -77,10 +81,12 @@ import { AuthService } from './services/auth.service';
     SortableColumnComponent,
     SortableTableDirective,
     GradeMonthsComponent,
+    StudentGradesStatusComponent,
+    StudentMRStatusComponent,
     AlphaMonthPipe,
     AlphaLanguagePipe,
     TruncateDatePipe
-    ]
+  ]
 })
 
 export class AppSharedModule {

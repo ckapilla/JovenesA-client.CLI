@@ -2,9 +2,8 @@
   {{errorMessage}}</div>
 
 <students-for-mentor-grid
-(onSelectedStudentName)="onSelectedStudentName($event)"
-(onSelectedStudentId)="onSelectedStudentId($event)"
->
+                          (onSelectedStudentName)="onSelectedStudentName($event)"
+                          (onSelectedStudentId)="onSelectedStudentId($event)">
 </students-for-mentor-grid>
 
 <div [ngSwitch]="isLoading">
@@ -13,14 +12,9 @@
     </app-loading-container>
   </div>
   <div *ngSwitchCase="false">
-<<<<<<< HEAD
-    <div *ngIf="!errorMessage" class="panel panel-warning">
-      <div class="panel-heading" style="font-size:large">
-=======
     <div *ngIf="!errorMessage" class="card bg-warning">
       <div class="card-header bg-warning text-for-warning" style="font-size:large">
->>>>>>> bootstrap4
-        <span>Previous Requests / Pedidos Anteriores --  </span>
+        <span>Previous Requests / Pedidos Anteriores -- </span>
         <span>{{studentName}}</span>
         <span>
           <span>
@@ -30,10 +24,9 @@
           </span>
         </span>
       </div>
-<app-follow-up-requests-list  [followUpRequests]="followUpRequests"
-    [displayCompleteHistory]="true"
-    [showAddDetails]="false"
-    ></app-follow-up-requests-list>
+      <app-follow-up-requests-list [followUpRequests]="followUpRequests"
+                                   [displayCompleteHistory]="true"
+                                   [showAddDetails]="false"></app-follow-up-requests-list>
     </div>
   </div>
 </div>

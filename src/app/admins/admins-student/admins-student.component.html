@@ -175,10 +175,10 @@
                   <option *ngFor="let year of joinedYears" [value]="year.value">{{year.label}}</option>
                 </select>
 
-                <label for="gradMonth">Grad Month</label>
-                <select id="gradMonth" formControlName="gradMonth"
+                <label for="gradMonthNum">Grad Month</label>
+                <select id="gradMonthNum" formControlName="gradMonthNum"
                         class="form-control form-control-sm">
-                  <option *ngFor="let month of gradMonths" [value]="month.label">{{month.label}}</option>
+                  <option *ngFor="let month of gradMonths" [value]="month.value">{{month.label}}</option>
                 </select>
 
                 <label for="studentId">StudentId</label>
@@ -234,6 +234,14 @@
             <label for="gradeMonths">Academic Year / Grade Months</label>
             <app-grade-months [universityId]="student.universityId">
             </app-grade-months>
+
+            <app-student-grades-status [gpaStatus]="studentDTO.gpaStatus"
+                                       [gradeRptStatus]="studentDTO.gradeRptStatus">
+            </app-student-grades-status>
+            <app-student-mr-status [meetingStatus]="studentDTO.timelyMentorMeetingStatus"
+                                   [reportStatus]="studentDTO.timelyMentorReportStatus"
+                                   [emojiPathname]="emojiPathname">
+            </app-student-mr-status>
 
           </div>
         </div>

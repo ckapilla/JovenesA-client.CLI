@@ -2,9 +2,11 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { StudentDTO } from 'src/app/app_shared/models/studentDTO';
 import { constants } from '../../app_shared/constants/constants';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 import { Student } from '../../app_shared/models/student';
+import { SessionService } from '../../app_shared/services/session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
 @Component({
 
@@ -35,12 +37,17 @@ export class AdminsStudentComponent implements OnInit {
   // firstNames: string;
   // lastNames: string;
   student: Student;
+  studentDTO: StudentDTO;
   photoPathName: string;
   studentIdParam: number;
+  emojiPathname: string;
+  readonly smileys: string[] = constants.smileys;
+
 
   constructor(
     public currRoute: ActivatedRoute,
     private router: Router,
+    private session: SessionService,
     public sqlResource: SqlResource,
     public formBuilder: FormBuilder,
     public location: Location
@@ -85,7 +92,7 @@ export class AdminsStudentComponent implements OnInit {
       prepaId: [{ value: '' }],
       universityId: [{ value: '' }],
       gradYear: [{ value: '' }],
-      gradMonth: [{ value: '' }],
+      gradMonthNum: [{ value: '' }],
       curp: [{ value: '' }],
       rfc: [{ value: '' }],
       bankAccount: [{ value: '' }],
@@ -107,6 +114,13 @@ export class AdminsStudentComponent implements OnInit {
     console.log('admins Student ngOnInit');
     this.studentIdParam = this.currRoute.snapshot.params['id'];
     console.log('sqlResource with studentIdParam: ' + this.studentIdParam);
+    this.fetchStudentDTOData();
+
+
+
+  }
+
+  fetchStudentData() {
     this.isLoading = true;
     this.sqlResource.getStudent(this.studentIdParam)
       .subscribe(
@@ -117,6 +131,8 @@ export class AdminsStudentComponent implements OnInit {
           // this.photoPathName = this.photoPathName + '/' + 'CADENA RÍOS, CARLOS ANTONIO.jpg';
           console.log('photoPathName is ' + this.photoPathName);
           console.log(this.student);
+          this.emojiPathname = this.smileys[this.studentDTO.studentSnapshotStatus + 1];
+          console.log('emoji is ' + this.emojiPathname);
         },
         err => console.error('Subscribe error: ' + err),
         () => {
@@ -135,7 +151,82 @@ export class AdminsStudentComponent implements OnInit {
         this.submitted = false;
       }
     );
+
   }
+
+  fetchStudentDTOData() {
+    // console.log('sqlResource for getStudents: ' +
+    //        'status: ' + this.selectedStatus + ' ' +
+    //        'yearjoined: ' + this.selectedYearJoined +  + ' ' +
+    //        'gradyear: ' + this.selectedGradYear
+    //        );
+    this.isLoading = true;
+    this.sqlResource.getStudentDTO(321)
+      .subscribe(
+        data => {
+          this.studentDTO = data;
+          this.studentDTO = this.getNumericStatus(this.studentDTO);
+        },
+        err => { this.errorMessage = err; },
+        () => {
+          console.log('data loaded now set timeout for scroll');
+          this.isLoading = false;
+          this.fetchStudentData();
+        }
+      );
+  }
+
+
+  getNumericStatus(studentDTO: StudentDTO): StudentDTO {
+
+    studentDTO.numericTimelyMentorMeetingStatus = 0;
+    if (studentDTO.timelyMentorMeetingStatus === 'red') {
+      studentDTO.numericTimelyMentorMeetingStatus = 1;
+    } else if (studentDTO.timelyMentorMeetingStatus === 'yellow') {
+      studentDTO.numericTimelyMentorMeetingStatus = 2;
+    } else if (studentDTO.timelyMentorMeetingStatus === 'green') {
+      studentDTO.numericTimelyMentorMeetingStatus = 3;
+    }
+
+    studentDTO.numericTimelyMentorReportStatus = 0;
+    if (studentDTO.timelyMentorReportStatus === 'red') {
+      studentDTO.numericTimelyMentorReportStatus = 1;
+    } else if (studentDTO.timelyMentorReportStatus === 'yellow') {
+      studentDTO.numericTimelyMentorReportStatus = 2;
+    } else if (studentDTO.timelyMentorReportStatus === 'green') {
+      studentDTO.numericTimelyMentorReportStatus = 3;
+    }
+
+
+    studentDTO.numericGradeRptStatus = 0;
+    if (studentDTO.gradeRptStatus === 'red') {
+      studentDTO.numericGradeRptStatus = 1;
+    } else if (studentDTO.gradeRptStatus === 'yellow') {
+      studentDTO.numericGradeRptStatus = 2;
+    } else if (studentDTO.gradeRptStatus === 'green') {
+      studentDTO.numericGradeRptStatus = 3;
+    }
+
+    studentDTO.numericGPAStatus = 0;
+    if (studentDTO.gpaStatus === 'red') {
+      studentDTO.numericGPAStatus = 1;
+    } else if (studentDTO.gpaStatus === 'yellow') {
+      studentDTO.numericGPAStatus = 2;
+    } else if (studentDTO.gpaStatus === 'green') {
+      studentDTO.numericGPAStatus = 3;
+    }
+
+    studentDTO.joinedFrom = 'N/A';
+    if (studentDTO.joinedFromId === 2056) {
+      studentDTO.joinedFrom = 'Prepa';
+    } else if (studentDTO.joinedFromId === 2057) {
+      studentDTO.joinedFrom = 'Univ';
+    }
+
+    return studentDTO;
+  }
+
+
 
   setFormValues(student: Student) {
     console.log('setFormValues');
@@ -160,7 +251,7 @@ export class AdminsStudentComponent implements OnInit {
       prepaId: student.prepaId,
       universityId: student.universityId,
       gradYear: student.gradYear,
-      gradMonth: student.gradMonth,
+      gradMonthNum: student.gradMonthNum,
       curp: student.curp,
       rfc: student.rfc,
       bankAccount: student.bankAccount,
@@ -192,7 +283,7 @@ export class AdminsStudentComponent implements OnInit {
     // this.student.universityId = ctls.universityId.value;
     // this.student.studentId = ctls.studentId.value;
     // this.student.gradYear = ctls.gradYear.value;
-    // this.student.gradMonth = ctls.gradMonth.value;
+    // this.student.gradMonthNum = ctls.gradMonthNum.value;
     // this.student.curp = ctls.curp.value;
     // this.student.rfc = ctls.rfc.value;
     // this.student.bankAccount = ctls.bankAccount.value;

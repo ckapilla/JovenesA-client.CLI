@@ -68,18 +68,18 @@ export const constants = {
     { value: '2019', label: '2019' }
   ],
   months: [
-    { value: '1', label: 'Jan' },
-    { value: '2', label: 'Feb' },
-    { value: '3', label: 'Mar' },
-    { value: '4', label: 'Apr' },
-    { value: '5', label: 'May' },
-    { value: '6', label: 'Jun' },
-    { value: '7', label: 'Jul' },
-    { value: '8', label: 'Aug' },
-    { value: '9', label: 'Sep' },
-    { value: '10', label: 'Oct' },
-    { value: '11', label: 'Nov' },
-    { value: '12', label: 'Dec' }
+    { value: '1', label: 'Jan/Ene' },
+    { value: '2', label: 'Feb/Feb' },
+    { value: '3', label: 'Mar/Mar' },
+    { value: '4', label: 'Apr/Abr' },
+    { value: '5', label: 'May/May' },
+    { value: '6', label: 'Jun/Jun' },
+    { value: '7', label: 'Jul/Jul' },
+    { value: '8', label: 'Aug/Ago' },
+    { value: '9', label: 'Sep/Set' },
+    { value: '10', label: 'Oct/Oct' },
+    { value: '11', label: 'Nov/Nov' },
+    { value: '12', label: 'Dec/Dic' }
   ],
   studentStatuses: [
     { value: '1003', label: 'Dropped' },

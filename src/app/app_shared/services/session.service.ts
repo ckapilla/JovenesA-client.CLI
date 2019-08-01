@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
+import { StudentDTO } from '../models/studentDTO';
 
 @Injectable({ providedIn: 'root' })
 export class SessionService {
@@ -10,6 +11,7 @@ export class SessionService {
   userId: number;
   assignedStudentId: number;
   assignedStudentName: string;
+  currentStudent: StudentDTO;
   failedAuthorizationRoute: string;
   mostRecentMemberType: SELECTITEM;
   selectedYearJoined: string;
@@ -109,6 +111,14 @@ export class SessionService {
 
   public getStudentInContextName(): string {
     return this.assignedStudentName;
+  }
+
+  public setCurrentStudent(student: StudentDTO): void {
+    this.currentStudent = student;
+  }
+
+  public getCurrentStudent(): StudentDTO {
+    return this.currentStudent;
   }
 
   // public setFailedAuthorizationRoute(route: string): void {
