@@ -28,15 +28,15 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
   selectedMonth: string;
   selectedMRSummaryStatus: string;
   selectedHighlightStatus: string;
-  displayOriginalFields = false;
+  displayOriginalFields = true;
   x: any;
   studentName: string;
 
   constructor(
-              public router: Router,
-              public session: SessionService,
-              public sqlResource: SqlResource,
-              private route: ActivatedRoute
+    public router: Router,
+    public session: SessionService,
+    public sqlResource: SqlResource,
+    private route: ActivatedRoute
   ) {
 
 
@@ -48,20 +48,20 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
       { value: '2086', label: 'NeedsSetup' },
       { value: '2087', label: 'NeedsReview' },
       { value: '2088', label: 'ReadyToSend' },
-      { value: '2089', label: 'Sent'},
-      { value: '2090', label: 'Skipped'}
+      { value: '2089', label: 'Sent' },
+      { value: '2090', label: 'Skipped' }
     ];
 
-      this.highlightStatuses = [
-        { value: '0', label: '[All]' },
-        { value: '2105', label: 'Problems' },
-        { value: '2106', label: 'GoodNews' },
-        { value: '2109', label: 'Red/Green' }
-      ];
+    this.highlightStatuses = [
+      { value: '0', label: '[All]' },
+      { value: '2105', label: 'Problems' },
+      { value: '2106', label: 'GoodNews' },
+      { value: '2109', label: 'Red/Green' }
+    ];
 
 
     const today = new Date();
-    this.selectedYear =  '2019'; // '' + today.getFullYear(); //
+    this.selectedYear = '2019'; // '' + today.getFullYear(); //
     this.selectedMonth = '0'; // + today.getMonth() + 1;// '5';
 
     this.selectedMRSummaryStatus = this.mrSummaryStatuses[0].value;
@@ -76,35 +76,35 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
     this.processRouteParams();
   }
 
-  processRouteParams( ) {
+  processRouteParams() {
     console.log('summaryTracking setting filters form queryParams');
 
     const year = this.route.snapshot.queryParams['year'];
-    console.log('year param = ' +  year);
+    console.log('year param = ' + year);
     if (year !== undefined) {
-      this.selectedYear =  year;
+      this.selectedYear = year;
     }
 
-      const month = this.route.snapshot.queryParams['month'];
-      console.log('month param = ' +  month);
-      if (month !== undefined) {
-        this.selectedMonth =  month;
-      }
-      const summary = this.route.snapshot.queryParams['summaryStatus'];
-      console.log('summary param = ' +  summary);
-      if (month !== undefined) {
-        this.selectedMRSummaryStatus =  summary;
-      } else {
-        this.selectedMRSummaryStatus =  '0';
-      }
+    const month = this.route.snapshot.queryParams['month'];
+    console.log('month param = ' + month);
+    if (month !== undefined) {
+      this.selectedMonth = month;
+    }
+    const summary = this.route.snapshot.queryParams['summaryStatus'];
+    console.log('summary param = ' + summary);
+    if (month !== undefined) {
+      this.selectedMRSummaryStatus = summary;
+    } else {
+      this.selectedMRSummaryStatus = '0';
+    }
 
-      const highlight = this.route.snapshot.queryParams['highlight'];
-      console.log('highlight param = ' +  highlight);
-      if (highlight !== undefined) {
-        this.selectedHighlightStatus =  highlight;
-      } else {
-        this.selectedHighlightStatus =  '0';
-      }
+    const highlight = this.route.snapshot.queryParams['highlight'];
+    console.log('highlight param = ' + highlight);
+    if (highlight !== undefined) {
+      this.selectedHighlightStatus = highlight;
+    } else {
+      this.selectedHighlightStatus = '0';
+    }
 
     this.fetchFilteredData();
 
@@ -115,31 +115,33 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
     this.isLoading = true;
     console.log('in fetchData for MentorReportsByMonth');
     this.sqlResource.getMentorReportsByMonth(this.selectedYear,
-                  this.selectedMonth,
-                  this.selectedMRSummaryStatus)
+      this.selectedMonth,
+      this.selectedMRSummaryStatus)
       .subscribe(
         data => { this.mentorReportByMonth = data; console.log('mentorReportByMonth has'); console.log(this.mentorReportByMonth[0]); },
         err => console.error('Subscribe error: ' + err),
-        () => { console.log('data loaded now set timeout for scroll');
-        setTimeout(() => {
-          this.scrollIntoView();
-        }, 0);
-        this.isLoading = false; }
+        () => {
+          console.log('data loaded now set timeout for scroll');
+          setTimeout(() => {
+            this.scrollIntoView();
+          }, 0);
+          this.isLoading = false;
+        }
       );
   }
 
   scrollIntoView() {
 
-      console.log (this.route.snapshot.queryParams['id']);
-      if (this.route.snapshot.queryParams['id']) {
-        const idSelector = '#' + this.route.snapshot.queryParams['id'];
-        console.log('id param = ' +  this.route.snapshot.queryParams['id']);
-          const element = document.querySelector(idSelector);
-          if (element) {
-            console.log('querySelector returns element ' + element);
-            element.scrollIntoView(true);
-        }
+    console.log(this.route.snapshot.queryParams['id']);
+    if (this.route.snapshot.queryParams['id']) {
+      const idSelector = '#' + this.route.snapshot.queryParams['id'];
+      console.log('id param = ' + this.route.snapshot.queryParams['id']);
+      const element = document.querySelector(idSelector);
+      if (element) {
+        console.log('querySelector returns element ' + element);
+        element.scrollIntoView(true);
       }
+    }
   }
 
   setSelectedMRSummaryStatus(status: string) {
@@ -175,9 +177,9 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
   gotoReportSummary(id: number, studentName: string) {
     // const link = ['/admins/mentor-reports/summary-updates?id=' + id + '&summaryStatus=' + 2087 + '&highlight=' + 2106];
     this.session.setStudentInContextName(studentName);
-    const link: [string , { mentorReportId: number, summaryStatus: string, highlight: string}]
+    const link: [string, { mentorReportId: number, summaryStatus: string, highlight: string }]
       = ['/admins/mentor-reports/summary-updates',
-          { mentorReportId: id, summaryStatus: this.selectedMRSummaryStatus, highlight: this.selectedHighlightStatus}];
+        { mentorReportId: id, summaryStatus: this.selectedMRSummaryStatus, highlight: this.selectedHighlightStatus }];
 
     console.log('navigating to ' + link);
     this.router.navigate(link);

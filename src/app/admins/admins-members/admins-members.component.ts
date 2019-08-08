@@ -67,8 +67,8 @@ export class AdminsMembersComponent implements OnInit {
       console.log('setting MemberType to saved ' + memType);
     }
     this._selectedType = this.memberTypes[idx];
-    console.log('statuses[1] = ' + this.memberStatuses[1].value);
-    this._selectedStatus = this.memberStatuses[1];
+    console.log('statuses[0] = ' + this.memberStatuses[0].value);
+    this._selectedStatus = this.memberStatuses[0];
     this.fetchFilteredData();
   }
 

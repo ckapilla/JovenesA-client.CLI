@@ -32,11 +32,11 @@ export class AuthService {
     public urlService: UrlService,
     public session: SessionService,
     public sqlResource: SqlResource) {
-      // if not authenticated, check to see if we have a saved profile
-      if (session.getUserId() === 0) {
-        console.log('no current session so check for stored authResult');
-        this.checkRestoreSavedAuthData();
-      }
+    // if not authenticated, check to see if we have a saved profile
+    if (session.getUserId() === 0) {
+      console.log('no current session so check for stored authResult');
+      this.checkRestoreSavedAuthData();
+    }
   }
   private checkRestoreSavedAuthData() {
     this.authResult = this.checkRestoreAuthResult();
@@ -56,10 +56,10 @@ export class AuthService {
     console.log('login Redirect to the Auth0 universal /authorize endpoint');
     this.auth0.authorize({
       scope: 'profile email'
-    } );
+    });
   }
 
-   public handleAuthentication(): void {
+  public handleAuthentication(): void {
     console.log('calling ParseHash');
     this.auth0.parseHash((err, _authResult) => {
       console.log('in parseHash callBack with authResult' + _authResult);
@@ -112,7 +112,7 @@ export class AuthService {
     // Call get userInfo with the token in authResult
     // console.log('in extractUserProfileFromAuthResult');
     // console.log('calling userInfo with authResult.accessToken')
-    this.auth0.client.userInfo(authResult.accessToken, (err: any , profile: any) => {
+    this.auth0.client.userInfo(authResult.accessToken, (err: any, profile: any) => {
       // console.log('userInfo Callback')
 
       if (err) {
@@ -162,14 +162,14 @@ export class AuthService {
   // and to interupt router proccessing and complete the parse ourselves
   // https://github.com/auth0/lock/pull/790
   // see https://github.com/auth0-samples/auth0-angularjs2-systemjs-sample/issues/40
-  public handleAuthenticationWithHash() {
+  public handleAuthenticationWithHashXXXX() {
     console.log('in handleRedirectWithAuthHash');
     this.router.events.pipe(
-          filter(event => event.constructor.name === 'NavigationStart'),
-          filter(event => (/access_token|id_token|error/).test(event['url'])
-        ),
-        catchError(err => of ('Auth Error'))
-      ).subscribe(event => {
+      filter(event => event.constructor.name === 'NavigationStart'),
+      filter(event => (/access_token|id_token|error/).test(event['url'])
+      ),
+      catchError(err => of('Auth Error'))
+    ).subscribe(event => {
       console.log('in handleRedirectWithAuthHash subscribe event with hash ' + window.location.hash);
       const authResult = this.auth0.parseHash(window.location.hash);
       // use following in conjunction with autoParseHash: false option setting
@@ -211,22 +211,22 @@ export class AuthService {
     // console.log('calling SqlResource UpdateLastLogin with useId' + this.session.userId);
     this.sqlResource.UpdateLastLogin(this.session.userId)
       .subscribe(
-      data => {/*console.log('');*/ },
-      err => console.error('last login Subscribe error: ' + err),
-      () => { }
+        data => {/*console.log('');*/ },
+        err => console.error('last login Subscribe error: ' + err),
+        () => { }
       );
   }
 
 
   public logout(): void {
     console.log('in logout');
-// from sample:
+    // from sample:
     // Remove tokens and expiry time from localStorage
     localStorage.clear();
 
     // Go back to the home route
     this.router.navigate(['/']);
-  // from prev code:
+    // from prev code:
 
     this.session.setAdminStatus(undefined);
     this.session.setMentorStatus(undefined);
@@ -239,10 +239,10 @@ export class AuthService {
     console.log('return to address: ' + 'https://ckapilla.auth0.com/v2/logout?returnTo=' + this.urlService.getClientUrl());
     setTimeout(() => {
       console.log('in timeout callback with return to address ' +
-      'https://ckapilla.auth0.com/v2/logout?returnTo=' + this.urlService.getClientUrl());
+        'https://ckapilla.auth0.com/v2/logout?returnTo=' + this.urlService.getClientUrl());
       document.location.href =
-      'https://ckapilla.auth0.com/v2/logout?returnTo=' + this.urlService.getClientUrl();
-      }
+        'https://ckapilla.auth0.com/v2/logout?returnTo=' + this.urlService.getClientUrl();
+    }
       , 50);
   }
 

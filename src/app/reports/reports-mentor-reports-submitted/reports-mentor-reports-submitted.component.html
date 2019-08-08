@@ -18,24 +18,28 @@
             <tr>
               <th app-sortable-column="mentorName" (onSortColumn)="onSortColumn($event)">Mentor</th>
               <th app-sortable-column="studentName" (onSortColumn)="onSortColumn($event)">Student</th>
-              <th app-sortable-column="submittedCount"  sort-direction="asc" (onSortColumn)="onSortColumn($event)">Total Submitted</th>
+              <th app-sortable-column="submittedCount" sort-direction="asc" (onSortColumn)="onSortColumn($event)">Total
+                Submitted</th>
               <th app-sortable-column="latestDate" (onSortColumn)="onSortColumn($event)">Latest Month</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let row of mentorReportSubmittedCounts">
-              <td class="report-row">
+              <td *ngIf="row.mentorId" (click)='gotoMember(row.mentorId, row.mentorName)' class="report-row link">
+                {{ row.mentorName }}
+              </td>
+              <td *ngIf="!row.mentorId" class="report-row">
                 {{ row.mentorName }}
               </td>
               <td class="report-row">
                 {{ row.studentName }}
               </td>
-              <td class="report-row" >
+              <td class="report-row">
                 {{ row.submittedCount }}
               </td>
-              <td class="report-row" >
-                  {{ row.latestDate | truncateDate }}
-                </td>
+              <td class="report-row">
+                {{ row.latestDate | truncateDate }}
+              </td>
             </tr>
           </tbody>
         </table>
