@@ -1,4 +1,4 @@
-<nav 
+<nav
      class="navbar navbar-expand-sm bg-primary navbar-dark fixedbar">
 
 
@@ -21,11 +21,11 @@
     </li>
   </ul>
   <div class="navbar-text ml-auto">
-      <section id="login">
-        <button class="btn btn-primary btn-sm" (click)="auth.login()" *ngIf="!auth.isAuthenticated()">Log In / Iniciar
-          sesión</button>
-        <span *ngIf="auth.isAuthenticated()">Welcome {{auth.nickname}} <br /></span>
-        <span class="link" (click)="auth.logout()" *ngIf="auth.isAuthenticated()">Log Out</span>
-      </section>
-    </div>
+    <section id="login">
+      <button class="btn btn-primary btn-sm" (click)="auth.login()" *ngIf="!auth.loggedIn">Log In / Iniciar
+        sesión</button>
+      <span *ngIf="auth.loggedIn">Welcome {{auth.nickname}} <br /></span>
+      <span class="link" (click)="auth.logout()" *ngIf="auth.loggedIn">Log Out</span>
+    </section>
+  </div>
 </nav>

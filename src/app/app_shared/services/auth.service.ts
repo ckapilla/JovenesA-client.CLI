@@ -1,106 +1,233 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import * as auth0 from 'auth0-js';
-import { of } from 'rxjs';
-import { catchError, filter } from 'rxjs/operators';
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
+import createAuth0Client from '@auth0/auth0-spa-js';
+import Auth0Client from '@auth0/auth0-spa-js/dist/typings/Auth0Client';
+import { BehaviorSubject, combineLatest, from, Observable, of, throwError } from 'rxjs';
+import { catchError, concatMap, mergeMap, shareReplay, take, tap } from 'rxjs/operators';
 import { AUTH_CONFIG } from './auth0-config';
 import { SessionService } from './session.service';
+import { SqlResource } from './sql-resource.service';
 import { UrlService } from './url.service';
+
 
 (window as any).global = window;
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+}
+
+)
 export class AuthService {
   userProfile: Object;
-  authResult: Object;
-  expiresAt: string;
-  email: string;
+  // authResult: Object;
+  // expiresAt: string;
+  // email: string;
   nickname: string;
-  authenticated: boolean;
+  // authenticated: boolean;
 
-  auth0 = new auth0.WebAuth({
-    clientID: AUTH_CONFIG.clientID,
-    domain: AUTH_CONFIG.domain,
-    responseType: 'token id_token',
-    audience: `https://${AUTH_CONFIG.domain}/userinfo`,
-    redirectUri: this.urlService.getClientUrl(), //  AUTH_CONFIG.redirectUri,
-    scope: 'openid '
-  });
+  // Create an observable of Auth0 instance of client
+  auth0Client$ = (from(
+    createAuth0Client({
+      domain: AUTH_CONFIG.domain,
+      client_id: AUTH_CONFIG.clientID,
+      // redirect_uri: this.urlService.getClientUrl()
+      redirect_uri: `${window.location.origin}/callback`
+      // responseType: 'token id_token',
+      // audience: `https://${AUTH_CONFIG.domain}/userinfo`,
+      // scope: 'openid '
+    })
+  ) as Observable<Auth0Client>).pipe(
+    shareReplay(1),
+    catchError(err => throwError(err))
+  );
+  // Define observables for SDK methods that return promises by default
+  // For each Auth0 SDK method, first ensure the client instance is ready
+  // concatMap: Using the client instance, call SDK method; SDK returns a promise
+  // from: Convert that resulting promise into an observable
+  isAuthenticated$ = this.auth0Client$.pipe(
+    concatMap((client: Auth0Client) => from(client.isAuthenticated()))
+  );
+  handleRedirectCallback$ = this.auth0Client$.pipe(
+    concatMap((client: Auth0Client) => from(client.handleRedirectCallback()))
+  );
+  // Create subject and public observable of user profile data
+  private userProfileSubject$ = new BehaviorSubject<any>(null);
+  userProfile$ = this.userProfileSubject$.asObservable();
+  // Create a local property for login status
+  loggedIn: boolean = null;
 
   constructor(public router: Router,
     public urlService: UrlService,
     public session: SessionService,
     public sqlResource: SqlResource) {
-    // if not authenticated, check to see if we have a saved profile
+    //  if not authenticated, check to see if we have a saved profile
     if (session.getUserId() === 0) {
       console.log('no current session so check for stored authResult');
-      this.checkRestoreSavedAuthData();
-    }
-  }
-  private checkRestoreSavedAuthData() {
-    this.authResult = this.checkRestoreAuthResult();
-    if (this.authResult) {
-      console.log('checkRestore with expiresAt: ');
-      this.expiresAt = localStorage.getItem('expires_at');
-      console.log(this.expiresAt);
-      console.log('checkRestore has saved authResult:');
-      console.log(this.authResult);
-      this.extractUserProfileFromAuthResult(this.authResult);
-    } else {
-      console.log('no stored AuthResult');
+      // this.checkRestoreSavedAuthData();
     }
   }
 
-  public login(): void {
-    console.log('login Redirect to the Auth0 universal /authorize endpoint');
-    this.auth0.authorize({
-      scope: 'profile email'
-    });
+  // getUser$() is a method because options can be passed if desired
+  // https://auth0.github.io/auth0-spa-js/classes/auth0client.html#getuser
+  getUser$(options?): Observable<any> {
+    return this.auth0Client$.pipe(
+      concatMap((client: Auth0Client) => from(client.getUser(options)))
+    );
   }
 
-  public handleAuthentication(): void {
-    console.log('calling ParseHash');
-    this.auth0.parseHash((err, _authResult) => {
-      console.log('in parseHash callBack with authResult' + _authResult);
-      if (_authResult && _authResult.accessToken && _authResult.idToken) {
-        console.log('in parseHash with authResult tokens');
-        this.authenticated = true;
-        this.setSession(_authResult);
-        this.storeAuthResultToStorage(_authResult);
-        this.extractUserProfileFromAuthResult(_authResult);
-        window.location.hash = '';
-      } else if (err) {
-        console.log(err);
-        alert(`Error: ${err.error}. Check the console for further details.`);
+
+  localAuthSetup() {
+    console.log('localAuthSetup');
+    // This should only be called on app initialization
+    // Set up local authentication streams
+    const checkAuth$ = this.isAuthenticated$.pipe(
+      concatMap((loggedIn: boolean) => {
+        if (loggedIn) {
+          // If authenticated, get user data
+          return this.getUser$();
+        }
+        // If not authenticated, return stream that emits 'false'
+        return of(loggedIn);
+      })
+    );
+
+    const checkAuthSub = checkAuth$.subscribe((response: { [key: string]: any } | boolean) => {
+      // If authenticated, response will be user object
+      // If not authenticated, response will be 'false'
+      // Set subjects appropriately
+      if (response) {
+        const user = response;
+        this.userProfileSubject$.next(user);
       }
+      this.loggedIn = !!response;
+      // Clean up subscription
+      checkAuthSub.unsubscribe();
     });
   }
 
-  private setSession(authResult): void {
-    // Set the time that the access token will expire at
+  login(redirectPath: string = '/') {
+    // A desired redirect path can be passed to login method
+    // (e.g., from a route guard)
+    // Ensure Auth0 client instance exists
+    this.auth0Client$.subscribe((client: Auth0Client) => {
+      // Call method to log in
+      client.loginWithRedirect({
+        redirect_uri: `${window.location.origin}/callback`,
+        appState: { target: redirectPath }
+      });
+    });
+  }
 
+  handleAuthCallback() {
+    console.log('handleAuthCallback');
+    // Only the callback component should call this method
+    // Call when app reloads after user logs in with Auth0
+    let targetRoute: string; // Path to redirect to after login processsed
+    // Ensure Auth0 client instance exists
+    const authComplete$ = this.auth0Client$.pipe(
+      // Have client, now call method to handle auth callback redirect
+      concatMap(() => this.handleRedirectCallback$),
+      tap(cbRes => {
+        // Get and set target redirect route from callback results
+        targetRoute = cbRes.appState && cbRes.appState.target ? cbRes.appState.target : '/';
+      }),
+      concatMap(() => {
+        // Redirect callback complete; create stream
+        // returning user data and authentication status
+        return combineLatest(
+          this.getUser$(),
+          this.isAuthenticated$
+        );
+      })
+    );
 
+    // Subscribe to authentication completion observable
+    // Response will be an array of user and login status
+    authComplete$.subscribe(([user, loggedIn]) => {
+      // Update subjects and loggedIn property
+      this.userProfileSubject$.next(user);
+      this.loggedIn = loggedIn;
+      ////////////////////// cjk
+      this.userProfile = this.userProfileSubject$.pipe(mergeMap(() => take(1)));
+      this.userProfile = this.userProfileSubject$.getValue();
+      // above supposedly better than this.userProfileSubject$.getValue()
+      console.log('authComplete setting userProfle with value ');
+      console.log(this.userProfile);
+      this.setUserProfileElementsToSession(this.userProfile);
+      // this.setSessionTokenParams(this.userProfile);
+      //  this.storeAuthResultToStorage(_authResult);
+      //  this.extractUserProfileFromAuthResult(_authResult);
 
-    console.log('successful Login set expires_at to ');
+      ///////////////////// cjk
 
-    this.expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
-    console.log(this.expiresAt);
+      // Redirect to target route after callback processing
+      this.router.navigate([targetRoute]);
+    });
+  }
 
-    localStorage.setItem('access_token', authResult.accessToken);
-    localStorage.setItem('id_token', authResult.idToken);
-    localStorage.setItem('expires_at', this.expiresAt);
-    // console.log('in SetSession with Result idToken ' + authResult.idToken);
-    // console.log('in SetSession with Result accessToken' + authResult.accessToken);
-    // console.log('in SetSession with Result expiresAt' + this.expiresAt);
+  logout() {
+    // Ensure Auth0 client instance exists
+    this.auth0Client$.subscribe((client: Auth0Client) => {
+      // Call method to log out
+      client.logout({
+        client_id: AUTH_CONFIG.clientID,
+        returnTo: `${window.location.origin}`
+      });
+    });
+
+    //////////// cjk
+    localStorage.clear();
+
+    // Go back to the home route
+    this.router.navigate(['/']);
+    // from prev code:
+
+    this.session.setAdminStatus(undefined);
+    this.session.setMentorStatus(undefined);
+    this.session.setSponsorStatus(undefined);
+    this.session.setStudentId(undefined);
+    //////////////// cjk
 
   }
 
 
+  // private checkRestoreSavedAuthData() {
+  //   this.authResult = this.checkRestoreAuthResult();
+  //   if (this.authResult) {
+  //     console.log('checkRestore with expiresAt: ');
+  //     this.expiresAt = localStorage.getItem('expires_at');
+  //     console.log(this.expiresAt);
+  //     console.log('checkRestore has saved authResult:');
+  //     console.log(this.authResult);
+  //     this.finalize(this.authResult);
+  //   } else {
+  //     console.log('no stored AuthResult');
+  //   }
+  // }
 
-  private storeAuthResultToStorage(authResult: any) {
+
+
+  // private setSessionTokenParams(authResult): void {
+  //   // Set the time that the access token will expire at
+
+
+  //   console.log('successful Login set expires_at to ');
+
+  //   this.expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
+  //   console.log(this.expiresAt);
+
+  //   localStorage.setItem('access_token', authResult.accessToken);
+  //   localStorage.setItem('id_token', authResult.idToken);
+  //   localStorage.setItem('expires_at', this.expiresAt);
+  //   // console.log('in SetSession with Result idToken ' + authResult.idToken);
+  //   // console.log('in SetSession with Result accessToken' + authResult.accessToken);
+  //   // console.log('in SetSession with Result expiresAt' + this.expiresAt);
+
+  // }
+
+  private storeAuthResultToStorage(userProfile: any) {
     console.log('saving authResult to storage');
-    localStorage.setItem('authResult', JSON.stringify(authResult));
+    localStorage.setItem('userProfile', JSON.stringify(this.userProfile));
   }
 
   public checkRestoreAuthResult(): any {
@@ -108,37 +235,37 @@ export class AuthService {
     return JSON.parse(localStorage.getItem('authResult'));
   }
 
-  private extractUserProfileFromAuthResult(authResult: any) {
+  private finalize(authResult: any) {
     // Call get userInfo with the token in authResult
     // console.log('in extractUserProfileFromAuthResult');
     // console.log('calling userInfo with authResult.accessToken')
-    this.auth0.client.userInfo(authResult.accessToken, (err: any, profile: any) => {
-      // console.log('userInfo Callback')
+    // this.auth0.client.userInfo(authResult.accessToken, (err: any, profile: any) => {
+    // console.log('userInfo Callback')
 
-      if (err) {
-        // Handle error
-        console.log(err);
-        return;
-      }
-      console.log('in userInfo Callback with profile>>');
-      if (this.isTokenUnexpired()) {
-        console.log('Token Unexpired, so set Session with Profile');
-        // this.saveProfileToLocalStorage(profile);
-        this.setUserProfileElementsToSession(profile);
-      } else {
-        console.log('getUserInfo with token expired');
-      }
+    // if (err) {
+    //   // Handle error
+    //   console.log(err);
+    //   return;
+    // }
+    // console.log('in userInfo Callback with profile>>');
+    // if (this.isTokenUnexpired()) {
+    //   console.log('Token Unexpired, so set Session with Profile');
+    //   // this.saveProfileToLocalStorage(profile);
+    //   this.setUserProfileElementsToSession(profile);
+    // } else {
+    //   console.log('getUserInfo with token expired');
+    // }
 
-      // if (this.session.getFailedAuthorizationRoute()  > '') {
-      //   console.log('have failed authorization route, retrying ');
-      //   this.router.navigateByUrl(this.session.getFailedAuthorizationRoute());
-      // }
+    // if (this.session.getFailedAuthorizationRoute()  > '') {
+    //   console.log('have failed authorization route, retrying ');
+    //   this.router.navigateByUrl(this.session.getFailedAuthorizationRoute());
+    // }
 
-      // Redirect to retryUrl if there is a saved url that has been set
-      console.log('before checkForUnauthenticateRetryUrl');
-      this.checkForUnauthenticateRetryUrl();
-      this.UpdateLastLogin();
-    });
+    // Redirect to retryUrl if there is a saved url that has been set
+    console.log('before checkForUnauthenticateRetryUrl');
+    this.checkForUnauthenticateRetryUrl();
+    this.UpdateLastLogin();
+    // });
   }
 
   private checkForUnauthenticateRetryUrl() {
@@ -152,38 +279,6 @@ export class AuthService {
     }
   }
 
-  // private saveProfileToLocalStorage(profile: any) {
-  //   console.log('###setting AUth0 profile to local storage');
-  //   localStorage.setItem('profile', JSON.stringify(profile));
-  //   this.userProfile = profile;
-  // }
-
-  // with angular router we need to not do autoParse
-  // and to interupt router proccessing and complete the parse ourselves
-  // https://github.com/auth0/lock/pull/790
-  // see https://github.com/auth0-samples/auth0-angularjs2-systemjs-sample/issues/40
-  public handleAuthenticationWithHashXXXX() {
-    console.log('in handleRedirectWithAuthHash');
-    this.router.events.pipe(
-      filter(event => event.constructor.name === 'NavigationStart'),
-      filter(event => (/access_token|id_token|error/).test(event['url'])
-      ),
-      catchError(err => of('Auth Error'))
-    ).subscribe(event => {
-      console.log('in handleRedirectWithAuthHash subscribe event with hash ' + window.location.hash);
-      const authResult = this.auth0.parseHash(window.location.hash);
-      // use following in conjunction with autoParseHash: false option setting
-      this.auth0.resumeAuth(window.location.hash, (error, _authResult) => {
-        if (_authResult && _authResult.idToken) {
-          console.log('resumeAuthh successfully authenticated');
-          // this.lock.emit('authenticated', authResult);
-        }
-        if (_authResult && _authResult.error) {
-          this.auth0.emit('authorization_error', _authResult);
-        }
-      });
-    });
-  }
 
   public setUserProfileElementsToSession(userProfile: any): void {
     console.log('in extractElementsFromProfile with userProfile:');
@@ -202,7 +297,7 @@ export class AuthService {
       this.session.setUserId((<any>userProfile)['user_id'].substr('auth0|'.length));
       console.log('userId: ' + this.session.userId);
 
-      this.email = (<any>userProfile)['email'];
+      // this.email = (<any>userProfile)['email'];
       this.nickname = (<any>userProfile)['nickname'];
     }
   }
@@ -218,49 +313,49 @@ export class AuthService {
   }
 
 
-  public logout(): void {
-    console.log('in logout');
-    // from sample:
-    // Remove tokens and expiry time from localStorage
-    localStorage.clear();
+  // public logout(): void {
+  //   console.log('in logout');
+  //   // from sample:
+  //   // Remove tokens and expiry time from localStorage
+  //   localStorage.clear();
 
-    // Go back to the home route
-    this.router.navigate(['/']);
-    // from prev code:
+  //   // Go back to the home route
+  //   this.router.navigate(['/']);
+  //   // from prev code:
 
-    this.session.setAdminStatus(undefined);
-    this.session.setMentorStatus(undefined);
-    this.session.setSponsorStatus(undefined);
-    this.session.setStudentId(undefined);
+  //   this.session.setAdminStatus(undefined);
+  //   this.session.setMentorStatus(undefined);
+  //   this.session.setSponsorStatus(undefined);
+  //   this.session.setStudentId(undefined);
 
-    this.authResult = undefined;
-    this.userProfile = undefined;
-    // this.router.navigate(['']);
-    console.log('return to address: ' + 'https://ckapilla.auth0.com/v2/logout?returnTo=' + this.urlService.getClientUrl());
-    setTimeout(() => {
-      console.log('in timeout callback with return to address ' +
-        'https://ckapilla.auth0.com/v2/logout?returnTo=' + this.urlService.getClientUrl());
-      document.location.href =
-        'https://ckapilla.auth0.com/v2/logout?returnTo=' + this.urlService.getClientUrl();
-    }
-      , 50);
-  }
+  //   this.authResult = undefined;
+  //   this.userProfile = undefined;
+  //   // this.router.navigate(['']);
+  //   console.log('return to address: ' + 'https://ckapilla.auth0.com/v2/logout?returnTo=' + this.urlService.getClientUrl());
+  //   setTimeout(() => {
+  //     console.log('in timeout callback with return to address ' +
+  //       'https://ckapilla.auth0.com/v2/logout?returnTo=' + this.urlService.getClientUrl());
+  //     document.location.href =
+  //       'https://ckapilla.auth0.com/v2/logout?returnTo=' + this.urlService.getClientUrl();
+  //   }
+  //     , 50);
+  // }
 
-  private isTokenUnexpired(): boolean {
-    // abort if not set or not authenticated
-    if (!this.expiresAt) { // || !this.authenticated) {
-      // console.log('isTokenUnexpired has null');
-      return false;
-    } else {
-      const now: string = new Date().getTime() + '';
-      // console.log('isTokenUnexpired num has ' + now + ' ' + this.expiresAt);
-      const isNotExpired = this.expiresAt > now;
-      return isNotExpired;
-    }
-  }
+  // private isTokenUnexpired(): boolean {
+  //   // abort if not set or not authenticated
+  //   if (!this.expiresAt) { // || !this.authenticated) {
+  //     // console.log('isTokenUnexpired has null');
+  //     return false;
+  //   } else {
+  //     const now: string = new Date().getTime() + '';
+  //     // console.log('isTokenUnexpired num has ' + now + ' ' + this.expiresAt);
+  //     const isNotExpired = this.expiresAt > now;
+  //     return isNotExpired;
+  //   }
+  // }
 
-  public isAuthenticated(): boolean {
-    return this.isTokenUnexpired();
-  }
+  // public isAuthenticated(): boolean {
+  //   return this.isTokenUnexpired();
+  // }
 
 }

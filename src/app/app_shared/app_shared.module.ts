@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MentorsForStudentListComponent } from '../app_shared/components/mentors-for-student-list/mentors-for-student-list.component';
 import { SponsorsForStudentGridComponent } from '../app_shared/components/sponsors-for-student-grid/sponsors-for-student-grid.component';
+import { CallbackComponent } from './components/callback.component';
 import { DisplayErrorsComponent } from './components/display-errors.component';
 import { FollowUpEventsComponent } from './components/follow-up-events/follow-up-events.component';
 import { FollowUpRequestsListComponent } from './components/follow-up-requests-list/follow-up-requests-list.component';
@@ -11,6 +12,7 @@ import { GradeMonthsComponent } from './components/grade-months.component';
 import { LoadingContainerComponent } from './components/loading-container.component';
 import { MemberSelectorComponent } from './components/member-selector/member-selector.component';
 import { MentorReports2ListComponent } from './components/mentor-reports2-list/mentor-reports2-list.component';
+import { ProfileComponent } from './components/profile.component';
 import { SortableColumnComponent } from './components/sortable-column.component';
 import { StudentGradesStatusComponent } from './components/student-grades-status.component';
 import { StudentMRStatusComponent } from './components/student-mr-status.component';
@@ -55,6 +57,8 @@ import { AuthService } from './services/auth.service';
     StudentGradesStatusComponent,
     StudentMRStatusComponent,
     GradeMonthsComponent,
+    CallbackComponent,
+    ProfileComponent,
     AlphaMonthPipe,
     AlphaLanguagePipe,
     TruncateDatePipe
@@ -83,6 +87,8 @@ import { AuthService } from './services/auth.service';
     GradeMonthsComponent,
     StudentGradesStatusComponent,
     StudentMRStatusComponent,
+    CallbackComponent,
+    ProfileComponent,
     AlphaMonthPipe,
     AlphaLanguagePipe,
     TruncateDatePipe

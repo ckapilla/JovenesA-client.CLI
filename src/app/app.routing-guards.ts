@@ -7,11 +7,11 @@ import { MonthlyReports2AddComponent } from './mentors/index';
 
 @Injectable({ providedIn: 'root' })
 export class CanActivateViaAdminAuthGuard implements CanActivate {
-  constructor(private auth: AuthService, private router: Router, private session: SessionService) {}
+  constructor(private auth: AuthService, private router: Router, private session: SessionService) { }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     console.log('canActivate for Admin AuthGuard with url' + state.url);
-    if (this.auth.isAuthenticated()) {
+    if (this.auth.loggedIn) {
       console.log('Can Activate Admin 1');
       if (this.session.isAdmin()) {
         console.log('Authenticated and Can Activate Admin');
@@ -35,11 +35,11 @@ export class CanActivateViaAdminAuthGuard implements CanActivate {
 }
 @Injectable({ providedIn: 'root' })
 export class CanActivateViaMentorAuthGuard implements CanActivate {
-  constructor(private auth: AuthService, private router: Router, private session: SessionService) {}
+  constructor(private auth: AuthService, private router: Router, private session: SessionService) { }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     console.log('canActivate for /mentors');
-    if (this.auth.isAuthenticated()) {
+    if (this.auth.loggedIn) {
       // following has issue of race condition with callback to get profile
       if (this.session.isMentor()) {
         console.log('Authenticated and Can Activate Mentor');
@@ -65,11 +65,11 @@ export class CanActivateViaMentorAuthGuard implements CanActivate {
 
 @Injectable({ providedIn: 'root' })
 export class CanActivateViaStudentAuthGuard implements CanActivate {
-  constructor(private auth: AuthService, private router: Router, private session: SessionService) {}
+  constructor(private auth: AuthService, private router: Router, private session: SessionService) { }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
-    if (this.auth.isAuthenticated()) {
+    if (this.auth.loggedIn) {
       if (this.session.isStudent()) {
         console.log('Authenticated and Can Activate Student');
         return true;
@@ -91,10 +91,10 @@ export class CanActivateViaStudentAuthGuard implements CanActivate {
 
 @Injectable({ providedIn: 'root' })
 export class ConfirmDeactivateMonthlyReportAddGuard
-      implements CanDeactivate<MonthlyReports2AddComponent> {
+  implements CanDeactivate<MonthlyReports2AddComponent> {
 
   canDeactivate(component: MonthlyReports2AddComponent): boolean {
-    if  (component.hasChanges()) {
+    if (component.hasChanges()) {
       console.log('CanDeactivate');
       // tslint:disable-next-line:max-line-length
       return window.confirm('You have unsaved changes. Click OK to leave the page without saving.\nTiene cambios no guardados. Haga clic OK para salir de la página sin guardar');
@@ -104,7 +104,7 @@ export class ConfirmDeactivateMonthlyReportAddGuard
 }
 @Injectable({ providedIn: 'root' })
 export class ConfirmDeactivateSummaryTrackingGuard
-      implements CanDeactivate<MentorReportsSummaryTrackingComponent> {
+  implements CanDeactivate<MentorReportsSummaryTrackingComponent> {
 
   canDeactivate(component: MentorReportsSummaryTrackingComponent): boolean {
     console.log('CanDeactivate for Admins clearing unauthenticate_retry+url');

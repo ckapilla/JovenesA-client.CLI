@@ -13,7 +13,7 @@ import { HomeModule } from './home/home.module';
 @NgModule({
   imports: [
     BrowserModule,
-    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
+    ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     HttpClientModule,
     appRouting,
     appRoutingProviders,
@@ -31,7 +31,7 @@ import { HomeModule } from './home/home.module';
 
   exports: [
     ReactiveFormsModule,
-    HttpClientModule,
+    HttpClientModule
   ],
   providers: [
     {
@@ -43,5 +43,4 @@ import { HomeModule } from './home/home.module';
   bootstrap: [AppComponent]
 })
 
-export class AppModule {}
-
+export class AppModule { }

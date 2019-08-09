@@ -15,12 +15,12 @@ import { SqlResource } from './app_shared/services/sql-resource.service';
 })
 export class AppComponent {
 
-   constructor(
-                private auth: AuthService,
-                session: SessionService,
-                router: Router,
-                sqlResource: SqlResource
-                ) {
+  constructor(
+    private auth: AuthService,
+    session: SessionService,
+    router: Router,
+    sqlResource: SqlResource
+  ) {
     // if (session.getUserId() === 0) {
     //   auth.tryGetAuthResultFromStorage();
     // }
@@ -30,7 +30,9 @@ export class AppComponent {
     //   .subscribe(e => {
     //     console.log('event: ', e);
     //   });
-    auth.handleAuthentication();
+    // auth.handleAuthentication();
+    console.log('AppComponentConstructor');
+    auth.localAuthSetup();
 
   }
 }

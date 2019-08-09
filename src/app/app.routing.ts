@@ -1,7 +1,17 @@
 import { ModuleWithProviders } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CallbackComponent } from './app_shared/components/callback.component';
+import { ProfileComponent } from './app_shared/components/profile.component';
 
 const appRoutes: Routes = [
+  {
+    path: 'callback',
+    component: CallbackComponent
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'Home/Mentors',
@@ -36,4 +46,3 @@ export const appRouting: ModuleWithProviders =
     // onSameUrlNavigation: 'reload',
     // enableTracing: true
   });
-
