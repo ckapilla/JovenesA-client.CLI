@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import createAuth0Client from '@auth0/auth0-spa-js';
 import Auth0Client from '@auth0/auth0-spa-js/dist/typings/Auth0Client';
 import { BehaviorSubject, combineLatest, from, Observable, of, throwError } from 'rxjs';
-import { catchError, concatMap, mergeMap, shareReplay, take, tap } from 'rxjs/operators';
+import { catchError, concatMap, shareReplay, tap } from 'rxjs/operators';
 import { AUTH_CONFIG } from './auth0-config';
 import { SessionService } from './session.service';
 import { SqlResource } from './sql-resource.service';
@@ -62,8 +62,8 @@ export class AuthService {
     public sqlResource: SqlResource) {
     //  if not authenticated, check to see if we have a saved profile
     if (session.getUserId() === 0) {
-      console.log('no current session so check for stored authResult');
-      // this.checkRestoreSavedAuthData();
+      console.log('no current userProfile so check for stored userProfile');
+      this.setUserProfileElementsToSession(this.checkRestoreUserProfile());
     }
   }
 
@@ -118,6 +118,14 @@ export class AuthService {
     });
   }
 
+  /*
+  Stores the application route to redirect back to after login processing is complete
+  Calls the JS SDK's handleRedirectCallback method
+  Gets and sets the user's profile data
+  Updates application login state
+  After the callback has been processed, redirects the user to their intended route
+  */
+
   handleAuthCallback() {
     console.log('handleAuthCallback');
     // Only the callback component should call this method
@@ -148,15 +156,13 @@ export class AuthService {
       this.userProfileSubject$.next(user);
       this.loggedIn = loggedIn;
       ////////////////////// cjk
-      this.userProfile = this.userProfileSubject$.pipe(mergeMap(() => take(1)));
+      // doesn't work because returns observable
+      // this.userProfile = this.userProfileSubject$.pipe(mergeMap(() => take(1)));
       this.userProfile = this.userProfileSubject$.getValue();
-      // above supposedly better than this.userProfileSubject$.getValue()
       console.log('authComplete setting userProfle with value ');
       console.log(this.userProfile);
       this.setUserProfileElementsToSession(this.userProfile);
-      // this.setSessionTokenParams(this.userProfile);
-      //  this.storeAuthResultToStorage(_authResult);
-      //  this.extractUserProfileFromAuthResult(_authResult);
+      this.storeUserProfileToStorage(this.userProfile);
 
       ///////////////////// cjk
 
@@ -177,11 +183,9 @@ export class AuthService {
 
     //////////// cjk
     localStorage.clear();
-
     // Go back to the home route
     this.router.navigate(['/']);
     // from prev code:
-
     this.session.setAdminStatus(undefined);
     this.session.setMentorStatus(undefined);
     this.session.setSponsorStatus(undefined);
@@ -189,21 +193,6 @@ export class AuthService {
     //////////////// cjk
 
   }
-
-
-  // private checkRestoreSavedAuthData() {
-  //   this.authResult = this.checkRestoreAuthResult();
-  //   if (this.authResult) {
-  //     console.log('checkRestore with expiresAt: ');
-  //     this.expiresAt = localStorage.getItem('expires_at');
-  //     console.log(this.expiresAt);
-  //     console.log('checkRestore has saved authResult:');
-  //     console.log(this.authResult);
-  //     this.finalize(this.authResult);
-  //   } else {
-  //     console.log('no stored AuthResult');
-  //   }
-  // }
 
 
 
@@ -225,36 +214,7 @@ export class AuthService {
 
   // }
 
-  private storeAuthResultToStorage(userProfile: any) {
-    console.log('saving authResult to storage');
-    localStorage.setItem('userProfile', JSON.stringify(this.userProfile));
-  }
-
-  public checkRestoreAuthResult(): any {
-    console.log('in checkRestoreAuthResult with' + JSON.parse(localStorage.getItem('authResult')));
-    return JSON.parse(localStorage.getItem('authResult'));
-  }
-
   private finalize(authResult: any) {
-    // Call get userInfo with the token in authResult
-    // console.log('in extractUserProfileFromAuthResult');
-    // console.log('calling userInfo with authResult.accessToken')
-    // this.auth0.client.userInfo(authResult.accessToken, (err: any, profile: any) => {
-    // console.log('userInfo Callback')
-
-    // if (err) {
-    //   // Handle error
-    //   console.log(err);
-    //   return;
-    // }
-    // console.log('in userInfo Callback with profile>>');
-    // if (this.isTokenUnexpired()) {
-    //   console.log('Token Unexpired, so set Session with Profile');
-    //   // this.saveProfileToLocalStorage(profile);
-    //   this.setUserProfileElementsToSession(profile);
-    // } else {
-    //   console.log('getUserInfo with token expired');
-    // }
 
     // if (this.session.getFailedAuthorizationRoute()  > '') {
     //   console.log('have failed authorization route, retrying ');
@@ -301,6 +261,17 @@ export class AuthService {
       this.nickname = (<any>userProfile)['nickname'];
     }
   }
+
+  private storeUserProfileToStorage(userProfile: any) {
+    console.log('saving userProfile to storage');
+    localStorage.setItem('userProfile', JSON.stringify(userProfile));
+  }
+
+  public checkRestoreUserProfile(): any {
+    console.log('in checkRestoreUserProfile with' + JSON.parse(localStorage.getItem('userProfile')));
+    return JSON.parse(localStorage.getItem('userProfile'));
+  }
+
 
   public UpdateLastLogin(): void {
     // console.log('calling SqlResource UpdateLastLogin with useId' + this.session.userId);
