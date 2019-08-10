@@ -90,7 +90,13 @@ export class SqlResource {
 
   public getStudentsForSponsor(sponsorId: Number): Observable<StudentSponsorXRef[]> {
     const url = this.WebApiPrefix + 'students/for_sponsor/' + sponsorId;
-    console.log('sending AuthHttp get request for StudentsForMentor');
+    console.log('sending AuthHttp get request ' + url);
+    return this.http.get<StudentSponsorXRef[]>(url).pipe(catchError(this.handleError));
+  }
+
+  public getSponsorsForSponsorGroup(sponsorGroupId: Number): Observable<StudentSponsorXRef[]> {
+    const url = this.WebApiPrefix + 'sponsorgroupmembers/' + sponsorGroupId;
+    console.log('sending AuthHttp get request ' + url);
     return this.http.get<StudentSponsorXRef[]>(url).pipe(catchError(this.handleError));
   }
 

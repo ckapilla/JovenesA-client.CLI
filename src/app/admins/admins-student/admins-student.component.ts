@@ -40,6 +40,7 @@ export class AdminsStudentComponent implements OnInit {
   studentDTO: StudentDTO;
   photoPathName: string;
   studentIdParam: number;
+  sponsorGroupIdParam: number;
   emojiPathname: string;
   readonly smileys: string[] = constants.smileys;
 
@@ -131,6 +132,7 @@ export class AdminsStudentComponent implements OnInit {
           // this.photoPathName = this.photoPathName + '/' + 'CADENA RÍOS, CARLOS ANTONIO.jpg';
           console.log('photoPathName is ' + this.photoPathName);
           console.log(this.student);
+          // this.sponsorGroupIdParam = this.student.sponsorGroupId;
           this.emojiPathname = this.smileys[this.studentDTO.studentSnapshotStatus + 1];
           console.log('emoji is ' + this.emojiPathname);
         },
@@ -151,6 +153,11 @@ export class AdminsStudentComponent implements OnInit {
         this.submitted = false;
       }
     );
+
+    this.profileForm.controls.sponsorGroupId.valueChanges.subscribe(newId => {
+      console.log('have new sponsorGroupId: ' + newId);
+      this.sponsorGroupIdParam = newId;
+    });
 
   }
 

@@ -3,6 +3,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MentorsForStudentListComponent } from '../app_shared/components/mentors-for-student-list/mentors-for-student-list.component';
+import { SponsorsForSponsorGroupComponent } from '../app_shared/components/sponsors-for-sponsor-group/sponsors-for-sponsor-group.component';
 import { SponsorsForStudentGridComponent } from '../app_shared/components/sponsors-for-student-grid/sponsors-for-student-grid.component';
 import { CallbackComponent } from './components/callback.component';
 import { DisplayErrorsComponent } from './components/display-errors.component';
@@ -52,6 +53,7 @@ import { AuthService } from './services/auth.service';
     SortableColumnComponent,
     SortableTableDirective,
     SponsorsForStudentGridComponent,
+    SponsorsForSponsorGroupComponent,
     MentorsForStudentListComponent,
     MentorsForStudentListComponent,
     StudentGradesStatusComponent,
@@ -73,6 +75,7 @@ import { AuthService } from './services/auth.service';
     LoadingContainerComponent,
     MemberSelectorComponent,
     SponsorsForStudentGridComponent,
+    SponsorsForSponsorGroupComponent,
     MentorsForStudentListComponent,
     StudentsForMentorGridComponent,
     StudentsForMentorListComponent,

@@ -223,8 +223,9 @@
               <option *ngFor="let sponsor of sponsorGroups" [value]="sponsor.value">{{sponsor.label}}</option>
             </select>
 
-            <app-sponsors-for-student-grid [studentId]="studentIdParam">
-            </app-sponsors-for-student-grid>
+            <app-sponsors-for-sponsor-group
+                                            [sponsorGroupId]="sponsorGroupIdParam">
+            </app-sponsors-for-sponsor-group>
 
             <label for="mentorId">Mentor</label>
             <select id="mentorId" formControlName="mentorId" class="form-control form-control-sm">

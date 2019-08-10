@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { StudentSponsorXRef } from '../../models/student-sponsor-xref';
 import { SessionService } from '../../services/session.service';
 import { SqlResource } from '../../services/sql-resource.service';
@@ -8,7 +8,7 @@ import { SqlResource } from '../../services/sql-resource.service';
   templateUrl: './sponsors-for-student-grid.component.html'
 })
 
-export class SponsorsForStudentGridComponent implements OnInit {
+export class SponsorsForStudentGridComponent implements OnInit, OnChanges {
   sponsors: Array<StudentSponsorXRef>;
   sponsorName: string;
   sponsorId: number;
@@ -16,9 +16,10 @@ export class SponsorsForStudentGridComponent implements OnInit {
   @Output() onSelectedSponsorName = new EventEmitter<string>();
   @Output() onSelectedSponsorId = new EventEmitter<number>();
   @Input() studentId: number;
+  @Input() sponsorGroupId: number; // only used for change detection
 
   constructor(public session: SessionService,
-            private sqlResource: SqlResource) {
+    private sqlResource: SqlResource) {
 
     console.log('in AssignedsponsorComponent constructor with studentId=' + this.studentId);
   }
@@ -30,7 +31,7 @@ export class SponsorsForStudentGridComponent implements OnInit {
         err => console.error('Subscribe error: ' + err),
         () => {
           console.log('sponsors-for-student-grid loaded ' + this.sponsors.length + ' rows');
-          if (this.sponsors.length > 0 ) {
+          if (this.sponsors.length > 0) {
             this.selectFirstRow();
           } else {
             this.errorMessage = 'No Assigned Sponsors.';
@@ -40,15 +41,20 @@ export class SponsorsForStudentGridComponent implements OnInit {
       );
   }
 
+  public ngOnChanges() {
+    console.log('child had new inpout');
+    this.ngOnInit();
+  }
+
   selectFirstRow() {
     console.log('First row Id is ' + this.sponsors[0].sponsorId + ' ' +
       this.sponsors[0].sponsorName); // + ' ' + this.sponsors[0].sponsorLastNames );
-      this.setRowClasses(+this.sponsors[0].sponsorId );
-      this.selectSponsor(+this.sponsors[0].sponsorId , 0);
+    this.setRowClasses(+this.sponsors[0].sponsorId);
+    this.selectSponsor(+this.sponsors[0].sponsorId, 0);
   }
 
   public selectSponsor(sponsorId: number, idx: number) {
-    console.log('sponsor selected sponsorId: ' + sponsorId + 'idx: ' + idx );
+    console.log('sponsor selected sponsorId: ' + sponsorId + 'idx: ' + idx);
     const sponsorName: string = this.sponsors[idx].sponsorName; //  + ', ' + this.sponsorMentors[idx].sponsorFirstNames;
     this.sponsorId = sponsorId;
     this.onSelectedSponsorId.emit(sponsorId);
@@ -58,7 +64,7 @@ export class SponsorsForStudentGridComponent implements OnInit {
   public setRowClasses(sponsorId: number) {
     // console.log('row SponsorID is ' + sponsorId);
     // console.log('session Assigned sponsor ID is ' + this.session.getAssignedSponsorId());
-    const classes =  {
+    const classes = {
       'success': sponsorId === this.sponsorId,
       'sponsor-row': true,
       'clickable': true
