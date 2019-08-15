@@ -79,6 +79,7 @@ export class AdminsStudentComponent implements OnInit {
       homePhone: [{ value: '' },
       Validators.compose([Validators.minLength(7), Validators.maxLength(13)])],
       nickName: [{ value: '' }, Validators.maxLength(20)],
+      photoUrl: [{ value: '' }, Validators.maxLength(255)],
       gender: ['',
         Validators.compose([Validators.required, Validators.maxLength(1)])],
       ja_Id: [{ value: '' }],
@@ -116,9 +117,6 @@ export class AdminsStudentComponent implements OnInit {
     this.studentIdParam = this.currRoute.snapshot.params['id'];
     console.log('sqlResource with studentIdParam: ' + this.studentIdParam);
     this.fetchStudentDTOData();
-
-
-
   }
 
   fetchStudentData() {
@@ -128,7 +126,7 @@ export class AdminsStudentComponent implements OnInit {
         data => {
           this.student = data;
           this.photoPathName = '../../../assets/images/StudentPhotos/' + this.student.yearJoinedJa;
-          this.photoPathName = this.photoPathName + '/' + this.student.lastNames + ', ' + this.student.firstNames + '.jpg';
+          this.photoPathName = this.photoPathName + '/' + this.student.photoUrl;
           // this.photoPathName = this.photoPathName + '/' + 'CADENA RÍOS, CARLOS ANTONIO.jpg';
           console.log('photoPathName is ' + this.photoPathName);
           console.log(this.student);
@@ -247,6 +245,7 @@ export class AdminsStudentComponent implements OnInit {
       cellPhone: student.cellPhone,
       homePhone: student.homePhone,
       nickName: student.nickName,
+      photoUrl: student.photoUrl,
       ja_Id: student.ja_Id,
       emergencyContactPhone: student.emergencyContactPhone,
       emergencyContactName: student.emergencyContactName,
@@ -267,7 +266,7 @@ export class AdminsStudentComponent implements OnInit {
     });
   }
 
-  assignFormValues(): void {
+  retrieveFormValues(): void {
     this.student = this.profileForm.value;
 
     // const ctls = this.profileForm.controls;
@@ -278,6 +277,7 @@ export class AdminsStudentComponent implements OnInit {
     // this.student.cellPhone = ctls.cellPhone.value;
     // this.student.homePhone = ctls.homePhone.value;
     // this.student.nickName = ctls.nickName.value;
+    // this.student.photoUrl = ctls.photoUrl.value;
     // this.student.ja_Id = ctls.ja_Id.value;
     // this.student.emergencyContactPhone = ctls.emergencyContactPhone.value;
     // this.student.emergencyContactName = ctls.emergencyContactName.value;
@@ -310,7 +310,7 @@ export class AdminsStudentComponent implements OnInit {
   saveProfile(): boolean {
     console.log('saving admin student ');
     this.isLoading = true;
-    this.assignFormValues();
+    this.retrieveFormValues();
     this.sqlResource.updateStudent(this.student)
       .subscribe(
         (student) => {

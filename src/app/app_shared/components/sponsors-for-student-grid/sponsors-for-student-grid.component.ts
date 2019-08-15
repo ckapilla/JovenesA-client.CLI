@@ -25,7 +25,7 @@ export class SponsorsForStudentGridComponent implements OnInit, OnChanges {
   }
 
   public ngOnInit() {
-    this.sqlResource.getSponsorsForStudent(this.studentId)
+    this.sqlResource.getSponsorGroupMembersForStudent(this.studentId)
       .subscribe(
         data => { this.sponsors = data; console.log('getSponsorsForStudent'); console.log(this.sponsors[0]); },
         err => console.error('Subscribe error: ' + err),

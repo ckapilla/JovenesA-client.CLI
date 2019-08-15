@@ -3,7 +3,6 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MentorsForStudentListComponent } from '../app_shared/components/mentors-for-student-list/mentors-for-student-list.component';
-import { SponsorsForSponsorGroupComponent } from '../app_shared/components/sponsors-for-sponsor-group/sponsors-for-sponsor-group.component';
 import { SponsorsForStudentGridComponent } from '../app_shared/components/sponsors-for-student-grid/sponsors-for-student-grid.component';
 import { CallbackComponent } from './components/callback.component';
 import { DisplayErrorsComponent } from './components/display-errors.component';
@@ -15,6 +14,7 @@ import { MemberSelectorComponent } from './components/member-selector/member-sel
 import { MentorReports2ListComponent } from './components/mentor-reports2-list/mentor-reports2-list.component';
 import { ProfileComponent } from './components/profile.component';
 import { SortableColumnComponent } from './components/sortable-column.component';
+import { SponsorGroupMembersComponent } from './components/sponsors-for-sponsor-group/sponsor-group-members.component';
 import { StudentGradesStatusComponent } from './components/student-grades-status.component';
 import { StudentMRStatusComponent } from './components/student-mr-status.component';
 import { StudentSelectorComponent } from './components/student-selector/student-selector.component';
@@ -53,7 +53,7 @@ import { AuthService } from './services/auth.service';
     SortableColumnComponent,
     SortableTableDirective,
     SponsorsForStudentGridComponent,
-    SponsorsForSponsorGroupComponent,
+    SponsorGroupMembersComponent,
     MentorsForStudentListComponent,
     MentorsForStudentListComponent,
     StudentGradesStatusComponent,
@@ -75,7 +75,7 @@ import { AuthService } from './services/auth.service';
     LoadingContainerComponent,
     MemberSelectorComponent,
     SponsorsForStudentGridComponent,
-    SponsorsForSponsorGroupComponent,
+    SponsorGroupMembersComponent,
     MentorsForStudentListComponent,
     StudentsForMentorGridComponent,
     StudentsForMentorListComponent,

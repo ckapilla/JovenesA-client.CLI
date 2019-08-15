@@ -16,6 +16,8 @@ import { Mentor } from '../models/mentor';
 import { MentorReportRPT } from '../models/mentor-report';
 import { MentorReport2RPT } from '../models/mentor-report2';
 import { MentorReportsStatusCount } from '../models/mentor-reports-status-count';
+import { SponsorGroup } from '../models/sponsor-group';
+import { SponsorGroupMemberDTO } from '../models/sponsor-group-memberDTO';
 import { SponsorLetter } from '../models/sponsor-letter';
 import { Student } from '../models/student';
 import { StudentSponsorXRef } from '../models/student-sponsor-xref';
@@ -94,22 +96,65 @@ export class SqlResource {
     return this.http.get<StudentSponsorXRef[]>(url).pipe(catchError(this.handleError));
   }
 
-  public getSponsorsForSponsorGroup(sponsorGroupId: Number): Observable<StudentSponsorXRef[]> {
-    const url = this.WebApiPrefix + 'sponsorgroupmembers/' + sponsorGroupId;
+
+
+
+  // list of sponsors for assigned SponsorGroup on student page
+  public getMembersForSponsorGroup(sponsorGroupId: Number): Observable<SponsorGroupMemberDTO[]> {
+    const url = this.WebApiPrefix + 'sponsor_groups/members/' + sponsorGroupId;
     console.log('sending AuthHttp get request ' + url);
-    return this.http.get<StudentSponsorXRef[]>(url).pipe(catchError(this.handleError));
+    return this.http.get<SponsorGroupMemberDTO[]>(url).pipe(catchError(this.handleError));
+  }
+  public getSponsorGroupsWithMembers(): Observable<SponsorGroupMemberDTO[]> {
+    const url = this.WebApiPrefix + 'sponsor_groups/members/0';
+    console.log('sending AuthHttp get request ' + url);
+    return this.http.get<SponsorGroupMemberDTO[]>(url).pipe(catchError(this.handleError));
   }
 
-  public getSponsorsForStudent(studentId: number): Observable<StudentSponsorXRef[]> {
+  public getSponsorGroup(id: number): Observable<SponsorGroup> {
+    const url = this.WebApiPrefix + 'sponsor_groups/' + id;
+    console.log('sending AuthHttp get request ' + url);
+    return this.http.get<SponsorGroup>(url).pipe(catchError(this.handleError));
+  }
+
+  public getSponsorGroupMembersForStudent(studentId: number): Observable<StudentSponsorXRef[]> {
     const url = this.WebApiPrefix + 'students/sponsors_for/' + studentId;
     console.log('sending AuthHttp get request ' + url);
     return this.http.get<StudentSponsorXRef[]>(url).pipe(catchError(this.handleError));
   }
-  public getSponsorGroupsForStudent(studentId: number): Observable<StudentSponsorXRef[]> {
-    const url = this.WebApiPrefix + 'students/sponsor_groups_for/' + studentId;
+  public getSponsorGroupsForStudent(sponsorGroupId: number): Observable<SponsorGroup[]> {
+    const url = this.WebApiPrefix + '/sponsor_groups_with_members/' + sponsorGroupId;
     console.log('sending AuthHttp get request ' + url);
-    return this.http.get<StudentSponsorXRef[]>(url).pipe(catchError(this.handleError));
+    return this.http.get<SponsorGroup[]>(url).pipe(catchError(this.handleError));
   }
+
+  public addNewSponsorGroup(sponsorGroup: SponsorGroup): Observable<SponsorGroup> {
+    const url = this.WebApiPrefix + 'sponsor_groups/';
+    let body = JSON.stringify({ sponsorGroup });
+    // strip outer 'sponsorGroup'
+    const x = JSON.parse(body);
+    body = JSON.stringify(x.sponsorGroup);
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    console.log('ready to post new sponsorGroup ' + url + ' body: ' + body + ' options ' + headers);
+    return this.http.post(url, body, { headers: headers });
+
+  }
+
+  public updateSponsorGroup(sponsorGroup: SponsorGroup): Observable<SponsorGroup> {
+    const url = this.WebApiPrefix + 'sponsor_groups/';
+    let body = JSON.stringify({ sponsorGroup });
+    // strip outer 'sponsorGroup'
+    const x = JSON.parse(body);
+    body = JSON.stringify(x.sponsorGroup);
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    console.log('ready to post new sponsorGroup ' + url + ' body: ' + body + ' options ' + headers);
+    return this.http.put(url, body, { headers: headers });
+
+  }
+
+
+
+
   public updateStudent(student: Student): Observable<any> {
     const url = this.WebApiPrefix + 'students/' + student.studentId;
     let body = JSON.stringify({ student });

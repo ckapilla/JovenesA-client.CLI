@@ -4,6 +4,8 @@ import { AdminsRouting } from './admins.routing';
 // tslint:disable-next-line: max-line-length
 import { AdminsCommunicationsComponent, AdminsComponent, AdminsHomeComponent, AdminsMemberComponent, AdminsMembersComponent, AdminsProfileComponent, AdminsStudentComponent, AdminsStudentMRsComponent, AdminsStudentsComponent, FollowUpEventsAddComponent, FollowUpRequestsAddComponent, FollowUpRequestsComponent, MentorReportFollowUpUpdatesComponent, MentorReportsStatusCountsComponent, MentorReportsSummaryTrackingComponent, MentorReportSummaryUpdatesComponent } from './index';
 import { AdminsNavbarComponent } from './shared/admins-navbar/admins-navbar.component';
+import { SponsorGroupsComponent } from './sponsor-groups/sponsor-groups.component';
+import { SponsorGroupComponent } from './sponsor-group/sponsor-group.component';
 
 
 
@@ -13,7 +15,7 @@ import { AdminsNavbarComponent } from './shared/admins-navbar/admins-navbar.comp
     imports: [
         AppSharedModule,
         AdminsRouting,
-        ],
+    ],
     declarations: [
         AdminsComponent,
         AdminsHomeComponent,
@@ -31,12 +33,15 @@ import { AdminsNavbarComponent } from './shared/admins-navbar/admins-navbar.comp
         AdminsNavbarComponent,
         FollowUpRequestsComponent,
         FollowUpRequestsAddComponent,
-        FollowUpEventsAddComponent
+        FollowUpEventsAddComponent,
+        SponsorGroupsComponent,
+        SponsorGroupComponent
         // FollowUpEventsComponent
 
     ],
     exports: [
-        AdminsStudentMRsComponent
+        AdminsStudentMRsComponent,
+        SponsorGroupsComponent
     ]
 
 })

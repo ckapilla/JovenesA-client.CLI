@@ -52,6 +52,13 @@
                 'maxlength': 'Nickname cannot exceed 20 characters in length.'
               }"></app-display-errors>
 
+              <label for="photoUrl">Photo Filename</label>
+              <input id="photoUrl" formControlName="photoUrl" type="text"
+                     class="form-control form-control-sm" placeholder="Photo Filename" />
+              <app-display-errors control="photoUrl" class="red" [errors]="{
+                'maxlength': 'Photo Filename cannot exceed 225 characters in length.'
+              }"></app-display-errors>
+
               <label for="email">Email</label>
               <input id="email" formControlName="email" type="text"
                      class="form-control form-control-sm" placeholder="Email Name" />
@@ -223,9 +230,9 @@
               <option *ngFor="let sponsor of sponsorGroups" [value]="sponsor.value">{{sponsor.label}}</option>
             </select>
 
-            <app-sponsors-for-sponsor-group
-                                            [sponsorGroupId]="sponsorGroupIdParam">
-            </app-sponsors-for-sponsor-group>
+            <app-sponsor-group-members
+                                       [sponsorGroupId]="sponsorGroupIdParam">
+            </app-sponsor-group-members>
 
             <label for="mentorId">Mentor</label>
             <select id="mentorId" formControlName="mentorId" class="form-control form-control-sm">
