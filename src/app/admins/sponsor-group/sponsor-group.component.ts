@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -19,18 +20,20 @@ export class SponsorGroupComponent implements OnInit {
   successMessage: string;
   sortCriteria: SORTCRITERIA;
   sponsorGroupId: number;
+  newMemberMessage: string;
 
   constructor(
     public currRoute: ActivatedRoute,
     public sqlResource: SqlResource,
     public router: Router,
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    public location: Location
   ) {
     this.isLoading = false;
 
     this.myForm = formBuilder.group({
-      sponsorGroupId: 'xxx',
-      sponsorGroupName: ['yyy',
+      sponsorGroupId: [{ value: '', hidden: true }],
+      sponsorGroupName: ['',
         Validators.compose([Validators.required, Validators.maxLength(50)])],
     });
     // this.myForm.disable();
@@ -39,9 +42,6 @@ export class SponsorGroupComponent implements OnInit {
   ngOnInit() {
     this.sponsorGroup = new SponsorGroup();
     this.sponsorGroupId = this.currRoute.snapshot.params['id'];
-    this.sponsorGroup.sponsorGroupId = this.sponsorGroupId;
-    this.sponsorGroup.sponsorGroupName = ' this is a test';
-    this.setFormValues(this.sponsorGroup);
     console.log('sqlResource with sponsorGroupId: ' + this.sponsorGroupId);
     this.fetchData();
   }
@@ -102,5 +102,9 @@ export class SponsorGroupComponent implements OnInit {
     return false;
   }
 
+  receiveSelectedMemberEvent($event) {
+    console.log('parent recevied SelectedMemberEvent');
+    this.newMemberMessage = $event;
+  }
 
 }

@@ -17,7 +17,7 @@ export class FollowUpRequestsAddComponent implements OnInit {
 
   myForm: FormGroup;
   followUpRequest: FollowUpRequest = new FollowUpRequest();
-  initialEvent: FollowUpEvent = new FollowUpEvent();
+  initialComments: string;
   studentId: number;
   studentName: string;
   isLoading: boolean;
@@ -123,7 +123,7 @@ export class FollowUpRequestsAddComponent implements OnInit {
         },
         (error) => {
           console.log(this.errorMessage = <any>error);
-         this.isLoading = false;
+          this.isLoading = false;
         },
         () => {
 
@@ -141,18 +141,19 @@ export class FollowUpRequestsAddComponent implements OnInit {
     console.log('in submitInitialEvent with FollowUpRequest');
     console.log(request);
 
-    this.initialEvent.followUpRequestId = request.followUpRequestId;
-    this.initialEvent.eventDateTime = request.requestDateTime;
-    // initialEvent.assignedToId = 0;
-    // initialEvent.assignedToRoleId = 0;
-    this.initialEvent.enteredById = this.session.getUserId();
-    this.initialEvent.requestStatusId = 2091;  // requested
-    // this.initialEvent.comments_English = '';
+    const initialEvent: FollowUpEvent = new FollowUpEvent();
+    initialEvent.followUpRequestId = request.followUpRequestId;
+    initialEvent.eventDateTime = request.requestDateTime;
+    initialEvent.enteredById = this.session.getUserId();
+    initialEvent.requestStatusId = 2092;  // assigned
+    initialEvent.assignedToId = 2350; // everything starts with Saray
+    initialEvent.assignedToRoleId = 2068; // everything starts with Admin
+    initialEvent.comments_English = this.initialComments; // currently set via NgModel
     // this.initialEvent.comments_Spanish = '';
     console.log('ready to submit intitial event with');
-    console.log(this.initialEvent);
+    console.log(initialEvent);
 
-    this.sqlResource.postFollowUpEvent(this.initialEvent)
+    this.sqlResource.postFollowUpEvent(initialEvent)
       .subscribe(
         (response) => {
           console.log('have response to followUpRequest post with response ');
@@ -195,27 +196,6 @@ export class FollowUpRequestsAddComponent implements OnInit {
     console.log('hasChanges net is ' + this.myForm.dirty || this.submitted);
     return this.myForm.dirty && !this.submitted;
   }
-
-  // public onSelectedStudentId(studentId: number) {
-  //   this.followUpRequest.studentId = studentId;
-  //   console.log('container form has studentId ' + studentId);
-  // }
-
-
-  // public onSelectedRoleId(roleId: number) {
-  //   this.followUpRequest.requestorRoleId = roleId;
-  //   console.log('container form has reqeustorRoleId ' + roleId);
-  // }
-
-  // public onSelectedMemberId(memberId: number) {
-  //   this.followUpRequest.requestorId = memberId;
-  //   console.log('container form has reqeustorMemberId ' + memberId);
-  // }
-
-  // public onTargetDateSet(target_date: Date) {
-  //   this.followUpRequest.targetDate = target_date;
-  //   console.log('new TargetDate ' + target_date);
-  // }
 
   public translateFromSpanish(spanishText: string) {
     this.xlator.translateFromSpanish(spanishText);

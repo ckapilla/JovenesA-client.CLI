@@ -1,16 +1,35 @@
 <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
 <div *ngIf="!errorMessage" class="container">
+  <style>
+    .btn-group-xs>.btn,
+    .btn-xs {
+      padding: .0rem .1rem;
+      font-size: .875rem;
+      line-height: .3;
+      border-radius: .2rem;
+    }
+  </style>
   <table class="table table-condensed">
     <thead>
       <tr>
-        <th>Individual Sponsor Name(s)</th>
+        <th>Current SponsorGroup Member(s)</th>
       </tr>
     </thead>
     <tbody>
 
-      <tr *ngFor="let item of sponsors, let i = index"
-          id="item.sponsorId">
-        <td>{{item.sponsorGroupMemberName}}</td>
+      <tr *ngFor="let item of sponsorGroupMembers, let i = index"
+          id="item.sponsorGroupMemberId">
+        <td>
+          <div *ngIf="item.sponsorGroupMemberName">
+            <span class="link" title="Delete"
+                  (click)="deleteSponsorGroupMember(item.sponsorGroupId, item.sponsorGroupMemberId)">
+              X
+            </span>&nbsp; {{item.sponsorGroupMemberName}}
+          </div>
+          <div *ngIf="!item.sponsorGroupMemberName">
+            (no member assigned currently)
+          </div>
+        </td>
       </tr>
     </tbody>
   </table>

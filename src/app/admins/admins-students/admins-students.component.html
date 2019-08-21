@@ -40,6 +40,7 @@
             <tr>
               <!--<td>Id</td>-->
               <th></th>
+              <th></th>
               <th app-sortable-column="studentName" sort-direction="asc" (onSortColumn)="onSortColumn($event)">Student
               </th>
               <th app-sortable-column="status" (onSortColumn)="onSortColumn($event)">Status</th>
@@ -67,6 +68,9 @@
           </td>-->
               <td>
                 {{ i+1 }}
+              </td>
+              <td>
+                <img [src]="student.photoUrl" height="30" class="thumbnail" />
               </td>
               <td (click)='gotoStudent(student.studentId, student.studentName)' class='link'>
                 {{ student.studentName }}

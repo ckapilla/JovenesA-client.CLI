@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { SponsorGroupMemberDTO } from '../../models/sponsor-group-memberDTO';
 import { SessionService } from '../../services/session.service';
 import { SqlResource } from '../../services/sql-resource.service';
@@ -9,14 +9,20 @@ import { SqlResource } from '../../services/sql-resource.service';
 })
 
 export class SponsorGroupMembersComponent implements OnInit, OnChanges {
-  sponsors: SponsorGroupMemberDTO[];
+  sponsorGroupMembers: SponsorGroupMemberDTO[];
   sponsorName: string;
   sponsorId: number;
-  errorMessage = '';
+  isLoading: boolean;
+  submitted: boolean;
+  bReadOnly = true;
+  errorMessage: string;
+  successMessage: string;
+
   @Output() onSelectedSponsorName = new EventEmitter<string>();
   @Output() onSelectedSponsorId = new EventEmitter<number>();
   // @Input() studentId: number;
   @Input() sponsorGroupId: number;
+  @Input() newMemberNotification: string;
 
   constructor(public session: SessionService,
     private sqlResource: SqlResource) {
@@ -25,18 +31,49 @@ export class SponsorGroupMembersComponent implements OnInit, OnChanges {
   }
 
   public ngOnInit() {
+    this.fetchData();
+  }
+  fetchData() {
     this.sqlResource.getMembersForSponsorGroup(this.sponsorGroupId)
       .subscribe(
-        data => { this.sponsors = data; console.log('getSponsorsForSponsorGroup'); console.log(this.sponsors[0]); },
+        data => { this.sponsorGroupMembers = data; console.log('getSponsorsForSponsorGroup'); console.log(this.sponsorGroupMembers[0]); },
         err => console.error('Subscribe error: ' + err),
         () => {
-          console.log('sponsors-for-sponsor-group loaded ' + this.sponsors.length + ' rows');
+          console.log('sponsors-for-sponsor-group loaded ' + this.sponsorGroupMembers.length + ' rows');
         }
       );
   }
 
-  public ngOnChanges() {
-    console.log('child had new inpout');
-    this.ngOnInit();
+  public ngOnChanges(changes: SimpleChanges) {
+    // if (changes.sponsorGroupId) {
+    //   console.log('sponsorGroupMembers child has new input sponsorGroupId');
+    //   this.ngOnInit();
+    // }
+    if (changes.newMemberNotification) {
+      console.log('sponsorGroupMembers child has new input newMemberNotification');
+      this.fetchData();
+    }
   }
+
+  deleteSponsorGroupMember(sponsorGroupId: number, sponsorGroupMemberId: number) {
+    console.log('delete click for ' + sponsorGroupId + '|' + sponsorGroupMemberId);
+    this.sqlResource.deleteSponsorGroupMember(sponsorGroupId, sponsorGroupMemberId)
+      .subscribe(
+        data => {
+          console.log('deleteSponsorsForSponsorGroup');
+          window.setTimeout(() => {
+            this.successMessage = 'Changes were saved successfully.';
+          }, 0);
+          this.submitted = true;
+          this.isLoading = false;
+          window.setTimeout(() => {// console.log('clearing success message');
+            this.successMessage = '';
+          }, 3000);
+        },
+        err => console.error('Subscribe error: ' + err),
+        () => {
+          this.fetchData();
+        });
+  }
+
 }

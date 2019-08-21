@@ -24,9 +24,19 @@
           </span>
         </span>
       </div>
-      <app-follow-up-requests-list [followUpRequests]="followUpRequests"
-                                   [displayCompleteHistory]="true"
-                                   [showAddDetails]="false"></app-follow-up-requests-list>
+      <div *ngIf="!haveData" style="padding: .5rem" class="text-for-warning">
+        No Requests have been filed recently.
+      </div>
+      <div *ngIf="haveData" style="padding: .5rem" class="text-for-warning">
+        If you need more information after submitting a request, please send an email to
+        Saray (<a href="mailto:s.martinez@jovenesadelante.org">s.martinez@jovenesadelante.org</a>)
+        at the office.
+      </div>
+      <div *ngIf="haveData">
+        <app-follow-up-requests-list [followUpRequests]="followUpRequests"
+                                     [displayCompleteHistory]="true"
+                                     [showAddDetails]="false"></app-follow-up-requests-list>
+      </div>
     </div>
   </div>
 </div>

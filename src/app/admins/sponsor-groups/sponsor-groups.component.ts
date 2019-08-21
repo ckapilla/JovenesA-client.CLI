@@ -4,12 +4,12 @@ import { SponsorGroup } from 'src/app/app_shared/models/sponsor-group';
 import { SponsorGroupMemberDTO } from 'src/app/app_shared/models/sponsor-group-memberDTO';
 import { SORTCRITERIA } from '../../app_shared/interfaces/SORTCRITERIA';
 import { ColumnSortService } from '../../app_shared/services/column-sort.service';
-import { SessionService } from '../../app_shared/services/session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
 @Component({
   selector: 'app-sponsor-groups',
-  templateUrl: './sponsor-groups.component.html'
+  templateUrl: './sponsor-groups.component.html',
+  styleUrls: ['./sponsor-groups.component.css']
 })
 export class SponsorGroupsComponent implements OnInit {
   sponsorGroups: SponsorGroupMemberDTO[];
@@ -21,7 +21,6 @@ export class SponsorGroupsComponent implements OnInit {
   constructor(
     public sqlResource: SqlResource,
     public router: Router,
-    private session: SessionService,
     private columnSorter: ColumnSortService
   ) {
     this.isLoading = false;

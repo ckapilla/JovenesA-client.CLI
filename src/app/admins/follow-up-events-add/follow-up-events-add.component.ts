@@ -43,7 +43,7 @@ export class FollowUpEventsAddComponent implements OnInit {
 
     this.followUpStatuses = [
       // { value: '0', label: '[None]' },
-      { value: '2091', label: 'Requested' },
+      // { value: '2091', label: 'Requested' },
       { value: '2092', label: 'Assigned' },
       { value: '2104', label: 'Closed' },
     ];
@@ -56,8 +56,8 @@ export class FollowUpEventsAddComponent implements OnInit {
     // this.followUpStatusSelector = this.myForm.controls['followUpStatusSelector'];
     this.followUpEvent.followUpRequestId = this.currRoute.snapshot.params['requestId'];
     this.followUpEvent.enteredById = this.session.userId;
-    // this.followUpEvent.assignedToRoleId =
-    // this.followUpEvent.assignedToId =
+    this.followUpEvent.assignedToId = 2350; // everything starts with Saray
+    this.followUpEvent.assignedToRoleId = 2068; // everything starts with Admin
     this.followUpEvent.comments_English = '';
     this.followUpEvent.comments_Spanish = '';
 

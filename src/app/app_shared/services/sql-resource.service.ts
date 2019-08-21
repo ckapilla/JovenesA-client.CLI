@@ -17,6 +17,7 @@ import { MentorReportRPT } from '../models/mentor-report';
 import { MentorReport2RPT } from '../models/mentor-report2';
 import { MentorReportsStatusCount } from '../models/mentor-reports-status-count';
 import { SponsorGroup } from '../models/sponsor-group';
+import { SponsorGroupMember } from '../models/sponsor-group-member';
 import { SponsorGroupMemberDTO } from '../models/sponsor-group-memberDTO';
 import { SponsorLetter } from '../models/sponsor-letter';
 import { Student } from '../models/student';
@@ -97,6 +98,11 @@ export class SqlResource {
   }
 
 
+  public getActiveSponsorMembers(): Observable<MemberMiniDTO[]> {
+    const url = this.WebApiPrefix + 'members/names/Sponsor';
+    console.log('sending AuthHttp get request ' + url);
+    return this.http.get<MemberMiniDTO[]>(url).pipe(catchError(this.handleError));
+  }
 
 
   // list of sponsors for assigned SponsorGroup on student page
@@ -137,7 +143,25 @@ export class SqlResource {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     console.log('ready to post new sponsorGroup ' + url + ' body: ' + body + ' options ' + headers);
     return this.http.post(url, body, { headers: headers });
+  }
 
+  public addNewSponsorGroupMember(groupMember: SponsorGroupMember): Observable<SponsorGroupMember> {
+    const url = this.WebApiPrefix + 'sponsor_groups/members';
+    console.log('in sqlresource');
+    console.log(groupMember);
+    let body = JSON.stringify({ groupMember });
+    // strip outer 'groupMember'
+    const x = JSON.parse(body);
+    body = JSON.stringify(x.groupMember);
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    console.log('ready to post new sponsorGroupMember ' + url + ' body: ' + body + ' options ' + headers);
+    return this.http.post(url, body, { headers: headers });
+  }
+
+  public deleteSponsorGroupMember(sponsorGroupId: number, sponsorGroupMemberId: number): Observable<SponsorGroupMember> {
+    const url = this.WebApiPrefix + 'sponsor_groups/members/' + sponsorGroupId + '/' + sponsorGroupMemberId;
+    console.log('ready to delete sponsorGroupMember ' + url); // + ' body: ' + body + ' options ' + headers);
+    return this.http.delete(url);
   }
 
   public updateSponsorGroup(sponsorGroup: SponsorGroup): Observable<SponsorGroup> {
@@ -147,7 +171,7 @@ export class SqlResource {
     const x = JSON.parse(body);
     body = JSON.stringify(x.sponsorGroup);
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    console.log('ready to post new sponsorGroup ' + url + ' body: ' + body + ' options ' + headers);
+    console.log('ready to put updated sponsorGroup ' + url + ' body: ' + body + ' options ' + headers);
     return this.http.put(url, body, { headers: headers });
 
   }

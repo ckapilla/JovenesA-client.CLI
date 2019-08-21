@@ -12,30 +12,42 @@
         <div class="row">
           <div class="col">
             <div class="form-group">
-
-              <input id="sponsorGroupId" formControlname="sponsorGroupId"
-                     class="form-control form-control-sm" type="text" [disabled]="true" />
+              <span class="btn btn-primary btn-sm" (click)="location.back()">
+                &lt;&lt;&nbsp; Back
+              </span>
+              &nbsp;
+            </div>
+            <div class="form-group">
+              <input id="sponsorGroupId" formControlName="sponsorGroupId"
+                     class="form-control form-control-sm"
+                     type="text" readonly />
 
 
               <label for="sponsorGroupName">SponsorGroup Name</label>
-              <input id="sponsorGroupName" formControlname="sponsorGroupName"
+              <input id="sponsorGroupName" formControlName="sponsorGroupName"
                      class="form-control form-control-sm" type="text" placeholder="SponsorGroup Name" />
+            </div>
+
+            <div class="form-group">
+              <button class="btn btn-primary" (click)="saveSponsorGroup()">
+                Save Name Change
+              </button>
             </div>
           </div>
 
           <div class="col">
             <div class="form-group">
-              <!-- <app-sponsor-group-members
-                                         [sponsorGroupId]="sponsorGroupId">
-              </app-sponsor-group-members> -->
+              <app-sponsor-group-members
+                                         [sponsorGroupId]="sponsorGroupId"
+                                         [newMemberNotification]="newMemberMessage">
+              </app-sponsor-group-members>
             </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="form-group">
-            <button class="btn btn-primary" (click)="saveSponsorGroup()">
-              Save Name Change
-            </button>
+            <div class="form-group">
+              <app-sponsor-group-member-edit
+                                             [sponsorGroupId]="sponsorGroupId"
+                                             (onSelectedMember)="receiveSelectedMemberEvent($event)">>
+              </app-sponsor-group-member-edit>
+            </div>
           </div>
         </div>
       </form>

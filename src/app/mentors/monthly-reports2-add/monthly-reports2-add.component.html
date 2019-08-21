@@ -60,7 +60,7 @@
             during the past month<br />Describa logros y eventos positivos o obstáculos en la vida del
             estudiante</label>
           <textarea id="inputNarrative_English" #success formControlName="inputNarrative_English" type="text"
-            class="form-control input-sm" placeholder="">
+                    class="form-control input-sm" placeholder="">
           </textarea>
           <app-display-errors control="inputNarrative_English" class="red" [errors]="{'required': 'An entry is required, even if it is just N/A. Se requiere una entrada, aun si es sólo N/A.',
           'maxlength': 'Entry cannot exceed 4000 characters in length.<br />La entrada no puede exceder 4000 caracteres del largo.'
@@ -74,7 +74,7 @@
             </button>
           </span>&nbsp;
           <span>
-            <button type="button" class="btn btn-default" style="width:70px" (click)="onCancel()">
+            <button type="button" class="btn btn-default" style="width:75px" (click)="onCancel()">
               Cancel
             </button>
             <div class="red" [hidden]="myForm.valid">Year, Month, Emoji and description must be

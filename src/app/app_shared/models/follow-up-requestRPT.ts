@@ -15,7 +15,7 @@ export class FollowUpRequestRPT {
     public requestStatus?: string,
     public studentName?: string,
     public requestorRole?: string,
-    public requestor?: string,
+    public requestorName?: string,
     public assignedToRole?: string,
     public assignedTo?: string,
     public comments_English?: string,

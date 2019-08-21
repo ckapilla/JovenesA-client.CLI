@@ -18,6 +18,7 @@ export class FollowUpRequestsComponent implements OnInit {
   successMessage: string;
   studentId: number;
   studentName: string;
+  haveData = false;
 
 
   constructor(public sqlResource: SqlResource,
@@ -47,6 +48,7 @@ export class FollowUpRequestsComponent implements OnInit {
         () => {
           console.log('done >>'); console.log(this.followUpRequests[0]); console.log('<<');
           this.isLoading = false;
+          this.haveData = this.followUpRequests.length > 0;
         }
       );
   }

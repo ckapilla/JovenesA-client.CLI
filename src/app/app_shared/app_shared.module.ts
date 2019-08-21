@@ -14,6 +14,7 @@ import { MemberSelectorComponent } from './components/member-selector/member-sel
 import { MentorReports2ListComponent } from './components/mentor-reports2-list/mentor-reports2-list.component';
 import { ProfileComponent } from './components/profile.component';
 import { SortableColumnComponent } from './components/sortable-column.component';
+import { SponsorGroupMemberEditComponent } from './components/sponsor-group-member-edit/sponsor-group-member-edit.component';
 import { SponsorGroupMembersComponent } from './components/sponsors-for-sponsor-group/sponsor-group-members.component';
 import { StudentGradesStatusComponent } from './components/student-grades-status.component';
 import { StudentMRStatusComponent } from './components/student-mr-status.component';
@@ -36,12 +37,15 @@ import { AuthService } from './services/auth.service';
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   declarations: [
     HeaderbarComponent,
     DisplayErrorsComponent,
     LoadingContainerComponent,
+    SponsorGroupMemberEditComponent,
     StudentsForMentorGridComponent,
     StudentsForMentorListComponent,
     StudentsForSponsorComponent,
@@ -74,6 +78,7 @@ import { AuthService } from './services/auth.service';
     DisplayErrorsComponent,
     LoadingContainerComponent,
     MemberSelectorComponent,
+    SponsorGroupMemberEditComponent,
     SponsorsForStudentGridComponent,
     SponsorGroupMembersComponent,
     MentorsForStudentListComponent,

@@ -117,7 +117,7 @@ export class FollowUpRequestsAddComponent implements OnInit {
         },
         (error) => {
           console.log(this.errorMessage = <any>error);
-         this.isLoading = false;
+          this.isLoading = false;
         },
         () => {
 
@@ -137,10 +137,10 @@ export class FollowUpRequestsAddComponent implements OnInit {
     const initialEvent: FollowUpEvent = new FollowUpEvent();
     initialEvent.followUpRequestId = request.followUpRequestId;
     initialEvent.eventDateTime = request.requestDateTime;
-    // initialEvent.assignedToId = 0;
-    // initialEvent.assignedToRoleId = 0;
     initialEvent.enteredById = this.session.getUserId();
-    initialEvent.requestStatusId = 2091;  // requested
+    initialEvent.requestStatusId = 2092;  // assigned
+    initialEvent.assignedToId = 2350; // everything starts with Saray
+    initialEvent.assignedToRoleId = 2068; // everything starts with Admin
     initialEvent.comments_English = 'Initial request received';
     initialEvent.comments_Spanish = 'Solicitud inicial recibida';
     console.log('ready to submit intitial event with');
