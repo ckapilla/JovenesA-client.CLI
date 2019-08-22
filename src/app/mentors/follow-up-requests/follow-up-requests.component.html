@@ -28,9 +28,17 @@
         No Requests have been filed recently.
       </div>
       <div *ngIf="haveData" style="padding: .5rem" class="text-for-warning">
-        If you need more information after submitting a request, please send an email to
-        Saray (<a href="mailto:s.martinez@jovenesadelante.org">s.martinez@jovenesadelante.org</a>)
-        at the office.
+        <div>
+          If you need more information after submitting a request, please send an email to
+          Saray (<a href="mailto:s.martinez@jovenesadelante.org">s.martinez@jovenesadelante.org</a>)
+          at the office.
+        </div>
+        <div>
+          Si necesita más información después de presentar una solicitud, por favor envíe un correo electrónico a
+          Saray (<a href="mailto:s.martinez@jovenesadelante.org">s.martinez@jovenesadelante.org</a>) en la oficina.
+        </div>
+
+
       </div>
       <div *ngIf="haveData">
         <app-follow-up-requests-list [followUpRequests]="followUpRequests"
