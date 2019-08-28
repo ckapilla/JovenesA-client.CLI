@@ -1,28 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { StudentSelfReport } from 'src/app/app_shared/models/student-self-report';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
-import { SponsorLetter } from '../../app_shared/models/sponsor-letter';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
 
 
 @Component({
 
-    templateUrl: './sponsor-letters-add.component.html',
-    styleUrls: ['./sponsor-letters-add.component.css'],
+    templateUrl: './self-reports-add.component.html',
+    styleUrls: ['./self-reports-add.component.css'],
 })
 
-export class SponsorLettersAddComponent
+export class SelfReportsAddComponent
     implements OnInit {
     myForm: FormGroup;
-    sponsorLetter: SponsorLetter;
+    selfReport: StudentSelfReport;
     isLoading: boolean;
     submitted: boolean;
 
-    letterYear: AbstractControl;
-    letterMonth: AbstractControl;
-    letterText: AbstractControl;
+    reportYear: AbstractControl;
+    reportPeriod: AbstractControl;
+    reportText_English: AbstractControl;
     periodYears: SELECTITEM[];
     periodMonths: SELECTITEM[];
     errorMessage: string;
@@ -36,56 +36,47 @@ export class SponsorLettersAddComponent
         private _fb: FormBuilder
     ) {
 
-        console.log('Hi from SponsorLettersAddComponent');
+        console.log('Hi from SelfReportsAddComponent');
         this.periodYears = [
             // {value: '2016', label: '2016'},
             // {value: '2017', label: '2017'} // ,
-            { value: '2018', label: '2018' },
             { value: '2019', label: '2019' },
-            // { value: '2020', label: '2020'}
+            { value: '2020', label: '2020' }
         ];
 
         this.periodMonths = [
             // {value: '0', label: 'Seleccionar Mes'},
-            { value: '1', label: 'Ene' },
-            { value: '2', label: 'Feb' },
-            { value: '3', label: 'Mar' },
-            { value: '4', label: 'Abr' },
-            { value: '5', label: 'Mayo' },
-            { value: '6', label: 'Jun' },
-            { value: '7', label: 'Jul' },
-            { value: '8', label: 'Ago' },
-            { value: '9', label: 'Sept' },
-            { value: '10', label: 'Oct' },
-            { value: '11', label: 'Nov' },
-            { value: '12', label: 'Dic' }
+            { value: '1', label: '1' },
+            { value: '2', label: '2' },
+            { value: '3', label: '3' },
+            { value: '4', label: '4' }
         ];
 
         this.myForm = _fb.group({
-            letterYearSelector: ['', Validators.required],
-            letterMonthSelector: ['', this.validateMonth],
+            reportYearSelector: ['', Validators.required],
+            reportPeriodSelector: ['', this.validateMonth],
 
-            inputLetterText: ['', Validators.compose(
+            inputReportText: ['', Validators.compose(
                 [Validators.required, Validators.maxLength(2000)])]
         });
 
-        this.letterYear = this.myForm.controls['letterYearSelector'];
-        this.letterMonth = this.myForm.controls['letterMonthSelector'];
-        this.letterText = this.myForm.controls['inputFollowUp'];
+        this.reportYear = this.myForm.controls['reportYearSelector'];
+        this.reportPeriod = this.myForm.controls['reportPeriodSelector'];
+        this.reportText_English = this.myForm.controls['inputFollowUp'];
 
 
-        this.sponsorLetter = new SponsorLetter();
-        this.sponsorLetter.sponsorGroupId = 0;
-        this.sponsorLetter.studentId = 0;
+        this.selfReport = new StudentSelfReport();
+        this.selfReport.sponsorGroupId = 0;
+        this.selfReport.studentId = 0;
         // SQL Server will adjust the time to UTC by adding TimezoneOffset
         // we want to store local time so we adjust for that.
         const now = new Date();
-        this.sponsorLetter.letterDateTime = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
-        console.log(this.sponsorLetter.letterDateTime);
+        this.selfReport.reportDateTime = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
+        console.log(this.selfReport.reportDateTime);
 
-        this.sponsorLetter.letterYear = null; // moment(new Date).format('YYYY-MM-DD');
-        this.sponsorLetter.letterMonth = null;
-        this.sponsorLetter.letterText = '';
+        this.selfReport.reportYear = null; // moment(new Date).format('YYYY-MM-DD');
+        this.selfReport.reportPeriod = null;
+        this.selfReport.reportText_English = '';
 
         this.errorMessage = '';
         this.successMessage = '';
@@ -93,13 +84,13 @@ export class SponsorLettersAddComponent
     }
 
     ngOnInit() {
-        console.log('sponsorLettersAdd ngOnInit');
-        this.sponsorLetter.sponsorGroupId = this.currRoute.snapshot.params['sponsorId'];
-        this.sponsorLetter.studentId = this.currRoute.snapshot.params['studentId'];
-        console.log('sponsorGroupId ' + this.sponsorLetter.sponsorGroupId);
-        console.log('studentId ' + this.sponsorLetter.studentId);
-        this.sponsorLetter.letterYear = 2018;
-        this.sponsorLetter.letterMonth = 1;
+        console.log('selfReportsAdd ngOnInit');
+        this.selfReport.sponsorGroupId = this.currRoute.snapshot.params['sponsorId'];
+        this.selfReport.studentId = this.currRoute.snapshot.params['studentId'];
+        console.log('sponsorGroupId ' + this.selfReport.sponsorGroupId);
+        console.log('studentId ' + this.selfReport.studentId);
+        this.selfReport.reportYear = 2018;
+        this.selfReport.reportPeriod = 1;
 
         this.myForm.valueChanges.subscribe(
             (form: any) => {
@@ -112,20 +103,20 @@ export class SponsorLettersAddComponent
     }
 
     onSubmit() {
-        console.log('Hi from sponsor letter Submit');
-        // console.log(this.sponsorLetter);
+        console.log('Hi from self report Submit');
+
 
         if (this.myForm.invalid) {
             let i = 0;
             this.errorMessage = '';
 
-            if (!this.letterYear.valid || !this.letterMonth.valid) {
+            if (!this.reportYear.valid || !this.reportPeriod.valid) {
                 this.errorMessage = this.errorMessage + 'Year and month must be selected from drop-downs. ';
                 ++i;
             }
 
-            if (!this.letterText.valid) {
-                this.errorMessage = this.errorMessage + 'Letter text box must be filled in . ';
+            if (!this.reportText_English.valid) {
+                this.errorMessage = this.errorMessage + 'Report text box must be filled in . ';
                 ++i;
             }
 
@@ -133,16 +124,16 @@ export class SponsorLettersAddComponent
         }
 
 
-        this.sqlResource.postSponsorLetter(this.sponsorLetter,
-            this.sponsorLetter.studentId,
-            this.sponsorLetter.sponsorGroupId)
+        this.sqlResource.postStudentSelfReport(this.selfReport,
+            this.selfReport.studentId,
+            this.selfReport.sponsorGroupId)
             .subscribe(
                 (student) => {
                     console.log(this.successMessage = <any>student);
                     this.submitted = true;
                     this.isLoading = false;
-                    const target = '/students/sponsor-letters/' + this.sponsorLetter.studentId;
-                    console.log('after call to postSponsorLetter; navigating to ' + target);
+                    const target = '/student-self-reports/' + this.selfReport.studentId;
+                    console.log('after call to postStudentSelfReports; navigating to ' + target);
                     this.router.navigateByUrl(target);
                 },
                 (error) => {
@@ -154,13 +145,13 @@ export class SponsorLettersAddComponent
     }
 
     onCancel() {
-        const target = '/students/sponsor-letters/' + this.sponsorLetter.studentId; // + '/' + this.studentId;
+        const target = '/student_self_reports/' + this.selfReport.studentId; // + '/' + this.studentId;
         console.log('navigating to ' + target);
         this.router.navigateByUrl(target);
     }
 
     validateMonth(control: FormControl): { [error: string]: any } {
-        console.log('month validator ' + control.value);
+        // console.log('month validator ' + control.value);
         const rtnVal: any = ('' + control.value === '0') ? { // can be either string or number
             validateMonth: {
                 valid: false

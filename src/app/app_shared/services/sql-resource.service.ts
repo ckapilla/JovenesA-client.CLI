@@ -21,6 +21,7 @@ import { SponsorGroupMember } from '../models/sponsor-group-member';
 import { SponsorGroupMemberDTO } from '../models/sponsor-group-memberDTO';
 import { SponsorLetter } from '../models/sponsor-letter';
 import { Student } from '../models/student';
+import { StudentSelfReport } from '../models/student-self-report';
 import { StudentSponsorXRef } from '../models/student-sponsor-xref';
 import { StudentDTO } from '../models/studentDTO';
 import { StudentMiniDTO } from '../models/studentMiniDTO';
@@ -124,15 +125,23 @@ export class SqlResource {
   }
 
   public getSponsorGroupMembersForStudent(studentId: number): Observable<StudentSponsorXRef[]> {
-    const url = this.WebApiPrefix + 'students/sponsors_for/' + studentId;
+    const url = this.WebApiPrefix + 'students/sponsor_group_members_for/' + studentId;
     console.log('sending AuthHttp get request ' + url);
     return this.http.get<StudentSponsorXRef[]>(url).pipe(catchError(this.handleError));
   }
-  public getSponsorGroupsForStudent(sponsorGroupId: number): Observable<SponsorGroup[]> {
-    const url = this.WebApiPrefix + '/sponsor_groups_with_members/' + sponsorGroupId;
+
+  public getSponsorGroupForStudent(studentId: number): Observable<StudentSponsorXRef[]> {
+    const url = this.WebApiPrefix + 'students/sponsor_groups_for/' + studentId;
     console.log('sending AuthHttp get request ' + url);
-    return this.http.get<SponsorGroup[]>(url).pipe(catchError(this.handleError));
+    return this.http.get<StudentSponsorXRef[]>(url).pipe(catchError(this.handleError));
   }
+
+
+  // public getSponsorGroupsForStudent(sponsorGroupId: number): Observable<SponsorGroup[]> {
+  //   const url = this.WebApiPrefix + '/sponsor_groups_with_members/' + sponsorGroupId;
+  //   console.log('sending AuthHttp get request ' + url);
+  //   return this.http.get<SponsorGroup[]>(url).pipe(catchError(this.handleError));
+  // }
 
   public addNewSponsorGroup(sponsorGroup: SponsorGroup): Observable<SponsorGroup> {
     const url = this.WebApiPrefix + 'sponsor_groups/';
@@ -396,6 +405,34 @@ export class SqlResource {
     // + '&highlightStatusId=' + highlightStatusId;
     console.log('sending AuthHttp get request for MentorReportsStatusCounts with ' + url);
     return this.http.get<MentorReportsStatusCount[]>(url).pipe(catchError(this.handleError));
+  }
+
+
+  //////////////////////////////////////////////////
+  ///  StudentSelfReportsController
+  //////////////////////////////////////////////////
+
+
+  public getStudentSelfReports(studentId: number, sponsorId: number): Observable<SponsorLetter[]> {
+    const url = this.WebApiPrefix + 'student_self_reports/' + studentId + '/' + sponsorId;
+    console.log('sending AuthHttp get request for StudentSelfReports with ' + url);
+    return this.http.get<SponsorLetter[]>(url).pipe(catchError(this.handleError));
+  }
+
+
+  public postStudentSelfReport(selfReport: StudentSelfReport,
+    studentId: number,
+    sponsorGroupId: number): Observable<MentorReportRPT> {
+
+    const url = this.WebApiPrefix + 'student_self_reports/' + studentId + '/' + sponsorGroupId;
+    console.log('in postSelfReport with url ' + url);
+    let body = JSON.stringify({ selfReport });
+    // strip outer 'mentor' name
+    const x = JSON.parse(body);
+    body = JSON.stringify(x.selfReport);
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    console.log('ready to post ' + url + ' body: ' + body + ' options ' + headers);
+    return this.http.post(url, body, { headers: headers });
   }
 
   //////////////////////////////////////////////////

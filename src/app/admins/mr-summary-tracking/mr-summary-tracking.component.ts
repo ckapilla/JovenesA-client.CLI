@@ -131,9 +131,9 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
   }
 
   scrollIntoView() {
-
-    console.log(this.route.snapshot.queryParams['id']);
+    console.log('in scrollIntoView');
     if (this.route.snapshot.queryParams['id']) {
+      console.log(this.route.snapshot.queryParams['id']);
       const idSelector = '#' + this.route.snapshot.queryParams['id'];
       console.log('id param = ' + this.route.snapshot.queryParams['id']);
       const element = document.querySelector(idSelector);

@@ -27,6 +27,7 @@ import { HeaderbarComponent } from './headerbar/index';
 import { AlphaLanguagePipe } from './pipes/alpha-language-pipe';
 import { AlphaMonthPipe } from './pipes/alpha-month-pipe';
 import { TruncateDatePipe } from './pipes/truncate-date-pipe';
+import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
 import { AuthService } from './services/auth.service';
 
 
@@ -67,7 +68,8 @@ import { AuthService } from './services/auth.service';
     ProfileComponent,
     AlphaMonthPipe,
     AlphaLanguagePipe,
-    TruncateDatePipe
+    TruncateDatePipe,
+    UnsafeHtmlPipe
   ],
   providers: [AuthService],
   exports: [
@@ -99,7 +101,8 @@ import { AuthService } from './services/auth.service';
     ProfileComponent,
     AlphaMonthPipe,
     AlphaLanguagePipe,
-    TruncateDatePipe
+    TruncateDatePipe,
+    UnsafeHtmlPipe
   ]
 })
 

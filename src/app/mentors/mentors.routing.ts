@@ -12,6 +12,7 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
+        // shortcut to MonthlyReports /////
         component: MonthlyReports2Component
       },
       // {
@@ -58,4 +59,3 @@ const routes: Routes = [
 ];
 
 export const MentorsRouting = RouterModule.forChild(routes);
-

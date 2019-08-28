@@ -1,6 +1,6 @@
 <div class="card bg-primary">
   <div class="card-header text-white" style="font-size:large">
-    Añadir Nueva Carta de Padrino
+    Añadir Nueva Mi Reporte
   </div>
   <div class="card-body bg-white">
     <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
@@ -10,27 +10,27 @@
       <fieldset [disabled]="submitted">
         <div class="form-group">
           <div class="controls">
-            <label for="letterYearSelector"> Año/Mes de esta Periodo</label>
-            <select formControlName="letterYearSelector" [(ngModel)]="sponsorLetter.letterYear">
+            <label for="reportYearSelector"> Año/Periodo de esta Periodo</label>
+            <select formControlName="reportYearSelector" [(ngModel)]="selfReport.reportYear">
               <option *ngFor="let year of periodYears" [value]="year.value">{{year.label}}</option>
             </select>
 
-            <select formControlName="letterMonthSelector" [(ngModel)]="sponsorLetter.letterMonth">
+            <select formControlName="reportPeriodSelector" [(ngModel)]="selfReport.reportPeriod">
               <option *ngFor="let month of periodMonths" [value]="month.value">{{month.label}}</option>
             </select>
           </div>
-          <span *ngIf="!letterMonth.valid &amp;&amp; letterMonth.touched" class="red"> Month is required</span>
+          <span *ngIf="!reportPeriod.valid &amp;&amp; reportPeriod.touched" class="red"> Month is required</span>
         </div>
 
 
         <div class="controls">
-          <label for="inputLetterText">Texto de Carta</label>
-          <textarea id="inputLetterText" #success formControlName="inputLetterText"
-                    [(ngModel)]="sponsorLetter.letterText" type="text"
-                    class="form-control input-sm" placeholder="Carta a tu Sponsor">
+          <label for="inputReportText">Texto de Reporte</label>
+          <textarea id="inputReportText" #success formControlName="inputReportText"
+                    [(ngModel)]="selfReport.reportText_English" type="text"
+                    class="form-control input-sm" placeholder="">
           </textarea>
-          <app-display-errors control="inputLetterText" class="red" [errors]="{'required': 'An entry is required, even if it is just N/A',
-                'maxlength': 'Entrada no puede exceder los 2000 caracteres.'
+          <app-display-errors control="inputReportText_English" class="red" [errors]="{'required': 'An entry is required, even if it is just N/A',
+                'maxlength': 'Entrada no puede exceder los 4000 caracteres.'
                 }"></app-display-errors>
         </div>
 
@@ -45,11 +45,12 @@
           </span>&nbsp;
           <span>
             <button class="btn btn-default"
-                    style="width:75px"
+                    style="width:90px"
                     (click)="onCancel()">
               Cancelar
             </button>
-            <div class="red" [hidden]="myForm.valid">Año, Mes, y texto de carta deben ser completados correctamente
+            <div class="red" [hidden]="myForm.valid">Año, Periodo, y texto de reporte deben ser completados
+              correctamente
               antes de guardar.</div>
           </span>
         </div>

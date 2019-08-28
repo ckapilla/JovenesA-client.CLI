@@ -5,21 +5,18 @@ import { SessionService } from '../../../app_shared/services/session.service';
  * This class represents the navigation bar component.
  */
 @Component({
-  selector: 'students-navbar',
+  selector: 'app-students-navbar',
   templateUrl: './students-navbar.component.html',
   styleUrls: ['./students-navbar.component.css'],
 })
 
 export class StudentsNavbarComponent {
-   currUserId: number;
+  currStudentId: number;
 
   constructor(session: SessionService) {
-    this.currUserId = session.getStudentId();
-    console.log('StudentsNav: ' + this.currUserId);
+    this.currStudentId = session.getStudentId();
+    console.log('StudentsNav: ' + this.currStudentId);
 
   }
 
 }
-
-
-

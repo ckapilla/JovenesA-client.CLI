@@ -65,10 +65,10 @@ export class SessionService {
 
   public isStudent(): boolean {
     if (!this.studentId) {
-      console.log('Is student -- have studentId: ' + this.studentId);
+      console.log('Session: Is Not student -- have !studentId: ');
       return false;
     } else {
-      console.log('Not student -- have studentId: ' + this.studentId);
+      console.log('Session: have studentId: ' + this.studentId);
       return this.studentId !== 0;
     }
 

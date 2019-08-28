@@ -36,10 +36,10 @@ export class SponsorGroupMembersComponent implements OnInit, OnChanges {
   fetchData() {
     this.sqlResource.getMembersForSponsorGroup(this.sponsorGroupId)
       .subscribe(
-        data => { this.sponsorGroupMembers = data; console.log('getSponsorsForSponsorGroup'); console.log(this.sponsorGroupMembers[0]); },
+        data => { this.sponsorGroupMembers = data; console.log('getMembersForSponsorGroup'); console.log(this.sponsorGroupMembers[0]); },
         err => console.error('Subscribe error: ' + err),
         () => {
-          console.log('sponsors-for-sponsor-group loaded ' + this.sponsorGroupMembers.length + ' rows');
+          console.log('members-for-sponsor-group loaded ' + this.sponsorGroupMembers.length + ' rows');
         }
       );
   }

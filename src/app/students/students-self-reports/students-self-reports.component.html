@@ -16,34 +16,35 @@
   <div *ngSwitchCase="false">
     <div *ngIf="!errorMessage" class="card bg-primary">
       <div class="card-header text-white" style="font-size:large">
-        <span>Tus cartas anteriores</span>
+        <span>Tus reportes anteriores</span>
         <span>
           <span>
             <span class="btn btn-default active" (click)="sponsorLetterAdd()" style="margin-left:10px">
-              Añadir Nueva Carta
+              Añadir Nuevo Reporte
             </span>
           </span>
         </span>
       </div>
       <div class="card-body bg-white">
 
-        <div class="row" style="border-bottom: 3px solid #ccc; margin-top: 2px;" *ngFor="let i of sponsorLetters">
+        <div class="row" style="border-bottom: 3px solid #ccc; margin-top: 2px;"
+             *ngFor="let i of studentSelfReports">
           <div class="col-md-12">
             <div class="row">
 
               <span class="padded">
-                &nbsp;Fecha de la Carta: {{ i.letterDateTime | truncateDate }}
+                &nbsp;Fecha del Reporte: {{ i.reportDateTime | truncateDate }}
               </span>
               <span class="padded">
-                &nbsp;Período: {{ i.letterMonth | alphaMonth}}-{{ i.letterYear }}
+                &nbsp;Período: {{ i.reportPeriod | alphaMonth}}-{{ i.reportYear }}
               </span>
             </div>
             <div class="row">
               <div class="padded">
-                &nbsp;Texto de la Carta:
+                &nbsp;Texto del Reporte:
               </div>
               <div class="col-md-10">
-                {{ i.letterText }}
+                {{ i.reportText_Spanish }}
               </div>
             </div>
           </div>

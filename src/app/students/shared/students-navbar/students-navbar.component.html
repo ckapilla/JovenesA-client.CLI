@@ -1,6 +1,7 @@
 <nav>
   <a [routerLinkActive]="['active']" [routerLink]="['/students/home']">Bienvenido</a>
-  <a [routerLinkActive]="['active']" [routerLink]="['/students/profile',currUserId]">Perfil</a>
-    <!--<a [routerLinkActive]="['active']" [routerLink]="['/grade-tracking/grade-tracking',currUserId]">Estado de grados</a>-->
-  <a [routerLinkActive]="['active']" [routerLink]="['/students/sponsor-letters',currUserId]">Carta Padrino</a>
+  <a [routerLinkActive]="['active']" [routerLink]="['/students/profile',currStudentId]">Perfil</a>
+  <!--<a [routerLinkActive]="['active']" [routerLink]="['/grade-tracking/grade-tracking',currStudentId]">Estado de grados</a>-->
+  <!-- <a [routerLinkActive]="['active']" [routerLink]="['/students/sponsor-letters',currStudentId]">Carta Patrocinador</a> -->
+  <a [routerLinkActive]="['active']" [routerLink]="['/students/self-reports',currStudentId]">Mís Reportes</a>
 </nav>

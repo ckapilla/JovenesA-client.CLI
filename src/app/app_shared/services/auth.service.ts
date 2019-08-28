@@ -109,6 +109,7 @@ export class AuthService {
     // A desired redirect path can be passed to login method
     // (e.g., from a route guard)
     // Ensure Auth0 client instance exists
+    console.log('!@#$%^&*(in login with redirectPath:' + redirectPath);
     this.auth0Client$.subscribe((client: Auth0Client) => {
       // Call method to log in
       client.loginWithRedirect({
@@ -214,30 +215,30 @@ export class AuthService {
 
   // }
 
-  private finalize(authResult: any) {
+  // private finalize(authResult: any) {
 
-    // if (this.session.getFailedAuthorizationRoute()  > '') {
-    //   console.log('have failed authorization route, retrying ');
-    //   this.router.navigateByUrl(this.session.getFailedAuthorizationRoute());
-    // }
+  //   // if (this.session.getFailedAuthorizationRoute()  > '') {
+  //   //   console.log('have failed authorization route, retrying ');
+  //   //   this.router.navigateByUrl(this.session.getFailedAuthorizationRoute());
+  //   // }
 
-    // Redirect to retryUrl if there is a saved url that has been set
-    console.log('before checkForUnauthenticateRetryUrl');
-    this.checkForUnauthenticateRetryUrl();
-    this.UpdateLastLogin();
-    // });
-  }
+  //   // Redirect to retryUrl if there is a saved url that has been set
+  //   console.log('before checkForUnauthenticateRetryUrl');
+  //   this.checkForUnauthenticateRetryUrl();
+  //   this.UpdateLastLogin();
+  //   // });
+  // }
 
-  private checkForUnauthenticateRetryUrl() {
-    const retryUrl: string = localStorage.getItem('unauthenticated_retry_url');
-    console.log('checkForUnauthenticateRetryUrl has retryUrl ' + retryUrl);
-    if (retryUrl) {
-      console.log('navigating to unauthenticated_retry_url: ' + retryUrl);
-      this.router.navigateByUrl(retryUrl);
-      console.log('');
-      localStorage.removeItem('unauthenticated_retry_url');
-    }
-  }
+  // private checkForUnauthenticateRetryUrl() {
+  //   const retryUrl: string = localStorage.getItem('unauthenticated_retry_url');
+  //   console.log('checkForUnauthenticateRetryUrl has retryUrl ' + retryUrl);
+  //   if (retryUrl) {
+  //     console.log('navigating to unauthenticated_retry_url: ' + retryUrl);
+  //     this.router.navigateByUrl(retryUrl);
+  //     console.log('');
+  //     localStorage.removeItem('unauthenticated_retry_url');
+  //   }
+  // }
 
 
   public setUserProfileElementsToSession(userProfile: any): void {

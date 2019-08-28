@@ -153,7 +153,7 @@ export class MonthlyReports2AddComponent
                     console.log(this.errorMessage = <any>error);
                     this.isLoading = false;
                 }
-        );
+            );
         this.isSubmitted = true;
         return;
     }

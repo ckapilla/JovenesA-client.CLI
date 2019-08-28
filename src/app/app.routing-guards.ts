@@ -18,17 +18,17 @@ export class CanActivateViaAdminAuthGuard implements CanActivate {
         return true;
       } else {
         console.log('Authenticated but unauthorized for Admin');
-        localStorage.setItem('unauthenticated_retry_url', state.url);
+        // localStorage.setItem('unauthenticated_retry_url', state.url);
         // '/admins/mentor-reports/summary-tracking?id=id2681&year=2018&month=6&summaryStatus=0&highlight=2109');
         // this.router.navigate(['unauthorized']);
         return false;
       }
     } else {
       console.log('Not authenticated -- Can\'t Activate Admin');
-      localStorage.setItem('unauthenticated_retry_url', state.url);
+      // localStorage.setItem('unauthenticated_retry_url', state.url);
       //  '/admins/mentor-reports/summary-tracking?id=id2681&year=2018&month=6&summaryStatus=0&highlight=2109');
       this.router.navigate(['']); // just to clean up url bar
-      this.auth.login();
+      this.auth.login(state.url);
       return false;
     }
   }
@@ -45,18 +45,18 @@ export class CanActivateViaMentorAuthGuard implements CanActivate {
         console.log('Authenticated and Can Activate Mentor');
         return true;
       } else {
-        console.log('Authenticated but unauthorized for Mentor');
+        // console.log('Authenticated but unauthorized for Mentor');
         // if this is on startup, will need to try navigate again after profile is loaded
         // this.session.setFailedAuthorizationRoute('mentors');
-        localStorage.setItem('unauthenticated_retry_url', state.url); // '/mentors');
+        // localStorage.setItem('unauthenticated_retry_url', state.url); // '/mentors');
         // this.router.navigate(['']);
         return false;
       }
     } else {
       console.log('link to Mentor but not authenticated -- save /mentors retry url:');
-      localStorage.setItem('unauthenticated_retry_url', state.url); // '/mentors');
+      // localStorage.setItem('unauthenticated_retry_url', state.url); // '/mentors');
       this.router.navigate(['']); // just to clean up URL bar
-      this.auth.login();
+      this.auth.login(state.url);
 
       return false;
     }
@@ -68,25 +68,30 @@ export class CanActivateViaStudentAuthGuard implements CanActivate {
   constructor(private auth: AuthService, private router: Router, private session: SessionService) { }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-
+    console.log('canActivate for /students');
     if (this.auth.loggedIn) {
+      // following has issue of race condition with callback to get profile
       if (this.session.isStudent()) {
         console.log('Authenticated and Can Activate Student');
         return true;
       } else {
         console.log('Authenticated but unauthorized for Student');
         // if this is on startup, will need to try navigate again after profile is loaded
-        // this.session.setFailedAuthorizationRoute('students');
-        localStorage.setItem('unauthenticated_retry_url', '/students');
+        // this.session.setFailedAuthorizationRoute('mentors');
+        // localStorage.setItem('unauthenticated_retry_url', state.url); // '/students');
+        // this.router.navigate(['']);
         return false;
       }
     } else {
-      console.log('link to Student but not authenticated -- need login');
-      localStorage.setItem('unauthenticated_retry_url', '/students');
-      // this.auth.login();
+      console.log('link to Mentor but not authenticated -- save /students retry url:');
+      // localStorage.setItem('unauthenticated_retry_url', state.url); // '/students');
+      this.router.navigate(['']); // just to clean up URL bar
+      this.auth.login(state.url);
+
       return false;
     }
   }
+
 }
 
 @Injectable({ providedIn: 'root' })
