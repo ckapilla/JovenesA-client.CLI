@@ -2,7 +2,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CanActivateViaAdminAuthGuard, ConfirmDeactivateSummaryTrackingGuard } from '../app.routing-guards';
 import { FollowUpEventsComponent } from '../app_shared/components/follow-up-events/follow-up-events.component';
 // tslint:disable-next-line: max-line-length
-import { AdminsCommunicationsComponent, AdminsComponent, AdminsHomeComponent, AdminsMemberComponent, AdminsMembersComponent, AdminsProfileComponent, AdminsStudentComponent, AdminsStudentMRsComponent, AdminsStudentsComponent, FollowUpEventsAddComponent, FollowUpRequestsAddComponent, FollowUpRequestsComponent, MentorReportsSummaryTrackingComponent, MentorReportSummaryUpdatesComponent } from './index';
+import { AdminsCommunicationsComponent, AdminsComponent, AdminsHomeComponent, AdminsMemberComponent, AdminsMembersComponent, AdminsStudentComponent, AdminsStudentMRsComponent, AdminsStudentsComponent, FollowUpEventsAddComponent, FollowUpRequestsAddComponent, FollowUpRequestsComponent, MentorReportsSummaryTrackingComponent, MentorReportSummaryUpdatesComponent } from './index';
 import { SponsorGroupComponent } from './sponsor-group/sponsor-group.component';
 import { SponsorGroupsComponent } from './sponsor-groups/sponsor-groups.component';
 
@@ -20,10 +20,6 @@ const routes: Routes = [
       {
         path: 'home',
         component: AdminsHomeComponent
-      },
-      {
-        path: 'profile/:id',
-        component: AdminsProfileComponent
       },
       {
         path: 'members',

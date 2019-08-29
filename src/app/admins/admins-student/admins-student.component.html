@@ -8,7 +8,7 @@
       </app-loading-container>
     </div>
     <div *ngSwitchCase="false">
-      <form [formGroup]="profileForm" class="form-horizontal">
+      <form [formGroup]="myForm" class="form-horizontal">
         <div class="row">
           <div class="col">
 
@@ -255,10 +255,10 @@
         </div>
         <div class="row">
           <div class="form-group">
-            <button class="btn btn-primary" *ngIf="bReadOnly" (click)="saveProfile()" [disabled]="!profileForm.valid">
+            <button class="btn btn-primary" *ngIf="bReadOnly" (click)="saveMyForm()" [disabled]="!myForm.valid">
               Save
             </button>
-            <span class="red" [hidden]="profileForm.valid || bReadOnly">All required fields must be filled in before
+            <span class="red" [hidden]="myForm.valid || bReadOnly">All required fields must be filled in before
               saving.</span>
           </div>
         </div>

@@ -10,10 +10,10 @@ import { SqlResource } from '../../app_shared/services/sql-resource.service';
 @Component({
 
   templateUrl: './admins-member.component.html',
-  styleUrls:  ['./admins-member.component.css'],
+  styleUrls: ['./admins-member.component.css'],
 })
 export class AdminsMemberComponent implements OnInit {
-  profileForm: FormGroup;
+  myForm: FormGroup;
   data: Object;
   isLoading: boolean;
   submitted: boolean;
@@ -26,22 +26,22 @@ export class AdminsMemberComponent implements OnInit {
   //// studentId: number;
 
   constructor(
-              public currRoute: ActivatedRoute,
-              private router: Router,
-              public sqlResource: SqlResource,
-              public formBuilder: FormBuilder,
-              public location: Location
-              ) {
-    console.log('hi from profile.component constructor');
+    public currRoute: ActivatedRoute,
+    private router: Router,
+    public sqlResource: SqlResource,
+    public formBuilder: FormBuilder,
+    public location: Location
+  ) {
+    console.log('hi from MyForm.component constructor');
     this.languageStatuses = constants.languageStatuses;
 
-    this.profileForm = formBuilder.group({
+    this.myForm = formBuilder.group({
       inputMemberFName: ['', Validators.compose(
-                  [Validators.required, Validators.maxLength(30)])],
+        [Validators.required, Validators.maxLength(30)])],
       inputMemberLName: ['', Validators.compose(
         [Validators.required, Validators.maxLength(30)])],
       inputMemberEmail: ['', Validators.compose(
-          [Validators.required, Validators.maxLength(50)])],
+        [Validators.required, Validators.maxLength(50)])],
       inputMemberSMAPhone: [''],
       inputMemberNonSMAPhone: [''],
       inputInitialInterview: ['', Validators.maxLength(2000)],
@@ -67,44 +67,48 @@ export class AdminsMemberComponent implements OnInit {
           this.member = data;
         },
         err => console.error('Subscribe error: ' + err),
-        () => { console.log('getMember is done');
+        () => {
+          console.log('getMember is done');
           this.isLoading = false;
           window.scrollTo(0, 0);
         }
       );
 
-      this.profileForm.valueChanges.subscribe(
-          (form: any) => {  this.errorMessage = '';
-                            this.successMessage = '';
-                            this.submitted = false;
-          }
-      );
+    this.myForm.valueChanges.subscribe(
+      (form: any) => {
+        this.errorMessage = '';
+        this.successMessage = '';
+        this.submitted = false;
+      }
+    );
   }
 
-  saveProfile(): boolean {
+  saveMyForm(): boolean {
     console.log('saving admin member ');
     this.isLoading = true;
     this.sqlResource.updateMember(this.member)
-        .subscribe(
-            (student) => {
-                console.log('subscribe result in updateMember');
-                // need timeout to avoid "Expression has changed error"
-                window.setTimeout( () => {
-                this.successMessage = 'Changes were saved successfully.'; }, 0);
-                // this.successMessage = 'Changes were saved successfully.';
-                this.submitted = true;
-                this.isLoading = false;
-                window.scrollTo(0, 0);
-                window.setTimeout( () => {// console.log('clearing success message');
-                              this.successMessage = ''; }, 3000);
-             },
-            (error) =>  {
-                console.log(this.errorMessage = <any>error);
-                this.isLoading = false;
-            }
-        );
-      // prevent default action of reload
-      return false;
+      .subscribe(
+        (student) => {
+          console.log('subscribe result in updateMember');
+          // need timeout to avoid "Expression has changed error"
+          window.setTimeout(() => {
+            this.successMessage = 'Changes were saved successfully.';
+          }, 0);
+          // this.successMessage = 'Changes were saved successfully.';
+          this.submitted = true;
+          this.isLoading = false;
+          window.scrollTo(0, 0);
+          window.setTimeout(() => {// console.log('clearing success message');
+            this.successMessage = '';
+          }, 3000);
+        },
+        (error) => {
+          console.log(this.errorMessage = <any>error);
+          this.isLoading = false;
+        }
+      );
+    // prevent default action of reload
+    return false;
   }
 
   backToMembersList() {
@@ -113,16 +117,16 @@ export class AdminsMemberComponent implements OnInit {
 
   mentorReportsReview() {
     const id = this.currRoute.snapshot.params['id'];
-    this.router.navigate(['/admins/students/mentorReports/' + id  + '/']); // this.studentId ]);
+    this.router.navigate(['/admins/students/mentorReports/' + id + '/']); // this.studentId ]);
   }
 
   public hasChanges() {
-      // if have changes then ask for confirmation
-      // ask if form is dirty and has not just been submitted
-      console.log('hasChanges has submitted ' + this.submitted);
-      console.log('hasChanges has form dirty ' + this.profileForm.dirty);
-      console.log('hasChanges net is ' + this.profileForm.dirty  || this.submitted);
-      return this.profileForm.dirty && !this.submitted;
+    // if have changes then ask for confirmation
+    // ask if form is dirty and has not just been submitted
+    console.log('hasChanges has submitted ' + this.submitted);
+    console.log('hasChanges has form dirty ' + this.myForm.dirty);
+    console.log('hasChanges net is ' + this.myForm.dirty || this.submitted);
+    return this.myForm.dirty && !this.submitted;
   }
 
 }

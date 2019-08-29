@@ -14,7 +14,7 @@ import { SqlResource } from '../../app_shared/services/sql-resource.service';
   styleUrls: ['./admins-student.component.css'],
 })
 export class AdminsStudentComponent implements OnInit {
-  profileForm: FormGroup;
+  myForm: FormGroup;
   data: Object;
   isLoading: boolean;
   submitted: boolean;
@@ -53,7 +53,7 @@ export class AdminsStudentComponent implements OnInit {
     public formBuilder: FormBuilder,
     public location: Location
   ) {
-    console.log('hi from profile.component constructor');
+    console.log('hi from MyForm.component constructor');
     this.languageStatuses = constants.languageStatuses;
     this.studentStatuses = constants.studentStatuses;
     this.joinedFromTypes = constants.joinedFromTypes;
@@ -66,7 +66,7 @@ export class AdminsStudentComponent implements OnInit {
     this.sponsorGroups = this.fetchSponsorGroups();
     this.mentors = this.fetchMentors();
 
-    this.profileForm = formBuilder.group({
+    this.myForm = formBuilder.group({
       studentId: '',
       firstNames: ['',
         Validators.compose([Validators.required, Validators.maxLength(30)])],
@@ -103,7 +103,7 @@ export class AdminsStudentComponent implements OnInit {
       // inputInitialInterview: [{value: ''}, Validators.maxLength(2000)],
       // studentStory: [{value: ''}, Validators.maxLength(2000)],
     });
-    this.profileForm.disable();
+    this.myForm.disable();
 
     this.student = new Student();
 
@@ -144,7 +144,7 @@ export class AdminsStudentComponent implements OnInit {
           this.isLoading = false;
         });
 
-    this.profileForm.valueChanges.subscribe(
+    this.myForm.valueChanges.subscribe(
       (form: any) => {
         this.errorMessage = '';
         this.successMessage = '';
@@ -152,7 +152,7 @@ export class AdminsStudentComponent implements OnInit {
       }
     );
 
-    this.profileForm.controls.sponsorGroupId.valueChanges.subscribe(newId => {
+    this.myForm.controls.sponsorGroupId.valueChanges.subscribe(newId => {
       console.log('have new sponsorGroupId: ' + newId);
       this.sponsorGroupIdParam = newId;
     });
@@ -236,7 +236,7 @@ export class AdminsStudentComponent implements OnInit {
   setFormValues(student: Student) {
     console.log('setFormValues');
     console.log('gender: ' + student.gender);
-    this.profileForm.setValue({
+    this.myForm.setValue({
       studentId: student.studentId,
       firstNames: student.firstNames,
       lastNames: student.lastNames,
@@ -267,9 +267,9 @@ export class AdminsStudentComponent implements OnInit {
   }
 
   retrieveFormValues(): void {
-    this.student = this.profileForm.value;
+    this.student = this.myForm.value;
 
-    // const ctls = this.profileForm.controls;
+    // const ctls = this.myForm.controls;
     // this.student.firstNames = ctls.firstNames.value;
     // this.student.lastNames = ctls.lastNames.value;
     // this.student.email = ctls.email.value;
@@ -307,7 +307,7 @@ export class AdminsStudentComponent implements OnInit {
     }
   }
 
-  saveProfile(): boolean {
+  saveMyForm(): boolean {
     console.log('saving admin student ');
     this.isLoading = true;
     this.retrieveFormValues();
@@ -349,9 +349,9 @@ export class AdminsStudentComponent implements OnInit {
     // if have changes then ask for confirmation
     // ask if form is dirty and has not just been submitted
     console.log('hasChanges has submitted ' + this.submitted);
-    console.log('hasChanges has form dirty ' + this.profileForm.dirty);
-    console.log('hasChanges net is ' + this.profileForm.dirty || this.submitted);
-    return this.profileForm.dirty && !this.submitted;
+    console.log('hasChanges has form dirty ' + this.myForm.dirty);
+    console.log('hasChanges net is ' + this.myForm.dirty || this.submitted);
+    return this.myForm.dirty && !this.submitted;
   }
 
   gotoGradeHistory() {
@@ -361,10 +361,10 @@ export class AdminsStudentComponent implements OnInit {
   }
   setReadOnly() {
     console.log('toggle readOnly');
-    if (this.profileForm.enabled) {
-      this.profileForm.disable();
+    if (this.myForm.enabled) {
+      this.myForm.disable();
     } else {
-      this.profileForm.enable();
+      this.myForm.enable();
     }
   }
 
