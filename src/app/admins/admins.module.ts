@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppSharedModule } from '../app_shared/app_shared.module';
+import { AdminsNavbarComponent } from './admins-navbar/admins-navbar.component';
 import { AdminsRouting } from './admins.routing';
 // tslint:disable-next-line: max-line-length
-import { AdminsCommunicationsComponent, AdminsComponent, AdminsHomeComponent, AdminsMemberComponent, AdminsMembersComponent, AdminsStudentComponent, AdminsStudentMRsComponent, AdminsStudentsComponent, FollowUpEventsAddComponent, FollowUpRequestsAddComponent, FollowUpRequestsComponent, MentorReportFollowUpUpdatesComponent, MentorReportsStatusCountsComponent, MentorReportsSummaryTrackingComponent, MentorReportSummaryUpdatesComponent } from './index';
-import { AdminsNavbarComponent } from './shared/admins-navbar/admins-navbar.component';
+import { AdminsComponent, AdminsHomeComponent, AdminsMemberComponent, AdminsMembersComponent, AdminsStudentComponent, AdminsStudentMRsComponent, AdminsStudentsComponent, FollowUpEventsAddComponent, FollowUpRequestsAddComponent, FollowUpRequestsComponent, MentorReportFollowUpUpdatesComponent, MentorReportsStatusCountsComponent, MentorReportsSummaryTrackingComponent, MentorReportSummaryUpdatesComponent, SelfReportsTrackingComponent, StudentReportsStatusCountsComponent } from './index';
 import { SponsorGroupComponent } from './sponsor-group/sponsor-group.component';
 import { SponsorGroupsComponent } from './sponsor-groups/sponsor-groups.component';
 
@@ -23,7 +23,6 @@ import { SponsorGroupsComponent } from './sponsor-groups/sponsor-groups.componen
         AdminsComponent,
         AdminsHomeComponent,
         AdminsMembersComponent,
-        AdminsCommunicationsComponent,
         AdminsMemberComponent,
         AdminsStudentsComponent,
         AdminsStudentComponent,
@@ -32,10 +31,12 @@ import { SponsorGroupsComponent } from './sponsor-groups/sponsor-groups.componen
         MentorReportsStatusCountsComponent,
         MentorReportSummaryUpdatesComponent,
         MentorReportFollowUpUpdatesComponent,
+        StudentReportsStatusCountsComponent,
         AdminsNavbarComponent,
         FollowUpRequestsComponent,
         FollowUpRequestsAddComponent,
         FollowUpEventsAddComponent,
+        SelfReportsTrackingComponent,
         SponsorGroupsComponent,
         SponsorGroupComponent
         // FollowUpEventsComponent

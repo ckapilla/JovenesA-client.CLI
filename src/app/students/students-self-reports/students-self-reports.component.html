@@ -36,7 +36,7 @@
                 &nbsp;Fecha del Reporte: {{ i.reportDateTime | truncateDate }}
               </span>
               <span class="padded">
-                &nbsp;Período: {{ i.reportPeriod | alphaMonth}}-{{ i.reportYear }}
+                &nbsp;Período: {{ i.reportYear }} - {{ i.reportPeriod }}
               </span>
             </div>
             <div class="row">
@@ -44,7 +44,7 @@
                 &nbsp;Texto del Reporte:
               </div>
               <div class="col-md-10">
-                {{ i.reportText_Spanish }}
+                {{ i.narrative_Spanish }}
               </div>
             </div>
           </div>

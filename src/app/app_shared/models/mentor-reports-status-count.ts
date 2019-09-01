@@ -1,10 +1,10 @@
 export class MentorReportsStatusCount {
 
-        constructor(
-          public reportYear: number,
-          public reportMonth: number,
-          public sponsorSummaryStatusId: number,
-          public sponsorSummaryStatus: string,
-          public statusCount: number
-        ) {}
-  }
+  constructor(
+    public reportYear: number,
+    public reportMonth: number,
+    public reviewedStatusId: number,
+    public reviewedStatus: string,
+    public statusCount: number
+  ) { }
+}

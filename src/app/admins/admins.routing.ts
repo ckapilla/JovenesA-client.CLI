@@ -2,7 +2,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CanActivateViaAdminAuthGuard, ConfirmDeactivateSummaryTrackingGuard } from '../app.routing-guards';
 import { FollowUpEventsComponent } from '../app_shared/components/follow-up-events/follow-up-events.component';
 // tslint:disable-next-line: max-line-length
-import { AdminsCommunicationsComponent, AdminsComponent, AdminsHomeComponent, AdminsMemberComponent, AdminsMembersComponent, AdminsStudentComponent, AdminsStudentMRsComponent, AdminsStudentsComponent, FollowUpEventsAddComponent, FollowUpRequestsAddComponent, FollowUpRequestsComponent, MentorReportsSummaryTrackingComponent, MentorReportSummaryUpdatesComponent } from './index';
+import { AdminsComponent, AdminsHomeComponent, AdminsMemberComponent, AdminsMembersComponent, AdminsStudentComponent, AdminsStudentMRsComponent, AdminsStudentsComponent, FollowUpEventsAddComponent, FollowUpRequestsAddComponent, FollowUpRequestsComponent, MentorReportsSummaryTrackingComponent, MentorReportSummaryUpdatesComponent, SelfReportsTrackingComponent } from './index';
 import { SponsorGroupComponent } from './sponsor-group/sponsor-group.component';
 import { SponsorGroupsComponent } from './sponsor-groups/sponsor-groups.component';
 
@@ -32,10 +32,6 @@ const routes: Routes = [
       {
         path: 'sponsor-group/:id',
         component: SponsorGroupComponent
-      },
-      {
-        path: 'members/communications/:id',
-        component: AdminsCommunicationsComponent
       },
       {
         path: 'members/member/:id',
@@ -76,6 +72,15 @@ const routes: Routes = [
         path: 'follow-up-requests',
         component: FollowUpRequestsComponent
       },
+      {
+        path: 'self-reports/tracking',
+        component: SelfReportsTrackingComponent
+      },
+      {
+        path: 'self-reports/tracking/:id/:year/:period/:summaryStatus/:highlight',
+        component: SelfReportsTrackingComponent
+      },
+
       {
         path: 'follow-up-events',
         component: FollowUpEventsComponent

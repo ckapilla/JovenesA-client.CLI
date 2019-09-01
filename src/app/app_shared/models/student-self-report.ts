@@ -2,12 +2,16 @@ export class StudentSelfReport {
   constructor(
     public studentSelfReportId?: number,
     public studentId?: number,
+    public studentName?: string,
     public sponsorGroupId?: number,
     public reportDateTime?: Date,
     public reportYear?: number,
     public reportPeriod?: number,
-    public reportText_English?: string,
-    public reportText_Spanish?: string
+    public narrative_English?: string,
+    public narrative_Spanish?: string,
+    public reviewedStatusId?: number,
+    public reviewedStatus?: string,
+    public sponsorGroupName?: string
   ) {
 
   }

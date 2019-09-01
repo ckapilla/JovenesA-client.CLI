@@ -105,12 +105,6 @@ export class AdminsMembersComponent implements OnInit {
     this.router.navigate(link);
   }
 
-  // gotoCommunications(id: number, memberName: string) {
-  //   const link = ['/admins/members/communications/' + id];
-  //   console.log('navigating to ' + link);
-  //   this.router.navigate(link);
-  // }
-
   public onSortColumn(sortCriteria: SORTCRITERIA) {
     console.log(
       'parent received sortColumnCLick event with ' + sortCriteria.sortColumn

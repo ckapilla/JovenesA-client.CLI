@@ -76,6 +76,12 @@ const months: SELECTITEM[] = [
   { value: '11', label: 'Nov/Nov' },
   { value: '12', label: 'Dec/Dic' }
 ];
+const periods: SELECTITEM[] = [
+  { value: '1', label: '1:Ene-Mar' },
+  { value: '2', label: '2:Abr-Jun' },
+  { value: '3', label: '3:Jul-Set' },
+  { value: '4', label: '4:Oct-Dic' }
+];
 const studentStatuses: SELECTITEM[] = [
   { value: '1003', label: 'Dropped' },
   { value: '1004', label: 'Grad' },
@@ -86,6 +92,14 @@ const memberStatuses: SELECTITEM[] = [
   { value: '1016', label: 'Inactive Temporary' },
   { value: '1017', label: 'Inactive Permanent' },
   { value: '2055', label: 'Deceased' }
+];
+const reviewedStatuses: SELECTITEM[] = [
+  { value: '0', label: '[All]' },
+  { value: '2086', label: 'NeedsSetup' },
+  { value: '2087', label: 'NeedsReview' },
+  { value: '2088', label: 'ReadyToSend' },
+  { value: '2089', label: 'Sent' },
+  { value: '2090', label: 'Skipped' }
 ];
 const memberTypes: SELECTITEM[] = [
   { value: '2068', label: 'Admin' },
@@ -121,8 +135,10 @@ export const constants = {
   gradYears,
   years,
   months,
+  periods,
   studentStatuses,
   memberStatuses,
+  reviewedStatuses,
   memberTypes,
   joinedFromTypes,
   genders,

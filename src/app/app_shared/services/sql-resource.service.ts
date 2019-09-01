@@ -412,6 +412,14 @@ export class SqlResource {
   ///  StudentSelfReportsController
   //////////////////////////////////////////////////
 
+  public getStudentSelfReportsStatusCounts(year: string, period: string): Observable<MentorReportsStatusCount[]> {
+    const url = this.WebApiPrefix + 'student_self_reports/status_counts'
+      + '?year=' + year
+      + '&period=' + period;
+    console.log('sending AuthHttp get request for MentorReportsStatusCounts with ' + url);
+    return this.http.get<MentorReportsStatusCount[]>(url).pipe(catchError(this.handleError));
+  }
+
 
   public getStudentSelfReports(studentId: number, sponsorId: number): Observable<SponsorLetter[]> {
     const url = this.WebApiPrefix + 'student_self_reports/' + studentId + '/' + sponsorId;
@@ -419,6 +427,15 @@ export class SqlResource {
     return this.http.get<SponsorLetter[]>(url).pipe(catchError(this.handleError));
   }
 
+  public getStudentSelfReportsByPeriod(year: string, period: string,
+    reviewedStatusId: string): Observable<StudentSelfReport[]> {
+    const url = this.WebApiPrefix + 'student_self_reports/by_period'
+      + '?year=' + year
+      + '&period=' + period
+      + '&summaryStatusId=' + reviewedStatusId;
+    console.log('sending AuthHttp get request for StudentSelfReportsByMonth with ' + url);
+    return this.http.get<StudentSelfReport[]>(url).pipe(catchError(this.handleError));
+  }
 
   public postStudentSelfReport(selfReport: StudentSelfReport,
     studentId: number,

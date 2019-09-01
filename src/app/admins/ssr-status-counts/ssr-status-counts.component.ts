@@ -4,13 +4,13 @@ import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
 @Component({
 
-  selector: 'app-mr-status-counts',
-  templateUrl: './mr-status-counts.component.html'
+  selector: 'app-ssr-status-counts',
+  templateUrl: './ssr-status-counts.component.html'
 })
 
-export class MentorReportsStatusCountsComponent implements OnChanges {
+export class StudentReportsStatusCountsComponent implements OnChanges {
   @Input() year: string;
-  @Input() month: string;
+  @Input() period: string;
   statusCounts: MentorReportsStatusCount[];
   errorMessage: string;
 
@@ -33,23 +33,22 @@ export class MentorReportsStatusCountsComponent implements OnChanges {
     //     statusCount: 7
     //   }
     // ];
-    console.log('ngOnChanges has fired, calling sqlResource with ');
+    console.log('## SSR StatusCounts ngOnChanges has fired, calling sqlResource with ');
     console.log(this.year);
-    console.log(this.month);
-    if (+ this.month > 0) {
-      this.sqlResource.getMentorReportsStatusCounts(this.year, this.month)
-        .subscribe(
-          data => {
-            this.statusCounts = data;
-            console.log('getStatusCounts returns: ');
-            console.log(this.statusCounts);
-          },
-          err => console.error('Subscribe error: ' + err),
-          () => {
-            console.log('statusCounts loaded ' + this.statusCounts.length + ' rows');
-          }
-        );
-    }
+    console.log(this.period);
+    this.sqlResource.getStudentSelfReportsStatusCounts(this.year, this.period)
+      .subscribe(
+        data => {
+          this.statusCounts = data;
+          console.log('getStatusCounts returns: ');
+          console.log(this.statusCounts);
+        },
+        err => console.error('Subscribe error: ' + err),
+        () => {
+          console.log('statusCounts loaded ' + this.statusCounts.length + ' rows');
+        }
+      );
+
   }
 
 }

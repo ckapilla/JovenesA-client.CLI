@@ -7,7 +7,7 @@ export class UnsafeHtmlPipe implements PipeTransform {
   }
 
   transform(content) {
-    console.log('in unsafeHtml pipe');
+    // console.log('in unsafeHtml pipe');
     return this.sanitizer.bypassSecurityTrustHtml(content);
   }
 }

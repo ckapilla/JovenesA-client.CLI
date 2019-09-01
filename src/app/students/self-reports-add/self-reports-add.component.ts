@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentSelfReport } from 'src/app/app_shared/models/student-self-report';
+import { constants } from '../../app_shared/constants/constants';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
@@ -22,7 +23,7 @@ export class SelfReportsAddComponent
 
     reportYear: AbstractControl;
     reportPeriod: AbstractControl;
-    reportText_English: AbstractControl;
+    Narrative_English: AbstractControl;
     periodYears: SELECTITEM[];
     periodMonths: SELECTITEM[];
     errorMessage: string;
@@ -44,13 +45,7 @@ export class SelfReportsAddComponent
             { value: '2020', label: '2020' }
         ];
 
-        this.periodMonths = [
-            // {value: '0', label: 'Seleccionar Mes'},
-            { value: '1', label: '1' },
-            { value: '2', label: '2' },
-            { value: '3', label: '3' },
-            { value: '4', label: '4' }
-        ];
+        this.periodMonths = constants.periods;
 
         this.myForm = _fb.group({
             reportYearSelector: ['', Validators.required],
@@ -62,7 +57,7 @@ export class SelfReportsAddComponent
 
         this.reportYear = this.myForm.controls['reportYearSelector'];
         this.reportPeriod = this.myForm.controls['reportPeriodSelector'];
-        this.reportText_English = this.myForm.controls['inputFollowUp'];
+        this.Narrative_English = this.myForm.controls['inputFollowUp'];
 
 
         this.selfReport = new StudentSelfReport();
@@ -76,7 +71,7 @@ export class SelfReportsAddComponent
 
         this.selfReport.reportYear = null; // moment(new Date).format('YYYY-MM-DD');
         this.selfReport.reportPeriod = null;
-        this.selfReport.reportText_English = '';
+        this.selfReport.narrative_English = '';
 
         this.errorMessage = '';
         this.successMessage = '';
@@ -115,7 +110,7 @@ export class SelfReportsAddComponent
                 ++i;
             }
 
-            if (!this.reportText_English.valid) {
+            if (!this.Narrative_English.valid) {
                 this.errorMessage = this.errorMessage + 'Report text box must be filled in . ';
                 ++i;
             }

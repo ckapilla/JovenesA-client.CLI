@@ -1,5 +1,5 @@
 <div class="card bg-primary">
-  <div class="card-header text-white" style="font-size:large"> Mentor Report Review
+  <div class="card-header text-white" style="font-size:large"> Student Report Review
   </div>
   <div class="card-body bg-white">
     <span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
@@ -8,19 +8,19 @@
     <div>
       <div class="controls">
 
-        <label for="yearSelector">&nbsp;Report Year/Month:</label>
+        <label for="yearSelector">&nbsp;Report Year/Period:</label>
         <select name="yearSelector" [(ngModel)]="selectedYear" (change)="setSelectedYear($event.target.value)">>
           <option *ngFor="let year of years" [value]="year.value">{{year.label}}</option>
         </select>
-        <select name="monthSelector" [(ngModel)]="selectedMonth" (change)="setSelectedMonth($event.target.value)">
+        <select name="periodSelector" [(ngModel)]="selectedPeriod" (change)="setSelectedPeriod($event.target.value)">
           <option value="0">[Select]</option>
-          <option *ngFor="let month of months" [value]="month.value">{{month.label}}</option>
+          <option *ngFor="let period of periods" [value]="period.value">{{period.label}}</option>
         </select>
 
-        <label for="MRSummaryStatusSelector">Reviewed Status:</label>
-        <select name="MRSummaryStatusSelector" [(ngModel)]="selectedMRSummaryStatus"
-                (change)="setSelectedMRSummaryStatus($event.target.value)">
-          <option *ngFor="let status of mrSummaryStatuses" [value]="status.value">{{status.label}}</option>
+        <label for="SRReviewedStatusSelector">Reviewed Status:</label>
+        <select name="SRReviewedStatusSelector" [(ngModel)]="selectedSRReviewedStatus"
+                (change)="setSelectedSRReviewedStatus($event.target.value)">
+          <option *ngFor="let status of ssrReviewedStatuses" [value]="status.value">{{status.label}}</option>
         </select>
 
         <!-- <label>&nbsp;Highlight Status:
@@ -31,12 +31,12 @@
         </label> -->
 
         <span class="checkboxes">
-          &nbsp;&nbsp;<label><input type="checkbox" [(ngModel)]="displayOriginalFields">&nbsp;<span>Display Original
-              Content</span></label>
+          &nbsp;&nbsp;<label><input type="checkbox" [(ngModel)]="displayOriginalFields">&nbsp;<span>Display Full
+              Text</span></label>
         </span>
       </div>
-      <app-mr-status-counts [year]=selectedYear [month]=selectedMonth>
-      </app-mr-status-counts>
+      <app-ssr-status-counts [year]=selectedYear [period]=selectedPeriod>
+      </app-ssr-status-counts>
 
     </div>
 
@@ -47,65 +47,57 @@
       </div>
       <div *ngSwitchCase="false">
         <div class="row" style="border-bottom: 3px solid #ccc; margin-top: 2px;"
-             *ngFor="let lmr of mentorReportByMonth, let i = index">
+             *ngFor="let ssr of studentReportsByPeriod, let i = index">
           <div class="col-md-12">
-            <div class="row" id='{{"id" + lmr.mentorReportId}}'>
+            <div class="row" id='{{"id" + ssr.studentSelfReportId}}'>
               &nbsp;
               <button class="btn default-btn btn-primary btn-sm"
-                      (click)="gotoReportSummary(lmr.mentorReportId,lmr.studentName)">Review</button>
+                      (click)="gotoReportSummary(ssr.studentSelfReportId,ssr.studentName)">Review</button>
               &nbsp;
 
-              <span (click)='gotoStudent(lmr.studentId, lmr.studentName)' class="padded link">
+              <span (click)='gotoStudent(ssr.studentId, ssr.studentName)' class="padded link">
                 [Student:
-                {{ lmr.studentName }} ]
-              </span>
-              <span class="padded">
-                [Mentor:
-                {{ lmr.mentorName }} ]
+                {{ ssr.studentName }} ]
               </span>
               <span class="padded">
                 [Sponsor:
-                {{ lmr.sponsorGroupName }} ]
+                {{ ssr.sponsorGroupName }} ]
               </span>
 
             </div>
 
             <div class="row">
-              <span class="padded">
-                &nbsp;Reviewed Status: {{ lmr.reviewedStatus }}
+              <span class="padded col-md2">
+                &nbsp;Reviewed Status: {{ ssr.reviewedStatus }}
               </span>
               <!-- <span class="padded">
-                &nbsp;Highlight Status: {{ lmr.highlightStatus }}
+                &nbsp;Highlight Status: {{ ssr.highlightStatus }}
               </span> -->
             </div>
             <div class="row">
-              <span class="padded">
+              <span class="padded col-md2">
                 &nbsp;Submitted Date:
-                {{ lmr.reportDateTime | truncateDate }}
+                {{ ssr.reportDateTime | truncateDate }}
               </span>
-              <span class="padded">
-                &nbsp;Last Contact Month:
-                {{ lmr.lastContactMonth | alphaMonth}}-{{ lmr.lastContactYear }}
-              </span>
-              <span class="padded">
+              <!-- <span class="padded">
                 &nbsp;Emoji:
-                <img src="{{smileys[lmr.emoji+1]}}" width="24px" />
+                <img src="{{smileys[ssr.emoji+1]}}" width="24px" />
               </span>
-            </div>
-            <!--<div class="row">
+            </div> -->
+              <!--<div class="row">
     <div class="padded">
       &nbsp;Follow-up Needed:
     </div>
     <div class="col-md-10">
-      {{ lmr.followUpNeeded }}
-    </div>
-  </div>-->
+      {{ ssr.followUpNeeded }}
+    </div>-->
+            </div>
             <div class="row" [hidden]=!displayOriginalFields>
               <div class="col-md2 padded">
                 &nbsp;Description (English)
               </div>
               <div class="col-md-10"
-                   [innerHTML]="lmr.narrative_English | unsafeHtml">
+                   [innerHTML]="ssr.narrative_English | unsafeHtml">
               </div>
             </div>
             <div class="row" [hidden]=!displayOriginalFields>
@@ -113,7 +105,7 @@
                 &nbsp;Description (Spanish)
               </div>
               <div class="col-md-10"
-                   [innerHTML]="lmr.narrative_Spanish | unsafeHtml">
+                   [innerHTML]="ssr.narrative_Spanish | unsafeHtml">
               </div>
             </div>
           </div>
@@ -122,6 +114,3 @@
     </div>
   </div>
 </div>
-
-
-l

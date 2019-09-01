@@ -26,10 +26,10 @@
         <div class="controls">
           <label for="inputReportText">Texto de Reporte</label>
           <textarea id="inputReportText" #success formControlName="inputReportText"
-                    [(ngModel)]="selfReport.reportText_English" type="text"
+                    [(ngModel)]="selfReport.narrative_English" type="text"
                     class="form-control input-sm" placeholder="">
           </textarea>
-          <app-display-errors control="inputReportText_English" class="red" [errors]="{'required': 'An entry is required, even if it is just N/A',
+          <app-display-errors control="inputNarrative_English" class="red" [errors]="{'required': 'An entry is required, even if it is just N/A',
                 'maxlength': 'Entrada no puede exceder los 4000 caracteres.'
                 }"></app-display-errors>
         </div>

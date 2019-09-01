@@ -2,32 +2,32 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { constants } from '../../app_shared/constants/constants';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
-import { MentorReport2RPT } from '../../app_shared/models/mentor-report2';
+import { StudentSelfReport } from '../../app_shared/models/student-self-report';
 import { SessionService } from '../../app_shared/services/session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
 
 @Component({
 
-  templateUrl: 'mr-summary-tracking.component.html',
-  styleUrls: ['mr-summary-tracking.component.css']
+  templateUrl: 'self-report-tracking.component.html',
+  styleUrls: ['self-report-tracking.component.css']
 })
-export class MentorReportsSummaryTrackingComponent implements OnInit {
-  mentorReportByMonth: MentorReport2RPT[];
+export class SelfReportsTrackingComponent implements OnInit {
+  studentReportsByPeriod: StudentSelfReport[];
   isLoading: boolean;
   smileys: Array<string>;
   public errorMessage: string;
   successMessage: string;
   submitted: string;
-  mentorReportStatuses: SELECTITEM[];
+  studentReportStatuses: SELECTITEM[];
   years: SELECTITEM[];
-  months: SELECTITEM[];
-  mrSummaryStatuses: SELECTITEM[];
+  periods: SELECTITEM[];
+  ssrReviewedStatuses: SELECTITEM[];
   highlightStatuses: SELECTITEM[];
   selectedYear: string;
-  selectedMonth: string;
-  selectedMRSummaryStatus: string;
-  selectedHighlightStatus: string;
+  selectedPeriod: string;
+  selectedSRReviewedStatus: string;
+  // selectedHighlightStatus: string;
   displayOriginalFields = true;
   x: any;
   studentName: string;
@@ -41,31 +41,15 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
 
 
     this.years = constants.years;
-    this.months = constants.months;
-
-    this.mrSummaryStatuses = [
-      { value: '0', label: '[All]' },
-      { value: '2086', label: 'NeedsSetup' },
-      { value: '2087', label: 'NeedsReview' },
-      { value: '2088', label: 'ReadyToSend' },
-      { value: '2089', label: 'Sent' },
-      { value: '2090', label: 'Skipped' }
-    ];
-
-    this.highlightStatuses = [
-      { value: '0', label: '[All]' },
-      { value: '2105', label: 'Problems' },
-      { value: '2106', label: 'GoodNews' },
-      { value: '2109', label: 'Red/Green' }
-    ];
-
+    this.periods = constants.periods;
+    this.ssrReviewedStatuses = constants.reviewedStatuses;
 
     const today = new Date();
     this.selectedYear = '2019'; // '' + today.getFullYear(); //
-    this.selectedMonth = '0'; // + today.getMonth() + 1;// '5';
+    this.selectedPeriod = '0'; // + today.getPeriod() + 1;// '5';
 
-    this.selectedMRSummaryStatus = this.mrSummaryStatuses[0].value;
-    this.selectedHighlightStatus = this.highlightStatuses[0].value;
+    this.selectedSRReviewedStatus = this.ssrReviewedStatuses[0].value;
+    // this.selectedHighlightStatus = this.highlightStatuses[0].value;
 
 
     this.smileys = constants.smileys;
@@ -77,7 +61,7 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
   }
 
   processRouteParams() {
-    console.log('summaryTracking setting filters form queryParams');
+    console.log('SelfReportTracking setting filters form queryParams');
 
     const year = this.route.snapshot.queryParams['year'];
     console.log('year param = ' + year);
@@ -85,28 +69,28 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
       this.selectedYear = year;
     }
 
-    const month = this.route.snapshot.queryParams['month'];
-    console.log('month param = ' + month);
-    if (month !== undefined) {
-      this.selectedMonth = month;
+    const period = this.route.snapshot.queryParams['period'];
+    console.log('period param = ' + period);
+    if (period !== undefined) {
+      this.selectedPeriod = period;
     }
     const summary = this.route.snapshot.queryParams['summaryStatus'];
     console.log('summary param = ' + summary);
-    if (month !== undefined) {
-      this.selectedMRSummaryStatus = summary;
+    if (period !== undefined) {
+      this.selectedSRReviewedStatus = summary;
     } else {
-      this.selectedMRSummaryStatus = '0';
+      this.selectedSRReviewedStatus = '0';
     }
 
-    const highlight = this.route.snapshot.queryParams['highlight'];
-    console.log('highlight param = ' + highlight);
-    if (highlight !== undefined) {
-      this.selectedHighlightStatus = highlight;
-    } else {
-      this.selectedHighlightStatus = '0';
-    }
+    // const highlight = this.route.snapshot.queryParams['highlight'];
+    // console.log('highlight param = ' + highlight);
+    // if (highlight !== undefined) {
+    //   this.selectedHighlightStatus = highlight;
+    // } else {
+    //   this.selectedHighlightStatus = '0';
+    // }
 
-    if (month !== undefined && month > 0) {
+    if (period > 0) {
       this.fetchFilteredData();
     }
 
@@ -115,12 +99,12 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
 
   fetchFilteredData() {
     this.isLoading = true;
-    console.log('in fetchData for MentorReportsByMonth');
-    this.sqlResource.getMentorReportsByMonth(this.selectedYear,
-      this.selectedMonth,
-      this.selectedMRSummaryStatus)
+    console.log('in fetchData for StudentReportsByPeriod');
+    this.sqlResource.getStudentSelfReportsByPeriod(this.selectedYear,
+      this.selectedPeriod,
+      this.selectedSRReviewedStatus)
       .subscribe(
-        data => { this.mentorReportByMonth = data; console.log('mentorReportByMonth has'); console.log(this.mentorReportByMonth[0]); },
+        data => { this.studentReportsByPeriod = data; console.log('studentReportByPeriod has'); console.log(this.studentReportsByPeriod[0]); },
         err => console.error('Subscribe error: ' + err),
         () => {
           console.log('data loaded now set timeout for scroll');
@@ -146,22 +130,22 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
     }
   }
 
-  setSelectedMRSummaryStatus(status: string) {
-    this.selectedMRSummaryStatus = status;
+  setSelectedSRReviewedStatus(status: string) {
+    this.selectedSRReviewedStatus = status;
     this.fetchFilteredData();
   }
 
-  setSelectedHighlightStatus(status: string) {
-    this.selectedHighlightStatus = status;
-    this.fetchFilteredData();
-  }
+  // setSelectedHighlightStatus(status: string) {
+  //   this.selectedHighlightStatus = status;
+  //   this.fetchFilteredData();
+  // }
 
   setSelectedYear(year: string) {
     this.selectedYear = year;
     this.fetchFilteredData();
   }
-  setSelectedMonth(month: string) {
-    this.selectedMonth = month;
+  setSelectedPeriod(period: string) {
+    this.selectedPeriod = period;
     this.fetchFilteredData();
   }
 
@@ -177,20 +161,16 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
   }
 
   gotoReportSummary(id: number, studentName: string) {
-    // const link = ['/admins/mentor-reports/summary-updates?id=' + id + '&summaryStatus=' + 2087 + '&highlight=' + 2106];
+    // const link = ['/admins/student-reports/summary-updates?id=' + id + '&summaryStatus=' + 2087 + '&highlight=' + 2106];
     this.session.setStudentInContextName(studentName);
-    const link: [string, { mentorReportId: number, summaryStatus: string, highlight: string }]
-      = ['/admins/mentor-reports/summary-updates',
-        { mentorReportId: id, summaryStatus: this.selectedMRSummaryStatus, highlight: this.selectedHighlightStatus }];
+    const link: [string, { studentReportId: number, summaryStatus: string }]
+      = ['/admins/student-reports/summary-updates',
+        { studentReportId: id, summaryStatus: this.selectedSRReviewedStatus }];
 
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }
 
-  translationNeeded(lang1: number, lang2: number): string {
-    console.log(lang1, lang2);
-    return (lang1 === lang2) ? '' : 'Translation Needed';
-  }
 
   getHighlightColor(highlightStatusId: number): string {
 
