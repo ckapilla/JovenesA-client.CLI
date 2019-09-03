@@ -1,7 +1,9 @@
 import { RouterModule, Routes } from '@angular/router';
 import { CanActivateViaStudentAuthGuard } from '../app.routing-guards';
-// tslint:disable-next-line: max-line-length
-import { SelfReportsAddComponent, StudentsComponent, StudentsProfileComponent, StudentsSelfReportsComponent } from './index';
+import { SelfReportsAddComponent } from './self-reports-add/self-reports-add.component';
+import { StudentsProfileComponent } from './students-profile/students-profile.component';
+import { StudentsSelfReportsComponent } from './students-self-reports/students-self-reports.component';
+import { StudentsComponent } from './students.component';
 
 const routes: Routes = [
   {

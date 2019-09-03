@@ -38,13 +38,7 @@ export class SelfReportsAddComponent
     ) {
 
         console.log('Hi from SelfReportsAddComponent');
-        this.periodYears = [
-            // {value: '2016', label: '2016'},
-            // {value: '2017', label: '2017'} // ,
-            { value: '2019', label: '2019' },
-            { value: '2020', label: '2020' }
-        ];
-
+        this.periodYears = constants.periodYears;
         this.periodMonths = constants.periods;
 
         this.myForm = _fb.group({
@@ -63,6 +57,7 @@ export class SelfReportsAddComponent
         this.selfReport = new StudentSelfReport();
         this.selfReport.sponsorGroupId = 0;
         this.selfReport.studentId = 0;
+        this.selfReport.reviewedStatusId = 2087;
         // SQL Server will adjust the time to UTC by adding TimezoneOffset
         // we want to store local time so we adjust for that.
         const now = new Date();
@@ -84,8 +79,8 @@ export class SelfReportsAddComponent
         this.selfReport.studentId = this.currRoute.snapshot.params['studentId'];
         console.log('sponsorGroupId ' + this.selfReport.sponsorGroupId);
         console.log('studentId ' + this.selfReport.studentId);
-        this.selfReport.reportYear = 2018;
-        this.selfReport.reportPeriod = 1;
+        this.selfReport.reportYear = 2019;
+        this.selfReport.reportPeriod = 3;
 
         this.myForm.valueChanges.subscribe(
             (form: any) => {
@@ -127,7 +122,7 @@ export class SelfReportsAddComponent
                     console.log(this.successMessage = <any>student);
                     this.submitted = true;
                     this.isLoading = false;
-                    const target = '/student-self-reports/' + this.selfReport.studentId;
+                    const target = '/students/self-reports/' + this.selfReport.studentId;
                     console.log('after call to postStudentSelfReports; navigating to ' + target);
                     this.router.navigateByUrl(target);
                 },

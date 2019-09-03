@@ -1,8 +1,19 @@
 import { RouterModule, Routes } from '@angular/router';
-import { CanActivateViaAdminAuthGuard, ConfirmDeactivateSummaryTrackingGuard } from '../app.routing-guards';
+import { CanActivateViaAdminAuthGuard, ConfirmDeactivateMRSummaryUpdatesGuard } from '../app.routing-guards';
 import { FollowUpEventsComponent } from '../app_shared/components/follow-up-events/follow-up-events.component';
-// tslint:disable-next-line: max-line-length
-import { AdminsComponent, AdminsHomeComponent, AdminsMemberComponent, AdminsMembersComponent, AdminsStudentComponent, AdminsStudentMRsComponent, AdminsStudentsComponent, FollowUpEventsAddComponent, FollowUpRequestsAddComponent, FollowUpRequestsComponent, MentorReportsSummaryTrackingComponent, MentorReportSummaryUpdatesComponent, SelfReportsTrackingComponent } from './index';
+import { AdminsHomeComponent } from './admins-home/admins-home.component';
+import { AdminsMemberComponent } from './admins-member/admins-member.component';
+import { AdminsMembersComponent } from './admins-members/admins-members.component';
+import { AdminsStudentMRsComponent } from './admins-student-mrs/admins-student-mrs.component';
+import { AdminsStudentComponent } from './admins-student/admins-student.component';
+import { AdminsStudentsComponent } from './admins-students/admins-students.component';
+import { AdminsComponent } from './admins.component';
+import { FollowUpEventsAddComponent } from './follow-up-events-add/follow-up-events-add.component';
+import { FollowUpRequestsAddComponent } from './follow-up-requests-add/follow-up-requests-add.component';
+import { FollowUpRequestsComponent } from './follow-up-requests/follow-up-requests.component';
+import { MentorReportsSummaryTrackingComponent } from './mr-summary-tracking/mr-summary-tracking.component';
+import { MentorReportSummaryUpdatesComponent } from './mr-summary-updates/mr-summary-updates.component';
+import { SelfReportsTrackingComponent } from './self-report-tracking/self-report-tracking.component';
 import { SponsorGroupComponent } from './sponsor-group/sponsor-group.component';
 import { SponsorGroupsComponent } from './sponsor-groups/sponsor-groups.component';
 
@@ -55,8 +66,7 @@ const routes: Routes = [
       // },
       {
         path: 'mentor-reports/summary-tracking/:id/:year/:month/:summaryStatus/:highlight',
-        component: MentorReportsSummaryTrackingComponent,
-        canDeactivate: [ConfirmDeactivateSummaryTrackingGuard]
+        component: MentorReportsSummaryTrackingComponent
       },
 
       {
@@ -66,7 +76,8 @@ const routes: Routes = [
 
       {
         path: 'mentor-reports/summary-updates', // /:mentorReportId',
-        component: MentorReportSummaryUpdatesComponent
+        component: MentorReportSummaryUpdatesComponent,
+        canDeactivate: [ConfirmDeactivateMRSummaryUpdatesGuard]
       },
       {
         path: 'follow-up-requests',

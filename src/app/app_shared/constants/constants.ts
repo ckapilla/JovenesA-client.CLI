@@ -62,6 +62,13 @@ const years: SELECTITEM[] = [
   { value: '2018', label: '2018' },
   { value: '2019', label: '2019' }
 ];
+const periodYears = [
+  // {value: '2016', label: '2016'},
+  // {value: '2017', label: '2017'} // ,
+  { value: '2019', label: '2019' },
+  { value: '2020', label: '2020' }
+];
+
 const months: SELECTITEM[] = [
   { value: '1', label: 'Jan/Ene' },
   { value: '2', label: 'Feb/Feb' },
@@ -127,7 +134,17 @@ const smileys = ['/assets/images/needsAttention.jpg',
   '/assets/images/celebrate.jpg',
   '/assets/images/NA.jpg'
 ];
-
+const followUpStatuses = [
+  { value: '0', label: '[None]' },
+  { value: '2091', label: 'Requested' },
+  { value: '2092', label: 'Assigned' },
+  { value: '2104', label: 'Closed' },
+];
+const highlightStatuses = [
+  { value: '0', label: '[None]' },
+  { value: '2105', label: 'Problems' },
+  { value: '2106', label: 'GoodNews' },
+];
 export const constants = {
   languageStatuses,
   schoolTypes,
@@ -136,11 +153,14 @@ export const constants = {
   years,
   months,
   periods,
+  periodYears,
   studentStatuses,
   memberStatuses,
   reviewedStatuses,
   memberTypes,
   joinedFromTypes,
   genders,
-  smileys
+  smileys,
+  followUpStatuses,
+  highlightStatuses
 };

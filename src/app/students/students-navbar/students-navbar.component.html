@@ -3,5 +3,6 @@
   <a [routerLinkActive]="['active']" [routerLink]="['/students/profile',currStudentId]">Perfil</a>
   <!--<a [routerLinkActive]="['active']" [routerLink]="['/grade-tracking/grade-tracking',currStudentId]">Estado de grados</a>-->
   <!-- <a [routerLinkActive]="['active']" [routerLink]="['/students/sponsor-letters',currStudentId]">Carta Patrocinador</a> -->
-  <a [routerLinkActive]="['active']" [routerLink]="['/students/self-reports',currStudentId]">Mís Reportes</a>
+  <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/students']">Mís
+    Reportes</a>
 </nav>

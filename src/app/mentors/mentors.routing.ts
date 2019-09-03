@@ -1,7 +1,12 @@
 import { RouterModule, Routes } from '@angular/router';
 import { CanActivateViaMentorAuthGuard, ConfirmDeactivateMonthlyReportAddGuard } from '../app.routing-guards';
-// tslint:disable-next-line: max-line-length
-import { FollowUpRequestsAddComponent, FollowUpRequestsComponent, ForumComponent, MentorsComponent, MentorsProfileComponent, MonthlyReports2AddComponent, MonthlyReports2Component, MonthlyReports2EditComponent } from './index';
+import { FollowUpRequestsComponent } from './follow-up-requests/follow-up-requests.component';
+import { ForumComponent } from './forum/forum.component';
+import { MentorsProfileComponent } from './mentors-profile/mentors-profile.component';
+import { MentorsComponent } from './mentors.component';
+import { MonthlyReports2AddComponent } from './monthly-reports2-add/monthly-reports2-add.component';
+import { MonthlyReports2EditComponent } from './monthly-reports2-edit/monthly-reports2-edit.component';
+import { MonthlyReports2Component } from './monthly-reports2/monthly-reports2.component';
 
 const routes: Routes = [
   {
@@ -41,11 +46,11 @@ const routes: Routes = [
         component: MonthlyReports2EditComponent,
         canDeactivate: [ConfirmDeactivateMonthlyReportAddGuard]
       },
-      {
-        path: 'follow-up-requests-add',
-        component: FollowUpRequestsAddComponent,
-        canDeactivate: [ConfirmDeactivateMonthlyReportAddGuard]
-      },
+      // {
+      //   path: 'follow-up-requests-add',
+      //   component: FollowUpRequestsAddComponent,
+      //   canDeactivate: [ConfirmDeactivateMonthlyReportAddGuard]
+      // },
       {
         path: 'follow-up-requests',
         component: FollowUpRequestsComponent

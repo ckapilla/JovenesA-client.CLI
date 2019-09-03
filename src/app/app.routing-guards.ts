@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanDeactivate, Router, RouterStateSnapshot } from '@angular/router';
-import { MentorReportsSummaryTrackingComponent } from './admins/index';
+import { MentorReportSummaryUpdatesComponent } from './admins/mr-summary-updates/mr-summary-updates.component';
 import { AuthService } from './app_shared/services/auth.service';
 import { SessionService } from './app_shared/services/session.service';
-import { MonthlyReports2AddComponent } from './mentors/index';
+import { MonthlyReports2AddComponent } from './mentors/monthly-reports2-add/monthly-reports2-add.component';
 
 @Injectable({ providedIn: 'root' })
 export class CanActivateViaAdminAuthGuard implements CanActivate {
@@ -108,11 +108,11 @@ export class ConfirmDeactivateMonthlyReportAddGuard
   }
 }
 @Injectable({ providedIn: 'root' })
-export class ConfirmDeactivateSummaryTrackingGuard
-  implements CanDeactivate<MentorReportsSummaryTrackingComponent> {
+export class ConfirmDeactivateMRSummaryUpdatesGuard
+  implements CanDeactivate<MentorReportSummaryUpdatesComponent> {
 
-  canDeactivate(component: MentorReportsSummaryTrackingComponent): boolean {
-    console.log('CanDeactivate for Admins clearing unauthenticate_retry+url');
+  canDeactivate(component: MentorReportSummaryUpdatesComponent): boolean {
+    console.log('CanDeactivate for MRSummaryUpdates clearing unauthenticate_retry+url');
     localStorage.removeItem('unauthenticated_retry_url');
     return true;
   }

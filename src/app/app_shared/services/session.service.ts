@@ -30,6 +30,8 @@ export class SessionService {
 
   public setAdminStatus(status: number): void {
     this.adminStatus = status;
+    // temp for testing 8/2/2019
+    this.studentId = 275; // N/A
   }
 
   public isAdmin(): boolean {
@@ -60,6 +62,11 @@ export class SessionService {
   }
 
   public getStudentId(): number {
+    if (this.isAdmin()) {
+      // temp for testing 8/2/2019
+      this.studentId = 275;
+      return 275; // N/A
+    }
     return this.studentId ? this.studentId : 0;
   }
 

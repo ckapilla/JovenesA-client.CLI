@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-// xximport { ROUTER_DIRECTIVES } from '@angular/router';
-import { SessionService } from '../../../app_shared/services/session.service';
+import { SessionService } from '../../app_shared/services/session.service';
 
 /**
  * This class represents the navigation bar component.
@@ -14,7 +13,7 @@ import { SessionService } from '../../../app_shared/services/session.service';
 })
 
 export class ReportsNavbarComponent {
-   currUserId: number;
+  currUserId: number;
 
   constructor(session: SessionService) {
     this.currUserId = session.getUserId();
@@ -23,6 +22,3 @@ export class ReportsNavbarComponent {
   }
 
 }
-
-
-
