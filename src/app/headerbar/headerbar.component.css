@@ -1,0 +1,31 @@
+
+
+nav a {
+  /* font-size: 14px;
+  font-weight: 500;
+  line-height: 48px; */
+  color: rgba(255, 255, 255, 0.87);
+  /* text-decoration: none; */
+  margin-left: 1rem;
+
+}  
+
+/* nav a.router-link-active {
+  color: #106cc8;
+}
+*/
+
+nav a.active {
+  font-weight: bold;
+  padding: 5px;
+  background-color: lightblue;
+  color: #05579E;
+} 
+
+
+
+/*.nav a {
+    padding: 26px 10px !important;
+    border-right: 0px !important;
+}*/
+

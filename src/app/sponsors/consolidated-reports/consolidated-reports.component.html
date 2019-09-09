@@ -1,0 +1,30 @@
+<div *ngIf="errorMessage" class="alert alert-danger">
+  {{errorMessage}}</div>
+
+<h4>&nbsp;</h4>
+<students-for-sponsor-grid
+                           (onSelectedStudentName)="onSelectedStudentName($event)"
+                           (onSelectedStudentId)="onSelectedStudentId($event)">
+</students-for-sponsor-grid>
+<div [ngSwitch]="isLoading">
+  <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
+    <app-loading-container>
+    </app-loading-container>
+  </div>
+  <div *ngSwitchCase="false">
+    <div *ngIf="!errorMessage" class="card bg-primary">
+      <div class="card-header text-white" style="font-size:large">
+        <span>Past Reports / Informes Anteriores -- </span>
+        <span>{{studentName}}</span>
+        <span>
+          <span>
+            <span class="btn btn-default active" (click)="monthlyReportAdd()" style="margin: 4px 0 0 10px">
+              Add New Report /Añadir un Nuevo Informe
+            </span>
+          </span>
+        </span>
+      </div>
+      <app-mentor-reports2-list [mentorReports2]="mentorReports2"></app-mentor-reports2-list>
+    </div>
+  </div>
+</div>
