@@ -18,6 +18,7 @@ export class AdminsMemberComponent implements OnInit {
   isLoading: boolean;
   submitted: boolean;
   languageStatuses: SELECTITEM[];
+  roleStatuses: SELECTITEM[];
   errorMessage: string;
   successMessage: string;
   firstNames: string;
@@ -34,6 +35,7 @@ export class AdminsMemberComponent implements OnInit {
   ) {
     console.log('hi from MyForm.component constructor');
     this.languageStatuses = constants.languageStatuses;
+    this.roleStatuses = constants.roleStatuses;
 
     this.myForm = formBuilder.group({
       inputMemberFName: ['', Validators.compose(
@@ -47,7 +49,9 @@ export class AdminsMemberComponent implements OnInit {
       inputInitialInterview: ['', Validators.maxLength(2000)],
       inputComments: ['', Validators.maxLength(2000)],
       EnglishLevelSelector: [''],
-      SpanishLevelSelector: ['']
+      SpanishLevelSelector: [''],
+      SponsorStatusSelector: [''],
+      MentorStatusSelector: ['']
     });
     this.member = new Member();
 

@@ -43,8 +43,7 @@
               <div class="padded">
                 &nbsp;Texto del Reporte:
               </div>
-              <div class="col-md-10">
-                {{ i.narrative_Spanish }}
+              <div [innerHTML]="i.narrative_Spanish | marked | unsafeHtml">
               </div>
             </div>
           </div>

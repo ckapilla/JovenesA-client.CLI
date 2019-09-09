@@ -6,7 +6,6 @@ import { AuthService } from '../../app_shared/services/auth.service';
  */
 @Component({
 
-  selector: 'app-home',
   templateUrl: 'mentors-home.component.html'
 })
 export class MentorsHomeComponent {

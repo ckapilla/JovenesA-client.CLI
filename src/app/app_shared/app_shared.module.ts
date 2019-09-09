@@ -21,11 +21,12 @@ import { StudentMRStatusComponent } from './components/student-mr-status.compone
 import { StudentSelectorComponent } from './components/student-selector/student-selector.component';
 import { StudentsForMentorGridComponent } from './components/students-for-mentor-grid/students-for-mentor-grid.component';
 import { StudentsForMentorListComponent } from './components/students-for-mentor-list/students-for-mentor-list.component';
+import { StudentsForSponsorGridComponent } from './components/students-for-sponsor-grid/students-for-sponsor-grid.component';
 import { StudentsForSponsorComponent } from './components/students-for-sponsor-list/students-for-sponsor-list';
 import { SortableTableDirective } from './directives/sortable-table.directive';
-import { HeaderbarComponent } from './headerbar/index';
 import { AlphaLanguagePipe } from './pipes/alpha-language-pipe';
 import { AlphaMonthPipe } from './pipes/alpha-month-pipe';
+import { MarkedPipe } from './pipes/marked-pipe';
 import { TruncateDatePipe } from './pipes/truncate-date-pipe';
 import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
 import { AuthService } from './services/auth.service';
@@ -43,12 +44,12 @@ import { AuthService } from './services/auth.service';
     FormsModule
   ],
   declarations: [
-    HeaderbarComponent,
     DisplayErrorsComponent,
     LoadingContainerComponent,
     SponsorGroupMemberEditComponent,
     StudentsForMentorGridComponent,
     StudentsForMentorListComponent,
+    StudentsForSponsorGridComponent,
     StudentsForSponsorComponent,
     StudentSelectorComponent,
     FollowUpEventsComponent,
@@ -69,14 +70,14 @@ import { AuthService } from './services/auth.service';
     AlphaMonthPipe,
     AlphaLanguagePipe,
     TruncateDatePipe,
-    UnsafeHtmlPipe
+    UnsafeHtmlPipe,
+    MarkedPipe
   ],
   providers: [AuthService],
   exports: [
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    HeaderbarComponent,
     DisplayErrorsComponent,
     LoadingContainerComponent,
     MemberSelectorComponent,
@@ -87,6 +88,7 @@ import { AuthService } from './services/auth.service';
     StudentsForMentorGridComponent,
     StudentsForMentorListComponent,
     StudentsForSponsorComponent,
+    StudentsForSponsorGridComponent,
     StudentSelectorComponent,
     MemberSelectorComponent,
     MentorReports2ListComponent,
@@ -102,7 +104,8 @@ import { AuthService } from './services/auth.service';
     AlphaMonthPipe,
     AlphaLanguagePipe,
     TruncateDatePipe,
-    UnsafeHtmlPipe
+    UnsafeHtmlPipe,
+    MarkedPipe
   ]
 })
 

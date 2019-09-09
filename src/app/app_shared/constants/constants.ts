@@ -94,7 +94,7 @@ const studentStatuses: SELECTITEM[] = [
   { value: '1004', label: 'Grad' },
   { value: '1005', label: 'Current' }
 ];
-const memberStatuses: SELECTITEM[] = [
+const roleStatuses: SELECTITEM[] = [
   { value: '1015', label: 'Active' },
   { value: '1016', label: 'Inactive Temporary' },
   { value: '1017', label: 'Inactive Permanent' },
@@ -134,6 +134,7 @@ const smileys = ['/assets/images/needsAttention.jpg',
   '/assets/images/celebrate.jpg',
   '/assets/images/NA.jpg'
 ];
+const emojis = smileys;
 const followUpStatuses = [
   { value: '0', label: '[None]' },
   { value: '2091', label: 'Requested' },
@@ -147,6 +148,7 @@ const highlightStatuses = [
 ];
 export const constants = {
   languageStatuses,
+  roleStatuses,
   schoolTypes,
   joinedYears,
   gradYears,
@@ -155,12 +157,13 @@ export const constants = {
   periods,
   periodYears,
   studentStatuses,
-  memberStatuses,
+  memberStatuses: roleStatuses,
   reviewedStatuses,
   memberTypes,
   joinedFromTypes,
   genders,
   smileys,
+  emojis,
   followUpStatuses,
   highlightStatuses
 };

@@ -33,4 +33,9 @@ import { ReportsRouting } from './reports.routing';
   ]
 })
 
-export class ReportsModule { }
+export class ReportsModule {
+  constructor() {
+    console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%ReportsModule load');
+  }
+
+}

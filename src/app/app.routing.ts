@@ -26,6 +26,10 @@ const appRoutes: Routes = [
     loadChildren: () => import('./mentors/mentors.module').then(m => m.MentorsModule)
   },
   {
+    path: 'sponsors',
+    loadChildren: () => import('./sponsors/sponsors.module').then(m => m.SponsorsModule)
+  },
+  {
     path: 'students',
     loadChildren: () => import('./students/students.module').then(m => m.StudentsModule)
   },

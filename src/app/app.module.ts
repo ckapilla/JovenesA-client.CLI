@@ -6,6 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { appRouting, appRoutingProviders } from './app.routing';
 import { AppSharedModule } from './app_shared/app_shared.module';
+import { HeaderbarComponent } from './headerbar/headerbar.component';
 // every module that has a routing component no longer needs to be imported here
 import { HomeModule } from './home/home.module';
 
@@ -26,7 +27,8 @@ import { HomeModule } from './home/home.module';
   ],
 
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderbarComponent
   ],
 
   exports: [

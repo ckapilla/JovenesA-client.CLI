@@ -252,6 +252,9 @@ export class AuthService {
       this.session.setMentorStatus((<any>app_metadata)['mentorStatus']);
       console.log('isMentor: ' + this.session.isMentor());
 
+      this.session.setSponsorStatus((<any>app_metadata)['sponsorStatus']);
+      console.log('isSponsor: ' + this.session.isSponsor());
+
       this.session.setStudentId((<any>app_metadata)['studentId']);
       console.log('studentId: ' + this.session.getStudentId());
 

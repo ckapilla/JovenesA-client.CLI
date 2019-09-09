@@ -43,6 +43,20 @@
           <input id="inputMemberNonSMAPhone" formControlName="inputMemberNonSMAPhone" [(ngModel)]="member.nonSma_Phone"
                  type="text" class="form-control input-sm" placeholder="Best Phone Number when not in SMA" />
 
+
+          <label for="SponsorStatusSelector">Sponsor Status:</label>
+          <select formControlName="SponsorStatusSelector" class="form-control input-sm"
+                  [(ngModel)]="member.sponsorStatusId">
+            <option *ngFor="let status of roleStatuses" [value]="status.value">{{status.label}}</option>
+          </select>
+
+          <label for="MentorStatusSelector">Mentor Status:</label>
+          <select formControlName="MentorStatusSelector" class="form-control input-sm"
+                  [(ngModel)]="member.mentorStatusId">
+            <option *ngFor="let status of roleStatuses" [value]="status.value">{{status.label}}</option>
+          </select>
+
+
           <label for="EnglishLevelSelector">English Level:</label>
           <select formControlName="EnglishLevelSelector" class="form-control input-sm"
                   [(ngModel)]="member.englishSkillLevelId">

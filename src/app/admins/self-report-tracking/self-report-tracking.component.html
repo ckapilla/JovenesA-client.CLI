@@ -96,7 +96,7 @@
                 &nbsp;Description (English)
               </div>
               <div class="col-md-10"
-                   [innerHTML]="ssr.narrative_English | unsafeHtml">
+                   [innerHTML]="ssr.narrative_English | marked | unsafeHtml">
               </div>
             </div>
             <div class="row" [hidden]=!displayOriginalFields>
@@ -104,7 +104,7 @@
                 &nbsp;Description (Spanish)
               </div>
               <div class="col-md-10"
-                   [innerHTML]="ssr.narrative_Spanish | unsafeHtml">
+                   [innerHTML]="ssr.narrative_Spanish | marked | unsafeHtml">
               </div>
             </div>
           </div>

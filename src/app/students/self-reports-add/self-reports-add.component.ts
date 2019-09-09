@@ -46,7 +46,7 @@ export class SelfReportsAddComponent
             reportPeriodSelector: ['', this.validateMonth],
 
             inputReportText: ['', Validators.compose(
-                [Validators.required, Validators.maxLength(2000)])]
+                [Validators.required, Validators.maxLength(8000)])]
         });
 
         this.reportYear = this.myForm.controls['reportYearSelector'];
