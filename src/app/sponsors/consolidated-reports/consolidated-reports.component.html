@@ -14,17 +14,13 @@
   <div *ngSwitchCase="false">
     <div *ngIf="!errorMessage" class="card bg-primary">
       <div class="card-header text-white" style="font-size:large">
-        <span>Past Reports / Informes Anteriores -- </span>
-        <span>{{studentName}}</span>
-        <span>
-          <span>
-            <span class="btn btn-default active" (click)="monthlyReportAdd()" style="margin: 4px 0 0 10px">
-              Add New Report /Añadir un Nuevo Informe
-            </span>
-          </span>
-        </span>
+        Quarterly Report (TEST DATA ONLY)
       </div>
-      <app-mentor-reports2-list [mentorReports2]="mentorReports2"></app-mentor-reports2-list>
     </div>
+    <app-student-self-report></app-student-self-report>
+
+    <app-mentor-reports-for-period></app-mentor-reports-for-period>
+
+    <app-admin-student-notes></app-admin-student-notes>
   </div>
 </div>

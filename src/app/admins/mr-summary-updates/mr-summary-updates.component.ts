@@ -23,6 +23,8 @@ export class MentorReportSummaryUpdatesComponent
   successMessage: string;
 
   emojiCtl: AbstractControl;
+  narrative_EnglishCtl: AbstractControl;
+  narrative_SpanishCtl: AbstractControl;
   lastYear: AbstractControl;
   lastMonth: AbstractControl;
   followUp: AbstractControl;
@@ -63,12 +65,16 @@ export class MentorReportSummaryUpdatesComponent
       reviewedStatusSelector: [''],
       highlightStatusSelector: [''],
       inputEmoji: [666, { validators: [Validators.required, this.validateEmojis], updateOn: 'change' }],
+      narrative_English: ['', { validators: [Validators.required], updateOn: 'blur' }],
+      narrative_Spanish: [''],
     });
 
     this.summary = this.myForm.controls['inputSummary'];
     this.reviewedStatus = this.myForm.controls['reviewedStatusSelector'];
     this.highlightStatus = this.myForm.controls['highlightStatusSelector'];
     this.emojiCtl = this.myForm.controls['inputEmoji'];
+    this.narrative_EnglishCtl = this.myForm.controls['narrative_English'];
+    this.narrative_SpanishCtl = this.myForm.controls['narrative_Spanish'];
     this.mentorReport2 = new MentorReport2RPT(); // MentorReportResource();
 
     this.errorMessage = '';
@@ -102,6 +108,8 @@ export class MentorReportSummaryUpdatesComponent
           console.log(this.mentorReport2);
           console.log('<<');
           this.emojiCtl.setValue(this.mentorReport2.emoji);
+          this.narrative_EnglishCtl.setValue(this.mentorReport2.narrative_English);
+          this.narrative_SpanishCtl.setValue(this.mentorReport2.narrative_Spanish);
           this.isLoading = false;
         }
       );
@@ -144,6 +152,8 @@ export class MentorReportSummaryUpdatesComponent
     }
 
     this.mentorReport2.emoji = this.emojiCtl.value;
+    this.mentorReport2.narrative_English = this.narrative_EnglishCtl.value;
+    this.mentorReport2.narrative_Spanish = this.narrative_SpanishCtl.value;
 
     this.sqlResource.updateMentorReport2(this.mentorReport2)
       .subscribe(

@@ -1,6 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { CanActivateViaStudentAuthGuard } from '../app.routing-guards';
 import { SelfReportsAddComponent } from './self-reports-add/self-reports-add.component';
+import { SelfReportsEditComponent } from './self-reports-edit/self-reports-edit.component';
 import { StudentsProfileComponent } from './students-profile/students-profile.component';
 import { StudentsSelfReportsComponent } from './students-self-reports/students-self-reports.component';
 import { StudentsComponent } from './students.component';
@@ -45,6 +46,10 @@ const routes: Routes = [
       {
         path: 'self-reports-add/:studentId/:sponsorId',
         component: SelfReportsAddComponent
+      },
+      {
+        path: 'self-reports-edit/:selfReportId',
+        component: SelfReportsEditComponent
       },
     ]
   }

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppSharedModule } from '../app_shared/app_shared.module';
+// import { SelfReportsUpdatesComponent } from '../students/self-reports-updates/self-reports-updates.component';
 import { AdminsHomeComponent } from './admins-home/admins-home.component';
 import { AdminsMemberComponent } from './admins-member/admins-member.component';
 import { AdminsMembersComponent } from './admins-members/admins-members.component';
@@ -21,7 +22,6 @@ import { SelfReportsTrackingComponent } from './self-report-tracking/self-report
 import { SponsorGroupComponent } from './sponsor-group/sponsor-group.component';
 import { SponsorGroupsComponent } from './sponsor-groups/sponsor-groups.component';
 import { StudentReportsStatusCountsComponent } from './ssr-status-counts/ssr-status-counts.component';
-// tslint:disable-next-line: max-line-length
 
 @NgModule({
     imports: [
@@ -48,6 +48,7 @@ import { StudentReportsStatusCountsComponent } from './ssr-status-counts/ssr-sta
         FollowUpRequestsAddComponent,
         FollowUpEventsAddComponent,
         SelfReportsTrackingComponent,
+        // SelfReportsUpdatesComponent,
         SponsorGroupsComponent,
         SponsorGroupComponent
         // FollowUpEventsComponent

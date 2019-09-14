@@ -17,10 +17,10 @@
           <option *ngFor="let month of months" [value]="month.value">{{month.label}}</option>
         </select>
 
-        <label for="MRSummaryStatusSelector">Reviewed Status:</label>
-        <select name="MRSummaryStatusSelector" [(ngModel)]="selectedMRSummaryStatus"
-                (change)="setSelectedMRSummaryStatus($event.target.value)">
-          <option *ngFor="let status of mrSummaryStatuses" [value]="status.value">{{status.label}}</option>
+        <label for="MRReviewedStatusSelector">Reviewed Status:</label>
+        <select name="MRReviewedStatusSelector" [(ngModel)]="selectedMRReviewedStatus"
+                (change)="setSelectedMRReviewedStatus($event.target.value)">
+          <option *ngFor="let status of mrReviewedStatuses" [value]="status.value">{{status.label}}</option>
         </select>
 
         <!-- <label>&nbsp;Highlight Status:
@@ -52,7 +52,7 @@
             <div class="row" id='{{"id" + lmr.mentorReportId}}'>
               &nbsp;
               <button class="btn default-btn btn-primary btn-sm"
-                      (click)="gotoReportSummary(lmr.mentorReportId,lmr.studentName)">Review</button>
+                      (click)="updateSummaryTracking(lmr.mentorReportId,lmr.studentName)">Review</button>
               &nbsp;
 
               <span (click)='gotoStudent(lmr.studentId, lmr.studentName)' class="padded link">

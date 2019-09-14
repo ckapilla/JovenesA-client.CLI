@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MentorsForStudentListComponent } from '../app_shared/components/mentors-for-student-list/mentors-for-student-list.component';
 import { SponsorsForStudentGridComponent } from '../app_shared/components/sponsors-for-student-grid/sponsors-for-student-grid.component';
+import { AdminStudentNotesComponent } from './components/admin-student-notes/admin-student-notes.component';
 import { CallbackComponent } from './components/callback.component';
 import { DisplayErrorsComponent } from './components/display-errors.component';
 import { FollowUpEventsComponent } from './components/follow-up-events/follow-up-events.component';
@@ -11,6 +12,7 @@ import { FollowUpRequestsListComponent } from './components/follow-up-requests-l
 import { GradeMonthsComponent } from './components/grade-months.component';
 import { LoadingContainerComponent } from './components/loading-container.component';
 import { MemberSelectorComponent } from './components/member-selector/member-selector.component';
+import { MentorReportsForPeriodComponent } from './components/mentor-reports-for-period/mentor-reports-for-period.component';
 import { MentorReports2ListComponent } from './components/mentor-reports2-list/mentor-reports2-list.component';
 import { ProfileComponent } from './components/profile.component';
 import { SortableColumnComponent } from './components/sortable-column.component';
@@ -19,6 +21,7 @@ import { SponsorGroupMembersComponent } from './components/sponsors-for-sponsor-
 import { StudentGradesStatusComponent } from './components/student-grades-status.component';
 import { StudentMRStatusComponent } from './components/student-mr-status.component';
 import { StudentSelectorComponent } from './components/student-selector/student-selector.component';
+import { StudentSelfReportComponent } from './components/student-self-report/student-self-report.component';
 import { StudentsForMentorGridComponent } from './components/students-for-mentor-grid/students-for-mentor-grid.component';
 import { StudentsForMentorListComponent } from './components/students-for-mentor-list/students-for-mentor-list.component';
 import { StudentsForSponsorGridComponent } from './components/students-for-sponsor-grid/students-for-sponsor-grid.component';
@@ -71,7 +74,10 @@ import { AuthService } from './services/auth.service';
     AlphaLanguagePipe,
     TruncateDatePipe,
     UnsafeHtmlPipe,
-    MarkedPipe
+    MarkedPipe,
+    StudentSelfReportComponent,
+    AdminStudentNotesComponent,
+    MentorReportsForPeriodComponent
   ],
   providers: [AuthService],
   exports: [
@@ -105,7 +111,10 @@ import { AuthService } from './services/auth.service';
     AlphaLanguagePipe,
     TruncateDatePipe,
     UnsafeHtmlPipe,
-    MarkedPipe
+    MarkedPipe,
+    StudentSelfReportComponent,
+    AdminStudentNotesComponent,
+    MentorReportsForPeriodComponent
   ]
 })
 

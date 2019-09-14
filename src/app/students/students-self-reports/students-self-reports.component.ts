@@ -61,6 +61,13 @@ export class StudentsSelfReportsComponent implements OnInit {
       );
   }
 
+  selfReportEdit(id: number, studentName: string) {
+    this.session.setStudentInContextName(studentName);
+    const link = '/students/self-reports-edit/' + id;
+    console.log('navigating to ' + link);
+    this.router.navigateByUrl(link);
+  }
+
   sponsorLetterAdd() {
     const target = 'students/self-reports-add/' + this.studentId + '/' + this.sponsorGroupId;
     console.log('in students-sponsor-letters: ready to navigate to' + target);

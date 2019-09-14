@@ -13,12 +13,12 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
+        component: ConsolidatedReportsComponent
+      },
+      {
+        path: 'home',
         component: SponsorsHomeComponent
       },
-      // {
-      //   path: 'home',
-      //   component: SponsorsHomeComponent
-      // },
       // {
       //   path: 'profile/:id',
       //   component: MentorsProfileComponent

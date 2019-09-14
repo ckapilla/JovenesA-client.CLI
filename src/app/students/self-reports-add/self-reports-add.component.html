@@ -1,8 +1,8 @@
-<div class="card bg-primary">
+<div class="card bg-primary" style=" min-width: 46em">
   <div class="card-header text-white" style="font-size:large">
-    Añadir Nueva Mi Reporte
+    Añadir Nueva Reporte
   </div>
-  <div class="card-body bg-white">
+  <div class="card-body bg-white" style="min-width: 46em">
     <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
     <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
 
@@ -22,22 +22,40 @@
           <span *ngIf="!reportPeriod.valid &amp;&amp; reportPeriod.touched" class="red"> Month is required</span>
         </div>
 
+        <pre style="font-size: 120%">
+REDACTA TU REPORTE EN FORMA DE ENSAYO CONSIDERANDO LOS SIGUIENTES PUNTOS
+1. Que es lo que más les ha gustado, lo que mas les ha sorprendido y lo que menos
+   les ha gustado del periodo(semestre o cuatrimestre terminado)
+2. Cuál es el mayor reto al que se han enfrentado este semestre o cuatrimestre.
+3. Cuál ha sido su mayor logro académico este semestre o cuatrimestre.
+4. Que proyectos realizaron ya sea en la escuela o en su comunidad.
+5. De los talleres que ha brindado Jóvenes Adelante, ¿Cuál te ha gustado más o lo haz
+   aplicado realmente? ¿Qué taller te gustaría o sientes que les podría ser de utilidad?
+6. Como es su vida actualmente, sus horarios de clase, si alguno de ustedes trabajan,
+   donde está trabajando, cuál es su función, porque decidieron empezar a trabajar, que
+   aprendizajes han obtenido de su trabajo y que es lo que les ha costado más trabajo.
+7. Cuál ha sido su mayor aprendizaje de vida  hasta ahora
+8. Profesionalmente hacia donde están apuntando, es decir para donde quieren ir y
+   que están haciendo hoy por llegar ahí.
+9. Cuál es su sueño y como los está apoyando Jóvenes Adelante.
+10.Tienen algún pasatiempo, talento o deporte que realicen, platíquenos sobre ello.
 
-        <div class="controls">
-          <label for="inputReportText">Texto de Reporte</label>
-          <textarea id="inputReportText" #success formControlName="inputReportText"
-                    [(ngModel)]="selfReport.narrative_English" type="text"
-                    class="form-control input-sm" placeholder="">
+(Sugerimos escribir su ensayo en un documento y pegarla abajo.)</pre>
+
+        <textarea id="inputReportText" #success formControlName="inputReportText"
+                  [(ngModel)]="selfReport.narrative_English" type="text"
+
+                  class="form-control input-sm narrative" placeholder="">
           </textarea>
-          <app-display-errors control="inputNarrative_English" class="red" [errors]="{'required': 'An entry is required, even if it is just N/A',
+        <app-display-errors control="inputNarrative_English" class="red" [errors]="{'required': 'An entry is required, even if it is just N/A',
                 'maxlength': 'Entrada no puede exceder los 4000 caracteres.'
                 }"></app-display-errors>
-        </div>
+
 
         <div class="col-md-6 col-md-offset-1">
           <span>
             <button class="btn btn-primary"
-                    style="width:80px;margin-right:10px"
+                    style="width:80px;margin-right:10px;margin-top:5px"
                     (click)="onSubmit()">
               Guardar
 
@@ -45,7 +63,7 @@
           </span>&nbsp;
           <span>
             <button class="btn btn-default"
-                    style="width:90px"
+                    style="width:90px;margin-top:5px"
                     (click)="onCancel()">
               Cancelar
             </button>

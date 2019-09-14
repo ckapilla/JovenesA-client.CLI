@@ -11,7 +11,7 @@ import { SqlResource } from '../../app_shared/services/sql-resource.service';
 @Component({
 
     templateUrl: './self-reports-add.component.html',
-    styleUrls: ['./self-reports-add.component.css'],
+    styleUrls: ['./self-reports-add.component.css', '../../../assets/css/forms.css'],
 })
 
 export class SelfReportsAddComponent

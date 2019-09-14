@@ -391,7 +391,7 @@ export class SqlResource {
     const url = this.WebApiPrefix + 'mentor_reports2/by_month'
       + '?year=' + year
       + '&month=' + month
-      + '&summaryStatusId=' + reviewedStatusId;
+      + '&reviewedStatusId=' + reviewedStatusId;
     console.log('sending AuthHttp get request for MentorReportsByMonth with ' + url);
     return this.http.get<MentorReport2RPT[]>(url).pipe(catchError(this.handleError));
 
@@ -421,10 +421,16 @@ export class SqlResource {
   }
 
 
-  public getStudentSelfReports(studentId: number, sponsorId: number): Observable<SponsorLetter[]> {
+  public getStudentSelfReports(studentId: number, sponsorId: number): Observable<StudentSelfReport[]> {
     const url = this.WebApiPrefix + 'student_self_reports/' + studentId + '/' + sponsorId;
     console.log('sending AuthHttp get request for StudentSelfReports with ' + url);
-    return this.http.get<SponsorLetter[]>(url).pipe(catchError(this.handleError));
+    return this.http.get<StudentSelfReport[]>(url).pipe(catchError(this.handleError));
+  }
+
+  public getStudentSelfReport(selfReportId: number): Observable<StudentSelfReport> {
+    const url = this.WebApiPrefix + 'student_self_reports/' + selfReportId;
+    console.log('sending AuthHttp get request for StudentSelfReports with ' + url);
+    return this.http.get<StudentSelfReport>(url).pipe(catchError(this.handleError));
   }
 
   public getStudentSelfReportsByPeriod(year: string, period: string,
@@ -452,6 +458,18 @@ export class SqlResource {
     return this.http.post(url, body, { headers: headers });
   }
 
+  public putStudentSelfReport(selfReport: StudentSelfReport, studentId: number): Observable<MentorReportRPT> {
+
+    const url = this.WebApiPrefix + 'student_self_reports/' + studentId;
+    console.log('in putSelfReport with url ' + url);
+    let body = JSON.stringify({ selfReport });
+    // strip outer 'mentor' name
+    const x = JSON.parse(body);
+    body = JSON.stringify(x.selfReport);
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    console.log('ready to post ' + url + ' body: ' + body + ' options ' + headers);
+    return this.http.put(url, body, { headers: headers });
+  }
   //////////////////////////////////////////////////
   ///  SponsorReportsController
   //////////////////////////////////////////////////

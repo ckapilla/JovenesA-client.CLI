@@ -166,7 +166,7 @@ export class AdminsStudentComponent implements OnInit {
     //        'gradyear: ' + this.selectedGradYear
     //        );
     this.isLoading = true;
-    this.sqlResource.getStudentDTO(321)
+    this.sqlResource.getStudentDTO(this.studentIdParam)
       .subscribe(
         data => {
           this.studentDTO = data;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { StudentSelfReport } from 'src/app/app_shared/models/student-self-report';
 import { constants } from '../../app_shared/constants/constants';
 import { MentorReport2RPT } from '../../app_shared/models/mentor-report2';
 import { SessionService } from '../../app_shared/services/session.service';
@@ -14,9 +15,9 @@ export class ConsolidatedReportsComponent implements OnInit {
 
   isLoading: boolean;
   errorMessage: string;
-
   studentId: number;
   mentorId: number;
+  selfReport: StudentSelfReport;
   mentorReportId: number;
   mentorReports2: Array<MentorReport2RPT>;
   smileys: Array<string>;

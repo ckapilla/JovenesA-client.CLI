@@ -164,7 +164,7 @@ export class SelfReportsTrackingComponent implements OnInit {
     // const link = ['/admins/student-reports/summary-updates?id=' + id + '&summaryStatus=' + 2087 + '&highlight=' + 2106];
     this.session.setStudentInContextName(studentName);
     const link: [string, { studentReportId: number, summaryStatus: string }]
-      = ['/admins/student-reports/summary-updates',
+      = ['/admins/self-reports/updates',
         { studentReportId: id, summaryStatus: this.selectedSRReviewedStatus }];
 
     console.log('navigating to ' + link);
