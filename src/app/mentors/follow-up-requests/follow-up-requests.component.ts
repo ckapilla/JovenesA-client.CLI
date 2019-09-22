@@ -24,15 +24,7 @@ export class FollowUpRequestsComponent implements OnInit {
   constructor(public sqlResource: SqlResource,
     public router: Router,
     public session: SessionService
-  ) {
-
-    this.followUpStatuses = [
-      { value: '0', label: '[All]' },
-      { value: '2091', label: 'Requested' },
-      { value: '2092', label: 'Assigned' },
-      { value: '2104', label: 'Closed' }
-    ];
-  }
+  ) { }
 
   ngOnInit() {
 
@@ -41,7 +33,7 @@ export class FollowUpRequestsComponent implements OnInit {
   fetchData() {
     this.isLoading = true;
     console.log('in fetchData for mentor  FollowUpRequests with studentId' + this.studentId);
-    this.sqlResource.getFollowUpRequests(this.studentId)
+    this.sqlResource.getFollowUpRequestsForStudent(this.studentId)
       .subscribe(
         data => { this.followUpRequests = data; },
         err => console.error('Subscribe error: ' + err),

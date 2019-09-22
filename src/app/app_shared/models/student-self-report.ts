@@ -11,7 +11,8 @@ export class StudentSelfReport {
     public narrative_Spanish?: string,
     public reviewedStatusId?: number,
     public reviewedStatus?: string,
-    public sponsorGroupName?: string
+    public sponsorGroupName?: string,
+    public studentGUId?: string
   ) {
 
   }

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { constants } from '../../app_shared/constants/constants';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 import { FollowUpRequestRPT } from '../../app_shared/models/follow-up-requestRPT';
 import { SessionService } from '../../app_shared/services/session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
-
 @Component({
   selector: 'app-follow-up-requests',
   styleUrls: ['./follow-up-requests.component.css'],
@@ -15,10 +15,12 @@ export class FollowUpRequestsComponent implements OnInit {
   isLoading: boolean;
   smileys: Array<string>;
   followUpStatuses: SELECTITEM[];
+  selectedFollowUpStatusId: string;
   errorMessage: string;
   successMessage: string;
   studentName: string;
   displayCompleteHistory: true;
+  showAddDetails: boolean;
 
 
   constructor(public sqlResource: SqlResource,
@@ -26,23 +28,20 @@ export class FollowUpRequestsComponent implements OnInit {
     public session: SessionService
   ) {
 
-    this.followUpStatuses = [
-      { value: '0', label: '[All]' },
-      { value: '2091', label: 'Requested' },
-      { value: '2092', label: 'Assigned' },
-      { value: '2104', label: 'Closed' }
-    ];
+    this.followUpStatuses = constants.followUpStatuses;
+    this.selectedFollowUpStatusId = constants.followUpStatuses[0].value;
+    this.showAddDetails = this.selectedFollowUpStatusId === '2092'; // Assigned
   }
 
   ngOnInit() {
-
-    this.fetchData();
+    console.log('calling fetchFilterdData with ' + this.selectedFollowUpStatusId);
+    this.fetchFilteredData();
   }
 
-  fetchData() {
+  fetchFilteredData() {
     this.isLoading = true;
-    console.log('in fetchData for FollowUpRequests');
-    this.sqlResource.getFollowUpRequests()
+    console.log('in fetchFilteredData for FollowUpRequests');
+    this.sqlResource.getFollowUpRequests(this.selectedFollowUpStatusId)
       .subscribe(
         data => { this.followUpRequests = data; },
         err => console.error('Subscribe error: ' + err),
@@ -57,6 +56,9 @@ export class FollowUpRequestsComponent implements OnInit {
     const target = '/admins/follow-up-requests-add';
     this.router.navigateByUrl(target);
   }
-
+  setSelectedFollowUpStatus(status: string) {
+    this.selectedFollowUpStatusId = status;
+    this.showAddDetails = this.selectedFollowUpStatusId === '2092'; // Assigned
+    this.fetchFilteredData();
+  }
 }
-

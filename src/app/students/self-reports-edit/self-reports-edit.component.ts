@@ -96,13 +96,13 @@ export class SelfReportsEditComponent implements OnInit {
     this.selfReport.narrative_Spanish = this.narrative_SpanishCtl.value;
     // this.selfReport.reviewedStatusId = 2086; // already is needs setup or wouldn't be here
 
-    this.sqlResource.putStudentSelfReport(this.selfReport, this.session.getStudentId())
+    this.sqlResource.putStudentSelfReport(this.selfReport)
       .subscribe(
         (student) => {
           console.log(this.successMessage = <any>student);
           this.isSubmitted = true;
           this.isLoading = false;
-          const target = '/students/self-reports/' + this.session.getStudentId();
+          const target = '/students/self-reports';
           console.log('after call to editMentorReport; navigating to ' + target);
           this.router.navigateByUrl(target);
         },

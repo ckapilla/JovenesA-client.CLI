@@ -50,13 +50,24 @@ export class SqlResource {
     return this.http.get(url).pipe(catchError(this.handleError));
   }
 
+  public getStudentViaGUID(studentGUId: string): Observable<Student> {
+    const url = this.WebApiPrefix + 'students/' + studentGUId;
+    console.log('sending AuthHttp get request for Student');
+    return this.http.get(url).pipe(catchError(this.handleError));
+  }
+
   public getStudentDTO(studentId: number): Observable<StudentDTO> {
     const url = this.WebApiPrefix + 'students/DTO/' + studentId;
     // statusId: vm.selectedStatus.statusId, gradYear: vm.selectedGradYear.year, yearJoinedJA: vm.selectedYearJoined.year },
     console.log('sending AuthHttp get request for Students');
     return this.http.get<StudentDTO>(url);
   }
-
+  public getStudentDTOViaGUID(studentGUId: string): Observable<StudentDTO> {
+    const url = this.WebApiPrefix + 'students/DTO/' + studentGUId;
+    // statusId: vm.selectedStatus.statusId, gradYear: vm.selectedGradYear.year, yearJoinedJA: vm.selectedYearJoined.year },
+    console.log('sending AuthHttp get request for Students');
+    return this.http.get<StudentDTO>(url);
+  }
   public getStudentDTOsByStatusAndYear(statusId: string, yearJoinedJA: string, gradYear: string): Observable<StudentDTO[]> {
     const url = this.WebApiPrefix
       + 'students'
@@ -443,11 +454,9 @@ export class SqlResource {
     return this.http.get<StudentSelfReport[]>(url).pipe(catchError(this.handleError));
   }
 
-  public postStudentSelfReport(selfReport: StudentSelfReport,
-    studentId: number,
-    sponsorGroupId: number): Observable<MentorReportRPT> {
+  public postStudentSelfReport(selfReport: StudentSelfReport): Observable<MentorReportRPT> {
 
-    const url = this.WebApiPrefix + 'student_self_reports/' + studentId + '/' + sponsorGroupId;
+    const url = this.WebApiPrefix + 'student_self_reports';
     console.log('in postSelfReport with url ' + url);
     let body = JSON.stringify({ selfReport });
     // strip outer 'mentor' name
@@ -458,9 +467,24 @@ export class SqlResource {
     return this.http.post(url, body, { headers: headers });
   }
 
-  public putStudentSelfReport(selfReport: StudentSelfReport, studentId: number): Observable<MentorReportRPT> {
+  // public postStudentSelfReport(selfReport: StudentSelfReport,
+  //   studentId: number,
+  //   sponsorGroupId: number): Observable<MentorReportRPT> {
 
-    const url = this.WebApiPrefix + 'student_self_reports/' + studentId;
+  //   const url = this.WebApiPrefix + 'student_self_reports/' + studentId + '/' + sponsorGroupId;
+  //   console.log('in postSelfReport with url ' + url);
+  //   let body = JSON.stringify({ selfReport });
+  //   // strip outer 'mentor' name
+  //   const x = JSON.parse(body);
+  //   body = JSON.stringify(x.selfReport);
+  //   const headers = new HttpHeaders().set('Content-Type', 'application/json');
+  //   console.log('ready to post ' + url + ' body: ' + body + ' options ' + headers);
+  //   return this.http.post(url, body, { headers: headers });
+  // }
+
+  public putStudentSelfReport(selfReport: StudentSelfReport): Observable<MentorReportRPT> {
+
+    const url = this.WebApiPrefix + 'student_self_reports';
     console.log('in putSelfReport with url ' + url);
     let body = JSON.stringify({ selfReport });
     // strip outer 'mentor' name
@@ -470,6 +494,20 @@ export class SqlResource {
     console.log('ready to post ' + url + ' body: ' + body + ' options ' + headers);
     return this.http.put(url, body, { headers: headers });
   }
+  // public putStudentSelfReport(selfReport: StudentSelfReport, studentId: number): Observable<MentorReportRPT> {
+
+  //   const url = this.WebApiPrefix + 'student_self_reports/' + studentId;
+  //   console.log('in putSelfReport with url ' + url);
+  //   let body = JSON.stringify({ selfReport });
+  //   // strip outer 'mentor' name
+  //   const x = JSON.parse(body);
+  //   body = JSON.stringify(x.selfReport);
+  //   const headers = new HttpHeaders().set('Content-Type', 'application/json');
+  //   console.log('ready to post ' + url + ' body: ' + body + ' options ' + headers);
+  //   return this.http.put(url, body, { headers: headers });
+  // }
+
+
   //////////////////////////////////////////////////
   ///  SponsorReportsController
   //////////////////////////////////////////////////
@@ -501,7 +539,7 @@ export class SqlResource {
   //////////////////////////////////////////////////
 
 
-  public getFollowUpRequests(studentId?: number): Observable<FollowUpRequestRPT[]> {
+  public getFollowUpRequestsForStudent(studentId?: number): Observable<FollowUpRequestRPT[]> {
     let url = this.WebApiPrefix + 'follow_up_requests';
     if (studentId) {
       url = url + '?studentId=' + studentId;
@@ -509,6 +547,16 @@ export class SqlResource {
     console.log('sending AuthHttp get request with ' + url);
     return this.http.get<FollowUpRequestRPT[]>(url).pipe(catchError(this.handleError));
   }
+  public getFollowUpRequests(statusId: string): Observable<FollowUpRequestRPT[]> {
+    let url = this.WebApiPrefix + 'follow_up_requests';
+    if (statusId) {
+      url = url + '?statusId=' + statusId;
+    }
+    console.log('sending AuthHttp get request with ' + url);
+    return this.http.get<FollowUpRequestRPT[]>(url).pipe(catchError(this.handleError));
+  }
+
+
   public postFollowUpRequest(followUpRequest: FollowUpRequest): Observable<any> {
     const url = this.WebApiPrefix + 'follow_up_requests';
     console.log('in postFollowUpRequest with url ' + url);

@@ -77,6 +77,7 @@ export class SelfReportsAddComponent
         console.log('selfReportsAdd ngOnInit');
         this.selfReport.sponsorGroupId = this.currRoute.snapshot.params['sponsorId'];
         this.selfReport.studentId = this.currRoute.snapshot.params['studentId'];
+        this.selfReport.studentGUId = this.currRoute.snapshot.params['studentGUId'];
         console.log('sponsorGroupId ' + this.selfReport.sponsorGroupId);
         console.log('studentId ' + this.selfReport.studentId);
         this.selfReport.reportYear = 2019;
@@ -114,9 +115,7 @@ export class SelfReportsAddComponent
         }
 
 
-        this.sqlResource.postStudentSelfReport(this.selfReport,
-            this.selfReport.studentId,
-            this.selfReport.sponsorGroupId)
+        this.sqlResource.postStudentSelfReport(this.selfReport)
             .subscribe(
                 (student) => {
                     console.log(this.successMessage = <any>student);

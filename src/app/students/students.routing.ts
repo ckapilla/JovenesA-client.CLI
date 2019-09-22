@@ -24,7 +24,7 @@ const routes: Routes = [
       //   component: StudentsHomeComponent
       // },
       {
-        path: 'profile/:id',
+        path: 'profile/:guid',
         component: StudentsProfileComponent
       },
       // {
@@ -44,7 +44,7 @@ const routes: Routes = [
         component: StudentsSelfReportsComponent
       },
       {
-        path: 'self-reports-add/:studentId/:sponsorId',
+        path: 'self-reports-add/:studentId/:sponsorId/:studentGUId',
         component: SelfReportsAddComponent
       },
       {

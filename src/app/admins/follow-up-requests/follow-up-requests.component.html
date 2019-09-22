@@ -8,7 +8,7 @@
   <div *ngSwitchCase="false">
     <div *ngIf="!errorMessage">
       <div class="card-header bg-warning text-for-warning" style="font-size:large;">
-        <span>Current Requests / Solicitudes Corrientes </span>
+        <span>Requests / Corrientes </span>
         <span>{{studentName}}</span>
         <span>
           <span>
@@ -17,14 +17,25 @@
             </span>
           </span>
         </span>
-        <span class="checkboxes">
-            &nbsp;&nbsp;<input type="checkbox" [(ngModel)]="displayCompleteHistory">&nbsp;<span>Display Complete History</span>
-          </span>
+
       </div>
-      <app-follow-up-requests-list  [followUpRequests]="followUpRequests"
-       [displayCompleteHistory]="displayCompleteHistory"
-       [showAddDetails]="true"
-       ></app-follow-up-requests-list>
+
+      <div>
+        <label for="MRReviewedStatusSelector">Request Status:</label>
+        <select name="MRReviewedStatusSelector" [(ngModel)]="selectedFollowUpStatusId"
+                (change)="setSelectedFollowUpStatus($event.target.value)">
+          <option *ngFor="let status of followUpStatuses" [value]="status.value">{{status.label}}</option>
+        </select>
+
+        <span class="checkboxes">
+          &nbsp;&nbsp;<input type="checkbox" [(ngModel)]="displayCompleteHistory">&nbsp;<span>Display Complete
+            History</span>
+        </span>
+      </div>
+
+      <app-follow-up-requests-list [followUpRequests]="followUpRequests"
+                                   [displayCompleteHistory]="displayCompleteHistory"
+                                   [showAddDetails]="showAddDetails"></app-follow-up-requests-list>
 
     </div>
   </div>

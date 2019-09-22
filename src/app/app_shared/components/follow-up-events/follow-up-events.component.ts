@@ -19,20 +19,12 @@ export class FollowUpEventsComponent implements OnInit {
   successMessage: string;
   studentName: string;
   displayEventDetails: false;
-  @Input()followUpRequestId: number;
+  @Input() followUpRequestId: number;
 
   constructor(public sqlResource: SqlResource,
     public router: Router,
     public session: SessionService
-  ) {
-
-    this.followUpStatuses = [
-      // { value: '0', label: '[All]' },
-      { value: '2091', label: 'Requested' },
-      { value: '2092', label: 'Assigned' },
-      { value: '2104', label: 'Closed' }
-    ];
-  }
+  ) { }
 
   ngOnInit() {
 
@@ -55,9 +47,8 @@ export class FollowUpEventsComponent implements OnInit {
 
   followUpEventAdd(requestId: number) {
     console.log('in follow-up-events: FollowUpEventAdd, ready to navigate');
-    const target = '/admins/follow-up-events-add/' + requestId ;
+    const target = '/admins/follow-up-events-add/' + requestId;
     this.router.navigateByUrl(target);
   }
 
 }
-

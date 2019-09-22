@@ -8,8 +8,11 @@ export class SessionService {
   mentorStatus: number;
   sponsorStatus: number;
   studentId: number;
+  studentGUId: string;
   userId: number;
+  userGUId: string;
   assignedStudentId: number;
+  assignedStudentGUId: string;
   assignedStudentName: string;
   currentStudent: StudentDTO;
   failedAuthorizationRoute: string;
@@ -61,13 +64,16 @@ export class SessionService {
     this.studentId = studentId;
   }
 
+  public setStudentGUId(studentGUId: string): void {
+    this.studentGUId = studentGUId;
+  }
+
   public getStudentId(): number {
-    if (this.isAdmin()) {
-      // temp for testing 8/2/2019
-      this.studentId = 275;
-      return 275; // N/A
-    }
     return this.studentId ? this.studentId : 0;
+  }
+
+  public getStudentGUId(): string {
+    return this.studentGUId ? this.studentGUId : '';
   }
 
   public isStudent(): boolean {
@@ -99,18 +105,39 @@ export class SessionService {
     this.userId = Id;
   }
 
+  public setUserGUid(guid: string): void {
+    console.log('setUserGUId = ' + guid);
+    this.userGUId = guid;
+  }
+
   public getUserId(): number {
     return this.userId;
   }
+
+  public getUserGUId(): string {
+    return this.userGUId;
+  }
+
 
   public setAssignedStudentId(Id: number): void {
     console.log('session studentId set to ' + Id);
     this.assignedStudentId = Id;
   }
 
+  public setAssignedStudentGUId(guid: string): void {
+    console.log('session studentGUId set to ' + guid);
+    this.assignedStudentGUId = guid;
+  }
+
+
   public getAssignedStudentId(): number {
     console.log('session studentId getting ' + this.assignedStudentId);
     return this.assignedStudentId;
+  }
+
+  public getAssignedStudentGUId(): string {
+    console.log('session studentGUId getting ' + this.assignedStudentGUId);
+    return this.assignedStudentGUId;
   }
 
   public setStudentInContextName(name: string): void {

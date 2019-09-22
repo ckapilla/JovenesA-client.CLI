@@ -40,14 +40,6 @@ export class FollowUpEventsAddComponent implements OnInit {
     private session: SessionService
   ) {
 
-
-    this.followUpStatuses = [
-      // { value: '0', label: '[None]' },
-      // { value: '2091', label: 'Requested' },
-      { value: '2092', label: 'Assigned' },
-      { value: '2104', label: 'Closed' },
-    ];
-
     this.followUpEvent = new FollowUpEvent();
     // SQL Server will adjust the time to UTC by adding TimezoneOffset
     // we want to store local time so we adjust for that.

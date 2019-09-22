@@ -258,6 +258,9 @@ export class AuthService {
       this.session.setStudentId((<any>app_metadata)['studentId']);
       console.log('studentId: ' + this.session.getStudentId());
 
+      this.session.setStudentGUId((<any>app_metadata)['studentGUId']);
+      console.log('studentGUId: ' + this.session.getStudentGUId());
+
       this.session.setUserId((<any>userProfile)['user_id'].substr('auth0|'.length));
       console.log('userId: ' + this.session.userId);
 

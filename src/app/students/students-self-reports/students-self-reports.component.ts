@@ -15,6 +15,7 @@ export class StudentsSelfReportsComponent implements OnInit {
   isLoading: boolean;
   errorMessage: string;
   studentId: number;
+  studentGUId: string;
   student: StudentDTO;
   studentSelfReports: Array<StudentSelfReport>;
   sponsorGroupName: string;
@@ -37,8 +38,13 @@ export class StudentsSelfReportsComponent implements OnInit {
       this.studentId = this.session.getStudentId();
       console.log('studentId from session:' + this.studentId);
     }
-    // may be undefined at this point:
 
+    this.studentGUId = this.currRoute.snapshot.params['studentGUId'];
+    console.log('studentGUId from route: ' + this.studentGUId);
+    if (!this.studentGUId) {
+      this.studentGUId = this.session.getStudentGUId();
+      console.log('studentGUId from session:' + this.studentGUId);
+    }
     this.isLoading = true;
   }
 
@@ -69,7 +75,7 @@ export class StudentsSelfReportsComponent implements OnInit {
   }
 
   sponsorLetterAdd() {
-    const target = 'students/self-reports-add/' + this.studentId + '/' + this.sponsorGroupId;
+    const target = 'students/self-reports-add/' + this.studentId + '/' + this.sponsorGroupId + '/' + this.studentGUId;
     console.log('in students-sponsor-letters: ready to navigate to' + target);
     this.router.navigateByUrl(target);
   }

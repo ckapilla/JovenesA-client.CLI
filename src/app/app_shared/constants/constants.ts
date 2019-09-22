@@ -136,8 +136,8 @@ const smileys = ['/assets/images/needsAttention.jpg',
 ];
 const emojis = smileys;
 const followUpStatuses = [
-  { value: '0', label: '[None]' },
-  { value: '2091', label: 'Requested' },
+  // { value: '0', label: '[None]' },
+  // { value: '2091', label: 'Requested' },
   { value: '2092', label: 'Assigned' },
   { value: '2104', label: 'Closed' },
 ];

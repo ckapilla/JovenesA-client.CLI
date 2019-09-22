@@ -171,14 +171,14 @@ export class AdminsStudentsComponent implements OnInit {
     return studentDTO;
   }
 
-  gotoStudent(id: number, studentName: string) {
+  gotoStudent(guid: string, studentName: string) {
     console.log('setting studentName to ' + studentName);
     this.session.setStudentInContextName(studentName);
     // const idx = this.studentDTOs.findIndex(s => s.studentId === id);
 
     // this.session.setCurrentStudent(this.studentDTOs[idx]);
     // const link = ['/admins/students/student', id];
-    const link = ['admins/students/student', { id: id }];
+    const link = ['admins/students/student', { guid: guid }];
 
     console.log('navigating to ' + link);
     this.router.navigate(link);

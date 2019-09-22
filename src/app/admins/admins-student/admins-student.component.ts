@@ -40,6 +40,7 @@ export class AdminsStudentComponent implements OnInit {
   studentDTO: StudentDTO;
   photoPathName: string;
   studentIdParam: number;
+  studentGUIdParam: string;
   sponsorGroupIdParam: number;
   emojiPathname: string;
   readonly smileys: string[] = constants.smileys;
@@ -100,6 +101,7 @@ export class AdminsStudentComponent implements OnInit {
       bankAccount: [{ value: '' }],
       sponsorGroupId: [{ value: '' }],
       mentorId: [{ value: '' }],
+      studentGUId: [{ value: '' }]
       // inputInitialInterview: [{value: ''}, Validators.maxLength(2000)],
       // studentStory: [{value: ''}, Validators.maxLength(2000)],
     });
@@ -114,14 +116,14 @@ export class AdminsStudentComponent implements OnInit {
 
   ngOnInit() {
     console.log('admins Student ngOnInit');
-    this.studentIdParam = this.currRoute.snapshot.params['id'];
-    console.log('sqlResource with studentIdParam: ' + this.studentIdParam);
+    this.studentGUIdParam = this.currRoute.snapshot.params['guid'];
+    console.log('sqlResource with studentGUIdParam: ' + this.studentGUIdParam);
     this.fetchStudentDTOData();
   }
 
   fetchStudentData() {
     this.isLoading = true;
-    this.sqlResource.getStudent(this.studentIdParam)
+    this.sqlResource.getStudentViaGUID(this.studentGUIdParam)
       .subscribe(
         data => {
           this.student = data;
@@ -166,7 +168,7 @@ export class AdminsStudentComponent implements OnInit {
     //        'gradyear: ' + this.selectedGradYear
     //        );
     this.isLoading = true;
-    this.sqlResource.getStudentDTO(this.studentIdParam)
+    this.sqlResource.getStudentDTOViaGUID(this.studentGUIdParam)
       .subscribe(
         data => {
           this.studentDTO = data;
@@ -263,6 +265,7 @@ export class AdminsStudentComponent implements OnInit {
       bankAccount: student.bankAccount,
       sponsorGroupId: student.sponsorGroupId,
       mentorId: student.mentorId,
+      studentGUId: student.studentGUId
     });
   }
 
@@ -296,6 +299,7 @@ export class AdminsStudentComponent implements OnInit {
     // this.student.bankAccount = ctls.bankAccount.value;
     // this.student.sponsorGroupId = ctls.sponsorGroupId.value;
     // this.student.mentorId = ctls.mentorId.value;
+    // this.student.studentGUId = ctls.studentGUId.value;
   }
 
 

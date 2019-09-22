@@ -12,11 +12,13 @@ import { SessionService } from '../../app_shared/services/session.service';
 
 export class StudentsNavbarComponent {
   currStudentId: number;
+  currStudentGUId: string;
 
   constructor(session: SessionService) {
     this.currStudentId = session.getStudentId();
-    console.log('StudentsNav: ' + this.currStudentId);
-
+    console.log('Students ID Nav: ' + this.currStudentId);
+    this.currStudentGUId = session.getStudentGUId();
+    console.log('Students GUID Nav: ' + this.currStudentGUId);
   }
 
 }

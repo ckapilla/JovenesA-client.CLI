@@ -34,7 +34,8 @@ export class StudentDTO {
     public major?: string,
     public joinedFromId?: number,
     public joinedFrom?: string,
-    public photoUrl?: string
+    public photoUrl?: string,
+    public studentGuid?: string
 
   ) { }
 }
