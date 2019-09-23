@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { constants } from '../../app_shared/constants/constants';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
@@ -51,16 +51,18 @@ export class MonthlyReports2EditComponent
       lastContactMonthSelector: ['0', { validators: [this.validateMonth], updateOn: 'change' }],
       // use bogus integer value so change detection works:
       inputEmoji: [666, { validators: [Validators.required, this.validateEmojis], updateOn: 'change' }],
-      inputNarrative_English: ['', { validators: [Validators.required], updateOn: 'blur' }],
-      inputNarrative_Spanish: [''],
+      narrative_English: ['', { updateOn: 'blur' }],
+      narrative_Spanish: ['', { updateOn: 'blur' }],
       mentorReportId: [this.reportIdCtl]
-  });
+    });
+
+    this.myForm.setValidators(this.validateNarrativeFields());
 
     this.lastYearCtl = this.myForm.controls['lastContactYearSelector'];
     this.lastMonthCtl = this.myForm.controls['lastContactMonthSelector'];
     this.emojiCtl = this.myForm.controls['inputEmoji'];
-    this.narrative_EnglishCtl = this.myForm.controls['inputNarrative_English'];
-    this.narrative_SpanishCtl = this.myForm.controls['inputNarrative_Spanish'];
+    this.narrative_EnglishCtl = this.myForm.controls['narrative_English'];
+    this.narrative_SpanishCtl = this.myForm.controls['narrative_Spanish'];
     this.reportIdCtl = this.myForm.controls['mentorReportId'];
 
     this.errorMessage = '';
@@ -129,14 +131,15 @@ export class MonthlyReports2EditComponent
       }
 
       if (!this.emojiCtl.valid) {
-        this.errorMessage = this.errorMessage + 'An emoji must be selected. Se debe seleccionar un Emoji';
+        this.errorMessage = this.errorMessage + ' An emoji must be selected. Se debe seleccionar un Emoji';
         ++i;
       }
 
-      if (!this.narrative_EnglishCtl.valid) {
-        this.errorMessage = this.errorMessage + 'Description must be filled in. Descripcione debe rellenarse';
+      if ((!this.narrative_EnglishCtl.valid) || (!this.narrative_SpanishCtl.valid)) {
+        this.errorMessage = this.errorMessage + ' English OR Spanish Description must be filled in. Descripcione ingles O español debe rellenarse';
         ++i;
       }
+
       window.scrollTo(0, 0);
       return false;
     }
@@ -185,14 +188,32 @@ export class MonthlyReports2EditComponent
     console.log(rtnVal);
     return rtnVal;
   }
+
   validateEmojis(control: FormControl): { [error: string]: any } {
     console.log('emoji validator ' + control.value);
     const rtnVal: any = (control.value === 666)
-        ? { validateEmojis: { valid: false } }
-        : null;
+      ? { validateEmojis: { valid: false } }
+      : null;
     console.log(rtnVal);
     return rtnVal;
-}
+  }
+
+  validateNarrativeFields(): ValidatorFn {
+    return (group: FormGroup): ValidationErrors => {
+      if (this.narrative_EnglishCtl.value.length || this.narrative_SpanishCtl.value.length) {
+        this.narrative_EnglishCtl.setErrors(null);
+        this.narrative_SpanishCtl.setErrors(null);
+        // console.log('OK: at least one narrative not empty');
+      } else {
+        this.narrative_EnglishCtl.setErrors({ bothEmpty: true });
+        this.narrative_SpanishCtl.setErrors({ bothEmpty: true });
+        // console.log('ERROR: both narratives empty');
+      }
+
+      return;
+    };
+  }
+
   public hasChanges() {
     // if have changes then ask for confirmation
     // ask if form is dirty and has not just been isSubmitted

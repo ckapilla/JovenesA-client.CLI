@@ -16,6 +16,7 @@ export class MonthlyReports2Component implements OnInit {
   errorMessage: string;
 
   studentId: number;
+  studentGUId: string;
   mentorId: number;
   mentorReportId: number;
   mentorReports2: Array<MentorReport2RPT>;
@@ -23,23 +24,23 @@ export class MonthlyReports2Component implements OnInit {
   studentName: string;
   haveCurrentReport: boolean;
   constructor(
-              public currRoute: ActivatedRoute,
-              private router: Router,
-              public sqlResource: SqlResource,
-              public session: SessionService) {
+    public currRoute: ActivatedRoute,
+    private router: Router,
+    public sqlResource: SqlResource,
+    public session: SessionService) {
 
     console.log('monthlyReports constructor');
     this.smileys = constants.smileys;
   }
 
- ngOnInit() {
-        console.log('monthlyReports ngOnInit');
-        this.mentorId = this.currRoute.snapshot.params['mentorId'];
-        this.mentorId = this.session.getUserId();
-        console.log('mentorId ' + this.mentorId);
-        // may be undefined at this point:
-        console.log('studentId ' + this.studentId);
-        this.haveCurrentReport = false;
+  ngOnInit() {
+    console.log('monthlyReports ngOnInit');
+    this.mentorId = this.currRoute.snapshot.params['mentorId'];
+    this.mentorId = this.session.getUserId();
+    console.log('mentorId ' + this.mentorId);
+    // may be undefined at this point:
+    console.log('studentId ' + this.studentId);
+    this.haveCurrentReport = false;
   }
   onSelectedStudentName(studentName: string) {
     console.log('$$$$$$$ got selected NAME event');
@@ -54,12 +55,13 @@ export class MonthlyReports2Component implements OnInit {
     this.studentId = studentId;
     this.sqlResource.getMentorReport2RPTs(this.mentorId, studentId)
       .subscribe(
-        data => {this.mentorReports2 = data; },
+        data => { this.mentorReports2 = data; },
         err => console.error('Subscribe error: ' + err),
-        () => {console.log('done: ');
+        () => {
+          console.log('done: ');
           this.isLoading = false;
           for (const x of this.mentorReports2) {
-            if (x.reviewedStatusId === 2086) {
+            if (x.reviewedStatusId === 2086) { // Needs_Setup
               // console.log('current report found; disable add function');
               this.haveCurrentReport = true;
             }
@@ -68,6 +70,31 @@ export class MonthlyReports2Component implements OnInit {
         }
       );
   }
+
+  // onSelectedStudentGUId(studentGUId: string) {
+  //   console.log('$$$$$$$ got selectedGUId event with ' + studentGUId);
+  //   this.isLoading = true;
+  //   this.haveCurrentReport = false;
+  //   this.studentGUId = studentGUId;
+  //   this.sqlResource.getMentorReport2RPTs(this.mentorId, studentGUId)
+  //     .subscribe(
+  //       data => { this.mentorReports2 = data; },
+  //       err => console.error('Subscribe error: ' + err),
+  //       () => {
+  //         console.log('done: ');
+  //         this.isLoading = false;
+  //         for (const x of this.mentorReports2) {
+  //           if (x.reviewedStatusId === 2086) { // Needs_Setup
+  //             // console.log('current report found; disable add function');
+  //             this.haveCurrentReport = true;
+  //           }
+  //         }
+
+  //       }
+  //     );
+  // }
+
+
 
   monthlyReportAdd() {
     if (this.haveCurrentReport) {

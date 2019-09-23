@@ -35,7 +35,7 @@ export class StudentDTO {
     public joinedFromId?: number,
     public joinedFrom?: string,
     public photoUrl?: string,
-    public studentGuid?: string
+    public studentGUId?: string
 
   ) { }
 }

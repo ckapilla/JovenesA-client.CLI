@@ -54,11 +54,11 @@ const routes: Routes = [
         component: AdminsStudentsComponent
       },
       {
-        path: 'students/student', // /:id',
+        path: 'students/student', // :guid',
         component: AdminsStudentComponent
       },
       {
-        path: 'students/student/mentorReports/:id/:studentName',
+        path: 'students/student/mentorReports/:guid/:studentName',
         component: AdminsStudentMRsComponent
       },
       // {

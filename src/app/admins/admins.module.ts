@@ -14,7 +14,7 @@ import { AdminsRouting } from './admins.routing';
 import { FollowUpEventsAddComponent } from './follow-up-events-add/follow-up-events-add.component';
 import { FollowUpRequestsAddComponent } from './follow-up-requests-add/follow-up-requests-add.component';
 import { FollowUpRequestsComponent } from './follow-up-requests/follow-up-requests.component';
-import { MentorReportFollowUpUpdatesComponent } from './mr-follow-up-updates/mr-follow-up-updates.component';
+// import { MentorReportFollowUpUpdatesComponent } from './mr-follow-up-updates/mr-follow-up-updates.component';
 import { MentorReportsStatusCountsComponent } from './mr-status-counts/mr-status-counts.component';
 import { MentorReportsSummaryTrackingComponent } from './mr-summary-tracking/mr-summary-tracking.component';
 import { MentorReportSummaryUpdatesComponent } from './mr-summary-updates/mr-summary-updates.component';
@@ -41,7 +41,7 @@ import { StudentReportsStatusCountsComponent } from './ssr-status-counts/ssr-sta
         MentorReportsSummaryTrackingComponent,
         MentorReportsStatusCountsComponent,
         MentorReportSummaryUpdatesComponent,
-        MentorReportFollowUpUpdatesComponent,
+        // MentorReportFollowUpUpdatesComponent,
         StudentReportsStatusCountsComponent,
         AdminsNavbarComponent,
         FollowUpRequestsComponent,

@@ -16,37 +16,39 @@ export class AdminsStudentMRsComponent implements OnInit {
   errorMessage: string;
 
   studentId: number;
+  studentGUId: number;
   mentorId: number;
   mentorReportId: number;
   mentorReports2: Array<MentorReport2RPT>;
   studentName: string;
 
   constructor(
-              public currRoute: ActivatedRoute,
-              private router: Router,
-              public sqlResource: SqlResource,
-              public session: SessionService,
-              public location: Location) {
+    public currRoute: ActivatedRoute,
+    private router: Router,
+    public sqlResource: SqlResource,
+    public session: SessionService,
+    public location: Location) {
   }
 
-   ngOnInit() {
+  ngOnInit() {
     console.log('admins MRs ngOnInit');
     //  not here this.mentorId = this.currRoute.snapshot.params['mentorId'];
-     this.mentorId = 0; // 2208;
+    this.mentorId = 0; // 2208;
     console.log('mentorId ' + this.mentorId);
-     this.studentId = this.currRoute.snapshot.params['id'];
+    this.studentGUId = this.currRoute.snapshot.params['guid'];
     this.studentName = this.currRoute.snapshot.params['studentName'];
-     if (this.studentName === '') {
+    if (this.studentName === '') {
       this.studentName = this.session.getStudentInContextName();
     }
-   console.log('studentId  ' + this.studentId);
+    console.log('studentGUId  ' + this.studentGUId);
     this.isLoading = true;
-    this.sqlResource.getMentorReport2RPTs(this.mentorId, this.studentId)
+    this.sqlResource.getMentorReport2RPTs(this.mentorId, this.studentGUId)
       .subscribe(
-        data => {this.mentorReports2 = data; },
+        data => { this.mentorReports2 = data; },
         err => console.error('Subscribe error: ' + err),
-        () => {console.log('done: ');
-        this.isLoading = false;
+        () => {
+          console.log('done: ');
+          this.isLoading = false;
         }
       );
   }

@@ -15,7 +15,7 @@ export class FollowUpRequestsListComponent {
 
   studentId: number;
 
-  constructor(               private router: Router ) {
+  constructor(private router: Router) {
     console.log('FollowUpRequestsListComponent constructor');
   }
 
@@ -32,18 +32,21 @@ export class FollowUpRequestsListComponent {
     this.router.navigateByUrl(target);
   }
   viewAddDetails(requestId: number) {
-    const link = '/admins/follow-up-events-add/' +  requestId;
+    const link = '/admins/follow-up-events-add/' + requestId;
     console.log('navigating to ' + link);
     this.router.navigateByUrl(link);
   }
 
-  gotoStudent(id: number, studentName: string) {
+  gotoStudent(guid: string, studentName: string) {
     // console.log('setting studentName to ' + studentName);
     // this.session.setStudentInContextName(studentName);
 
-    const link = ['admins/students/student', { id: id }];
-    console.log('navigating to ' + link);
-    this.router.navigate(link);
+    if (guid && guid.length > 0) {
+      const link = ['admins/students/student', { guid: guid }];
+      console.log('navigating to ' + link);
+      this.router.navigate(link);
+    }
+
   }
 
 }

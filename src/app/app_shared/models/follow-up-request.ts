@@ -8,6 +8,7 @@ export class FollowUpRequest {
     public targetDate?: Date | string | null,
     public description_English?: string,
     public description_Spanish?: string,
-    public requestDateTime?: Date | string | null
-  ) {}
+    public requestDateTime?: Date | string | null,
+    public studentGUId?: string,
+  ) { }
 }

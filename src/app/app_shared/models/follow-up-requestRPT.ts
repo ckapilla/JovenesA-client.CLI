@@ -19,6 +19,7 @@ export class FollowUpRequestRPT {
     public assignedToRole?: string,
     public assignedTo?: string,
     public comments_English?: string,
-    public comments_Spanish?: string
+    public comments_Spanish?: string,
+    public studentGUId?: string
   ) { }
 }

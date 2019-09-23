@@ -369,6 +369,12 @@ export class SqlResource {
     return this.http.get<MentorReport2RPT[]>(url).pipe(catchError(this.handleError));
   }
 
+  public getMentorReport2RPTsViaGUID(mentorId: number, studentGUId: string): Observable<MentorReport2RPT[]> {
+    const url = this.WebApiPrefix + 'mentor_reports2/' + mentorId + '/' + studentGUId;
+    console.log('sending AuthHttp get request for MentorReports2 with ' + url);
+    return this.http.get<MentorReport2RPT[]>(url).pipe(catchError(this.handleError));
+  }
+
   public updateMentorReport2(mentorReport: MentorReport2RPT): Observable<MentorReportRPT> {
 
     const url = this.WebApiPrefix + 'mentor_reports2'; // + mentorReport.mentorReportId ;

@@ -345,8 +345,8 @@ export class AdminsStudentComponent implements OnInit {
   }
 
   mentorReportsReview() {
-    const id = this.currRoute.snapshot.params['id'];
-    this.router.navigate(['/admins/students/student/mentorReports/' + id + '/' + this.student.firstNames + ' ' + this.student.lastNames]);
+    const guid = this.currRoute.snapshot.params['guid'];
+    this.router.navigate(['/admins/students/student/mentorReports/' + guid + '/' + this.student.firstNames + ' ' + this.student.lastNames]);
   }
 
   public hasChanges() {

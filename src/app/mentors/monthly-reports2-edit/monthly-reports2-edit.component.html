@@ -53,8 +53,12 @@
               <span *ngIf="emojiCtl.hasError('required')" class="red">Please select a Snapshot color</span>
             </label>
           </div>
+        </div>
 
-
+        <div style="color:mediumblue"><i><b>(If you wish to have the translated text below be re-translated, please
+              delete it
+              before submitting.<br />
+              Si desea tener el texto traducido abajo son traducidos de nuevo, eliminelo antes de entregar.)</b></i>
         </div>
 
         <div hidden class="controls">
@@ -67,32 +71,32 @@
         </div>
 
         <div class="controls">
-          <label for="inputNarrative_English">Positive events or special challenges in the student's life
+          <label for="narrative_English">English: Positive events or special challenges in the student's life
             during the past month</label>
-          <textarea id="inputNarrative_English" #success formControlName="inputNarrative_English"
+          <textarea id="narrative_English" #success formControlName="narrative_English"
                     type="text"
 
                     class="form-control input-sm" placeholder="">
           </textarea>
-          <app-display-errors control="inputNarrative_English" class="red"
-                              [errors]="{'required': 'An entry is required, even if it is just N/A.',
-          'maxlength': 'Entry cannot exceed 4000 characters in length.'
+          <app-display-errors control="narrative_English" class="red"
+                              [errors]="{'bothEmpty': 'English OR Spanish Description must be filled in. Descripcione ingles O español debe rellenarse',
+            'maxlength': 'Entry cannot exceed 4000 characters in length.'
                 }"></app-display-errors>
         </div>
 
         <div class="controls">
-            <label for="inputNarrative_Spanish">Logros y eventos positivos o obstáculos en la vida del
-              estudiante</label>
-            <textarea id="inputNarrative_Spanish" #success formControlName="inputNarrative_Spanish"
-                      type="text"
+          <label for="narrative_Spanish">Español: Logros y eventos positivos o obstáculos en la vida del
+            estudiante</label>
+          <textarea id="narrative_Spanish" #success formControlName="narrative_Spanish"
+                    type="text"
 
-                      class="form-control input-sm" placeholder="">
+                    class="form-control input-sm" placeholder="">
             </textarea>
-            <app-display-errors control="inputNarrative_Spanish" class="red"
-                                [errors]="{'required': 'Se requiere una entrada, aun si es sólo N/A.',
+          <app-display-errors control="narrative_Spanish" class="red"
+                              [errors]="{'bothEmpty': 'English OR Spanish Description must be filled in. Descripcione ingles O español debe rellenarse',
             'maxlength': 'La entrada no puede exceder 4000 caracteres del largo.'
                   }"></app-display-errors>
-          </div>
+        </div>
 
         <div class="col-md-6 col-md-offset-1">
           <span>

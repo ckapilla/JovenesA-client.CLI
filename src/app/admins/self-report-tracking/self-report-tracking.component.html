@@ -54,8 +54,11 @@
               <!-- <button class="btn default-btn btn-primary btn-sm"
                       (click)="gotoReportSummary(ssr.studentSelfReportId,ssr.studentName)">Review</button>
               &nbsp; -->
+              <!-- <span>
+                XX {{ ssr.studentGUId }} YY
+              </span> -->
 
-              <span (click)='gotoStudent(ssr.studentId, ssr.studentName)' class="padded link">
+              <span (click)='gotoStudent(ssr.studentGUId, ssr.studentName)' class="padded link">
                 [Student:
                 {{ ssr.studentName }} ]
               </span>

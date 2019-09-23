@@ -73,8 +73,10 @@ export class MonthlyReports2AddComponent
 
         this.mentorReport2.mentorId = this.currRoute.snapshot.params['mentorId'];
         this.mentorReport2.studentId = this.currRoute.snapshot.params['studentId'];
+        this.mentorReport2.studentGUId = this.currRoute.snapshot.params['studentGUId'];
         console.log('mentorId ' + this.mentorReport2.mentorId);
         console.log('studentId ' + this.mentorReport2.studentId);
+        console.log('studentGUId ' + this.mentorReport2.studentGUId);
         // SQL Server will adjust the time to UTC by adding TimezoneOffset
         // we want to store local time so we adjust for that.
         const now = new Date();
@@ -131,7 +133,7 @@ export class MonthlyReports2AddComponent
         }
 
         console.log('###before submitting update model with form control values');
-        // mentorId and studentId do not have corresponding controls
+        // mentorId and studentId and studentGUId do not have corresponding controls
         this.mentorReport2.lastContactYear = this.lastYearCtl.value;
         this.mentorReport2.lastContactMonth = this.lastMonthCtl.value;
         this.mentorReport2.emoji = this.emojiCtl.value;
