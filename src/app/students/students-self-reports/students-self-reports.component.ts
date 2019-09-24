@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SponsorGroup } from 'src/app/app_shared/models/sponsor-group';
 import { StudentSelfReport } from '../../app_shared/models/student-self-report';
 import { StudentDTO } from '../../app_shared/models/studentDTO';
 import { SessionService } from '../../app_shared/services/session.service';
@@ -18,6 +19,7 @@ export class StudentsSelfReportsComponent implements OnInit {
   studentGUId: string;
   student: StudentDTO;
   studentSelfReports: Array<StudentSelfReport>;
+  sponsorGroup: SponsorGroup;
   sponsorGroupName: string;
   sponsorGroupId: number;
 
@@ -45,18 +47,32 @@ export class StudentsSelfReportsComponent implements OnInit {
       this.studentGUId = this.session.getStudentGUId();
       console.log('studentGUId from session:' + this.studentGUId);
     }
+    this.fetchSponsorGroup();
     this.isLoading = true;
   }
 
-  onSelectedSponsorGroupName(sponsorGroupName: string) {
-    console.log('$$$$$$$ got selected NAME event');
-    this.sponsorGroupName = '' + sponsorGroupName;
+  fetchSponsorGroup() {
+    this.sqlResource.getSponsorGroupForStudent(this.studentId)
+      .subscribe(
+        data => { this.sponsorGroup = data; console.log('getSponsorGroupForStudent'); console.log(this.sponsorGroup); },
+        err => console.error('Subscribe error: ' + err),
+        () => {
+          console.log('sponsors-for-student-grid loaded ');
+          if (this.sponsorGroup) {
+            this.sponsorGroupId = this.sponsorGroup.sponsorGroupId;
+            this.fetchSelfReports();
+          } else {
+            this.errorMessage = 'No Assigned Sponsors.';
+            // this.onNoAssignedStudents.emit();
+          }
+        }
+      );
   }
 
-  onSelectedSponsorGroupId(sponsorGroupId: number) {
-    console.log('$$$$$$$ got selectedId event sponsorGroupId: ' + sponsorGroupId);
-    this.sponsorGroupId = sponsorGroupId;
-    this.sqlResource.getStudentSelfReports(this.studentId, sponsorGroupId)
+
+  fetchSelfReports() {
+    console.log('fetch reports with sponsorGroupId: ' + this.sponsorGroupId);
+    this.sqlResource.getStudentSelfReports(this.studentId, this.sponsorGroupId)
       .subscribe(
         data => { this.studentSelfReports = data; },
         err => console.error('Subscribe error: ' + err),

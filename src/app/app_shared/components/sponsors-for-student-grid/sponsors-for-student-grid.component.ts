@@ -9,7 +9,7 @@ import { SqlResource } from '../../services/sql-resource.service';
 })
 
 export class SponsorsForStudentGridComponent implements OnInit, OnChanges {
-  sponsors: Array<StudentSponsorXRef>;
+  sponsorGroup: StudentSponsorXRef;
   sponsorName: string;
   // sponsorId: number;
   errorMessage = '';
@@ -25,13 +25,13 @@ export class SponsorsForStudentGridComponent implements OnInit, OnChanges {
   }
 
   public ngOnInit() {
-    this.sqlResource.getSponsorGroupMembersForStudent(this.studentId)
+    this.sqlResource.getSponsorGroupForStudent(this.studentId)
       .subscribe(
-        data => { this.sponsors = data; console.log('getSponsorGroupMembersForStudent'); console.log(this.sponsors[0]); },
+        data => { this.sponsorGroup = data[0]; console.log('getSponsorGroupMembersForStudent'); console.log(this.sponsorGroup); },
         err => console.error('Subscribe error: ' + err),
         () => {
-          console.log('sponsors-for-student-grid loaded ' + this.sponsors.length + ' rows');
-          if (this.sponsors.length > 0) {
+          console.log('sponsors-for-student-grid loaded ');
+          if (this.sponsorGroup) {
             this.selectFirstRow();
           } else {
             this.errorMessage = 'No Assigned Sponsors.';
@@ -47,18 +47,18 @@ export class SponsorsForStudentGridComponent implements OnInit, OnChanges {
   }
 
   selectFirstRow() {
-    console.log('First row Id is ' + this.sponsors[0].sponsorGroupId + ' ' +
-      this.sponsors[0].sponsorGroupName); // + ' ' + this.sponsors[0].sponsorLastNames );
-    this.setRowClasses(+this.sponsors[0].sponsorGroupId);
-    this.selectSponsorGroup(+this.sponsors[0].sponsorGroupId, 0);
+    console.log('First row Id is ' + this.sponsorGroup.sponsorGroupId + ' ' +
+      this.sponsorGroup.sponsorGroupName); // + ' ' + this.sponsorGroup.sponsorLastNames );
+    this.setRowClasses(+this.sponsorGroup.sponsorGroupId);
+    this.selectSponsorGroup(+this.sponsorGroup.sponsorGroupId, 0);
   }
 
   public selectSponsorGroup(sponsorGroupId: number, idx: number) {
     console.log('sponsor selected sponsorId: ' + sponsorGroupId + ' idx: ' + idx);
-    const sponsorName: string = this.sponsors[idx].sponsorName; //  + ', ' + this.sponsorMentors[idx].sponsorFirstNames;
+    const sponsorGroupName: string = this.sponsorGroup.sponsorName; //  + ', ' + this.sponsorMentors[idx].sponsorFirstNames;
     this.sponsorGroupId = sponsorGroupId;
     this.onSelectedSponsorGroupId.emit(sponsorGroupId);
-    this.onSelectedSponsorGroupName.emit(sponsorName);
+    this.onSelectedSponsorGroupName.emit(sponsorGroupName);
 
   }
   public setRowClasses(sponsorGroupId: number) {

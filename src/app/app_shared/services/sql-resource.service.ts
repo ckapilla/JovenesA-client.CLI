@@ -141,10 +141,10 @@ export class SqlResource {
     return this.http.get<StudentSponsorXRef[]>(url).pipe(catchError(this.handleError));
   }
 
-  public getSponsorGroupForStudent(studentId: number): Observable<StudentSponsorXRef[]> {
-    const url = this.WebApiPrefix + 'students/sponsor_groups_for/' + studentId;
+  public getSponsorGroupForStudent(studentId: number): Observable<StudentSponsorXRef> {
+    const url = this.WebApiPrefix + 'students/sponsor_group_for/' + studentId;
     console.log('sending AuthHttp get request ' + url);
-    return this.http.get<StudentSponsorXRef[]>(url).pipe(catchError(this.handleError));
+    return this.http.get<StudentSponsorXRef>(url).pipe(catchError(this.handleError));
   }
 
 
