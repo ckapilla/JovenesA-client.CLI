@@ -1,0 +1,61 @@
+<div class="card bg-primary">
+  <div class="card-header text-white" style="font-size:large">
+    Latest Student Sponsor Letters
+  </div>
+  <div class="card-body bg-white">
+    <span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
+    <span *ngIf="successMessage" class="alert alert-success">{{successMessage}}</span>
+
+
+    <div [ngSwitch]="isLoading">
+      <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
+        <app-loading-container>
+        </app-loading-container>
+      </div>
+      <div *ngSwitchCase="false">
+        <table class="table-sm table-striped">
+
+          <thead>
+            <tr>
+              <!--<td>Id</td>-->
+              <th></th>
+              <th app-sortable-column="studentName" (onSortColumn)="onSortColumn($event)">Student Name</th>
+              <th app-sortable-column="sponsorGroupName" (onSortColumn)="onSortColumn($event)">Sponsor Group Name</th>
+              <th app-sortable-column="primarySponsorName" (onSortColumn)="onSortColumn($event)">Primary Sponsor Name</th>
+              <th app-sortable-column="sponsorEmail" (onSortColumn)="onSortColumn($event)">Sponsor Email</th>
+              <th app-sortable-column="sponsorPhone" (onSortColumn)="onSortColumn($event)">Sponsor Phone</th>
+              <th app-sortable-column="letterDateTime" (onSortColumn)="onSortColumn($event)">Latest&nbsp;Letter</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let lmr of latestStudentLetters, let i = index">
+              <td>
+                {{ i+1 }}
+              </td>
+            <td>
+                {{ lmr.studentName }}
+              </td>
+              <td>
+                {{ lmr.sponsorGroupName }}
+              </td>
+              <td>
+                {{ lmr.primarySponsorName }}
+              </td>
+              <td>
+                {{ lmr.sponsorEmail }}
+              </td>
+              <td>
+                {{ lmr.sponsorPhone }}
+              </td>
+              <td (click)='gotoStudentLetter(lmr.studentId)' class='link'>
+                {{ lmr.latestMonth }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+  l
