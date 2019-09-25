@@ -10,9 +10,9 @@
 
       <tr *ngFor="let item of sponsors, let i = index"
           [ngClass]="setRowClasses(item.sponsorGroupId)"
-          id="item.sponsorGroupId"
-          (click)='selectSponsorGroup(item.sponsorGroupId, i)'>
-        <td>{{item.sponsorGroupName}}</td>
+          id="item.sponsorGroupMemberId"
+          (click)='selectSponsor(item.sponsorGroupMemberId, i)'>
+        <td>{{item.sponsorGroupMemberName}}</td>
       </tr>
     </tbody>
   </table>

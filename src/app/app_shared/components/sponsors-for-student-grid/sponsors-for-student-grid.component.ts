@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
-import { StudentSponsorXRef } from '../../models/student-sponsor-xref';
+import { SponsorGroupMemberDTO } from '../../models/sponsor-group-memberDTO';
 import { SessionService } from '../../services/session.service';
 import { SqlResource } from '../../services/sql-resource.service';
 
@@ -9,14 +9,14 @@ import { SqlResource } from '../../services/sql-resource.service';
 })
 
 export class SponsorsForStudentGridComponent implements OnInit, OnChanges {
-  sponsorGroup: StudentSponsorXRef;
+  sponsors: Array<SponsorGroupMemberDTO>;
   sponsorName: string;
   // sponsorId: number;
   errorMessage = '';
-  @Output() onSelectedSponsorGroupName = new EventEmitter<string>();
-  @Output() onSelectedSponsorGroupId = new EventEmitter<number>();
+  @Output() onSelectedSponsorName = new EventEmitter<string>();
+  @Output() onSelectedSponsorId = new EventEmitter<number>();
   @Input() studentId: number;
-  @Input() sponsorGroupId: number; // only used for change detection
+  @Input() sponsorId: number; // only used for change detection
 
   constructor(public session: SessionService,
     private sqlResource: SqlResource) {
@@ -25,13 +25,13 @@ export class SponsorsForStudentGridComponent implements OnInit, OnChanges {
   }
 
   public ngOnInit() {
-    this.sqlResource.getSponsorGroupForStudent(this.studentId)
+    this.sqlResource.getSponsorGroupMembersForStudent(this.studentId)
       .subscribe(
-        data => { this.sponsorGroup = data[0]; console.log('getSponsorGroupMembersForStudent'); console.log(this.sponsorGroup); },
+        data => { this.sponsors = data; console.log('getSponsorMembersForStudent'); console.log(this.sponsors[0]); },
         err => console.error('Subscribe error: ' + err),
         () => {
           console.log('sponsors-for-student-grid loaded ');
-          if (this.sponsorGroup) {
+          if (this.sponsors.length > 0) {
             this.selectFirstRow();
           } else {
             this.errorMessage = 'No Assigned Sponsors.';
@@ -47,25 +47,25 @@ export class SponsorsForStudentGridComponent implements OnInit, OnChanges {
   }
 
   selectFirstRow() {
-    console.log('First row Id is ' + this.sponsorGroup.sponsorGroupId + ' ' +
-      this.sponsorGroup.sponsorGroupName); // + ' ' + this.sponsorGroup.sponsorLastNames );
-    this.setRowClasses(+this.sponsorGroup.sponsorGroupId);
-    this.selectSponsorGroup(+this.sponsorGroup.sponsorGroupId, 0);
+    console.log('First row Id is ' + this.sponsors[0].sponsorGroupMemberId + ' ' +
+      this.sponsors[0].sponsorGroupMemberName); // + ' ' + this.sponsor.sponsorLastNames );
+    this.setRowClasses(+this.sponsors[0].sponsorGroupMemberId);
+    this.selectSponsor(+this.sponsors[0].sponsorGroupMemberId, 0);
   }
 
-  public selectSponsorGroup(sponsorGroupId: number, idx: number) {
-    console.log('sponsor selected sponsorId: ' + sponsorGroupId + ' idx: ' + idx);
-    const sponsorGroupName: string = this.sponsorGroup.sponsorName; //  + ', ' + this.sponsorMentors[idx].sponsorFirstNames;
-    this.sponsorGroupId = sponsorGroupId;
-    this.onSelectedSponsorGroupId.emit(sponsorGroupId);
-    this.onSelectedSponsorGroupName.emit(sponsorGroupName);
+  public selectSponsor(sponsorId: number, idx: number) {
+    console.log('sponsor selected sponsorId: ' + sponsorId + ' idx: ' + idx);
+    const sponsorName: string = this.sponsors[idx].sponsorGroupMemberName; //  + ', ' + this.sponsorMentors[idx].sponsorFirstNames;
+    this.sponsorId = sponsorId;
+    this.onSelectedSponsorId.emit(sponsorId);
+    this.onSelectedSponsorName.emit(sponsorName);
 
   }
-  public setRowClasses(sponsorGroupId: number) {
-    // console.log('setRowClasses -- row SponsorID is ' + sponsorGroupId);
+  public setRowClasses(sponsorId: number) {
+    // console.log('setRowClasses -- row SponsorID is ' + sponsorId);
     // console.log('session Assigned sponsor ID is ' + this.session.getAssignedSponsorId());
     const classes = {
-      'table-success': sponsorGroupId === this.sponsorGroupId,
+      'table-success': sponsorId === this.sponsorId,
       'sponsor-row': true,
       'clickable': true
     };

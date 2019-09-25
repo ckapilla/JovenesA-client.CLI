@@ -1,11 +1,11 @@
 import { RouterModule, Routes } from '@angular/router';
 import { CanActivateViaAdminAuthGuard } from '../app.routing-guards';
+import { MentorReportsSubmittedComponent } from './mentor-reports-submitted/mentor-reports-submitted.component';
+import { MentorReportsComponent } from './mentor-reports/mentor-reports.component';
 import { ReportsHomeComponent } from './reports-home/reports-home.component';
-import { ReportsMentorReportsSubmittedComponent } from './reports-mentor-reports-submitted/reports-mentor-reports-submitted.component';
-import { ReportsMentorReportsComponent } from './reports-mentor-reports/reports-mentor-reports.component';
-import { ReportsSponsorSummariesSentComponent } from './reports-sponsor-summaries-sent/reports-sponsor-summaries-sent.component';
-import { ReportsStudentLettersComponent } from './reports-student-letters/reports-student-letters.component';
 import { ReportsComponent } from './reports.component';
+import { SponsorSummariesSentComponent } from './sponsor-summaries-sent/sponsor-summaries-sent.component';
+import { StudentLettersComponent } from './student-letters/student-letters.component';
 
 const routes: Routes = [
   {
@@ -21,7 +21,7 @@ const routes: Routes = [
       },
       {
         path: 'mentor-reports',
-        component: ReportsMentorReportsComponent
+        component: MentorReportsComponent
       },
       // {
       //   path: 'mentor-reports2',
@@ -29,23 +29,23 @@ const routes: Routes = [
       // },
       {
         path: 'mentor-reports-submitted',
-        component: ReportsMentorReportsSubmittedComponent
+        component: MentorReportsSubmittedComponent
       },
       {
         path: 'student-letters',
-        component: ReportsStudentLettersComponent
+        component: StudentLettersComponent
       },
       // {
       //   path: 'student-letters2',
-      //   component: ReportsStudentLetters2Component
+      //   component: StudentLetters2Component
       // },
       // {
       //   path: 'sponsor-summaries-status',
-      //   component: ReportsSponsorSummariesStatusComponent
+      //   component: SponsorSummariesStatusComponent
       // },
       {
         path: 'sponsor-summaries-sent',
-        component: ReportsSponsorSummariesSentComponent
+        component: SponsorSummariesSentComponent
       },
     ]
   }

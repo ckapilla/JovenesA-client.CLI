@@ -34,7 +34,7 @@ export class SessionService {
   public setAdminStatus(status: number): void {
     this.adminStatus = status;
     // temp for testing 8/2/2019
-    this.studentId = 275; // N/A
+    // no mas: this.studentId = 275; // N/A
   }
 
   public isAdmin(): boolean {

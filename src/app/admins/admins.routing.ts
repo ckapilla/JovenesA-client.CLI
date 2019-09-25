@@ -1,8 +1,6 @@
 import { RouterModule, Routes } from '@angular/router';
 import { CanActivateViaAdminAuthGuard, ConfirmDeactivateMRSummaryUpdatesGuard } from '../app.routing-guards';
 import { FollowUpEventsComponent } from '../app_shared/components/follow-up-events/follow-up-events.component';
-// import { SelfReportsUpdatesComponent } from '../students/self-reports-updates/self-reports-updates.component';
-import { AdminsHomeComponent } from './admins-home/admins-home.component';
 import { AdminsMemberComponent } from './admins-member/admins-member.component';
 import { AdminsMembersComponent } from './admins-members/admins-members.component';
 import { AdminsStudentMRsComponent } from './admins-student-mrs/admins-student-mrs.component';
@@ -27,12 +25,12 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        component: AdminsHomeComponent
+        component: AdminsMembersComponent // AdminsHomeComponent
       },
-      {
-        path: 'home',
-        component: AdminsHomeComponent
-      },
+      // {
+      //   path: 'home',
+      //   component: AdminsHomeComponent
+      // },
       {
         path: 'members',
         component: AdminsMembersComponent
