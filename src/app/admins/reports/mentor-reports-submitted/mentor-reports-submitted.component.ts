@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
-import { SORTCRITERIA } from '../../app_shared/interfaces/SORTCRITERIA';
-import { ColumnSortService } from '../../app_shared/services/column-sort.service';
+import { SELECTITEM } from '../../../app_shared/interfaces/SELECTITEM';
+import { SORTCRITERIA } from '../../../app_shared/interfaces/SORTCRITERIA';
+import { ColumnSortService } from '../../../app_shared/services/column-sort.service';
 import { MentorReportSubmittedCount } from '../shared/report-models/mentor-report-submitted-count';
-import { SqlReports } from '../shared/services/sql-reports';
+import { SqlReports } from '../sql-reports';
 
 
 

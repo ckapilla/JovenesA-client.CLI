@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SessionService } from '../../app_shared/services/session.service';
+import { SessionService } from '../../../app_shared/services/session.service';
 import { LatestStudentLetters2 } from '../shared/report-models/latest-student-letters2';
-import { SqlReports } from '../shared/services/sql-reports';
+import { SqlReports } from '../sql-reports';
 
 @Component({
-  selector: 'app-follow-up-events',
   styleUrls: ['student-letters2.component.css'],
   templateUrl: 'student-letters2.component.html'
 })

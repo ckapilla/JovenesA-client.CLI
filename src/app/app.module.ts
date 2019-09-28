@@ -10,7 +10,6 @@ import { HeaderbarComponent } from './headerbar/headerbar.component';
 // every module that has a routing component no longer needs to be imported here
 import { HomeModule } from './home/home.module';
 
-
 @NgModule({
   imports: [
     BrowserModule,

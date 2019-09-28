@@ -20,6 +20,7 @@ export class StudentsSponsorLettersComponent implements OnInit {
   sponsorLetters: Array<SponsorLetter>;
   sponsorGroupName: string;
   sponsorGroupId: number;
+  sponsorGroupMemberId: number;
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -46,18 +47,19 @@ export class StudentsSponsorLettersComponent implements OnInit {
   onSelectedSponsorGroupId(sponsorGroupId: number) {
     console.log('$$$$$$$ got selectedId event sponsorGroupId: ' + sponsorGroupId);
     this.sponsorGroupId = sponsorGroupId;
-    this.sqlResource.getSponsorLetters( this.studentId, sponsorGroupId)
+    this.sqlResource.getSponsorLetters(this.studentId, sponsorGroupId)
       .subscribe(
-      data => { this.sponsorLetters = data; },
-      err => console.error('Subscribe error: ' + err),
-      () => { console.log('done: ');
-        this.isLoading = false;
-      }
-    );
+        data => { this.sponsorLetters = data; },
+        err => console.error('Subscribe error: ' + err),
+        () => {
+          console.log('done: ');
+          this.isLoading = false;
+        }
+      );
   }
 
   sponsorLetterAdd() {
-    const target = 'students/sponsor-letters-add/' + this.studentId  + '/' + this.sponsorGroupId;
+    const target = 'students/sponsor-letters-add/' + this.studentId + '/' + this.sponsorGroupId;
     console.log('in students-sponsor-letters: ready to navigate to' + target);
     this.router.navigateByUrl(target);
   }

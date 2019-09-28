@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SORTCRITERIA } from '../../app_shared/interfaces/SORTCRITERIA';
-import { ColumnSortService } from '../../app_shared/services/column-sort.service';
-import { SessionService } from '../../app_shared/services/session.service';
+import { SORTCRITERIA } from '../../../app_shared/interfaces/SORTCRITERIA';
+import { ColumnSortService } from '../../../app_shared/services/column-sort.service';
+import { SessionService } from '../../../app_shared/services/session.service';
 import { LatestStudentLetters } from '../shared/report-models/latest-student-letters';
-import { SqlReports } from '../shared/services/sql-reports';
+import { SqlReports } from '../sql-reports';
 
 
 
 @Component({
-  selector: 'app-follow-up-events',
   templateUrl: 'student-letters.component.html',
   styleUrls: ['student-letters.css']
 })

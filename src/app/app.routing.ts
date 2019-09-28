@@ -34,8 +34,8 @@ const appRoutes: Routes = [
     loadChildren: () => import('./students/students.module').then(m => m.StudentsModule)
   },
   {
-    path: 'reports',
-    loadChildren: () => import('./reports/reports.module').then(m => m.ReportsModule)
+    path: 'quarterly',
+    loadChildren: () => import('./quarterly/quarterly.module').then(m => m.QuarterlyModule)
   },
 
   { path: '**', redirectTo: '' }

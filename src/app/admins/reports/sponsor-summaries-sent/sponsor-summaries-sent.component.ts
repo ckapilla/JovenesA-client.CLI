@@ -1,16 +1,15 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
-import { SORTCRITERIA } from '../../app_shared/interfaces/SORTCRITERIA';
-import { ColumnSortService } from '../../app_shared/services/column-sort.service';
+import { SELECTITEM } from '../../../app_shared/interfaces/SELECTITEM';
+import { SORTCRITERIA } from '../../../app_shared/interfaces/SORTCRITERIA';
+import { ColumnSortService } from '../../../app_shared/services/column-sort.service';
 import { SponsorSummarySentCount } from '../shared/report-models/sponsor-summary-sent-count';
-import { SqlReports } from '../shared/services/sql-reports';
+import { SqlReports } from '../sql-reports';
 
 
 
 @Component({
-  selector: 'app-follow-up-events',
   templateUrl: './sponsor-summaries-sent.component.html',
   styleUrls: ['./sponsor-summaries-sent.component.css']
 })

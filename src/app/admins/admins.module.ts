@@ -18,10 +18,20 @@ import { FollowUpRequestsComponent } from './follow-up-requests/follow-up-reques
 import { MentorReportsStatusCountsComponent } from './mr-status-counts/mr-status-counts.component';
 import { MentorReportsSummaryTrackingComponent } from './mr-summary-tracking/mr-summary-tracking.component';
 import { MentorReportSummaryUpdatesComponent } from './mr-summary-updates/mr-summary-updates.component';
+import { MentorReportsSubmittedComponent } from './reports/mentor-reports-submitted/mentor-reports-submitted.component';
+import { MentorReportsComponent } from './reports/mentor-reports/mentor-reports.component';
+import { ReportsComponent } from './reports/reports.component';
+import { SponsorSummariesSentComponent } from './reports/sponsor-summaries-sent/sponsor-summaries-sent.component';
+import { StudentLettersComponent } from './reports/student-letters/student-letters.component';
+import { StudentLetters2Component } from './reports/student-letters2/student-letters2.component';
 import { SelfReportsTrackingComponent } from './self-report-tracking/self-report-tracking.component';
 import { SponsorGroupComponent } from './sponsor-group/sponsor-group.component';
 import { SponsorGroupsComponent } from './sponsor-groups/sponsor-groups.component';
 import { StudentReportsStatusCountsComponent } from './ssr-status-counts/ssr-status-counts.component';
+
+
+
+
 
 @NgModule({
     imports: [
@@ -50,14 +60,31 @@ import { StudentReportsStatusCountsComponent } from './ssr-status-counts/ssr-sta
         SelfReportsTrackingComponent,
         // SelfReportsUpdatesComponent,
         SponsorGroupsComponent,
-        SponsorGroupComponent
+        SponsorGroupComponent,
         // FollowUpEventsComponent
+
+
+        ReportsComponent,
+        MentorReportsComponent,
+        // ReportsMentorReports2Component,
+        StudentLettersComponent,
+        StudentLetters2Component,
+        // ReportsSponsorSummariesStatusComponent,
+        SponsorSummariesSentComponent,
+        MentorReportsSubmittedComponent
+
 
     ],
     exports: [
         AdminsStudentMRsComponent,
         SponsorGroupsComponent
-    ]
-
+    ],
+    entryComponents: [MentorReportsComponent,
+        // Mentor2Component,
+        StudentLettersComponent,
+        StudentLetters2Component,
+        // SponsorSummariesStatusComponent,
+        SponsorSummariesSentComponent,
+        MentorReportsSubmittedComponent]
 })
 export class AdminsModule { }

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MentorsForStudentListComponent } from '../app_shared/components/mentors-for-student-list/mentors-for-student-list.component';
 import { SponsorsForStudentGridComponent } from '../app_shared/components/sponsors-for-student-grid/sponsors-for-student-grid.component';
 import { AdminStudentNotesComponent } from './components/admin-student-notes/admin-student-notes.component';
@@ -14,6 +15,7 @@ import { LoadingContainerComponent } from './components/loading-container.compon
 import { MemberSelectorComponent } from './components/member-selector/member-selector.component';
 import { MentorReportsForPeriodComponent } from './components/mentor-reports-for-period/mentor-reports-for-period.component';
 import { MentorReports2ListComponent } from './components/mentor-reports2-list/mentor-reports2-list.component';
+import { NameLookupComponent } from './components/name-lookup/name-lookup';
 import { ProfileComponent } from './components/profile.component';
 import { SortableColumnComponent } from './components/sortable-column.component';
 import { SponsorGroupMemberEditComponent } from './components/sponsor-group-member-edit/sponsor-group-member-edit.component';
@@ -44,7 +46,8 @@ import { AuthService } from './services/auth.service';
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   declarations: [
     DisplayErrorsComponent,
@@ -77,7 +80,8 @@ import { AuthService } from './services/auth.service';
     MarkedPipe,
     StudentSelfReportComponent,
     AdminStudentNotesComponent,
-    MentorReportsForPeriodComponent
+    MentorReportsForPeriodComponent,
+    NameLookupComponent
   ],
   providers: [AuthService],
   exports: [
@@ -114,7 +118,8 @@ import { AuthService } from './services/auth.service';
     MarkedPipe,
     StudentSelfReportComponent,
     AdminStudentNotesComponent,
-    MentorReportsForPeriodComponent
+    MentorReportsForPeriodComponent,
+    NameLookupComponent
   ]
 })
 

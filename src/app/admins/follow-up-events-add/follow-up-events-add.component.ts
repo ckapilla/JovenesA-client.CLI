@@ -8,7 +8,6 @@ import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
 
 @Component({
-  selector: 'app-follow-up-events-add',
   templateUrl: './follow-up-events-add.component.html',
   styleUrls: ['./follow-up-events-add.component.css']
 })

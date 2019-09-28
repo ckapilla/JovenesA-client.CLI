@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { constants } from '../../app_shared/constants/constants';
-import { SessionService } from '../../app_shared/services/session.service';
+import { constants } from '../../../app_shared/constants/constants';
+import { SessionService } from '../../../app_shared/services/session.service';
 import { LatestMentorReports } from '../shared/report-models/latest-mentor-reports';
-import { SqlReports } from '../shared/services/sql-reports';
+import { SqlReports } from '../sql-reports';
 
 @Component({
-  selector: 'app-follow-up-events',
   templateUrl: 'mentor-reports.component.html'
 })
 export class MentorReportsComponent implements OnInit {

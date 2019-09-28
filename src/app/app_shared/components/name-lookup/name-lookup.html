@@ -1,0 +1,16 @@
+<div>&nbsp;</div>
+<label for='search-string'>Search for Student:</label>
+<input id='search-string'
+       type='text'
+       class='form-control'
+       [editable]='false'
+       [class.is-invalid]="searchFailed"
+       [(ngModel)]='studentMiniDTO'
+       [ngbTypeahead]='search'
+       [inputFormatter]="formatter"
+       [resultFormatter]="formatter"
+       (selectItem)="onSelect($event)"
+       placeholder="Last Name, First Name" />
+<div>
+  &nbsp;
+</div>

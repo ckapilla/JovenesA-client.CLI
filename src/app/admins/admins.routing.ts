@@ -12,6 +12,7 @@ import { FollowUpRequestsAddComponent } from './follow-up-requests-add/follow-up
 import { FollowUpRequestsComponent } from './follow-up-requests/follow-up-requests.component';
 import { MentorReportsSummaryTrackingComponent } from './mr-summary-tracking/mr-summary-tracking.component';
 import { MentorReportSummaryUpdatesComponent } from './mr-summary-updates/mr-summary-updates.component';
+import { ReportsComponent } from './reports/reports.component';
 import { SelfReportsTrackingComponent } from './self-report-tracking/self-report-tracking.component';
 import { SponsorGroupComponent } from './sponsor-group/sponsor-group.component';
 import { SponsorGroupsComponent } from './sponsor-groups/sponsor-groups.component';
@@ -105,6 +106,10 @@ const routes: Routes = [
       {
         path: 'follow-up-events-add/:requestId',
         component: FollowUpEventsAddComponent
+      },
+      {
+        path: 'reports',
+        component: ReportsComponent
       },
     ]
   }

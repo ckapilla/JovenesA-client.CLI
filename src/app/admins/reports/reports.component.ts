@@ -1,14 +1,13 @@
-
 import { Component, ComponentFactoryResolver, OnDestroy, ViewChild, ViewContainerRef } from '@angular/core';
-import { MentorReportsSubmittedComponent } from '../mentor-reports-submitted/mentor-reports-submitted.component';
-import { SponsorSummariesSentComponent } from '../sponsor-summaries-sent/sponsor-summaries-sent.component';
+import { MentorReportsSubmittedComponent } from './mentor-reports-submitted/mentor-reports-submitted.component';
+import { SponsorSummariesSentComponent } from './sponsor-summaries-sent/sponsor-summaries-sent.component';
 
 @Component({
-  templateUrl: 'reports-home.component.html',
-  styleUrls: ['reports-home.component.css']
+  templateUrl: 'reports.component.html',
+  styleUrls: ['reports.component.css']
 })
 
-export class ReportsHomeComponent implements OnDestroy {
+export class ReportsComponent implements OnDestroy {
 
   selectedReport: string;
   componentRef: any;
@@ -33,13 +32,15 @@ export class ReportsHomeComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
-    this.componentRef.destroy();
+    if (this.componentRef) {
+      this.componentRef.destroy();
+    }
   }
 
   createComponent(compRef: any) {
     this.entry.clear();
     const factory = this.resolver.resolveComponentFactory(compRef);
-    const componentRef = this.entry.createComponent(factory);
+    this.componentRef = this.entry.createComponent(factory);
   }
 
   setSelectedReport(reportNum: string) {
