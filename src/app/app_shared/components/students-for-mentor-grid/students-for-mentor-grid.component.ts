@@ -17,6 +17,7 @@ export class StudentsForMentorGridComponent implements OnInit {
   errorMessage = '';
   @Output() onSelectedStudentName = new EventEmitter<string>();
   @Output() onSelectedStudentId = new EventEmitter<number>();
+  // @Output() onSelectedStudentGUId = new EventEmitter<string>();
 
 
   constructor(public session: SessionService,
@@ -60,8 +61,10 @@ export class StudentsForMentorGridComponent implements OnInit {
     console.log('student selected studentId: ' + studentId + 'idx: ' + idx);
     this.session.setAssignedStudentId(studentId);
     const studentName: string = this.students[idx].studentName; //  + ', ' + this.studentMentors[idx].studentFirstNames;
+    // const studentGUId: string = this.studentId[idx].studentGUId;
     this.studentId = studentId;
     this.onSelectedStudentId.emit(studentId);
+    // this.onSelectedStudentGUId.emit(studentGUId);
     this.onSelectedStudentName.emit(studentName);
   }
   public setRowClasses(studentId: number) {

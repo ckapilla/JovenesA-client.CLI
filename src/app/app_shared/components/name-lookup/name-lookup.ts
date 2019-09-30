@@ -8,34 +8,28 @@ import { SqlResource } from '../../services/sql-resource.service';
 @Injectable()
 export class NameService {
   constructor(private sqlResource: SqlResource,
-    private http: HttpClient) { }
+    private http: HttpClient
+  ) { }
 
   search(searchStr: string) {
     if (searchStr === '') {
       return of([]);
     }
-    const WebApiPrefix = 'http://192.168.1.70:2368/api/';
-    const url = WebApiPrefix + 'students/names?searchStr=' + searchStr;
-    console.log('XXXXXXXXXXXXX search Url is ' + url);
-    return this.http.get<StudentMiniDTO[]>(url)
+    console.log('in search about to call getStudentMiniDTOs');
+    return this.sqlResource.getCurrentStudentMiniDTOs(searchStr)
       .pipe(
         // catchError(this.handleError),
         tap((x) => console.log('after get')),
       );
+    // const WebApiPrefix = 'http://192.168.1.70:2368/api/';
+    // const url = WebApiPrefix + 'students/names/' + searchStr + '/' + 1005;
+    // console.log('search Url is ' + url);
+    // return this.http.get<StudentMiniDTO[]>(url)
+    //   .pipe(
+    //     // catchError(this.handleError),
+    //     tap((x) => console.log('after get')),
+    //   );
   }
-
-  // private handleError(error: any) {
-  //   console.log('sqlResource handle error');
-  //   const errMsg = (error.message) ? error.message :
-  //     error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-  //   console.log(errMsg.message);
-  //   console.log(errMsg.statusText);
-  //   console.error(errMsg); // log to console instead
-  //   if (errMsg === 'No JWT present or has expired') {
-  //     window.alert('Session has expired, please log in again.');
-  //   }
-  //   return throwError(errMsg);
-  // }
 }
 
 
@@ -45,12 +39,12 @@ export class NameService {
   providers: [NameService],
   styles: [`.form-control { width: 300px; display: inline; }`]
 })
+
 export class NameLookupComponent {
   studentMiniDTO: StudentMiniDTO;
   searching = false;
   searchFailed = false;
   @Output() onSelectedStudentGUId = new EventEmitter<string>();
-
 
   constructor(private _service: NameService) {
     console.log('name-lookup constructor!');
@@ -60,7 +54,6 @@ export class NameLookupComponent {
     console.log('onSelect');
     console.log(item.item.studentId);
     console.log(item.item.studentGUId);
-    // this.onSelectedStudentId.emit(studentId);
     this.onSelectedStudentGUId.emit(item.item.studentGUId);
   }
 

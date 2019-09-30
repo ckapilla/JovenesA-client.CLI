@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppSharedModule } from '../app_shared/app_shared.module';
 import { JaCommentsComponent } from './ja-comments/ja-comments.component';
 import { MrConsolidatedComponent } from './mr-consolidated/mr-consolidated.component';
@@ -10,8 +11,6 @@ import { QuarterlyComponent } from './quarterly.component';
 import { SelfReportsComponent } from './self-reports/self-reports.component';
 import { SponsorViewComponent } from './sponsor-view/sponsor-view/sponsor-view.component';
 
-
-
 @NgModule({
   declarations: [
     QuarterlyComponent,
@@ -21,11 +20,13 @@ import { SponsorViewComponent } from './sponsor-view/sponsor-view/sponsor-view.c
     MrConsolidatedComponent,
     SponsorViewComponent,
     SelfReportsComponent
+
   ],
   imports: [
     CommonModule,
     AppSharedModule,
-    QuarterlyRoutingModule
+    QuarterlyRoutingModule,
+    NgbModule
   ],
 })
 export class QuarterlyModule { }

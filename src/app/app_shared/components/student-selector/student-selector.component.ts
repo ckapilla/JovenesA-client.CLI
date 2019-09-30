@@ -3,7 +3,7 @@ import { StudentMiniDTO } from '../../models/studentMiniDTO';
 import { SqlResource } from '../../services/sql-resource.service';
 // import { map } from 'rxjs/operators';
 @Component({
-// tslint:disable-next-line: component-selector
+  // tslint:disable-next-line: component-selector
   selector: 'app-student-selector',
   templateUrl: './student-selector.component.html'
 })
@@ -18,7 +18,7 @@ export class StudentSelectorComponent implements OnInit {
   }
   public ngOnInit() {
     this.haveData = false;
-    this.sqlResource.getCurrentStudentMiniDTOs()
+    this.sqlResource.getCurrentStudentMiniDTOs('')
       .subscribe(
         data => {
           this.students = data;

@@ -16,11 +16,14 @@ import { MemberSelectorComponent } from './components/member-selector/member-sel
 import { MentorReportsForPeriodComponent } from './components/mentor-reports-for-period/mentor-reports-for-period.component';
 import { MentorReports2ListComponent } from './components/mentor-reports2-list/mentor-reports2-list.component';
 import { NameLookupComponent } from './components/name-lookup/name-lookup';
+import { PersonPhotoComponent } from './components/person-photo/person-photo.component';
 import { ProfileComponent } from './components/profile.component';
 import { SortableColumnComponent } from './components/sortable-column.component';
 import { SponsorGroupMemberEditComponent } from './components/sponsor-group-member-edit/sponsor-group-member-edit.component';
 import { SponsorGroupMembersComponent } from './components/sponsors-for-sponsor-group/sponsor-group-members.component';
 import { StudentGradesStatusComponent } from './components/student-grades-status.component';
+import { StudentHeaderDetailsComponent } from './components/student-header-details/student-header-details.component';
+import { StudentHeaderComponent } from './components/student-header/student-header.component';
 import { StudentMRStatusComponent } from './components/student-mr-status.component';
 import { StudentSelectorComponent } from './components/student-selector/student-selector.component';
 import { StudentSelfReportComponent } from './components/student-self-report/student-self-report.component';
@@ -81,7 +84,10 @@ import { AuthService } from './services/auth.service';
     StudentSelfReportComponent,
     AdminStudentNotesComponent,
     MentorReportsForPeriodComponent,
-    NameLookupComponent
+    NameLookupComponent,
+    StudentHeaderComponent,
+    StudentHeaderDetailsComponent,
+    PersonPhotoComponent
   ],
   providers: [AuthService],
   exports: [
@@ -119,7 +125,9 @@ import { AuthService } from './services/auth.service';
     StudentSelfReportComponent,
     AdminStudentNotesComponent,
     MentorReportsForPeriodComponent,
-    NameLookupComponent
+    NameLookupComponent,
+    StudentHeaderComponent,
+    StudentHeaderDetailsComponent
   ]
 })
 

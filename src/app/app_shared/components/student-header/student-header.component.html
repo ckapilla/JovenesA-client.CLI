@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col">
+    <div class="row">
+      <app-name-lookup
+                       (onSelectedStudentGUId)="onSelectedStudentGUId($event)">
+      </app-name-lookup>
+    </div>
+    <div class="row">
+      <app-student-header-details
+                                  [studentGUId]="studentGUId"
+                                  (onPhotoPathNameSet)="onPhotoPathNameSet($event)">
+      </app-student-header-details>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="row">
+      <app-person-photo [photoPathName]=''></app-person-photo>
+    </div>
+  </div>
+</div>

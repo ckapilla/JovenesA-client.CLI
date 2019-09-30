@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
   templateUrl: './quarterly.component.html'
 })
 export class QuarterlyComponent {
+  studentGUId: string;
   constructor() {
     console.log('QuarterlyComponent');
   }

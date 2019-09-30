@@ -19,6 +19,7 @@ export class SessionService {
   mostRecentMemberType: SELECTITEM;
   selectedYearJoined: string;
   selectedGradYear: string;
+  inContextStudentGUId: string;
 
   constructor() {
     // this.loading$ = new Observable(observer => this._observer = observer)
@@ -129,6 +130,11 @@ export class SessionService {
     this.assignedStudentGUId = guid;
   }
 
+  public setInContextStudentGUId(guid: string): void {
+    console.log('session inContextStudentGUId set to ' + guid);
+    this.inContextStudentGUId = guid;
+  }
+
 
   public getAssignedStudentId(): number {
     console.log('session studentId getting ' + this.assignedStudentId);
@@ -138,6 +144,11 @@ export class SessionService {
   public getAssignedStudentGUId(): string {
     console.log('session studentGUId getting ' + this.assignedStudentGUId);
     return this.assignedStudentGUId;
+  }
+
+  public getInContextStudentGUId(): string {
+    console.log('session InContexStudentGUId getting ' + this.inContextStudentGUId);
+    return this.inContextStudentGUId;
   }
 
   public setStudentInContextName(name: string): void {

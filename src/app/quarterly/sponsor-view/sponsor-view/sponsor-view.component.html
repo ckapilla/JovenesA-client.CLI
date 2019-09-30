@@ -1,15 +1,7 @@
-<app-name-lookup>
-
-</app-name-lookup>
-
 <div *ngIf="errorMessage" class="alert alert-danger">
   {{errorMessage}}</div>
 
 <h4>&nbsp;</h4>
-<app-name-lookup
-                 (onSelectedStudentName)="onSelectedStudentName($event)"
-                 (onSelectedStudentId)="onSelectedStudentId($event)">
-</app-name-lookup>
 <div [ngSwitch]="isLoading">
   <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
     <app-loading-container>

@@ -24,6 +24,8 @@ export class SponsorViewComponent implements OnInit {
   smileys: Array<string>;
   studentName: string;
   haveCurrentReport: boolean;
+  studentGuid: string;
+
   constructor(
     public currRoute: ActivatedRoute,
     private router: Router,
@@ -70,6 +72,30 @@ export class SponsorViewComponent implements OnInit {
 
         }
       );
+  }
+
+  onSelectedStudentGUId(studentGUId: string) {
+    console.log('$$$$$$$ got selectedGUId event');
+    this.studentGuid = studentGUId;
+    this.isLoading = true;
+    // this.haveCurrentReport = false;
+    // this.studenGUId = studentGUId;
+    // this.sqlResource.getMentorReport2RPTs(this.mentorId, studentId)
+    //   .subscribe(
+    //     data => { this.mentorReports2 = data; },
+    //     err => console.error('Subscribe error: ' + err),
+    //     () => {
+    //       console.log('done: ');
+    //       this.isLoading = false;
+    //       for (const x of this.mentorReports2) {
+    //         if (x.reviewedStatusId === 2086) {
+    //           // console.log('current report found; disable add function');
+    //           this.haveCurrentReport = true;
+    //         }
+    //       }
+
+    //     }
+    //   );
   }
 
   monthlyReportAdd() {

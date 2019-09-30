@@ -7,6 +7,7 @@ import { SessionService } from '../../app_shared/services/session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
 @Component({
+  selector: 'app-self-reports',
   templateUrl: './self-reports.component.html',
   styleUrls: ['./self-reports.component.css', '../../../assets/css/forms.css'],
 })
@@ -28,6 +29,8 @@ export class SelfReportsComponent implements OnInit {
   narrative_EnglishCtl: AbstractControl;
   narrative_SpanishCtl: AbstractControl;
   reportIdCtl: AbstractControl;
+  studentGUId: string;
+  selectedStudentGUIdMessage: string;
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -49,29 +52,11 @@ export class SelfReportsComponent implements OnInit {
 
 
   }
-
   ngOnInit() {
-    this.selfReportId = this.currRoute.snapshot.params['selfReportId'];
 
-    // if (!this.studentId) {
-    //   this.studentId = this.session.getStudentId();
-    //   console.log('studentId from session:' + this.studentId);
-    // }
-
-    this.isLoading = true;
-    this.sqlResource.getStudentSelfReport(this.selfReportId)
-      .subscribe(
-        data => { this.selfReport = data; },
-        err => console.error('Subscribe error: ' + err),
-        () => {
-          this.isLoading = false;
-          console.log('### after retreiving, set form controls to retreived selfReport-- reportId to ' + this.selfReportId);
-          // mentorId and studentId do not have corresponding controls
-          this.reportIdCtl.setValue(this.selfReportId);
-          this.narrative_EnglishCtl.setValue(this.selfReport.narrative_English);
-          this.narrative_SpanishCtl.setValue(this.selfReport.narrative_Spanish);
-        });
   }
+
+
 
   onSubmit() {
     console.log('Hi from mentor Report2 Submit');
@@ -118,6 +103,50 @@ export class SelfReportsComponent implements OnInit {
     const target = '/students/self-reports/' + this.session.getStudentId(); // + '/' + this.studentId;
     console.log('navigating to ' + target);
     this.router.navigateByUrl(target);
+  }
+
+
+  onSelectedStudentGUId(studentGUId: string) {
+    console.log('$$$$$$$ got selectedGUId event: ' + studentGUId);
+    this.studentGUId = studentGUId;
+    this.selectedStudentGUIdMessage = studentGUId;
+    this.fetchData();
+  }
+
+  onSelectedStudent($event) {
+    console.log('self reports parent recevied StudentGUIdEvent ' + $event);
+    this.selectedStudentGUIdMessage = $event;
+  }
+
+  fetchData() {
+    // this.selfReportId = this.currRoute.snapshot.params['selfReportId'];
+
+    // if (!this.studentId) {
+    //   this.studentId = this.session.getStudentId();
+    //   console.log('studentId from session:' + this.studentId);
+    // }
+
+    this.isLoading = true;
+    this.sqlResource.getStudentSelfReportsByPeriod('2019', '3', '0', this.studentGUId)
+      .subscribe(
+        data => { this.studentSelfReports = data; },
+        err => console.error('Subscribe error: ' + err),
+        () => {
+
+          this.isLoading = false;
+          if (this.studentSelfReports.length > 0) {
+            console.log('### after retreiving, set form controls to retreived selfReport-- reportId to ' + this.studentSelfReports[0].studentSelfReportId);
+            // mentorId and studentId do not have corresponding controls
+            this.reportIdCtl.setValue(this.studentSelfReports[0].studentSelfReportId);
+            this.narrative_EnglishCtl.setValue(this.studentSelfReports[0].narrative_English);
+            this.narrative_SpanishCtl.setValue(this.studentSelfReports[0].narrative_Spanish);
+          } else {
+            console.log('no results returned');
+            this.narrative_EnglishCtl.setValue('--No Report Found--');
+            this.narrative_SpanishCtl.setValue('--No Report Found--');
+          }
+
+        });
   }
 
 }

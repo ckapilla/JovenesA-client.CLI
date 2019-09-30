@@ -102,7 +102,9 @@ export class SelfReportsTrackingComponent implements OnInit {
     console.log('in fetchData for StudentReportsByPeriod');
     this.sqlResource.getStudentSelfReportsByPeriod(this.selectedYear,
       this.selectedPeriod,
-      this.selectedSRReviewedStatus)
+      this.selectedSRReviewedStatus,
+      null
+    )
       .subscribe(
         data => { this.studentReportsByPeriod = data; console.log('studentReportByPeriod has'); console.log(this.studentReportsByPeriod[0]); },
         err => console.error('Subscribe error: ' + err),

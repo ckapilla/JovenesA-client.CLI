@@ -132,6 +132,7 @@ export class AuthService {
     // Only the callback component should call this method
     // Call when app reloads after user logs in with Auth0
     let targetRoute: string; // Path to redirect to after login processsed
+    this.UpdateLastLogin();
     // Ensure Auth0 client instance exists
     const authComplete$ = this.auth0Client$.pipe(
       // Have client, now call method to handle auth callback redirect

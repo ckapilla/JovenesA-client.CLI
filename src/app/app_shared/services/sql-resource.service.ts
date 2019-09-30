@@ -24,6 +24,7 @@ import { Student } from '../models/student';
 import { StudentSelfReport } from '../models/student-self-report';
 import { StudentSponsorXRef } from '../models/student-sponsor-xref';
 import { StudentDTO } from '../models/studentDTO';
+import { StudentHeaderDTO } from '../models/studentHeaderDTO';
 import { StudentMiniDTO } from '../models/studentMiniDTO';
 import { UrlService } from './url.service';
 
@@ -68,6 +69,14 @@ export class SqlResource {
     console.log('sending AuthHttp get request for Students');
     return this.http.get<StudentDTO>(url);
   }
+  public getStudentHeaderDTOViaGUID(studentGUId: string): Observable<StudentHeaderDTO> {
+    const url = this.WebApiPrefix + 'students/DTO/' + studentGUId;
+    // statusId: vm.selectedStatus.statusId, gradYear: vm.selectedGradYear.year, yearJoinedJA: vm.selectedYearJoined.year },
+    console.log('sending AuthHttp get request for Students');
+    return this.http.get<StudentHeaderDTO>(url);
+  }
+
+
   public getStudentDTOsByStatusAndYear(statusId: string, yearJoinedJA: string, gradYear: string): Observable<StudentDTO[]> {
     const url = this.WebApiPrefix
       + 'students'
@@ -78,10 +87,17 @@ export class SqlResource {
     return this.http.get<StudentDTO[]>(url).pipe(catchError(this.handleError));
   }
 
-  public getCurrentStudentMiniDTOs(): Observable<StudentMiniDTO[]> {
-    const url = this.WebApiPrefix + 'students/names';
-    console.log('sending AuthHttp get request for Students');
-    return this.http.get<StudentMiniDTO[]>(url).pipe(catchError(this.handleError));
+  public getCurrentStudentMiniDTOs(searchStr: string): Observable<StudentMiniDTO[]> {
+    // const url = this.WebApiPrefix + 'students/names?searchStr=' + searchStr;
+    // console.log('sending AuthHttp get request for StudentMini with url ' + url);
+    // return this.http.get<StudentMiniDTO[]>(url).pipe(
+    //   catchError(this.handleError)
+    // );
+    const url = this.WebApiPrefix + 'students/names/' + searchStr + '/' + 1005;
+    console.log('sending AuthHttp get request for StudentMini with url ' + url);
+    return this.http.get<StudentMiniDTO[]>(url).pipe(
+      catchError(this.handleError)
+    );
   }
   public getCurrentMemberMiniDTOs(role: string): Observable<MemberMiniDTO[]> {
     const url = this.WebApiPrefix + 'members/names/' + role;
@@ -451,11 +467,12 @@ export class SqlResource {
   }
 
   public getStudentSelfReportsByPeriod(year: string, period: string,
-    reviewedStatusId: string): Observable<StudentSelfReport[]> {
+    reviewedStatusId: string, studentGUId: string): Observable<StudentSelfReport[]> {
     const url = this.WebApiPrefix + 'student_self_reports/by_period'
       + '?year=' + year
       + '&period=' + period
-      + '&summaryStatusId=' + reviewedStatusId;
+      + '&reviewedStatusId=' + reviewedStatusId
+      + '&studentGUId=' + studentGUId;
     console.log('sending AuthHttp get request for StudentSelfReportsByMonth with ' + url);
     return this.http.get<StudentSelfReport[]>(url).pipe(catchError(this.handleError));
   }
