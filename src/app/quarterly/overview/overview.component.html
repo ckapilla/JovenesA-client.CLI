@@ -1,0 +1,55 @@
+<div class="card bg-primary">
+  <div class="card-header text-white" style="font-size:large">
+    Student Self Reports
+  </div>
+  <div class="card-body bg-white">
+    <span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
+    <span *ngIf="successMessage" class="alert alert-success">{{successMessage}}</span>
+
+    <div>
+    </div>
+    <div [ngSwitch]="isLoading">
+      <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
+        <app-loading-container>
+        </app-loading-container>
+      </div>
+      <div *ngSwitchCase="false">
+        <table class="table-sm table-striped">
+          <thead>
+            <tr>
+              <!-- <td>Id</td> -->
+              <th></th>
+              <!-- <th></th> -->
+              <th app-sortable-column="studentName" sort-direction="asc" (onSortColumn)="onSortColumn($event)">Student
+              </th>
+              <th app-sortable-column="reviewedStatusId" (onSortColumn)="onSortColumn($event)">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let student of qrMinis, let i = index">
+              <!-- <td>
+                {{ student.studentGUId}}
+              </td> -->
+              <td>
+                {{ i+1 }}
+              </td>
+              <!-- <td>
+                <img [src]="student.photoUrl" height="30" class="thumbnail" />
+              </td> -->
+              <td (click)='gotoStudent(student.studentGUId, student.studentName)' class='link'>
+                {{ student.studentName }}
+              </td>
+              <td class='centered'>
+                <select name="StatusSelector" [(ngModel)]="student.reviewedStatusId"
+                        (change)="setStatusForQR(i, $event.target.value)">
+                  <option *ngFor="let status of reviewedStatuses" [value]="status.value">{{status.label}}
+                  </option>
+                </select>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

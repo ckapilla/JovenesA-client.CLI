@@ -6,12 +6,12 @@
     <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
     <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
     <form [formGroup]="myForm">
-      <fieldset [disabled]="isSubmitted">
+      <fieldset>
         <div class="form-group">
           <div hidden class="controls">
-            <label for="selfReportId">Id</label>
-            <textarea id="selfReportId"
-                      formControlName="selfReportId"
+            <label for="quarterlyReportId">Id</label>
+            <textarea id="quarterlyReportId"
+                      formControlName="quarterlyReportId"
                       type="text"
                       class="form-control input-sm">
                 </textarea>

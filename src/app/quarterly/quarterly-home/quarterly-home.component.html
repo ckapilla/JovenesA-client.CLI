@@ -1,31 +1,24 @@
-<app-student-header
-                    [studentGUId]="studentGUId">
+<app-student-header>
 </app-student-header>
-
-
 
 <ngb-tabset>
   <ngb-tab title="Mentor Reports">
     <ng-template ngbTabContent>
-      <app-mr-consolidated></app-mr-consolidated>
+      <app-mr-consolidated>
+      </app-mr-consolidated>
     </ng-template>
   </ngb-tab>
 
   <ngb-tab title="Student Reports">
     <ng-template ngbTabContent>
-      <app-self-reports></app-self-reports>
+      <app-self-reports>
+      </app-self-reports>
     </ng-template>
   </ngb-tab>
 
   <ngb-tab title="JA Comments">
     <ng-template ngbTabContent>
       <app-ja-comments></app-ja-comments>
-    </ng-template>
-  </ngb-tab>
-
-  <ngb-tab title="Sponsor View">
-    <ng-template ngbTabContent>
-      <app-sponsor-view></app-sponsor-view>
     </ng-template>
   </ngb-tab>
 

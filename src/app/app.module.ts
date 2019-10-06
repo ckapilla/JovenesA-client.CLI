@@ -18,10 +18,6 @@ import { HomeModule } from './home/home.module';
     appRouting,
     appRoutingProviders,
     HomeModule,
-    // AdminsModule,
-    // MentorsModule,
-    // StudentsModule,
-    // ReportsModule,
     AppSharedModule.forRoot(),
   ],
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { SORTCRITERIA } from '../interfaces/SORTCRITERIA';
 import { isNumber } from 'util';
+import { SORTCRITERIA } from '../interfaces/SORTCRITERIA';
 
 @Injectable({ providedIn: 'root' })
 export class ColumnSortService {
@@ -13,7 +13,7 @@ export class ColumnSortService {
   constructor() { }
 
   columnSorted(event: SORTCRITERIA) {
-        this.columnSortedSource.next(event);
+    this.columnSortedSource.next(event);
   }
 
 
@@ -27,7 +27,6 @@ export class ColumnSortService {
           return (a[sortCriteria.sortColumn] > b[sortCriteria.sortColumn]) ? 1 : -1;
         }
       }
-      // console.log('desc ' + a[sortCriteria.sortColumn] + ' ' + b[sortCriteria.sortColumn]);
       return a[sortCriteria.sortColumn].localeCompare(b[sortCriteria.sortColumn]);
 
     } else {

@@ -101,8 +101,7 @@ const roleStatuses: SELECTITEM[] = [
   { value: '2055', label: 'Deceased' }
 ];
 const reviewedStatuses: SELECTITEM[] = [
-  { value: '0', label: '[All]' },
-  { value: '2086', label: 'NeedsSetup' },
+  // { value: '2086', label: 'NeedsSetup' },
   { value: '2087', label: 'NeedsReview' },
   { value: '2088', label: 'ReadyToSend' },
   { value: '2089', label: 'Sent' },

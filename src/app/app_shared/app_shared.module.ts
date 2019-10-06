@@ -38,6 +38,8 @@ import { MarkedPipe } from './pipes/marked-pipe';
 import { TruncateDatePipe } from './pipes/truncate-date-pipe';
 import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
 import { AuthService } from './services/auth.service';
+import { StudentSelectedService } from './services/student-selected-service';
+import { StudentStatusSelectorComponent } from './components/student-status-selector/student-status-selector.component';
 
 
 /**
@@ -87,9 +89,10 @@ import { AuthService } from './services/auth.service';
     NameLookupComponent,
     StudentHeaderComponent,
     StudentHeaderDetailsComponent,
-    PersonPhotoComponent
+    PersonPhotoComponent,
+    StudentStatusSelectorComponent
   ],
-  providers: [AuthService],
+  providers: [AuthService, StudentSelectedService],
   exports: [
     CommonModule,
     ReactiveFormsModule,

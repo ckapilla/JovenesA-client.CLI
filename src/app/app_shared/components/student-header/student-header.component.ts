@@ -7,6 +7,8 @@ export class StudentHeaderComponent {
 
   @Input() studentGUId: string;
 
+  photoPathName: string;
+
 
   constructor(
 
@@ -14,10 +16,15 @@ export class StudentHeaderComponent {
     console.log('hi from student-header constructor');
 
   }
-  onSelectedStudentGUId($event) {
+
+  public onSelectedStudentGUId($event) {
     console.log('student-header parent had new GUID event ' + $event);
     this.studentGUId = $event;
   }
 
+  public onPhotoPathNameSet(photoPathName: string) {
+    this.photoPathName = photoPathName;
+    console.log('parent studentHeader has onPhotoPathNameSet called with' + photoPathName);
+  }
 
 }

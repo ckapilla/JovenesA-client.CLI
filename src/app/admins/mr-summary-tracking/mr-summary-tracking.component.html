@@ -20,6 +20,7 @@
         <label for="MRReviewedStatusSelector">Reviewed Status:</label>
         <select name="MRReviewedStatusSelector" [(ngModel)]="selectedMRReviewedStatus"
                 (change)="setSelectedMRReviewedStatus($event.target.value)">
+          <option value="0">[All]</option>
           <option *ngFor="let status of mrReviewedStatuses" [value]="status.value">{{status.label}}</option>
         </select>
 

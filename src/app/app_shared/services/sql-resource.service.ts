@@ -69,8 +69,8 @@ export class SqlResource {
     console.log('sending AuthHttp get request for Students');
     return this.http.get<StudentDTO>(url);
   }
-  public getStudentHeaderDTOViaGUID(studentGUId: string): Observable<StudentHeaderDTO> {
-    const url = this.WebApiPrefix + 'students/DTO/' + studentGUId;
+  public getStudentHeaderDTO(studentGUId: string): Observable<StudentHeaderDTO> {
+    const url = this.WebApiPrefix + 'students/headerDTO/' + studentGUId;
     // statusId: vm.selectedStatus.statusId, gradYear: vm.selectedGradYear.year, yearJoinedJA: vm.selectedYearJoined.year },
     console.log('sending AuthHttp get request for Students');
     return this.http.get<StudentHeaderDTO>(url);
@@ -418,6 +418,16 @@ export class SqlResource {
     return this.http.post(url, body, { headers: headers });
   }
 
+  public getMentorReportsByPeriod(year: string, period: string,
+    reviewedStatusId: string, studentGUId: string): Observable<MentorReport2RPT[]> {
+    const url = this.WebApiPrefix + 'mentor_reports/by_period'
+      + '?year=' + year
+      + '&period=' + period
+      + '&reviewedStatusId=' + reviewedStatusId
+      + '&studentGUId=' + studentGUId;
+    console.log('sending AuthHttp get request for MentorReportsByPeriod with ' + url);
+    return this.http.get<MentorReport2RPT[]>(url).pipe(catchError(this.handleError));
+  }
 
   public getMentorReportsByMonth(year: string, month: string,
     reviewedStatusId: string): Observable<MentorReport2RPT[]> {
@@ -514,7 +524,7 @@ export class SqlResource {
     const x = JSON.parse(body);
     body = JSON.stringify(x.selfReport);
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    console.log('ready to post ' + url + ' body: ' + body + ' options ' + headers);
+    console.log('ready to putt ' + url + ' body: ' + body + ' options ' + headers);
     return this.http.put(url, body, { headers: headers });
   }
   // public putStudentSelfReport(selfReport: StudentSelfReport, studentId: number): Observable<MentorReportRPT> {

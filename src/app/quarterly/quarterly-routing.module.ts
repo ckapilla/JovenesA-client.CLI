@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CanActivateViaAdminAuthGuard } from '../app.routing-guards';
-import { JaCommentsComponent } from './ja-comments/ja-comments.component';
-import { MrConsolidatedComponent } from './mr-consolidated/mr-consolidated.component';
+import { OverviewComponent } from './overview/overview.component';
 import { QuarterlyHomeComponent } from './quarterly-home/quarterly-home.component';
 import { QuarterlyComponent } from './quarterly.component';
-import { SelfReportsComponent } from './self-reports/self-reports.component';
 
 
 const routes: Routes = [
@@ -17,21 +15,16 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
+        component: OverviewComponent
+      },
+      {
+        path: 'edits',
         component: QuarterlyHomeComponent
       },
       {
-        path: 'ja-comments',
-        component: JaCommentsComponent
-      },
-      {
-        path: 'mr-consolidated',
-        component: MrConsolidatedComponent
-      },
-      {
-        path: 'self-reports',
-        component: SelfReportsComponent
-      },
-
+        path: 'overview',
+        component: OverviewComponent
+      }
 
     ]
   }

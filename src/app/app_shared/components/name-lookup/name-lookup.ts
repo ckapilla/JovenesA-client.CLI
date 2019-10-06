@@ -1,14 +1,13 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, EventEmitter, Injectable, Output } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
 import { StudentMiniDTO } from '../../models/studentMiniDTO';
 import { SqlResource } from '../../services/sql-resource.service';
-
+import { StudentSelectedService } from '../../services/student-selected-service';
 @Injectable()
 export class NameService {
   constructor(private sqlResource: SqlResource,
-    private http: HttpClient
+    // private http: HttpClient,
   ) { }
 
   search(searchStr: string) {
@@ -44,9 +43,10 @@ export class NameLookupComponent {
   studentMiniDTO: StudentMiniDTO;
   searching = false;
   searchFailed = false;
-  @Output() onSelectedStudentGUId = new EventEmitter<string>();
+  // @Output() onSelectedStudentGUId = new EventEmitter<string>();
 
-  constructor(private _service: NameService) {
+  constructor(private _service: NameService,
+    private studentSelected: StudentSelectedService) {
     console.log('name-lookup constructor!');
   }
 
@@ -54,13 +54,14 @@ export class NameLookupComponent {
     console.log('onSelect');
     console.log(item.item.studentId);
     console.log(item.item.studentGUId);
-    this.onSelectedStudentGUId.emit(item.item.studentGUId);
+    // this.onSelectedStudentGUId.emit(item.item.studentGUId);
+    this.studentSelected.notifyNewStudentGUId(item.item.studentGUId);
   }
 
 
   search = (text$: Observable<string>) =>
     text$.pipe(
-      debounceTime(300),
+      debounceTime(500),
       distinctUntilChanged(),
       tap((term) => console.log('search function has searchStr ' + term)),
       tap(() => this.searching = true),

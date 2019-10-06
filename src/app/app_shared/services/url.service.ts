@@ -21,7 +21,7 @@ export class UrlService {
 
       // this.webApiPrefix = 'http://192.168.43.98:2368/api/'; // Local Production MOTO G
 
-      this.webApiPrefix = 'http://192.168.1.70:2368/api/'; // Local Production
+      this.webApiPrefix = 'http://192.168.1.67:2368/api/'; // Local Production
 
       // this.webApiPrefix = 'https://JAWebAPI-dev.jovenesadelante.org/api/';
       // this.webApiPrefix = 'https://JAWebAPI.jovenesadelante.org/api/';  // Production
