@@ -78,8 +78,7 @@ export class SelfReportsComponent implements OnInit, OnDestroy {
 
     console.log('ssr fetchData');
     this.isLoading = true;
-    // this.sqlResource.getStudentSelfReportsByPeriod('2019', '3', '0', this.studentGUId)
-    this.quarterlyData.getPartialQuarterlyReportByPeriod(this.studentGUId, '2019', '3', '0', 'SR')
+    this.quarterlyData.getPartialQuarterlyReportByPeriod('SR', this.studentGUId, '2019', '3', '0')
       .subscribe(
         data => { this.studentSelfReport = data; },
         err => console.error('Subscribe error: ' + err),

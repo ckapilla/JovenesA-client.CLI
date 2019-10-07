@@ -68,7 +68,7 @@ select {
 }
 /* CJK Mod */
 textarea {
-    max-width: 560px;
+    max-width: 800px;
 }
 
 /* CJK Mode override bootstrap*/

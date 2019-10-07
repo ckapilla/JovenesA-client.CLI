@@ -78,7 +78,7 @@ export class MrConsolidatedComponent implements OnInit, OnDestroy {
 
     console.log('MR fetchData');
     this.isLoading = true;
-    this.quarterlyData.getPartialQuarterlyReportByPeriod(this.studentGUId, '2019', '3', '0', 'MR')
+    this.quarterlyData.getPartialQuarterlyReportByPeriod('MR', this.studentGUId, '2019', '3', '0')
       .subscribe(
         data => { this.mentorReport = data; },
         err => console.error('Subscribe error: ' + err),

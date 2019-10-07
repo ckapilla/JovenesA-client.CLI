@@ -39,8 +39,6 @@ import { TruncateDatePipe } from './pipes/truncate-date-pipe';
 import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
 import { AuthService } from './services/auth.service';
 import { StudentSelectedService } from './services/student-selected-service';
-import { StudentStatusSelectorComponent } from './components/student-status-selector/student-status-selector.component';
-
 
 /**
  * Do not specify provider's for modules that might be imported by a lazy loaded module.
@@ -89,8 +87,7 @@ import { StudentStatusSelectorComponent } from './components/student-status-sele
     NameLookupComponent,
     StudentHeaderComponent,
     StudentHeaderDetailsComponent,
-    PersonPhotoComponent,
-    StudentStatusSelectorComponent
+    PersonPhotoComponent
   ],
   providers: [AuthService, StudentSelectedService],
   exports: [

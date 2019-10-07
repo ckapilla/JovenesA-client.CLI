@@ -21,7 +21,7 @@ export class OverviewComponent implements OnInit {
 
   qrMinis: QuarterlyReportRPT[];
   qrMini: QuarterlyReportRPT;
-  readonly reviewedStatuses: SELECTITEM[] = constants.reviewedStatuses;
+  readonly reviewedStatuses: SELECTITEM[] = constants.reviewedQRStatuses;
 
 
   constructor(

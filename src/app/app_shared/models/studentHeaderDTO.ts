@@ -10,7 +10,8 @@ export class StudentHeaderDTO {
     public gradMonth?: string, // GradMonth
     public gradMonthNum?: number,
     public photoUrl?: string,
-    public sponsorGroupName?: string, // MentorName
+    public sponsorGroupName?: string,
+    public mentorName?: string,
     public universityName?: string,
     public major?: string,
     public studentGUId?: string

@@ -8,11 +8,11 @@
   </div>
   <div *ngSwitchCase="2">
     <div class="row">
-      <div class="col">
+      <div class="col-12">
 
-        <label>Name</label>
+        <!-- <label>Name</label>
         {{ student.studentName }}
-        <br />
+        <br /> -->
         <label>Year Joined JA:</label>
         {{student.yearJoinedJa}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <label>Grad Year/Month:</label>
@@ -20,11 +20,18 @@
       </div>
     </div>
     <div class="row">
-      <div class="col">
+      <div class="col-12">
         <label>Major:</label>
         {{student.major}}
+        <br />
         <label>University:</label>
         {{student.universityName}}
+        <br />
+        <label>Mentor Name:</label>
+        {{student.mentorName}}
+        <br />
+        <label>Sponsor Name:</label>
+        {{student.sponsorGroupName}}
       </div>
     </div>
   </div>

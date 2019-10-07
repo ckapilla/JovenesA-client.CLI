@@ -33,15 +33,22 @@ export class QuarterlyDataService {
     return this.http.get<QuarterlyReport[]>(url).pipe(catchError(this.handleError));
   }
 
-  public getQRMinisForPeriod(year: number, period: Number, reviewedStatusId): Observable<QuarterlyReportRPT[]> {
-    const url = this.WebApiPrefix + 'quarterly/' + year + '/' + period + '/' + reviewedStatusId;
+  public getQRMiniForStudentPeriod(studentGUId: string, year: number, period: Number, reviewedStatusId: number): Observable<QuarterlyReportRPT> {
+    const url = this.WebApiPrefix + 'quarterly/' + studentGUId + '/' + year + '/' + period + '/' + reviewedStatusId;
     console.log('sending AuthHttp get request for QuarterlyReportForStudentPeriod');
+    return this.http.get<QuarterlyReportRPT>(url).pipe(catchError(this.handleError));
+  }
+
+  public getQRMinisForPeriod(year: number, period: number, reviewedStatusId: number): Observable<QuarterlyReportRPT[]> {
+    const url = this.WebApiPrefix + 'quarterly/' + year + '/' + period + '/' + reviewedStatusId;
+    console.log('sending AuthHttp get request for QuarterlyReportForPeriod');
     return this.http.get<QuarterlyReportRPT[]>(url).pipe(catchError(this.handleError));
   }
 
-  public getPartialQuarterlyReportByPeriod(studentGUId: string, year: string, period: string,
-    reviewedStatusId: string, partialType: string): Observable<QuarterlyReport> {
-    const url = this.WebApiPrefix + 'quarterly/' + partialType
+  public getPartialQuarterlyReportByPeriod(partialType: string, studentGUId: string, year: string, period: string,
+    reviewedStatusId: string): Observable<QuarterlyReport> {
+    const url = this.WebApiPrefix + 'quarterly/'
+      + partialType
       + '/' + studentGUId
       + '/' + year
       + '/' + period

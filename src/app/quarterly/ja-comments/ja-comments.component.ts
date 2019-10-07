@@ -77,8 +77,7 @@ export class JaCommentsComponent implements OnInit, OnDestroy {
 
     console.log('ssr fetchData');
     this.isLoading = true;
-    // this.sqlResource.getStudentSelfReportsByPeriod('2019', '3', '0', this.studentGUId)
-    this.quarterlyData.getPartialQuarterlyReportByPeriod(this.studentGUId, '2019', '3', '0', 'JA')
+    this.quarterlyData.getPartialQuarterlyReportByPeriod('JA', this.studentGUId, '2019', '3', '0')
       .subscribe(
         data => { this.jaComment = data; },
         err => console.error('Subscribe error: ' + err),

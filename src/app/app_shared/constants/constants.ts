@@ -101,9 +101,16 @@ const roleStatuses: SELECTITEM[] = [
   { value: '2055', label: 'Deceased' }
 ];
 const reviewedStatuses: SELECTITEM[] = [
-  // { value: '2086', label: 'NeedsSetup' },
+  { value: '2086', label: 'NeedsSetup' },
   { value: '2087', label: 'NeedsReview' },
-  { value: '2088', label: 'ReadyToSend' },
+  { value: '2088', label: 'ReadyFor QR' },
+  { value: '2089', label: 'Sent' },
+  { value: '2090', label: 'Skipped' }
+];
+const reviewedQRStatuses: SELECTITEM[] = [
+  { value: '2086', label: 'NeedsSetup (CK)' },
+  { value: '2087', label: 'NeedsReview (DK)' },
+  { value: '2088', label: 'ReadyToSend (CK)' },
   { value: '2089', label: 'Sent' },
   { value: '2090', label: 'Skipped' }
 ];
@@ -157,6 +164,7 @@ export const constants = {
   periodYears,
   studentStatuses,
   memberStatuses: roleStatuses,
+  reviewedQRStatuses,
   reviewedStatuses,
   memberTypes,
   joinedFromTypes,

@@ -17,10 +17,10 @@ export class StudentHeaderComponent {
 
   }
 
-  public onSelectedStudentGUId($event) {
-    console.log('student-header parent had new GUID event ' + $event);
-    this.studentGUId = $event;
-  }
+  // public onSelectedStudentGUId($event) {
+  //   console.log('student-header parent had new GUID event ' + $event);
+  //   this.studentGUId = $event;
+  // }
 
   public onPhotoPathNameSet(photoPathName: string) {
     this.photoPathName = photoPathName;
