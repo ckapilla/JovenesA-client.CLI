@@ -18,11 +18,13 @@ import { MentorReports2ListComponent } from './components/mentor-reports2-list/m
 import { NameLookupComponent } from './components/name-lookup/name-lookup';
 import { PersonPhotoComponent } from './components/person-photo/person-photo.component';
 import { ProfileComponent } from './components/profile.component';
+import { QrStatusSelectorComponent } from './components/qr-status-selector/qr-status-selector.component';
 import { SortableColumnComponent } from './components/sortable-column.component';
 import { SponsorGroupMemberEditComponent } from './components/sponsor-group-member-edit/sponsor-group-member-edit.component';
 import { SponsorGroupMembersComponent } from './components/sponsors-for-sponsor-group/sponsor-group-members.component';
 import { StudentGradesStatusComponent } from './components/student-grades-status.component';
 import { StudentHeaderDetailsComponent } from './components/student-header-details/student-header-details.component';
+import { StudentHeaderSponsorsComponent } from './components/student-header-sponsors/student-header-sponsors.component';
 import { StudentHeaderComponent } from './components/student-header/student-header.component';
 import { StudentMRStatusComponent } from './components/student-mr-status.component';
 import { StudentSelectorComponent } from './components/student-selector/student-selector.component';
@@ -39,6 +41,7 @@ import { TruncateDatePipe } from './pipes/truncate-date-pipe';
 import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
 import { AuthService } from './services/auth.service';
 import { StudentSelectedService } from './services/student-selected-service';
+
 
 /**
  * Do not specify provider's for modules that might be imported by a lazy loaded module.
@@ -87,7 +90,9 @@ import { StudentSelectedService } from './services/student-selected-service';
     NameLookupComponent,
     StudentHeaderComponent,
     StudentHeaderDetailsComponent,
-    PersonPhotoComponent
+    PersonPhotoComponent,
+    QrStatusSelectorComponent,
+    StudentHeaderSponsorsComponent
   ],
   providers: [AuthService, StudentSelectedService],
   exports: [
@@ -127,7 +132,9 @@ import { StudentSelectedService } from './services/student-selected-service';
     MentorReportsForPeriodComponent,
     NameLookupComponent,
     StudentHeaderComponent,
-    StudentHeaderDetailsComponent
+    StudentHeaderDetailsComponent,
+    QrStatusSelectorComponent,
+    StudentHeaderSponsorsComponent,
   ]
 })
 

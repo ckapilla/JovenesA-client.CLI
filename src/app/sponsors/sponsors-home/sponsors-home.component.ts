@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sponsors-home.component.css']
 })
 export class SponsorsHomeComponent implements OnInit {
-
+  isLoading = false;
   constructor() { }
 
   ngOnInit() {

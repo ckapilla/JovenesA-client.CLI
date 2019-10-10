@@ -1,7 +1,9 @@
 
 import { NgModule } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppSharedModule } from '../app_shared/app_shared.module';
-import { ConsolidatedReportsComponent } from './consolidated-reports/consolidated-reports.component';
+import { QuarterlyModule } from '../quarterly/quarterly.module';
+// import { ConsolidatedReportsComponent } from './consolidated-reports/consolidated-reports.component';
 import { SponsorsHomeComponent } from './sponsors-home/sponsors-home.component';
 import { SponsorsNavbarComponent } from './sponsors-navbar/sponsors-navbar.component';
 import { SponsorsComponent } from './sponsors.component';
@@ -11,13 +13,15 @@ import { SponsorsRouting } from './sponsors.routing';
 
   imports: [
     AppSharedModule,
-    SponsorsRouting
+    SponsorsRouting,
+    QuarterlyModule,
+    NgbModule
   ],
   declarations: [
     SponsorsComponent,
     SponsorsNavbarComponent,
     SponsorsHomeComponent,
-    ConsolidatedReportsComponent
+    //    ConsolidatedReportsComponent
   ]
 })
 export class SponsorsModule { }

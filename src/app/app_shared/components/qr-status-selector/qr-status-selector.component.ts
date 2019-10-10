@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentSelectedService } from 'src/app/app_shared/services/student-selected-service';
-import { constants } from '../../app_shared/constants/constants';
-import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
-import { SessionService } from '../../app_shared/services/session.service';
-import { QuarterlyDataService } from '../quarterly-data.service';
-import { QuarterlyReportRPT } from '../quarterly-reportRPT';
+import { QuarterlyDataService } from 'src/app/quarterly/quarterly-data.service';
+import { QuarterlyReportRPT } from 'src/app/quarterly/quarterly-reportRPT';
+import { constants } from '../../constants/constants';
+import { SELECTITEM } from '../../interfaces/SELECTITEM';
+import { SessionService } from '../../services/session.service';
+
 
 
 @Component({
@@ -32,7 +33,7 @@ export class QrStatusSelectorComponent implements OnInit {
   }
 
   getCurrentStudentGUId() {
-    console.log('student header details set up studentGUId subscription');
+    console.log('qrStatusSelector set up studentGUId subscription');
     this.studentSelected.getStudentGUId()
       .subscribe(message => {
         this.studentGUId = message;

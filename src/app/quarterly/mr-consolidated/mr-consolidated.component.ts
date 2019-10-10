@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentSelectedService } from 'src/app/app_shared/services/student-selected-service';
@@ -26,6 +26,7 @@ export class MrConsolidatedComponent implements OnInit, OnDestroy {
   narrative_SpanishCtl: AbstractControl;
   reportIdCtl: AbstractControl;
   studentGUId: string;
+  @Input() bEditable: boolean;
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -44,6 +45,8 @@ export class MrConsolidatedComponent implements OnInit, OnDestroy {
       mentorReportId: [this.reportIdCtl]
     });
 
+
+
     this.narrative_EnglishCtl = this.myForm.controls['narrative_English'];
     this.narrative_SpanishCtl = this.myForm.controls['narrative_Spanish'];
     this.reportIdCtl = this.myForm.controls['mentorReportId'];
@@ -53,6 +56,14 @@ export class MrConsolidatedComponent implements OnInit, OnDestroy {
   ngOnInit() {
     // need for unsbuscribe!!!!!!!!!!!!!!!!!!!!
     // this.subscription =
+
+    if (this.bEditable) {
+      this.myForm.enable();
+      console.log('enabling Editable: ' + this.bEditable);
+    } else {
+      this.myForm.disable();
+      console.log('disabling: Editable: ' + this.bEditable);
+    }
     this.getCurrentStudentGUId();
 
   }

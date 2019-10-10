@@ -36,7 +36,8 @@
               <!-- <td>
                 <img [src]="student.photoUrl" height="30" class="thumbnail" />
               </td> -->
-              <td (click)='gotoStudent(student.studentGUId, student.studentName)' class='link'>
+              <td (click)='gotoStudent(student.studentGUId, student.studentName)'
+                  [class.link]="true" [class.red]="student.reviewedStatusId==2087">
                 {{ student.studentName }}
               </td>
               <td class='centered'>

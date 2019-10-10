@@ -14,7 +14,8 @@
       <a [routerLinkActive]="['active']" [routerLink]="['mentors']" [hidden]=!isMentorWithValidToken()>Mentors</a>
     </li>
     <li class="nav-item">
-      <a [routerLinkActive]="['active']" [routerLink]="['sponsors']" [hidden]=!isSponsorWithValidToken()>Sponsors</a>
+      <a [routerLinkActive]="['active']" [routerLink]="['sponsors/home']"
+         [hidden]=!isSponsorWithValidToken()>Sponsors</a>
     </li>
     <li class="nav-item">
       <a [routerLinkActive]="['active']" [routerLink]="['students']" [hidden]=!isStudentWithValidToken()>Estudiantes</a>

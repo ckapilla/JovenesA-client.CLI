@@ -86,7 +86,7 @@ export class SponsorGroupMemberEditComponent implements OnInit {
         (error) => {
           console.log(this.errorMessage = <any>error.message);
           this.isLoading = false;
-          this.myForm.controls.memberSelector.setValue({ memberId: 0, memberName: '' })
+          this.myForm.controls.memberSelector.setValue({ memberId: 0, memberName: '' });
           window.setTimeout(() => {// console.log('clearing success message');
             this.errorMessage = '';
           }, 3000);

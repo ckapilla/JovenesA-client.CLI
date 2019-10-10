@@ -1,11 +1,7 @@
 <div class="row">
-  <div class="col-8">
+  <div class="col-12">
     <app-student-header>
     </app-student-header>
-  </div>
-  <div class="col-4">
-    <app-qr-status-selector>
-    </app-qr-status-selector>
   </div>
 </div>
 <div class="row">
@@ -13,21 +9,23 @@
     <ngb-tabset>
       <ngb-tab title="Mentor Reports">
         <ng-template ngbTabContent>
-          <app-mr-consolidated>
+          <app-mr-consolidated [bEditable]="true">
           </app-mr-consolidated>
         </ng-template>
       </ngb-tab>
 
       <ngb-tab title="Student Reports">
         <ng-template ngbTabContent>
-          <app-self-reports>
+          <app-self-reports [bEditable]="true">
           </app-self-reports>
         </ng-template>
       </ngb-tab>
 
       <ngb-tab title="JA Comments">
         <ng-template ngbTabContent>
-          <app-ja-comments></app-ja-comments>
+          <app-ja-comments [bEditable]="true">
+
+          </app-ja-comments>
         </ng-template>
       </ngb-tab>
     </ngb-tabset>

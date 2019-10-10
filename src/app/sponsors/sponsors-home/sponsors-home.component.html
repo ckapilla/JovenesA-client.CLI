@@ -1,1 +1,33 @@
-<p>Bienvenidos</p>
+<div class="row">
+  <div class="col-12">
+    <app-student-header-sponsors>
+    </app-student-header-sponsors>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <ngb-tabset>
+      <ngb-tab title="Mentor Reports">
+        <ng-template ngbTabContent>
+          <app-mr-consolidated [bEditable]="false">
+          </app-mr-consolidated>
+        </ng-template>
+      </ngb-tab>
+
+      <ngb-tab title="Student Reports">
+        <ng-template ngbTabContent>
+          <app-self-reports [bEditable]="false">
+          </app-self-reports>
+        </ng-template>
+      </ngb-tab>
+
+      <ngb-tab title="JA Comments">
+        <ng-template ngbTabContent>
+          <app-ja-comments [bEditable]="false">
+
+          </app-ja-comments>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+  </div>
+</div>

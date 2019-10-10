@@ -1,6 +1,5 @@
 import { RouterModule, Routes } from '@angular/router';
 import { CanActivateViaAdminAuthGuard } from '../app.routing-guards';
-import { ConsolidatedReportsComponent } from './consolidated-reports/consolidated-reports.component';
 import { SponsorsHomeComponent } from './sponsors-home/sponsors-home.component';
 import { SponsorsComponent } from './sponsors.component';
 
@@ -13,7 +12,7 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        component: ConsolidatedReportsComponent
+        component: SponsorsHomeComponent
       },
       {
         path: 'home',
@@ -23,10 +22,10 @@ const routes: Routes = [
       //   path: 'profile/:id',
       //   component: MentorsProfileComponent
       // },
-      {
-        path: 'quarterly-reports',
-        component: ConsolidatedReportsComponent
-      },
+      // {
+      //   path: 'quarterly-reports',
+      //   component: ConsolidatedReportsComponent
+      // },
 
     ]
   }
