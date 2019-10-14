@@ -104,6 +104,7 @@ export class AdminsStudentsComponent implements OnInit {
         err => { this.errorMessage = err; },
         () => {
           this.studentDTOs = this.studentDTOs.filter(s => s.studentId !== 275); // N/A
+          console.log(this.studentDTOs[0]);
           console.log('data loaded now set timeout for scroll');
           setTimeout(() => {
             this.scrollIntoView();

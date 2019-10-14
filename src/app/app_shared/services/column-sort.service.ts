@@ -18,6 +18,7 @@ export class ColumnSortService {
 
 
   compareValues(a: any, b: any, sortCriteria: SORTCRITERIA) {
+    // if exception check validity of source in column header def
     if (sortCriteria.sortDirection === 'asc') {
       // console.log('asc ' + a[sortCriteria.sortColumn] + ' ' + b[sortCriteria.sortColumn]);
       if (isNumber(a[sortCriteria.sortColumn])) {

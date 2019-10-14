@@ -109,7 +109,7 @@ export class OverviewComponent implements OnInit {
           }, 500);
         },
         (error) => {
-          console.log(this.errorMessage = <any>error);
+          this.errorMessage = <any>error;
           this.isLoading = false;
         }
       );

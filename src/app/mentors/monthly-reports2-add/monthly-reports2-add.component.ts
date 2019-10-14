@@ -152,7 +152,7 @@ export class MonthlyReports2AddComponent
                     this.router.navigateByUrl(target);
                 },
                 (error) => {
-                    console.log(this.errorMessage = <any>error);
+                    this.errorMessage = <any>error;
                     this.isLoading = false;
                 }
             );

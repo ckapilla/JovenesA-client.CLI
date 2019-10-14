@@ -2,6 +2,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { StudentSelectedService } from 'src/app/app_shared/services/student-selected-service';
 import { SessionService } from '../../app_shared/services/session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
@@ -27,6 +28,7 @@ export class JaCommentsComponent implements OnInit, OnDestroy {
   reportIdCtl: AbstractControl;
   studentGUId: string;
   @Input() bEditable: boolean;
+  private subscription: Subscription;
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -45,7 +47,6 @@ export class JaCommentsComponent implements OnInit, OnDestroy {
       quarterlyReportId: [this.reportIdCtl]
     });
 
-
     this.narrative_EnglishCtl = this.myForm.controls['narrative_English'];
     this.narrative_SpanishCtl = this.myForm.controls['narrative_Spanish'];
     this.reportIdCtl = this.myForm.controls['quarterlyReportId'];
@@ -53,30 +54,38 @@ export class JaCommentsComponent implements OnInit, OnDestroy {
 
   }
   ngOnInit() {
-    console.log('bEditable ' + this.bEditable);
     if (this.bEditable) {
       this.myForm.enable();
     } else {
       this.myForm.disable();
     }
-    // need for unsbuscribe!!!!!!!!!!!!!!!!!!!!
-    // this.subscription =
-    this.getCurrentStudentGUId();
+
+    // console.log('(((((((((((((((((JA ngOnInit)))))))))))))');
+    this.subscribeForStudentGUIds();
+    // console.log('after subscribe' + this.studentSelected.getInternalSubject().observers.length);
+
   }
 
   ngOnDestroy() {
-
+    // console.log('{{{{{{{{{{{{{JA ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
+    // this.studentSelected.unsubscribe();
+    this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
+    console.log(' after unsubscribe ' + this.studentSelected.getInternalSubject().observers.length);
   }
 
-  getCurrentStudentGUId() {
-    console.log('SSR set up studentGUId subscription');
-    this.studentSelected.getStudentGUId()
+  subscribeForStudentGUIds() {
+    console.log('JA set up studentGUId subscription');
+    this.subscription = this.studentSelected.subscribeForStudentGUIds()
+      // .pipe(takeWhile(() => this.notDestroyed))
       .subscribe(message => {
         this.studentGUId = message;
-        console.log('SSR new StudentGUId received' + this.studentGUId);
+        console.log('JA new StudentGUId received' + this.studentGUId);
         if (this.studentGUId && this.studentGUId !== '0000') {
           this.fetchData();
         }
+
+        // console.log('subscribe next ' + this.studentSelected.getInternalSubject().observers.length);
       });
   }
 
@@ -92,7 +101,15 @@ export class JaCommentsComponent implements OnInit, OnDestroy {
           this.isLoading = false;
           if (this.jaComment) {
             console.log('### after retreiving, set form controls to retreived selfReport');
-            this.reportIdCtl.setValue(this.jaComment.quarterlyReportId);
+            this.narrative_SpanishCtl.setValue(this.jaComment.jA_Narrative_Spanish);
+            if (!this.bEditable) {
+              if (this.jaComment.jA_Narrative_English.length === 0) {
+                this.jaComment.jA_Narrative_English = '-- No additional comments this quarter --';
+              }
+              if (this.jaComment.jA_Narrative_Spanish.length === 0) {
+                this.jaComment.jA_Narrative_Spanish = '-- No hay comentarios adicionales este trimestre --';
+              }
+            }
             this.narrative_EnglishCtl.setValue(this.jaComment.jA_Narrative_English);
             this.narrative_SpanishCtl.setValue(this.jaComment.jA_Narrative_Spanish);
           } else {
@@ -100,7 +117,6 @@ export class JaCommentsComponent implements OnInit, OnDestroy {
             this.narrative_EnglishCtl.setValue('--No Report Found--');
             this.narrative_SpanishCtl.setValue('--No Report Found--');
           }
-
         });
   }
 
@@ -130,15 +146,18 @@ export class JaCommentsComponent implements OnInit, OnDestroy {
     this.quarterlyData.updatePartialQuarterlyReport(this.jaComment, 'JA')
       .subscribe(
         (partial) => {
-          console.log(this.successMessage = 'saved successfully.guardar con exito');
+          this.successMessage = 'Saved successfully / Guardar con exito';
+          window.setTimeout(() => {// console.log('clearing success message');
+            this.successMessage = '';
+          }, 1000);
           this.isSubmitted = true;
           this.isLoading = false;
           const target = '/quarterly';
           console.log('after call to edit JA; navigating to ' + target);
-          this.router.navigateByUrl(target);
+          // this.router.navigateByUrl(target);
         },
         (error) => {
-          console.log(this.errorMessage = <any>error);
+          this.errorMessage = <any>error;
           this.isLoading = false;
         }
       );

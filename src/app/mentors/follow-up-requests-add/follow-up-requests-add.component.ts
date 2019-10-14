@@ -122,7 +122,7 @@ export class FollowUpRequestsAddComponent implements OnInit {
           this.submitInitialEvent(response.followUpRequest);
         },
         (error) => {
-          console.log(this.errorMessage = <any>error);
+          this.errorMessage = <any>error;
           this.isLoading = false;
         },
         () => {
@@ -161,7 +161,7 @@ export class FollowUpRequestsAddComponent implements OnInit {
 
         },
         (error) => {
-          console.log(this.errorMessage = <any>error);
+          this.errorMessage = <any>error;
           this.isLoading = false;
         },
         () => {

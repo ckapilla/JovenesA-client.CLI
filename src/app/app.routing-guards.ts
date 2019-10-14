@@ -64,6 +64,36 @@ export class CanActivateViaMentorAuthGuard implements CanActivate {
 }
 
 @Injectable({ providedIn: 'root' })
+export class CanActivateViaSponsorAuthGuard implements CanActivate {
+  constructor(private auth: AuthService, private router: Router, private session: SessionService) { }
+
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    console.log('canActivate for /sponsors');
+    if (this.auth.loggedIn) {
+      // following has issue of race condition with callback to get profile
+      if (this.session.isSponsor()) {
+        console.log('Authenticated and Can Activate Sponsor');
+        return true;
+      } else {
+        // console.log('Authenticated but unauthorized for Mentor');
+        // if this is on startup, will need to try navigate again after profile is loaded
+        // this.session.setFailedAuthorizationRoute('mentors');
+        // localStorage.setItem('unauthenticated_retry_url', state.url); // '/mentors');
+        // this.router.navigate(['']);
+        return false;
+      }
+    } else {
+      console.log('link to Sponsor but not authenticated -- save /sponsors retry url:');
+      // localStorage.setItem('unauthenticated_retry_url', state.url); // '/mentors');
+      this.router.navigate(['']); // just to clean up URL bar
+      this.auth.login(state.url);
+
+      return false;
+    }
+  }
+}
+
+@Injectable({ providedIn: 'root' })
 export class CanActivateViaStudentAuthGuard implements CanActivate {
   constructor(private auth: AuthService, private router: Router, private session: SessionService) { }
 

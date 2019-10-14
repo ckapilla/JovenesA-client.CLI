@@ -100,7 +100,7 @@ export class FollowUpEventsAddComponent implements OnInit {
           console.log(response);
         },
         (error) => {
-          console.log(this.errorMessage = <any>error);
+          this.errorMessage = <any>error;
           this.isLoading = false;
         },
         () => {

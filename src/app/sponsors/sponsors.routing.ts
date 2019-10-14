@@ -1,5 +1,5 @@
 import { RouterModule, Routes } from '@angular/router';
-import { CanActivateViaAdminAuthGuard } from '../app.routing-guards';
+import { CanActivateViaSponsorAuthGuard } from '../app.routing-guards';
 import { SponsorsHomeComponent } from './sponsors-home/sponsors-home.component';
 import { SponsorsComponent } from './sponsors.component';
 
@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: '', // lazy loading
     component: SponsorsComponent,
-    canActivate: [CanActivateViaAdminAuthGuard],
+    canActivate: [CanActivateViaSponsorAuthGuard],
     children: [
       {
         path: '',

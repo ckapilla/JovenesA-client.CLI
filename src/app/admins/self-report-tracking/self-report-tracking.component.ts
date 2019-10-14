@@ -48,7 +48,7 @@ export class SelfReportsTrackingComponent implements OnInit {
     this.selectedYear = '2019'; // '' + today.getFullYear(); //
     this.selectedPeriod = '0'; // + today.getPeriod() + 1;// '5';
 
-    this.selectedSRReviewedStatus = this.ssrReviewedStatuses[0].value;
+    this.selectedSRReviewedStatus = '0'; // this.ssrReviewedStatuses[0].value;
     // this.selectedHighlightStatus = this.highlightStatuses[0].value;
 
 
@@ -102,7 +102,7 @@ export class SelfReportsTrackingComponent implements OnInit {
     console.log('in fetchData for StudentReportsByPeriod');
     this.sqlResource.getStudentSelfReportsByPeriod(this.selectedYear,
       this.selectedPeriod,
-      this.selectedSRReviewedStatus,
+      '0', // this.selectedSRReviewedStatus,
       null
     )
       .subscribe(

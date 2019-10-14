@@ -17,11 +17,11 @@
           <option *ngFor="let period of periods" [value]="period.value">{{period.label}}</option>
         </select>
 
-        <label for="SRReviewedStatusSelector">Reviewed Status:</label>
+        <!-- <label for="SRReviewedStatusSelector">Reviewed Status:</label>
         <select name="SRReviewedStatusSelector" [(ngModel)]="selectedSRReviewedStatus"
                 (change)="setSelectedSRReviewedStatus($event.target.value)">
           <option *ngFor="let status of ssrReviewedStatuses" [value]="status.value">{{status.label}}</option>
-        </select>
+        </select> -->
 
         <!-- <label>&nbsp;Highlight Status:
           <select name="highlightStatusSelector" [(ngModel)]="selectedHighlightStatus"
@@ -31,8 +31,8 @@
         </label> -->
 
         <span class="checkboxes">
-          &nbsp;&nbsp;<label><input type="checkbox" [(ngModel)]="displayOriginalFields">&nbsp;<span>Display Full
-              Text</span></label>
+          &nbsp;&nbsp;<label><input type="checkbox" [(ngModel)]="displayOriginalFields">&nbsp;<span>Display Partial
+              Description</span></label>
         </span>
       </div>
       <app-ssr-status-counts [year]=selectedYear [period]=selectedPeriod>
@@ -66,9 +66,9 @@
                 [Sponsor:
                 {{ ssr.sponsorGroupName }} ]
               </span>
-              <span class="padded">
+              <!-- <span class="padded">
                 [Reviewed Status: {{ ssr.reviewedStatus }} ]
-              </span>
+              </span> -->
             </div>
 
 
@@ -94,20 +94,20 @@
       {{ ssr.followUpNeeded }}
     </div>-->
             </div>
-            <div class="row" [hidden]=!displayOriginalFields>
+            <!-- <div class="row" [hidden]=!displayOriginalFields>
               <div class="col-md2 padded">
                 &nbsp;Description (English)
               </div>
               <div class="col-md-10"
                    [innerHTML]="ssr.narrative_English | marked | unsafeHtml">
               </div>
-            </div>
+            </div> -->
             <div class="row" [hidden]=!displayOriginalFields>
               <div class="col-md2 padded">
                 &nbsp;Description (Spanish)
               </div>
               <div class="col-md-10"
-                   [innerHTML]="ssr.narrative_Spanish | marked | unsafeHtml">
+                   [innerHTML]="ssr.narrative_Spanish">
               </div>
             </div>
           </div>

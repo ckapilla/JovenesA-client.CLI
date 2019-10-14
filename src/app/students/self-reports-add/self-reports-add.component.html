@@ -43,14 +43,18 @@ REDACTA TU REPORTE EN FORMA DE ENSAYO CONSIDERANDO LOS SIGUIENTES PUNTOS
 (Sugerimos escribir su ensayo en un documento y pegarla abajo.)</pre>
 
         <textarea id="inputReportText" #success formControlName="inputReportText"
+                  #narrativeText
                   [(ngModel)]="selfReport.narrative_English" type="text"
 
                   class="form-control input-sm narrative" placeholder="">
           </textarea>
-        <app-display-errors control="inputNarrative_English" class="red" [errors]="{'required': 'An entry is required, even if it is just N/A',
+        <small class="form-text text-muted"><code>{{narrativeText.value.length}}</code> of <code>5000</code>
+          characters</small>
+
+        <app-display-errors control="inputNarrative_English" class="red"
+                            [errors]="{'required': 'An entry is required, even if it is just N/A',
                 'maxlength': 'Entrada no puede exceder los 4000 caracteres.'
                 }"></app-display-errors>
-
 
         <div class="col-md-6 col-md-offset-1">
           <span>

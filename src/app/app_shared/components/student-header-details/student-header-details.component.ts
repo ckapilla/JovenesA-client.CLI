@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { StudentHeaderDTO } from '../../models/studentHeaderDTO';
 import { SessionService } from '../../services/session.service';
 import { SqlResource } from '../../services/sql-resource.service';
@@ -9,7 +10,7 @@ import { StudentSelectedService } from '../../services/student-selected-service'
   selector: 'app-student-header-details',
   templateUrl: './student-header-details.component.html',
 })
-export class StudentHeaderDetailsComponent implements OnInit {
+export class StudentHeaderDetailsComponent implements OnInit, OnDestroy {
   data: Object;
   loadingState = 0;
   submitted: boolean;
@@ -24,6 +25,7 @@ export class StudentHeaderDetailsComponent implements OnInit {
   photoPathName: string;
   studentGUId: string;
   @Output() onPhotoPathNameSet = new EventEmitter<string>();
+  private subscription: Subscription;
 
 
   constructor(
@@ -42,22 +44,28 @@ export class StudentHeaderDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('StudentHeader ngOnInit');
-    console.log('sqlResource with studentGUId: ' + this.studentGUId);
+    console.log('StudentHeaderDetails ngOnInit');
     // this.fetchStudentDTOData();
     this.loadingState = 0;
-    this.getCurrentStudentGUId();
+    this.subscribeForStudentGUIds();
   }
 
-  getCurrentStudentGUId() {
-    console.log('student header details set up studentGUId subscription');
-    this.studentSelected.getStudentGUId()
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
+
+  subscribeForStudentGUIds() {
+    console.log('header set up studentGUId subscription');
+    this.subscription = this.studentSelected.subscribeForStudentGUIds()
+      // .pipe(takeWhile(() => this.notDestroyed))
       .subscribe(message => {
         this.studentGUId = message;
-        console.log('student header details new StudentGUId received' + this.studentGUId);
+        console.log('header new StudentGUId received' + this.studentGUId);
         if (this.studentGUId && this.studentGUId !== '0000') {
           this.fetchData();
         }
+        // console.log('subscribe next ' + this.studentSelected.getInternalSubject().observers.length);
       });
   }
 
@@ -72,7 +80,7 @@ export class StudentHeaderDetailsComponent implements OnInit {
         () => {
           this.loadingState = 2;
           this.photoPathName = this.student.photoUrl;
-          console.log('StudentHeaderDetails: emitting photo path: ' + this.photoPathName);
+          // console.log('StudentHeaderDetails: emitting photo path: ' + this.photoPathName);
           this.onPhotoPathNameSet.emit(this.photoPathName);
         }
       );

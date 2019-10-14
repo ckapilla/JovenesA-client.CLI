@@ -332,7 +332,7 @@ export class AdminsStudentComponent implements OnInit {
           }, 3000);
         },
         (error) => {
-          console.log(this.errorMessage = <any>error);
+          this.errorMessage = <any>error;
           this.isLoading = false;
         }
       );

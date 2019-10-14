@@ -112,7 +112,7 @@ const reviewedQRStatuses: SELECTITEM[] = [
   { value: '2087', label: 'NeedsReview (DK)' },
   { value: '2088', label: 'ReadyToSend (CK)' },
   { value: '2089', label: 'Sent' },
-  { value: '2090', label: 'Skipped' }
+  { value: '2090', label: 'On Hold (DK)' }
 ];
 const memberTypes: SELECTITEM[] = [
   { value: '2068', label: 'Admin' },

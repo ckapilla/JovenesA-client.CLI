@@ -5,7 +5,7 @@ import { SessionService } from '../../services/session.service';
 import { SqlResource } from '../../services/sql-resource.service';
 
 @Component({
-// tslint:disable-next-line: component-selector
+  // tslint:disable-next-line: component-selector
   selector: 'students-for-mentor-list',
   templateUrl: './students-for-mentor-list.component.html'
 })
@@ -32,26 +32,27 @@ export class StudentsForMentorListComponent implements OnInit {
       .subscribe(
         data => {
           this.students = data;
-         },
+        },
         err => console.error('Subscribe error: ' + err),
         () => {
           console.log('studentsForMentorList has All students: ' + this.students.length);
           if (this.students.length > 0) {
             console.log(this.students[0].studentName);
+            console.log(this.students[0].studentGUId);
             this.haveData = true;
           } else {
             //
           }
         });
   }
-  gotoStudent(id: number, studentName: string) { // }, studentFirstNames: string) {
+  gotoStudent(GUId: number, studentName: string) { // }, studentFirstNames: string) {
     // const studentName; // = studentLastNames + ', ' + studentFirstNames;
     console.log('setting studentName to ' + studentName);
     this.session.setStudentInContextName(studentName);
-    const link = ['admins/students/student', { id: id }];
+    const link = 'admins/students/student;guid=' + GUId;
 
     console.log('navigating to ' + link);
-    this.router.navigate(link);
+    this.router.navigateByUrl(link);
   }
 
 

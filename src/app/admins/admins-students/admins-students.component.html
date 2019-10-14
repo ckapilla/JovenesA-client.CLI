@@ -47,16 +47,19 @@
               <th app-sortable-column="yearJoinedJa" (onSortColumn)="onSortColumn($event)">Year<br /> Joined</th>
               <th app-sortable-column="joinedFrom" (onSortColumn)="onSortColumn($event)">Joined<br /> From</th>
               <th app-sortable-column="gradYear" (onSortColumn)="onSortColumn($event)">Grad<br /> Year/Mo</th>
-              <th app-sortable-column="gpaStatus" (onSortColumn)="onSortColumn($event)">GPA</th>
-              <th app-sortable-column="gradeRptStatus" (onSortColumn)="onSortColumn($event)">Grades<br />OnTime</th>
+              <!-- <th app-sortable-column="gpaStatus" (onSortColumn)="onSortColumn($event)">GPA</th>
+              <th app-sortable-column="gradeRptStatus" (onSortColumn)="onSortColumn($event)">Grades<br />OnTime</th> -->
               <th app-sortable-column="mentorName" (onSortColumn)="onSortColumn($event)">Assigned Mentor</th>
               <!-- <th app-sortable-column="numericTimelyMentorMeetingStatus" (onSortColumn)="onSortColumn($event)" >Mentor<br />Mtg</th>
               <th app-sortable-column="numericTimelyMentorReportStatus" (onSortColumn)="onSortColumn($event)" >Mentor<br />Rpt</th> -->
               <th app-sortable-column="studentSnapshotStatus" (onSortColumn)="onSortColumn($event)">Emoji</th>
               <th app-sortable-column="sponsorGroupName" (onSortColumn)="onSortColumn($event)">Sponsor</th>
-              <th app-sortable-column="timelyStudentLetterStatus" (onSortColumn)="onSortColumn($event)">Sponsor Letters
+              <!-- <th app-sortable-column="timelyStudentLetterStatus" (onSortColumn)="onSortColumn($event)">Sponsor Letters
+              </th> -->
+              <th app-sortable-column="ssrReportDateString" (onSortColumn)="onSortColumn($event)">Self Report Date
               </th>
               <th app-sortable-column="universityAbbrev" (onSortColumn)="onSortColumn($event)">Univ</th>
+              <th app-sortable-column="major" (onSortColumn)="onSortColumn($event)">Major</th>
               <!-- <th app-sortable-column="major" (onSortColumn)="onSortColumn($event)" >Major</th> -->
 
             </tr>
@@ -89,12 +92,12 @@
               </td>
 
 
-              <td style="text-align:center;white-space: nowrap">
+              <!-- <td style="text-align:center;white-space: nowrap">
                 <img src="/assets/images/{{student.gpaStatus}}.jpg" height="22">
               </td>
               <td style="text-align:center;white-space: nowrap">
                 <img src="/assets/images/{{student.gradeRptStatus}}.jpg" height="22">
-              </td>
+              </td> -->
               <td>
                 {{ student.mentorName }}
               </td>
@@ -104,9 +107,11 @@
               <td>
                 <img src="/assets/images/{{student.timelyMentorReportStatus}}.jpg" height="22">
               </td> -->
+
               <td style="text-align:center;white-space: nowrap">
                 <img src="{{smileys[student.studentSnapshotStatus + 1]}}" width="24" />
               </td>
+
               <!-- <td style="text-align:center;white-space: nowrap">
                 <span (click)='gotoReport(student.studentId)' class='link'>
                 View</span>
@@ -122,15 +127,18 @@
               <td>
                 {{ student.sponsorGroupName }}
               </td>
-              <td class='centered'>
-                <img src="/assets/images/{{student.timelyStudentLetterStatus}}.jpg" height="22">
+              <td>
+                {{ student.ssrReportDateString }}
               </td>
+              <!-- <td class='centered'>
+                <img src="/assets/images/{{student.timelyStudentLetterStatus}}.jpg" height="22">
+              </td> -->
               <td>
                 {{ student.universityAbbrev }}
               </td>
-              <!-- <td class='centered'>
+              <td>
                 {{ student.major}}
-              </td> -->
+              </td>
 
             </tr>
           </tbody>

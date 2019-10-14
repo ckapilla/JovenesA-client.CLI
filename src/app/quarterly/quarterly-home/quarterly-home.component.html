@@ -7,17 +7,18 @@
 <div class="row">
   <div class="col">
     <ngb-tabset>
-      <ngb-tab title="Mentor Reports">
-        <ng-template ngbTabContent>
-          <app-mr-consolidated [bEditable]="true">
-          </app-mr-consolidated>
-        </ng-template>
-      </ngb-tab>
 
       <ngb-tab title="Student Reports">
         <ng-template ngbTabContent>
           <app-self-reports [bEditable]="true">
           </app-self-reports>
+        </ng-template>
+      </ngb-tab>
+
+      <ngb-tab title="Mentor Reports">
+        <ng-template ngbTabContent>
+          <app-mr-consolidated [bEditable]="true">
+          </app-mr-consolidated>
         </ng-template>
       </ngb-tab>
 

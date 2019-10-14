@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { StudentSelectedService } from 'src/app/app_shared/services/student-selected-service';
 import { SessionService } from '../../app_shared/services/session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
@@ -27,6 +28,7 @@ export class MrConsolidatedComponent implements OnInit, OnDestroy {
   reportIdCtl: AbstractControl;
   studentGUId: string;
   @Input() bEditable: boolean;
+  private subscription: Subscription;
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -46,7 +48,6 @@ export class MrConsolidatedComponent implements OnInit, OnDestroy {
     });
 
 
-
     this.narrative_EnglishCtl = this.myForm.controls['narrative_English'];
     this.narrative_SpanishCtl = this.myForm.controls['narrative_Spanish'];
     this.reportIdCtl = this.myForm.controls['mentorReportId'];
@@ -54,34 +55,36 @@ export class MrConsolidatedComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // need for unsbuscribe!!!!!!!!!!!!!!!!!!!!
-    // this.subscription =
-
     if (this.bEditable) {
       this.myForm.enable();
-      console.log('enabling Editable: ' + this.bEditable);
     } else {
       this.myForm.disable();
-      console.log('disabling: Editable: ' + this.bEditable);
     }
-    this.getCurrentStudentGUId();
-
+    // console.log('(((((((((((((((((MR ngOnInit)))))))))))))');
+    this.subscribeForStudentGUIds();
+    // console.log('after subscribe' + this.studentSelected.getInternalSubject().observers.length);
   }
-
 
   ngOnDestroy() {
-
+    // console.log('{{{{{{{{{{{{{MR ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
+    // this.studentSelected.unsubscribe();
+    this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
+    console.log(' after unsubscribe ' + this.studentSelected.getInternalSubject().observers.length);
   }
 
-  getCurrentStudentGUId() {
+  subscribeForStudentGUIds() {
     console.log('MR set up studentGUId subscription');
-    this.studentSelected.getStudentGUId()
+    this.subscription = this.studentSelected.subscribeForStudentGUIds()
+      // .pipe(takeWhile(() => this.notDestroyed))
       .subscribe(message => {
         this.studentGUId = message;
         console.log('MR new StudentGUId received' + this.studentGUId);
         if (this.studentGUId && this.studentGUId !== '0000') {
           this.fetchData();
         }
+
+        // console.log('subscribe next ' + this.studentSelected.getInternalSubject().observers.length);
       });
   }
 
@@ -135,15 +138,18 @@ export class MrConsolidatedComponent implements OnInit, OnDestroy {
     this.quarterlyData.updatePartialQuarterlyReport(this.mentorReport, 'MR')
       .subscribe(
         (partial) => {
-          console.log(this.successMessage = 'saved successfully/guardar con exito');
+          this.successMessage = 'Saved successfully / Guardar con exito';
+          window.setTimeout(() => {// console.log('clearing success message');
+            this.successMessage = '';
+          }, 1000);
           this.isSubmitted = true;
           this.isLoading = false;
           const target = '/quarterly';
           console.log('after call to editMentorReport; navigating to ' + target);
-          this.router.navigateByUrl(target);
+          // this.router.navigateByUrl(target);
         },
         (error) => {
-          console.log(this.errorMessage = <any>error);
+          this.errorMessage = <any>error;
           this.isLoading = false;
         }
       );

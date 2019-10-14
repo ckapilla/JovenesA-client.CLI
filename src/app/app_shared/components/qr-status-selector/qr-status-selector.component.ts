@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { StudentSelectedService } from 'src/app/app_shared/services/student-selected-service';
 import { QuarterlyDataService } from 'src/app/quarterly/quarterly-data.service';
 import { QuarterlyReportRPT } from 'src/app/quarterly/quarterly-reportRPT';
@@ -13,13 +14,14 @@ import { SessionService } from '../../services/session.service';
   templateUrl: './qr-status-selector.component.html',
   styleUrls: ['./qr-status-selector.component.css']
 })
-export class QrStatusSelectorComponent implements OnInit {
+export class QrStatusSelectorComponent implements OnInit, OnDestroy {
   isLoading = false;
   errorMessage: string;
   successMessage: string;
   qrMini: QuarterlyReportRPT;
   readonly reviewedStatuses: SELECTITEM[] = constants.reviewedQRStatuses;
-  studentGUId: string;
+  studentGUId: string; // 'model' for this component
+  private subscription: Subscription;
 
   constructor(
     public quarterlyData: QuarterlyDataService,
@@ -29,18 +31,32 @@ export class QrStatusSelectorComponent implements OnInit {
 
   ngOnInit() {
     this.qrMini = new QuarterlyReportRPT();
-    this.getCurrentStudentGUId();
+    // console.log('(((((((((((((((((status selector ngOnInit)))))))))))))');
+    this.subscribeForStudentGUIds();
+    // console.log('after subscribe' + this.studentSelected.getInternalSubject().observers.length);
+
   }
 
-  getCurrentStudentGUId() {
-    console.log('qrStatusSelector set up studentGUId subscription');
-    this.studentSelected.getStudentGUId()
+  ngOnDestroy() {
+    // console.log('{{{{{{{{{{{{{status selector ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
+    // this.studentSelected.unsubscribe();
+    this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
+    console.log(' after unsubscribe' + this.studentSelected.getInternalSubject().observers.length);
+  }
+
+
+  subscribeForStudentGUIds() {
+    console.log('status selector set up studentGUId subscription');
+    this.subscription = this.studentSelected.subscribeForStudentGUIds()
+      // .pipe(takeWhile(() => this.notDestroyed))
       .subscribe(message => {
         this.studentGUId = message;
-        console.log('student header details new StudentGUId received' + this.studentGUId);
+        console.log('status selector new StudentGUId received' + this.studentGUId);
         if (this.studentGUId && this.studentGUId !== '0000') {
           this.fetchData();
         }
+        // console.log('subscribe next ' + this.studentSelected.getInternalSubject().observers.length);
       });
   }
 
@@ -76,7 +92,7 @@ export class QrStatusSelectorComponent implements OnInit {
           }, 500);
         },
         (error) => {
-          console.log(this.errorMessage = <any>error);
+          this.errorMessage = <any>error;
           this.isLoading = false;
         }
       );

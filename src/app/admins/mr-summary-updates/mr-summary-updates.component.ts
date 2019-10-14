@@ -164,7 +164,7 @@ export class MentorReportSummaryUpdatesComponent
           this.navigateBackInContext();
         },
         (error) => {
-          console.log(this.errorMessage = <any>error);
+          this.errorMessage = <any>error;
           this.isLoading = false;
         }
       );

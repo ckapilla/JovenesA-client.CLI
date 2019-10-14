@@ -30,6 +30,7 @@ export class StudentDTO {
     public sponsorGroupName?: string, // MentorName
     public sponsorId?: number,
     public timelyStudentLetterStatus?: string,
+    public ssrReportDateString?: string,
     public universityAbbrev?: string,
     public major?: string,
     public joinedFromId?: number,

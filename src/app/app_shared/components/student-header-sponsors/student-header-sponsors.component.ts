@@ -24,7 +24,7 @@ export class StudentHeaderSponsorsComponent {
 
   public onPhotoPathNameSet(photoPathName: string) {
     this.photoPathName = photoPathName;
-    console.log('parent studentHeader has onPhotoPathNameSet called with' + photoPathName);
+    // console.log('parent studentHeader has onPhotoPathNameSet called with' + photoPathName);
   }
 
 }

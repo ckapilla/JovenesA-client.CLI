@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { StudentSelectedService } from 'src/app/app_shared/services/student-selected-service';
 import { SessionService } from '../../app_shared/services/session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
@@ -28,6 +29,7 @@ export class SelfReportsComponent implements OnInit, OnDestroy {
   reportIdCtl: AbstractControl;
   studentGUId: string;
   @Input() bEditable: boolean;
+  private subscription: Subscription;
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -52,30 +54,37 @@ export class SelfReportsComponent implements OnInit, OnDestroy {
 
   }
   ngOnInit() {
-
     if (this.bEditable) {
       this.myForm.enable();
     } else {
       this.myForm.disable();
     }
-    // need for unsbuscribe!!!!!!!!!!!!!!!!!!!!
-    // this.subscription =
-    this.getCurrentStudentGUId();
+
+    // console.log('(((((((((((((((((SR ngOnInit)))))))))))))');
+    this.subscribeForStudentGUIds();
+    // console.log('after subscribe' + this.studentSelected.getInternalSubject().observers.length);
+
   }
 
   ngOnDestroy() {
-
+    // console.log('{{{{{{{{{{{{{SR ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
+    // this.studentSelected.unsubscribe();
+    this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
+    console.log(' after unsubscribe ' + this.studentSelected.getInternalSubject().observers.length);
   }
 
-  getCurrentStudentGUId() {
-    console.log('SSR set up studentGUId subscription');
-    this.studentSelected.getStudentGUId()
+  subscribeForStudentGUIds() {
+    console.log('SR set up studentGUId subscription');
+    this.subscription = this.studentSelected.subscribeForStudentGUIds()
+      // .pipe(takeWhile(() => this.notDestroyed))
       .subscribe(message => {
         this.studentGUId = message;
-        console.log('SSR new StudentGUId received' + this.studentGUId);
+        console.log('SR new StudentGUId received' + this.studentGUId);
         if (this.studentGUId && this.studentGUId !== '0000') {
           this.fetchData();
         }
+        // console.log('subscribe next ' + this.studentSelected.getInternalSubject().observers.length);
       });
   }
 
@@ -129,15 +138,18 @@ export class SelfReportsComponent implements OnInit, OnDestroy {
     this.quarterlyData.updatePartialQuarterlyReport(this.studentSelfReport, 'SR')
       .subscribe(
         (partial) => {
-          console.log(this.successMessage = 'saved successfully.guardar con exito');
+          this.successMessage = 'Saved successfully / Guardar con exito';
+          window.setTimeout(() => {// console.log('clearing success message');
+            this.successMessage = '';
+          }, 1000);
           this.isSubmitted = true;
           this.isLoading = false;
           const target = '/quarterly';
           console.log('after call to edit SSR; navigating to ' + target);
-          this.router.navigateByUrl(target);
+          // this.router.navigateByUrl(target);
         },
         (error) => {
-          console.log(this.errorMessage = <any>error);
+          this.errorMessage = <any>error;
           this.isLoading = false;
         }
       );
