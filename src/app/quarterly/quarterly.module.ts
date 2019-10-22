@@ -5,6 +5,7 @@ import { AppSharedModule } from '../app_shared/app_shared.module';
 import { JaCommentsComponent } from './ja-comments/ja-comments.component';
 import { MrConsolidatedComponent } from './mr-consolidated/mr-consolidated.component';
 import { OverviewComponent } from './overview/overview.component';
+import { PrivateNotesComponent } from './private-notes/private-notes.component';
 import { QuarterlyHomeComponent } from './quarterly-home/quarterly-home.component';
 import { QuarterlyNavbarComponent } from './quarterly-navbar/quarterly-navbar.component';
 import { QuarterlyRoutingModule } from './quarterly-routing.module';
@@ -19,7 +20,8 @@ import { SelfReportsComponent } from './self-reports/self-reports.component';
     JaCommentsComponent,
     MrConsolidatedComponent,
     SelfReportsComponent,
-    OverviewComponent
+    OverviewComponent,
+    PrivateNotesComponent
   ],
   imports: [
     CommonModule,

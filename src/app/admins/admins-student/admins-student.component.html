@@ -11,7 +11,6 @@
       <form [formGroup]="myForm" class="form-horizontal">
         <div class="row">
           <div class="col">
-
             <div class="form-group">
               <span class="btn btn-primary btn-sm" (click)="location.back()">
                 &lt;&lt;&nbsp; Back
@@ -27,9 +26,17 @@
                        style="margin: 0 0 0 4px">
                 Editable</label>
             </div>
+            <div hidden="true" (click)='gotoMemberRecord()' class='link'>(Click here to edit
+              name or email)</div>
+
+            <app-person-shared memberGUId="{{ studentDTO.studentAsMemberGUId }}">
+
+            </app-person-shared>
+
+
             <div class="form-group">
 
-              <label for="firstNames">First Name(s)</label>
+              <!-- <label for="firstNames">First Name(s)</label>
               <input id="firstNames" formControlName="firstNames"
                      class="form-control form-control-sm" type="text" placeholder="First Name" />
               <app-display-errors control="firstNames" class="red" [errors]="{
@@ -43,7 +50,7 @@
               <app-display-errors control="lastNames" class="red" [errors]="{
                 'required': 'Last name is required',
                 'maxlength': 'Student Last name cannot exceed 30 characters in length.'
-              }"></app-display-errors>
+              }"></app-display-errors> -->
 
               <label for="nickName">Nick Name</label>
               <input id="nickName" formControlName="nickName" type="text"
@@ -59,13 +66,13 @@
                 'maxlength': 'Photo Filename cannot exceed 225 characters in length.'
               }"></app-display-errors>
 
-              <label for="email">Email</label>
+              <!-- <label for="email">Email</label>
               <input id="email" formControlName="email" type="text"
                      class="form-control form-control-sm" placeholder="Email Name" />
               <app-display-errors control="email" class="red" [errors]="{
                 'required': 'Email is required',
                 'maxlength': 'Email cannot exceed 50 characters in length.'
-              }"></app-display-errors>
+              }"></app-display-errors> -->
 
               <label for="cellPhone">Cell Phone</label>
               <input id="cellPhone" formControlName="cellPhone" type="text"
@@ -108,7 +115,7 @@
                 }"></app-display-errors>
 
               <label for="prepaId">Prepa</label>
-              <select id="prepaId" formControlName="prepaId" [(ngModel)]="student.prepaId"
+              <select id="prepaId" formControlName="prepaId"
                       class="form-control form-control-sm">
                 <option *ngFor="let status of prepas" [value]="status.value">{{status.label}}</option>
               </select>
@@ -132,15 +139,12 @@
 
 
             </div>
-
           </div>
           <div class="col">
             <div class="row">
-
               <div style="width: 100%">
                 <img [src]="photoPathName">
               </div>
-
             </div>
 
             <div class="row">

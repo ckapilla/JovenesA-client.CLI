@@ -124,7 +124,11 @@ export class SqlResource {
     console.log('sending AuthHttp get request ' + url);
     return this.http.get<StudentSponsorXRef[]>(url).pipe(catchError(this.handleError));
   }
-
+  public getStudentsForSponsorByGUId(sponsorGUId: string): Observable<StudentSponsorXRef[]> {
+    const url = this.WebApiPrefix + 'students/for_sponsor/' + sponsorGUId;
+    console.log('sending AuthHttp get request ' + url);
+    return this.http.get<StudentSponsorXRef[]>(url).pipe(catchError(this.handleError));
+  }
 
   public getActiveSponsorMembers(): Observable<MemberMiniDTO[]> {
     const url = this.WebApiPrefix + 'members/names/Sponsor';
@@ -251,7 +255,12 @@ export class SqlResource {
     const url = this.WebApiPrefix + 'members/' + memberId;
     console.log('sending AuthHttp get request for Member');
     return this.http.get(url).pipe(catchError(this.handleError));
+  }
 
+  public getMemberByGUId(memberGUId: string): Observable<Member> {
+    const url = this.WebApiPrefix + 'members/guid/' + memberGUId;
+    console.log('sending AuthHttp get request for Member data');
+    return this.http.get(url).pipe(catchError(this.handleError));
   }
 
   public getCommunicationsForMember(memberId: Number): Observable<Communication[]> {

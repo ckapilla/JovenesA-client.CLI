@@ -17,14 +17,18 @@ export class AdminsMemberComponent implements OnInit {
   data: Object;
   isLoading: boolean;
   submitted: boolean;
-  languageStatuses: SELECTITEM[];
-  roleStatuses: SELECTITEM[];
+  bReadOnly = true;
   errorMessage: string;
   successMessage: string;
+
+  languageStatuses: SELECTITEM[];
+  roleStatuses: SELECTITEM[];
+
+
   firstNames: string;
   lastNames: string;
   member: Member;
-  //// studentId: number;
+  photoPathName: string;
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -38,21 +42,47 @@ export class AdminsMemberComponent implements OnInit {
     this.roleStatuses = constants.roleStatuses;
 
     this.myForm = formBuilder.group({
-      inputMemberFName: ['', Validators.compose(
+      firstNames: ['', Validators.compose(
         [Validators.required, Validators.maxLength(30)])],
-      inputMemberLName: ['', Validators.compose(
+      lastNames: ['', Validators.compose(
         [Validators.required, Validators.maxLength(30)])],
-      inputMemberEmail: ['', Validators.compose(
+      email: ['', Validators.compose(
         [Validators.required, Validators.maxLength(50)])],
-      inputMemberSMAPhone: [''],
-      inputMemberNonSMAPhone: [''],
-      inputInitialInterview: ['', Validators.maxLength(2000)],
-      inputComments: ['', Validators.maxLength(2000)],
-      EnglishLevelSelector: [''],
-      SpanishLevelSelector: [''],
-      SponsorStatusSelector: [''],
-      MentorStatusSelector: ['']
+      smaPhone: [''],
+      nonSmaPhone: [''],
+
+      mentorStatusId: [''],
+      sponsorStatusId: [''],
+      adminStatusId: [''],
+      employeeStatusId: [''],
+      donorStatusId: [''],
+      volunteerStatusId: [''],
+      presidentStatusId: [''],
+      boardStatusId: [''],
+
+      yearJoinedJA: [''],
+      monthsinSma: [''],
+      nonSma_CountryId: [''],
+      bestWayToContactId: [''],
+      countryOfResidenceId: [''],
+
+      englishLevelId: [''],
+      spanishLevelId: [''],
+      preferredLanguageId: [''],
+
+      LastLoginDateTime: [''],
+      NumberOfLogins: [''],
+
+      careerBackground: [''],
+      otherRelevantExperience: [''],
+      comments: ['', Validators.maxLength(2000)],
+      photoUrl: [{ value: '' }, Validators.maxLength(2000)],
+
+      studentGUId: [''],
+      memberGUId: ['']
     });
+    this.myForm.disable();
+
     this.member = new Member();
 
     this.errorMessage = '';
@@ -62,21 +92,32 @@ export class AdminsMemberComponent implements OnInit {
 
   ngOnInit() {
     console.log('admins Member ngOnInit');
-    const id = this.currRoute.snapshot.params['id'];
-    console.log('sqlResource with MemberId: ' + id);
+
+    this.fetchMemberData();
+
+  }
+
+  fetchMemberData() {
+    const guid = this.currRoute.snapshot.params['guid'];
+    console.log('sqlResource with MemberGUId: ' + guid);
     this.isLoading = true;
-    this.sqlResource.getMember(id)
+    this.sqlResource.getMemberByGUId(guid)
       .subscribe(
         data => {
           this.member = data;
+          this.photoPathName = '../../../assets/images/MemberPhotos';
+          this.photoPathName = this.photoPathName + '/' + 'N-a, N-a.png';
+          console.log('photoPathName is ' + this.photoPathName);
         },
         err => console.error('Subscribe error: ' + err),
         () => {
           console.log('getMember is done');
+          this.setFormValues(this.member);
+          setTimeout(() => {
+            window.scrollTo(0, 0);
+          }, 0);
           this.isLoading = false;
-          window.scrollTo(0, 0);
-        }
-      );
+        });
 
     this.myForm.valueChanges.subscribe(
       (form: any) => {
@@ -87,9 +128,58 @@ export class AdminsMemberComponent implements OnInit {
     );
   }
 
+  setFormValues(member: Member) {
+    console.log('setFormValues');
+    this.myForm.setValue({
+      memberId: member.memberId,
+      firstNames: member.firstNames,
+      lastNames: member.lastNames,
+      email: member.email,
+      smaPhone: member.sma_Phone,
+      nonSmaPhone: member.nonSma_Phone,
+      // gender: member.gender,
+
+
+      mentorStatusId: member.mentorStatusId,
+      sponsorStatusId: member.sponsorStatusId,
+      adminStatusId: member.adminStatusId,
+      employeeStatusId: member.employeeStatusId,
+      donorStatusId: member.donorStatusId,
+      volunteerStatusId: member.volunteerStatusId,
+      presidentStatusId: member.presidentStatusId,
+      boardStatusId: member.boardMemberStatusId,
+
+      yearJoinedJA: member.yearJoinedJa,
+      monthsinSma: member.monthsinSma,
+      nonSma_CountryId: member.nonSma_CountryId,
+      bestWayToContactId: member.bestWayToContactId,
+      countryOfResidenceId: member.countryOfResidenceId,
+
+      englishLevelId: member.englishSkillLevelId,
+      spanishLevelId: member.spanishSkillLevelId,
+      preferredLanguageId: member.preferredLanguageId,
+
+      lastLoginDateTime: member.lastLoginDateTime,
+      numberOfLogins: member.numberOfLogins,
+
+      careerBackground: member.careerExperience,
+      otherRelevantExperience: member.otherRelevantLifeExperience,
+      comments: member.comments,
+      photoUrl: member.photoUrl,
+
+      studentGUId: member.studentGUId,
+      memberGUId: member.memberGUId
+    });
+  }
+
+  retrieveFormValues(): void {
+    this.member = this.myForm.value;
+  }
+
   saveMyForm(): boolean {
     console.log('saving admin member ');
     this.isLoading = true;
+    this.retrieveFormValues();
     this.sqlResource.updateMember(this.member)
       .subscribe(
         (student) => {
@@ -104,11 +194,15 @@ export class AdminsMemberComponent implements OnInit {
           window.scrollTo(0, 0);
           window.setTimeout(() => {// console.log('clearing success message');
             this.successMessage = '';
-          }, 3000);
+          }, 10000);
         },
         (error) => {
-          this.errorMessage = <any>error;
-          this.isLoading = false;
+          window.setTimeout(() => {// console.log('clearing success message');
+            this.errorMessage = <any>error.message;
+            this.isLoading = false;
+          }, 8000);
+
+
         }
       );
     // prevent default action of reload
@@ -119,9 +213,13 @@ export class AdminsMemberComponent implements OnInit {
     this.router.navigate(['/admins/students']);
   }
 
-  mentorReportsReview() {
-    const id = this.currRoute.snapshot.params['id'];
-    this.router.navigate(['/admins/students/mentorReports/' + id + '/']); // this.studentId ]);
+  setReadOnly() {
+    console.log('toggle readOnly');
+    if (this.myForm.enabled) {
+      this.myForm.disable();
+    } else {
+      this.myForm.enable();
+    }
   }
 
   public hasChanges() {

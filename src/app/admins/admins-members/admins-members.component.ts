@@ -86,11 +86,11 @@ export class AdminsMembersComponent implements OnInit {
         () => { console.log('done' + this.members[0].memberStatusId); this.isLoading = false; }
       );
   }
-  gotoMember(id: number, memberName: string) {
+  gotoMember(guid: number, memberName: string) {
     console.log('setting memberName to ' + memberName);
     // this.session.setAssignedMemberName(memberName);
 
-    const link = ['/admins/members/member/' + id];
+    const link = ['/admins/members/member/' + guid];
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }

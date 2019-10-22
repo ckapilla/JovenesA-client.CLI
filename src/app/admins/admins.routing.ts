@@ -1,3 +1,4 @@
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CanActivateViaAdminAuthGuard, ConfirmDeactivateMRSummaryUpdatesGuard } from '../app.routing-guards';
 import { FollowUpEventsComponent } from '../app_shared/components/follow-up-events/follow-up-events.component';
@@ -17,7 +18,7 @@ import { SelfReportsTrackingComponent } from './self-report-tracking/self-report
 import { SponsorGroupComponent } from './sponsor-group/sponsor-group.component';
 import { SponsorGroupsComponent } from './sponsor-groups/sponsor-groups.component';
 
-const routes: Routes = [
+const adminRoutes: Routes = [
   {
     path: '', // lazy loading
     component: AdminsComponent,
@@ -45,7 +46,7 @@ const routes: Routes = [
         component: SponsorGroupComponent
       },
       {
-        path: 'members/member/:id',
+        path: 'members/member/:guid',
         component: AdminsMemberComponent
       },
       {
@@ -114,4 +115,8 @@ const routes: Routes = [
     ]
   }
 ];
-export const AdminsRouting = RouterModule.forChild(routes);
+@NgModule({
+  imports: [RouterModule.forChild(adminRoutes)],
+  exports: [RouterModule]
+})
+export class AdminsRouting { }

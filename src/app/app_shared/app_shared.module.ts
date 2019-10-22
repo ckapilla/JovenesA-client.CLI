@@ -17,6 +17,7 @@ import { MentorReportsForPeriodComponent } from './components/mentor-reports-for
 import { MentorReports2ListComponent } from './components/mentor-reports2-list/mentor-reports2-list.component';
 import { NameLookupComponent } from './components/name-lookup/name-lookup';
 import { PersonPhotoComponent } from './components/person-photo/person-photo.component';
+import { PersonSharedComponent } from './components/person-shared/person-shared.component';
 import { ProfileComponent } from './components/profile.component';
 import { QrStatusSelectorComponent } from './components/qr-status-selector/qr-status-selector.component';
 import { SortableColumnComponent } from './components/sortable-column.component';
@@ -39,8 +40,6 @@ import { AlphaMonthPipe } from './pipes/alpha-month-pipe';
 import { MarkedPipe } from './pipes/marked-pipe';
 import { TruncateDatePipe } from './pipes/truncate-date-pipe';
 import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
-import { AuthService } from './services/auth.service';
-import { StudentSelectedService } from './services/student-selected-service';
 
 
 /**
@@ -92,9 +91,9 @@ import { StudentSelectedService } from './services/student-selected-service';
     StudentHeaderDetailsComponent,
     PersonPhotoComponent,
     QrStatusSelectorComponent,
-    StudentHeaderSponsorsComponent
+    StudentHeaderSponsorsComponent,
+    PersonSharedComponent
   ],
-  providers: [AuthService, StudentSelectedService],
   exports: [
     CommonModule,
     ReactiveFormsModule,
@@ -135,6 +134,7 @@ import { StudentSelectedService } from './services/student-selected-service';
     StudentHeaderDetailsComponent,
     QrStatusSelectorComponent,
     StudentHeaderSponsorsComponent,
+    PersonSharedComponent
   ]
 })
 

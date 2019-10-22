@@ -1,3 +1,4 @@
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CanActivateViaMentorAuthGuard, ConfirmDeactivateMonthlyReportAddGuard } from '../app.routing-guards';
 import { FollowUpRequestsAddComponent } from './follow-up-requests-add/follow-up-requests-add.component';
@@ -9,7 +10,7 @@ import { MonthlyReports2AddComponent } from './monthly-reports2-add/monthly-repo
 import { MonthlyReports2EditComponent } from './monthly-reports2-edit/monthly-reports2-edit.component';
 import { MonthlyReports2Component } from './monthly-reports2/monthly-reports2.component';
 
-const routes: Routes = [
+const mentorRoutes: Routes = [
   {
     path: '', // lazy loading
     component: MentorsComponent,
@@ -64,4 +65,9 @@ const routes: Routes = [
   }
 ];
 
-export const MentorsRouting = RouterModule.forChild(routes);
+@NgModule({
+  imports: [RouterModule.forChild(mentorRoutes)],
+  exports: [RouterModule]
+})
+
+export class MentorsRouting { }

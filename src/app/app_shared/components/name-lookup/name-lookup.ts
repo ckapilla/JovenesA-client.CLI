@@ -4,7 +4,9 @@ import { catchError, debounceTime, distinctUntilChanged, switchMap, tap } from '
 import { StudentMiniDTO } from '../../models/studentMiniDTO';
 import { SqlResource } from '../../services/sql-resource.service';
 import { StudentSelectedService } from '../../services/student-selected-service';
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class NameService {
   constructor(private sqlResource: SqlResource,
     // private http: HttpClient,
@@ -35,7 +37,6 @@ export class NameService {
 @Component({
   selector: 'app-name-lookup',
   templateUrl: './name-lookup.html',
-  providers: [NameService],
   styles: [`.form-control { width: 300px; display: inline; }`]
 })
 

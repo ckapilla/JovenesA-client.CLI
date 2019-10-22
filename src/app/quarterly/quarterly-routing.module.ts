@@ -6,7 +6,7 @@ import { QuarterlyHomeComponent } from './quarterly-home/quarterly-home.componen
 import { QuarterlyComponent } from './quarterly.component';
 
 
-const routes: Routes = [
+const quarterlyRoutes: Routes = [
   {
     path: '', // lazy loading
     component: QuarterlyComponent,
@@ -31,7 +31,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(quarterlyRoutes)],
   exports: [RouterModule]
 })
 export class QuarterlyRoutingModule { }

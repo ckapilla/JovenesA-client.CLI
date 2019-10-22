@@ -1,0 +1,28 @@
+<form [formGroup]="myForm" class="form-horizontal">
+
+  <label for="firstNames">First Name(s)</label>
+  <input id="firstNames" formControlName="firstNames"
+         class="form-control form-control-sm" type="text" placeholder="First Name" />
+  <app-display-errors control="firstNames" class="red" [errors]="{
+  'required': 'First name is required',
+  'maxlength': 'Student First name cannot exceed 30 characters in length.'
+}"></app-display-errors>
+
+  <label for="lastNames">Last Name(s)</label>
+  <input id="lastNames" formControlName="lastNames" type="text"
+         class="form-control form-control-sm" placeholder="Last Name" />
+  <app-display-errors control="lastNames" class="red" [errors]="{
+  'required': 'Last name is required',
+  'maxlength': 'Student Last name cannot exceed 30 characters in length.'
+}"></app-display-errors>
+
+
+  <label for="email">Email</label>
+  <input id="email" formControlName="email" type="text"
+         class="form-control form-control-sm" placeholder="Email Name" />
+  <app-display-errors control="email" class="red" [errors]="{
+  'required': 'Email is required',
+  'maxlength': 'Email cannot exceed 50 characters in length.'
+}"></app-display-errors>
+
+</form>

@@ -47,7 +47,7 @@ export class AdminsStudentsComponent implements OnInit {
     console.log('Hi from student List Ctrl controller function');
 
     this.selectedStatus = this.studentStatuses[2].value; // Current
-    this.selectedYearJoined = '' + this.session.getSelectedYearJoined(); // this.joinedYears[0].value;
+    this.selectedYearJoined = '0'; //  + this.session.getSelectedYearJoined(); // this.joinedYears[0].value;
     this.selectedGradYear = this.session.getSelectedGradYear(); // this.gradYears[0].value; // All
 
     // this.gradeRptsStatus = 'yellowWarning.jpg'

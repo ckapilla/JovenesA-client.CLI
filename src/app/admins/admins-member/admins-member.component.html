@@ -1,98 +1,200 @@
 <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
 <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col">
-      <form [formGroup]="myForm" class="form-horizontal ">
-        <div class="form-group">
-          <span class="btn btn-primary btn-xs" (click)="location.back()">
-            &lt;&lt; Back
-          </span>
-        </div>
+<div class="container-fluid" style="max-width:900px">
 
-        <div class="form-group">
-          <label for="inputMemberFName">First Name(s)</label>
-          <input id="inputMemberFName" formControlName="inputMemberFName" [(ngModel)]="member.firstNames"
-                 class="form-control input-sm" type="text" placeholder="First Name" />
-          <app-display-errors control="inputMemberFName" class="red" [errors]="{
+  <div [ngSwitch]="isLoading">
+    <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
+      <app-loading-container>
+      </app-loading-container>
+    </div>
+    <div *ngSwitchCase="false">
+      <form [formGroup]="myForm" class="form-horizontal">
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <span class="btn btn-primary btn-sm" (click)="location.back()">
+                &lt;&lt;&nbsp; Back
+              </span>
+              &nbsp;
+
+              <span>OCT 20: SORRY EDITING IS NOT AVAILABLE RIGHT NOW</span>
+              <label for="ckEditMode">
+                <input id="ckEditMode" type="checkbox" name="toggleReadOnly" (click)="setReadOnly()"
+                       style="margin: 0 0 0 4px">
+                Editable</label>
+            </div>
+            <div class="form-group">
+
+              <label for="firstNames">First Name(s)</label>
+              <input id="firstNames" formControlName="firstNames"
+                     class="form-control form-control-sm" type="text" placeholder="First Name" />
+              <app-display-errors control="firstNames" class="red" [errors]="{
                 'required': 'First name is required',
-                'maxlength': 'Member First name cannot exceed 30 characters in length.'
+                'maxlength': 'Student First name cannot exceed 30 characters in length.'
               }"></app-display-errors>
 
-          <label for="inputMemberLName">Last Name(s)</label>
-          <input id="inputMemberLName" formControlName="inputMemberLName" [(ngModel)]="member.lastNames" type="text"
-                 class="form-control input-sm" placeholder="Last Name" />
-          <app-display-errors control="inputMemberLName" class="red" [errors]="{
+              <label for="lastNames">Last Name(s)</label>
+              <input id="lastNames" formControlName="lastNames" type="text"
+                     class="form-control form-control-sm" placeholder="Last Name" />
+              <app-display-errors control="lastNames" class="red" [errors]="{
                 'required': 'Last name is required',
-                'maxlength': 'Member Last name cannot exceed 30 characters in length.'
+                'maxlength': 'Student Last name cannot exceed 30 characters in length.'
               }"></app-display-errors>
 
-          <label for="inputMemberEmail">Email (Please coordinate any changes with the member, for logging in.)</label>
-          <input id="inputMemberEmail" formControlName="inputMemberEmail" [(ngModel)]="member.email" type="text"
-                 class="form-control input-sm" placeholder="Email Address" />
-          <app-display-errors control="inputMemberLName" class="red" [errors]="{
-                'required': 'Email address is required',
-                'maxlength': 'Email address cannot exceed 50 characters in length.'
+              <label for="photoUrl">Photo Filename</label>
+              <input id="photoUrl" formControlName="photoUrl" type="text"
+                     class="form-control form-control-sm" placeholder="Photo Filename" />
+              <app-display-errors control="photoUrl" class="red" [errors]="{
+                'maxlength': 'Photo Filename cannot exceed 225 characters in length.'
               }"></app-display-errors>
 
-          <label for="inputMemberSMAPhone">SMA Phone</label>
-          <input id="inputMemberSMAPhone" formControlName="inputMemberSMAPhone" [(ngModel)]="member.sma_Phone"
-                 type="text" class="form-control input-sm" placeholder="Best Phone Number when in SMA" />
+              <label for="email">Email</label>
+              <input id="email" formControlName="email" type="text"
+                     class="form-control form-control-sm" placeholder="Email Name" />
+              <app-display-errors control="email" class="red" [errors]="{
+                'required': 'Email is required',
+                'maxlength': 'Email cannot exceed 50 characters in length.'
+              }"></app-display-errors>
 
-          <label for="inputMemberNonSMAPhone">Non-SMA Phone</label>
-          <input id="inputMemberNonSMAPhone" formControlName="inputMemberNonSMAPhone" [(ngModel)]="member.nonSma_Phone"
-                 type="text" class="form-control input-sm" placeholder="Best Phone Number when not in SMA" />
+              <label for="smaPhone">SMA Phone</label>
+              <input id="smaPhone" formControlName="smaPhone"
+                     type="text" class="form-control form-control-sm" placeholder="Best Phone Number when in SMA" />
 
-
-          <label for="SponsorStatusSelector">Sponsor Status:</label>
-          <select formControlName="SponsorStatusSelector" class="form-control input-sm"
-                  [(ngModel)]="member.sponsorStatusId">
-            <option *ngFor="let status of roleStatuses" [value]="status.value">{{status.label}}</option>
-          </select>
-
-          <label for="MentorStatusSelector">Mentor Status:</label>
-          <select formControlName="MentorStatusSelector" class="form-control input-sm"
-                  [(ngModel)]="member.mentorStatusId">
-            <option *ngFor="let status of roleStatuses" [value]="status.value">{{status.label}}</option>
-          </select>
+              <label for="nonSmaPhone">Non-SMA Phone</label>
+              <input id="nonSmaPhone" formControlName="nonSmaPhone"
+                     type="text" class="form-control form-control-sm" placeholder="Best Phone Number when not in SMA" />
 
 
-          <label for="EnglishLevelSelector">English Level:</label>
-          <select formControlName="EnglishLevelSelector" class="form-control input-sm"
-                  [(ngModel)]="member.englishSkillLevelId">
-            <option *ngFor="let status of languageStatuses" [value]="status.value">{{status.label}}</option>
-          </select>
 
-          <label for="SpanishLevelSelector">Spanish Level:</label>
-          <select formControlName="SpanishLevelSelector" class="form-control input-sm"
-                  [(ngModel)]="member.spanishSkillLevelId">
-            <option *ngFor="let status of languageStatuses" [value]="status.value">{{status.label}}</option>
-          </select>
+              <label for="englishLevelId">English Level:</label>
+              <select formControlName="englishLevelId" class="form-control form-control-sm"
+                      [(ngModel)]="member.englishSkillLevelId">
+                <option *ngFor="let status of languageStatuses" [value]="status.value">{{status.label}}</option>
+              </select>
 
-          <label for="inputComments">Comments (Private -- for Admins only)</label>
-          <textarea id="inputComments" #success formControlName="inputComments" [(ngModel)]="member.comments"
-                    type="text" class="form-control input-sm" placeholder="">
-          </textarea>
-          <app-display-errors control="inputComments" class="red" [errors]="{'maxlength': 'Entry cannot exceed 2000 characters in length.'
-                }"></app-display-errors>
+              <label for="spanishLevelId">Spanish Level:</label>
+              <select formControlName="spanishLevelId" class="form-control form-control-sm"
+                      [(ngModel)]="member.spanishSkillLevelId">
+                <option *ngFor="let status of languageStatuses" [value]="status.value">{{status.label}}</option>
+              </select>
+
+            </div>
+          </div>
+          <div class="col">
+            <div class="row">
+              <div style="width: 100%">
+                <img [src]="photoPathName">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-6" style="padding:0 2px 0 4px;">
+                <label for="mentorStatusId">Mentor Status:</label>
+                <select formControlName="mentorStatusId" class="form-control form-control-sm">
+                  <option *ngFor="let status of roleStatuses" [value]="status.value">{{status.label}}</option>
+                </select>
+
+                <label for="adminStatusId">Admin Status:</label>
+                <select formControlName="adminStatusId" class="form-control form-control-sm">
+                  <option *ngFor="let status of roleStatuses" [value]="status.value">{{status.label}}</option>
+                </select>
+
+                <label for="volunteerStatusId">Volunteer Status:</label>
+                <select formControlName="volunteerStatusId" class="form-control form-control-sm">
+                  <option *ngFor="let status of roleStatuses" [value]="status.value">{{status.label}}</option>
+                </select>
+
+                <label for="presidentStatusId">President Status:</label>
+                <select formControlName="presidentStatusId" class="form-control form-control-sm">
+                  <option *ngFor="let status of roleStatuses" [value]="status.value">{{status.label}}</option>
+                </select>
+
+              </div>
+
+              <div class="col-6" style="padding:0 2px 0 4px;">
+
+                <label for="sponsorStatusId">Sponsor Status:</label>
+                <select formControlName="sponsorStatusId" class="form-control form-control-sm">
+                  <option *ngFor="let status of roleStatuses" [value]="status.value">{{status.label}}</option>
+                </select>
+
+
+                <label for="donorStatusId">Donor Status:</label>
+                <select formControlName="sponsorStatusId" class="form-control form-control-sm">
+                  <option *ngFor="let status of roleStatuses" [value]="status.value">{{status.label}}</option>
+                </select>
+
+
+                <label for="employeeStatusId">Employee Status:</label>
+                <select formControlName="employeeStatusId" class="form-control form-control-sm">
+                  <option *ngFor="let status of roleStatuses" [value]="status.value">{{status.label}}</option>
+                </select>
+
+                <label for="boardStatusId">Board Status:</label>
+                <select formControlName="mentorStatusId" class="form-control form-control-sm">
+                  <option *ngFor="let status of roleStatuses" [value]="status.value">{{status.label}}</option>
+                </select>
+
+
+
+              </div>
+            </div>
+
+            <div class="row">
+
+              <label for="careerBackground"></label>
+              <input id="careerBackground" formControlName="careerBackground"
+                     readonly
+                     class="form-control form-control-sm" type="text" />
+
+              <label for="otherLifeExperience"></label>
+              <input id="otherLifeExperience" formControlName="otherLifeExperience"
+                     readonly
+                     class="form-control form-control-sm" type="text" />
+
+              <label for="comments">Comments (Private -- for Admins only)</label>
+              <textarea id="comments" #success formControlName="comments"
+                        type="text" class="form-control input-sm" placeholder="">
+                   </textarea>
+              <app-display-errors control="comments" class="red" [errors]="{'maxlength': 'Entry cannot exceed 2000 characters in length.'
+                     }"></app-display-errors>
+
+              <label for="photoUrl"></label>
+              <input id="photoUrl" formControlName="photoUrl"
+                     readonly
+                     class="form-control form-control-sm" type="text" />
+
+
+              <label for="memberGUId">Member GUID</label>
+              <input id="memberGUId" formControlName="memberGUId"
+                     readonly
+                     class="form-control form-control-sm" type="text" />
+
+              <label for="studentGUId">Student GUID</label>
+              <input id="studentGUId" formControlName="studentGUId"
+                     readonly
+                     class="form-control form-control-sm" type="text" />
+            </div>
+          </div>
+
+          <div class="col">
+
+            <students-for-sponsor-list></students-for-sponsor-list>
+
+            <students-for-mentor-list></students-for-mentor-list>
+
+          </div>
         </div>
-        <div class="form-group">
-          <button class="btn btn-primary" (click)="saveMyForm()" [disabled]="!myForm.valid">
-            Save
-          </button> <span class="red" [hidden]="myForm.valid">All required fields must be filled in before
-            saving.</span>
+
+        <div class="row">
+          <div class="form-group">
+            <button class="btn btn-primary" (click)="saveMyForm()" [disabled]="!myForm.valid">
+              Save
+            </button> <span class="red" [hidden]="myForm.valid">All required fields must be filled in before
+              saving.</span>
+          </div>
         </div>
       </form>
-    </div>
-    <div class="col">
-      <div class="row">
-        <students-for-sponsor-list></students-for-sponsor-list>
-      </div>
-    </div>
-    <div class="col">
-      <div class="row">
-        <students-for-mentor-list></students-for-mentor-list>
-      </div>
     </div>
   </div>
 </div>

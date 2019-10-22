@@ -1,9 +1,10 @@
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CanActivateViaSponsorAuthGuard } from '../app.routing-guards';
 import { SponsorsHomeComponent } from './sponsors-home/sponsors-home.component';
 import { SponsorsComponent } from './sponsors.component';
 
-const routes: Routes = [
+const sponsorRoutes: Routes = [
   {
     path: '', // lazy loading
     component: SponsorsComponent,
@@ -12,7 +13,8 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        component: SponsorsHomeComponent
+        component: SponsorsHomeComponent,
+        // redirectTo: 'sponsors-home.component'
       },
       {
         path: 'home',
@@ -31,4 +33,8 @@ const routes: Routes = [
   }
 ];
 
-export const SponsorsRouting = RouterModule.forChild(routes);
+@NgModule({
+  imports: [RouterModule.forChild(sponsorRoutes)],
+  exports: [RouterModule]
+})
+export class SponsorsRoutingModule { }

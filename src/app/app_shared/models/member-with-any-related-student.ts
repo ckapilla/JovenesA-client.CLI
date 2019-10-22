@@ -14,6 +14,7 @@ export class MemberWithAnyRelatedStudent {
     public relatedStudentName?: string,
     public relatedStudentStatusId?: number,
     public relatedStudentStatus?: string,
-    public relatedStudentGUId?: string
+    public relatedStudentGUId?: string,
+    public memberGUId?: string
   ) { }
 }

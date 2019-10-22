@@ -5,7 +5,7 @@ import { SessionService } from '../../services/session.service';
 import { SqlResource } from '../../services/sql-resource.service';
 
 @Component({
-// tslint:disable-next-line: component-selector
+  // tslint:disable-next-line: component-selector
   selector: 'students-for-sponsor-list',
   templateUrl: './students-for-sponsor-list.html'
 })
@@ -27,10 +27,10 @@ export class StudentsForSponsorComponent implements OnInit {
 
   public ngOnInit() {
     this.haveData = false;
-    const id = this.currRoute.snapshot.params['id'];
-    this.sqlResource.getStudentsForSponsor(id)
+    const guid = this.currRoute.snapshot.params['guid'];
+    this.sqlResource.getStudentsForSponsor(guid)
       .subscribe(
-        data => {this.studentsForSponsor = data; console.log(this.studentsForSponsor); },
+        data => { this.studentsForSponsor = data; console.log(this.studentsForSponsor); },
         err => console.error('Subscribe error: ' + err),
         () => {
           console.log('students-for-sponsor-list loaded ' + this.studentsForSponsor.length + ' rows');

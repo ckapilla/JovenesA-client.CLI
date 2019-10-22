@@ -12,7 +12,8 @@ export class QuarterlyReport {
     public mR_Narrative_English?: string,
     public mR_Narrative_Spanish?: string,
     public reportDateTime?: string,
-    public reviewedStatusId?: number
+    public reviewedStatusId?: number,
+    public pN_Narrative?: string
   ) {
 
   }

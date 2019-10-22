@@ -1,41 +1,49 @@
- export class Member {
+export class Member {
 
-      constructor(
-        public memberId?: number,
-        public lastNames?: string,
-        public firstNames?: string,
-        // public FullName: string,
+  constructor(
+    public memberId?: number,
+    public lastNames?: string,
+    public firstNames?: string,
+    public email?: string,
+    public sma_Phone?: string,
+    public nonSma_Phone?: string,
 
-        // public SmaAddress: string,
-         public sma_Phone?: string,
-        // public NonSmaAddress: string,
-        // public NonSmaCity: string,
-        // public NonSmaStateProvince: string,
-        // public NonSmaPostalCode: string,
+    // public SmaAddress: string,
 
-        public nonSma_Phone?: string,
-        public email?: string,
-        public monthsinSma?: string,
-        // public CareerExperience: string,
-        // public MentoringExperience: string,
-        // public OtherRelevantLifeExperience: string,
-        // public UpdateDtTm: Date,
+    // public NonSmaAddress: string,
+    // public NonSmaCity: string,
+    // public NonSmaStateProvince: string,
+    // public NonSmaPostalCode: string,
 
-        public technology?: string,
+    public mentorStatusId?: number,
+    public sponsorStatusId?: number,
+    public adminStatusId?: number,
+    public employeeStatusId?: number,
+    public donorStatusId?: number,
+    public volunteerStatusId?: number,
+    public presidentStatusId?: number,
+    public boardMemberStatusId?: number,
 
-        public nonSma_CountryId?: number,
-        public mentorStatusId?: number,
-        public sponsorStatusId?: number,
-        public yearJoinedJa?: number,
-        public bestWayToContactId?: number,
-        public countryOfResidenceID?: number,
-        public spanishSkillLevelId?: number,
-        public englishSkillLevelId?: number,
-        public studentPreferenceId?: number,
+    public yearJoinedJa?: number,
+    public monthsinSma?: string,
+    public nonSma_CountryId?: number,
+    public bestWayToContactId?: number,
+    public countryOfResidenceId?: number,
 
-        public LastLoginDateTime?: Date,
-        public NumberOfLogins?: number,
-        public preferredLanguageId?: number,
-        public comments?: string
-      ) {}
+    public spanishSkillLevelId?: number,
+    public englishSkillLevelId?: number,
+    public preferredLanguageId?: number,
+    // public studentPreferenceId?: number,
+
+    public lastLoginDateTime?: Date,
+    public numberOfLogins?: number,
+
+    public careerExperience?: string,
+    public otherRelevantLifeExperience?: string,
+    public comments?: string,
+    public photoUrl?: string,
+
+    public studentGUId?: string,
+    public memberGUId?: string
+  ) { }
 }

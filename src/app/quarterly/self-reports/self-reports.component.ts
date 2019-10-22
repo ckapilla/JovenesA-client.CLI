@@ -141,7 +141,7 @@ export class SelfReportsComponent implements OnInit, OnDestroy {
           this.successMessage = 'Saved successfully / Guardar con exito';
           window.setTimeout(() => {// console.log('clearing success message');
             this.successMessage = '';
-          }, 1000);
+          }, 5000);
           this.isSubmitted = true;
           this.isLoading = false;
           const target = '/quarterly';
@@ -149,7 +149,7 @@ export class SelfReportsComponent implements OnInit, OnDestroy {
           // this.router.navigateByUrl(target);
         },
         (error) => {
-          this.errorMessage = <any>error;
+          this.errorMessage = <any>error.message;
           this.isLoading = false;
         }
       );

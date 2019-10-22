@@ -11,20 +11,18 @@ import { QuarterlyReport } from '../quarterly-report';
 
 
 @Component({
-  selector: 'app-ja-comments',
-  templateUrl: './ja-comments.component.html',
-  styleUrls: ['./ja-comments.component.css']
+  selector: 'app-private-notes',
+  templateUrl: './private-notes.component.html'
 })
-export class JaCommentsComponent implements OnInit, OnDestroy {
+export class PrivateNotesComponent implements OnInit, OnDestroy {
   isLoading: boolean;
   isSubmitted: boolean;
   errorMessage: string;
   successMessage: string;
-  jaComment: QuarterlyReport;
+  privateNotes: QuarterlyReport;
   quarterlyReportId: number;
   myForm: FormGroup;
-  narrative_EnglishCtl: AbstractControl;
-  narrative_SpanishCtl: AbstractControl;
+  narrativeCtl: AbstractControl;
   reportIdCtl: AbstractControl;
   studentGUId: string;
   @Input() bEditable: boolean;
@@ -42,13 +40,11 @@ export class JaCommentsComponent implements OnInit, OnDestroy {
 
     this.myForm = _fb.group({
       lastContactYearSelector: ['2019', Validators.required],
-      narrative_English: ['', {}],
-      narrative_Spanish: [''],
+      narrative: [''],
       quarterlyReportId: [this.reportIdCtl]
     });
 
-    this.narrative_EnglishCtl = this.myForm.controls['narrative_English'];
-    this.narrative_SpanishCtl = this.myForm.controls['narrative_Spanish'];
+    this.narrativeCtl = this.myForm.controls['narrative'];
     this.reportIdCtl = this.myForm.controls['quarterlyReportId'];
 
 
@@ -60,14 +56,14 @@ export class JaCommentsComponent implements OnInit, OnDestroy {
       this.myForm.disable();
     }
 
-    // console.log('(((((((((((((((((JA ngOnInit)))))))))))))');
+    // console.log('(((((((((((((((((PN ngOnInit)))))))))))))');
     this.subscribeForStudentGUIds();
     // console.log('after subscribe' + this.studentSelected.getInternalSubject().observers.length);
 
   }
 
   ngOnDestroy() {
-    // console.log('{{{{{{{{{{{{{JA ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
+    // console.log('{{{{{{{{{{{{{PN ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
     // this.studentSelected.unsubscribe();
     this.subscription.unsubscribe();
     // this.subscription.unsubscribe();
@@ -75,12 +71,12 @@ export class JaCommentsComponent implements OnInit, OnDestroy {
   }
 
   subscribeForStudentGUIds() {
-    console.log('JA set up studentGUId subscription');
+    console.log('PN set up studentGUId subscription');
     this.subscription = this.studentSelected.subscribeForStudentGUIds()
       // .pipe(takeWhile(() => this.notDestroyed))
       .subscribe(message => {
         this.studentGUId = message;
-        console.log('JA new StudentGUId received' + this.studentGUId);
+        console.log('PN new StudentGUId received' + this.studentGUId);
         if (this.studentGUId && this.studentGUId !== '0000') {
           this.fetchData();
         }
@@ -93,29 +89,18 @@ export class JaCommentsComponent implements OnInit, OnDestroy {
 
     console.log('ssr fetchData');
     this.isLoading = true;
-    this.quarterlyData.getPartialQuarterlyReportByPeriod('JA', this.studentGUId, '2019', '3', '0')
+    this.quarterlyData.getPartialQuarterlyReportByPeriod('PN', this.studentGUId, '2019', '3', '0')
       .subscribe(
-        data => { this.jaComment = data; },
+        data => { this.privateNotes = data; },
         err => console.error('Subscribe error: ' + err),
         () => {
           this.isLoading = false;
-          if (this.jaComment) {
+          if (this.privateNotes && this.privateNotes.pN_Narrative && this.privateNotes.pN_Narrative.length > 0) {
             console.log('### after retreiving, set form controls to retreived selfReport');
-            this.narrative_SpanishCtl.setValue(this.jaComment.jA_Narrative_Spanish);
-            if (!this.bEditable) {
-              if (this.jaComment.jA_Narrative_English.length === 0) {
-                this.jaComment.jA_Narrative_English = '-- No additional comments this quarter --';
-              }
-              if (this.jaComment.jA_Narrative_Spanish.length === 0) {
-                this.jaComment.jA_Narrative_Spanish = '-- No hay comentarios adicionales este trimestre --';
-              }
-            }
-            this.narrative_EnglishCtl.setValue(this.jaComment.jA_Narrative_English);
-            this.narrative_SpanishCtl.setValue(this.jaComment.jA_Narrative_Spanish);
+            this.narrativeCtl.setValue(this.privateNotes.pN_Narrative);
           } else {
             console.log('no results returned');
-            this.narrative_EnglishCtl.setValue('--No Report Found--');
-            this.narrative_SpanishCtl.setValue('--No Report Found--');
+            this.narrativeCtl.setValue('');
           }
         });
   }
@@ -128,7 +113,7 @@ export class JaCommentsComponent implements OnInit, OnDestroy {
       let i = 0;
       this.errorMessage = '';
 
-      if (!this.narrative_EnglishCtl.valid) {
+      if (!this.narrativeCtl.valid) {
         this.errorMessage = this.errorMessage + 'Description must be filled in. Descripcione debe rellenarse';
         ++i;
       }
@@ -139,11 +124,10 @@ export class JaCommentsComponent implements OnInit, OnDestroy {
     console.log('###before submitting update model with form control values');
     // mentorId and studentId do not have corresponding controls
 
-    this.jaComment.jA_Narrative_English = this.narrative_EnglishCtl.value;
-    this.jaComment.jA_Narrative_Spanish = this.narrative_SpanishCtl.value;
+    this.privateNotes.pN_Narrative = this.narrativeCtl.value;
     // this.selfReport.reviewedStatusId = 2086; // already is needs setup or wouldn't be here
 
-    this.quarterlyData.updatePartialQuarterlyReport(this.jaComment, 'JA')
+    this.quarterlyData.updatePartialQuarterlyReport(this.privateNotes, 'PN')
       .subscribe(
         (partial) => {
           this.successMessage = 'Saved successfully / Guardar con exito';
@@ -153,11 +137,11 @@ export class JaCommentsComponent implements OnInit, OnDestroy {
           this.isSubmitted = true;
           this.isLoading = false;
           const target = '/quarterly';
-          console.log('after call to edit JA; navigating to ' + target);
+          console.log('after call to edit PN; navigating to ' + target);
           // this.router.navigateByUrl(target);
         },
         (error) => {
-          this.errorMessage = <any>error;
+          this.errorMessage = <any>error.message;
           this.isLoading = false;
         }
       );

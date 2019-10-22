@@ -4,6 +4,7 @@ export class StudentDTO {
     public studentId: number, // StudentID (Primary key)
     public studentName: string, // StudentName
     public email: string, // Email
+    public studentAsMemberGUId: string,
     public gender: string, // Gender
     public status: string, // Status
     public esStatus: string, // Status

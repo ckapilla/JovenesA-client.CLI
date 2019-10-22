@@ -14,9 +14,8 @@ import { UrlService } from './url.service';
 
 @Injectable({
   providedIn: 'root'
-}
+})
 
-)
 export class AuthService {
   userProfile: Object;
   // authResult: Object;
