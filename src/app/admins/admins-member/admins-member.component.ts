@@ -48,8 +48,8 @@ export class AdminsMemberComponent implements OnInit {
         [Validators.required, Validators.maxLength(30)])],
       email: ['', Validators.compose(
         [Validators.required, Validators.maxLength(50)])],
-      smaPhone: [''],
-      nonSmaPhone: [''],
+      smA_Phone: [''],
+      nonSMA_Phone: [''],
 
       mentorStatusId: [''],
       sponsorStatusId: [''],
@@ -66,20 +66,22 @@ export class AdminsMemberComponent implements OnInit {
       bestWayToContactId: [''],
       countryOfResidenceId: [''],
 
-      englishLevelId: [''],
-      spanishLevelId: [''],
+      englishSkillLevelId: [''],
+      spanishSkillLevelId: [''],
       preferredLanguageId: [''],
 
-      LastLoginDateTime: [''],
-      NumberOfLogins: [''],
+      lastLoginDateTime: [''],
+      numberOfLogins: [''],
 
       careerBackground: [''],
       otherRelevantExperience: [''],
       comments: ['', Validators.maxLength(2000)],
       photoUrl: [{ value: '' }, Validators.maxLength(2000)],
 
-      studentGUId: [''],
-      memberGUId: ['']
+      memberId: [''],
+      memberGUId: [''],
+      studentGUId: ['']
+
     });
     this.myForm.disable();
 
@@ -104,6 +106,8 @@ export class AdminsMemberComponent implements OnInit {
     this.sqlResource.getMemberByGUId(guid)
       .subscribe(
         data => {
+          console.log('raw data has');
+          console.log(JSON.stringify(data));
           this.member = data;
           this.photoPathName = '../../../assets/images/MemberPhotos';
           this.photoPathName = this.photoPathName + '/' + 'N-a, N-a.png';
@@ -111,7 +115,8 @@ export class AdminsMemberComponent implements OnInit {
         },
         err => console.error('Subscribe error: ' + err),
         () => {
-          console.log('getMember is done');
+          console.log('getMember is done with member values ');
+          console.log(JSON.stringify(this.member));
           this.setFormValues(this.member);
           setTimeout(() => {
             window.scrollTo(0, 0);
@@ -135,8 +140,8 @@ export class AdminsMemberComponent implements OnInit {
       firstNames: member.firstNames,
       lastNames: member.lastNames,
       email: member.email,
-      smaPhone: member.sma_Phone,
-      nonSmaPhone: member.nonSma_Phone,
+      smA_Phone: member.smA_Phone,
+      nonSMA_Phone: member.nonSMA_Phone,
       // gender: member.gender,
 
 
@@ -155,15 +160,15 @@ export class AdminsMemberComponent implements OnInit {
       bestWayToContactId: member.bestWayToContactId,
       countryOfResidenceId: member.countryOfResidenceId,
 
-      englishLevelId: member.englishSkillLevelId,
-      spanishLevelId: member.spanishSkillLevelId,
+      englishSkillLevelId: member.englishSkillLevelId,
+      spanishSkillLevelId: member.spanishSkillLevelId,
       preferredLanguageId: member.preferredLanguageId,
 
       lastLoginDateTime: member.lastLoginDateTime,
       numberOfLogins: member.numberOfLogins,
 
-      careerBackground: member.careerExperience,
-      otherRelevantExperience: member.otherRelevantLifeExperience,
+      careerBackground: member.careerBackground,
+      otherRelevantExperience: member.otherRelevantExperience,
       comments: member.comments,
       photoUrl: member.photoUrl,
 
@@ -173,11 +178,17 @@ export class AdminsMemberComponent implements OnInit {
   }
 
   retrieveFormValues(): void {
+    console.log('retrieve myForm.value is ');
+    console.log(JSON.stringify(this.myForm.value));
+    console.log('and result is');
+
     this.member = this.myForm.value;
+    console.log(JSON.stringify(this.member));
   }
 
   saveMyForm(): boolean {
     console.log('saving admin member ');
+    console.log(JSON.stringify(this.member));
     this.isLoading = true;
     this.retrieveFormValues();
     this.sqlResource.updateMember(this.member)

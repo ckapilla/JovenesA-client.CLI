@@ -27,7 +27,7 @@ export class Mentor {
     public mentorStatusId?: number,
     public yearJoinedJa?: number,
     public bestWayToContactId?: number,
-    public countryOfResidenceID?: number,
+    public countryOfResidenceId?: number,
     public spanishSkillLevelId?: number,
     public englishSkillLevelId?: number,
     public studentPreferenceId?: number,

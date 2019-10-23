@@ -280,7 +280,7 @@ export class SqlResource {
 
   public updateMember(member: Member): Observable<Member> {
 
-    const url = this.WebApiPrefix + 'members/' + member.memberId;
+    const url = this.WebApiPrefix + 'members';
 
     let body = JSON.stringify({ member });
     // strip outer 'member' name

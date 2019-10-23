@@ -26,8 +26,8 @@
                        style="margin: 0 0 0 4px">
                 Editable</label>
             </div>
-            <div hidden="true" (click)='gotoMemberRecord()' class='link'>(Click here to edit
-              name or email)</div>
+            <div [hidden]="!showEditLink" (click)='gotoMemberRecord()' class='link'>(Edit
+              name or email for Member)</div>
 
             <app-person-shared memberGUId="{{ studentDTO.studentAsMemberGUId }}">
 

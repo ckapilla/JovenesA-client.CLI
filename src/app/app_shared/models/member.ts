@@ -5,8 +5,8 @@ export class Member {
     public lastNames?: string,
     public firstNames?: string,
     public email?: string,
-    public sma_Phone?: string,
-    public nonSma_Phone?: string,
+    public smA_Phone?: string,
+    public nonSMA_Phone?: string,
 
     // public SmaAddress: string,
 
@@ -38,8 +38,8 @@ export class Member {
     public lastLoginDateTime?: Date,
     public numberOfLogins?: number,
 
-    public careerExperience?: string,
-    public otherRelevantLifeExperience?: string,
+    public careerBackground?: string,
+    public otherRelevantExperience?: string,
     public comments?: string,
     public photoUrl?: string,
 

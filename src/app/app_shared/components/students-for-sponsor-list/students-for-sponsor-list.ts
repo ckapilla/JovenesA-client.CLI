@@ -27,7 +27,9 @@ export class StudentsForSponsorComponent implements OnInit {
 
   public ngOnInit() {
     this.haveData = false;
+
     const guid = this.currRoute.snapshot.params['guid'];
+    console.log('++++++++++++++++++++have guid param' + guid);
     this.sqlResource.getStudentsForSponsor(guid)
       .subscribe(
         data => { this.studentsForSponsor = data; console.log(this.studentsForSponsor); },

@@ -44,6 +44,7 @@ export class AdminsStudentComponent implements OnInit {
   sponsorGroupIdParam: number;
   emojiPathname: string;
   readonly smileys: string[] = constants.smileys;
+  showEditLink = false;
 
 
   constructor(
@@ -324,8 +325,10 @@ export class AdminsStudentComponent implements OnInit {
     console.log('toggle readOnly');
     if (this.myForm.enabled) {
       this.myForm.disable();
+      this.showEditLink = false;
     } else {
       this.myForm.enable();
+      this.showEditLink = true;
     }
   }
 
@@ -393,23 +396,23 @@ export class AdminsStudentComponent implements OnInit {
     }
 
 
-    // studentDTO.numericGradeRptStatus = 0;
-    // if (studentDTO.gradeRptStatus === 'red') {
-    //   studentDTO.numericGradeRptStatus = 1;
-    // } else if (studentDTO.gradeRptStatus === 'yellow') {
-    //   studentDTO.numericGradeRptStatus = 2;
-    // } else if (studentDTO.gradeRptStatus === 'green') {
-    //   studentDTO.numericGradeRptStatus = 3;
-    // }
+    studentDTO.numericGradeRptStatus = 0;
+    if (studentDTO.gradeRptStatus === 'red') {
+      studentDTO.numericGradeRptStatus = 1;
+    } else if (studentDTO.gradeRptStatus === 'yellow') {
+      studentDTO.numericGradeRptStatus = 2;
+    } else if (studentDTO.gradeRptStatus === 'green') {
+      studentDTO.numericGradeRptStatus = 3;
+    }
 
-    // studentDTO.numericGPAStatus = 0;
-    // if (studentDTO.gpaStatus === 'red') {
-    //   studentDTO.numericGPAStatus = 1;
-    // } else if (studentDTO.gpaStatus === 'yellow') {
-    //   studentDTO.numericGPAStatus = 2;
-    // } else if (studentDTO.gpaStatus === 'green') {
-    //   studentDTO.numericGPAStatus = 3;
-    // }
+    studentDTO.numericGPAStatus = 0;
+    if (studentDTO.gpaStatus === 'red') {
+      studentDTO.numericGPAStatus = 1;
+    } else if (studentDTO.gpaStatus === 'yellow') {
+      studentDTO.numericGPAStatus = 2;
+    } else if (studentDTO.gpaStatus === 'green') {
+      studentDTO.numericGPAStatus = 3;
+    }
 
     studentDTO.joinedFrom = 'N/A';
     if (studentDTO.joinedFromId === 2056) {

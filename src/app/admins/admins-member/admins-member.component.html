@@ -17,7 +17,6 @@
               </span>
               &nbsp;
 
-              <span>OCT 20: SORRY EDITING IS NOT AVAILABLE RIGHT NOW</span>
               <label for="ckEditMode">
                 <input id="ckEditMode" type="checkbox" name="toggleReadOnly" (click)="setReadOnly()"
                        style="margin: 0 0 0 4px">
@@ -41,13 +40,6 @@
                 'maxlength': 'Student Last name cannot exceed 30 characters in length.'
               }"></app-display-errors>
 
-              <label for="photoUrl">Photo Filename</label>
-              <input id="photoUrl" formControlName="photoUrl" type="text"
-                     class="form-control form-control-sm" placeholder="Photo Filename" />
-              <app-display-errors control="photoUrl" class="red" [errors]="{
-                'maxlength': 'Photo Filename cannot exceed 225 characters in length.'
-              }"></app-display-errors>
-
               <label for="email">Email</label>
               <input id="email" formControlName="email" type="text"
                      class="form-control form-control-sm" placeholder="Email Name" />
@@ -56,25 +48,27 @@
                 'maxlength': 'Email cannot exceed 50 characters in length.'
               }"></app-display-errors>
 
-              <label for="smaPhone">SMA Phone</label>
-              <input id="smaPhone" formControlName="smaPhone"
+              <label for="smA_Phone">SMA Phone</label>
+              <input id="smA_Phone" formControlName="smA_Phone"
                      type="text" class="form-control form-control-sm" placeholder="Best Phone Number when in SMA" />
 
-              <label for="nonSmaPhone">Non-SMA Phone</label>
-              <input id="nonSmaPhone" formControlName="nonSmaPhone"
+              <label for="nonSMA_Phone">Non-SMA Phone</label>
+              <input id="nonSMA_Phone" formControlName="nonSMA_Phone"
+                     type="text" class="form-control form-control-sm" placeholder="Best Phone Number when not in SMA" />
+
+              <label for="countryOfResidenceId">Country of Residence</label>
+              <input id="countryOfResidenceId" formControlName="countryOfResidenceId"
+                     readonly
                      type="text" class="form-control form-control-sm" placeholder="Best Phone Number when not in SMA" />
 
 
-
-              <label for="englishLevelId">English Level:</label>
-              <select formControlName="englishLevelId" class="form-control form-control-sm"
-                      [(ngModel)]="member.englishSkillLevelId">
+              <label for="englishSkillLevelId">English Level:</label>
+              <select formControlName="englishSkillLevelId" class="form-control form-control-sm">
                 <option *ngFor="let status of languageStatuses" [value]="status.value">{{status.label}}</option>
               </select>
 
-              <label for="spanishLevelId">Spanish Level:</label>
-              <select formControlName="spanishLevelId" class="form-control form-control-sm"
-                      [(ngModel)]="member.spanishSkillLevelId">
+              <label for="spanishSkillLevelId">Spanish Level:</label>
+              <select formControlName="spanishSkillLevelId" class="form-control form-control-sm">
                 <option *ngFor="let status of languageStatuses" [value]="status.value">{{status.label}}</option>
               </select>
 
@@ -82,7 +76,7 @@
           </div>
           <div class="col">
             <div class="row">
-              <div style="width: 100%">
+              <div style="width: 80%;">
                 <img [src]="photoPathName">
               </div>
             </div>
@@ -120,7 +114,7 @@
 
 
                 <label for="donorStatusId">Donor Status:</label>
-                <select formControlName="sponsorStatusId" class="form-control form-control-sm">
+                <select formControlName="donorStatusId" class="form-control form-control-sm">
                   <option *ngFor="let status of roleStatuses" [value]="status.value">{{status.label}}</option>
                 </select>
 
@@ -131,7 +125,7 @@
                 </select>
 
                 <label for="boardStatusId">Board Status:</label>
-                <select formControlName="mentorStatusId" class="form-control form-control-sm">
+                <select formControlName="boardStatusId" class="form-control form-control-sm">
                   <option *ngFor="let status of roleStatuses" [value]="status.value">{{status.label}}</option>
                 </select>
 
@@ -141,29 +135,10 @@
             </div>
 
             <div class="row">
-
-              <label for="careerBackground"></label>
-              <input id="careerBackground" formControlName="careerBackground"
+              <label for="memberId">Member ID</label>
+              <input id="memberId" formControlName="memberId"
                      readonly
                      class="form-control form-control-sm" type="text" />
-
-              <label for="otherLifeExperience"></label>
-              <input id="otherLifeExperience" formControlName="otherLifeExperience"
-                     readonly
-                     class="form-control form-control-sm" type="text" />
-
-              <label for="comments">Comments (Private -- for Admins only)</label>
-              <textarea id="comments" #success formControlName="comments"
-                        type="text" class="form-control input-sm" placeholder="">
-                   </textarea>
-              <app-display-errors control="comments" class="red" [errors]="{'maxlength': 'Entry cannot exceed 2000 characters in length.'
-                     }"></app-display-errors>
-
-              <label for="photoUrl"></label>
-              <input id="photoUrl" formControlName="photoUrl"
-                     readonly
-                     class="form-control form-control-sm" type="text" />
-
 
               <label for="memberGUId">Member GUID</label>
               <input id="memberGUId" formControlName="memberGUId"
@@ -174,14 +149,40 @@
               <input id="studentGUId" formControlName="studentGUId"
                      readonly
                      class="form-control form-control-sm" type="text" />
+
+
             </div>
           </div>
 
           <div class="col">
 
+            <label for="careerBackground">Career Background</label>
+            <input id="careerBackground" formControlName="careerBackground"
+
+                   class="form-control form-control-sm" type="text" />
+
+            <label for="otherRelevantExperience">Other Relevant Experience</label>
+            <input id="otherRelevantExperience" formControlName="otherRelevantExperience"
+
+                   class="form-control form-control-sm" type="text" />
+
+            <label for="comments">Comments (Private -- for Admins only)</label>
+            <textarea id="comments" #success formControlName="comments"
+                      type="text" class="form-control input-sm" placeholder="">
+                   </textarea>
+            <app-display-errors control="comments" class="red" [errors]="{'maxlength': 'Entry cannot exceed 2000 characters in length.'
+                     }"></app-display-errors>
+
+            <label for="photoUrl">PhotoUrl</label>
+            <input id="photoUrl" formControlName="photoUrl"
+
+                   class="form-control form-control-sm" type="text" />
+
+
             <students-for-sponsor-list></students-for-sponsor-list>
 
             <students-for-mentor-list></students-for-mentor-list>
+
 
           </div>
         </div>
