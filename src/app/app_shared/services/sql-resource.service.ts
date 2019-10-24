@@ -113,6 +113,14 @@ export class SqlResource {
     return xx;
   }
 
+  public getStudentsForMentorByGUId(mentorGUId: string): Observable<StudentDTO[]> {
+    const url = this.WebApiPrefix + 'students/for_mentor/' + mentorGUId;
+    console.log('sending AuthHttp get request for StudentsForMentor');
+    const xx = this.http.get<StudentDTO[]>(url).pipe(catchError(this.handleError));
+    console.log(xx);
+    return xx;
+  }
+
   public getMentorsForStudent(studentId: number): Observable<Mentor[]> {
     const url = this.WebApiPrefix + 'students/mentors_for/' + studentId;
     console.log('sending AuthHttp get request ' + url);
@@ -328,6 +336,11 @@ export class SqlResource {
 
   public getMentorNames(): Observable<SELECTITEM[]> {
     const url = this.WebApiPrefix + 'lookup/mentors';
+    console.log('sending AuthHttp get request ' + url);
+    return this.http.get<SELECTITEM[]>(url).pipe(catchError(this.handleError));
+  }
+  public getMentorNamesByGUId(): Observable<SELECTITEM[]> {
+    const url = this.WebApiPrefix + 'lookup/mentors/guid';
     console.log('sending AuthHttp get request ' + url);
     return this.http.get<SELECTITEM[]>(url).pipe(catchError(this.handleError));
   }

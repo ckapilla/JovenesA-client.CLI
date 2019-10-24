@@ -31,7 +31,8 @@ export class Mentor {
     public spanishSkillLevelId?: number,
     public englishSkillLevelId?: number,
     public studentPreferenceId?: number,
-    public preferredLanguageId?: number
+    public preferredLanguageId?: number,
+    public mentorGUId?: string
 
   ) { }
 }

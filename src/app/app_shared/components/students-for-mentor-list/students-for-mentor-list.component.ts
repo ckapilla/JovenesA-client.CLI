@@ -22,13 +22,13 @@ export class StudentsForMentorListComponent implements OnInit {
     private router: Router,
     private currRoute: ActivatedRoute) {
 
-    console.log('in MentoredStudentComponent constructor');
+    console.log('in MentoredStudentComponent constructor XXXXXXXXXXXXXXXXXXXXX');
   }
 
   public ngOnInit() {
     this.haveData = false;
-    const id = this.currRoute.snapshot.params['id'];
-    this.sqlResource.getStudentsForMentor(id)
+    const guid = this.currRoute.snapshot.params['guid'];
+    this.sqlResource.getStudentsForMentorByGUId(guid)
       .subscribe(
         data => {
           this.students = data;

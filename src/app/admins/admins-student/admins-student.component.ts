@@ -66,7 +66,7 @@ export class AdminsStudentComponent implements OnInit {
     this.prepas = this.fetchPrepas();
     this.universities = this.fetchUniversities();
     this.sponsorGroups = this.fetchSponsorGroups();
-    this.mentors = this.fetchMentors();
+    // this.mentors = this.fetchMentors();
 
     this.myForm = formBuilder.group({
       studentId: '',
@@ -101,8 +101,9 @@ export class AdminsStudentComponent implements OnInit {
       rfc: [{ value: '' }],
       bankAccount: [{ value: '' }],
       sponsorGroupId: [{ value: '' }],
-      mentorId: [{ value: '' }],
-      studentGUId: [{ value: '' }]
+      mentorGUId: [{ value: '' }],
+      studentGUId: [{ value: '' }],
+      mentorName: ['']
       // inputInitialInterview: [{value: ''}, Validators.maxLength(2000)],
       // studentStory: [{value: ''}, Validators.maxLength(2000)],
     });
@@ -121,6 +122,32 @@ export class AdminsStudentComponent implements OnInit {
     console.log('sqlResource with studentGUIdParam: ' + this.studentGUIdParam);
     this.fetchStudentDTOData();
   }
+
+  fetchStudentDTOData() {
+    // console.log('sqlResource for getStudents: ' +
+    //        'status: ' + this.selectedStatus + ' ' +
+    //        'yearjoined: ' + this.selectedYearJoined +  + ' ' +
+    //        'gradyear: ' + this.selectedGradYear
+    //        );
+    this.isLoading = true;
+    this.sqlResource.getStudentDTOViaGUID(this.studentGUIdParam)
+      .subscribe(
+        data => {
+          this.studentDTO = data;
+          console.log('#############studentAsMemberGUId ' + this.studentDTO.studentAsMemberGUId);
+          this.studentDTO = this.getNumericStatus(this.studentDTO);
+        },
+        err => { this.errorMessage = err; },
+        () => {
+          console.log('studentDTO data loaded');
+          console.log(JSON.stringify(this.studentDTO));
+          this.isLoading = false;
+          this.fetchStudentData();
+        }
+      );
+  }
+
+
 
   fetchStudentData() {
     this.isLoading = true;
@@ -162,29 +189,6 @@ export class AdminsStudentComponent implements OnInit {
 
   }
 
-  fetchStudentDTOData() {
-    // console.log('sqlResource for getStudents: ' +
-    //        'status: ' + this.selectedStatus + ' ' +
-    //        'yearjoined: ' + this.selectedYearJoined +  + ' ' +
-    //        'gradyear: ' + this.selectedGradYear
-    //        );
-    this.isLoading = true;
-    this.sqlResource.getStudentDTOViaGUID(this.studentGUIdParam)
-      .subscribe(
-        data => {
-          this.studentDTO = data;
-          console.log('#############studentAsMemberGUId ' + this.studentDTO.studentAsMemberGUId);
-          this.studentDTO = this.getNumericStatus(this.studentDTO);
-        },
-        err => { this.errorMessage = err; },
-        () => {
-          console.log('data loaded now set timeout for scroll');
-          this.isLoading = false;
-          this.fetchStudentData();
-        }
-      );
-  }
-
 
   setFormValues(student: Student) {
     console.log('setFormValues');
@@ -215,8 +219,9 @@ export class AdminsStudentComponent implements OnInit {
       rfc: student.rfc,
       bankAccount: student.bankAccount,
       sponsorGroupId: student.sponsorGroupId,
-      mentorId: student.mentorId,
-      studentGUId: student.studentGUId
+      mentorGUId: student.mentorGUId,
+      studentGUId: student.studentGUId,
+      mentorName: this.studentDTO.mentorName
     });
   }
 
@@ -227,30 +232,7 @@ export class AdminsStudentComponent implements OnInit {
     // this.student.firstNames = ctls.firstNames.value;
     // this.student.lastNames = ctls.lastNames.value;
     // this.student.email = ctls.email.value;
-    // this.student.gender = ctls.gender.value;
-    // this.student.cellPhone = ctls.cellPhone.value;
-    // this.student.homePhone = ctls.homePhone.value;
-    // this.student.nickName = ctls.nickName.value;
-    // this.student.photoUrl = ctls.photoUrl.value;
-    // this.student.ja_Id = ctls.ja_Id.value;
-    // this.student.emergencyContactPhone = ctls.emergencyContactPhone.value;
-    // this.student.emergencyContactName = ctls.emergencyContactName.value;
-    // this.student.major = ctls.major.value;
-    // this.student.englishSkillLevelId = ctls.englishSkillLevelId.value;
-    // this.student.statusId = ctls.statusId.value;
-    // this.student.yearJoinedJa = ctls.yearJoinedJa.value;
-    // this.student.joinedFromId = ctls.joinedFromId.value;
-    // this.student.prepaId = ctls.prepaId.value;
-    // this.student.universityId = ctls.universityId.value;
-    // this.student.studentId = ctls.studentId.value;
-    // this.student.gradYear = ctls.gradYear.value;
-    // this.student.gradMonthNum = ctls.gradMonthNum.value;
-    // this.student.curp = ctls.curp.value;
-    // this.student.rfc = ctls.rfc.value;
-    // this.student.bankAccount = ctls.bankAccount.value;
-    // this.student.sponsorGroupId = ctls.sponsorGroupId.value;
-    // this.student.mentorId = ctls.mentorId.value;
-    // this.student.studentGUId = ctls.studentGUId.value;
+
   }
 
 
@@ -366,7 +348,7 @@ export class AdminsStudentComponent implements OnInit {
   }
 
   fetchMentors(): SELECTITEM[] {
-    this.sqlResource.getMentorNames()
+    this.sqlResource.getMentorNamesByGUId()
       .subscribe(
         data => { this.mentors = data; console.log('getMentorNames'); console.log(this.mentors[0]); },
         err => console.error('Subscribe error: ' + err),

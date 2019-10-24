@@ -45,6 +45,7 @@ export class Student {
     public joinedFromId?: number, // JoinedFromID
     public studentStory?: string, // StudentStory
     public gradMonthNum?: number, // GradMonth
-    public studentGUId?: string
+    public studentGUId?: string,
+    public mentorGUId?: string
   ) { }
 }

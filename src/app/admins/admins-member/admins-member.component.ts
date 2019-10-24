@@ -106,8 +106,6 @@ export class AdminsMemberComponent implements OnInit {
     this.sqlResource.getMemberByGUId(guid)
       .subscribe(
         data => {
-          console.log('raw data has');
-          console.log(JSON.stringify(data));
           this.member = data;
           this.photoPathName = '../../../assets/images/MemberPhotos';
           this.photoPathName = this.photoPathName + '/' + 'N-a, N-a.png';
@@ -180,10 +178,7 @@ export class AdminsMemberComponent implements OnInit {
   retrieveFormValues(): void {
     console.log('retrieve myForm.value is ');
     console.log(JSON.stringify(this.myForm.value));
-    console.log('and result is');
-
     this.member = this.myForm.value;
-    console.log(JSON.stringify(this.member));
   }
 
   saveMyForm(): boolean {
@@ -212,8 +207,6 @@ export class AdminsMemberComponent implements OnInit {
             this.errorMessage = <any>error.message;
             this.isLoading = false;
           }, 8000);
-
-
         }
       );
     // prevent default action of reload

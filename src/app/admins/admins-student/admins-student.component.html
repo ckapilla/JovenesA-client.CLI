@@ -36,21 +36,6 @@
 
             <div class="form-group">
 
-              <!-- <label for="firstNames">First Name(s)</label>
-              <input id="firstNames" formControlName="firstNames"
-                     class="form-control form-control-sm" type="text" placeholder="First Name" />
-              <app-display-errors control="firstNames" class="red" [errors]="{
-                'required': 'First name is required',
-                'maxlength': 'Student First name cannot exceed 30 characters in length.'
-              }"></app-display-errors>
-
-              <label for="lastNames">Last Name(s)</label>
-              <input id="lastNames" formControlName="lastNames" type="text"
-                     class="form-control form-control-sm" placeholder="Last Name" />
-              <app-display-errors control="lastNames" class="red" [errors]="{
-                'required': 'Last name is required',
-                'maxlength': 'Student Last name cannot exceed 30 characters in length.'
-              }"></app-display-errors> -->
 
               <label for="nickName">Nick Name</label>
               <input id="nickName" formControlName="nickName" type="text"
@@ -66,13 +51,6 @@
                 'maxlength': 'Photo Filename cannot exceed 225 characters in length.'
               }"></app-display-errors>
 
-              <!-- <label for="email">Email</label>
-              <input id="email" formControlName="email" type="text"
-                     class="form-control form-control-sm" placeholder="Email Name" />
-              <app-display-errors control="email" class="red" [errors]="{
-                'required': 'Email is required',
-                'maxlength': 'Email cannot exceed 50 characters in length.'
-              }"></app-display-errors> -->
 
               <label for="cellPhone">Cell Phone</label>
               <input id="cellPhone" formControlName="cellPhone" type="text"
@@ -244,10 +222,15 @@
                                        [sponsorGroupId]="sponsorGroupIdParam">
             </app-sponsor-group-members>
 
-            <label for="mentorId">Mentor</label>
-            <select id="mentorId" formControlName="mentorId" class="form-control form-control-sm">
+            <label for="mentorName">Mentor (Read Only for Now)</label>
+            <input id="mentorName" formControlName="mentorName" type="text"
+                   readonly
+                   class="form-control form-control-sm" placeholder="" />
+
+            <!-- <label for="mentorGUId">Mentor</label>
+            <select id="mentorGUId" formControlName="mentorGUId" class="form-control form-control-sm">
               <option *ngFor="let mentor of mentors" [value]="mentor.value">{{mentor.label}}</option>
-            </select>
+            </select> -->
 
             <label for="gradeMonths">Academic Year / Grade Months</label>
             <app-grade-months [universityId]="student.universityId">
