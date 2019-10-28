@@ -8,6 +8,9 @@ export class QuarterlyReportRPT {
     public reportDateTime?: string,
     public reviewedStatusId?: number,
     public studentName?: string,
+    public studentStatus?: string,
+    public sponsorGroupName?: string,
+    public highlightStatusId?: number
   ) {
 
   }

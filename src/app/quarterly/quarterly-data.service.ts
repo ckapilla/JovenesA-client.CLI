@@ -66,6 +66,15 @@ export class QuarterlyDataService {
     );
   }
 
+  public setQRHighlightStatus(quarterlyReportGUId: string, highlightStatusId: number): Observable<any> {
+    const url = this.WebApiPrefix + 'quarterly/highlight_status/' + quarterlyReportGUId + '/' + highlightStatusId;
+    console.log('sending AuthHttp put request to with URL' + url);
+    return this.http.put(url, null).pipe(
+      tap(() => console.log('set highlightStatus returned')),
+      catchError(this.handleError)
+    );
+  }
+
 
   public updatePartialQuarterlyReport(quarterlyReport: QuarterlyReport, partialType: string): Observable<QuarterlyReport> {
 

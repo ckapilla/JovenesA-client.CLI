@@ -22,6 +22,7 @@ export class OverviewComponent implements OnInit {
   qrMinis: QuarterlyReportRPT[];
   qrMini: QuarterlyReportRPT;
   readonly reviewedStatuses: SELECTITEM[] = constants.reviewedQRStatuses;
+  readonly highlightStatuses: SELECTITEM[] = constants.highlightStatuses;
 
 
   constructor(
@@ -78,7 +79,7 @@ export class OverviewComponent implements OnInit {
   }
 
   fetchData() {
-    console.log('fetchData');
+    console.log('fetchData for QR Overview');
     this.isLoading = true;
     // this.sqlResource.getStudentSelfReportsByPeriod('2019', '3', '0', this.studentGUId)
     this.quarterlyData.getQRMinisForPeriod(2019, 3, 0)
@@ -114,4 +115,24 @@ export class OverviewComponent implements OnInit {
         }
       );
   }
+  setHighlightStatusForQR(rptEntryIdx: number, highlightStatusId: number) {
+    console.log('selected highlightStatusId: ' + highlightStatusId);
+    console.log('selected RQGUID:' + this.qrMinis[rptEntryIdx].quarterlyReportGUId);
+
+    this.quarterlyData.setQRHighlightStatus(this.qrMinis[rptEntryIdx].quarterlyReportGUId, highlightStatusId)
+      .subscribe(
+        (student) => {
+          this.successMessage = 'Updated';
+          window.setTimeout(() => {// console.log('clearing success message');
+            this.successMessage = '';
+          }, 500);
+        },
+        (error) => {
+          this.errorMessage = <any>error;
+          this.isLoading = false;
+        }
+      );
+  }
+
+
 }
