@@ -2,14 +2,15 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StudentDTO } from 'src/app/app_shared/models/studentDTO';
-import { constants } from '../../app_shared/constants/constants';
-import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
-import { Student } from '../../app_shared/models/student';
-import { SessionService } from '../../app_shared/services/session.service';
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
-@Component({
+import { constants } from '../../../app_shared/constants/constants';
+import { SELECTITEM } from '../../../app_shared/interfaces/SELECTITEM';
+import { Student } from '../../../app_shared/models/student';
+import { StudentDTO } from '../../../app_shared/models/studentDTO';
+import { SessionService } from '../../../app_shared/services/session.service';
+import { SqlResource } from '../../../app_shared/services/sql-resource.service';
 
+@Component({
+  selector: 'app-admins-student-profile',
   templateUrl: './admins-student.component.html',
   styleUrls: ['./admins-student.component.css'],
 })
@@ -155,7 +156,7 @@ export class AdminsStudentComponent implements OnInit {
       .subscribe(
         data => {
           this.student = data;
-          this.photoPathName = '../../../assets/images/StudentPhotos/' + this.student.yearJoinedJa;
+          this.photoPathName = '../../../../assets/images/StudentPhotos/' + this.student.yearJoinedJa;
           this.photoPathName = this.photoPathName + '/' + this.student.photoUrl;
           // this.photoPathName = this.photoPathName + '/' + 'CADENA RÍOS, CARLOS ANTONIO.jpg';
           console.log('photoPathName is ' + this.photoPathName);

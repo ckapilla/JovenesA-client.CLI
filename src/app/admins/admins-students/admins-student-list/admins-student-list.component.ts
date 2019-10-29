@@ -1,23 +1,23 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { constants } from '../../app_shared/constants/constants';
-import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
-import { SORTCRITERIA } from '../../app_shared/interfaces/SORTCRITERIA';
-import { StudentDTO } from '../../app_shared/models/studentDTO';
-import { ColumnSortService } from '../../app_shared/services/column-sort.service';
-import { SessionService } from '../../app_shared/services/session.service';
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
+import { constants } from '../../../app_shared/constants/constants';
+import { SELECTITEM } from '../../../app_shared/interfaces/SELECTITEM';
+import { SORTCRITERIA } from '../../../app_shared/interfaces/SORTCRITERIA';
+import { StudentDTO } from '../../../app_shared/models/studentDTO';
+import { ColumnSortService } from '../../../app_shared/services/column-sort.service';
+import { SessionService } from '../../../app_shared/services/session.service';
+import { SqlResource } from '../../../app_shared/services/sql-resource.service';
 
 
 
 @Component({
-
-  templateUrl: './admins-students.component.html',
-  styleUrls: ['./admins-students.component.css']
+  selector: 'app-admins-student-list',
+  templateUrl: './admins-student-list.component.html',
+  styleUrls: ['./admins-student-list.component.css']
 })
 
-export class AdminsStudentsComponent implements OnInit {
+export class AdminsStudentListComponent implements OnInit {
 
   selectedStatus: string;
   selectedYearJoined: string;
