@@ -151,7 +151,7 @@ const followUpStatuses = [
   { value: '2104', label: 'Closed' },
 ];
 const highlightStatuses = [
-  { value: '0', label: '[None]' },
+  { value: '0', label: '' },
   { value: '2105', label: 'Problems' },
   { value: '2106', label: 'GoodNews' },
 ];
