@@ -115,7 +115,8 @@ const reviewedQRStatuses: SELECTITEM[] = [
   { value: '2090', label: 'On Hold (DK)' },
   { value: '2129', label: 'ReadyToSend/CC' },
   { value: '2130', label: 'ReadyToSend/UU' },
-  { value: '2131', label: 'ReadyToSend/NoEmail' }
+  { value: '2131', label: 'ReadyToSend/NoEmail' },
+  { value: '2132', label: 'On Hold/AmistadPool' },
 
 ];
 const memberTypes: SELECTITEM[] = [

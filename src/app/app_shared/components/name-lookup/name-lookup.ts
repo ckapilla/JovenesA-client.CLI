@@ -1,4 +1,5 @@
 import { Component, Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
 import { StudentMiniDTO } from '../../models/studentMiniDTO';
@@ -8,7 +9,7 @@ import { StudentSelectedService } from '../../services/student-selected-service'
   providedIn: 'root'
 })
 export class NameService {
-  constructor(private sqlResource: SqlResource,
+  constructor(private sqlResource: SqlResource
     // private http: HttpClient,
   ) { }
 
@@ -44,9 +45,11 @@ export class NameLookupComponent {
   studentMiniDTO: StudentMiniDTO;
   searching = false;
   searchFailed = false;
+  currentGUId = '0000';
   // @Output() onSelectedStudentGUId = new EventEmitter<string>();
 
   constructor(private _service: NameService,
+    private router: Router,
     private studentSelected: StudentSelectedService) {
     console.log('name-lookup constructor!');
   }
@@ -55,6 +58,7 @@ export class NameLookupComponent {
     console.log('onSelect');
     console.log(item.item.studentId);
     console.log(item.item.studentGUId);
+    this.currentGUId = item.item.studentGUId;
     // this.onSelectedStudentGUId.emit(item.item.studentGUId);
     this.studentSelected.notifyNewStudentGUId(item.item.studentGUId);
   }
@@ -80,5 +84,19 @@ export class NameLookupComponent {
     )
   formatter = (x: { studentName: string }) => x.studentName;
 
+
+  gotoStudentList() {
+    const link = 'admins/students/studentList';
+    this.router.navigateByUrl(link);
+  }
+
+  gotoStudent() {
+    if (this.currentGUId !== '0000') {
+      const link = ['admins/students/student', { guid: this.currentGUId }];
+      console.log('navigating to ' + link);
+      this.router.navigate(link);
+    }
+
+  }
 
 }

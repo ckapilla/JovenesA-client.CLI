@@ -29,9 +29,15 @@ export class StudentHeaderComponent {
     // console.log('parent studentHeader has onPhotoPathNameSet called with' + photoPathName);
   }
 
-  gotoStudentList() {
-    const link = 'admins/studentList';
-    this.router.navigateByUrl(link);
-  }
+  // gotoStudentList() {
+  //   const link = 'admins/students/studentList';
+  //   this.router.navigateByUrl(link);
+  // }
+
+  // gotoStudent() {
+  //   const link = 'admins/students/student';
+  //   this.router.navigateByUrl(link);
+  // }
+
 
 }

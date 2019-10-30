@@ -10,3 +10,10 @@
        [resultFormatter]="formatter"
        (selectItem)="onSelect($event)"
        placeholder="Last Name or First Name" />
+<div class="row">
+  <span style="margin-top: 1rem;" (click)="gotoStudentList()" class="btn btn-sm btn-primary">Students
+    List</span>
+  <span [hidden]="currentGUId=='0000'" style="margin-top: 1rem;margin-left: 1rem;" (click)="gotoStudent()"
+        class="btn btn-sm btn-primary">Student Profile
+  </span>
+</div>

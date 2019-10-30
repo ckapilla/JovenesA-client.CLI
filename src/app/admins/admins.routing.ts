@@ -60,13 +60,13 @@ const adminRoutes: Routes = [
       //     component: AdminsStudentSearchComponent
       //   },
       {
-        path: 'studentList',
+        path: 'students/studentList',
         component: AdminsStudentListComponent
         //  }
         // ]
       },
       {
-        path: 'student', // :guid',
+        path: 'students/student', // :guid',
         component: AdminsStudentComponent
       },
       {
