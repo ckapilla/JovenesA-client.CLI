@@ -5,8 +5,8 @@ import { FollowUpEventsComponent } from '../app_shared/components/follow-up-even
 import { AdminsMemberComponent } from './admins-member/admins-member.component';
 import { AdminsMembersComponent } from './admins-members/admins-members.component';
 import { AdminsStudentMRsComponent } from './admins-student-mrs/admins-student-mrs.component';
-import { AdminsStudentHomeComponent } from './admins-students/admins-student-home/admins-student-home.component';
 import { AdminsStudentListComponent } from './admins-students/admins-student-list/admins-student-list.component';
+import { AdminsStudentSearchComponent } from './admins-students/admins-student-search/admins-student-search.component';
 import { AdminsStudentComponent } from './admins-students/admins-student/admins-student.component';
 import { AdminsComponent } from './admins.component';
 import { FollowUpEventsAddComponent } from './follow-up-events-add/follow-up-events-add.component';
@@ -52,14 +52,21 @@ const adminRoutes: Routes = [
       },
       {
         path: 'students',
-        component: AdminsStudentHomeComponent
+        component: AdminsStudentSearchComponent
       },
+      // children: [
+      //   {
+      //     path: 'studentSearch',
+      //     component: AdminsStudentSearchComponent
+      //   },
       {
-        path: 'students/studentList',
+        path: 'studentList',
         component: AdminsStudentListComponent
+        //  }
+        // ]
       },
       {
-        path: 'students/student', // :guid',
+        path: 'student', // :guid',
         component: AdminsStudentComponent
       },
       {

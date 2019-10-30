@@ -1,7 +1,9 @@
 <div class="card bg-primary">
   <div class="card-header text-white" style="font-size:large">
-    Students by Status
+    <span>Students by Status</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="btn btn-secondary link "
+          (click)="gotoStudentSearch()">Student Search</span>
   </div>
+
   <div class="card-body bg-white">
     <span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
     <span *ngIf="successMessage" class="alert alert-success">{{successMessage}}</span>

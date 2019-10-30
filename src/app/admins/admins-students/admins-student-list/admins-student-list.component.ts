@@ -191,6 +191,13 @@ export class AdminsStudentListComponent implements OnInit {
     this.router.navigate(link);
   }
 
+  gotoStudentSearch() {
+    const link = '/admins/students';
+    console.log('navigating to ' + link);
+    this.router.navigateByUrl(link);
+  }
+
+
   public onSortColumn(sortCriteria: SORTCRITERIA) {
     console.log('parent received sortColumnCLick event with ' + sortCriteria.sortColumn);
     return this.studentDTOs.sort((a, b) => {

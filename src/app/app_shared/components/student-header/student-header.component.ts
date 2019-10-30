@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-student-header',
   templateUrl: './student-header.component.html'
@@ -11,7 +13,7 @@ export class StudentHeaderComponent {
 
 
   constructor(
-
+    public router: Router,
   ) {
     console.log('hi from student-header constructor');
 
@@ -25,6 +27,11 @@ export class StudentHeaderComponent {
   public onPhotoPathNameSet(photoPathName: string) {
     this.photoPathName = photoPathName;
     // console.log('parent studentHeader has onPhotoPathNameSet called with' + photoPathName);
+  }
+
+  gotoStudentList() {
+    const link = 'admins/studentList';
+    this.router.navigateByUrl(link);
   }
 
 }
