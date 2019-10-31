@@ -86,19 +86,22 @@ export class SqlResource {
     console.log('sending AuthHttp get request for Students with url ' + url);
     return this.http.get<StudentDTO[]>(url).pipe(catchError(this.handleError));
   }
+  public getCurrentStudentMiniDTO(guid: string): Observable<StudentMiniDTO> {
+    const url = this.WebApiPrefix + 'students/name/' + guid;
+    console.log('sending AuthHttp get request for StudentMini with url ' + url);
+    return this.http.get<StudentMiniDTO>(url).pipe(
+      catchError(this.handleError)
+    );
+  }
 
   public getCurrentStudentMiniDTOs(searchStr: string): Observable<StudentMiniDTO[]> {
-    // const url = this.WebApiPrefix + 'students/names?searchStr=' + searchStr;
-    // console.log('sending AuthHttp get request for StudentMini with url ' + url);
-    // return this.http.get<StudentMiniDTO[]>(url).pipe(
-    //   catchError(this.handleError)
-    // );
     const url = this.WebApiPrefix + 'students/names/' + searchStr + '/' + 1005;
     console.log('sending AuthHttp get request for StudentMini with url ' + url);
     return this.http.get<StudentMiniDTO[]>(url).pipe(
       catchError(this.handleError)
     );
   }
+
   public getCurrentMemberMiniDTOs(role: string): Observable<MemberMiniDTO[]> {
     const url = this.WebApiPrefix + 'members/names/' + role;
     console.log('sending AuthHttp get request for Members with url ' + url);

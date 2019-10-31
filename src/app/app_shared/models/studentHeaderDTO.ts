@@ -14,7 +14,7 @@ export class StudentHeaderDTO {
     public mentorName?: string,
     public universityName?: string,
     public major?: string,
-    public studentGUId?: string
-
+    public studentGUId?: string,
+    public email?: string
   ) { }
 }

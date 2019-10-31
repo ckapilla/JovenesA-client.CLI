@@ -1,4 +1,7 @@
-<label for='search-string'>Search for Student:</label>
+<label for='search-string'>Search for Student:</label> &nbsp;&nbsp;&nbsp;&nbsp;Or: <span
+      (click)="gotoStudentList()" style="margin-bottom: 2px;"
+      class="btn btn-sm btn-primary">Go to Students
+  List</span>
 <input id='search-string'
        type='text'
        class='form-control'
@@ -9,11 +12,19 @@
        [inputFormatter]="formatter"
        [resultFormatter]="formatter"
        (selectItem)="onSelect($event)"
-       placeholder="Last Name or First Name" />
+       placeholder="Last Name or First Name or Email" />
 <div class="row">
-  <span style="margin-top: 1rem;" (click)="gotoStudentList()" class="btn btn-sm btn-primary">Students
-    List</span>
-  <span [hidden]="currentGUId=='0000'" style="margin-top: 1rem;margin-left: 1rem;" (click)="gotoStudent()"
+
+  <!-- <span [hidden]="currentGUId=='0000'" style="margin-top: 1rem;margin-left: 1rem;" (click)="gotoStudent()"
         class="btn btn-sm btn-primary">Student Profile
+  </span> -->
+</div>
+<div class="row">
+  <span [hidden]="currentGUId=='0000'" style="margin-top: .4rem;margin-left: 1rem;" (click)="gotoStudent()"
+        class="link">Student Profile: {{ studentName }}
+  </span>
+  <br />
+  <span [hidden]="currentGUId=='0000'" style="margin-left:1rem;margin-top: .2rem;">
+    Email: {{ email }}
   </span>
 </div>

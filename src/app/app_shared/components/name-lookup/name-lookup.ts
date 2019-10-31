@@ -1,6 +1,6 @@
-import { Component, Injectable } from '@angular/core';
+import { Component, Injectable, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
 import { StudentMiniDTO } from '../../models/studentMiniDTO';
 import { SqlResource } from '../../services/sql-resource.service';
@@ -41,19 +41,35 @@ export class NameService {
   styles: [`.form-control { width: 300px; display: inline; }`]
 })
 
-export class NameLookupComponent {
+export class NameLookupComponent implements OnInit, OnDestroy {
   studentMiniDTO: StudentMiniDTO;
   searching = false;
   searchFailed = false;
   currentGUId = '0000';
+  studentName: string;
+  email: string;
+  studentGUId: string;
+  private subscription: Subscription;
+
   // @Output() onSelectedStudentGUId = new EventEmitter<string>();
 
   constructor(private _service: NameService,
     private router: Router,
+    private sqlResource: SqlResource,
     private studentSelected: StudentSelectedService) {
     console.log('name-lookup constructor!');
   }
 
+  ngOnInit() {
+    this.subscribeForStudentGUIds();
+  }
+  ngOnDestroy() {
+    // console.log('{{{{{{{{{{{{{JA ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
+    // this.studentSelected.unsubscribe();
+    this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
+    console.log(' after unsubscribe ' + this.studentSelected.getInternalSubject().observers.length);
+  }
   onSelect(item) {
     console.log('onSelect');
     console.log(item.item.studentId);
@@ -61,6 +77,41 @@ export class NameLookupComponent {
     this.currentGUId = item.item.studentGUId;
     // this.onSelectedStudentGUId.emit(item.item.studentGUId);
     this.studentSelected.notifyNewStudentGUId(item.item.studentGUId);
+    this.email = item.item.email;
+    this.studentName = item.item.studentName;
+  }
+
+  subscribeForStudentGUIds() {
+    console.log('JA set up studentGUId subscription');
+    this.subscription = this.studentSelected.subscribeForStudentGUIds()
+      // .pipe(takeWhile(() => this.notDestroyed))
+      .subscribe(message => {
+        this.studentGUId = message;
+        console.log('Name Search new StudentGUId received' + this.studentGUId);
+        if (this.studentGUId && this.studentGUId !== '0000') {
+          this.currentGUId = this.studentGUId;
+          this.fetchData();
+        }
+
+        // console.log('subscribe next ' + this.studentSelected.getInternalSubject().observers.length);
+      });
+  }
+
+
+  fetchData() {
+
+    console.log('ssr fetchData');
+
+    this.sqlResource.getCurrentStudentMiniDTO(this.currentGUId)
+      .subscribe(
+        data => { this.studentMiniDTO = data; },
+        err => {
+          return console.error('Subscribe error: ' + err);
+        },
+        () => {
+          this.email = this.studentMiniDTO.email;
+          this.studentName = this.studentMiniDTO.studentName;
+        });
   }
 
 
@@ -73,7 +124,9 @@ export class NameLookupComponent {
       switchMap(term =>
         this._service.search(term).pipe(
           tap(() => this.searchFailed = false),
-          tap(x => console.log(x[0].studentName)),
+          tap(x =>
+            console.log(x[0].studentName)
+          ),
           catchError(() => {
             this.searchFailed = true;
             return of([]);
@@ -82,7 +135,7 @@ export class NameLookupComponent {
       ),
       tap(() => this.searching = false)
     )
-  formatter = (x: { studentName: string }) => x.studentName;
+  formatter = (x: { studentName: string, email: string }) => x.studentName + ' <' + x.email + '>';
 
 
   gotoStudentList() {
