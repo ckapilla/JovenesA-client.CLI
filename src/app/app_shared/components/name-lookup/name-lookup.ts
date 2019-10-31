@@ -82,7 +82,7 @@ export class NameLookupComponent implements OnInit, OnDestroy {
   }
 
   subscribeForStudentGUIds() {
-    console.log('JA set up studentGUId subscription');
+    console.log('Name Lookup set up studentGUId subscription');
     this.subscription = this.studentSelected.subscribeForStudentGUIds()
       // .pipe(takeWhile(() => this.notDestroyed))
       .subscribe(message => {
