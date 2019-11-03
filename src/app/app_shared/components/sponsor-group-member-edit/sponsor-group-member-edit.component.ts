@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MemberMiniDTO } from '../../models/memberMiniDTO';
 import { SponsorGroupMember } from '../../models/sponsor-group-member';
-import { SqlResource } from '../../services/sql-resource.service';
+import { MemberDataService } from '../../services/member-data.service';
 
 @Component({
   selector: 'app-sponsor-group-member-edit',
@@ -26,7 +26,7 @@ export class SponsorGroupMemberEditComponent implements OnInit {
 
   constructor(
     public currRoute: ActivatedRoute,
-    public sqlResource: SqlResource,
+    public memberData: MemberDataService,
     public router: Router,
     public formBuilder: FormBuilder
   ) {
@@ -44,7 +44,7 @@ export class SponsorGroupMemberEditComponent implements OnInit {
   fetchData() {
     this.isLoading = true;
     console.log('in fetchData');
-    this.sqlResource.getActiveSponsorMembers()
+    this.memberData.getActiveSponsorMembers()
       .subscribe(
         data => { this.memberSponsors = data; console.log('getActiveMemberSponsors'); console.log(this.memberSponsors[0]); },
         err => console.error('Subscribe error: ' + err),
@@ -64,7 +64,7 @@ export class SponsorGroupMemberEditComponent implements OnInit {
     newSponsorGroupMember.sponsorGroupId = + this.sponsorGroupId;
     console.log('after constructor assignments');
     console.log(newSponsorGroupMember);
-    this.sqlResource.addNewSponsorGroupMember(newSponsorGroupMember)
+    this.memberData.addNewSponsorGroupMember(newSponsorGroupMember)
       .subscribe(
         (sponsorGroupMember) => {
           // console.log('subscribe result in updateStudent');

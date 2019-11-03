@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { StudentDataService } from 'src/app/app_shared/services/student-data.service';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 import { Student } from '../../app_shared/models/student';
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
-
-
-
 @Component({
 
   // selector: 'student-profile',
@@ -29,7 +26,7 @@ export class StudentsProfileComponent implements OnInit {
   constructor(
     public currRoute: ActivatedRoute,
     private router: Router,
-    public sqlResource: SqlResource,
+    public studentData: StudentDataService,
     public formBuilder: FormBuilder
   ) {
     console.log('hi from profile.component constructor');
@@ -64,7 +61,7 @@ export class StudentsProfileComponent implements OnInit {
     const guid = this.currRoute.snapshot.params['guid'];
     console.log('stdudentsProfile with studentId: ' + guid);
     this.isLoading = true;
-    this.sqlResource.getStudentViaGUID(guid)
+    this.studentData.getStudentViaGUID(guid)
       .subscribe(
         data => { this.student = data; },
         err => console.error('Subscribe error: ' + err),
@@ -85,7 +82,7 @@ export class StudentsProfileComponent implements OnInit {
 
   saveProfile(): boolean {
     console.log('saving ');
-    this.sqlResource.updateStudent(this.student)
+    this.studentData.updateStudent(this.student)
       .subscribe(
         (student) => {
           this.successMessage = 'Changes were saved successfully.';

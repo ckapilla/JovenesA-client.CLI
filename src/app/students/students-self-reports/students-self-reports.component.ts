@@ -5,7 +5,6 @@ import { StudentSelfReport } from '../../app_shared/models/student-self-report';
 import { StudentDTO } from '../../app_shared/models/studentDTO';
 import { SessionService } from '../../app_shared/services/session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
-
 @Component({
   templateUrl: './students-self-reports.component.html',
   styleUrls: ['./students-self-reports.component.css'],

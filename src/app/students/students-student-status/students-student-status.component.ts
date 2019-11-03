@@ -1,18 +1,14 @@
 
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { StudentDataService } from 'src/app/app_shared/services/student-data.service';
 import { constants } from '../../app_shared/constants/constants';
 import { StudentDTO } from '../../app_shared/models/studentDTO';
 import { SessionService } from '../../app_shared/services/session.service';
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
-
-
-
-
 @Component({
 
   templateUrl: './students-student-status.component.html',
-  styleUrls:  ['./students-student-status.component.css'],
+  styleUrls: ['./students-student-status.component.css'],
 })
 
 export class StudentsStudentStatusComponent implements OnInit {
@@ -24,11 +20,11 @@ export class StudentsStudentStatusComponent implements OnInit {
   successMessage: string;
 
   constructor(
-              public currRoute: ActivatedRoute,
-              public sqlResource: SqlResource,
-              public router: Router,
-              private session: SessionService
-              ) {
+    public currRoute: ActivatedRoute,
+    public studentData: StudentDataService,
+    public router: Router,
+    private session: SessionService
+  ) {
 
     console.log('Hi from student List Ctrl controller function');
 
@@ -43,9 +39,9 @@ export class StudentsStudentStatusComponent implements OnInit {
     const id = this.session.getStudentId();
     console.log('stdudentStatus with studentId: ' + id);
     this.isLoading = true;
-    this.sqlResource.getStudentDTO(id)
+    this.studentData.getStudentDTO(id)
       .subscribe(
-        data => {this.studentDTOs = data; },
+        data => { this.studentDTOs = data; },
         err => console.error('Subscribe error: ' + err),
         () => { console.log('done'); this.isLoading = false; }
       );

@@ -12,10 +12,12 @@ import { FollowUpEventsComponent } from './components/follow-up-events/follow-up
 import { FollowUpRequestsListComponent } from './components/follow-up-requests-list/follow-up-requests-list.component';
 import { GradeMonthsComponent } from './components/grade-months.component';
 import { LoadingContainerComponent } from './components/loading-container.component';
+import { MemberHeaderDetailsComponent } from './components/member-header-details/member-header-details.component';
+import { MemberHeaderComponent } from './components/member-header/member-header.component';
+import { MemberLookupComponent } from './components/member-lookup/member-lookup';
 import { MemberSelectorComponent } from './components/member-selector/member-selector.component';
 import { MentorReportsForPeriodComponent } from './components/mentor-reports-for-period/mentor-reports-for-period.component';
 import { MentorReports2ListComponent } from './components/mentor-reports2-list/mentor-reports2-list.component';
-import { NameLookupComponent } from './components/name-lookup/name-lookup';
 import { PersonPhotoComponent } from './components/person-photo/person-photo.component';
 import { PersonSharedComponent } from './components/person-shared/person-shared.component';
 import { ProfileComponent } from './components/profile.component';
@@ -27,6 +29,7 @@ import { StudentGradesStatusComponent } from './components/student-grades-status
 import { StudentHeaderDetailsComponent } from './components/student-header-details/student-header-details.component';
 import { StudentHeaderSponsorsComponent } from './components/student-header-sponsors/student-header-sponsors.component';
 import { StudentHeaderComponent } from './components/student-header/student-header.component';
+import { StudentLookupComponent } from './components/student-lookup/student-lookup';
 import { StudentMRStatusComponent } from './components/student-mr-status.component';
 import { StudentSelectorComponent } from './components/student-selector/student-selector.component';
 import { StudentSelfReportComponent } from './components/student-self-report/student-self-report.component';
@@ -86,13 +89,16 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     StudentSelfReportComponent,
     AdminStudentNotesComponent,
     MentorReportsForPeriodComponent,
-    NameLookupComponent,
+    StudentLookupComponent,
     StudentHeaderComponent,
     StudentHeaderDetailsComponent,
     PersonPhotoComponent,
     QrStatusSelectorComponent,
     StudentHeaderSponsorsComponent,
-    PersonSharedComponent
+    PersonSharedComponent,
+    MemberLookupComponent,
+    MemberHeaderComponent,
+    MemberHeaderDetailsComponent
   ],
   exports: [
     CommonModule,
@@ -129,12 +135,15 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     StudentSelfReportComponent,
     AdminStudentNotesComponent,
     MentorReportsForPeriodComponent,
-    NameLookupComponent,
+    StudentLookupComponent,
     StudentHeaderComponent,
     StudentHeaderDetailsComponent,
     QrStatusSelectorComponent,
     StudentHeaderSponsorsComponent,
-    PersonSharedComponent
+    PersonSharedComponent,
+    MemberLookupComponent,
+    MemberHeaderComponent,
+    MemberHeaderDetailsComponent
   ]
 })
 

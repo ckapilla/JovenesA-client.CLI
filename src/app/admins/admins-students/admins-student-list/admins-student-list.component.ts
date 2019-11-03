@@ -1,13 +1,13 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { StudentDataService } from 'src/app/app_shared/services/student-data.service';
 import { constants } from '../../../app_shared/constants/constants';
 import { SELECTITEM } from '../../../app_shared/interfaces/SELECTITEM';
 import { SORTCRITERIA } from '../../../app_shared/interfaces/SORTCRITERIA';
 import { StudentDTO } from '../../../app_shared/models/studentDTO';
 import { ColumnSortService } from '../../../app_shared/services/column-sort.service';
 import { SessionService } from '../../../app_shared/services/session.service';
-import { SqlResource } from '../../../app_shared/services/sql-resource.service';
 
 
 
@@ -37,7 +37,7 @@ export class AdminsStudentListComponent implements OnInit {
   readonly smileys: string[] = constants.smileys;
 
   constructor(
-    public sqlResource: SqlResource,
+    public studentData: StudentDataService,
     public router: Router,
     // private route: ActivatedRoute,
     private session: SessionService,
@@ -98,7 +98,7 @@ export class AdminsStudentListComponent implements OnInit {
     //        'gradyear: ' + this.selectedGradYear
     //        );
     this.isLoading = true;
-    this.sqlResource.getStudentDTOsByStatusAndYear(this.selectedStatus, this.selectedYearJoined, this.selectedGradYear)
+    this.studentData.getStudentDTOsByStatusAndYear(this.selectedStatus, this.selectedYearJoined, this.selectedGradYear)
       .subscribe(
         data => { this.studentDTOs = data.map(this.getNumericStatus); },
         err => { this.errorMessage = err; },

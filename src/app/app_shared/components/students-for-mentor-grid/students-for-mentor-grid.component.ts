@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { constants } from '../../constants/constants';
 import { StudentDTO } from '../../models/studentDTO';
 import { SessionService } from '../../services/session.service';
-import { SqlResource } from '../../services/sql-resource.service';
+import { StudentDataService } from '../../services/student-data.service';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -21,14 +21,14 @@ export class StudentsForMentorGridComponent implements OnInit {
 
 
   constructor(public session: SessionService,
-    private sqlResource: SqlResource) {
+    private studentData: StudentDataService) {
     this.emojis = constants.emojis;
 
     console.log('in StudentsForMentorGridComponent constructor');
   }
 
   public ngOnInit() {
-    this.sqlResource.getStudentsForMentor(this.session.getUserId())
+    this.studentData.getStudentsForMentor(this.session.getUserId())
       .subscribe(
         data => {
           this.students = data;

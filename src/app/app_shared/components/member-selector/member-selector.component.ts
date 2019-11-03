@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SELECTITEM } from '../../interfaces/SELECTITEM';
 import { MemberMiniDTO } from '../../models/memberMiniDTO';
-import { SqlResource } from '../../services/sql-resource.service';
+import { MemberDataService } from '../../services/member-data.service';
 @Component({
   selector: 'app-member-selector',
   templateUrl: './member-selector.component.html',
@@ -18,7 +18,7 @@ export class MemberSelectorComponent implements OnInit {
   @Input() memberTypeLabel: string;
 
   constructor(
-    private sqlResource: SqlResource) {
+    private memberData: MemberDataService) {
 
     this.requestorRoles = [
       { value: '0', label: '[None]' },
@@ -48,7 +48,7 @@ export class MemberSelectorComponent implements OnInit {
 
   public fetchMembers(role: string) {
     console.log('in fetchMembers');
-    this.sqlResource.getCurrentMemberMiniDTOs(role)
+    this.memberData.getCurrentMemberMiniDTOs(role)
       .subscribe(
         data => { this.members = data; },
         err => console.error('Subscribe error: ' + err),

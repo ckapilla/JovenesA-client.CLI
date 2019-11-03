@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentDTO } from '../../models/studentDTO';
 import { SessionService } from '../../services/session.service';
-import { SqlResource } from '../../services/sql-resource.service';
+import { StudentDataService } from '../../services/student-data.service';
+
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -18,7 +19,7 @@ export class StudentsForMentorListComponent implements OnInit {
   haveData: boolean;
 
   constructor(public session: SessionService,
-    private sqlResource: SqlResource,
+    private studentData: StudentDataService,
     private router: Router,
     private currRoute: ActivatedRoute) {
 
@@ -28,7 +29,7 @@ export class StudentsForMentorListComponent implements OnInit {
   public ngOnInit() {
     this.haveData = false;
     const guid = this.currRoute.snapshot.params['guid'];
-    this.sqlResource.getStudentsForMentorByGUId(guid)
+    this.studentData.getStudentsForMentorByGUId(guid)
       .subscribe(
         data => {
           this.students = data;

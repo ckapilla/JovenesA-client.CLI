@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { SponsorGroupMemberDTO } from '../../models/sponsor-group-memberDTO';
 import { SessionService } from '../../services/session.service';
-import { SqlResource } from '../../services/sql-resource.service';
+import { SponsorGroupDataService } from '../../services/sponsor-group-data.service';
 
 @Component({
   selector: 'app-sponsor-group-members',
@@ -25,7 +25,7 @@ export class SponsorGroupMembersComponent implements OnInit, OnChanges {
   @Input() newMemberNotification: string;
 
   constructor(public session: SessionService,
-    private sqlResource: SqlResource) {
+    private sqlResource: SponsorGroupDataService) {
 
     console.log('in SponsorsForSponsorGroupComponent constructor with SponsorGroupId=' + this.sponsorGroupId);
   }

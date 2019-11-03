@@ -2,12 +2,13 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SqlResource } from 'src/app/app_shared/services/sql-resource.service';
+import { StudentDataService } from 'src/app/app_shared/services/student-data.service';
 import { constants } from '../../../app_shared/constants/constants';
 import { SELECTITEM } from '../../../app_shared/interfaces/SELECTITEM';
 import { Student } from '../../../app_shared/models/student';
 import { StudentDTO } from '../../../app_shared/models/studentDTO';
 import { SessionService } from '../../../app_shared/services/session.service';
-import { SqlResource } from '../../../app_shared/services/sql-resource.service';
 
 @Component({
   selector: 'app-admins-student-profile',
@@ -52,6 +53,7 @@ export class AdminsStudentComponent implements OnInit {
     public currRoute: ActivatedRoute,
     private router: Router,
     private session: SessionService,
+    public studentData: StudentDataService,
     public sqlResource: SqlResource,
     public formBuilder: FormBuilder,
     public location: Location
@@ -131,7 +133,7 @@ export class AdminsStudentComponent implements OnInit {
     //        'gradyear: ' + this.selectedGradYear
     //        );
     this.isLoading = true;
-    this.sqlResource.getStudentDTOViaGUID(this.studentGUIdParam)
+    this.studentData.getStudentDTOViaGUID(this.studentGUIdParam)
       .subscribe(
         data => {
           this.studentDTO = data;
@@ -152,7 +154,7 @@ export class AdminsStudentComponent implements OnInit {
 
   fetchStudentData() {
     this.isLoading = true;
-    this.sqlResource.getStudentViaGUID(this.studentGUIdParam)
+    this.studentData.getStudentViaGUID(this.studentGUIdParam)
       .subscribe(
         data => {
           this.student = data;
@@ -249,7 +251,7 @@ export class AdminsStudentComponent implements OnInit {
     console.log('saving admin student ');
     this.isLoading = true;
     this.retrieveFormValues();
-    this.sqlResource.updateStudent(this.student)
+    this.studentData.updateStudent(this.student)
       .subscribe(
         (student) => {
           // console.log('subscribe result in updateStudent');

@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MentorReport2RPT } from '../../app_shared/models/mentor-report2';
 import { SessionService } from '../../app_shared/services/session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
-
 @Component({
 
   templateUrl: './admins-student-mrs.component.html',

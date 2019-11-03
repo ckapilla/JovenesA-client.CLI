@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { StudentMiniDTO } from '../../models/studentMiniDTO';
-import { SqlResource } from '../../services/sql-resource.service';
+import { StudentDataService } from '../../services/student-data.service';
 // import { map } from 'rxjs/operators';
 @Component({
   // tslint:disable-next-line: component-selector
@@ -14,11 +14,11 @@ export class StudentSelectorComponent implements OnInit {
   haveData: boolean;
   @Output() onSelectedStudentId = new EventEmitter<number>();
   constructor(
-    private sqlResource: SqlResource) {
+    private studentData: StudentDataService) {
   }
   public ngOnInit() {
     this.haveData = false;
-    this.sqlResource.getCurrentStudentMiniDTOs('')
+    this.studentData.getCurrentStudentMiniDTOs('')
       .subscribe(
         data => {
           this.students = data;

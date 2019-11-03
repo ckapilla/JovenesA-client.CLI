@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { StudentHeaderDTO } from '../../models/studentHeaderDTO';
 import { SessionService } from '../../services/session.service';
-import { SqlResource } from '../../services/sql-resource.service';
+import { StudentDataService } from '../../services/student-data.service';
 import { StudentSelectedService } from '../../services/student-selected-service';
 @Component({
   selector: 'app-student-header-details',
@@ -32,7 +32,7 @@ export class StudentHeaderDetailsComponent implements OnInit, OnDestroy {
     public currRoute: ActivatedRoute,
     private router: Router,
     private session: SessionService,
-    public sqlResource: SqlResource,
+    public studentData: StudentDataService,
     public location: Location,
     private studentSelected: StudentSelectedService
   ) {
@@ -71,7 +71,7 @@ export class StudentHeaderDetailsComponent implements OnInit, OnDestroy {
 
   fetchData() {
     this.loadingState = 1;
-    this.sqlResource.getStudentHeaderDTO(this.studentGUId)
+    this.studentData.getStudentHeaderDTO(this.studentGUId)
       .subscribe(
         data => {
           this.student = data;

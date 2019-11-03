@@ -4,8 +4,6 @@ import { SponsorLetter } from '../../app_shared/models/sponsor-letter';
 import { StudentDTO } from '../../app_shared/models/studentDTO';
 import { SessionService } from '../../app_shared/services/session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
-
-
 @Component({
   templateUrl: './students-sponsor-letters.component.html',
   styleUrls: ['./students-sponsor-letters.component.css'],
