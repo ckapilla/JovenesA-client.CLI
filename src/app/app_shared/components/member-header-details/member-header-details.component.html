@@ -14,11 +14,24 @@
         {{ member.memberName }}
         <br /> -->
         <label>Year Joined JA:</label>
-        {{member.yearJoinedJa}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        {{member.yearJoinedJa}}
       </div>
     </div>
     <div class="row">
       <div class="col-12">
+        <label>Categories:</label>
+        <span *ngIf="member.adminStatusId==1015">
+          Admin
+        </span>
+        <span *ngIf="member.mentorStatusId==1015">
+          Mentor
+        </span>
+        <span *ngIf="member.sponsorStatusId==1015">
+          Sponsor
+        </span>
+        <span *ngIf="member.studentId>0">
+          Student
+        </span>
 
       </div>
     </div>

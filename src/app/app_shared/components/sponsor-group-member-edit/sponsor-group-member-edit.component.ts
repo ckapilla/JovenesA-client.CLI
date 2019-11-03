@@ -43,7 +43,7 @@ export class SponsorGroupMemberEditComponent implements OnInit {
 
   fetchData() {
     this.isLoading = true;
-    console.log('in fetchData');
+    console.log('in fetchData for getActiveSponsorMembers');
     this.memberData.getActiveSponsorMembers()
       .subscribe(
         data => { this.memberSponsors = data; console.log('getActiveMemberSponsors'); console.log(this.memberSponsors[0]); },

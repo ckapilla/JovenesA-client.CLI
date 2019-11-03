@@ -116,7 +116,7 @@ export class MemberDataService {
   }
 
   public getActiveSponsorMembers(): Observable<MemberMiniDTO[]> {
-    const url = this.WebApiPrefix + 'members/names/Sponsor';
+    const url = this.WebApiPrefix + 'members/names/by_role/Sponsor';
     console.log('sending AuthHttp get request ' + url);
     return this.http.get<MemberMiniDTO[]>(url).pipe(catchError(this.handleError));
   }

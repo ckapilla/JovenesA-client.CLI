@@ -1,23 +1,18 @@
-<label for='search-string'>Search for Member:</label> &nbsp;&nbsp;&nbsp;&nbsp;Or: <span
-      (click)="gotoMemberList()" style="margin-bottom: 2px;"
-      class="btn btn-sm btn-primary">Go to Members
-  List</span>
-<input id='search-string'
-       type='text'
-       class='form-control'
-       [editable]='false'
-       [class.is-invalid]="searchFailed"
-       [(ngModel)]='memberMiniDTO'
-       [ngbTypeahead]='search'
-       [inputFormatter]="formatter"
-       [resultFormatter]="formatter"
-       (selectItem)="onSelect($event)"
-       placeholder="Last Name or First Name or Email" />
 <div class="row">
-
-  <!-- <span [hidden]="currentGUId=='0000'" style="margin-top: 1rem;margin-left: 1rem;" (click)="gotoMember()"
-        class="btn btn-sm btn-primary">Member Profile
-  </span> -->
+  <label for='search-string'>Search for Member:</label>&nbsp;&nbsp;&nbsp;Or:&nbsp;<span
+        (click)="gotoMemberList()" style="margin-bottom: 2px;"
+        class="btn btn-sm btn-primary">Browse Members</span>
+  <input id='search-string'
+         type='text'
+         class='form-control'
+         [editable]='false'
+         [class.is-invalid]="searchFailed"
+         [(ngModel)]='memberMiniDTO'
+         [ngbTypeahead]='search'
+         [inputFormatter]="formatter"
+         [resultFormatter]="formatter"
+         (selectItem)="onSelect($event)"
+         placeholder="Last Name or First Name or Email" />
 </div>
 <div class="row">
   <span [hidden]="currentGUId=='0000'" style="margin-top: .4rem;margin-left: 1rem;" (click)="gotoMember()"
