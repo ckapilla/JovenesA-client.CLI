@@ -104,6 +104,12 @@ export class AdminsMemberListComponent implements OnInit {
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }
+  gotoMemberSearch() {
+    const link = '/admins/members';
+    console.log('navigating to ' + link);
+    this.router.navigateByUrl(link);
+  }
+
 
   public onSortColumn(sortCriteria: SORTCRITERIA) {
     console.log(

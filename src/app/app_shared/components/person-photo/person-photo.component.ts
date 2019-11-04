@@ -21,7 +21,8 @@ export class PersonPhotoComponent implements OnChanges {
   public ngOnChanges(changes: SimpleChanges) {
     if (changes.photoPathName) {
       if (this.photoPathName) {
-        this.fullPhotoPathName = this.clientUrl + '/assets/images/StudentPhotos/' + this.photoPathName;
+        // this.fullPhotoPathName = this.clientUrl + '/assets/images/StudentPhotos/' + this.photoPathName;
+        this.fullPhotoPathName = this.clientUrl + '/assets/images/MemberPhotos/N-a, N-a.jpg';
         console.log('PersonPhoto: changes has fullPhotoPathName:' + this.fullPhotoPathName);
       }
     }

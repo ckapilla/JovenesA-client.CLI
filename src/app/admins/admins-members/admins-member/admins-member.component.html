@@ -1,6 +1,6 @@
 <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
 <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
-<div class="container-fluid" style="max-width:900px">
+<div style="max-width:900px">
 
   <div [ngSwitch]="isLoading">
     <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
@@ -76,7 +76,7 @@
           </div>
           <div class="col">
             <div class="row">
-              <div style="width: 80%;">
+              <div style="width: 100%;">
                 <img [src]="photoPathName">
               </div>
             </div>

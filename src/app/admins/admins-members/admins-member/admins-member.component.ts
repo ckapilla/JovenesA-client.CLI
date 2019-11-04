@@ -108,7 +108,7 @@ export class AdminsMemberComponent implements OnInit {
         data => {
           this.member = data;
           this.photoPathName = '../../../../assets/images/MemberPhotos';
-          this.photoPathName = this.photoPathName + '/' + 'N-a, N-a.png';
+          this.photoPathName = this.photoPathName + '/' + 'N-a, N-a.jpg';
           console.log('photoPathName is ' + this.photoPathName);
         },
         err => console.error('Subscribe error: ' + err),
