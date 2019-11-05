@@ -66,6 +66,7 @@ export class StudentsForMentorGridComponent implements OnInit {
       'student-row': true,
       'clickable': true
     };
+
     return classes;
   }
 }

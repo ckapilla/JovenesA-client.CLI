@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppSharedModule } from '../app_shared/app_shared.module';
+import { QuarterlyModule } from '../quarterly/quarterly.module';
 import { FollowUpRequestsAddComponent } from './follow-up-requests-add/follow-up-requests-add.component';
 import { FollowUpRequestsComponent } from './follow-up-requests/follow-up-requests.component';
 import { ForumComponent } from './forum/forum.component';
@@ -19,6 +20,7 @@ import { MonthlyReports2Component } from './monthly-reports2/monthly-reports2.co
     imports: [
         AppSharedModule,
         MentorsRouting,
+        QuarterlyModule,
         NgbModule
     ],
     declarations: [

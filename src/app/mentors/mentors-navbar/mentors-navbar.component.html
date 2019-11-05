@@ -1,6 +1,7 @@
 <nav>
   <a [routerLinkActive]="['active']" [routerLink]="['/mentors/profile', currUserId]">[Profile/Perfil]</a>
-  <a [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{ exact: true }" [routerLink]="['/mentors']">[MonthlyReport/InformeMensual]</a>
+  <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+     [routerLink]="['/mentors']">[Reports/Informes]</a>
   <a [routerLinkActive]="['active']" [routerLink]="['/mentors/follow-up-requests']">[Assistance/Asistencia]</a>
   <span class="pull-right"><a href="https://forum.jovenesadelante.org" target="blank">Forum>></a></span>
 
