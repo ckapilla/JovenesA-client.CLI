@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { constants } from '../../constants/constants';
 import { StudentSponsorXRef } from '../../models/student-sponsor-xref';
 import { SessionService } from '../../services/session.service';
-import { SqlResource } from '../../services/sql-resource.service';
+import { StudentDataService } from '../../services/student-data.service';
 import { StudentSelectedService } from '../../services/student-selected-service';
 
 @Component({
@@ -17,12 +17,9 @@ export class StudentsForSponsorGridComponent implements OnInit {
   studentId: number;
   studentGUId: string;
   errorMessage = '';
-  // @Output() onSelectedStudentName = new EventEmitter<string>();
-  // @Output() onSelectedStudentId = new EventEmitter<number>();
-
 
   constructor(public session: SessionService,
-    private sqlResource: SqlResource,
+    private studentData: StudentDataService,
     private studentSelected: StudentSelectedService) {
     this.emojis = constants.emojis;
 
@@ -30,7 +27,7 @@ export class StudentsForSponsorGridComponent implements OnInit {
   }
 
   public ngOnInit() {
-    this.sqlResource.getStudentsForSponsor(this.session.getUserId())
+    this.studentData.getStudentsForSponsor(this.session.getUserId())
       .subscribe(
         data => {
           this.students = data;
@@ -39,13 +36,10 @@ export class StudentsForSponsorGridComponent implements OnInit {
         () => {
           console.log('studentsForSponsorGrid has All students: ' + this.students.length);
           console.log(this.students);
-          // this.students = this.students.filter(s => s.statusId === 1005);
-          // console.log('studentsForMentorGrid has Current students: ' + this.students.length);
           if (this.students.length > 0) {
             this.selectFirstRow();
           } else {
             this.errorMessage = 'No students are assigned at this time. / No hay estudiantes asignado en este momento';
-            // this.onNoAssignedStudents.emit();
           }
         }
       );
@@ -61,16 +55,12 @@ export class StudentsForSponsorGridComponent implements OnInit {
 
   public selectStudent(studentGUId: string, idx: number) {
     console.log('student selected studentGUId: ' + studentGUId + 'idx: ' + idx);
-    // this.session.setAssignedStudentId(studentId);
     const studentName: string = this.students[idx].studentName; //  + ', ' + this.studentMentors[idx].studentFirstNames;
     this.studentGUId = studentGUId;
-    // this.onSelectedStudentId.emit(studentId);
-    // this.onSelectedStudentName.emit(studentName);
     this.studentSelected.notifyNewStudentGUId(studentGUId);
   }
+
   public setRowClasses(studentGUId: string) {
-    // console.log('row StudentID is ' + studentId);
-    // console.log('session Assigned student ID is ' + this.session.getAssignedStudentId());
     const classes = {
       'table-success': studentGUId === this.studentGUId,
       'student-row': true,

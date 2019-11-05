@@ -1,16 +1,10 @@
 <div *ngIf="errorMessage" class="alert alert-danger">
   {{errorMessage}}</div>
-<div>
-  <h5 class=".text-info .bg-warning">Please check out our new mentors discussion forum by clicking on '>>Forum' above
-    right.</h5>
-  <h5 class=".text-info .bg-warning">Por favor, echa un vistazo a nuestro nuevo foro de discusión para mentores haciendo
-    clic en '&gt;&gt;Forum' arriba a la derecha.</h5>
-</div>
 <h4>&nbsp;</h4>
-<students-for-mentor-grid
+<!-- <students-for-mentor-grid
                           (onSelectedStudentName)="onSelectedStudentName($event)"
                           (onSelectedStudentId)="onSelectedStudentId($event)">
-</students-for-mentor-grid>
+</students-for-mentor-grid> -->
 <div [ngSwitch]="isLoading">
   <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
     <app-loading-container>

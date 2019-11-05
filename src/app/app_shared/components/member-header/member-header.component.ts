@@ -29,15 +29,4 @@ export class MemberHeaderComponent {
     // console.log('parent memberHeader has onPhotoPathNameSet called with' + photoPathName);
   }
 
-  // gotoMemberList() {
-  //   const link = 'admins/members/memberList';
-  //   this.router.navigateByUrl(link);
-  // }
-
-  // gotoMember() {
-  //   const link = 'admins/members/member';
-  //   this.router.navigateByUrl(link);
-  // }
-
-
 }

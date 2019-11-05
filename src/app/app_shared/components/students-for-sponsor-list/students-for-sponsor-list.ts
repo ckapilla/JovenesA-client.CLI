@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentSponsorXRef } from '../../models/student-sponsor-xref';
 import { SessionService } from '../../services/session.service';
-import { SqlResource } from '../../services/sql-resource.service';
+import { StudentDataService } from '../../services/student-data.service';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -18,7 +18,7 @@ export class StudentsForSponsorComponent implements OnInit {
   haveData: boolean;
 
   constructor(public session: SessionService,
-    private sqlResource: SqlResource,
+    private studentData: StudentDataService,
     private router: Router,
     private currRoute: ActivatedRoute) {
 
@@ -30,7 +30,7 @@ export class StudentsForSponsorComponent implements OnInit {
 
     const guid = this.currRoute.snapshot.params['guid'];
     console.log('++++++++++++++++++++have guid param' + guid);
-    this.sqlResource.getStudentsForSponsor(guid)
+    this.studentData.getStudentsForSponsor(guid)
       .subscribe(
         data => { this.studentsForSponsor = data; console.log(this.studentsForSponsor); },
         err => console.error('Subscribe error: ' + err),

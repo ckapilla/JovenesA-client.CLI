@@ -4,6 +4,7 @@ import { CanActivateViaMentorAuthGuard, ConfirmDeactivateMonthlyReportAddGuard }
 import { FollowUpRequestsAddComponent } from './follow-up-requests-add/follow-up-requests-add.component';
 import { FollowUpRequestsComponent } from './follow-up-requests/follow-up-requests.component';
 import { ForumComponent } from './forum/forum.component';
+import { MentorsHomeComponent } from './mentors-home/mentors-home.component';
 import { MentorsProfileComponent } from './mentors-profile/mentors-profile.component';
 import { MentorsComponent } from './mentors.component';
 import { MonthlyReports2AddComponent } from './monthly-reports2-add/monthly-reports2-add.component';
@@ -19,13 +20,12 @@ const mentorRoutes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        // shortcut to MonthlyReports /////
-        component: MonthlyReports2Component
+        component: MentorsHomeComponent
       },
-      // {
-      //   path: 'home',
-      //   component: MentorsHomeComponent
-      // },
+      {
+        path: 'home',
+        component: MentorsHomeComponent
+      },
       {
         path: 'profile/:id',
         component: MentorsProfileComponent

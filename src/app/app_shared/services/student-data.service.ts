@@ -84,7 +84,7 @@ export class StudentDataService {
 
   public getStudentsForMentor(mentorId: Number): Observable<StudentDTO[]> {
     const url = this.WebApiPrefix + 'students/for_mentor/' + mentorId;
-    console.log('sending AuthHttp get request for StudentsForMentor');
+    console.log('sending AuthHttp get request for StudentsForMentor with url ' + url);
     const xx = this.http.get<StudentDTO[]>(url).pipe(catchError(this.handleError));
     console.log(xx);
     return xx;
@@ -92,7 +92,7 @@ export class StudentDataService {
 
   public getStudentsForMentorByGUId(mentorGUId: string): Observable<StudentDTO[]> {
     const url = this.WebApiPrefix + 'students/for_mentor/' + mentorGUId;
-    console.log('sending AuthHttp get request for StudentsForMentor');
+    console.log('sending AuthHttp get request for StudentsForMentor with url ' + url);
     const xx = this.http.get<StudentDTO[]>(url).pipe(catchError(this.handleError));
     console.log(xx);
     return xx;

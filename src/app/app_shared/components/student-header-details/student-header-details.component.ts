@@ -36,7 +36,7 @@ export class StudentHeaderDetailsComponent implements OnInit, OnDestroy {
     public location: Location,
     private studentSelected: StudentSelectedService
   ) {
-    console.log('hi from MyForm.component constructor');
+    console.log('hi from StudentHeaderDetails constructor');
 
     this.errorMessage = '';
     this.successMessage = '';

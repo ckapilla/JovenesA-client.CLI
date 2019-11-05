@@ -27,74 +27,13 @@ export class MemberDataService {
     this.WebApiPrefix = webApiPrefixService.getWebApiPrefix();
   }
 
-  //////////////////////////////////////////////////
-  ///  StudentsController
-  //////////////////////////////////////////////////
 
-
-  // public getStudent(studentId: Number): Observable<Student> {
-  //   const url = this.WebApiPrefix + 'students/' + studentId;
-  //   console.log('sending AuthHttp get request for Student');
-  //   return this.http.get(url).pipe(catchError(this.handleError));
-  // }
-
-  // public getStudentViaGUID(studentGUId: string): Observable<Student> {
-  //   const url = this.WebApiPrefix + 'students/' + studentGUId;
-  //   console.log('sending AuthHttp get request for Student');
-  //   return this.http.get(url).pipe(catchError(this.handleError));
-  // }
-
-  // public getStudentDTO(studentId: number): Observable<StudentDTO> {
-  //   const url = this.WebApiPrefix + 'students/DTO/' + studentId;
-  //   // statusId: vm.selectedStatus.statusId, gradYear: vm.selectedGradYear.year, yearJoinedJA: vm.selectedYearJoined.year },
-  //   console.log('sending AuthHttp get request for Students');
-  //   return this.http.get<StudentDTO>(url);
-  // }
-  // public getStudentDTOViaGUID(studentGUId: string): Observable<StudentDTO> {
-  //   const url = this.WebApiPrefix + 'students/DTO/' + studentGUId;
-  //   // statusId: vm.selectedStatus.statusId, gradYear: vm.selectedGradYear.year, yearJoinedJA: vm.selectedYearJoined.year },
-  //   console.log('sending AuthHttp get request for Students');
-  //   return this.http.get<StudentDTO>(url);
-  // }
-  // public getStudentHeaderDTO(studentGUId: string): Observable<StudentHeaderDTO> {
-  //   const url = this.WebApiPrefix + 'students/headerDTO/' + studentGUId;
-  //   // statusId: vm.selectedStatus.statusId, gradYear: vm.selectedGradYear.year, yearJoinedJA: vm.selectedYearJoined.year },
-  //   console.log('sending AuthHttp get request for Students');
-  //   return this.http.get<StudentHeaderDTO>(url);
-  // }
-
-
-  // public getStudentDTOsByStatusAndYear(statusId: string, yearJoinedJA: string, gradYear: string): Observable<StudentDTO[]> {
-  //   const url = this.WebApiPrefix
-  //     + 'students'
-  //     + '/' + statusId
-  //     + '/' + yearJoinedJA
-  //     + '/' + gradYear;
-  //   console.log('sending AuthHttp get request for Students with url ' + url);
-  //   return this.http.get<StudentDTO[]>(url).pipe(catchError(this.handleError));
-  // }
-  // public getCurrentStudentMiniDTO(guid: string): Observable<StudentMiniDTO> {
-  //   const url = this.WebApiPrefix + 'students/name/' + guid;
-  //   console.log('sending AuthHttp get request for StudentMini with url ' + url);
-  //   return this.http.get<StudentMiniDTO>(url).pipe(
-  //     catchError(this.handleError)
-  //   );
-  // }
-
-  // public getCurrentStudentMiniDTOs(searchStr: string): Observable<StudentMiniDTO[]> {
-  //   const url = this.WebApiPrefix + 'students/names/' + searchStr + '/' + 1005;
-  //   console.log('sending AuthHttp get request for StudentMini with url ' + url);
-  //   return this.http.get<StudentMiniDTO[]>(url).pipe(
-  //     catchError(this.handleError)
-  //   );
-  // }
 
   public getCurrentMemberMiniDTO(guid: string): Observable<MemberMiniDTO> {
     const url = this.WebApiPrefix + 'members/name/' + guid;
     console.log('sending AuthHttp get request for Member with url ' + url);
     return this.http.get<MemberMiniDTO>(url).pipe(catchError(this.handleError));
   }
-
 
   public getCurrentMemberMiniDTOs(searchStr: string): Observable<MemberMiniDTO[]> {
     const url = this.WebApiPrefix + 'members/names/' + searchStr;

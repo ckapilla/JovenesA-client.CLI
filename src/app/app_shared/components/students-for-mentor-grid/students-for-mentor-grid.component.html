@@ -15,7 +15,7 @@
       <tr *ngFor="let item of students, let i = index"
           [ngClass]="setRowClasses(item.studentId)"
           id="item.studentId"
-          (click)='selectStudent(item.studentId, i)'>
+          (click)='selectStudent(item.studentGUId, i)'>
         <td>{{item.studentName}}</td>
         <!--<td>{{item.studentEmail}}</td>-->
         <!-- <td><img src='../../../assets/images/{{item.timelyMentorMeetingStatus}}.jpg' height='22'></td>

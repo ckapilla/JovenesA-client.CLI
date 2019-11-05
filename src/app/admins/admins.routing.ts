@@ -55,7 +55,7 @@ const adminRoutes: Routes = [
       },
 
       {
-        path: 'members/member', // /:guid',
+        path: 'members/member', // using guid ; query param guid:guid',
         component: AdminsMemberComponent
       },
 

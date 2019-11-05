@@ -58,7 +58,7 @@ export class AdminsStudentComponent implements OnInit {
     public formBuilder: FormBuilder,
     public location: Location
   ) {
-    console.log('hi from MyForm.component constructor');
+    console.log('hi from AdminsStudent constructor');
     this.languageStatuses = constants.languageStatuses;
     this.studentStatuses = constants.studentStatuses;
     this.joinedFromTypes = constants.joinedFromTypes;
@@ -295,10 +295,10 @@ export class AdminsStudentComponent implements OnInit {
   }
 
   gotoMemberRecord() {
-
-    const link = ['/admins/members/member/' + this.studentDTO.studentAsMemberGUId];
+    const link = ['admins/members/member', { guid: this.studentDTO.studentAsMemberGUId }];
     console.log('navigating to ' + link);
     this.router.navigate(link);
+
   }
 
   gotoGradeHistory() {

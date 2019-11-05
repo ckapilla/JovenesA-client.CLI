@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-sponsors-home',
-  templateUrl: './sponsors-home.component.html',
-  styleUrls: ['./sponsors-home.component.css']
+  templateUrl: './sponsors-home.component.html'
 })
 export class SponsorsHomeComponent implements OnInit {
   isLoading = false;

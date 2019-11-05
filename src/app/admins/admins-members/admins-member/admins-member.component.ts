@@ -37,7 +37,7 @@ export class AdminsMemberComponent implements OnInit {
     public formBuilder: FormBuilder,
     public location: Location
   ) {
-    console.log('hi from MyForm.component constructor');
+    console.log('hi from AdminsMember constructor');
     this.languageStatuses = constants.languageStatuses;
     this.roleStatuses = constants.roleStatuses;
 

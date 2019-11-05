@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { StudentSelectedService } from 'src/app/app_shared/services/student-selected-service';
 import { constants } from '../../app_shared/constants/constants';
 import { MentorReport2RPT } from '../../app_shared/models/mentor-report2';
 import { SessionService } from '../../app_shared/services/session.service';
 import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
 @Component({
-
+  selector: 'app-mentor-reports',
   templateUrl: './monthly-reports2.component.html',
 })
 
-export class MonthlyReports2Component implements OnInit {
+export class MonthlyReports2Component implements OnInit, OnDestroy {
 
   isLoading: boolean;
   errorMessage: string;
@@ -23,11 +25,15 @@ export class MonthlyReports2Component implements OnInit {
   smileys: Array<string>;
   studentName: string;
   haveCurrentReport: boolean;
+  private subscription: Subscription;
+
   constructor(
     public currRoute: ActivatedRoute,
     private router: Router,
     public sqlResource: SqlResource,
-    public session: SessionService) {
+    public session: SessionService,
+    private studentSelected: StudentSelectedService
+  ) {
 
     console.log('monthlyReports constructor');
     this.smileys = constants.smileys;
@@ -35,25 +41,52 @@ export class MonthlyReports2Component implements OnInit {
 
   ngOnInit() {
     console.log('monthlyReports ngOnInit');
-    this.mentorId = this.currRoute.snapshot.params['mentorId'];
+    // this.mentorId = this.currRoute.snapshot.params['mentorId'];
     this.mentorId = this.session.getUserId();
     console.log('mentorId ' + this.mentorId);
-    // may be undefined at this point:
-    console.log('studentId ' + this.studentId);
+
+    // // may be undefined at this point:
+    // console.log('studentId ' + this.studentId);
+
+
     this.haveCurrentReport = false;
-  }
-  onSelectedStudentName(studentName: string) {
-    console.log('$$$$$$$ got selected NAME event');
-    this.studentName = '' + studentName;
-    this.session.setStudentInContextName(studentName);
+
+    // console.log('(((((((((((((((((MR ngOnInit)))))))))))))');
+    this.subscribeForStudentGUIds();
+    // console.log('after subscribe' + this.studentSelected.getInternalSubject().observers.length);
+
   }
 
-  onSelectedStudentId(studentId: number) {
-    console.log('$$$$$$$ got selectedId event');
+  ngOnDestroy() {
+    // console.log('{{{{{{{{{{{{{MR ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
+    // this.studentSelected.unsubscribe();
+    this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
+    console.log(' after unsubscribe ' + this.studentSelected.getInternalSubject().observers.length);
+  }
+
+  subscribeForStudentGUIds() {
+    console.log('MR set up studentGUId subscription');
+    this.subscription = this.studentSelected.subscribeForStudentGUIds()
+      // .pipe(takeWhile(() => this.notDestroyed))
+      .subscribe(message => {
+        this.studentGUId = message;
+        console.log('MR new StudentGUId received' + this.studentGUId);
+        if (this.studentGUId && this.studentGUId !== '0000') {
+          this.fetchData(this.studentGUId);
+        }
+        // console.log('subscribe next ' + this.studentSelected.getInternalSubject().observers.length);
+      });
+  }
+
+
+  fetchData(studentGUId: string) {
+
+    console.log('mr fetchData');
+    this.isLoading = true;
     this.isLoading = true;
     this.haveCurrentReport = false;
-    this.studentId = studentId;
-    this.sqlResource.getMentorReport2RPTs(this.mentorId, studentId)
+    this.sqlResource.getMentorReport2RPTsViaGUID(this.mentorId, studentGUId)
       .subscribe(
         data => { this.mentorReports2 = data; },
         err => console.error('Subscribe error: ' + err),
@@ -71,12 +104,18 @@ export class MonthlyReports2Component implements OnInit {
       );
   }
 
-  // onSelectedStudentGUId(studentGUId: string) {
-  //   console.log('$$$$$$$ got selectedGUId event with ' + studentGUId);
+  // onSelectedStudentName(studentName: string) {
+  //   console.log('$$$$$$$ got selected NAME event');
+  //   this.studentName = '' + studentName;
+  //   this.session.setStudentInContextName(studentName);
+  // }
+
+  // onSelectedStudentId(studentId: number) {
+  //   console.log('$$$$$$$ got selectedId event');
   //   this.isLoading = true;
   //   this.haveCurrentReport = false;
-  //   this.studentGUId = studentGUId;
-  //   this.sqlResource.getMentorReport2RPTs(this.mentorId, studentGUId)
+  //   this.studentId = studentId;
+  //   this.sqlResource.getMentorReport2RPTs(this.mentorId, studentId)
   //     .subscribe(
   //       data => { this.mentorReports2 = data; },
   //       err => console.error('Subscribe error: ' + err),
@@ -93,7 +132,6 @@ export class MonthlyReports2Component implements OnInit {
   //       }
   //     );
   // }
-
 
 
   monthlyReportAdd() {
