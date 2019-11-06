@@ -72,7 +72,7 @@ export class MonthlyReports2AddComponent
         console.log('monthlyReportsAdd ngOnInit');
 
         this.mentorReport2.mentorId = this.currRoute.snapshot.params['mentorId'];
-        this.mentorReport2.studentId = this.currRoute.snapshot.params['studentId'];
+        this.mentorReport2.studentId = 0; // this.currRoute.snapshot.params['studentId'];
         this.mentorReport2.studentGUId = this.currRoute.snapshot.params['studentGUId'];
         console.log('mentorId ' + this.mentorReport2.mentorId);
         console.log('studentId ' + this.mentorReport2.studentId);
@@ -139,9 +139,7 @@ export class MonthlyReports2AddComponent
         this.mentorReport2.emoji = this.emojiCtl.value;
         this.mentorReport2.narrative_English = this.narrative_EnglishCtl.value;
         this.mentorReport2.narrative_Spanish = this.narrative_SpanishCtl.value;
-        this.sqlResource.addMentorReport2(this.mentorReport2,
-            this.mentorReport2.mentorId,
-            this.mentorReport2.studentId)
+        this.sqlResource.addMentorReport2(this.mentorReport2)
             .subscribe(
                 (student) => {
                     console.log(this.successMessage = <any>student);

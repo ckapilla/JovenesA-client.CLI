@@ -1,15 +1,17 @@
-<div class="card bg-primary">
-  <div class="card-body bg-white">
-    <span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
-    <span *ngIf="successMessage" class="alert alert-success">{{successMessage}}</span>
+<!-- <div class="card bg-primary">
+  <div class="card-body bg-white"> -->
+<span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
+<span *ngIf="successMessage" class="alert alert-success">{{successMessage}}</span>
 
-    <div>
-      <label for="StatusSelector">Select Report:</label>
-      <select name="StatusSelector" [(ngModel)]="selectedReport" (change)="setSelectedReport($event.target.value)">
-        <option *ngFor="let status of reports" [value]="status.value">{{status.label}}</option>
-      </select>
-    </div>
-  </div>
+<div>
+  <label for="StatusSelector">Select Report:</label>
+  <select name="StatusSelector" [(ngModel)]="selectedReport" (change)="setSelectedReport($event.target.value)">
+    <option *ngFor="let status of reports" [value]="status.value">{{status.label}}</option>
+  </select>
+</div>
 
-  <template #reportcontainer>
-  </template>
+
+<template #reportcontainer>
+</template>
+<!-- </div>
+</div> -->

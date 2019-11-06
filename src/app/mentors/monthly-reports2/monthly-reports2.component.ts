@@ -86,6 +86,7 @@ export class MonthlyReports2Component implements OnInit, OnDestroy {
     this.isLoading = true;
     this.isLoading = true;
     this.haveCurrentReport = false;
+    this.studentGUId = studentGUId;
     this.sqlResource.getMentorReport2RPTsViaGUID(this.mentorId, studentGUId)
       .subscribe(
         data => { this.mentorReports2 = data; },
@@ -139,9 +140,12 @@ export class MonthlyReports2Component implements OnInit, OnDestroy {
       alert('There is already a report filed for this month. Please use the edit button to edit it. / Ya hay un informe presentado para este mes. Por favor, utilice el botón Editar para editarlo. ');
     } else {
       console.log('in monthly-reports: monthlyReportAdd, ready to navigate');
-      if (this.studentId !== null) {
-        const target = '/mentors/monthly-reports-add/' + this.mentorId + '/' + this.studentId;
-        this.router.navigateByUrl(target); // , //{mentorId: this.mentorId, studentId: this.studentId}]);
+      if (this.studentGUId !== null) {
+        // const target = '/mentors/monthly-reports-add';
+        // this.router.navigate([target, { mentorId: this.mentorId, studentGUId: this.studentGUId }]);
+        const link = ['/mentors/monthly-reports-add', { mentorId: this.mentorId, studentGUId: this.studentGUId }];
+        console.log('navigating to ' + JSON.stringify(link));
+        this.router.navigate(link);
       }
     }
   }

@@ -39,7 +39,7 @@ const mentorRoutes: Routes = [
         component: MonthlyReports2Component
       },
       {
-        path: 'monthly-reports-add/:mentorId/:studentId',
+        path: 'monthly-reports-add', // using query params /:mentorId/:studentGUId',
         component: MonthlyReports2AddComponent,
         canDeactivate: [ConfirmDeactivateMonthlyReportAddGuard]
       },

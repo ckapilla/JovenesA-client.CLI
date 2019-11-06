@@ -305,9 +305,7 @@ export class SqlResource {
   }
 
 
-  public addMentorReport2(mentorReport: MentorReport2RPT,
-    mentorId: number,
-    studentId: number): Observable<MentorReport2RPT> {
+  public addMentorReport2(mentorReport: MentorReport2RPT): Observable<MentorReport2RPT> {
 
     const url = this.WebApiPrefix + 'mentor_reports2';
     let body = JSON.stringify({ mentorReport });
