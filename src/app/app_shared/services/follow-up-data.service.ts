@@ -1,22 +1,22 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { FollowUpEvent } from '../models/follow-up-event';
 import { FollowUpEventRPT } from '../models/follow-up-eventRPT';
 import { FollowUpRequest } from '../models/follow-up-request';
 import { FollowUpRequestRPT } from '../models/follow-up-requestRPT';
+import { BaseDataService } from './base-data.service';
 import { UrlService } from './url.service';
 
 
 @Injectable({ providedIn: 'root' })
-export class FollowUpDataService {
-  WebApiPrefix: string;
+export class FollowUpDataService extends BaseDataService {
+  // WebApiPrefix: string;
 
-  constructor(private http: HttpClient,
-    private webApiPrefixService: UrlService) {
-    // console.log('sqlResource constructor');
-    this.WebApiPrefix = webApiPrefixService.getWebApiPrefix();
+  constructor(public http: HttpClient,
+    public webApiPrefixService: UrlService) {
+    super(http, webApiPrefixService);
   }
 
   //////////////////////////////////////////////////
@@ -81,20 +81,4 @@ export class FollowUpDataService {
     return this.http.post(url, body, { headers: headers });
   }
 
-  //////////////////////////////////////////////////
-  /// Utilities
-  //////////////////////////////////////////////////
-
-  private handleError(error: any) {
-    console.log('sqlResource handle error');
-    const errMsg = (error.message) ? error.message :
-      error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-    console.log(errMsg.message);
-    console.log(errMsg.statusText);
-    console.error(errMsg); // log to console instead
-    if (errMsg === 'No JWT present or has expired') {
-      window.alert('Session has expired, please log in again.');
-    }
-    return throwError(errMsg);
-  }
 }

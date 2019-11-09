@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { SELECTITEM } from '../interfaces/SELECTITEM';
 import { Communication } from '../models/communication';
@@ -9,6 +9,7 @@ import { MemberWithAnyRelatedStudent } from '../models/member-with-any-related-s
 import { MemberHeaderDTO } from '../models/memberHeaderDTO';
 import { MemberMiniDTO } from '../models/memberMiniDTO';
 import { SponsorGroupMember } from '../models/sponsor-group-member';
+import { BaseDataService } from './base-data.service';
 import { UrlService } from './url.service';
 
 
@@ -16,15 +17,13 @@ import { UrlService } from './url.service';
 
 
 @Injectable({ providedIn: 'root' })
-export class MemberDataService {
-  WebApiPrefix: string;
+export class MemberDataService extends BaseDataService {
+  // WebApiPrefix: string;
 
-  constructor(private http: HttpClient,
-    private webApiPrefixService: UrlService) {
-    // console.log('sqlResource constructor');
-    this.WebApiPrefix = webApiPrefixService.getWebApiPrefix();
+  constructor(public http: HttpClient,
+    public webApiPrefixService: UrlService) {
+    super(http, webApiPrefixService);
   }
-
 
 
   public getCurrentMemberMiniDTO(guid: string): Observable<MemberMiniDTO> {
@@ -130,26 +129,6 @@ export class MemberDataService {
     );
   }
 
-  ///////////////////////////////////////////////////// admins
-  // public getAdmin(adminId: Number): Observable<Admin> {
-  //   const url = this.WebApiPrefix + 'admins/' + adminId;
-  //   console.log('sending AuthHttp get request for Admin to ' + url);
-  //   return this.http.get(url).pipe(catchError(this.handleError));
-  // }
-
-  // public updateAdmin(admin: Admin): Observable<Admin> {
-
-  //   const url = this.WebApiPrefix + 'admins/' + admin.adminId;
-
-  //   let body = JSON.stringify({ admin });
-  //   // strip outer 'admin' name
-  //   const x = JSON.parse(body);
-  //   body = JSON.stringify(x.admin);
-  //   console.log('in putAdmin');
-  //   const headers = new HttpHeaders().set('Content-Type', 'application/json');
-  //   return this.http.put(url, body, { headers: headers });
-  // }
-
   ////////////////////////////// lookups
 
   public getMentorNames(): Observable<SELECTITEM[]> {
@@ -184,21 +163,4 @@ export class MemberDataService {
 
   }
 
-  //////////////////////////////////////////////////
-  /// Utilities
-  //////////////////////////////////////////////////
-
-
-  private handleError(error: any) {
-    console.log('sqlResource handle error');
-    const errMsg = (error.message) ? error.message :
-      error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-    console.log(errMsg.message);
-    console.log(errMsg.statusText);
-    console.error(errMsg); // log to console instead
-    if (errMsg === 'No JWT present or has expired') {
-      window.alert('Session has expired, please log in again.');
-    }
-    return throwError(errMsg);
-  }
 }

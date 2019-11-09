@@ -1,24 +1,22 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { SponsorGroup } from '../models/sponsor-group';
 import { SponsorGroupMember } from '../models/sponsor-group-member';
 import { SponsorGroupMemberDTO } from '../models/sponsor-group-memberDTO';
 import { StudentSponsorXRef } from '../models/student-sponsor-xref';
+import { BaseDataService } from './base-data.service';
 import { UrlService } from './url.service';
 
 
-
-
 @Injectable({ providedIn: 'root' })
-export class SponsorGroupDataService {
-  WebApiPrefix: string;
+export class SponsorGroupDataService extends BaseDataService {
+  // WebApiPrefix: string;
 
-  constructor(private http: HttpClient,
-    private webApiPrefixService: UrlService) {
-    // console.log('sqlResource constructor');
-    this.WebApiPrefix = webApiPrefixService.getWebApiPrefix();
+  constructor(public http: HttpClient,
+    public webApiPrefixService: UrlService) {
+    super(http, webApiPrefixService);
   }
 
   // list of sponsors for assigned SponsorGroup on student page
@@ -87,21 +85,5 @@ export class SponsorGroupDataService {
     console.log('ready to delete sponsorGroupMember ' + url); // + ' body: ' + body + ' options ' + headers);
     return this.http.delete(url);
   }
-  //////////////////////////////////////////////////
-  /// Utilities
-  //////////////////////////////////////////////////
 
-
-  private handleError(error: any) {
-    console.log('sqlResource handle error');
-    const errMsg = (error.message) ? error.message :
-      error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-    console.log(errMsg.message);
-    console.log(errMsg.statusText);
-    console.error(errMsg); // log to console instead
-    if (errMsg === 'No JWT present or has expired') {
-      window.alert('Session has expired, please log in again.');
-    }
-    return throwError(errMsg);
-  }
 }

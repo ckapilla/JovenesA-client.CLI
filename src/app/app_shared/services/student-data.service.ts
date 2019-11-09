@@ -1,23 +1,23 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Student } from '../models/student';
 import { StudentSponsorXRef } from '../models/student-sponsor-xref';
 import { StudentDTO } from '../models/studentDTO';
 import { StudentHeaderDTO } from '../models/studentHeaderDTO';
 import { StudentMiniDTO } from '../models/studentMiniDTO';
+import { BaseDataService } from './base-data.service';
 import { UrlService } from './url.service';
 
 
 @Injectable({ providedIn: 'root' })
-export class StudentDataService {
-  WebApiPrefix: string;
+export class StudentDataService extends BaseDataService {
+  // WebApiPrefix: string;
 
-  constructor(private http: HttpClient,
-    private webApiPrefixService: UrlService) {
-    // console.log('sqlResource constructor');
-    this.WebApiPrefix = webApiPrefixService.getWebApiPrefix();
+  constructor(public http: HttpClient,
+    public webApiPrefixService: UrlService) {
+    super(http, webApiPrefixService);
   }
 
   //////////////////////////////////////////////////
@@ -43,19 +43,20 @@ export class StudentDataService {
     console.log('sending AuthHttp get request for Students');
     return this.http.get<StudentDTO>(url);
   }
+
   public getStudentDTOViaGUID(studentGUId: string): Observable<StudentDTO> {
     const url = this.WebApiPrefix + 'students/DTO/' + studentGUId;
     // statusId: vm.selectedStatus.statusId, gradYear: vm.selectedGradYear.year, yearJoinedJA: vm.selectedYearJoined.year },
     console.log('sending AuthHttp get request for Students');
     return this.http.get<StudentDTO>(url);
   }
+
   public getStudentHeaderDTO(studentGUId: string): Observable<StudentHeaderDTO> {
     const url = this.WebApiPrefix + 'students/headerDTO/' + studentGUId;
     // statusId: vm.selectedStatus.statusId, gradYear: vm.selectedGradYear.year, yearJoinedJA: vm.selectedYearJoined.year },
     console.log('sending AuthHttp get request for Students');
     return this.http.get<StudentHeaderDTO>(url);
   }
-
 
   public getStudentDTOsByStatusAndYear(statusId: string, yearJoinedJA: string, gradYear: string): Observable<StudentDTO[]> {
     const url = this.WebApiPrefix
@@ -66,6 +67,7 @@ export class StudentDataService {
     console.log('sending AuthHttp get request for Students with url ' + url);
     return this.http.get<StudentDTO[]>(url).pipe(catchError(this.handleError));
   }
+
   public getCurrentStudentMiniDTO(guid: string): Observable<StudentMiniDTO> {
     const url = this.WebApiPrefix + 'students/name/' + guid;
     console.log('sending AuthHttp get request for StudentMini with url ' + url);
@@ -103,6 +105,7 @@ export class StudentDataService {
     console.log('sending AuthHttp get request ' + url);
     return this.http.get<StudentSponsorXRef[]>(url).pipe(catchError(this.handleError));
   }
+
   public getStudentsForSponsorByGUId(sponsorGUId: string): Observable<StudentSponsorXRef[]> {
     const url = this.WebApiPrefix + 'students/for_sponsor/' + sponsorGUId;
     console.log('sending AuthHttp get request ' + url);
@@ -121,7 +124,6 @@ export class StudentDataService {
     return this.http.get<StudentSponsorXRef>(url).pipe(catchError(this.handleError));
   }
 
-
   public updateStudent(student: Student): Observable<any> {
     const url = this.WebApiPrefix + 'students/' + student.studentId;
     let body = JSON.stringify({ student });
@@ -139,20 +141,5 @@ export class StudentDataService {
     console.log('ready to put ' + url + ' body: ' + body + ' options ' + headers);
     return this.http.put(url, body, { headers: headers });
   }
-  //////////////////////////////////////////////////
-  /// Utilities
-  //////////////////////////////////////////////////
 
-  private handleError(error: any) {
-    console.log('sqlResource handle error');
-    const errMsg = (error.message) ? error.message :
-      error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-    console.log(errMsg.message);
-    console.log(errMsg.statusText);
-    console.error(errMsg); // log to console instead
-    if (errMsg === 'No JWT present or has expired') {
-      window.alert('Session has expired, please log in again.');
-    }
-    return throwError(errMsg);
-  }
 }
