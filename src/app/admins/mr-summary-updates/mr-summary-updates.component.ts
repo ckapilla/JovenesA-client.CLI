@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { MentorReport2DataService } from 'src/app/app_shared/services/mentor-report2-data.service';
 import { constants } from '../../app_shared/constants/constants';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 import { MentorReport2RPT } from '../../app_shared/models/mentor-report2';
 import { SessionService } from '../../app_shared/services/session.service';
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
 @Component({
 
@@ -51,7 +51,7 @@ export class MentorReportSummaryUpdatesComponent
   constructor(
     public currRoute: ActivatedRoute,
     private router: Router,
-    public sqlResource: SqlResource,
+    public mentorReportData: MentorReport2DataService,
     private _fb: FormBuilder,
     public session: SessionService
   ) {
@@ -99,7 +99,7 @@ export class MentorReportSummaryUpdatesComponent
     }
 
     this.isLoading = true;
-    this.sqlResource.getMentorReport2(mentorReportId)
+    this.mentorReportData.getMentorReport2(mentorReportId)
       .subscribe(
         data => { this.mentorReport2 = data; },
         err => console.error('Subscribe error: ' + err),
@@ -155,7 +155,7 @@ export class MentorReportSummaryUpdatesComponent
     this.mentorReport2.narrative_English = this.narrative_EnglishCtl.value;
     this.mentorReport2.narrative_Spanish = this.narrative_SpanishCtl.value;
 
-    this.sqlResource.updateMentorReport2(this.mentorReport2)
+    this.mentorReportData.updateMentorReport2(this.mentorReport2)
       .subscribe(
         (student) => {
           console.log(this.successMessage = <any>student);

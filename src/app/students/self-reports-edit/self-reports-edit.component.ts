@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { StudentSelfReportDataService } from 'src/app/app_shared/services/student-self-report-data.service';
 import { StudentSelfReport } from '../../app_shared/models/student-self-report';
 import { StudentDTO } from '../../app_shared/models/studentDTO';
 import { SessionService } from '../../app_shared/services/session.service';
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
 @Component({
   templateUrl: './self-reports-edit.component.html',
@@ -32,7 +32,7 @@ export class SelfReportsEditComponent implements OnInit {
   constructor(
     public currRoute: ActivatedRoute,
     private router: Router,
-    public sqlResource: SqlResource,
+    public ssrData: StudentSelfReportDataService,
     private _fb: FormBuilder,
     public session: SessionService) {
 
@@ -59,7 +59,7 @@ export class SelfReportsEditComponent implements OnInit {
     // }
 
     this.isLoading = true;
-    this.sqlResource.getStudentSelfReport(this.selfReportId)
+    this.ssrData.getStudentSelfReport(this.selfReportId)
       .subscribe(
         data => { this.selfReport = data; },
         err => console.error('Subscribe error: ' + err),
@@ -96,7 +96,7 @@ export class SelfReportsEditComponent implements OnInit {
     this.selfReport.narrative_Spanish = this.narrative_SpanishCtl.value;
     // this.selfReport.reviewedStatusId = 2086; // already is needs setup or wouldn't be here
 
-    this.sqlResource.putStudentSelfReport(this.selfReport)
+    this.ssrData.putStudentSelfReport(this.selfReport)
       .subscribe(
         (student) => {
           console.log(this.successMessage = <any>student);

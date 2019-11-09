@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MentorReport2DataService } from 'src/app/app_shared/services/mentor-report2-data.service';
 import { constants } from '../../app_shared/constants/constants';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 import { MentorReport2RPT } from '../../app_shared/models/mentor-report2';
 import { SessionService } from '../../app_shared/services/session.service';
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
 @Component({
   templateUrl: '../monthly-reports2-edit/monthly-reports2-edit.component.html'
@@ -36,7 +36,7 @@ export class MonthlyReports2EditComponent
   constructor(
     public currRoute: ActivatedRoute,
     private router: Router,
-    public sqlResource: SqlResource,
+    public mentorReportData: MentorReport2DataService,
     private _fb: FormBuilder,
     private session: SessionService
   ) {
@@ -88,7 +88,7 @@ export class MonthlyReports2EditComponent
     this.mentorReportId = this.currRoute.snapshot.params['mentorReportId'];
     console.log('calling sqlRenpsource with mentorReportId: ' + this.mentorReportId);
     this.isLoading = true;
-    this.sqlResource.getMentorReport2(this.mentorReportId)
+    this.mentorReportData.getMentorReport2(this.mentorReportId)
       .subscribe(
         data => { this.mentorReport2 = data; },
         err => console.error('Subscribe error: ' + err),
@@ -154,7 +154,7 @@ export class MonthlyReports2EditComponent
     // this.mentorReport2.reviewedStatusId = 2086; // already is needs setup or wouldn't be here
 
 
-    this.sqlResource.updateMentorReport2(this.mentorReport2)
+    this.mentorReportData.updateMentorReport2(this.mentorReport2)
       .subscribe(
         (student) => {
           console.log(this.successMessage = <any>student);

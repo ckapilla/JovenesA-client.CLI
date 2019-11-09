@@ -4,8 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { constants } from '../../app_shared/constants/constants';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
-import { Mentor } from '../../app_shared/models/mentor';
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
+import { Member } from '../../app_shared/models/member';
+import { MemberDataService } from '../../app_shared/services/member-data.service';
 
 
 @Component({
@@ -23,7 +23,7 @@ export class MentorsProfileComponent implements OnInit {
   successMessage: string;
   firstNames: string;
   lastNames: string;
-  mentor: Mentor;
+  mentor: Member;
   //
   // private curSegment: RouteSegment;
   //
@@ -31,7 +31,7 @@ export class MentorsProfileComponent implements OnInit {
   constructor(
     public currRoute: ActivatedRoute,
     private router: Router,
-    public sqlResource: SqlResource,
+    public memberData: MemberDataService,
     public formBuilder: FormBuilder
   ) {
     console.log('hi from profile.component constructor');
@@ -45,7 +45,7 @@ export class MentorsProfileComponent implements OnInit {
       SpanishLevelSelector: ['', Validators.required],
       EnglishLevelSelector: ['', Validators.required],
     });
-    this.mentor = new Mentor();
+    this.mentor = new Member();
 
     this.errorMessage = '';
     this.successMessage = '';
@@ -60,7 +60,7 @@ export class MentorsProfileComponent implements OnInit {
     const id = this.currRoute.snapshot.params['id'];
     console.log('calling sqlResource with mentorId: ' + id);
     this.isLoading = true;
-    this.sqlResource.getMentor(id)
+    this.memberData.getMember(id)
       .subscribe(
         data => { this.mentor = data; },
         err => console.error('Subscribe error: ' + err),
@@ -81,7 +81,7 @@ export class MentorsProfileComponent implements OnInit {
 
   saveProfile(): boolean {
     console.log('saving ');
-    this.sqlResource.updateMentor(this.mentor)
+    this.memberData.updateMember(this.mentor)
       .subscribe(
         (student) => {
           this.successMessage = 'Changes were saved successfully.';

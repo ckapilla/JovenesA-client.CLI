@@ -1,7 +1,7 @@
-import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
-import { Mentor} from '../../models/mentor';
+import { Component, Input, OnInit } from '@angular/core';
+import { Member } from '../../models/member';
+import { MemberDataService } from '../../services/member-data.service';
 import { SessionService } from '../../services/session.service';
-import { SqlResource } from '../../services/sql-resource.service';
 
 @Component({
   selector: 'app-mentors-for-student-list',
@@ -9,18 +9,18 @@ import { SqlResource } from '../../services/sql-resource.service';
 })
 
 export class MentorsForStudentListComponent implements OnInit {
-  mentors: Array<Mentor>;
+  mentors: Array<Member>;
   errorMessage = '';
   @Input() studentId: number;
 
   constructor(public session: SessionService,
-            private sqlResource: SqlResource) {
+    private memberData: MemberDataService) {
 
     console.log('in MentorsForStudentComponent constructor with studentId=' + this.studentId);
   }
 
   public ngOnInit() {
-    this.sqlResource.getMentorsForStudent(this.studentId)
+    this.memberData.getMentorsForStudent(this.studentId)
       .subscribe(
         data => { this.mentors = data; console.log('getMentorsForStudent'); console.log(this.mentors[0]); },
         err => console.error('Subscribe error: ' + err),

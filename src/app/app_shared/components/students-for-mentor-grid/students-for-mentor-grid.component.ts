@@ -17,6 +17,7 @@ export class StudentsForMentorGridComponent implements OnInit {
   studentId: number;
   studentGUId: string;
   errorMessage = '';
+  isLoading: boolean;
 
   constructor(public session: SessionService,
     private studentData: StudentDataService,
@@ -27,6 +28,7 @@ export class StudentsForMentorGridComponent implements OnInit {
   }
 
   public ngOnInit() {
+    this.isLoading = true;
     this.studentData.getStudentsForMentor(this.session.getUserId())
       .subscribe(
         data => {
@@ -34,6 +36,7 @@ export class StudentsForMentorGridComponent implements OnInit {
         },
         err => console.error('Subscribe error: ' + err),
         () => {
+          this.isLoading = false;
           console.log('studentsForMentorGrid has All students: ' + this.students.length);
           console.log(this.students);
           if (this.students.length > 0) {
@@ -55,7 +58,7 @@ export class StudentsForMentorGridComponent implements OnInit {
 
   public selectStudent(studentGUId: string, idx: number) {
     console.log('student selected studentGUId: ' + studentGUId + 'idx: ' + idx);
-    const studentName: string = this.students[idx].studentName; //  + ', ' + this.studentMentors[idx].studentFirstNames;
+    const studentName: string = this.students[idx].studentName;
     this.studentGUId = studentGUId;
     this.studentSelected.notifyNewStudentGUId(studentGUId);
   }

@@ -44,6 +44,8 @@ export class Member {
     public photoUrl?: string,
 
     public studentGUId?: string,
-    public memberGUId?: string
+    public memberGUId?: string,
+    public lastMentorMeeting?: Date
+
   ) { }
 }

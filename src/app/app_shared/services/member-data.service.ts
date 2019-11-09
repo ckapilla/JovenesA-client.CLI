@@ -3,13 +3,11 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { SELECTITEM } from '../interfaces/SELECTITEM';
-import { Admin } from '../models/admin';
 import { Communication } from '../models/communication';
 import { Member } from '../models/member';
 import { MemberWithAnyRelatedStudent } from '../models/member-with-any-related-student';
 import { MemberHeaderDTO } from '../models/memberHeaderDTO';
 import { MemberMiniDTO } from '../models/memberMiniDTO';
-import { Mentor } from '../models/mentor';
 import { SponsorGroupMember } from '../models/sponsor-group-member';
 import { UrlService } from './url.service';
 
@@ -42,16 +40,16 @@ export class MemberDataService {
   }
 
   public getCurrentMemberMiniDTOsByRole(role: string): Observable<MemberMiniDTO[]> {
-    const url = this.WebApiPrefix + 'members/names/by_role' + role;
+    const url = this.WebApiPrefix + 'members/names/by_role/' + role;
     console.log('sending AuthHttp get request for Members with url ' + url);
     return this.http.get<MemberMiniDTO[]>(url).pipe(catchError(this.handleError));
   }
 
 
-  public getMentorsForStudent(studentId: number): Observable<Mentor[]> {
+  public getMentorsForStudent(studentId: number): Observable<Member[]> {
     const url = this.WebApiPrefix + 'students/mentors_for/' + studentId;
     console.log('sending AuthHttp get request ' + url);
-    return this.http.get<Mentor[]>(url).pipe(catchError(this.handleError));
+    return this.http.get<Member[]>(url).pipe(catchError(this.handleError));
   }
 
   public getActiveSponsorMembers(): Observable<MemberMiniDTO[]> {
@@ -133,24 +131,24 @@ export class MemberDataService {
   }
 
   ///////////////////////////////////////////////////// admins
-  public getAdmin(adminId: Number): Observable<Admin> {
-    const url = this.WebApiPrefix + 'admins/' + adminId;
-    console.log('sending AuthHttp get request for Admin to ' + url);
-    return this.http.get(url).pipe(catchError(this.handleError));
-  }
+  // public getAdmin(adminId: Number): Observable<Admin> {
+  //   const url = this.WebApiPrefix + 'admins/' + adminId;
+  //   console.log('sending AuthHttp get request for Admin to ' + url);
+  //   return this.http.get(url).pipe(catchError(this.handleError));
+  // }
 
-  public updateAdmin(admin: Admin): Observable<Admin> {
+  // public updateAdmin(admin: Admin): Observable<Admin> {
 
-    const url = this.WebApiPrefix + 'admins/' + admin.adminId;
+  //   const url = this.WebApiPrefix + 'admins/' + admin.adminId;
 
-    let body = JSON.stringify({ admin });
-    // strip outer 'admin' name
-    const x = JSON.parse(body);
-    body = JSON.stringify(x.admin);
-    console.log('in putAdmin');
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.put(url, body, { headers: headers });
-  }
+  //   let body = JSON.stringify({ admin });
+  //   // strip outer 'admin' name
+  //   const x = JSON.parse(body);
+  //   body = JSON.stringify(x.admin);
+  //   console.log('in putAdmin');
+  //   const headers = new HttpHeaders().set('Content-Type', 'application/json');
+  //   return this.http.put(url, body, { headers: headers });
+  // }
 
   ////////////////////////////// lookups
 
@@ -166,17 +164,15 @@ export class MemberDataService {
   }
 
 
-  ////////////////////////////// mentors
-
-  public getMentor(mentorId: Number): Observable<Mentor> {
+  public getMentor(mentorId: Number): Observable<Member> {
     const url = this.WebApiPrefix + 'mentors/' + mentorId;
-    console.log('sending AuthHttp get request for Mentor');
+    console.log('sending AuthHttp get request for Member');
     return this.http.get(url).pipe(catchError(this.handleError));
   }
 
-  public updateMentor(mentor: Mentor): Observable<Mentor> {
+  public updateMentor(mentor: Member): Observable<Member> {
 
-    const url = this.WebApiPrefix + 'mentors/' + mentor.mentorId;
+    const url = this.WebApiPrefix + 'mentors/' + mentor.memberId;
 
     let body = JSON.stringify({ mentor });
     // strip outer 'mentor' name
@@ -187,9 +183,6 @@ export class MemberDataService {
     return this.http.put(url, body, { headers: headers });
 
   }
-
-
-
 
   //////////////////////////////////////////////////
   /// Utilities

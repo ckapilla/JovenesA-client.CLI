@@ -1,9 +1,9 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MentorReport2DataService } from 'src/app/app_shared/services/mentor-report2-data.service';
 import { MentorReport2RPT } from '../../app_shared/models/mentor-report2';
 import { SessionService } from '../../app_shared/services/session.service';
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
 @Component({
 
   templateUrl: './admins-student-mrs.component.html',
@@ -24,7 +24,7 @@ export class AdminsStudentMRsComponent implements OnInit {
   constructor(
     public currRoute: ActivatedRoute,
     private router: Router,
-    public sqlResource: SqlResource,
+    public mentorReportData: MentorReport2DataService,
     public session: SessionService,
     public location: Location) {
   }
@@ -41,7 +41,7 @@ export class AdminsStudentMRsComponent implements OnInit {
     }
     console.log('studentGUId  ' + this.studentGUId);
     this.isLoading = true;
-    this.sqlResource.getMentorReport2RPTs(this.mentorId, this.studentGUId)
+    this.mentorReportData.getMentorReport2RPTs(this.mentorId, this.studentGUId)
       .subscribe(
         data => { this.mentorReports2 = data; },
         err => console.error('Subscribe error: ' + err),

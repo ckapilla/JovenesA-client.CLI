@@ -2,8 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SELECTITEM } from '../../interfaces/SELECTITEM';
 import { FollowUpEventRPT } from '../../models/follow-up-eventRPT';
+import { FollowUpDataService } from '../../services/follow-up-data.service';
 import { SessionService } from '../../services/session.service';
-import { SqlResource } from '../../services/sql-resource.service';
 
 @Component({
   selector: 'app-follow-up-events',
@@ -21,7 +21,7 @@ export class FollowUpEventsComponent implements OnInit {
   displayEventDetails: false;
   @Input() followUpRequestId: number;
 
-  constructor(public sqlResource: SqlResource,
+  constructor(public followUpData: FollowUpDataService,
     public router: Router,
     public session: SessionService
   ) { }
@@ -34,7 +34,7 @@ export class FollowUpEventsComponent implements OnInit {
   fetchData() {
     this.isLoading = true;
     console.log('in fetchData for FollowUpEvents with RequestId ' + this.followUpRequestId);
-    this.sqlResource.getFollowUpEvents(this.followUpRequestId)
+    this.followUpData.getFollowUpEvents(this.followUpRequestId)
       .subscribe(
         data => { this.followUpEvents = data; },
         err => console.error('Subscribe error: ' + err),

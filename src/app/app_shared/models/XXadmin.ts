@@ -1,4 +1,4 @@
-export class Admin {
+export class AdminXX {
 
   constructor(
     public adminId?: number,

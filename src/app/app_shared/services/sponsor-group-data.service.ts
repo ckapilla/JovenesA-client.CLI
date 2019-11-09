@@ -21,19 +21,6 @@ export class SponsorGroupDataService {
     this.WebApiPrefix = webApiPrefixService.getWebApiPrefix();
   }
 
-
-  // public getStudentsForSponsor(sponsorId: Number): Observable<StudentSponsorXRef[]> {
-  //   const url = this.WebApiPrefix + 'students/for_sponsor/' + sponsorId;
-  //   console.log('sending AuthHttp get request ' + url);
-  //   return this.http.get<StudentSponsorXRef[]>(url).pipe(catchError(this.handleError));
-  // }
-  // public getStudentsForSponsorByGUId(sponsorGUId: string): Observable<StudentSponsorXRef[]> {
-  //   const url = this.WebApiPrefix + 'students/for_sponsor/' + sponsorGUId;
-  //   console.log('sending AuthHttp get request ' + url);
-  //   return this.http.get<StudentSponsorXRef[]>(url).pipe(catchError(this.handleError));
-  // }
-
-
   // list of sponsors for assigned SponsorGroup on student page
   public getMembersForSponsorGroup(sponsorGroupId: Number): Observable<SponsorGroupMemberDTO[]> {
     const url = this.WebApiPrefix + 'sponsor_groups/members/' + sponsorGroupId;

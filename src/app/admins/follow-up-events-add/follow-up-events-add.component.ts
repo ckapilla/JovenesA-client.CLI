@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { constants } from 'src/app/app_shared/constants/constants';
 import { FollowUpEvent } from 'src/app/app_shared/models/follow-up-event';
+import { FollowUpDataService } from 'src/app/app_shared/services/follow-up-data.service';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 import { SessionService } from '../../app_shared/services/session.service';
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
 
 @Component({
@@ -34,7 +35,7 @@ export class FollowUpEventsAddComponent implements OnInit {
   constructor(
     public currRoute: ActivatedRoute,
     private router: Router,
-    public sqlResource: SqlResource,
+    public followUpData: FollowUpDataService,
     private _fb: FormBuilder,
     private session: SessionService
   ) {
@@ -44,10 +45,10 @@ export class FollowUpEventsAddComponent implements OnInit {
     // we want to store local time so we adjust for that.
     const now = new Date();
     this.followUpEvent.eventDateTime = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
-    // this.followUpStatusSelector = this.myForm.controls['followUpStatusSelector'];
+    this.followUpStatuses = constants.followUpStatuses;
     this.followUpEvent.followUpRequestId = this.currRoute.snapshot.params['requestId'];
     this.followUpEvent.enteredById = this.session.userId;
-    this.followUpEvent.assignedToId = 2350; // everything starts with Saray
+    this.followUpEvent.assignedToId = 2433; // everything starts with Antonio
     this.followUpEvent.assignedToRoleId = 2068; // everything starts with Admin
     this.followUpEvent.comments_English = '';
     this.followUpEvent.comments_Spanish = '';
@@ -93,14 +94,14 @@ export class FollowUpEventsAddComponent implements OnInit {
       window.scrollTo(0, 0);
       return false;
     }
-    this.sqlResource.postFollowUpEvent(this.followUpEvent)
+    this.followUpData.postFollowUpEvent(this.followUpEvent)
       .subscribe(
         (response) => {
           console.log('followUp Event completed -- sending Initial Event with response');
           console.log(response);
         },
         (error) => {
-          this.errorMessage = <any>error;
+          this.errorMessage = error.message;
           this.isLoading = false;
         },
         () => {

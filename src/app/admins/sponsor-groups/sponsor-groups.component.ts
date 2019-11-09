@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SponsorGroup } from 'src/app/app_shared/models/sponsor-group';
 import { SponsorGroupMemberDTO } from 'src/app/app_shared/models/sponsor-group-memberDTO';
+import { SponsorGroupDataService } from 'src/app/app_shared/services/sponsor-group-data.service';
 import { SORTCRITERIA } from '../../app_shared/interfaces/SORTCRITERIA';
 import { ColumnSortService } from '../../app_shared/services/column-sort.service';
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
 @Component({
   selector: 'app-sponsor-groups',
@@ -19,7 +19,7 @@ export class SponsorGroupsComponent implements OnInit {
   sortCriteria: SORTCRITERIA;
 
   constructor(
-    public sqlResource: SqlResource,
+    public sponsorGroupData: SponsorGroupDataService,
     public router: Router,
     private columnSorter: ColumnSortService
   ) {
@@ -39,7 +39,7 @@ export class SponsorGroupsComponent implements OnInit {
   fetchData() {
     this.isLoading = true;
     console.log('in fetchFilteredData');
-    this.sqlResource.getSponsorGroupsWithMembers()
+    this.sponsorGroupData.getSponsorGroupsWithMembers()
       .subscribe(
         data => { this.sponsorGroups = data; },
         err => this.errorMessage = err,
@@ -71,7 +71,7 @@ export class SponsorGroupsComponent implements OnInit {
     sg.sponsorGroupName = sponsorGroupName;
 
     console.log('adding sponsorGroupName ' + sg.sponsorGroupName);
-    this.sqlResource.addNewSponsorGroup(sg).subscribe(
+    this.sponsorGroupData.addNewSponsorGroup(sg).subscribe(
       (sponsorGroup) => {
         console.log(this.successMessage = 'New SponsorGroup ' + sponsorGroupName + ' added successfully');
         this.isLoading = false;

@@ -106,7 +106,7 @@ export class SessionService {
     this.userId = Id;
   }
 
-  public setUserGUid(guid: string): void {
+  public setUserGUId(guid: string): void {
     console.log('setUserGUId = ' + guid);
     this.userGUId = guid;
   }

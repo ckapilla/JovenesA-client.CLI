@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentSelfReport } from 'src/app/app_shared/models/student-self-report';
+import { StudentSelfReportDataService } from 'src/app/app_shared/services/student-self-report-data.service';
 import { constants } from '../../app_shared/constants/constants';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
 
 
@@ -33,7 +33,7 @@ export class SelfReportsAddComponent
     constructor(
         public currRoute: ActivatedRoute,
         private router: Router,
-        public sqlResource: SqlResource,
+        public ssrData: StudentSelfReportDataService,
         private _fb: FormBuilder
     ) {
 
@@ -115,7 +115,7 @@ export class SelfReportsAddComponent
         }
 
 
-        this.sqlResource.postStudentSelfReport(this.selfReport)
+        this.ssrData.postStudentSelfReport(this.selfReport)
             .subscribe(
                 (student) => {
                     console.log(this.successMessage = <any>student);

@@ -5,8 +5,8 @@ import Auth0Client from '@auth0/auth0-spa-js/dist/typings/Auth0Client';
 import { BehaviorSubject, combineLatest, from, Observable, of, throwError } from 'rxjs';
 import { catchError, concatMap, shareReplay, tap } from 'rxjs/operators';
 import { AUTH_CONFIG } from './auth0-config';
+import { MemberDataService } from './member-data.service';
 import { SessionService } from './session.service';
-import { SqlResource } from './sql-resource.service';
 import { UrlService } from './url.service';
 
 
@@ -58,7 +58,7 @@ export class AuthService {
   constructor(public router: Router,
     public urlService: UrlService,
     public session: SessionService,
-    public sqlResource: SqlResource) {
+    public memberData: MemberDataService) {
     //  if not authenticated, check to see if we have a saved profile
     if (session.getUserId() === 0) {
       console.log('no current userProfile so check for stored userProfile');
@@ -195,52 +195,6 @@ export class AuthService {
 
   }
 
-
-
-  // private setSessionTokenParams(authResult): void {
-  //   // Set the time that the access token will expire at
-
-
-  //   console.log('successful Login set expires_at to ');
-
-  //   this.expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
-  //   console.log(this.expiresAt);
-
-  //   localStorage.setItem('access_token', authResult.accessToken);
-  //   localStorage.setItem('id_token', authResult.idToken);
-  //   localStorage.setItem('expires_at', this.expiresAt);
-  //   // console.log('in SetSession with Result idToken ' + authResult.idToken);
-  //   // console.log('in SetSession with Result accessToken' + authResult.accessToken);
-  //   // console.log('in SetSession with Result expiresAt' + this.expiresAt);
-
-  // }
-
-  // private finalize(authResult: any) {
-
-  //   // if (this.session.getFailedAuthorizationRoute()  > '') {
-  //   //   console.log('have failed authorization route, retrying ');
-  //   //   this.router.navigateByUrl(this.session.getFailedAuthorizationRoute());
-  //   // }
-
-  //   // Redirect to retryUrl if there is a saved url that has been set
-  //   console.log('before checkForUnauthenticateRetryUrl');
-  //   this.checkForUnauthenticateRetryUrl();
-  //   this.UpdateLastLogin();
-  //   // });
-  // }
-
-  // private checkForUnauthenticateRetryUrl() {
-  //   const retryUrl: string = localStorage.getItem('unauthenticated_retry_url');
-  //   console.log('checkForUnauthenticateRetryUrl has retryUrl ' + retryUrl);
-  //   if (retryUrl) {
-  //     console.log('navigating to unauthenticated_retry_url: ' + retryUrl);
-  //     this.router.navigateByUrl(retryUrl);
-  //     console.log('');
-  //     localStorage.removeItem('unauthenticated_retry_url');
-  //   }
-  // }
-
-
   public setUserProfileElementsToSession(userProfile: any): void {
     console.log('in extractElementsFromProfile with userProfile:');
     console.log(userProfile);
@@ -260,6 +214,9 @@ export class AuthService {
 
       this.session.setStudentGUId((<any>app_metadata)['studentGUId']);
       console.log('studentGUId: ' + this.session.getStudentGUId());
+
+      this.session.setUserGUId((<any>app_metadata)['memberGUId']);
+      console.log('memberGUId: ' + this.session.getUserGUId());
 
       this.session.setUserId((<any>userProfile)['user_id'].substr('auth0|'.length));
       console.log('userId: ' + this.session.userId);
@@ -282,7 +239,7 @@ export class AuthService {
 
   public UpdateLastLogin(): void {
     // console.log('calling SqlResource UpdateLastLogin with useId' + this.session.userId);
-    this.sqlResource.UpdateLastLogin(this.session.userId)
+    this.memberData.UpdateLastLogin(this.session.userId)
       .subscribe(
         data => {/*console.log('');*/ },
         err => console.error('last login Subscribe error: ' + err),

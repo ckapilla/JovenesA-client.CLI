@@ -1,4 +1,4 @@
-export class Mentor {
+export class MentorXX {
 
   constructor(
     public mentorId?: number,

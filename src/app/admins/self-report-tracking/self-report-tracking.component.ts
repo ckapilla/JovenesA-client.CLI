@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { StudentSelfReportDataService } from 'src/app/app_shared/services/student-self-report-data.service';
 import { constants } from '../../app_shared/constants/constants';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 import { StudentSelfReport } from '../../app_shared/models/student-self-report';
 import { SessionService } from '../../app_shared/services/session.service';
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
 
 @Component({
@@ -35,7 +35,7 @@ export class SelfReportsTrackingComponent implements OnInit {
   constructor(
     public router: Router,
     public session: SessionService,
-    public sqlResource: SqlResource,
+    public ssrData: StudentSelfReportDataService,
     private route: ActivatedRoute
   ) {
 
@@ -100,7 +100,7 @@ export class SelfReportsTrackingComponent implements OnInit {
   fetchFilteredData() {
     this.isLoading = true;
     console.log('in fetchData for StudentReportsByPeriod');
-    this.sqlResource.getStudentSelfReportsByPeriod(this.selectedYear,
+    this.ssrData.getStudentSelfReportsByPeriod(this.selectedYear,
       this.selectedPeriod,
       '0', // this.selectedSRReviewedStatus,
       null

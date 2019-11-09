@@ -2,10 +2,10 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MemberDataService } from 'src/app/app_shared/services/member-data.service';
 import { constants } from '../../../app_shared/constants/constants';
 import { SELECTITEM } from '../../../app_shared/interfaces/SELECTITEM';
 import { Member } from '../../../app_shared/models/member';
-import { SqlResource } from '../../../app_shared/services/sql-resource.service';
 
 @Component({
 
@@ -33,7 +33,7 @@ export class AdminsMemberComponent implements OnInit {
   constructor(
     public currRoute: ActivatedRoute,
     private router: Router,
-    public sqlResource: SqlResource,
+    public memberData: MemberDataService,
     public formBuilder: FormBuilder,
     public location: Location
   ) {
@@ -77,6 +77,7 @@ export class AdminsMemberComponent implements OnInit {
       otherRelevantExperience: [''],
       comments: ['', Validators.maxLength(2000)],
       photoUrl: [{ value: '' }, Validators.maxLength(2000)],
+      lastMentorMeeting: [''],
 
       memberId: [''],
       memberGUId: [''],
@@ -90,6 +91,17 @@ export class AdminsMemberComponent implements OnInit {
     this.errorMessage = '';
     this.successMessage = '';
     this.submitted = false;
+
+    this.myForm.valueChanges.subscribe(form => {
+      if (form.lastMentorMeeting) {
+        this.myForm.patchValue({
+          lastMentorMeeting: form.lastMentorMeeting.slice(0, 10)
+        }, {
+          emitEvent: false
+        });
+      }
+    });
+
   }
 
   ngOnInit() {
@@ -103,7 +115,7 @@ export class AdminsMemberComponent implements OnInit {
     const guid = this.currRoute.snapshot.params['guid'];
     console.log('sqlResource with MemberGUId: ' + guid);
     this.isLoading = true;
-    this.sqlResource.getMemberByGUId(guid)
+    this.memberData.getMemberByGUId(guid)
       .subscribe(
         data => {
           this.member = data;
@@ -130,6 +142,7 @@ export class AdminsMemberComponent implements OnInit {
       }
     );
   }
+
 
   setFormValues(member: Member) {
     console.log('setFormValues');
@@ -169,9 +182,10 @@ export class AdminsMemberComponent implements OnInit {
       otherRelevantExperience: member.otherRelevantExperience,
       comments: member.comments,
       photoUrl: member.photoUrl,
+      lastMentorMeeting: member.lastMentorMeeting,
 
       studentGUId: member.studentGUId,
-      memberGUId: member.memberGUId
+      memberGUId: member.memberGUId,
     });
   }
 
@@ -186,7 +200,7 @@ export class AdminsMemberComponent implements OnInit {
     console.log(JSON.stringify(this.member));
     this.isLoading = true;
     this.retrieveFormValues();
-    this.sqlResource.updateMember(this.member)
+    this.memberData.updateMember(this.member)
       .subscribe(
         (student) => {
           console.log('subscribe result in updateMember');

@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges } from '@angular/core';
+import { StudentSelfReportDataService } from 'src/app/app_shared/services/student-self-report-data.service';
 import { MentorReportsStatusCount } from '../../app_shared/models/mentor-reports-status-count';
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
 @Component({
 
@@ -14,7 +14,7 @@ export class StudentReportsStatusCountsComponent implements OnChanges {
   statusCounts: MentorReportsStatusCount[];
   errorMessage: string;
 
-  constructor(private sqlResource: SqlResource) {
+  constructor(private ssrData: StudentSelfReportDataService) {
   }
 
   public ngOnChanges() {
@@ -36,7 +36,7 @@ export class StudentReportsStatusCountsComponent implements OnChanges {
     console.log('## SSR StatusCounts ngOnChanges has fired, calling sqlResource with ');
     console.log(this.year);
     console.log(this.period);
-    this.sqlResource.getStudentSelfReportsStatusCounts(this.year, this.period)
+    this.ssrData.getStudentSelfReportsStatusCounts(this.year, this.period)
       .subscribe(
         data => {
           this.statusCounts = data;

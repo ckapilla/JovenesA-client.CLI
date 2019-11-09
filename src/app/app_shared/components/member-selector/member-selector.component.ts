@@ -48,7 +48,7 @@ export class MemberSelectorComponent implements OnInit {
 
   public fetchMembers(role: string) {
     console.log('in fetchMembers');
-    this.memberData.getCurrentMemberMiniDTOs(role)
+    this.memberData.getCurrentMemberMiniDTOsByRole(role)
       .subscribe(
         data => { this.members = data; },
         err => console.error('Subscribe error: ' + err),

@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { MentorReport2DataService } from 'src/app/app_shared/services/mentor-report2-data.service';
 import { StudentSelectedService } from 'src/app/app_shared/services/student-selected-service';
 import { constants } from '../../app_shared/constants/constants';
 import { MentorReport2RPT } from '../../app_shared/models/mentor-report2';
 import { SessionService } from '../../app_shared/services/session.service';
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
 @Component({
   selector: 'app-mentor-reports',
@@ -30,7 +30,7 @@ export class MonthlyReports2Component implements OnInit, OnDestroy {
   constructor(
     public currRoute: ActivatedRoute,
     private router: Router,
-    public sqlResource: SqlResource,
+    public mentorReport2Data: MentorReport2DataService,
     public session: SessionService,
     private studentSelected: StudentSelectedService
   ) {
@@ -87,7 +87,7 @@ export class MonthlyReports2Component implements OnInit, OnDestroy {
     this.isLoading = true;
     this.haveCurrentReport = false;
     this.studentGUId = studentGUId;
-    this.sqlResource.getMentorReport2RPTsViaGUID(this.mentorId, studentGUId)
+    this.mentorReport2Data.getMentorReport2RPTsViaGUID(this.mentorId, studentGUId)
       .subscribe(
         data => { this.mentorReports2 = data; },
         err => console.error('Subscribe error: ' + err),
@@ -104,36 +104,6 @@ export class MonthlyReports2Component implements OnInit, OnDestroy {
         }
       );
   }
-
-  // onSelectedStudentName(studentName: string) {
-  //   console.log('$$$$$$$ got selected NAME event');
-  //   this.studentName = '' + studentName;
-  //   this.session.setStudentInContextName(studentName);
-  // }
-
-  // onSelectedStudentId(studentId: number) {
-  //   console.log('$$$$$$$ got selectedId event');
-  //   this.isLoading = true;
-  //   this.haveCurrentReport = false;
-  //   this.studentId = studentId;
-  //   this.sqlResource.getMentorReport2RPTs(this.mentorId, studentId)
-  //     .subscribe(
-  //       data => { this.mentorReports2 = data; },
-  //       err => console.error('Subscribe error: ' + err),
-  //       () => {
-  //         console.log('done: ');
-  //         this.isLoading = false;
-  //         for (const x of this.mentorReports2) {
-  //           if (x.reviewedStatusId === 2086) { // Needs_Setup
-  //             // console.log('current report found; disable add function');
-  //             this.haveCurrentReport = true;
-  //           }
-  //         }
-
-  //       }
-  //     );
-  // }
-
 
   monthlyReportAdd() {
     if (this.haveCurrentReport) {

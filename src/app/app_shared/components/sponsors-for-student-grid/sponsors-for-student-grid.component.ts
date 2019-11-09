@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { SponsorGroupMemberDTO } from '../../models/sponsor-group-memberDTO';
 import { SessionService } from '../../services/session.service';
-import { SqlResource } from '../../services/sql-resource.service';
+import { SponsorGroupDataService } from '../../services/sponsor-group-data.service';
 
 @Component({
   selector: 'app-sponsors-for-student-grid',
@@ -19,13 +19,13 @@ export class SponsorsForStudentGridComponent implements OnInit, OnChanges {
   @Input() sponsorId: number; // only used for change detection
 
   constructor(public session: SessionService,
-    private sqlResource: SqlResource) {
+    private sponsorGroupData: SponsorGroupDataService) {
 
     console.log('in ponsorsForStudentGridComponent constructor with studentId=' + this.studentId);
   }
 
   public ngOnInit() {
-    this.sqlResource.getSponsorGroupMembersForStudent(this.studentId)
+    this.sponsorGroupData.getSponsorGroupMembersForStudent(this.studentId)
       .subscribe(
         data => { this.sponsors = data; console.log('getSponsorMembersForStudent'); console.log(this.sponsors[0]); },
         err => console.error('Subscribe error: ' + err),

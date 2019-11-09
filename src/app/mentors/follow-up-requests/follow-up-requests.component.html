@@ -1,11 +1,5 @@
 <div *ngIf="errorMessage" class="alert alert-danger">
   {{errorMessage}}</div>
-
-<students-for-mentor-grid
-                          (onSelectedStudentName)="onSelectedStudentName($event)"
-                          (onSelectedStudentId)="onSelectedStudentId($event)">
-</students-for-mentor-grid>
-
 <div [ngSwitch]="isLoading">
   <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
     <app-loading-container>
@@ -30,12 +24,12 @@
       <div *ngIf="haveData" style="padding: .5rem" class="text-for-warning">
         <div>
           If you need more information after submitting a request, please send an email to
-          Saray (<a href="mailto:s.martinez@jovenesadelante.org">s.martinez@jovenesadelante.org</a>)
+          Antonio (<a href="mailto:a.lopez@jovenesadelante.org">s.martinez@jovenesadelante.org</a>)
           at the office.
         </div>
         <div>
           Si necesita más información después de presentar una solicitud, por favor envíe un correo electrónico a
-          Saray (<a href="mailto:s.martinez@jovenesadelante.org">s.martinez@jovenesadelante.org</a>) en la oficina.
+          Antonio (<a href="mailto:a.lopez@jovenesadelante.org">s.martinez@jovenesadelante.org</a>) en la oficina.
         </div>
 
 

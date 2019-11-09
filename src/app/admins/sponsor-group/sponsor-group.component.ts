@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SponsorGroup } from 'src/app/app_shared/models/sponsor-group';
+import { SponsorGroupDataService } from 'src/app/app_shared/services/sponsor-group-data.service';
 import { SORTCRITERIA } from '../../app_shared/interfaces/SORTCRITERIA';
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
 @Component({
   selector: 'app-sponsor-group',
@@ -24,7 +24,7 @@ export class SponsorGroupComponent implements OnInit {
 
   constructor(
     public currRoute: ActivatedRoute,
-    public sqlResource: SqlResource,
+    public sponsorGroupData: SponsorGroupDataService,
     public router: Router,
     public formBuilder: FormBuilder,
     public location: Location
@@ -49,7 +49,7 @@ export class SponsorGroupComponent implements OnInit {
   fetchData() {
     this.isLoading = true;
     console.log('in fetchFilteredData');
-    this.sqlResource.getSponsorGroup(this.sponsorGroupId)
+    this.sponsorGroupData.getSponsorGroup(this.sponsorGroupId)
       .subscribe(
         data => { this.sponsorGroup = data; },
         err => this.errorMessage = err,
@@ -78,7 +78,7 @@ export class SponsorGroupComponent implements OnInit {
     console.log('saving admin student ');
     this.isLoading = true;
     this.retrieveFormValues();
-    this.sqlResource.updateSponsorGroup(this.sponsorGroup)
+    this.sponsorGroupData.updateSponsorGroup(this.sponsorGroup)
       .subscribe(
         (sponsorGroup) => {
           // console.log('subscribe result in updateStudent');

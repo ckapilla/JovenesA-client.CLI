@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SponsorGroup } from 'src/app/app_shared/models/sponsor-group';
+import { SponsorGroupDataService } from 'src/app/app_shared/services/sponsor-group-data.service';
+import { StudentSelfReportDataService } from 'src/app/app_shared/services/student-self-report-data.service';
 import { StudentSelfReport } from '../../app_shared/models/student-self-report';
 import { StudentDTO } from '../../app_shared/models/studentDTO';
 import { SessionService } from '../../app_shared/services/session.service';
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
+
 @Component({
   templateUrl: './students-self-reports.component.html',
   styleUrls: ['./students-self-reports.component.css'],
@@ -25,7 +27,8 @@ export class StudentsSelfReportsComponent implements OnInit {
   constructor(
     public currRoute: ActivatedRoute,
     private router: Router,
-    public sqlResource: SqlResource,
+    public sponsorGroupData: SponsorGroupDataService,
+    public studentSelfReportData: StudentSelfReportDataService,
     public session: SessionService) {
 
     console.log('sponsorLetters constructor');
@@ -51,7 +54,7 @@ export class StudentsSelfReportsComponent implements OnInit {
   }
 
   fetchSponsorGroup() {
-    this.sqlResource.getSponsorGroupForStudent(this.studentId)
+    this.sponsorGroupData.getSponsorGroupForStudent(this.studentId)
       .subscribe(
         data => { this.sponsorGroup = data; console.log('getSponsorGroupForStudent'); console.log(this.sponsorGroup); },
         err => console.error('Subscribe error: ' + err),
@@ -71,7 +74,7 @@ export class StudentsSelfReportsComponent implements OnInit {
 
   fetchSelfReports() {
     console.log('fetch reports with sponsorGroupId: ' + this.sponsorGroupId);
-    this.sqlResource.getStudentSelfReports(this.studentId, this.sponsorGroupId)
+    this.studentSelfReportData.getStudentSelfReports(this.studentId, this.sponsorGroupId)
       .subscribe(
         data => { this.studentSelfReports = data; },
         err => console.error('Subscribe error: ' + err),

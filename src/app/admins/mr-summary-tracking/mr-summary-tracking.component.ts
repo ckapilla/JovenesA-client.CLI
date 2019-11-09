@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MentorReport2DataService } from 'src/app/app_shared/services/mentor-report2-data.service';
 import { constants } from '../../app_shared/constants/constants';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 import { MentorReport2RPT } from '../../app_shared/models/mentor-report2';
 import { SessionService } from '../../app_shared/services/session.service';
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
 
 @Component({
@@ -35,7 +35,7 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
   constructor(
     public router: Router,
     public session: SessionService,
-    public sqlResource: SqlResource,
+    public mentorReport2Data: MentorReport2DataService,
     private route: ActivatedRoute
   ) {
 
@@ -112,7 +112,7 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
   fetchFilteredData() {
     this.isLoading = true;
     console.log('in fetchData for MentorReportsByMonth');
-    this.sqlResource.getMentorReportsByMonth(this.selectedYear,
+    this.mentorReport2Data.getMentorReportsByMonth(this.selectedYear,
       this.selectedMonth,
       this.selectedMRReviewedStatus)
       .subscribe(

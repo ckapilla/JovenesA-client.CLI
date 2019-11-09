@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { FollowUpDataService } from 'src/app/app_shared/services/follow-up-data.service';
+import { StudentSelectedService } from 'src/app/app_shared/services/student-selected-service';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 import { FollowUpRequestRPT } from '../../app_shared/models/follow-up-requestRPT';
 import { SessionService } from '../../app_shared/services/session.service';
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
 @Component({
   selector: 'app-follow-up-requests',
   templateUrl: 'follow-up-requests.component.html'
 })
-export class FollowUpRequestsComponent implements OnInit {
+export class FollowUpRequestsComponent implements OnInit, OnDestroy {
   followUpRequests: FollowUpRequestRPT[];
   isLoading: boolean;
   smileys: Array<string>;
@@ -17,23 +19,57 @@ export class FollowUpRequestsComponent implements OnInit {
   errorMessage: string;
   successMessage: string;
   studentId: number;
+  studentGUId: string;
+  mentorId: number;
   studentName: string;
   haveData = false;
+  private subscription: Subscription;
 
 
-  constructor(public sqlResource: SqlResource,
+  constructor(public followUpData: FollowUpDataService,
     public router: Router,
-    public session: SessionService
+    public session: SessionService,
+    private studentSelected: StudentSelectedService
   ) { }
 
   ngOnInit() {
+    console.log('followUpRequest ngOnInit');
+    // this.mentorId = this.currRoute.snapshot.params['mentorId'];
+    this.mentorId = this.session.getUserId();
+    console.log('mentorId ' + this.mentorId);
+
+    // console.log('(((((((((((((((((Assistance ngOnInit)))))))))))))');
+    this.subscribeForStudentGUIds();
+    // console.log('after subscribe' + this.studentSelected.getInternalSubject().observers.length);
 
   }
+  ngOnDestroy() {
+    // console.log('{{{{{{{{{{{{{Assistance ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
+    // this.studentSelected.unsubscribe();
+    this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
+    console.log(' after unsubscribe ' + this.studentSelected.getInternalSubject().observers.length);
+  }
 
-  fetchData() {
+  subscribeForStudentGUIds() {
+    console.log('Assistance set up studentGUId subscription');
+    this.subscription = this.studentSelected.subscribeForStudentGUIds()
+      // .pipe(takeWhile(() => this.notDestroyed))
+      .subscribe(message => {
+        this.studentGUId = message;
+        console.log('MR new StudentGUId received' + this.studentGUId);
+        if (this.studentGUId && this.studentGUId !== '0000') {
+          this.fetchData(this.studentGUId);
+        }
+        // console.log('subscribe next ' + this.studentSelected.getInternalSubject().observers.length);
+      });
+  }
+
+  fetchData(studentGUId: string) {
     this.isLoading = true;
-    console.log('in fetchData for mentor  FollowUpRequests with studentId' + this.studentId);
-    this.sqlResource.getFollowUpRequestsForStudent(this.studentId)
+    this.studentGUId = studentGUId;
+    console.log('in fetchData for Assistance with studentId' + this.studentGUId);
+    this.followUpData.getFollowUpRequestsForStudentByGUID(this.studentGUId)
       .subscribe(
         data => { this.followUpRequests = data; },
         err => console.error('Subscribe error: ' + err),
@@ -45,21 +81,12 @@ export class FollowUpRequestsComponent implements OnInit {
       );
   }
 
-
   followUpRequestAdd() {
     console.log('in follow-up-requests: FollowUpRequestAdd, ready to navigate');
-    const target = '/mentors/follow-up-requests-add';
-    this.router.navigateByUrl(target);
-  }
-  onSelectedStudentName(studentName: string) {
-    console.log('$$$$$$$ got selected NAME event');
-    this.studentName = '' + studentName;
-    this.session.setStudentInContextName(studentName);
-  }
-
-  onSelectedStudentId(studentId: number) {
-    console.log('$$$$$$$ got selectedId event');
-    this.studentId = studentId;
-    this.fetchData();
+    if (this.studentGUId !== null) {
+      const link = ['/mentors/follow-up-requests-add', { mentorId: this.mentorId, studentGUId: this.studentGUId }];
+      console.log('navigating to ' + JSON.stringify(link));
+      this.router.navigate(link);
+    }
   }
 }

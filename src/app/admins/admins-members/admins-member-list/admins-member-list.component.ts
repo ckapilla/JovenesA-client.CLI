@@ -1,13 +1,13 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MemberDataService } from 'src/app/app_shared/services/member-data.service';
 import { constants } from '../../../app_shared/constants/constants';
 import { SELECTITEM } from '../../../app_shared/interfaces/SELECTITEM';
 import { SORTCRITERIA } from '../../../app_shared/interfaces/SORTCRITERIA';
 import { MemberWithAnyRelatedStudent } from '../../../app_shared/models/member-with-any-related-student';
 import { ColumnSortService } from '../../../app_shared/services/column-sort.service';
 import { SessionService } from '../../../app_shared/services/session.service';
-import { SqlResource } from '../../../app_shared/services/sql-resource.service';
 
 
 @Component({
@@ -27,7 +27,7 @@ export class AdminsMemberListComponent implements OnInit {
   sortCriteria: SORTCRITERIA;
 
   constructor(
-    public sqlResource: SqlResource,
+    public memberData: MemberDataService,
     public router: Router,
     private session: SessionService,
     private columnSorter: ColumnSortService
@@ -79,7 +79,7 @@ export class AdminsMemberListComponent implements OnInit {
   fetchFilteredData() {
     this.isLoading = true;
     console.log('in fetchFilteredData');
-    this.sqlResource.getMemberWithAnyRelatedStudent(this.selectedType.label, Number(this.selectedStatus.value))
+    this.memberData.getMemberWithAnyRelatedStudent(this.selectedType.label, Number(this.selectedStatus.value))
       .subscribe(
         data => { this.members = data; },
         err => this.errorMessage = err,

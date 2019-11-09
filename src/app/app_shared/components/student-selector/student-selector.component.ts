@@ -13,6 +13,7 @@ export class StudentSelectorComponent implements OnInit {
   errorMessage = '';
   haveData: boolean;
   @Output() onSelectedStudentId = new EventEmitter<number>();
+  @Output() onSelectedStudentGUId = new EventEmitter<string>();
   constructor(
     private studentData: StudentDataService) {
   }

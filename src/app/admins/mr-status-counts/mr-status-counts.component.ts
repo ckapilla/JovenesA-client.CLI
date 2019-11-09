@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges } from '@angular/core';
+import { MentorReport2DataService } from 'src/app/app_shared/services/mentor-report2-data.service';
 import { MentorReportsStatusCount } from '../../app_shared/models/mentor-reports-status-count';
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
 @Component({
 
@@ -14,7 +14,7 @@ export class MentorReportsStatusCountsComponent implements OnChanges {
   statusCounts: MentorReportsStatusCount[];
   errorMessage: string;
 
-  constructor(private sqlResource: SqlResource) {
+  constructor(private mentorReportsData: MentorReport2DataService) {
   }
 
   public ngOnChanges() {
@@ -37,7 +37,7 @@ export class MentorReportsStatusCountsComponent implements OnChanges {
     console.log(this.year);
     console.log(this.month);
     if (+ this.month > 0) {
-      this.sqlResource.getMentorReportsStatusCounts(this.year, this.month)
+      this.mentorReportsData.getMentorReportsStatusCounts(this.year, this.month)
         .subscribe(
           data => {
             this.statusCounts = data;

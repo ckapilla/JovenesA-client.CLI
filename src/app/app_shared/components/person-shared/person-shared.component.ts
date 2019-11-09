@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Member } from '../../models/member';
-import { SqlResource } from '../../services/sql-resource.service';
+import { MemberDataService } from '../../services/member-data.service';
 
 @Component({
   selector: 'app-person-shared',
@@ -21,7 +21,7 @@ export class PersonSharedComponent implements OnInit {
   member: Member;
 
   constructor(
-    public sqlResource: SqlResource,
+    public memberData: MemberDataService,
     public formBuilder: FormBuilder
   ) {
     this.myForm = formBuilder.group({
@@ -50,7 +50,7 @@ export class PersonSharedComponent implements OnInit {
 
   fetchData() {
     console.log('fetchData for person-shared%%%%%%%%%%%%% ' + this.memberGUId);
-    this.sqlResource.getMemberByGUId(this.memberGUId)
+    this.memberData.getMemberByGUId(this.memberGUId)
       .subscribe(
         data => {
           this.member = data;

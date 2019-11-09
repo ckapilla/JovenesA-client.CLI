@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { FollowUpEvent } from 'src/app/app_shared/models/follow-up-event';
+import { FollowUpDataService } from 'src/app/app_shared/services/follow-up-data.service';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 import { FollowUpRequest } from '../../app_shared/models/follow-up-request';
 import { SessionService } from '../../app_shared/services/session.service';
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
 import { TranslationService } from '../../app_shared/services/translation.service';
 
 @Component({
@@ -35,7 +35,7 @@ export class FollowUpRequestsAddComponent implements OnInit {
   constructor(
     public currRoute: ActivatedRoute,
     private router: Router,
-    public sqlResource: SqlResource,
+    public followUpData: FollowUpDataService,
     private _fb: FormBuilder,
     private session: SessionService,
     private xlator: TranslationService
@@ -108,7 +108,7 @@ export class FollowUpRequestsAddComponent implements OnInit {
       window.scrollTo(0, 0);
       return false;
     }
-    this.sqlResource.postFollowUpRequest(this.followUpRequest)
+    this.followUpData.postFollowUpRequest(this.followUpRequest)
       .subscribe(
         (response) => {
           console.log('followUp Request completed -- sending Initial Event with response');
@@ -139,14 +139,14 @@ export class FollowUpRequestsAddComponent implements OnInit {
     initialEvent.eventDateTime = request.requestDateTime;
     initialEvent.enteredById = this.session.getUserId();
     initialEvent.requestStatusId = 2092;  // assigned
-    initialEvent.assignedToId = 2350; // everything starts with Saray
+    initialEvent.assignedToId = 2433; // everything starts with Antonio
     initialEvent.assignedToRoleId = 2068; // everything starts with Admin
     initialEvent.comments_English = 'Initial request received';
     initialEvent.comments_Spanish = 'Solicitud inicial recibida';
     console.log('ready to submit intitial event with');
     console.log(initialEvent);
 
-    this.sqlResource.postFollowUpEvent(initialEvent)
+    this.followUpData.postFollowUpEvent(initialEvent)
       .subscribe(
         (response) => {
           console.log('have response to followUpRequest post with response ');

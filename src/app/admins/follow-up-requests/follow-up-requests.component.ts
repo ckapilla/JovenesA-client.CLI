@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FollowUpDataService } from 'src/app/app_shared/services/follow-up-data.service';
 import { constants } from '../../app_shared/constants/constants';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 import { FollowUpRequestRPT } from '../../app_shared/models/follow-up-requestRPT';
 import { SessionService } from '../../app_shared/services/session.service';
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
 @Component({
   selector: 'app-follow-up-requests',
   styleUrls: ['./follow-up-requests.component.css'],
@@ -23,7 +23,7 @@ export class FollowUpRequestsComponent implements OnInit {
   showAddDetails: boolean;
 
 
-  constructor(public sqlResource: SqlResource,
+  constructor(public followUpData: FollowUpDataService,
     public router: Router,
     public session: SessionService
   ) {
@@ -41,7 +41,7 @@ export class FollowUpRequestsComponent implements OnInit {
   fetchFilteredData() {
     this.isLoading = true;
     console.log('in fetchFilteredData for FollowUpRequests');
-    this.sqlResource.getFollowUpRequests(this.selectedFollowUpStatusId)
+    this.followUpData.getFollowUpRequests(this.selectedFollowUpStatusId)
       .subscribe(
         data => { this.followUpRequests = data; },
         err => console.error('Subscribe error: ' + err),

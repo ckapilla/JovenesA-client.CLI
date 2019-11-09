@@ -55,7 +55,7 @@ export class StudentsForSponsorGridComponent implements OnInit {
 
   public selectStudent(studentGUId: string, idx: number) {
     console.log('student selected studentGUId: ' + studentGUId + 'idx: ' + idx);
-    const studentName: string = this.students[idx].studentName; //  + ', ' + this.studentMentors[idx].studentFirstNames;
+    const studentName: string = this.students[idx].studentName;
     this.studentGUId = studentGUId;
     this.studentSelected.notifyNewStudentGUId(studentGUId);
   }

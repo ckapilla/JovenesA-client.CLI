@@ -1,4 +1,4 @@
- export class StudentMentorDTO {
+ export class StudentMentorDTOXX {
 
       constructor(
         public studentId: string, // StudentID (Primary key)
