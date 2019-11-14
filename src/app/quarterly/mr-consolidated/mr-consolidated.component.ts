@@ -2,9 +2,9 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { MiscDataService } from 'src/app/app_shared/services/misc-data.service';
 import { StudentSelectedService } from 'src/app/app_shared/services/student-selected-service';
 import { SessionService } from '../../app_shared/services/session.service';
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
 import { QuarterlyDataService } from '../quarterly-data.service';
 import { QuarterlyReport } from '../quarterly-report';
 
@@ -33,7 +33,7 @@ export class MrConsolidatedComponent implements OnInit, OnDestroy {
   constructor(
     public currRoute: ActivatedRoute,
     private router: Router,
-    public sqlResource: SqlResource,
+    public miscData: MiscDataService,
     private _fb: FormBuilder,
     public session: SessionService,
     public quarterlyData: QuarterlyDataService,

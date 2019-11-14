@@ -33,7 +33,7 @@ export class MentorReportsStatusCountsComponent implements OnChanges {
     //     statusCount: 7
     //   }
     // ];
-    console.log('ngOnChanges has fired, calling sqlResource with ');
+    console.log('ngOnChanges has fired, calling data service with ');
     console.log(this.year);
     console.log(this.month);
     if (+ this.month > 0) {

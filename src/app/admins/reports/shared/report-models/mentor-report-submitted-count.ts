@@ -4,6 +4,7 @@ export class MentorReportSubmittedCount {
     public mentorName: string,
     public mentorId: string,
     public studentName: string,
+    public mentorAssignedDate: Date,
     public submittedCount: number,
     public latestDate: Date
   ) { }

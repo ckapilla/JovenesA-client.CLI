@@ -42,7 +42,7 @@ export class SponsorGroupComponent implements OnInit {
   ngOnInit() {
     this.sponsorGroup = new SponsorGroup();
     this.sponsorGroupId = this.currRoute.snapshot.params['id'];
-    console.log('sqlResource with sponsorGroupId: ' + this.sponsorGroupId);
+    console.log('data service with sponsorGroupId: ' + this.sponsorGroupId);
     this.fetchData();
   }
 

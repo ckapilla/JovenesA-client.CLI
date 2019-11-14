@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { StudentSponsorLetterDataService } from 'src/app/app_shared/services/student-sponsor-letter-data.service';
 import { SponsorLetter } from '../../app_shared/models/sponsor-letter';
 import { StudentDTO } from '../../app_shared/models/studentDTO';
 import { SessionService } from '../../app_shared/services/session.service';
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
 @Component({
   templateUrl: './students-sponsor-letters.component.html',
   styleUrls: ['./students-sponsor-letters.component.css'],
@@ -23,7 +23,7 @@ export class StudentsSponsorLettersComponent implements OnInit {
   constructor(
     public currRoute: ActivatedRoute,
     private router: Router,
-    public sqlResource: SqlResource,
+    public studentSponsorLetterData: StudentSponsorLetterDataService,
     public session: SessionService) {
 
     console.log('sponsorLetters constructor');
@@ -45,7 +45,7 @@ export class StudentsSponsorLettersComponent implements OnInit {
   onSelectedSponsorGroupId(sponsorGroupId: number) {
     console.log('$$$$$$$ got selectedId event sponsorGroupId: ' + sponsorGroupId);
     this.sponsorGroupId = sponsorGroupId;
-    this.sqlResource.getSponsorLetters(this.studentId, sponsorGroupId)
+    this.studentSponsorLetterData.getSponsorLetters(this.studentId, sponsorGroupId)
       .subscribe(
         data => { this.sponsorLetters = data; },
         err => console.error('Subscribe error: ' + err),

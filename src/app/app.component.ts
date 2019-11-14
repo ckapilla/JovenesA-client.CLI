@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './app_shared/services/auth.service';
 import { SessionService } from './app_shared/services/session.service';
-import { SqlResource } from './app_shared/services/sql-resource.service';
 
 /**
  * This class represents the main application component. Within the @Routes annotation is the configuration of the
@@ -18,8 +17,7 @@ export class AppComponent {
   constructor(
     private auth: AuthService,
     session: SessionService,
-    router: Router,
-    sqlResource: SqlResource
+    router: Router
   ) {
     // if (session.getUserId() === 0) {
     //   auth.tryGetAuthResultFromStorage();

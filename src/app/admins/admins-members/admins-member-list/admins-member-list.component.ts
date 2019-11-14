@@ -20,6 +20,8 @@ export class AdminsMemberListComponent implements OnInit {
   _selectedType: SELECTITEM;
   memberStatuses: SELECTITEM[];
   _selectedStatus: SELECTITEM;
+  studentStatuses: SELECTITEM[];
+  _selectedStudentStatus: SELECTITEM;
   members: MemberWithAnyRelatedStudent[];
   isLoading: boolean;
   errorMessage: string;
@@ -36,6 +38,7 @@ export class AdminsMemberListComponent implements OnInit {
     console.log('Hi from member List Ctrl controller function');
     this.memberStatuses = constants.memberStatuses;
     this.memberTypes = constants.memberTypes;
+    this.studentStatuses = constants.studentStatuses;
     this.isLoading = false;
   }
 
@@ -47,6 +50,16 @@ export class AdminsMemberListComponent implements OnInit {
   public get selectedStatus() {
     return this._selectedStatus;
   }
+
+  public set selectedStudentStatus(status: SELECTITEM) {
+    this._selectedStudentStatus = status;
+    this.fetchFilteredData();
+  }
+
+  public get selectedStudentStatus() {
+    return this._selectedStudentStatus;
+  }
+
 
   public set selectedType(type: SELECTITEM) {
     this._selectedType = type;
@@ -69,6 +82,7 @@ export class AdminsMemberListComponent implements OnInit {
     this._selectedType = this.memberTypes[idx];
     console.log('statuses[0] = ' + this.memberStatuses[0].value);
     this._selectedStatus = this.memberStatuses[0];
+    this._selectedStudentStatus = this.studentStatuses[0];
     this.fetchFilteredData();
   }
 
@@ -79,7 +93,8 @@ export class AdminsMemberListComponent implements OnInit {
   fetchFilteredData() {
     this.isLoading = true;
     console.log('in fetchFilteredData');
-    this.memberData.getMemberWithAnyRelatedStudent(this.selectedType.label, Number(this.selectedStatus.value))
+    this.memberData.getMemberWithAnyRelatedStudent(this.selectedType.label, Number(this.selectedStatus.value),
+      Number(this.selectedStudentStatus.value))
       .subscribe(
         data => { this.members = data; },
         err => this.errorMessage = err,

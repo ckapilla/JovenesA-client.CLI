@@ -4,7 +4,7 @@ export class StudentDTO {
     public studentId: number, // StudentID (Primary key)
     public studentName: string, // StudentName
     public email: string, // Email
-    public studentAsMemberGUId: string,
+    public memberRecordGUId: string,
     public gender: string, // Gender
     public status: string, // Status
     public esStatus: string, // Status
@@ -38,6 +38,7 @@ export class StudentDTO {
     public joinedFrom?: string,
     public photoUrl?: string,
     public studentGUId?: string,
-    public mentorGUId?: string
+    public mentorGUId?: string,
+    public mentorAssignedDate?: Date
   ) { }
 }

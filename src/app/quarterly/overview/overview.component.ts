@@ -81,7 +81,7 @@ export class OverviewComponent implements OnInit {
   fetchData() {
     console.log('fetchData for QR Overview');
     this.isLoading = true;
-    // this.sqlResource.getStudentSelfReportsByPeriod('2019', '3', '0', this.studentGUId)
+    // this.miscData.getStudentSelfReportsByPeriod('2019', '3', '0', this.studentGUId)
     this.quarterlyData.getQRMinisForPeriod(2019, 3, 0)
       .subscribe(
         data => { this.qrMinis = data; },

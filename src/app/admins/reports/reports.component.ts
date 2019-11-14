@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver, OnDestroy, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { MentorReportsSubmittedComponent } from './mentor-reports-submitted/mentor-reports-submitted.component';
 import { SponsorSummariesSentComponent } from './sponsor-summaries-sent/sponsor-summaries-sent.component';
 
@@ -7,7 +7,7 @@ import { SponsorSummariesSentComponent } from './sponsor-summaries-sent/sponsor-
   styleUrls: ['reports.component.css']
 })
 
-export class ReportsComponent implements OnDestroy {
+export class ReportsComponent implements OnInit, OnDestroy {
 
   selectedReport: string;
   componentRef: any;
@@ -27,13 +27,23 @@ export class ReportsComponent implements OnDestroy {
   constructor(
     private resolver: ComponentFactoryResolver
   ) {
-    this.selectedReport = '';
+
     this.isLoading = false;
+  }
+  ngOnInit() {
+    this.selectedReport = '';
   }
 
   ngOnDestroy() {
     if (this.componentRef) {
       this.componentRef.destroy();
+    }
+  }
+
+  setSelectedReport(reportNum: string) {
+    if (reportNum > '0') {
+      console.log('selected ' + this.reports[+reportNum].label);
+      this.createComponent(this.reports[+reportNum].comp);
     }
   }
 
@@ -43,10 +53,4 @@ export class ReportsComponent implements OnDestroy {
     this.componentRef = this.entry.createComponent(factory);
   }
 
-  setSelectedReport(reportNum: string) {
-    if (reportNum > '0') {
-      console.log('selected ' + this.reports[+reportNum].label);
-      this.createComponent(this.reports[+reportNum].comp);
-    }
-  }
 }

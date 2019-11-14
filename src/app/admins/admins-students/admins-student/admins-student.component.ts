@@ -2,7 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SqlResource } from 'src/app/app_shared/services/sql-resource.service';
+import { MiscDataService } from 'src/app/app_shared/services/misc-data.service';
 import { StudentDataService } from 'src/app/app_shared/services/student-data.service';
 import { constants } from '../../../app_shared/constants/constants';
 import { SELECTITEM } from '../../../app_shared/interfaces/SELECTITEM';
@@ -54,7 +54,7 @@ export class AdminsStudentComponent implements OnInit {
     private router: Router,
     private session: SessionService,
     public studentData: StudentDataService,
-    public sqlResource: SqlResource,
+    public miscData: MiscDataService,
     public formBuilder: FormBuilder,
     public location: Location
   ) {
@@ -122,12 +122,12 @@ export class AdminsStudentComponent implements OnInit {
   ngOnInit() {
     console.log('admins Student ngOnInit');
     this.studentGUIdParam = this.currRoute.snapshot.params['guid'];
-    console.log('sqlResource with studentGUIdParam: ' + this.studentGUIdParam);
+    console.log('data service with studentGUIdParam: ' + this.studentGUIdParam);
     this.fetchStudentDTOData();
   }
 
   fetchStudentDTOData() {
-    // console.log('sqlResource for getStudents: ' +
+    // console.log('data service for getStudents: ' +
     //        'status: ' + this.selectedStatus + ' ' +
     //        'yearjoined: ' + this.selectedYearJoined +  + ' ' +
     //        'gradyear: ' + this.selectedGradYear
@@ -137,7 +137,7 @@ export class AdminsStudentComponent implements OnInit {
       .subscribe(
         data => {
           this.studentDTO = data;
-          console.log('#############studentAsMemberGUId ' + this.studentDTO.studentAsMemberGUId);
+          console.log('#######studentDTO: MemberRecordGUId ' + this.studentDTO.memberRecordGUId);
           this.studentDTO = this.getNumericStatus(this.studentDTO);
         },
         err => { this.errorMessage = err; },
@@ -295,7 +295,7 @@ export class AdminsStudentComponent implements OnInit {
   }
 
   gotoMemberRecord() {
-    const link = ['admins/members/member', { guid: this.studentDTO.studentAsMemberGUId }];
+    const link = ['admins/members/member', { guid: this.studentDTO.memberRecordGUId }];
     console.log('navigating to ' + link);
     this.router.navigate(link);
 
@@ -318,7 +318,7 @@ export class AdminsStudentComponent implements OnInit {
   }
 
   fetchPrepas(): SELECTITEM[] {
-    this.sqlResource.getPrepaNames()
+    this.miscData.getPrepaNames()
       .subscribe(
         data => { this.prepas = data; console.log('getPrepaNames'); console.log(this.prepas[0]); },
         err => console.error('Subscribe error: ' + err),
@@ -329,7 +329,7 @@ export class AdminsStudentComponent implements OnInit {
   }
 
   fetchUniversities(): SELECTITEM[] {
-    this.sqlResource.getUniversityNames()
+    this.miscData.getUniversityNames()
       .subscribe(
         data => { this.universities = data; console.log('getUniversityNames'); console.log(this.universities[0]); },
         err => console.error('Subscribe error: ' + err),
@@ -340,7 +340,7 @@ export class AdminsStudentComponent implements OnInit {
   }
 
   fetchSponsorGroups(): SELECTITEM[] {
-    this.sqlResource.getSponsorGroups()
+    this.miscData.getSponsorGroups()
       .subscribe(
         data => { this.sponsorGroups = data; console.log('getSponsorGroups'); console.log(this.sponsorGroups[0]); },
         err => console.error('Subscribe error: ' + err),
@@ -351,7 +351,7 @@ export class AdminsStudentComponent implements OnInit {
   }
 
   fetchMentors(): SELECTITEM[] {
-    this.sqlResource.getMentorNamesByGUId()
+    this.miscData.getMentorNamesByGUId()
       .subscribe(
         data => { this.mentors = data; console.log('getMentorNames'); console.log(this.mentors[0]); },
         err => console.error('Subscribe error: ' + err),

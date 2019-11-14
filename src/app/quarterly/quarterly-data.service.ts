@@ -12,7 +12,7 @@ export class QuarterlyDataService {
 
   constructor(private http: HttpClient,
     private webApiPrefixService: UrlService) {
-    // console.log('sqlResource constructor');
+    // console.log('data service constructor');
     this.WebApiPrefix = webApiPrefixService.getWebApiPrefix();
   }
 

@@ -43,7 +43,7 @@ export class Member {
     public comments?: string,
     public photoUrl?: string,
 
-    public studentGUId?: string,
+    public studentRecordGUId?: string,
     public memberGUId?: string,
     public lastMentorMeeting?: Date
 

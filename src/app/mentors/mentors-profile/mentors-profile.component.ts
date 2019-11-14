@@ -58,7 +58,7 @@ export class MentorsProfileComponent implements OnInit {
     //   .map(params => params['id'])
     //   .subscribe((id) => {
     const id = this.currRoute.snapshot.params['id'];
-    console.log('calling sqlResource with mentorId: ' + id);
+    console.log('calling data service with mentorId: ' + id);
     this.isLoading = true;
     this.memberData.getMember(id)
       .subscribe(

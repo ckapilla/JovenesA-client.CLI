@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MiscDataService } from 'src/app/app_shared/services/misc-data.service';
+import { StudentSponsorLetterDataService } from 'src/app/app_shared/services/student-sponsor-letter-data.service';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 import { SponsorLetter } from '../../app_shared/models/sponsor-letter';
-import { SqlResource } from '../../app_shared/services/sql-resource.service';
 
 
 
@@ -32,7 +33,8 @@ export class SponsorLettersAddComponent
     constructor(
         public currRoute: ActivatedRoute,
         private router: Router,
-        public sqlResource: SqlResource,
+        public miscData: MiscDataService,
+        public studentSponsorLetterData: StudentSponsorLetterDataService,
         private _fb: FormBuilder
     ) {
 
@@ -133,7 +135,7 @@ export class SponsorLettersAddComponent
         }
 
 
-        this.sqlResource.postSponsorLetter(this.sponsorLetter,
+        this.studentSponsorLetterData.postSponsorLetter(this.sponsorLetter,
             this.sponsorLetter.studentId,
             this.sponsorLetter.sponsorGroupId)
             .subscribe(

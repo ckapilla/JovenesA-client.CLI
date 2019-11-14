@@ -113,7 +113,7 @@ export class AdminsMemberComponent implements OnInit {
 
   fetchMemberData() {
     const guid = this.currRoute.snapshot.params['guid'];
-    console.log('sqlResource with MemberGUId: ' + guid);
+    console.log('data service with MemberGUId: ' + guid);
     this.isLoading = true;
     this.memberData.getMemberByGUId(guid)
       .subscribe(
@@ -184,7 +184,7 @@ export class AdminsMemberComponent implements OnInit {
       photoUrl: member.photoUrl,
       lastMentorMeeting: member.lastMentorMeeting,
 
-      studentGUId: member.studentGUId,
+      studentGUId: member.studentRecordGUId,
       memberGUId: member.memberGUId,
     });
   }

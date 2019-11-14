@@ -18,7 +18,7 @@ export class BaseDataService {
   //////////////////////////////////////////////////
 
   protected handleError(error: any) {
-    console.log('sqlResource handle error');
+    console.log('data service handle error');
     const errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
     console.log(errMsg.message);

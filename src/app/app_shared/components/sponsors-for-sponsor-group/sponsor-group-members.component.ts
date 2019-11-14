@@ -25,7 +25,7 @@ export class SponsorGroupMembersComponent implements OnInit, OnChanges {
   @Input() newMemberNotification: string;
 
   constructor(public session: SessionService,
-    private sqlResource: SponsorGroupDataService) {
+    private sponsorGroupData: SponsorGroupDataService) {
 
     console.log('in SponsorsForSponsorGroupComponent constructor with SponsorGroupId=' + this.sponsorGroupId);
   }
@@ -34,7 +34,7 @@ export class SponsorGroupMembersComponent implements OnInit, OnChanges {
     this.fetchData();
   }
   fetchData() {
-    this.sqlResource.getMembersForSponsorGroup(this.sponsorGroupId)
+    this.sponsorGroupData.getMembersForSponsorGroup(this.sponsorGroupId)
       .subscribe(
         data => { this.sponsorGroupMembers = data; console.log('getMembersForSponsorGroup'); console.log(this.sponsorGroupMembers[0]); },
         err => console.error('Subscribe error: ' + err),
@@ -57,7 +57,7 @@ export class SponsorGroupMembersComponent implements OnInit, OnChanges {
 
   deleteSponsorGroupMember(sponsorGroupId: number, sponsorGroupMemberId: number) {
     console.log('delete click for ' + sponsorGroupId + '|' + sponsorGroupMemberId);
-    this.sqlResource.deleteSponsorGroupMember(sponsorGroupId, sponsorGroupMemberId)
+    this.sponsorGroupData.deleteSponsorGroupMember(sponsorGroupId, sponsorGroupMemberId)
       .subscribe(
         data => {
           console.log('deleteSponsorsForSponsorGroup');

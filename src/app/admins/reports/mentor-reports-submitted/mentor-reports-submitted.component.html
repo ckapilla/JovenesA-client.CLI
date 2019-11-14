@@ -18,6 +18,7 @@
             <tr>
               <th app-sortable-column="mentorName" (onSortColumn)="onSortColumn($event)">Mentor</th>
               <th app-sortable-column="studentName" (onSortColumn)="onSortColumn($event)">Student</th>
+              <th app-sortable-column="mentorAssignedDate" (onSortColumn)="onSortColumn($event)">Mentor Start</th>
               <th app-sortable-column="submittedCount" sort-direction="asc" (onSortColumn)="onSortColumn($event)">Total
                 Submitted</th>
               <th app-sortable-column="latestDate" (onSortColumn)="onSortColumn($event)">Latest Month</th>
@@ -33,6 +34,9 @@
               </td>
               <td class="report-row">
                 {{ row.studentName }}
+              </td>
+              <td class="report-row">
+                {{ row.mentorAssignedDate | truncateDate }}
               </td>
               <td class="report-row">
                 {{ row.submittedCount }}

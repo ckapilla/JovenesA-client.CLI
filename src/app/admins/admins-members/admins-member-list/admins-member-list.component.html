@@ -14,9 +14,14 @@
           <option *ngFor="let type of memberTypes" [ngValue]="type">{{type.label}}</option>
         </select>
         &nbsp;
-        <label for="StatusSelector">Status:</label>
+        <label for="StatusSelector">Member Status:</label>
         <select name="StatusSelector" [(ngModel)]="selectedStatus">
           <option *ngFor="let status of memberStatuses" [ngValue]="status">{{status.label}}</option>
+        </select>
+        &nbsp;
+        <label for="StudentStatusSelector">Student Status:</label>
+        <select name="StudentStatusSelector" [(ngModel)]="selectedStudentStatus">
+          <option *ngFor="let status of studentStatuses" [ngValue]="status">{{status.label}}</option>
         </select>
       </form>
 

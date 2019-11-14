@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
 
 
 @Injectable({ providedIn: 'root' })
@@ -11,7 +10,7 @@ export class TranslationService {
   azureKey2: string;
 
   constructor(private http: HttpClient) {
-    // console.log('sqlResource constructor');
+    // console.log('data service constructor');
     this.xlateEndpoint = 'https://westus.api.cognitive.microsoft.com/text/analytics/v2.0';
     this.azureKey1 = '7a6a2fee9e1d44f69a0808557fa06207';
     this.azureKey2 = '1d1a0b9335004a6d843aaafb053c8569';
@@ -34,19 +33,19 @@ export class TranslationService {
     return result;
   }
 
-//////////////////////////////////////////////////
-/// Utilities
-//////////////////////////////////////////////////
+  //////////////////////////////////////////////////
+  /// Utilities
+  //////////////////////////////////////////////////
 
 
   // private extractData(res: Response) {
-  //   console.log('sqlResource extractData');
+  //   console.log('data service extractData');
   //   const body = res.json();
   //   return body.data || { };
   // }
 
-  private handleError (error: any) {
-    console.log('sqlResource handle error');
+  private handleError(error: any) {
+    console.log('data service handle error');
     const errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
     console.log(errMsg.message);
@@ -58,5 +57,3 @@ export class TranslationService {
     return Observable.throw(errMsg);
   }
 }
-
-

@@ -212,8 +212,8 @@ export class AuthService {
       this.session.setStudentId((<any>app_metadata)['studentId']);
       console.log('studentId: ' + this.session.getStudentId());
 
-      this.session.setStudentGUId((<any>app_metadata)['studentGUId']);
-      console.log('studentGUId: ' + this.session.getStudentGUId());
+      this.session.setStudentGUId((<any>app_metadata)['studentRecordGUId']);
+      console.log('studentRecordGUId: ' + this.session.getStudentGUId());
 
       this.session.setUserGUId((<any>app_metadata)['memberGUId']);
       console.log('memberGUId: ' + this.session.getUserGUId());
@@ -238,7 +238,7 @@ export class AuthService {
 
 
   public UpdateLastLogin(): void {
-    // console.log('calling SqlResource UpdateLastLogin with useId' + this.session.userId);
+    // console.log('calling data service UpdateLastLogin with useId' + this.session.userId);
     this.memberData.UpdateLastLogin(this.session.userId)
       .subscribe(
         data => {/*console.log('');*/ },

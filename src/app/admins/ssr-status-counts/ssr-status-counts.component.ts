@@ -33,7 +33,7 @@ export class StudentReportsStatusCountsComponent implements OnChanges {
     //     statusCount: 7
     //   }
     // ];
-    console.log('## SSR StatusCounts ngOnChanges has fired, calling sqlResource with ');
+    console.log('## SSR StatusCounts ngOnChanges has fired, calling data service with ');
     console.log(this.year);
     console.log(this.period);
     this.ssrData.getStudentSelfReportsStatusCounts(this.year, this.period)

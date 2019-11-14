@@ -175,6 +175,32 @@ export class MentorReportSummaryUpdatesComponent
     this.navigateBackInContext();
   }
 
+  onDelete() {
+    console.log('delete with userID = ' + this.session.getUserId());
+    // tslint:disable-next-line: triple-equals
+    if (this.session.getUserId() === 1216 || this.session.getUserId() === 2094) {
+      const response = window.confirm('Caution this action will permanently delete this mentor report! Proceed? ' + this.mentorReport2.mentorReportId);
+      if (response === true) {
+        this.mentorReportData.deleteMentorReport2(this.mentorReport2.mentorReportId)
+          .subscribe(
+            () => {
+              alert('Successfully Deleted');
+              this.navigateBackInContext();
+            }
+            ,
+            (error) => {
+              this.errorMessage = <any>error;
+              this.isLoading = false;
+            }
+          );
+      }
+    } else {
+      alert('This function is only available for Nora or Chris. Please ask one of them if you need to delete a report.');
+    }
+    return false;
+  }
+
+
   navigateBackInContext() {
     const target = '/admins/mentor-reports/summary-tracking';
     console.log('after Submit or Cancel navigating to ' + target);

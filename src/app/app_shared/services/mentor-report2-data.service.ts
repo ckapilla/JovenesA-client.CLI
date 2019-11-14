@@ -64,6 +64,13 @@ export class MentorReport2DataService extends BaseDataService {
     return this.http.post(url, body, { headers: headers });
   }
 
+
+  public deleteMentorReport2(mentorReportId: number): Observable<MentorReport2RPT> {
+    const url = this.WebApiPrefix + 'mentor_reports2/' + mentorReportId;
+    console.log('ready to delete mentorReport ' + url);
+    return this.http.delete(url);
+  }
+
   public getMentorReportsByPeriod(year: string, period: string,
     reviewedStatusId: string, studentGUId: string): Observable<MentorReport2RPT[]> {
     const url = this.WebApiPrefix + 'mentor_reports/by_period'

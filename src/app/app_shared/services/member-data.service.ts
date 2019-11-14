@@ -82,10 +82,10 @@ export class MemberDataService extends BaseDataService {
     return this.http.get<Communication[]>(url).pipe(catchError(this.handleError));
   }
 
-  public getMemberWithAnyRelatedStudent(type: string, status: number): Observable<MemberWithAnyRelatedStudent[]> {
+  public getMemberWithAnyRelatedStudent(type: string, status: number, studentStatus: number): Observable<MemberWithAnyRelatedStudent[]> {
 
     const url = this.WebApiPrefix
-      + 'members/student_relations/' + type + '/' + status;
+      + 'members/student_relations/' + type + '/' + status + '/' + studentStatus;
     // statusId: vm.selectedStatus.statusId, gradYear: vm.selectedGradYear.year, yearJoinedJA: vm.selectedYearJoined.year },
     console.log('sending AuthHttp get request with url ' + url);
     return this.http.get<MemberWithAnyRelatedStudent[]>(url).pipe(catchError(this.handleError));
@@ -106,7 +106,6 @@ export class MemberDataService extends BaseDataService {
 
   public addNewSponsorGroupMember(groupMember: SponsorGroupMember): Observable<SponsorGroupMember> {
     const url = this.WebApiPrefix + 'sponsor_groups/members';
-    console.log('in sqlresource');
     console.log(groupMember);
     let body = JSON.stringify({ groupMember });
     // strip outer 'groupMember'

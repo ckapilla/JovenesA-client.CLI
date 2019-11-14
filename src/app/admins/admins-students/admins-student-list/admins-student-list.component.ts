@@ -92,7 +92,7 @@ export class AdminsStudentListComponent implements OnInit {
   }
 
   fetchFilteredData() {
-    // console.log('sqlResource for getStudents: ' +
+    // console.log('data service for getStudents: ' +
     //        'status: ' + this.selectedStatus + ' ' +
     //        'yearjoined: ' + this.selectedYearJoined +  + ' ' +
     //        'gradyear: ' + this.selectedGradYear

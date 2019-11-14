@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { Observable, of, Subscription } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
 import { StudentMiniDTO } from '../../models/studentMiniDTO';
-// import { SqlResource } from '../../services/sql-resource.service';
 import { StudentDataService } from '../../services/student-data.service';
 import { StudentSelectedService } from '../../services/student-selected-service';
 @Injectable({
@@ -48,7 +47,6 @@ export class StudentLookupComponent implements OnInit, OnDestroy {
 
   constructor(private _service: StudentNameService,
     private router: Router,
-    // private sqlResource: SqlResource,
     private studentData: StudentDataService,
     private studentSelected: StudentSelectedService) {
     console.log('name-lookup constructor!');
