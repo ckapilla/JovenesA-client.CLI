@@ -1,10 +1,10 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { UrlService } from '../../services/url.service';
 @Component({
-  selector: 'app-person-photo',
-  templateUrl: './person-photo.component.html',
+  selector: 'app-member-photo',
+  templateUrl: './member-photo.component.html',
 })
-export class PersonPhotoComponent implements OnChanges {
+export class MemberPhotoComponent implements OnChanges {
 
   @Input() studentGUId: string;
   @Input() photoPathName: string;
@@ -21,9 +21,9 @@ export class PersonPhotoComponent implements OnChanges {
   public ngOnChanges(changes: SimpleChanges) {
     if (changes.photoPathName) {
       if (this.photoPathName) {
-        this.fullPhotoPathName = this.clientUrl + '/assets/images/StudentPhotos/' + this.photoPathName;
+        this.fullPhotoPathName = this.clientUrl + '/assets/images/MemberPhotos/' + this.photoPathName;
         // this.fullPhotoPathName = this.clientUrl + '/assets/images/MemberPhotos/N-a, N-a.jpg';
-        console.log('PersonPhoto: changes has fullPhotoPathName:' + this.fullPhotoPathName);
+        console.log('MemberPhoto: changes has fullPhotoPathName:' + this.fullPhotoPathName);
       }
     }
   }

@@ -4,11 +4,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MiscDataService } from 'src/app/app_shared/services/misc-data.service';
 import { StudentDataService } from 'src/app/app_shared/services/student-data.service';
+import { UrlService } from 'src/app/app_shared/services/url.service';
 import { constants } from '../../../app_shared/constants/constants';
 import { SELECTITEM } from '../../../app_shared/interfaces/SELECTITEM';
 import { Student } from '../../../app_shared/models/student';
 import { StudentDTO } from '../../../app_shared/models/studentDTO';
-import { SessionService } from '../../../app_shared/services/session.service';
 
 @Component({
   selector: 'app-admins-student-profile',
@@ -47,18 +47,21 @@ export class AdminsStudentComponent implements OnInit {
   emojiPathname: string;
   readonly smileys: string[] = constants.smileys;
   showEditLink = false;
+  webPrefix: string;
 
 
   constructor(
     public currRoute: ActivatedRoute,
     private router: Router,
-    private session: SessionService,
+    public urlService: UrlService,
     public studentData: StudentDataService,
     public miscData: MiscDataService,
     public formBuilder: FormBuilder,
     public location: Location
   ) {
     console.log('hi from AdminsStudent constructor');
+    this.webPrefix = urlService.getClientUrl();
+
     this.languageStatuses = constants.languageStatuses;
     this.studentStatuses = constants.studentStatuses;
     this.joinedFromTypes = constants.joinedFromTypes;
@@ -158,12 +161,11 @@ export class AdminsStudentComponent implements OnInit {
       .subscribe(
         data => {
           this.student = data;
-          this.photoPathName = '../../../../assets/images/StudentPhotos/' + this.student.yearJoinedJa;
+          this.photoPathName = this.webPrefix + '/assets/images/StudentPhotos/' + this.student.yearJoinedJa;
+          // this.photoPathName = '../../../../assets/images/StudentPhotos/' + this.student.yearJoinedJa;
           this.photoPathName = this.photoPathName + '/' + this.student.photoUrl;
-          // this.photoPathName = this.photoPathName + '/' + 'CADENA RÍOS, CARLOS ANTONIO.jpg';
           console.log('photoPathName is ' + this.photoPathName);
           console.log(this.student);
-          // this.sponsorGroupIdParam = this.student.sponsorGroupId;
           this.emojiPathname = this.smileys[this.studentDTO.studentSnapshotStatus + 1];
           console.log('emoji is ' + this.emojiPathname);
         },

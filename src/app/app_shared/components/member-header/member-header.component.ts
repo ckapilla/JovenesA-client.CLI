@@ -26,7 +26,7 @@ export class MemberHeaderComponent {
 
   public onPhotoPathNameSet(photoPathName: string) {
     this.photoPathName = photoPathName;
-    // console.log('parent memberHeader has onPhotoPathNameSet called with' + photoPathName);
+    console.log('parent memberHeader has onPhotoPathNameSet called with' + photoPathName);
   }
 
 }

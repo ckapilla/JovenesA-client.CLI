@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MemberDataService } from 'src/app/app_shared/services/member-data.service';
+import { UrlService } from 'src/app/app_shared/services/url.service';
 import { constants } from '../../../app_shared/constants/constants';
 import { SELECTITEM } from '../../../app_shared/interfaces/SELECTITEM';
 import { Member } from '../../../app_shared/models/member';
@@ -29,15 +30,19 @@ export class AdminsMemberComponent implements OnInit {
   lastNames: string;
   member: Member;
   photoPathName: string;
+  webPrefix: string;
 
   constructor(
     public currRoute: ActivatedRoute,
     private router: Router,
+    public urlService: UrlService,
     public memberData: MemberDataService,
     public formBuilder: FormBuilder,
     public location: Location
   ) {
     console.log('hi from AdminsMember constructor');
+    this.webPrefix = urlService.getClientUrl();
+
     this.languageStatuses = constants.languageStatuses;
     this.roleStatuses = constants.roleStatuses;
 
@@ -119,8 +124,11 @@ export class AdminsMemberComponent implements OnInit {
       .subscribe(
         data => {
           this.member = data;
-          this.photoPathName = '../../../../assets/images/MemberPhotos';
-          this.photoPathName = this.photoPathName + '/' + 'N-a, N-a.jpg';
+          this.photoPathName = this.webPrefix + '/assets/images/MemberPhotos';
+          this.photoPathName = this.photoPathName + '/' + this.member.photoUrl;
+          console.log('photoPathName is ' + this.photoPathName);
+          // this.photoPathName = '../../../../assets/images/MemberPhotos';
+          // this.photoPathName = this.photoPathName + '/' + 'N-a, N-a.jpg';
           console.log('photoPathName is ' + this.photoPathName);
         },
         err => console.error('Subscribe error: ' + err),

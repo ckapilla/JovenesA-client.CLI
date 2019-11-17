@@ -15,10 +15,10 @@ import { LoadingContainerComponent } from './components/loading-container.compon
 import { MemberHeaderDetailsComponent } from './components/member-header-details/member-header-details.component';
 import { MemberHeaderComponent } from './components/member-header/member-header.component';
 import { MemberLookupComponent } from './components/member-lookup/member-lookup';
+import { MemberPhotoComponent } from './components/member-photo/member-photo.component';
 import { MemberSelectorComponent } from './components/member-selector/member-selector.component';
 import { MentorReportsForPeriodComponent } from './components/mentor-reports-for-period/mentor-reports-for-period.component';
 import { MentorReports2ListComponent } from './components/mentor-reports2-list/mentor-reports2-list.component';
-import { PersonPhotoComponent } from './components/person-photo/person-photo.component';
 import { PersonSharedComponent } from './components/person-shared/person-shared.component';
 import { ProfileComponent } from './components/profile.component';
 import { QrStatusSelectorComponent } from './components/qr-status-selector/qr-status-selector.component';
@@ -32,6 +32,7 @@ import { StudentHeaderSponsorsComponent } from './components/student-header-spon
 import { StudentHeaderComponent } from './components/student-header/student-header.component';
 import { StudentLookupComponent } from './components/student-lookup/student-lookup';
 import { StudentMRStatusComponent } from './components/student-mr-status.component';
+import { StudentPhotoComponent } from './components/student-photo/student-photo.component';
 import { StudentSelectorComponent } from './components/student-selector/student-selector.component';
 import { StudentSelfReportComponent } from './components/student-self-report/student-self-report.component';
 import { StudentsForMentorGridComponent } from './components/students-for-mentor-grid/students-for-mentor-grid.component';
@@ -93,14 +94,15 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     StudentLookupComponent,
     StudentHeaderComponent,
     StudentHeaderDetailsComponent,
-    PersonPhotoComponent,
+    MemberPhotoComponent,
     QrStatusSelectorComponent,
     StudentHeaderSponsorsComponent,
     PersonSharedComponent,
     MemberLookupComponent,
     MemberHeaderComponent,
     MemberHeaderDetailsComponent,
-    StudentHeaderMentorsComponent
+    StudentHeaderMentorsComponent,
+    StudentPhotoComponent,
   ],
   exports: [
     CommonModule,
@@ -146,7 +148,9 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     MemberLookupComponent,
     MemberHeaderComponent,
     MemberHeaderDetailsComponent,
-    StudentHeaderMentorsComponent
+    StudentHeaderMentorsComponent,
+    MemberPhotoComponent,
+    StudentPhotoComponent
   ]
 })
 
