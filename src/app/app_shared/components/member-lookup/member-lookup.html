@@ -1,17 +1,22 @@
 <label for='search-string'>Search for Member:</label>&nbsp;&nbsp;&nbsp;Or:&nbsp;<span
       (click)="gotoMemberList()" style="margin-bottom: 2px;"
       class="btn btn-sm btn-primary">Browse Members</span>
-<input id='search-string'
-       type='text'
-       class='form-control'
-       [editable]='false'
-       [class.is-invalid]="searchFailed"
-       [(ngModel)]='memberMiniDTO'
-       [ngbTypeahead]='search'
-       [inputFormatter]="formatter"
-       [resultFormatter]="formatter"
-       (selectItem)="onSelect($event)"
-       placeholder="Last Name or First Name or Email" />
+<div class="d-flex justify-content-between">
+  <input id='search-string'
+         type='text'
+         class='form-control'
+         [editable]='false'
+         [class.is-invalid]="searchFailed"
+         [(ngModel)]='memberMiniDTO'
+         [ngbTypeahead]='search'
+         [inputFormatter]="formatter"
+         [resultFormatter]="formatter"
+         (input)="onInput()"
+         (focus)="onFocus()"
+         (selectItem)="onSelect($event)"
+         placeholder="Last Name or First Name or Email" />
+  <button class="btn" style="margin-left:-25px" (click)="onClear()">[X]</button>
+</div>
 <div class="row">
   <span [hidden]="currentGUId=='0000'" style="margin-top: .4rem;margin-left: 1rem;" (click)="gotoMember()"
         class="link">Member Profile: {{ memberName }}

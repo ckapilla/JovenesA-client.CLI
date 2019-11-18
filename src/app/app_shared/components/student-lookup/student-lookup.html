@@ -10,6 +10,8 @@
        [ngbTypeahead]='search'
        [inputFormatter]="formatter"
        [resultFormatter]="formatter"
+       (input)="onInput($event)"
+       (focus)="onFocus($event)"
        (selectItem)="onSelect($event)"
        placeholder="Last Name or First Name or Email" />
 <div class="row">

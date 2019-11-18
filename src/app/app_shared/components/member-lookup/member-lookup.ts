@@ -61,6 +61,7 @@ export class MemberLookupComponent implements OnInit, OnDestroy {
     // this.subscription.unsubscribe();
     console.log(' after unsubscribe ' + this.memberSelected.getInternalSubject().observers.length);
   }
+
   onSelect(item) {
     console.log('onSelect');
     console.log(item.item.memberId);
@@ -70,6 +71,31 @@ export class MemberLookupComponent implements OnInit, OnDestroy {
     this.memberSelected.notifyNewMemberGUId(item.item.memberGUId);
     this.email = item.item.email;
     this.memberName = item.item.memberName;
+  }
+
+  onFocus() {
+    console.log('onFocus');
+    const input = document.getElementById('search-string') as HTMLInputElement;
+    input.focus();
+    input.select();
+  }
+
+  onInput() {
+    console.log('onInput');
+    const input = document.getElementById('search-string') as HTMLInputElement;
+    if (input.value.length === 0) {
+
+      this.resetMemberData();
+
+    }
+  }
+
+  onClear() {
+    console.log('onClear');
+    const input = document.getElementById('search-string') as HTMLInputElement;
+    input.focus();
+    input.value = '';
+    this.resetMemberData();
   }
 
   subscribeForMemberGUIds() {
@@ -82,6 +108,8 @@ export class MemberLookupComponent implements OnInit, OnDestroy {
         if (this.memberGUId && this.memberGUId !== '0000') {
           this.currentGUId = this.memberGUId;
           this.fetchData();
+        } else {
+
         }
 
         // console.log('subscribe next ' + this.memberSelected.getInternalSubject().observers.length);
@@ -103,6 +131,12 @@ export class MemberLookupComponent implements OnInit, OnDestroy {
           this.email = this.memberMiniDTO.email;
           this.memberName = this.memberMiniDTO.memberName;
         });
+  }
+
+  resetMemberData() {
+    console.log('memberLookup reset');
+    this.memberSelected.notifyNewMemberGUId('0000');
+    this.currentGUId = '0000';
   }
 
 

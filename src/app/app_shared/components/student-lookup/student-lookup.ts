@@ -73,6 +73,22 @@ export class StudentLookupComponent implements OnInit, OnDestroy {
     this.studentName = item.item.studentName;
   }
 
+  onFocus(item) {
+    console.log('onFocus');
+    const input = document.getElementById('search-string') as HTMLInputElement;
+    input.focus();
+    input.select();
+  }
+
+  onInput(item) {
+    console.log('onInput');
+    const input = document.getElementById('search-string') as HTMLInputElement;
+    if (input.value.length === 0) {
+      alert('empty');
+      this.studentSelected.notifyNewStudentGUId('0000');
+    }
+  }
+
   subscribeForStudentGUIds() {
     console.log('Name Lookup set up studentGUId subscription');
     this.subscription = this.studentSelected.subscribeForStudentGUIds()

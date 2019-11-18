@@ -1,28 +1,48 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { MemberSelectedService } from '../../services/member-selected-service';
 
 @Component({
   selector: 'app-member-header',
   templateUrl: './member-header.component.html'
 })
-export class MemberHeaderComponent {
+export class MemberHeaderComponent implements OnInit, OnDestroy {
 
-  @Input() memberGUId: string;
 
   photoPathName: string;
-
+  private subscription: Subscription;
+  public memberGUId: string;
 
   constructor(
     public router: Router,
+    private memberSelected: MemberSelectedService
   ) {
     console.log('hi from member-header constructor');
 
   }
 
-  // public onSelectedMemberGUId($event) {
-  //   console.log('member-header parent had new GUID event ' + $event);
-  //   this.memberGUId = $event;
-  // }
+  ngOnInit() {
+    console.log('MemberHeader ngOnInit');
+    this.subscribeForMemberGUIds();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
+
+  subscribeForMemberGUIds() {
+    console.log('header set up memberGUId subscription');
+    this.subscription = this.memberSelected.subscribeForMemberGUIds()
+      // .pipe(takeWhile(() => this.notDestroyed))
+      .subscribe(message => {
+        this.memberGUId = message;
+        console.log('header new MemberGUId received' + this.memberGUId);
+        // console.log('subscribe next ' + this.memberSelected.getInternalSubject().observers.length);
+      });
+  }
+
 
   public onPhotoPathNameSet(photoPathName: string) {
     this.photoPathName = photoPathName;

@@ -14,6 +14,7 @@ export class MemberSelectedService {
   }
 
   notifyNewMemberGUId(message: string) {
+    console.log('%%%%%%%%%%% memberSelectedService has new Guid' + message);
     this.subject.next(message);
   }
 

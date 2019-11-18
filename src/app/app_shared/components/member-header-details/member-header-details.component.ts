@@ -57,17 +57,28 @@ export class MemberHeaderDetailsComponent implements OnInit, OnDestroy {
 
 
   subscribeForMemberGUIds() {
-    console.log('header set up memberGUId subscription');
+    console.log('header details set up memberGUId subscription');
     this.subscription = this.memberSelected.subscribeForMemberGUIds()
       // .pipe(takeWhile(() => this.notDestroyed))
       .subscribe(message => {
         this.memberGUId = message;
-        console.log('header new MemberGUId received' + this.memberGUId);
+        console.log('header details new MemberGUId received' + this.memberGUId);
         if (this.memberGUId && this.memberGUId !== '0000') {
           this.fetchData();
+        } else {
+          this.resetMemberData();
         }
         // console.log('subscribe next ' + this.memberSelected.getInternalSubject().observers.length);
       });
+  }
+
+  resetMemberData() {
+    console.log('member header reset member data');
+    // this.member = undefined;
+    // this.member = new MemberHeaderDTO(0);
+    // this.photoPathName = undefined;
+    // console.log('MemberHeaderDetails: emitting photo path: ' + this.photoPathName);
+    // this.onPhotoPathNameSet.emit(this.photoPathName);
   }
 
   fetchData() {
@@ -83,7 +94,7 @@ export class MemberHeaderDetailsComponent implements OnInit, OnDestroy {
         () => {
           this.loadingState = 2;
           this.photoPathName = this.member.photoUrl;
-          // console.log('MemberHeaderDetails: emitting photo path: ' + this.photoPathName);
+          console.log('MemberHeaderDetails: emitting photo path: ' + this.photoPathName);
           this.onPhotoPathNameSet.emit(this.photoPathName);
         }
       );

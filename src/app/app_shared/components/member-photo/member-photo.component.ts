@@ -6,7 +6,7 @@ import { UrlService } from '../../services/url.service';
 })
 export class MemberPhotoComponent implements OnChanges {
 
-  @Input() studentGUId: string;
+  @Input() memberGUId: string;
   @Input() photoPathName: string;
   fullPhotoPathName: string;
   clientUrl: string;
@@ -19,6 +19,7 @@ export class MemberPhotoComponent implements OnChanges {
   }
 
   public ngOnChanges(changes: SimpleChanges) {
+    console.log('xxxxxxxxxxxxxxxxxxxxx' + changes.photoPathName);
     if (changes.photoPathName) {
       if (this.photoPathName) {
         this.fullPhotoPathName = this.clientUrl + '/assets/images/MemberPhotos/' + this.photoPathName;
