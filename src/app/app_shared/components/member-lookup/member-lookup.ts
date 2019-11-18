@@ -108,7 +108,6 @@ export class MemberLookupComponent implements OnInit, OnDestroy {
         if (this.memberGUId && this.memberGUId !== '0000') {
           this.currentGUId = this.memberGUId;
           this.fetchData();
-        } else {
 
         }
 

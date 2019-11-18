@@ -19,7 +19,6 @@ export class MemberPhotoComponent implements OnChanges {
   }
 
   public ngOnChanges(changes: SimpleChanges) {
-    console.log('xxxxxxxxxxxxxxxxxxxxx' + changes.photoPathName);
     if (changes.photoPathName) {
       if (this.photoPathName) {
         this.fullPhotoPathName = this.clientUrl + '/assets/images/MemberPhotos/' + this.photoPathName;

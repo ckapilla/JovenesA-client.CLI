@@ -65,29 +65,17 @@ export class MemberHeaderDetailsComponent implements OnInit, OnDestroy {
         console.log('header details new MemberGUId received' + this.memberGUId);
         if (this.memberGUId && this.memberGUId !== '0000') {
           this.fetchData();
-        } else {
-          this.resetMemberData();
         }
         // console.log('subscribe next ' + this.memberSelected.getInternalSubject().observers.length);
       });
   }
 
-  resetMemberData() {
-    console.log('member header reset member data');
-    // this.member = undefined;
-    // this.member = new MemberHeaderDTO(0);
-    // this.photoPathName = undefined;
-    // console.log('MemberHeaderDetails: emitting photo path: ' + this.photoPathName);
-    // this.onPhotoPathNameSet.emit(this.photoPathName);
-  }
 
   fetchData() {
     this.loadingState = 1;
     this.memberData.getMemberHeaderDTO(this.memberGUId)
       .subscribe(
         data => {
-          console.log('have member data');
-          console.log(data);
           this.member = data;
         },
         err => { this.errorMessage = err; },
