@@ -33,7 +33,7 @@ export class StudentDataService extends BaseDataService {
 
   public getStudentViaGUID(studentGUId: string): Observable<Student> {
     const url = this.WebApiPrefix + 'students/' + studentGUId;
-    console.log('sending AuthHttp get request for Student');
+    console.log('sending AuthHttp get request for Student by GUID');
     return this.http.get(url).pipe(catchError(this.handleError));
   }
 
@@ -126,7 +126,7 @@ export class StudentDataService extends BaseDataService {
 
   public updateStudent(student: Student): Observable<any> {
     const url = this.WebApiPrefix + 'students/' + student.studentId;
-    let body = JSON.stringify({ student });
+    let body = JSON.stringify({ student });  //
     // strip outer 'student' name
     const x = JSON.parse(body);
     body = JSON.stringify(x.student);

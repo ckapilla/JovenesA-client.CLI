@@ -45,10 +45,12 @@ export class SponsorGroupMembersComponent implements OnInit, OnChanges {
   }
 
   public ngOnChanges(changes: SimpleChanges) {
-    // if (changes.sponsorGroupId) {
-    //   console.log('sponsorGroupMembers child has new input sponsorGroupId');
-    //   this.ngOnInit();
-    // }
+    if (changes.sponsorGroupId) {
+      console.log('sponsorGroupMembers child has new input sponsorGroupId');
+      this.sponsorGroupId = changes.sponsorGroupId.currentValue;
+      console.log('sponsorGroupMembers child has new input sponsorGroupId' + this.sponsorGroupId);
+      this.fetchData();
+    }
     if (changes.newMemberNotification) {
       console.log('sponsorGroupMembers child has new input newMemberNotification');
       this.fetchData();

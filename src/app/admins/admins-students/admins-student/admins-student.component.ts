@@ -28,6 +28,8 @@ export class AdminsStudentComponent implements OnInit {
   joinedYears: SELECTITEM[];
   gradYears: SELECTITEM[];
   gradMonths: SELECTITEM[];
+  credentialYears: SELECTITEM[];
+  credentialMonths: SELECTITEM[];
   genders: SELECTITEM[];
   prepas: SELECTITEM[];
   universities: SELECTITEM[];
@@ -68,11 +70,14 @@ export class AdminsStudentComponent implements OnInit {
     this.joinedYears = constants.joinedYears;
     this.gradYears = constants.gradYears;
     this.gradMonths = constants.months;
+    this.credentialYears = constants.gradYears;
+    this.credentialMonths = constants.months;
     this.genders = constants.genders;
-    this.prepas = this.fetchPrepas();
-    this.universities = this.fetchUniversities();
-    this.sponsorGroups = this.fetchSponsorGroups();
-    // this.mentors = this.fetchMentors();
+
+    this.fetchMentors();
+    this.fetchPrepas();
+    this.fetchUniversities();
+    this.fetchSponsorGroups();
 
     this.myForm = formBuilder.group({
       studentId: '',
@@ -103,13 +108,15 @@ export class AdminsStudentComponent implements OnInit {
       universityId: [{ value: '' }],
       gradYear: [{ value: '' }],
       gradMonthNum: [{ value: '' }],
+      credentialYear: [{ value: '' }],
+      credentialMonthNum: [{ value: '' }],
       curp: [{ value: '' }],
       rfc: [{ value: '' }],
       bankAccount: [{ value: '' }],
       sponsorGroupId: [{ value: '' }],
       mentorGUId: [{ value: '' }],
-      studentGUId: [{ value: '' }],
-      mentorName: ['']
+      studentGUId: [{ value: '' }]
+      // mentorName: ['']
       // inputInitialInterview: [{value: ''}, Validators.maxLength(2000)],
       // studentStory: [{value: ''}, Validators.maxLength(2000)],
     });
@@ -129,32 +136,30 @@ export class AdminsStudentComponent implements OnInit {
     this.fetchStudentDTOData();
   }
 
+  // need to get data from associated member record first
   fetchStudentDTOData() {
-    // console.log('data service for getStudents: ' +
-    //        'status: ' + this.selectedStatus + ' ' +
-    //        'yearjoined: ' + this.selectedYearJoined +  + ' ' +
-    //        'gradyear: ' + this.selectedGradYear
-    //        );
     this.isLoading = true;
     this.studentData.getStudentDTOViaGUID(this.studentGUIdParam)
       .subscribe(
         data => {
           this.studentDTO = data;
           console.log('#######studentDTO: MemberRecordGUId ' + this.studentDTO.memberRecordGUId);
+          console.log('#######studentDTO: mentorGUId ' + this.studentDTO.mentorGUId);
+          console.log('#######studentDTO: mentorId ' + this.studentDTO.mentorId);
           this.studentDTO = this.getNumericStatus(this.studentDTO);
         },
         err => { this.errorMessage = err; },
         () => {
           console.log('studentDTO data loaded');
           console.log(JSON.stringify(this.studentDTO));
-          this.isLoading = false;
+          // need to load additional fields that are not in DTO
           this.fetchStudentData();
+          this.isLoading = false;
         }
       );
   }
 
-
-
+  // called after fetchStudentDTOData  (contains additional fields needed)
   fetchStudentData() {
     this.isLoading = true;
     this.studentData.getStudentViaGUID(this.studentGUIdParam)
@@ -173,6 +178,8 @@ export class AdminsStudentComponent implements OnInit {
         () => {
           console.log('getStudent is done now set timeout for scroll');
           this.setFormValues(this.student);
+          console.log('#######student: mentorGUId ' + this.student.mentorGUId);
+
           setTimeout(() => {
             this.scrollIntoView();
           }, 0);
@@ -197,7 +204,7 @@ export class AdminsStudentComponent implements OnInit {
 
   setFormValues(student: Student) {
     console.log('setFormValues');
-    console.log('gender: ' + student.gender);
+    console.log('>>>>>>>>>>>mentorGUId: ' + student.mentorGUId);
     this.myForm.setValue({
       studentId: student.studentId,
       firstNames: student.firstNames,
@@ -220,17 +227,22 @@ export class AdminsStudentComponent implements OnInit {
       universityId: student.universityId,
       gradYear: student.gradYear,
       gradMonthNum: student.gradMonthNum,
+      credentialYear: student.credentialYear,
+      credentialMonthNum: student.credentialMonthNum,
       curp: student.curp,
       rfc: student.rfc,
       bankAccount: student.bankAccount,
       sponsorGroupId: student.sponsorGroupId,
-      mentorGUId: student.mentorGUId,
-      studentGUId: student.studentGUId,
-      mentorName: this.studentDTO.mentorName
+      // mentorGUId: '46D33F1B-BA9E-4C47-800E-16E2AB0E095C', //
+      mentorGUId: student.mentorGUId.toUpperCase(),
+      // mentorGUId: mentorId, // student.mentorId,
+      studentGUId: student.studentGUId
     });
   }
 
   retrieveFormValues(): void {
+
+    console.log('retrieveFormValues ' + JSON.stringify(this.myForm.value));
     this.student = this.myForm.value;
 
     // const ctls = this.myForm.controls;
@@ -319,7 +331,17 @@ export class AdminsStudentComponent implements OnInit {
     }
   }
 
-  fetchPrepas(): SELECTITEM[] {
+  fetchMentors() {
+    this.miscData.getMentorNamesByGUId()
+      .subscribe(
+        data => { this.mentors = data; console.log('getMentorNames'); console.log(this.mentors); },
+        err => console.error('Subscribe error: ' + err),
+        () => {
+        }
+      );
+  }
+
+  fetchPrepas() {
     this.miscData.getPrepaNames()
       .subscribe(
         data => { this.prepas = data; console.log('getPrepaNames'); console.log(this.prepas[0]); },
@@ -327,10 +349,9 @@ export class AdminsStudentComponent implements OnInit {
         () => {
         }
       );
-    return this.prepas;
   }
 
-  fetchUniversities(): SELECTITEM[] {
+  fetchUniversities() {
     this.miscData.getUniversityNames()
       .subscribe(
         data => { this.universities = data; console.log('getUniversityNames'); console.log(this.universities[0]); },
@@ -338,10 +359,9 @@ export class AdminsStudentComponent implements OnInit {
         () => {
         }
       );
-    return this.universities;
   }
 
-  fetchSponsorGroups(): SELECTITEM[] {
+  fetchSponsorGroups() {
     this.miscData.getSponsorGroups()
       .subscribe(
         data => { this.sponsorGroups = data; console.log('getSponsorGroups'); console.log(this.sponsorGroups[0]); },
@@ -349,19 +369,8 @@ export class AdminsStudentComponent implements OnInit {
         () => {
         }
       );
-    return this.sponsorGroups;
   }
 
-  fetchMentors(): SELECTITEM[] {
-    this.miscData.getMentorNamesByGUId()
-      .subscribe(
-        data => { this.mentors = data; console.log('getMentorNames'); console.log(this.mentors[0]); },
-        err => console.error('Subscribe error: ' + err),
-        () => {
-        }
-      );
-    return this.mentors;
-  }
   getNumericStatus(studentDTO: StudentDTO): StudentDTO {
 
     studentDTO.numericTimelyMentorMeetingStatus = 0;

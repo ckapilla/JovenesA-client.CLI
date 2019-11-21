@@ -17,11 +17,13 @@ export class Student {
     public homePhone?: string, // HomePhone
     public otherPhone?: string, // OtherPhone
     public email?: string, // Email
+    public memberRecordGUId?: string,
     public englishLevel?: string, // EnglishLevel
     public sponsor?: string, // Sponsor
     public prepaId?: number, // PrepaID
     public major?: string, // Major
-    public mentorId?: string, // MentorID
+    // mentorId is no longer part of Student, only StudentDTO from associate dMember
+    // public mentorId?: number, // MentorID
     public ageWhenJoined?: string, // AgeWhenJoined
     public yearJoinedJa?: string, // YearJoinedJA
     public universityId?: string, // UniversityID
@@ -47,6 +49,9 @@ export class Student {
     public gradMonthNum?: number, // GradMonth
     public studentGUId?: string,
     public mentorGUId?: string,
-    public mentorAssignedDate?: Date
+    public mentorAssignedDate?: Date,
+    public mentoringEndDate?: Date,
+    public credentialYear?: number,
+    public credentialMonthNum?: number
   ) { }
 }

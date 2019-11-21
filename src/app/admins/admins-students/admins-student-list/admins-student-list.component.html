@@ -49,6 +49,8 @@
               <th app-sortable-column="yearJoinedJa" (onSortColumn)="onSortColumn($event)">Year<br /> Joined</th>
               <th app-sortable-column="joinedFrom" (onSortColumn)="onSortColumn($event)">Joined<br /> From</th>
               <th app-sortable-column="gradYear" (onSortColumn)="onSortColumn($event)">Grad<br /> Year/Mo</th>
+              <th app-sortable-column="credentialYear" (onSortColumn)="onSortColumn($event)">Credential<br /> Year/Mo
+              </th>
               <!-- <th app-sortable-column="gpaStatus" (onSortColumn)="onSortColumn($event)">GPA</th>
               <th app-sortable-column="gradeRptStatus" (onSortColumn)="onSortColumn($event)">Grades<br />OnTime</th> -->
               <th app-sortable-column="mentorName" (onSortColumn)="onSortColumn($event)">Assigned Mentor</th>
@@ -91,6 +93,9 @@
               </td>
               <td class='centered'>
                 {{ student.gradYear}}/{{ student.gradMonth}}
+              </td>
+              <td class='centered'>
+                {{ student.credentialYear}}/{{ student.credentialMonth}}
               </td>
 
 

@@ -2,7 +2,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { SELECTITEM } from '../interfaces/SELECTITEM';
 import { Communication } from '../models/communication';
 import { Member } from '../models/member';
 import { MemberWithAnyRelatedStudent } from '../models/member-with-any-related-student';
@@ -127,20 +126,6 @@ export class MemberDataService extends BaseDataService {
         catchError(this.handleError))
     );
   }
-
-  ////////////////////////////// lookups
-
-  public getMentorNames(): Observable<SELECTITEM[]> {
-    const url = this.WebApiPrefix + 'lookup/mentors';
-    console.log('sending AuthHttp get request ' + url);
-    return this.http.get<SELECTITEM[]>(url).pipe(catchError(this.handleError));
-  }
-  public getMentorNamesByGUId(): Observable<SELECTITEM[]> {
-    const url = this.WebApiPrefix + 'lookup/mentors/guid';
-    console.log('sending AuthHttp get request ' + url);
-    return this.http.get<SELECTITEM[]>(url).pipe(catchError(this.handleError));
-  }
-
 
   public getMentor(mentorId: Number): Observable<Member> {
     const url = this.WebApiPrefix + 'mentors/' + mentorId;

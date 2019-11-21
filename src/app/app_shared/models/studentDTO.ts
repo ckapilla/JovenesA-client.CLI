@@ -39,6 +39,11 @@ export class StudentDTO {
     public photoUrl?: string,
     public studentGUId?: string,
     public mentorGUId?: string,
-    public mentorAssignedDate?: Date
+    public mentorAssignedDate?: Date,
+    public mentoringEndDate?: Date,
+    public credentialYear?: number,
+    public credentialMonthNum?: number,
+    public credentialMonth?: string
+
   ) { }
 }

@@ -19,6 +19,7 @@ import { MemberPhotoComponent } from './components/member-photo/member-photo.com
 import { MemberSelectorComponent } from './components/member-selector/member-selector.component';
 import { MentorReportsForPeriodComponent } from './components/mentor-reports-for-period/mentor-reports-for-period.component';
 import { MentorReports2ListComponent } from './components/mentor-reports2-list/mentor-reports2-list.component';
+import { MentorSelectorComponent } from './components/mentor-selector/mentor-selector.component';
 import { PersonSharedComponent } from './components/person-shared/person-shared.component';
 import { ProfileComponent } from './components/profile.component';
 import { QrStatusSelectorComponent } from './components/qr-status-selector/qr-status-selector.component';
@@ -71,6 +72,7 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     FollowUpEventsComponent,
     FollowUpRequestsListComponent,
     MemberSelectorComponent,
+    MentorSelectorComponent,
     MentorReports2ListComponent,
     SortableColumnComponent,
     SortableTableDirective,
@@ -111,6 +113,7 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     DisplayErrorsComponent,
     LoadingContainerComponent,
     MemberSelectorComponent,
+    MentorSelectorComponent,
     SponsorGroupMemberEditComponent,
     SponsorsForStudentGridComponent,
     SponsorGroupMembersComponent,
@@ -120,7 +123,6 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     StudentsForSponsorComponent,
     StudentsForSponsorGridComponent,
     StudentSelectorComponent,
-    MemberSelectorComponent,
     MentorReports2ListComponent,
     FollowUpEventsComponent,
     FollowUpRequestsListComponent,

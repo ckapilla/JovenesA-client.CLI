@@ -178,7 +178,7 @@ export class MentorReportSummaryUpdatesComponent
   onDelete() {
     console.log('delete with userID = ' + this.session.getUserId());
     // tslint:disable-next-line: triple-equals
-    if (this.session.getUserId() === 1216 || this.session.getUserId() === 2094) {
+    if (this.session.getUserId() == 1216 || this.session.getUserId() == 2094) {
       const response = window.confirm('Caution this action will permanently delete this mentor report! Proceed? ' + this.mentorReport2.mentorReportId);
       if (response === true) {
         this.mentorReportData.deleteMentorReport2(this.mentorReport2.mentorReportId)
