@@ -5,6 +5,7 @@ export class MemberWithAnyRelatedStudent {
     public lastNames: string,
     public firstNames: string,
     public email: string,
+    public photoUrl: string,
 
     public memberType: string,
     public memberStatusId: number,

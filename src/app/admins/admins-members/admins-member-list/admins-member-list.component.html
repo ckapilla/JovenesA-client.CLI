@@ -38,7 +38,7 @@
 
           <thead>
             <tr>
-              <!--<th app-sortable-column="mentorName" (onSortColumn)="onSortColumn($event)">Id</th>-->
+              <th></th>
               <th></th>
               <th app-sortable-column="memberName" (onSortColumn)="onSortColumn($event)">Member</th>
               <th app-sortable-column="memberStatus" (onSortColumn)="onSortColumn($event)">Member Status</th>
@@ -52,6 +52,9 @@
             <tr *ngFor="let member of members, let i = index">
               <td>
                 {{ i+1 }}
+              </td>
+              <td>
+                <img [src]="member.photoUrl" height="30" class="thumbnail" />
               </td>
               <td (click)='gotoMember(member.memberGUId, member.firstNames + " " + member.lastNames)' class='link'>
                 {{ member.lastNames }}, {{ member.firstNames }}

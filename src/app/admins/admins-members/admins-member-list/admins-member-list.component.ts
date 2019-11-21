@@ -82,7 +82,7 @@ export class AdminsMemberListComponent implements OnInit {
     this._selectedType = this.memberTypes[idx];
     console.log('statuses[0] = ' + this.memberStatuses[0].value);
     this._selectedStatus = this.memberStatuses[0];
-    this._selectedStudentStatus = this.studentStatuses[0];
+    this._selectedStudentStatus = this.studentStatuses[2];
     this.fetchFilteredData();
   }
 
