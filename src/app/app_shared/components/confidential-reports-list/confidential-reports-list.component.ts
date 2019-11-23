@@ -16,7 +16,7 @@ export class ConfidentialReportsListComponent {
   studentId: number;
 
   constructor(private router: Router) {
-    console.log('###MentorReportsList constructor');
+    console.log('###confidentialReportsList constructor');
     this.smileys = constants.smileys;
   }
 

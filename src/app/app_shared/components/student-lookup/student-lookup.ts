@@ -9,6 +9,8 @@ import { StudentSelectedService } from '../../services/student-selected.service'
   providedIn: 'root'
 })
 export class StudentNameService {
+  public hideSearch = 'true';
+
   constructor(private studentData: StudentDataService
   ) { }
 
@@ -42,6 +44,7 @@ export class StudentLookupComponent implements OnInit, OnDestroy {
   email: string;
   studentGUId: string;
   private subscription: Subscription;
+  hideSearch = 'xxx';
 
   // @Output() onSelectedStudentGUId = new EventEmitter<string>();
 

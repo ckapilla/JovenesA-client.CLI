@@ -150,6 +150,7 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     StudentLookupComponent,
     StudentHeaderQuarterlyComponent,
     StudentHeaderDetailsComponent,
+    StudentHeaderComponent,
     QrStatusSelectorComponent,
     StudentHeaderSponsorsComponent,
     PersonSharedComponent,
@@ -158,6 +159,7 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     MemberHeaderDetailsComponent,
     StudentHeaderMentorsComponent,
     StudentHeaderConfidentialComponent,
+    ConfidentialReportsListComponent,
     MemberPhotoComponent,
     StudentPhotoComponent
   ]

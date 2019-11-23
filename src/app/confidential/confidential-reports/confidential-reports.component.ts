@@ -107,24 +107,18 @@ export class ConfidentialReportsComponent implements OnInit, OnDestroy {
   }
 
   confidentialReportAdd() {
-    if (this.haveCurrentReport) {
-      alert('There is already a report filed for this month. Please use the edit button to edit it. / Ya hay un informe presentado para este mes. Por favor, utilice el botón Editar para editarlo. ');
-    } else {
-      console.log('in monthly-reports: monthlyReportAdd, ready to navigate');
-      if (this.studentGUId !== null) {
-        // const target = '/mentors/monthly-reports-add';
-        // this.router.navigate([target, { mentorId: this.mentorId, studentGUId: this.studentGUId }]);
-        const link = ['/mentors/monthly-reports-add', { mentorId: this.adminId, studentGUId: this.studentGUId }];
-        console.log('navigating to ' + JSON.stringify(link));
-        this.router.navigate(link);
-      }
+    console.log('in confidential-reports: monthlyReportAdd, ready to navigate');
+    if (this.studentGUId !== null) {
+      const link = ['/confidential/confidential-reports-add', { adminId: this.adminId, studentGUId: this.studentGUId }];
+      console.log('navigating to ' + JSON.stringify(link));
+      this.router.navigate(link);
     }
   }
 
-  confidentialReportEdit(mentorReportId: number) {
-    console.log('in monthly-reports: monthlyReportEdit, ready to navigate');
+  confidentialReportEdit(confidentialReportId: number) {
+    console.log('in confidential-reports: confidentialReportEdit, ready to navigate');
     if (this.studentId !== null) {
-      const target = '/mentors/monthly-reports-edit/' + mentorReportId;
+      const target = '/confidential/confidential-reports-edit/' + confidentialReportId;
       this.router.navigateByUrl(target); // , //{mentorId: this.mentorId, studentId: this.studentId}]);
     }
   }

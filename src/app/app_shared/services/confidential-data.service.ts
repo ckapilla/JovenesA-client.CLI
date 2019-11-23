@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -21,5 +21,18 @@ export class ConfidentialDataService extends BaseDataService {
     console.log('sending AuthHttp get request for ConfidentailReports with ' + url);
     return this.http.get<ConfidentialReportRPT[]>(url).pipe(catchError(this.handleError));
   }
+
+  public addConfidentialReport(confidentialReport: ConfidentialReportRPT): Observable<ConfidentialReportRPT> {
+
+    const url = this.WebApiPrefix + 'confidential_reports';
+    let body = JSON.stringify({ confidentialReport });
+    // strip outer 'mentor' name
+    const x = JSON.parse(body);
+    body = JSON.stringify(x.mentorReport);
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    // console.log('ready to post ' + url + ' body: ' + body + ' options ' + headers);
+    return this.http.post(url, body, { headers: headers });
+  }
+
 
 }

@@ -15,7 +15,9 @@
          (focus)="onFocus()"
          (selectItem)="onSelect($event)"
          placeholder="Last Name or First Name or Email" />
-  <button class="btn" style="margin-left:-25px" (click)="onClear()">[X]</button>
+  <span>
+    <button class="btn" style="margin-left:-25px" (click)="onClear()">[X]</button>
+  </span>
 </div>
 <div class="row">
   <span [hidden]="currentGUId=='0000'" style="margin-top: .4rem;margin-left: 1rem;" (click)="gotoStudent()"
