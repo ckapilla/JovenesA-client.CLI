@@ -7,6 +7,7 @@ import { MentorsForStudentListComponent } from '../app_shared/components/mentors
 import { SponsorsForStudentGridComponent } from '../app_shared/components/sponsors-for-student-grid/sponsors-for-student-grid.component';
 import { AdminStudentNotesComponent } from './components/admin-student-notes/admin-student-notes.component';
 import { CallbackComponent } from './components/callback.component';
+import { ConfidentialReportsListComponent } from './components/confidential-reports-list/confidential-reports-list.component';
 import { DisplayErrorsComponent } from './components/display-errors.component';
 import { FollowUpEventsComponent } from './components/follow-up-events/follow-up-events.component';
 import { FollowUpRequestsListComponent } from './components/follow-up-requests-list/follow-up-requests-list.component';
@@ -27,8 +28,10 @@ import { SortableColumnComponent } from './components/sortable-column.component'
 import { SponsorGroupMemberEditComponent } from './components/sponsor-group-member-edit/sponsor-group-member-edit.component';
 import { SponsorGroupMembersComponent } from './components/sponsors-for-sponsor-group/sponsor-group-members.component';
 import { StudentGradesStatusComponent } from './components/student-grades-status.component';
+import { StudentHeaderConfidentialComponent } from './components/student-header-confidential/student-header-confidential.component';
 import { StudentHeaderDetailsComponent } from './components/student-header-details/student-header-details.component';
 import { StudentHeaderMentorsComponent } from './components/student-header-mentors/student-header-mentors.component';
+import { StudentHeaderQuarterlyComponent } from './components/student-header-quarterly/student-header-quarterly.component';
 import { StudentHeaderSponsorsComponent } from './components/student-header-sponsors/student-header-sponsors.component';
 import { StudentHeaderComponent } from './components/student-header/student-header.component';
 import { StudentLookupComponent } from './components/student-lookup/student-lookup';
@@ -71,6 +74,7 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     StudentSelectorComponent,
     FollowUpEventsComponent,
     FollowUpRequestsListComponent,
+    ConfidentialReportsListComponent,
     MemberSelectorComponent,
     MentorSelectorComponent,
     MentorReports2ListComponent,
@@ -94,7 +98,7 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     AdminStudentNotesComponent,
     MentorReportsForPeriodComponent,
     StudentLookupComponent,
-    StudentHeaderComponent,
+    StudentHeaderQuarterlyComponent,
     StudentHeaderDetailsComponent,
     MemberPhotoComponent,
     QrStatusSelectorComponent,
@@ -103,7 +107,9 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     MemberLookupComponent,
     MemberHeaderComponent,
     MemberHeaderDetailsComponent,
+    StudentHeaderComponent,
     StudentHeaderMentorsComponent,
+    StudentHeaderConfidentialComponent,
     StudentPhotoComponent,
   ],
   exports: [
@@ -142,7 +148,7 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     AdminStudentNotesComponent,
     MentorReportsForPeriodComponent,
     StudentLookupComponent,
-    StudentHeaderComponent,
+    StudentHeaderQuarterlyComponent,
     StudentHeaderDetailsComponent,
     QrStatusSelectorComponent,
     StudentHeaderSponsorsComponent,
@@ -151,6 +157,7 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     MemberHeaderComponent,
     MemberHeaderDetailsComponent,
     StudentHeaderMentorsComponent,
+    StudentHeaderConfidentialComponent,
     MemberPhotoComponent,
     StudentPhotoComponent
   ]

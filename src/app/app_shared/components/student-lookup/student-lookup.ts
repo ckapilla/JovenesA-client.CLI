@@ -4,7 +4,7 @@ import { Observable, of, Subscription } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
 import { StudentMiniDTO } from '../../models/studentMiniDTO';
 import { StudentDataService } from '../../services/student-data.service';
-import { StudentSelectedService } from '../../services/student-selected-service';
+import { StudentSelectedService } from '../../services/student-selected.service';
 @Injectable({
   providedIn: 'root'
 })

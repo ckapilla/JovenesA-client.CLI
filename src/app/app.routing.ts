@@ -37,6 +37,10 @@ const appRoutes: Routes = [
     path: 'quarterly',
     loadChildren: () => import('./quarterly/quarterly.module').then(m => m.QuarterlyModule)
   },
+  {
+    path: 'confidential',
+    loadChildren: () => import('./confidential/confidential.module').then(m => m.ConfidentialModule)
+  },
 
   { path: '**', redirectTo: '' }
 ];

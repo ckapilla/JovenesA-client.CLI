@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { FollowUpDataService } from 'src/app/app_shared/services/follow-up-data.service';
-import { StudentSelectedService } from 'src/app/app_shared/services/student-selected-service';
+import { StudentSelectedService } from 'src/app/app_shared/services/student-selected.service';
 import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
 import { FollowUpRequestRPT } from '../../app_shared/models/follow-up-requestRPT';
 import { SessionService } from '../../app_shared/services/session.service';

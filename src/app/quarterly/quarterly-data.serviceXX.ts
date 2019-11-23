@@ -2,9 +2,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { QuarterlyReport } from '../app_shared/models/quarterly-report';
+import { QuarterlyReportRPT } from '../app_shared/models/quarterly-reportRPT';
 import { UrlService } from '../app_shared/services/url.service';
-import { QuarterlyReport } from './quarterly-report';
-import { QuarterlyReportRPT } from './quarterly-reportRPT';
 
 @Injectable({ providedIn: 'root' })
 export class QuarterlyDataService {

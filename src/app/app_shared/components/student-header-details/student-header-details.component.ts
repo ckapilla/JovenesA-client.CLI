@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { StudentHeaderDTO } from '../../models/studentHeaderDTO';
 import { SessionService } from '../../services/session.service';
 import { StudentDataService } from '../../services/student-data.service';
-import { StudentSelectedService } from '../../services/student-selected-service';
+import { StudentSelectedService } from '../../services/student-selected.service';
 @Component({
   selector: 'app-student-header-details',
   templateUrl: './student-header-details.component.html',

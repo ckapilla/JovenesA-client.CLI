@@ -3,7 +3,7 @@ import { constants } from '../../constants/constants';
 import { StudentDTO } from '../../models/studentDTO';
 import { SessionService } from '../../services/session.service';
 import { StudentDataService } from '../../services/student-data.service';
-import { StudentSelectedService } from '../../services/student-selected-service';
+import { StudentSelectedService } from '../../services/student-selected.service';
 
 @Component({
   // tslint:disable-next-line: component-selector

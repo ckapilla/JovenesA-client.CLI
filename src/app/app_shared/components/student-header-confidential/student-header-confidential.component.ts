@@ -4,10 +4,10 @@ import { Subscription } from 'rxjs';
 import { StudentSelectedService } from '../../services/student-selected.service';
 
 @Component({
-  selector: 'app-student-header',
-  templateUrl: './student-header.component.html'
+  selector: 'app-student-header-confidential',
+  templateUrl: './student-header-confidential.component.html'
 })
-export class StudentHeaderComponent implements OnInit, OnDestroy {
+export class StudentHeaderConfidentialComponent implements OnInit, OnDestroy {
 
 
   photoPathName: string;
