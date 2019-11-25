@@ -44,7 +44,7 @@ export class StudentHeaderDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log('StudentHeaderDetails ngOnInit');
+    // console.log('StudentHeaderDetails ngOnInit');
     // this.fetchStudentDTOData();
     this.loadingState = 0;
     this.subscribeForStudentGUIds();
@@ -56,7 +56,7 @@ export class StudentHeaderDetailsComponent implements OnInit, OnDestroy {
 
 
   subscribeForStudentGUIds() {
-    console.log('header set up studentGUId subscription');
+    // console.log('header set up studentGUId subscription');
     this.subscription = this.studentSelected.subscribeForStudentGUIds()
       // .pipe(takeWhile(() => this.notDestroyed))
       .subscribe(message => {

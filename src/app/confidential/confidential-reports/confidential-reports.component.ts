@@ -67,7 +67,7 @@ export class ConfidentialReportsComponent implements OnInit, OnDestroy {
   }
 
   subscribeForStudentGUIds() {
-    console.log('CR set up studentGUId subscription');
+    // console.log('CR set up studentGUId subscription');
     this.subscription = this.studentSelected.subscribeForStudentGUIds()
       // .pipe(takeWhile(() => this.notDestroyed))
       .subscribe(message => {

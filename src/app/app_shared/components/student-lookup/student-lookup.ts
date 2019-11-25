@@ -1,4 +1,4 @@
-import { Component, Injectable, OnDestroy, OnInit } from '@angular/core';
+import { Component, Injectable, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of, Subscription } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
@@ -18,7 +18,7 @@ export class StudentNameService {
     if (searchStr === '') {
       return of([]);
     }
-    console.log('in search about to call getStudentMiniDTOs');
+    // console.log('in search about to call getStudentMiniDTOs');
     return this.studentData.getCurrentStudentMiniDTOs(searchStr)
       .pipe(
         // catchError(this.handleError),
@@ -44,7 +44,7 @@ export class StudentLookupComponent implements OnInit, OnDestroy {
   email: string;
   studentGUId: string;
   private subscription: Subscription;
-  hideSearch = 'xxx';
+  @Input() showSearchButton: boolean;
 
   // @Output() onSelectedStudentGUId = new EventEmitter<string>();
 
@@ -53,6 +53,7 @@ export class StudentLookupComponent implements OnInit, OnDestroy {
     private studentData: StudentDataService,
     private studentSelected: StudentSelectedService) {
     console.log('name-lookup constructor!');
+
   }
 
   ngOnInit() {
@@ -66,7 +67,6 @@ export class StudentLookupComponent implements OnInit, OnDestroy {
     console.log(' after unsubscribe ' + this.studentSelected.getInternalSubject().observers.length);
   }
   onSelect(item) {
-    console.log('onSelect');
     console.log(item.item.studentId);
     console.log(item.item.studentGUId);
     this.currentGUId = item.item.studentGUId;
@@ -77,14 +77,13 @@ export class StudentLookupComponent implements OnInit, OnDestroy {
   }
 
   onFocus() {
-    console.log('onFocus');
+    // console.log('onFocus');
     const input = document.getElementById('search-string') as HTMLInputElement;
     input.focus();
     input.select();
   }
 
   onInput() {
-    console.log('onInput');
     const input = document.getElementById('search-string') as HTMLInputElement;
     if (input.value.length === 0) {
       this.resetStudentData();
@@ -100,7 +99,7 @@ export class StudentLookupComponent implements OnInit, OnDestroy {
     this.resetStudentData();
   }
   subscribeForStudentGUIds() {
-    console.log('Name Lookup set up studentGUId subscription');
+    // console.log('Name Lookup set up studentGUId subscription');
     this.subscription = this.studentSelected.subscribeForStudentGUIds()
       // .pipe(takeWhile(() => this.notDestroyed))
       .subscribe(message => {
@@ -123,8 +122,6 @@ export class StudentLookupComponent implements OnInit, OnDestroy {
 
   fetchData() {
 
-    console.log('ssr fetchData');
-
     this.studentData.getCurrentStudentMiniDTO(this.currentGUId)
       .subscribe(
         data => { this.studentMiniDTO = data; },
@@ -142,7 +139,7 @@ export class StudentLookupComponent implements OnInit, OnDestroy {
     text$.pipe(
       debounceTime(500),
       distinctUntilChanged(),
-      tap((term) => console.log('search function has searchStr ' + term)),
+      // tap((term) => console.log('search function has searchStr ' + term)),
       tap(() => this.searching = true),
       switchMap(term =>
         this._service.search(term).pipe(

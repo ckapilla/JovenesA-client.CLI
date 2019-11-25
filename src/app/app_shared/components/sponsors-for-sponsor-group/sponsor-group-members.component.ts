@@ -34,25 +34,27 @@ export class SponsorGroupMembersComponent implements OnInit, OnChanges {
     this.fetchData();
   }
   fetchData() {
-    this.sponsorGroupData.getMembersForSponsorGroup(this.sponsorGroupId)
-      .subscribe(
-        data => { this.sponsorGroupMembers = data; console.log('getMembersForSponsorGroup'); console.log(this.sponsorGroupMembers[0]); },
-        err => console.error('Subscribe error: ' + err),
-        () => {
-          console.log('members-for-sponsor-group loaded ' + this.sponsorGroupMembers.length + ' rows');
-        }
-      );
+    if (this.sponsorGroupId) {
+      this.sponsorGroupData.getMembersForSponsorGroup(this.sponsorGroupId)
+        .subscribe(
+          data => { this.sponsorGroupMembers = data; console.log('getMembersForSponsorGroup'); console.log(this.sponsorGroupMembers[0]); },
+          err => console.error('Subscribe error: ' + err),
+          () => {
+            // console.log('members-for-sponsor-group loaded ' + this.sponsorGroupMembers.length + ' rows');
+          }
+        );
+    }
   }
 
   public ngOnChanges(changes: SimpleChanges) {
     if (changes.sponsorGroupId) {
-      console.log('sponsorGroupMembers child has new input sponsorGroupId');
+      // console.log('sponsorGroupMembers child has new input sponsorGroupId');
       this.sponsorGroupId = changes.sponsorGroupId.currentValue;
-      console.log('sponsorGroupMembers child has new input sponsorGroupId' + this.sponsorGroupId);
+      // console.log('sponsorGroupMembers child has new input sponsorGroupId' + this.sponsorGroupId);
       this.fetchData();
     }
     if (changes.newMemberNotification) {
-      console.log('sponsorGroupMembers child has new input newMemberNotification');
+      // console.log('sponsorGroupMembers child has new input newMemberNotification');
       this.fetchData();
     }
   }

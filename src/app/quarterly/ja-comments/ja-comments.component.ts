@@ -75,7 +75,7 @@ export class JaCommentsComponent implements OnInit, OnDestroy {
   }
 
   subscribeForStudentGUIds() {
-    console.log('JA set up studentGUId subscription');
+    // console.log('JA set up studentGUId subscription');
     this.subscription = this.studentSelected.subscribeForStudentGUIds()
       // .pipe(takeWhile(() => this.notDestroyed))
       .subscribe(message => {
@@ -91,7 +91,6 @@ export class JaCommentsComponent implements OnInit, OnDestroy {
 
   fetchData() {
 
-    console.log('ssr fetchData');
     this.isLoading = true;
     this.quarterlyData.getPartialQuarterlyReportByPeriod('JA', this.studentGUId, '2019', '3', '0')
       .subscribe(

@@ -71,7 +71,7 @@ export class PrivateNotesComponent implements OnInit, OnDestroy {
   }
 
   subscribeForStudentGUIds() {
-    console.log('PN set up studentGUId subscription');
+    // console.log('PN set up studentGUId subscription');
     this.subscription = this.studentSelected.subscribeForStudentGUIds()
       // .pipe(takeWhile(() => this.notDestroyed))
       .subscribe(message => {
@@ -87,7 +87,6 @@ export class PrivateNotesComponent implements OnInit, OnDestroy {
 
   fetchData() {
 
-    console.log('ssr fetchData');
     this.isLoading = true;
     this.quarterlyData.getPartialQuarterlyReportByPeriod('PN', this.studentGUId, '2019', '3', '0')
       .subscribe(

@@ -232,13 +232,13 @@
                                        [sponsorGroupId]="sponsorGroupIdParam">
             </app-sponsor-group-members>
 
-
             <label for="mentorGUId">Mentor: </label>
-            <select id="mentorGUId" formControlName="mentorGUId"
-                    class="form-control input-sm">
-              <option *ngFor="let mentor of mentors" [value]="mentor.value">{{mentor.label}}</option>
-            </select>
-
+            <div *ngIf="mentors$ | async as mentors">
+              <select id="mentorGUId" formControlName="mentorGUId"
+                      class="form-control input-sm">
+                <option *ngFor="let mentor of mentors" [value]="mentor.value">{{mentor.label}}</option>
+              </select>
+            </div>
             <!-- <label for="mentorName">Mentor (Read Only for Now)</label>
             <input id="mentorName" formControlName="mentorName" type="text"
                    readonly

@@ -1,6 +1,13 @@
-<label for='search-string'>Search for Student:</label>&nbsp;&nbsp;&nbsp;Or:&nbsp;<span
-      (click)="gotoStudentList()" style="margin-bottom: 2px;"
-      class="btn btn-sm btn-primary">Browse Students</span>
+<label for='search-string'>Search for Student:</label>
+<span style="margin-bottom: 2px; margin-left: 3rem;">
+  <span *ngIf="showSearchButton">
+    Or:
+  </span>
+  <span *ngIf="showSearchButton"
+        (click)="gotoStudentList()" style="margin-bottom: 2px; margin-left: 1rem;"
+        class="btn btn-sm btn-primary">Browse Students
+  </span>
+</span>
 <div class="d-flex justify-content-between">
   <input id='search-string'
          type='text'

@@ -75,7 +75,7 @@ export class SelfReportsComponent implements OnInit, OnDestroy {
   }
 
   subscribeForStudentGUIds() {
-    console.log('SR set up studentGUId subscription');
+    // console.log('SR set up studentGUId subscription');
     this.subscription = this.studentSelected.subscribeForStudentGUIds()
       // .pipe(takeWhile(() => this.notDestroyed))
       .subscribe(message => {
@@ -90,7 +90,6 @@ export class SelfReportsComponent implements OnInit, OnDestroy {
 
   fetchData() {
 
-    console.log('ssr fetchData');
     this.isLoading = true;
     this.quarterlyData.getPartialQuarterlyReportByPeriod('SR', this.studentGUId, '2019', '3', '0')
       .subscribe(

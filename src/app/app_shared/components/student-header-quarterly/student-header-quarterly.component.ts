@@ -23,14 +23,13 @@ export class StudentHeaderQuarterlyComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log('StudentHeader ngOnInit');
     this.subscribeForStudentGUIds();
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
   subscribeForStudentGUIds() {
-    console.log('header set up studentGUId subscription');
+    // console.log('header set up studentGUId subscription');
     this.subscription = this.studentSelected.subscribeForStudentGUIds()
       // .pipe(takeWhile(() => this.notDestroyed))
       .subscribe(message => {

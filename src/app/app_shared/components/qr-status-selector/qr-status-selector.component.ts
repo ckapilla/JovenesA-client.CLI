@@ -47,7 +47,7 @@ export class QrStatusSelectorComponent implements OnInit, OnDestroy {
 
 
   subscribeForStudentGUIds() {
-    console.log('status selector set up studentGUId subscription');
+    // console.log('status selector set up studentGUId subscription');
     this.subscription = this.studentSelected.subscribeForStudentGUIds()
       // .pipe(takeWhile(() => this.notDestroyed))
       .subscribe(message => {

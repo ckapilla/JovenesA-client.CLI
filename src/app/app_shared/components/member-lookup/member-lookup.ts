@@ -74,7 +74,7 @@ export class MemberLookupComponent implements OnInit, OnDestroy {
   }
 
   onFocus() {
-    console.log('onFocus');
+    // console.log('onFocus');
     const input = document.getElementById('search-string') as HTMLInputElement;
     input.focus();
     input.select();
@@ -117,8 +117,6 @@ export class MemberLookupComponent implements OnInit, OnDestroy {
 
 
   fetchData() {
-
-    console.log('ssr fetchData');
 
     this.memberData.getCurrentMemberMiniDTO(this.currentGUId)
       .subscribe(

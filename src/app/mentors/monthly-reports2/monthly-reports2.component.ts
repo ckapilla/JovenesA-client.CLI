@@ -66,7 +66,7 @@ export class MonthlyReports2Component implements OnInit, OnDestroy {
   }
 
   subscribeForStudentGUIds() {
-    console.log('MR set up studentGUId subscription');
+    // console.log('MR set up studentGUId subscription');
     this.subscription = this.studentSelected.subscribeForStudentGUIds()
       // .pipe(takeWhile(() => this.notDestroyed))
       .subscribe(message => {

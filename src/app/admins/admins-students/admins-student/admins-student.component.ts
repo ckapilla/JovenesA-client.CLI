@@ -2,6 +2,8 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { EMPTY, Observable } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import { MiscDataService } from 'src/app/app_shared/services/misc-data.service';
 import { StudentDataService } from 'src/app/app_shared/services/student-data.service';
 import { UrlService } from 'src/app/app_shared/services/url.service';
@@ -34,7 +36,17 @@ export class AdminsStudentComponent implements OnInit {
   prepas: SELECTITEM[];
   universities: SELECTITEM[];
   sponsorGroups: SELECTITEM[];
-  mentors: SELECTITEM[];
+
+  // mentors: SELECTITEM[];
+  mentors$: Observable<SELECTITEM[]> = this.miscData.mentors$
+    .pipe(
+      tap((x) => console.log('mentors$ returned in component')),
+      catchError(err => {
+        this.errorMessage = err;
+        console.log('CAUGHT ERROR IN Component ' + err);
+        return EMPTY;
+      })
+    );
 
   errorMessage: string;
   successMessage: string;
@@ -74,7 +86,9 @@ export class AdminsStudentComponent implements OnInit {
     this.credentialMonths = constants.months;
     this.genders = constants.genders;
 
-    this.fetchMentors();
+    // this.fetchMentors();
+    // this.fetchMentorObservable();
+
     this.fetchPrepas();
     this.fetchUniversities();
     this.fetchSponsorGroups();
@@ -331,20 +345,40 @@ export class AdminsStudentComponent implements OnInit {
     }
   }
 
-  fetchMentors() {
-    this.miscData.getMentorNamesByGUId()
-      .subscribe(
-        data => { this.mentors = data; console.log('getMentorNames'); console.log(this.mentors); },
-        err => console.error('Subscribe error: ' + err),
-        () => {
-        }
-      );
-  }
+  // fetchMentors() {
+  //   this.miscData.getMentorNamesWithGUId()
+  //     .subscribe(
+  //       data => { this.mentors = data; console.log('getMentorNamesWithGUId returned'); },
+  //       err => console.error('Subscribe error: ' + err),
+  //       () => {
+  //       }
+  //     );
+  // }
+
+  // fetchMentorObservable() {
+  //   // this.mentors$ = this.miscData.mentors$
+  //   //   .pipe(
+  //   //     tap((x) => console.log('mentors$ returned in component')),
+  //   //     catchError(err => {
+  //   //       this.errorMessage = err;
+  //   //       console.log('CAUGHT ERROR IN Component ' + err);
+  //   //       return EMPTY;
+  //   //     })
+  //   //   );
+  //   this.mentors$ = this.miscData.getMentorNamesWithGUId()
+  //     .pipe(
+  //       catchError(err => {
+  //         this.errorMessage = err;
+  //         console.log('CAUGHT ERROR IN Component ' + err);
+  //         return EMPTY;
+  //       })
+  //     );
+  // }
 
   fetchPrepas() {
     this.miscData.getPrepaNames()
       .subscribe(
-        data => { this.prepas = data; console.log('getPrepaNames'); console.log(this.prepas[0]); },
+        data => { this.prepas = data; console.log('getPrepaNames'); },
         err => console.error('Subscribe error: ' + err),
         () => {
         }
@@ -354,7 +388,7 @@ export class AdminsStudentComponent implements OnInit {
   fetchUniversities() {
     this.miscData.getUniversityNames()
       .subscribe(
-        data => { this.universities = data; console.log('getUniversityNames'); console.log(this.universities[0]); },
+        data => { this.universities = data; console.log('getUniversityNames'); },
         err => console.error('Subscribe error: ' + err),
         () => {
         }
@@ -364,7 +398,7 @@ export class AdminsStudentComponent implements OnInit {
   fetchSponsorGroups() {
     this.miscData.getSponsorGroups()
       .subscribe(
-        data => { this.sponsorGroups = data; console.log('getSponsorGroups'); console.log(this.sponsorGroups[0]); },
+        data => { this.sponsorGroups = data; console.log('getSponsorGroups'); },
         err => console.error('Subscribe error: ' + err),
         () => {
         }

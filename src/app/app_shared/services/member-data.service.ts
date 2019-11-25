@@ -129,7 +129,7 @@ export class MemberDataService extends BaseDataService {
 
   public getMentor(mentorId: Number): Observable<Member> {
     const url = this.WebApiPrefix + 'mentors/' + mentorId;
-    console.log('sending AuthHttp get request for Member');
+    console.log('sending AuthHttp get request for Mentor');
     return this.http.get(url).pipe(catchError(this.handleError));
   }
 
