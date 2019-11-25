@@ -15,7 +15,7 @@ const confidentialRoutes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        component: OverviewComponent
+        component: ConfidentialHomeComponent
       },
       {
         path: 'edits',
