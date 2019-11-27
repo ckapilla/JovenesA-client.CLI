@@ -93,10 +93,14 @@
                 }"></app-display-errors>
 
               <label for="prepaId">Prepa</label>
-              <select id="prepaId" formControlName="prepaId"
-                      class="form-control form-control-sm">
-                <option *ngFor="let status of prepas" [value]="status.value">{{status.label}}</option>
-              </select>
+
+              <div *ngIf="prepas$ | async as prepas">
+                <select id="prepaId" formControlName="prepaId"
+                        class="form-control form-control-sm">
+                  <option *ngFor="let status of prepas" [value]="status.value">{{status.label}}</option>
+                </select>
+              </div>
+
 
               <!-- <label for="inputInitialInterview">Initial Interview:</label>
           <textarea id="inputInitialInterview" formControlName="inputInitialInterview"
@@ -196,10 +200,12 @@
                      class="form-control form-control-sm" type="text" />
 
               <label for="universityId">University</label>
-              <select id="universityId" formControlName="universityId"
-                      class="form-control form-control-sm">
-                <option *ngFor="let status of universities" [value]="status.value">{{status.label}}</option>
-              </select>
+              <div *ngIf="universities$ | async as universities">
+                <select id="universityId" formControlName="universityId"
+                        class="form-control form-control-sm">
+                  <option *ngFor="let status of universities" [value]="status.value">{{status.label}}</option>
+                </select>
+              </div>
 
               <label for="major">Major</label>
               <input id="major" formControlName="major" type="text"
@@ -223,10 +229,13 @@
 
             <div class="form-group"></div>
             <label for="sponsorGroupId">Sponsor Group</label>
-            <select id="sponsorGroupId" formControlName="sponsorGroupId"
-                    class="form-control form-control-sm">
-              <option *ngFor="let sponsor of sponsorGroups" [value]="sponsor.value">{{sponsor.label}}</option>
-            </select>
+            <div *ngIf="sponsorGroups$ | async as sponsorGroups">
+              <select id="sponsorGroupId" formControlName="sponsorGroupId"
+                      class="form-control form-control-sm">
+                <option *ngFor="let sponsor of sponsorGroups" [value]="sponsor.value">{{sponsor.label}}</option>
+              </select>
+            </div>
+
 
             <app-sponsor-group-members
                                        [sponsorGroupId]="sponsorGroupIdParam">

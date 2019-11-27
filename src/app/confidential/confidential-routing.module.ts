@@ -5,7 +5,6 @@ import { ConfidentialHomeComponent } from './confidential-home/confidential-home
 import { ConfidentialComponent } from './confidential.component';
 import { OverviewComponent } from './overview/overview.component';
 
-
 const confidentialRoutes: Routes = [
   {
     path: '', // lazy loading

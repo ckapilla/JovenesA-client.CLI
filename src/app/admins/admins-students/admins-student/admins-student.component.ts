@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EMPTY, Observable } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { MiscDataService } from 'src/app/app_shared/services/misc-data.service';
 import { StudentDataService } from 'src/app/app_shared/services/student-data.service';
 import { UrlService } from 'src/app/app_shared/services/url.service';
@@ -33,20 +33,52 @@ export class AdminsStudentComponent implements OnInit {
   credentialYears: SELECTITEM[];
   credentialMonths: SELECTITEM[];
   genders: SELECTITEM[];
-  prepas: SELECTITEM[];
-  universities: SELECTITEM[];
-  sponsorGroups: SELECTITEM[];
+
 
   // mentors: SELECTITEM[];
   mentors$: Observable<SELECTITEM[]> = this.miscData.mentors$
     .pipe(
-      tap((x) => console.log('mentors$ returned in component')),
       catchError(err => {
         this.errorMessage = err;
         console.log('CAUGHT ERROR IN Component ' + err);
         return EMPTY;
       })
     );
+
+  // prepas: SELECTITEM[];
+  prepas$: Observable<SELECTITEM[]>
+    = this.miscData.prepas$
+      .pipe(
+        catchError(err => {
+          this.errorMessage = err;
+          console.log('CAUGHT ERROR IN Component ' + err);
+          return EMPTY;
+        })
+      );
+
+  // universities: SELECTITEM[];
+  universities$: Observable<SELECTITEM[]>
+    = this.miscData.universities$
+      .pipe(
+        catchError(err => {
+          this.errorMessage = err;
+          console.log('CAUGHT ERROR IN Component ' + err);
+          return EMPTY;
+        })
+      );
+
+
+  // sponsorGroups: SELECTITEM[];
+  sponsorGroups$: Observable<SELECTITEM[]>
+    = this.miscData.sponsorGroups$
+      .pipe(
+        catchError(err => {
+          this.errorMessage = err;
+          console.log('CAUGHT ERROR IN Component ' + err);
+          return EMPTY;
+        })
+      );
+
 
   errorMessage: string;
   successMessage: string;
@@ -89,9 +121,9 @@ export class AdminsStudentComponent implements OnInit {
     // this.fetchMentors();
     // this.fetchMentorObservable();
 
-    this.fetchPrepas();
-    this.fetchUniversities();
-    this.fetchSponsorGroups();
+    // this.fetchPrepas();
+    // this.fetchUniversities();
+    // this.fetchSponsorGroups();
 
     this.myForm = formBuilder.group({
       studentId: '',
@@ -375,35 +407,35 @@ export class AdminsStudentComponent implements OnInit {
   //     );
   // }
 
-  fetchPrepas() {
-    this.miscData.getPrepaNames()
-      .subscribe(
-        data => { this.prepas = data; console.log('getPrepaNames'); },
-        err => console.error('Subscribe error: ' + err),
-        () => {
-        }
-      );
-  }
+  // fetchPrepas() {
+  //   this.miscData.getPrepaNames()
+  //     .subscribe(
+  //       data => { this.prepas = data; console.log('getPrepaNames'); },
+  //       err => console.error('Subscribe error: ' + err),
+  //       () => {
+  //       }
+  //     );
+  // }
 
-  fetchUniversities() {
-    this.miscData.getUniversityNames()
-      .subscribe(
-        data => { this.universities = data; console.log('getUniversityNames'); },
-        err => console.error('Subscribe error: ' + err),
-        () => {
-        }
-      );
-  }
+  // fetchUniversities() {
+  //   this.miscData.getUniversityNames()
+  //     .subscribe(
+  //       data => { this.universities = data; console.log('getUniversityNames'); },
+  //       err => console.error('Subscribe error: ' + err),
+  //       () => {
+  //       }
+  //     );
+  // }
 
-  fetchSponsorGroups() {
-    this.miscData.getSponsorGroups()
-      .subscribe(
-        data => { this.sponsorGroups = data; console.log('getSponsorGroups'); },
-        err => console.error('Subscribe error: ' + err),
-        () => {
-        }
-      );
-  }
+  // fetchSponsorGroups() {
+  //   this.miscData.getSponsorGroups()
+  //     .subscribe(
+  //       data => { this.sponsorGroups = data; console.log('getSponsorGroups'); },
+  //       err => console.error('Subscribe error: ' + err),
+  //       () => {
+  //       }
+  //     );
+  // }
 
   getNumericStatus(studentDTO: StudentDTO): StudentDTO {
 
