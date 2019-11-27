@@ -1,13 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { StudentSelectedService } from '../../services/student-selected.service';
+import { StudentSelectedService } from '../../app_shared/services/student-selected.service';
 
 @Component({
-  selector: 'app-student-header-confidential',
-  templateUrl: './student-header-confidential.component.html'
+  selector: 'app-student-header-quarterly',
+  templateUrl: './student-header-quarterly.component.html'
 })
-export class StudentHeaderConfidentialComponent implements OnInit, OnDestroy {
+export class StudentHeaderQuarterlyComponent implements OnInit, OnDestroy {
 
 
   photoPathName: string;

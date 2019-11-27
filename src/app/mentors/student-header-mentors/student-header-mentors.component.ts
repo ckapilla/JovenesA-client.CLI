@@ -6,9 +6,7 @@ import { Component, Input } from '@angular/core';
 export class StudentHeaderMentorsComponent {
 
   @Input() studentGUId: string;
-
   photoPathName: string;
-
 
   constructor(
 
@@ -17,14 +15,8 @@ export class StudentHeaderMentorsComponent {
 
   }
 
-  // public onSelectedStudentGUId($event) {
-  //   console.log('student-header parent had new GUID event ' + $event);
-  //   this.studentGUId = $event;
-  // }
-
   public onPhotoPathNameSet(photoPathName: string) {
     this.photoPathName = photoPathName;
     // console.log('parent studentHeader has onPhotoPathNameSet called with' + photoPathName);
   }
-
 }

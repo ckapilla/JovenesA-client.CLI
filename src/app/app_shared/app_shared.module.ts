@@ -28,11 +28,7 @@ import { SortableColumnComponent } from './components/sortable-column.component'
 import { SponsorGroupMemberEditComponent } from './components/sponsor-group-member-edit/sponsor-group-member-edit.component';
 import { SponsorGroupMembersComponent } from './components/sponsors-for-sponsor-group/sponsor-group-members.component';
 import { StudentGradesStatusComponent } from './components/student-grades-status.component';
-import { StudentHeaderConfidentialComponent } from './components/student-header-confidential/student-header-confidential.component';
 import { StudentHeaderDetailsComponent } from './components/student-header-details/student-header-details.component';
-import { StudentHeaderMentorsComponent } from './components/student-header-mentors/student-header-mentors.component';
-import { StudentHeaderQuarterlyComponent } from './components/student-header-quarterly/student-header-quarterly.component';
-import { StudentHeaderSponsorsComponent } from './components/student-header-sponsors/student-header-sponsors.component';
 import { StudentHeaderComponent } from './components/student-header/student-header.component';
 import { StudentLookupComponent } from './components/student-lookup/student-lookup';
 import { StudentMRStatusComponent } from './components/student-mr-status.component';
@@ -49,6 +45,7 @@ import { AlphaMonthPipe } from './pipes/alpha-month-pipe';
 import { MarkedPipe } from './pipes/marked-pipe';
 import { TruncateDatePipe } from './pipes/truncate-date-pipe';
 import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
+
 
 
 /**
@@ -98,18 +95,14 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     AdminStudentNotesComponent,
     MentorReportsForPeriodComponent,
     StudentLookupComponent,
-    StudentHeaderQuarterlyComponent,
     StudentHeaderDetailsComponent,
     MemberPhotoComponent,
     QrStatusSelectorComponent,
-    StudentHeaderSponsorsComponent,
     PersonSharedComponent,
     MemberLookupComponent,
     MemberHeaderComponent,
     MemberHeaderDetailsComponent,
     StudentHeaderComponent,
-    StudentHeaderMentorsComponent,
-    StudentHeaderConfidentialComponent,
     StudentPhotoComponent,
   ],
   exports: [
@@ -148,17 +141,13 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     AdminStudentNotesComponent,
     MentorReportsForPeriodComponent,
     StudentLookupComponent,
-    StudentHeaderQuarterlyComponent,
     StudentHeaderDetailsComponent,
     StudentHeaderComponent,
     QrStatusSelectorComponent,
-    StudentHeaderSponsorsComponent,
     PersonSharedComponent,
     MemberLookupComponent,
     MemberHeaderComponent,
     MemberHeaderDetailsComponent,
-    StudentHeaderMentorsComponent,
-    StudentHeaderConfidentialComponent,
     ConfidentialReportsListComponent,
     MemberPhotoComponent,
     StudentPhotoComponent

@@ -10,24 +10,25 @@ import { ConfidentialReportsComponent } from './confidential-reports/confidentia
 import { ConfidentialRoutingModule } from './confidential-routing.module';
 import { ConfidentialComponent } from './confidential.component';
 import { OverviewComponent } from './overview/overview.component';
-
+import { StudentHeaderConfidentialComponent } from './student-header-confidential/student-header-confidential.component';
 
 
 @NgModule({
+  imports: [
+    CommonModule,
+    AppSharedModule,
+    ConfidentialRoutingModule,
+    NgbModule
+  ],
   declarations: [
     ConfidentialComponent,
     OverviewComponent,
     ConfidentialNavbarComponent,
     ConfidentialHomeComponent,
     ConfidentialReportsComponent,
-    ConfidentialReportsAddComponent
+    ConfidentialReportsAddComponent,
+    StudentHeaderConfidentialComponent,
     // ConfidentialReportsListComponent
-  ],
-  imports: [
-    CommonModule,
-    AppSharedModule,
-    ConfidentialRoutingModule,
-    NgbModule
   ]
 })
 export class ConfidentialModule { }

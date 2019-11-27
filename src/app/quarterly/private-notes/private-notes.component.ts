@@ -6,8 +6,8 @@ import { Subscription } from 'rxjs';
 import { MiscDataService } from 'src/app/app_shared/services/misc-data.service';
 import { StudentSelectedService } from 'src/app/app_shared/services/student-selected.service';
 import { QuarterlyReport } from '../../app_shared/models/quarterly-report';
+import { QuarterlyDataService } from '../../app_shared/services/quarterly-data.service';
 import { SessionService } from '../../app_shared/services/session.service';
-import { QuarterlyDataService } from '../quarterly-data.serviceXX';
 
 
 @Component({

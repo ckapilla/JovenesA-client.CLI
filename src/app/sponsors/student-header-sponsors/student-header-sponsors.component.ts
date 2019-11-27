@@ -6,9 +6,7 @@ import { Component, Input } from '@angular/core';
 export class StudentHeaderSponsorsComponent {
 
   @Input() studentGUId: string;
-
   photoPathName: string;
-
 
   constructor(
 
@@ -21,5 +19,4 @@ export class StudentHeaderSponsorsComponent {
     this.photoPathName = photoPathName;
     // console.log('parent studentHeader has onPhotoPathNameSet called with' + photoPathName);
   }
-
 }

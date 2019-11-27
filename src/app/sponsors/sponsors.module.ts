@@ -7,6 +7,7 @@ import { SponsorsHomeComponent } from './sponsors-home/sponsors-home.component';
 import { SponsorsNavbarComponent } from './sponsors-navbar/sponsors-navbar.component';
 import { SponsorsComponent } from './sponsors.component';
 import { SponsorsRoutingModule } from './sponsors.routing';
+import { StudentHeaderSponsorsComponent } from './student-header-sponsors/student-header-sponsors.component';
 
 @NgModule({
 
@@ -20,6 +21,7 @@ import { SponsorsRoutingModule } from './sponsors.routing';
     SponsorsComponent,
     SponsorsNavbarComponent,
     SponsorsHomeComponent,
+    StudentHeaderSponsorsComponent
     //    ConsolidatedReportsComponent
   ]
 })
