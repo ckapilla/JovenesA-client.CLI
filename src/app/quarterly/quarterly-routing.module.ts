@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CanActivateViaAdminAuthGuard } from '../app.routing-guards';
-import { OverviewComponent } from './overview/overview.component';
+import { QuarterlyContainerComponent } from './quarterly-container/quarterly-container.component';
 import { QuarterlyHomeComponent } from './quarterly-home/quarterly-home.component';
 import { QuarterlyComponent } from './quarterly.component';
 
@@ -15,15 +15,15 @@ const quarterlyRoutes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        component: OverviewComponent
+        component: QuarterlyContainerComponent
       },
       {
         path: 'edits',
         component: QuarterlyHomeComponent
       },
       {
-        path: 'overview',
-        component: OverviewComponent
+        path: 'quarterly-container',
+        component: QuarterlyContainerComponent
       }
 
     ]

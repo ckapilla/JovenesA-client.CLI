@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CanActivateViaSponsorAuthGuard } from '../app.routing-guards';
-import { SponsorsHomeComponent } from './sponsors-home/sponsors-home.component';
+import { SponsorsContainerComponent } from './sponsors-container/sponsors-container.component';
 import { SponsorsComponent } from './sponsors.component';
 
 const sponsorRoutes: Routes = [
@@ -13,12 +13,12 @@ const sponsorRoutes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        component: SponsorsHomeComponent,
-        // redirectTo: 'sponsors-home.component'
+        component: SponsorsContainerComponent,
+        // redirectTo: 'sponsors-container.component'
       },
       {
         path: 'home',
-        component: SponsorsHomeComponent
+        component: SponsorsContainerComponent
       },
       // {
       //   path: 'profile/:id',

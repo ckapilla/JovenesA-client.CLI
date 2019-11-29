@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CanActivateViaAdminAuthGuard } from '../app.routing-guards';
-import { ConfidentialHomeComponent } from './confidential-home/confidential-home.component';
+import { ConfidentialQuarterlyComponent } from './confidential-container/confidential-quarterly.component';
 import { ConfidentialReportsTrackingComponent } from './confidential-reports-tracking/confidential-reports-tracking.component';
 import { ConfidentialComponent } from './confidential.component';
 
@@ -15,14 +15,14 @@ const confidentialRoutes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        component: ConfidentialHomeComponent
+        component: ConfidentialQuarterlyComponent
       },
       {
         path: 'edits',
-        component: ConfidentialHomeComponent
+        component: ConfidentialQuarterlyComponent
       },
       {
-        path: 'overview',
+        path: 'quarterly-container',
         component: ConfidentialReportsTrackingComponent
       }
 

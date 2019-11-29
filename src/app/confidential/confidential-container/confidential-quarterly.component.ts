@@ -3,9 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-confidential-home',
-  templateUrl: './confidential-home.component.html'
+  templateUrl: './confidential-quarterly.component.html'
 })
-export class ConfidentialHomeComponent implements OnInit {
+export class ConfidentialQuarterlyComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute

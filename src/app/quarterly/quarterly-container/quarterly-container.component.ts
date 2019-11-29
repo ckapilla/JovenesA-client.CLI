@@ -10,11 +10,10 @@ import { QuarterlyDataService } from '../../app_shared/services/quarterly-data.s
 import { SessionService } from '../../app_shared/services/session.service';
 
 @Component({
-  selector: 'app-overview',
-  templateUrl: './overview.component.html',
-  styleUrls: ['./overview.component.css']
+  templateUrl: './quarterly-container.html',
+  styleUrls: ['./quarterly-container.component.css']
 })
-export class OverviewComponent implements OnInit {
+export class QuarterlyContainerComponent implements OnInit {
   isLoading = false;
   errorMessage: string;
   successMessage: string;
@@ -33,7 +32,7 @@ export class OverviewComponent implements OnInit {
     public studentSelected: StudentSelectedService,
     public session: SessionService) {
 
-    console.log('overview constructor');
+    console.log('quarterly-container constructor');
 
     // this.gradeRptsStatus = 'yellowWarning.jpg'
     // this.gpaStatus = 'greenCheck.jpg'

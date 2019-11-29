@@ -3,7 +3,7 @@ import { AuthService } from '../../app_shared/services/auth.service';
 
 
 @Component({
-  templateUrl: 'mentors-home.component.html'
+  templateUrl: 'mentors-container.component.html'
 })
 export class MentorsHomeComponent {
 
