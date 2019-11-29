@@ -1,6 +1,6 @@
 export class ConfidentialReportRPT {
   constructor(
-    public confidentialReportGUId?: string,
+    public confidentialReportId?: number,
     public adminId?: number,
     public studentId?: number,
     public adminName?: string,
@@ -14,9 +14,6 @@ export class ConfidentialReportRPT {
     public reviewedStatusId?: number,
     public reviewedStatus?: string,
     public sponsorGroupName?: string,
-    public originalLanguageId?: number,
-    public sponsorRequiredLanguageId?: number,
-    public sponsorPreferredLanguageId?: number,
     public studentGUId?: string
   ) {
 

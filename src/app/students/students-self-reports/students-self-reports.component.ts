@@ -31,7 +31,7 @@ export class StudentsSelfReportsComponent implements OnInit {
     public studentSelfReportData: StudentSelfReportDataService,
     public session: SessionService) {
 
-    console.log('sponsorLetters constructor');
+    console.log('ssr constructor');
   }
 
   ngOnInit() {

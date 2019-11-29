@@ -22,6 +22,12 @@ export class ConfidentialDataService extends BaseDataService {
     return this.http.get<ConfidentialReportRPT[]>(url).pipe(catchError(this.handleError));
   }
 
+  public getLatestConfidentialReportRPTs(): Observable<ConfidentialReportRPT[]> {
+    const url = this.WebApiPrefix + 'confidential_reports/0/0';
+    console.log('sending AuthHttp get request for ConfidentailReports with ' + url);
+    return this.http.get<ConfidentialReportRPT[]>(url).pipe(catchError(this.handleError));
+  }
+
   public addConfidentialReport(confidentialReport: ConfidentialReportRPT): Observable<ConfidentialReportRPT> {
 
     const url = this.WebApiPrefix + 'confidential_reports';

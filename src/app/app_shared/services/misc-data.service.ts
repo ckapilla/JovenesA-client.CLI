@@ -13,28 +13,28 @@ export class MiscDataService extends BaseDataService {
   private mentorsUrl = this.WebApiPrefix + 'lookup/mentors';
   mentors$: Observable<SELECTITEM[]>
     = this.http.get<SELECTITEM[]>(this.mentorsUrl).pipe(
-      tap((data) => console.log('mentorNames ', JSON.stringify(data))),
+      tap((data) => console.log('mentorNames ', JSON.stringify(data[0]))),
       shareReplay(1),
       catchError(this.handleError));
 
   private sponsorGroupsUrl = this.WebApiPrefix + 'lookup/sponsorgroups';
   sponsorGroups$: Observable<SELECTITEM[]>
     = this.http.get<SELECTITEM[]>(this.sponsorGroupsUrl).pipe(
-      tap((data) => console.log('sponsorGroups ', JSON.stringify(data))),
+      tap((data) => console.log('sponsorGroups ', JSON.stringify(data[0]))),
       shareReplay(1),
       catchError(this.handleError));
 
   private universitiesUrl = this.WebApiPrefix + 'lookup/universities';
   universities$: Observable<SELECTITEM[]>
     = this.http.get<SELECTITEM[]>(this.universitiesUrl).pipe(
-      tap((data) => console.log('universities ', JSON.stringify(data))),
+      tap((data) => console.log('universities ', JSON.stringify(data[0]))),
       shareReplay(1),
       catchError(this.handleError));
 
   private prepasUrl = this.WebApiPrefix + 'lookup/prepas';
   prepas$: Observable<SELECTITEM[]>
     = this.http.get<SELECTITEM[]>(this.prepasUrl).pipe(
-      tap((data) => console.log('prepas ', JSON.stringify(data))),
+      tap((data) => console.log('prepas ', JSON.stringify(data[0]))),
       shareReplay(1),
       catchError(this.handleError));
 
@@ -42,39 +42,5 @@ export class MiscDataService extends BaseDataService {
     public webApiPrefixService: UrlService) {
     super(http, webApiPrefixService);
   }
-
-  ////////////////////////////// lookups
-
-  // public getMentorNames(): Observable<SELECTITEM[]> {
-  //   const url = this.WebApiPrefix + 'lookup/mentors';
-  //   console.log('sending AuthHttp get request ' + url);
-  //   return this.http.get<SELECTITEM[]>(url).pipe(shareReplay(1), tap(x => console.log('mentorNames')), catchError(this.handleError));
-  // }
-  // public getMentorNamesWithGUId(): Observable<SELECTITEM[]> {
-  //   const url = this.WebApiPrefix + 'lookup/mentors';
-  //   console.log('sending AuthHttp get request ' + url);
-  //   return this.http.get<SELECTITEM[]>(url).pipe(
-  //     tap((data) => console.log('mentorNames ', JSON.stringify(data))),
-  //     shareReplay(1),
-  //     catchError(this.handleError));
-  // }
-
-  // public getSponsorGroups(): Observable<SELECTITEM[]> {
-  //   const url = this.WebApiPrefix + 'lookup/sponsorgroups';
-  //   console.log('sending AuthHttp get request ' + url);
-  //   return this.http.get<SELECTITEM[]>(url).pipe(shareReplay(1), catchError(this.handleError));
-  // }
-
-  // public getUniversityNames(): Observable<SELECTITEM[]> {
-  //   const url = this.WebApiPrefix + 'lookup/universities';
-  //   console.log('sending AuthHttp get request ' + url);
-  //   return this.http.get<SELECTITEM[]>(url).pipe(shareReplay(1), catchError(this.handleError));
-  // }
-
-  // public getPrepaNames(): Observable<SELECTITEM[]> {
-  //   const url = this.WebApiPrefix + 'lookup/prepas';
-  //   console.log('sending AuthHttp get request ' + url);
-  //   return this.http.get<SELECTITEM[]>(url).pipe(shareReplay(1), catchError(this.handleError));
-  // }
 
 }
