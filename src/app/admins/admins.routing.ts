@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CanActivateViaAdminAuthGuard, ConfirmDeactivateMRSummaryUpdatesGuard } from '../app.routing-guards';
-import { FollowUpEventsComponent } from '../app_shared/components/follow-up-events/follow-up-events.component';
+import { FollowUpEventsComponent } from '../_shared/components/follow-up-events/follow-up-events.component';
 import { AdminsMemberListComponent } from './admins-members/admins-member-list/admins-member-list.component';
 import { AdminsMemberSearchComponent } from './admins-members/admins-member-search/admins-member-search.component';
 import { AdminsMemberComponent } from './admins-members/admins-member/admins-member.component';

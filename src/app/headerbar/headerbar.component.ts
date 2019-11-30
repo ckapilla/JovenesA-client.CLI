@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 // import { AppRouting } from '../../app.routing';
-import { AuthService } from '../app_shared/services/auth.service';
-import { SessionService } from '../app_shared/services/session.service';
+import { AuthService } from '../_shared/services/auth.service';
+import { SessionService } from '../_shared/services/session.service';
 /**
  * This class represents the headerbar component.
  */

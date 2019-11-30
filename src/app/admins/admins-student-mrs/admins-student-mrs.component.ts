@@ -1,9 +1,9 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MentorReport2DataService } from 'src/app/app_shared/services/mentor-report2-data.service';
-import { MentorReport2RPT } from '../../app_shared/models/mentor-report2';
-import { SessionService } from '../../app_shared/services/session.service';
+import { MentorReport2DataService } from 'src/app/_shared/services/mentor-report2-data.service';
+import { MentorReport2RPT } from '../../_shared/models/mentor-report2';
+import { SessionService } from '../../_shared/services/session.service';
 @Component({
 
   templateUrl: './admins-student-mrs.component.html',

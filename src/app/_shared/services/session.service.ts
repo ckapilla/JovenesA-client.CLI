@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
+import { SELECTITEM } from '../interfaces/SELECTITEM';
 import { StudentDTO } from '../models/studentDTO';
 
 @Injectable({ providedIn: 'root' })

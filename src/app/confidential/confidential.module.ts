@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AppSharedModule } from '../app_shared/app_shared.module';
-// import { ConfidentialReportsListComponent } from '../app_shared/components/confidential-reports-list/confidential-reports-list.component';
+import { AppSharedModule } from '../_shared/_shared.module';
+// import { ConfidentialReportsListComponent } from '../_shared/components/confidential-reports-list/confidential-reports-list.component';
 import { ConfidentialQuarterlyComponent } from './confidential-container/confidential-quarterly.component';
 import { ConfidentialNavbarComponent } from './confidential-navbar/confidential-navbar.component';
 import { ConfidentialReportsAddComponent } from './confidential-reports-add/confidential-reports-add.component';

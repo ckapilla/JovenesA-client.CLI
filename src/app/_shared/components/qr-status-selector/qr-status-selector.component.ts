@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { QuarterlyReportRPT } from 'src/app/app_shared/models/quarterly-reportRPT';
-import { QuarterlyDataService } from 'src/app/app_shared/services/quarterly-data.service';
-import { StudentSelectedService } from 'src/app/app_shared/services/student-selected.service';
+import { QuarterlyReportRPT } from 'src/app/_shared/models/quarterly-reportRPT';
+import { QuarterlyDataService } from 'src/app/_shared/services/quarterly-data.service';
+import { StudentSelectedService } from 'src/app/_shared/services/student-selected.service';
 import { constants } from '../../constants/constants';
 import { SELECTITEM } from '../../interfaces/SELECTITEM';
 import { SessionService } from '../../services/session.service';

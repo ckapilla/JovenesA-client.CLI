@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SponsorGroup } from 'src/app/app_shared/models/sponsor-group';
-import { SponsorGroupMemberDTO } from 'src/app/app_shared/models/sponsor-group-memberDTO';
-import { SponsorGroupDataService } from 'src/app/app_shared/services/sponsor-group-data.service';
-import { SORTCRITERIA } from '../../app_shared/interfaces/SORTCRITERIA';
-import { ColumnSortService } from '../../app_shared/services/column-sort.service';
+import { SponsorGroup } from 'src/app/_shared/models/sponsor-group';
+import { SponsorGroupMemberDTO } from 'src/app/_shared/models/sponsor-group-memberDTO';
+import { SponsorGroupDataService } from 'src/app/_shared/services/sponsor-group-data.service';
+import { SORTCRITERIA } from '../../_shared/interfaces/SORTCRITERIA';
+import { ColumnSortService } from '../../_shared/services/column-sort.service';
 
 @Component({
   selector: 'app-sponsor-groups',

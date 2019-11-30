@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { UrlService } from '../../app_shared/services/url.service';
+import { UrlService } from '../../_shared/services/url.service';
 import { LatestMentorReports } from './shared/report-models/latest-mentor-reports';
 import { LatestMentorReports2 } from './shared/report-models/latest-mentor-reports2';
 import { LatestStudentLetters } from './shared/report-models/latest-student-letters';

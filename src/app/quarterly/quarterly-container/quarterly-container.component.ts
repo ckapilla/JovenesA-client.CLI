@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ColumnSortService } from 'src/app/app_shared/services/column-sort.service';
-import { StudentSelectedService } from 'src/app/app_shared/services/student-selected.service';
-import { constants } from '../../app_shared/constants/constants';
-import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
-import { SORTCRITERIA } from '../../app_shared/interfaces/SORTCRITERIA';
-import { QuarterlyReportRPT } from '../../app_shared/models/quarterly-reportRPT';
-import { QuarterlyDataService } from '../../app_shared/services/quarterly-data.service';
-import { SessionService } from '../../app_shared/services/session.service';
+import { ColumnSortService } from 'src/app/_shared/services/column-sort.service';
+import { StudentSelectedService } from 'src/app/_shared/services/student-selected.service';
+import { constants } from '../../_shared/constants/constants';
+import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
+import { SORTCRITERIA } from '../../_shared/interfaces/SORTCRITERIA';
+import { QuarterlyReportRPT } from '../../_shared/models/quarterly-reportRPT';
+import { QuarterlyDataService } from '../../_shared/services/quarterly-data.service';
+import { SessionService } from '../../_shared/services/session.service';
 
 @Component({
   templateUrl: './quarterly-container.html',

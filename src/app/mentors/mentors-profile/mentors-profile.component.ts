@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 // import {NgSwitch, NgSwitchCase } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { constants } from '../../app_shared/constants/constants';
-import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
-import { Member } from '../../app_shared/models/member';
-import { MemberDataService } from '../../app_shared/services/member-data.service';
+import { constants } from '../../_shared/constants/constants';
+import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
+import { Member } from '../../_shared/models/member';
+import { MemberDataService } from '../../_shared/services/member-data.service';
 
 
 @Component({

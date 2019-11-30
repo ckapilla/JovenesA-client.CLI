@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StudentSponsorLetterDataService } from 'src/app/app_shared/services/student-sponsor-letter-data.service';
-import { SponsorLetter } from '../../app_shared/models/sponsor-letter';
-import { StudentDTO } from '../../app_shared/models/studentDTO';
-import { SessionService } from '../../app_shared/services/session.service';
+import { StudentSponsorLetterDataService } from 'src/app/_shared/services/student-sponsor-letter-data.service';
+import { SponsorLetter } from '../../_shared/models/sponsor-letter';
+import { StudentDTO } from '../../_shared/models/studentDTO';
+import { SessionService } from '../../_shared/services/session.service';
 @Component({
   templateUrl: './students-sponsor-letters.component.html',
   styleUrls: ['./students-sponsor-letters.component.css'],

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AppSharedModule } from '../app_shared/app_shared.module';
 import { StudentHeaderMentorsComponent } from '../mentors/student-header-mentors/student-header-mentors.component';
 import { QuarterlyModule } from '../quarterly/quarterly.module';
+import { AppSharedModule } from '../_shared/_shared.module';
 import { FollowUpRequestsAddComponent } from './follow-up-requests-add/follow-up-requests-add.component';
 import { FollowUpRequestsComponent } from './follow-up-requests/follow-up-requests.component';
 import { ForumComponent } from './forum/forum.component';

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { SORTCRITERIA } from '../../app_shared/interfaces/SORTCRITERIA';
+import { SORTCRITERIA } from '../interfaces/SORTCRITERIA';
 import { ColumnSortService } from '../services/column-sort.service';
 
 @Component({

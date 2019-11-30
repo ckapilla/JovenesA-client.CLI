@@ -2,11 +2,11 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MemberDataService } from 'src/app/app_shared/services/member-data.service';
-import { UrlService } from 'src/app/app_shared/services/url.service';
-import { constants } from '../../../app_shared/constants/constants';
-import { SELECTITEM } from '../../../app_shared/interfaces/SELECTITEM';
-import { Member } from '../../../app_shared/models/member';
+import { MemberDataService } from 'src/app/_shared/services/member-data.service';
+import { UrlService } from 'src/app/_shared/services/url.service';
+import { constants } from '../../../_shared/constants/constants';
+import { SELECTITEM } from '../../../_shared/interfaces/SELECTITEM';
+import { Member } from '../../../_shared/models/member';
 
 @Component({
 

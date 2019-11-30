@@ -2,11 +2,11 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { MiscDataService } from 'src/app/app_shared/services/misc-data.service';
-import { StudentSelectedService } from 'src/app/app_shared/services/student-selected.service';
-import { QuarterlyReport } from '../../app_shared/models/quarterly-report';
-import { QuarterlyDataService } from '../../app_shared/services/quarterly-data.service';
-import { SessionService } from '../../app_shared/services/session.service';
+import { MiscDataService } from 'src/app/_shared/services/misc-data.service';
+import { StudentSelectedService } from 'src/app/_shared/services/student-selected.service';
+import { QuarterlyReport } from '../../_shared/models/quarterly-report';
+import { QuarterlyDataService } from '../../_shared/services/quarterly-data.service';
+import { SessionService } from '../../_shared/services/session.service';
 
 @Component({
   selector: 'app-self-reports',

@@ -1,10 +1,10 @@
 
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StudentDataService } from 'src/app/app_shared/services/student-data.service';
-import { constants } from '../../app_shared/constants/constants';
-import { StudentDTO } from '../../app_shared/models/studentDTO';
-import { SessionService } from '../../app_shared/services/session.service';
+import { StudentDataService } from 'src/app/_shared/services/student-data.service';
+import { constants } from '../../_shared/constants/constants';
+import { StudentDTO } from '../../_shared/models/studentDTO';
+import { SessionService } from '../../_shared/services/session.service';
 @Component({
 
   templateUrl: './students-student-status.component.html',

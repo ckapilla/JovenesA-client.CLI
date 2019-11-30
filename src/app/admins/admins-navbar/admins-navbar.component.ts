@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SessionService } from '../../app_shared/services/session.service';
+import { SessionService } from '../../_shared/services/session.service';
 
 /**
  * This class represents the navigation bar component.

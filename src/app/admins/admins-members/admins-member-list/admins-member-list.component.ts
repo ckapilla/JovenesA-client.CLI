@@ -1,13 +1,13 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MemberDataService } from 'src/app/app_shared/services/member-data.service';
-import { constants } from '../../../app_shared/constants/constants';
-import { SELECTITEM } from '../../../app_shared/interfaces/SELECTITEM';
-import { SORTCRITERIA } from '../../../app_shared/interfaces/SORTCRITERIA';
-import { MemberWithAnyRelatedStudent } from '../../../app_shared/models/member-with-any-related-student';
-import { ColumnSortService } from '../../../app_shared/services/column-sort.service';
-import { SessionService } from '../../../app_shared/services/session.service';
+import { MemberDataService } from 'src/app/_shared/services/member-data.service';
+import { constants } from '../../../_shared/constants/constants';
+import { SELECTITEM } from '../../../_shared/interfaces/SELECTITEM';
+import { SORTCRITERIA } from '../../../_shared/interfaces/SORTCRITERIA';
+import { MemberWithAnyRelatedStudent } from '../../../_shared/models/member-with-any-related-student';
+import { ColumnSortService } from '../../../_shared/services/column-sort.service';
+import { SessionService } from '../../../_shared/services/session.service';
 
 
 @Component({

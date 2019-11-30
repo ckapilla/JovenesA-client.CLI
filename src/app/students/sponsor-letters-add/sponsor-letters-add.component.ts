@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MiscDataService } from 'src/app/app_shared/services/misc-data.service';
-import { StudentSponsorLetterDataService } from 'src/app/app_shared/services/student-sponsor-letter-data.service';
-import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
-import { SponsorLetter } from '../../app_shared/models/sponsor-letter';
+import { MiscDataService } from 'src/app/_shared/services/misc-data.service';
+import { StudentSponsorLetterDataService } from 'src/app/_shared/services/student-sponsor-letter-data.service';
+import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
+import { SponsorLetter } from '../../_shared/models/sponsor-letter';
 
 
 

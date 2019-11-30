@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StudentDataService } from 'src/app/app_shared/services/student-data.service';
-import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
-import { Student } from '../../app_shared/models/student';
+import { StudentDataService } from 'src/app/_shared/services/student-data.service';
+import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
+import { Student } from '../../_shared/models/student';
 @Component({
 
   // selector: 'student-profile',

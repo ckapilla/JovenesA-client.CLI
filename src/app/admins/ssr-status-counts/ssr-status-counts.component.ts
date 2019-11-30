@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges } from '@angular/core';
-import { StudentSelfReportDataService } from 'src/app/app_shared/services/student-self-report-data.service';
-import { MentorReportsStatusCount } from '../../app_shared/models/mentor-reports-status-count';
+import { StudentSelfReportDataService } from 'src/app/_shared/services/student-self-report-data.service';
+import { MentorReportsStatusCount } from '../../_shared/models/mentor-reports-status-count';
 
 @Component({
 

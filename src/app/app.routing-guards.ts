@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanDeactivate, Router, RouterStateSnapshot } from '@angular/router';
 import { MentorReportSummaryUpdatesComponent } from './admins/mr-summary-updates/mr-summary-updates.component';
-import { AuthService } from './app_shared/services/auth.service';
-import { SessionService } from './app_shared/services/session.service';
+import { AuthService } from './_shared/services/auth.service';
+import { SessionService } from './_shared/services/session.service';
 import { MonthlyReports2AddComponent } from './mentors/monthly-reports2-add/monthly-reports2-add.component';
 
 @Injectable({ providedIn: 'root' })

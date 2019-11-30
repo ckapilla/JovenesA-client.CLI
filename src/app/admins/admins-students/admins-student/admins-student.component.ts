@@ -4,13 +4,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EMPTY, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { MiscDataService } from 'src/app/app_shared/services/misc-data.service';
-import { StudentDataService } from 'src/app/app_shared/services/student-data.service';
-import { UrlService } from 'src/app/app_shared/services/url.service';
-import { constants } from '../../../app_shared/constants/constants';
-import { SELECTITEM } from '../../../app_shared/interfaces/SELECTITEM';
-import { Student } from '../../../app_shared/models/student';
-import { StudentDTO } from '../../../app_shared/models/studentDTO';
+import { MiscDataService } from 'src/app/_shared/services/misc-data.service';
+import { StudentDataService } from 'src/app/_shared/services/student-data.service';
+import { UrlService } from 'src/app/_shared/services/url.service';
+import { constants } from '../../../_shared/constants/constants';
+import { SELECTITEM } from '../../../_shared/interfaces/SELECTITEM';
+import { Student } from '../../../_shared/models/student';
+import { StudentDTO } from '../../../_shared/models/studentDTO';
 
 @Component({
   selector: 'app-admins-student-profile',

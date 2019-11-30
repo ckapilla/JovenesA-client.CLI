@@ -1,7 +1,7 @@
 import { ModuleWithProviders } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CallbackComponent } from './app_shared/components/callback.component';
-import { ProfileComponent } from './app_shared/components/profile.component';
+import { CallbackComponent } from './_shared/components/callback.component';
+import { ProfileComponent } from './_shared/components/profile.component';
 
 const appRoutes: Routes = [
   {

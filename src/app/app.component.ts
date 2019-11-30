@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from './app_shared/services/auth.service';
-import { SessionService } from './app_shared/services/session.service';
+import { AuthService } from './_shared/services/auth.service';
+import { SessionService } from './_shared/services/session.service';
 
 /**
  * This class represents the main application component. Within the @Routes annotation is the configuration of the

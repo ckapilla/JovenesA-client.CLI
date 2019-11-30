@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
-import { constants } from 'src/app/app_shared/constants/constants';
-import { FollowUpEvent } from 'src/app/app_shared/models/follow-up-event';
-import { FollowUpDataService } from 'src/app/app_shared/services/follow-up-data.service';
-import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
-import { SessionService } from '../../app_shared/services/session.service';
+import { constants } from 'src/app/_shared/constants/constants';
+import { FollowUpEvent } from 'src/app/_shared/models/follow-up-event';
+import { FollowUpDataService } from 'src/app/_shared/services/follow-up-data.service';
+import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
+import { SessionService } from '../../_shared/services/session.service';
 
 
 @Component({

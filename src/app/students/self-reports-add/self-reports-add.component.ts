@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StudentSelfReport } from 'src/app/app_shared/models/student-self-report';
-import { StudentSelfReportDataService } from 'src/app/app_shared/services/student-self-report-data.service';
-import { constants } from '../../app_shared/constants/constants';
-import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
+import { StudentSelfReport } from 'src/app/_shared/models/student-self-report';
+import { StudentSelfReportDataService } from 'src/app/_shared/services/student-self-report-data.service';
+import { constants } from '../../_shared/constants/constants';
+import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 
 
 

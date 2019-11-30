@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StudentSelfReportDataService } from 'src/app/app_shared/services/student-self-report-data.service';
-import { constants } from '../../app_shared/constants/constants';
-import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
-import { StudentSelfReport } from '../../app_shared/models/student-self-report';
-import { SessionService } from '../../app_shared/services/session.service';
+import { StudentSelfReportDataService } from 'src/app/_shared/services/student-self-report-data.service';
+import { constants } from '../../_shared/constants/constants';
+import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
+import { StudentSelfReport } from '../../_shared/models/student-self-report';
+import { SessionService } from '../../_shared/services/session.service';
 
 
 @Component({

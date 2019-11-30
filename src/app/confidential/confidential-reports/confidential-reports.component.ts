@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ConfidentialReportRPT } from 'src/app/app_shared/models/confidential-reportRPT';
-import { ConfidentialDataService } from 'src/app/app_shared/services/confidential-data.service';
-import { StudentSelectedService } from 'src/app/app_shared/services/student-selected.service';
-import { constants } from '../../app_shared/constants/constants';
-import { SessionService } from '../../app_shared/services/session.service';
+import { ConfidentialReportRPT } from 'src/app/_shared/models/confidential-reportRPT';
+import { ConfidentialDataService } from 'src/app/_shared/services/confidential-data.service';
+import { StudentSelectedService } from 'src/app/_shared/services/student-selected.service';
+import { constants } from '../../_shared/constants/constants';
+import { SessionService } from '../../_shared/services/session.service';
 
 
 @Component({

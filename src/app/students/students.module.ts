@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { AppSharedModule } from '../app_shared/app_shared.module';
+import { AppSharedModule } from '../_shared/_shared.module';
 import { GradeTrackingComponent } from './grade-tracking/grade-tracking.component';
 import { SelfReportsAddComponent } from './self-reports-add/self-reports-add.component';
 import { SelfReportsEditComponent } from './self-reports-edit/self-reports-edit.component';

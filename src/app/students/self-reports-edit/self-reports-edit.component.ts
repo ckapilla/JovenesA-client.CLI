@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StudentSelfReportDataService } from 'src/app/app_shared/services/student-self-report-data.service';
-import { StudentSelfReport } from '../../app_shared/models/student-self-report';
-import { StudentDTO } from '../../app_shared/models/studentDTO';
-import { SessionService } from '../../app_shared/services/session.service';
+import { StudentSelfReportDataService } from 'src/app/_shared/services/student-self-report-data.service';
+import { StudentSelfReport } from '../../_shared/models/student-self-report';
+import { StudentDTO } from '../../_shared/models/studentDTO';
+import { SessionService } from '../../_shared/services/session.service';
 
 @Component({
   templateUrl: './self-reports-edit.component.html',

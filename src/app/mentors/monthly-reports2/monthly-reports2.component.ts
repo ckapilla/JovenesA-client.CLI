@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { MentorReport2DataService } from 'src/app/app_shared/services/mentor-report2-data.service';
-import { StudentSelectedService } from 'src/app/app_shared/services/student-selected.service';
-import { constants } from '../../app_shared/constants/constants';
-import { MentorReport2RPT } from '../../app_shared/models/mentor-report2';
-import { SessionService } from '../../app_shared/services/session.service';
+import { MentorReport2DataService } from 'src/app/_shared/services/mentor-report2-data.service';
+import { StudentSelectedService } from 'src/app/_shared/services/student-selected.service';
+import { constants } from '../../_shared/constants/constants';
+import { MentorReport2RPT } from '../../_shared/models/mentor-report2';
+import { SessionService } from '../../_shared/services/session.service';
 
 @Component({
   selector: 'app-mentor-reports',

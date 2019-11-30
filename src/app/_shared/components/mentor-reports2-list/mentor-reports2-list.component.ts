@@ -1,7 +1,7 @@
 
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { constants } from '../../../app_shared/constants/constants';
+import { constants } from '../../constants/constants';
 import { MentorReport2RPT } from '../../models/mentor-report2';
 
 @Component({

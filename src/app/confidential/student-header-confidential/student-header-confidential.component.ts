@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { StudentSelectedService } from '../../app_shared/services/student-selected.service';
+import { StudentSelectedService } from '../../_shared/services/student-selected.service';
 
 @Component({
   selector: 'app-student-header-confidential',

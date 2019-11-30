@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../app_shared/services/auth.service';
+import { AuthService } from '../_shared/services/auth.service';
 /**
  * This class represents the lazy loaded HomeComponent.
  */

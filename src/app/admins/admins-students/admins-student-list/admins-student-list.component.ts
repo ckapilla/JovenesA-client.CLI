@@ -1,13 +1,13 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { StudentDataService } from 'src/app/app_shared/services/student-data.service';
-import { constants } from '../../../app_shared/constants/constants';
-import { SELECTITEM } from '../../../app_shared/interfaces/SELECTITEM';
-import { SORTCRITERIA } from '../../../app_shared/interfaces/SORTCRITERIA';
-import { StudentDTO } from '../../../app_shared/models/studentDTO';
-import { ColumnSortService } from '../../../app_shared/services/column-sort.service';
-import { SessionService } from '../../../app_shared/services/session.service';
+import { StudentDataService } from 'src/app/_shared/services/student-data.service';
+import { constants } from '../../../_shared/constants/constants';
+import { SELECTITEM } from '../../../_shared/interfaces/SELECTITEM';
+import { SORTCRITERIA } from '../../../_shared/interfaces/SORTCRITERIA';
+import { StudentDTO } from '../../../_shared/models/studentDTO';
+import { ColumnSortService } from '../../../_shared/services/column-sort.service';
+import { SessionService } from '../../../_shared/services/session.service';
 
 
 

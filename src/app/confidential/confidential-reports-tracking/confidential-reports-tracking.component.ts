@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { constants } from '../../app_shared/constants/constants';
-import { SELECTITEM } from '../../app_shared/interfaces/SELECTITEM';
-import { ConfidentialReportRPT } from '../../app_shared/models/confidential-reportRPT';
-import { ConfidentialDataService } from '../../app_shared/services/confidential-data.service';
-import { SessionService } from '../../app_shared/services/session.service';
+import { constants } from '../../_shared/constants/constants';
+import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
+import { ConfidentialReportRPT } from '../../_shared/models/confidential-reportRPT';
+import { ConfidentialDataService } from '../../_shared/services/confidential-data.service';
+import { SessionService } from '../../_shared/services/session.service';
 
 @Component({
 
