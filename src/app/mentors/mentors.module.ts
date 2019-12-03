@@ -9,8 +9,8 @@ import { ForumComponent } from './forum/forum.component';
 import { MentorsHomeComponent } from './mentors-container/mentors-home.component';
 import { MentorsNavbarComponent } from './mentors-navbar/mentors-navbar.component';
 import { MentorsProfileComponent } from './mentors-profile/mentors-profile.component';
+import { MentorsRoutingModule } from './mentors-routing.module';
 import { MentorsComponent } from './mentors.component';
-import { MentorsRouting } from './mentors.routing';
 import { MonthlyReports2AddComponent } from './monthly-reports2-add/monthly-reports2-add.component';
 import { MonthlyReports2EditComponent } from './monthly-reports2-edit/monthly-reports2-edit.component';
 import { MonthlyReports2Component } from './monthly-reports2/monthly-reports2.component';
@@ -19,7 +19,7 @@ import { MonthlyReports2Component } from './monthly-reports2/monthly-reports2.co
 @NgModule({
     imports: [
         AppSharedModule,
-        MentorsRouting,
+        MentorsRoutingModule,
         QuarterlyModule,
         NgbModule
     ],

@@ -8,12 +8,12 @@ import { AdminsMemberListComponent } from './admins-members/admins-member-list/a
 import { AdminsMemberSearchComponent } from './admins-members/admins-member-search/admins-member-search.component';
 import { AdminsMemberComponent } from './admins-members/admins-member/admins-member.component';
 import { AdminsNavbarComponent } from './admins-navbar/admins-navbar.component';
+import { AdminsRoutingModule } from './admins-routing.module';
 import { AdminsStudentMRsComponent } from './admins-student-mrs/admins-student-mrs.component';
 import { AdminsStudentListComponent } from './admins-students/admins-student-list/admins-student-list.component';
 import { AdminsStudentSearchComponent } from './admins-students/admins-student-search/admins-student-search.component';
 import { AdminsStudentComponent } from './admins-students/admins-student/admins-student.component';
 import { AdminsComponent } from './admins.component';
-import { AdminsRouting } from './admins.routing';
 import { FollowUpEventsAddComponent } from './follow-up-events-add/follow-up-events-add.component';
 import { FollowUpRequestsAddComponent } from './follow-up-requests-add/follow-up-requests-add.component';
 import { FollowUpRequestsComponent } from './follow-up-requests/follow-up-requests.component';
@@ -39,7 +39,7 @@ import { StudentReportsStatusCountsComponent } from './ssr-status-counts/ssr-sta
 @NgModule({
     imports: [
         AppSharedModule,
-        AdminsRouting,
+        AdminsRoutingModule,
         ReactiveFormsModule,
         FormsModule,
         NgbModule

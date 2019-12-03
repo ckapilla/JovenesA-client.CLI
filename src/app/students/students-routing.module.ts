@@ -1,3 +1,4 @@
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CanActivateViaStudentAuthGuard } from '../app.routing-guards';
 import { SelfReportsAddComponent } from './self-reports-add/self-reports-add.component';
@@ -55,4 +56,8 @@ const routes: Routes = [
   }
 ];
 
-export const StudentsRouting = RouterModule.forChild(routes);
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class StudentsRoutingModule { }

@@ -7,17 +7,17 @@ import { SponsorLettersAddComponent } from './sponsor-letters-add/sponsor-letter
 import { StudentsHomeComponent } from './students-home/students-home.component';
 import { StudentsNavbarComponent } from './students-navbar/students-navbar.component';
 import { StudentsProfileComponent } from './students-profile/students-profile.component';
+import { StudentsRoutingModule } from './students-routing.module';
 import { StudentsSelfReportsComponent } from './students-self-reports/students-self-reports.component';
 import { StudentsSponsorLettersComponent } from './students-sponsor-letters/students-sponsor-letters.component';
 import { StudentsStudentStatusComponent } from './students-student-status/students-student-status.component';
 import { StudentsComponent } from './students.component';
-import { StudentsRouting } from './students.routing';
 
 
 @NgModule({
   imports: [
     AppSharedModule,
-    StudentsRouting
+    StudentsRoutingModule
   ],
   declarations: [
     StudentsComponent,

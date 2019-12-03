@@ -70,4 +70,4 @@ const mentorRoutes: Routes = [
   exports: [RouterModule]
 })
 
-export class MentorsRouting { }
+export class MentorsRoutingModule { }

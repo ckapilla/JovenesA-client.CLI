@@ -135,4 +135,4 @@ const adminRoutes: Routes = [
   imports: [RouterModule.forChild(adminRoutes)],
   exports: [RouterModule]
 })
-export class AdminsRouting { }
+export class AdminsRoutingModule { }

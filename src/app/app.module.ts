@@ -3,8 +3,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { appRouting, appRoutingProviders } from './app.routing';
 import { HeaderbarComponent } from './headerbar/headerbar.component';
 // every module that has a routing component no longer needs to be imported here
 import { HomeModule } from './home/home.module';
@@ -15,8 +15,7 @@ import { AppSharedModule } from './_shared/_shared.module';
     BrowserModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     HttpClientModule,
-    appRouting,
-    appRoutingProviders,
+    AppRoutingModule,
     HomeModule,
     AppSharedModule.forRoot(),
   ],
@@ -28,7 +27,8 @@ import { AppSharedModule } from './_shared/_shared.module';
 
   exports: [
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [
     {

@@ -1,4 +1,4 @@
-import { ModuleWithProviders } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CallbackComponent } from './_shared/components/callback.component';
 import { ProfileComponent } from './_shared/components/profile.component';
@@ -45,12 +45,14 @@ const appRoutes: Routes = [
   { path: '**', redirectTo: '' }
 ];
 
-export const appRoutingProviders: any[] = [
+// export const appRoutingProviders: any[] = [
 
-];
-
-export const appRouting: ModuleWithProviders =
-  RouterModule.forRoot(appRoutes, {
-    // onSameUrlNavigation: 'reload',
-    enableTracing: false
-  });
+// ];
+@NgModule({
+  imports: [
+    RouterModule.forRoot(appRoutes, {
+      enableTracing: false
+    })],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
