@@ -7,8 +7,6 @@ import { ColumnSortService } from '../../../_shared/services/column-sort.service
 import { SponsorSummarySentCount } from '../shared/report-models/sponsor-summary-sent-count';
 import { SqlReports } from '../sql-reports';
 
-
-
 @Component({
   templateUrl: './sponsor-summaries-sent.component.html',
   styleUrls: ['./sponsor-summaries-sent.component.css']

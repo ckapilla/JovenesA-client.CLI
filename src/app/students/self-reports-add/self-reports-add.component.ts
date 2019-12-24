@@ -81,7 +81,7 @@ export class SelfReportsAddComponent
         console.log('sponsorGroupId ' + this.selfReport.sponsorGroupId);
         console.log('studentId ' + this.selfReport.studentId);
         this.selfReport.reportYear = 2019;
-        this.selfReport.reportPeriod = 3;
+        this.selfReport.reportPeriod = 4;
 
         this.myForm.valueChanges.subscribe(
             (form: any) => {

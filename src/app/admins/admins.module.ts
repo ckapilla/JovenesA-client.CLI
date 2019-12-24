@@ -22,20 +22,16 @@ import { MentorReportsStatusCountsComponent } from './mr-status-counts/mr-status
 import { MentorReportsSummaryTrackingComponent } from './mr-summary-tracking/mr-summary-tracking.component';
 import { MentorReportSummaryUpdatesComponent } from './mr-summary-updates/mr-summary-updates.component';
 import { MentorReportsSubmittedComponent } from './reports/mentor-reports-submitted/mentor-reports-submitted.component';
-import { MentorReportsComponent } from './reports/mentor-reports/mentor-reports.component';
+// import { MentorReportsComponent } from './reports/mentor-reports/mentor-reports.component';
 import { ReportsComponent } from './reports/reports.component';
+import { ServerEnvironmentComponent } from './reports/server-environment/server-environment.component';
 import { SponsorSummariesSentComponent } from './reports/sponsor-summaries-sent/sponsor-summaries-sent.component';
-import { StudentLettersComponent } from './reports/student-letters/student-letters.component';
-import { StudentLetters2Component } from './reports/student-letters2/student-letters2.component';
+// import { StudentLettersComponent } from './reports/student-letters/student-letters.component';
+// import { StudentLetters2Component } from './reports/student-letters2/student-letters2.component';
 import { SelfReportsTrackingComponent } from './self-report-tracking/self-report-tracking.component';
 import { SponsorGroupComponent } from './sponsor-group/sponsor-group.component';
 import { SponsorGroupsComponent } from './sponsor-groups/sponsor-groups.component';
 import { StudentReportsStatusCountsComponent } from './ssr-status-counts/ssr-status-counts.component';
-
-
-
-
-
 @NgModule({
     imports: [
         AppSharedModule,
@@ -55,6 +51,7 @@ import { StudentReportsStatusCountsComponent } from './ssr-status-counts/ssr-sta
         MentorReportsSummaryTrackingComponent,
         MentorReportsStatusCountsComponent,
         MentorReportSummaryUpdatesComponent,
+        ServerEnvironmentComponent,
         // MentorReportFollowUpUpdatesComponent,
         StudentReportsStatusCountsComponent,
         AdminsNavbarComponent,
@@ -69,10 +66,10 @@ import { StudentReportsStatusCountsComponent } from './ssr-status-counts/ssr-sta
 
 
         ReportsComponent,
-        MentorReportsComponent,
+        // MentorReportsComponent,
         // ReportsMentorReports2Component,
-        StudentLettersComponent,
-        StudentLetters2Component,
+        // StudentLettersComponent,
+        // StudentLetters2Component,
         // ReportsSponsorSummariesStatusComponent,
         SponsorSummariesSentComponent,
         MentorReportsSubmittedComponent,
@@ -85,12 +82,13 @@ import { StudentReportsStatusCountsComponent } from './ssr-status-counts/ssr-sta
         AdminsStudentMRsComponent,
         SponsorGroupsComponent
     ],
-    entryComponents: [MentorReportsComponent,
+    entryComponents: [ // MentorReportsComponent,
         // Mentor2Component,
-        StudentLettersComponent,
-        StudentLetters2Component,
+        // StudentLettersComponent,
+        // StudentLetters2Component,
         // SponsorSummariesStatusComponent,
         SponsorSummariesSentComponent,
+        ServerEnvironmentComponent,
         MentorReportsSubmittedComponent]
 })
 export class AdminsModule { }

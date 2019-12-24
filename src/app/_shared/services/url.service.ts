@@ -17,12 +17,12 @@ export class UrlService {
       this.webApiPrefix = 'https://JAWebAPI-dev.jovenesadelante.org/api/';
       this.clientUrl = 'https://privada-dev.jovenesadelante.org';
     } else if (hostName === 'localhost') {
-      // this.webApiPrefix = 'http://192.168.1.70:2369/api/'; // Local Development
 
-      // this.webApiPrefix = 'http://192.168.43.98:2368/api/'; // Local Production MOTO G
-
-      this.webApiPrefix = 'http://192.168.1.68:2368/api/'; // Local Production
-
+      //
+      // check ipconfig to verify IPv4 address for current router gateway (usually Wi-Fi)
+      //
+      // this.webApiPrefix = 'http://192.168.1.100:1100/api/'; // Local Production
+      this.webApiPrefix = 'http://192.168.1.100:1099/api/'; // Local  Development
       // this.webApiPrefix = 'https://JAWebAPI-dev.jovenesadelante.org/api/';
       // this.webApiPrefix = 'https://JAWebAPI.jovenesadelante.org/api/';  // Production
       this.clientUrl = 'http://localhost:3000';

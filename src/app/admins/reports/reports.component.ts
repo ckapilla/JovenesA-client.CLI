@@ -1,7 +1,7 @@
 import { Component, ComponentFactoryResolver, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { MentorReportsSubmittedComponent } from './mentor-reports-submitted/mentor-reports-submitted.component';
+import { ServerEnvironmentComponent } from './server-environment/server-environment.component';
 import { SponsorSummariesSentComponent } from './sponsor-summaries-sent/sponsor-summaries-sent.component';
-
 @Component({
   templateUrl: 'reports.component.html',
   styleUrls: ['reports.component.css']
@@ -20,6 +20,7 @@ export class ReportsComponent implements OnInit, OnDestroy {
     { value: '', comp: '', label: '[None]' },
     { value: '1', comp: MentorReportsSubmittedComponent, label: 'Mentor Reports Submitted' },
     { value: '2', comp: SponsorSummariesSentComponent, label: 'Sponsor Summaries Sent' },
+    { value: '3', comp: ServerEnvironmentComponent, label: 'Server Environment' },
   ];
 
   @ViewChild('reportcontainer', { read: ViewContainerRef, static: false })
