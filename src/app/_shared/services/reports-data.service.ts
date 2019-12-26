@@ -2,25 +2,25 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { UrlService } from '../../_shared/services/url.service';
+import { ServerEnvironment } from 'src/app/admins/reports/report-models/server-environment';
 // import { LatestMentorReports } from './shared/report-models/latest-mentor-reports';
 // import { LatestMentorReports2 } from './shared/report-models/latest-mentor-reports2';
 // import { LatestStudentLetters } from './shared/report-models/latest-student-letters';
 // import { LatestStudentLetters2 } from './shared/report-models/latest-student-letters2';
-import { MentorReportSubmittedCount } from './shared/report-models/mentor-report-submitted-count';
-import { SponsorSummarySentCount } from './shared/report-models/sponsor-summary-sent-count';
-
-
+import { MentorReportSubmittedCount } from '../../admins/reports/report-models/mentor-report-submitted-count';
+import { SponsorSummarySentCount } from '../../admins/reports/report-models/sponsor-summary-sent-count';
+import { BaseDataService } from './base-data.service';
+import { UrlService } from './url.service';
 
 @Injectable({ providedIn: 'root' })
-export class SqlReports {
-  WebApiPrefix: string;
+export class ReportsDataService extends BaseDataService {
+  // WebApiPrefix: string;
 
-  constructor(private http: HttpClient,
-    private webApiPrefixService: UrlService) {
-    console.log('sqlReports constructor');
-    this.WebApiPrefix = webApiPrefixService.getWebApiPrefix();
+  constructor(public http: HttpClient,
+    public webApiPrefixService: UrlService) {
+    super(http, webApiPrefixService);
   }
+
 
   // public getLatestMentorReports(): Observable<LatestMentorReports[]> {
   //   const url = this.WebApiPrefix + 'reports/latest_mentor_reports';
@@ -64,15 +64,10 @@ export class SqlReports {
     return this.http.get<MentorReportSubmittedCount[]>(url).pipe(catchError(this.handleError));
   }
 
-  private handleError(error: any) {
-    console.log('data service handle error');
-    const errMsg = (error.message) ? error.message :
-      error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-    console.error(errMsg); // log to console instead
-    if (errMsg === 'No JWT present or has expired') {
-      window.alert('Session has expired, please log in again.');
-    }
-    return Observable.throw(errMsg);
+  public getServerEnvironment(): Observable<ServerEnvironment> {
+    const url = this.WebApiPrefix + 'reports/server_environment';
+    console.log('sending AuthHttp get request for ServerEnvironment with ' + url);
+    return this.http.get<ServerEnvironment>(url).pipe(catchError(this.handleError));
   }
 
 }

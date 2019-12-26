@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { SELECTITEM } from '../../../_shared/interfaces/SELECTITEM';
 import { SORTCRITERIA } from '../../../_shared/interfaces/SORTCRITERIA';
 import { ColumnSortService } from '../../../_shared/services/column-sort.service';
-import { MentorReportSubmittedCount } from '../shared/report-models/mentor-report-submitted-count';
-import { SqlReports } from '../sql-reports';
+import { ReportsDataService } from '../../../_shared/services/reports-data.service';
+import { MentorReportSubmittedCount } from '../report-models/mentor-report-submitted-count';
 
 
 
@@ -22,7 +22,7 @@ export class MentorReportsSubmittedComponent implements OnInit {
   sortCriteria: SORTCRITERIA;
 
   constructor(
-    public sqlReports: SqlReports,
+    public sqlReports: ReportsDataService,
     private columnSorter: ColumnSortService,
     private router: Router
   ) {

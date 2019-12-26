@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { SELECTITEM } from '../../../_shared/interfaces/SELECTITEM';
 import { SORTCRITERIA } from '../../../_shared/interfaces/SORTCRITERIA';
 import { ColumnSortService } from '../../../_shared/services/column-sort.service';
-import { SponsorSummarySentCount } from '../shared/report-models/sponsor-summary-sent-count';
-import { SqlReports } from '../sql-reports';
+import { ReportsDataService } from '../../../_shared/services/reports-data.service';
+import { SponsorSummarySentCount } from '../report-models/sponsor-summary-sent-count';
 
 @Component({
   templateUrl: './sponsor-summaries-sent.component.html',
@@ -22,7 +22,7 @@ export class SponsorSummariesSentComponent implements OnInit {
 
   constructor(
     public router: Router,
-    public sqlReports: SqlReports,
+    public sqlReports: ReportsDataService,
     private columnSorter: ColumnSortService
   ) {
     this.isLoading = false;

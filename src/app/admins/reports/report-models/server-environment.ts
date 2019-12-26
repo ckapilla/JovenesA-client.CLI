@@ -1,8 +1,8 @@
 export class ServerEnvironment {
 
   constructor(
-    public webApiServer: string,
-    public databaseServer: string,
+    public webApiServerName: string,
+    public databaseServerName: string,
     public databaseName: string
   ) { }
 }
