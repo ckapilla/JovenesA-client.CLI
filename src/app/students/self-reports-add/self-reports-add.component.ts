@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentSelfReport } from 'src/app/_shared/models/student-self-report';
 import { StudentSelfReportDataService } from 'src/app/_shared/services/student-self-report-data.service';
@@ -21,9 +21,9 @@ export class SelfReportsAddComponent
     isLoading: boolean;
     submitted: boolean;
 
-    reportYear: AbstractControl;
-    reportPeriod: AbstractControl;
-    Narrative_English: AbstractControl;
+    // reportYear: AbstractControl;
+    // reportPeriod: AbstractControl;
+    // Narrative_English: AbstractControl;
     periodYears: SELECTITEM[];
     periodMonths: SELECTITEM[];
     errorMessage: string;
@@ -42,16 +42,16 @@ export class SelfReportsAddComponent
         this.periodMonths = constants.periods;
 
         this.myForm = _fb.group({
-            reportYearSelector: ['', Validators.required],
-            reportPeriodSelector: ['', this.validateMonth],
+            reportYear: ['', Validators.required],
+            reportPeriod: ['', this.validateMonth],
 
-            inputReportText: ['', Validators.compose(
-                [Validators.required, Validators.maxLength(8000)])]
+            narrative_English: ['', Validators.compose(
+                [Validators.required, Validators.maxLength(4500)])]
         });
 
-        this.reportYear = this.myForm.controls['reportYearSelector'];
-        this.reportPeriod = this.myForm.controls['reportPeriodSelector'];
-        this.Narrative_English = this.myForm.controls['inputFollowUp'];
+        // this.reportYear = this.myForm.controls['reportYear'];
+        // this.reportPeriod = this.myForm.controls['reportPeriod'];
+        // this.Narrative_English = this.myForm.controls['narrative_English'];
 
 
         this.selfReport = new StudentSelfReport();
@@ -78,6 +78,13 @@ export class SelfReportsAddComponent
         this.selfReport.sponsorGroupId = this.currRoute.snapshot.params['sponsorId'];
         this.selfReport.studentId = this.currRoute.snapshot.params['studentId'];
         this.selfReport.studentGUId = this.currRoute.snapshot.params['studentGUId'];
+        // if (!this.selfReport.studentGUId || this.selfReport.studentGUId === '') {
+        //     console.log('assigning facke Guid for chris K');
+        //     this.selfReport.studentId = 321;
+        //     this.selfReport.studentGUId = 'c29f9ae6-7a89-4269-a6ab-cf1c76bcbaa9';
+        // }
+
+
         console.log('sponsorGroupId ' + this.selfReport.sponsorGroupId);
         console.log('studentId ' + this.selfReport.studentId);
         this.selfReport.reportYear = 2019;
@@ -98,18 +105,18 @@ export class SelfReportsAddComponent
 
 
         if (this.myForm.invalid) {
-            let i = 0;
+            // let i = 0;
             this.errorMessage = '';
 
-            if (!this.reportYear.valid || !this.reportPeriod.valid) {
-                this.errorMessage = this.errorMessage + 'Year and month must be selected from drop-downs. ';
-                ++i;
-            }
+            // if (!this.reportYear.valid || !this.reportPeriod.valid) {
+            //     this.errorMessage = this.errorMessage + 'Year and month must be selected from drop-downs. ';
+            //     ++i;
+            // }
 
-            if (!this.Narrative_English.valid) {
-                this.errorMessage = this.errorMessage + 'Report text box must be filled in . ';
-                ++i;
-            }
+            // if (!this.narrative_English.valid) {
+            //     this.errorMessage = this.errorMessage + 'Report text box must be filled in . ';
+            //     ++i;
+            // }
 
             return false;
         }

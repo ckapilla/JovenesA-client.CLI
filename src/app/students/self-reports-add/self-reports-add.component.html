@@ -1,6 +1,6 @@
 <div class="card bg-primary" style=" min-width: 46em">
   <div class="card-header text-white" style="font-size:large">
-    Añadir Nueva Reporte
+    Añadir Nuevo Reporte
   </div>
   <div class="card-body bg-white" style="min-width: 46em">
     <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
@@ -10,16 +10,16 @@
       <fieldset [disabled]="submitted">
         <div class="form-group">
           <div class="controls">
-            <label for="reportYearSelector"> Año/Periodo de esta Periodo</label>
-            <select formControlName="reportYearSelector" [(ngModel)]="selfReport.reportYear">
+            <label for="reportYear"> Año/Periodo de este reporte</label>
+            <select formControlName="reportYear" [(ngModel)]="selfReport.reportYear">
               <option *ngFor="let year of periodYears" [value]="year.value">{{year.label}}</option>
             </select>
 
-            <select formControlName="reportPeriodSelector" [(ngModel)]="selfReport.reportPeriod">
+            <select formControlName="reportPeriod" [(ngModel)]="selfReport.reportPeriod">
               <option *ngFor="let month of periodMonths" [value]="month.value">{{month.label}}</option>
             </select>
           </div>
-          <span *ngIf="!reportPeriod.valid &amp;&amp; reportPeriod.touched" class="red"> Month is required</span>
+          <!-- <span *ngIf="!reportPeriod.valid &amp;&amp; reportPeriod.touched" class="red"> Month is required</span> -->
         </div>
         <!-- <pre style="font-size: 120%">
           REDACTA TU REPORTE EN FORMA DE ENSAYO CONSIDERANDO LOS SIGUIENTES PUNTOS
@@ -57,20 +57,21 @@ REDACTA TU REPORTE EN FORMA DE ENSAYO CONSIDERANDO LOS SIGUIENTES PUNTOS
 13.	Cuéntanos de 2 personas que hayan sido muy influyentes para tí este año
 14.	Si tuvieras enfrente a la persona que apostó por tí, que creyó en que TÚ PODÍAS , QUE TÚ LO LOGRARÍAS y que hoy por  hoy paga tu beca...¿Qué le dirías?
 15.	Para los que se Graduaron en este año ¿Hacía donde irán, cuáles son son nuevos proyectos?
-(Sugerimos escribir su ensayo en un documento y pegarla abajo.)</pre>
+(Sugerimos escribir su ensayo en un documento y pegarla abajo.)
+Ten en cuenta que tu texto debe contener menos de 4500 caracteres.</pre>
 
-        <textarea id="inputReportText" #success formControlName="inputReportText"
-                  #narrativeText
+        <textarea id="narrative_English" #success formControlName="narrative_English"
+                  #narrative_English
                   [(ngModel)]="selfReport.narrative_English" type="text"
 
                   class="form-control input-sm narrative" placeholder="">
           </textarea>
-        <small class="form-text text-muted"><code>{{narrativeText.value.length}}</code> of <code>5000</code>
-          characters</small>
+        <span class="form-text text-muted"><code>{{narrative_English.value.length}}</code> of <code>4500</code>
+          characters</span>
 
-        <app-display-errors control="inputNarrative_English" class="red"
+        <app-display-errors control="narrative_English" class="red"
                             [errors]="{'required': 'An entry is required, even if it is just N/A',
-                'maxlength': 'Entrada no puede exceder los 4000 caracteres.'
+                'maxlength': 'Entrada no puede exceder los 4500 caracteres.'
                 }"></app-display-errors>
 
         <div class="col-md-6 col-md-offset-1">
@@ -89,7 +90,7 @@ REDACTA TU REPORTE EN FORMA DE ENSAYO CONSIDERANDO LOS SIGUIENTES PUNTOS
               Cancelar
             </button>
             <div class="red" [hidden]="myForm.valid">Año, Periodo, y texto de reporte deben ser completados
-              correctamente
+              correctamente y no más de 4500 caracteres
               antes de guardar.</div>
           </span>
         </div>
