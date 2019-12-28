@@ -92,7 +92,9 @@ const periods: SELECTITEM[] = [
 const studentStatuses: SELECTITEM[] = [
   { value: '1003', label: 'Dropped' },
   { value: '1004', label: 'Grad' },
-  { value: '1005', label: 'Current' }
+  { value: '1005', label: 'Current' },
+  { value: '1006', label: 'Service' },
+  { value: '2146', label: 'Sabbatical' }
 ];
 const roleStatuses: SELECTITEM[] = [
   { value: '1015', label: 'Active' },

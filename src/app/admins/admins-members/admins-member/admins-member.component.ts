@@ -86,7 +86,7 @@ export class AdminsMemberComponent implements OnInit {
 
       memberId: [''],
       memberGUId: [''],
-      studentGUId: ['']
+      studentRecordGUId: ['']
 
     });
     this.myForm.disable();
@@ -192,7 +192,7 @@ export class AdminsMemberComponent implements OnInit {
       photoUrl: member.photoUrl,
       lastMentorMeeting: member.lastMentorMeeting,
 
-      studentGUId: member.studentRecordGUId,
+      studentRecordGUId: member.studentRecordGUId,
       memberGUId: member.memberGUId,
     });
   }
