@@ -155,6 +155,10 @@
                   <option *ngFor="let year of gradYears" [value]="year.value">{{year.label}}</option>
                 </select>
 
+                <label for="probationStartDate">Probation Start Dt</label>
+                <input id="probationStartDate" formControlName="probationStartDate"
+                       class="form-control form-control-sm" placeholder="" />
+
                 <label for="gender">Gender</label>
                 <select id="gender" formControlName="gender"
                         class="form-control form-control-sm">
@@ -185,6 +189,10 @@
                         class="form-control form-control-sm">
                   <option *ngFor="let month of gradMonths" [value]="month.value">{{month.label}}</option>
                 </select>
+
+                <label for="probationEndDate">Probation End Dt</label>
+                <input id="probationEndDate" formControlName="probationEndDate"
+                       class="form-control form-control-sm" placeholder="" />
 
                 <label for="studentId">StudentId</label>
                 <input id="studentId" formControlName="studentId"

@@ -39,7 +39,7 @@ export class QuarterlyDataService {
     return this.http.get<QuarterlyReportRPT>(url).pipe(catchError(this.handleError));
   }
 
-  public getQRMinisForPeriod(year: number, period: number, reviewedStatusId: number): Observable<QuarterlyReportRPT[]> {
+  public getQRMinisForPeriod(year: string, period: string, reviewedStatusId: number): Observable<QuarterlyReportRPT[]> {
     const url = this.WebApiPrefix + 'quarterly/' + year + '/' + period + '/' + reviewedStatusId;
     console.log('sending AuthHttp get request for QuarterlyReportForPeriod');
     return this.http.get<QuarterlyReportRPT[]>(url).pipe(catchError(this.handleError));

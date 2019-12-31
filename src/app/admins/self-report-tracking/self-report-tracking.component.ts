@@ -82,14 +82,6 @@ export class SelfReportsTrackingComponent implements OnInit {
       this.selectedSRReviewedStatus = '0';
     }
 
-    // const highlight = this.route.snapshot.queryParams['highlight'];
-    // console.log('highlight param = ' + highlight);
-    // if (highlight !== undefined) {
-    //   this.selectedHighlightStatus = highlight;
-    // } else {
-    //   this.selectedHighlightStatus = '0';
-    // }
-
     if (period > 0) {
       this.fetchFilteredData();
     }

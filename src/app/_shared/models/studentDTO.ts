@@ -43,7 +43,9 @@ export class StudentDTO {
     public mentoringEndDate?: Date,
     public credentialYear?: number,
     public credentialMonthNum?: number,
-    public credentialMonth?: string
+    public credentialMonth?: string,
+    public probationStartDate?: Date,
+    public probationEndDate?: Date
 
   ) { }
 }

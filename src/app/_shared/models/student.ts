@@ -52,6 +52,8 @@ export class Student {
     public mentorAssignedDate?: Date,
     public mentoringEndDate?: Date,
     public credentialYear?: number,
-    public credentialMonthNum?: number
+    public credentialMonthNum?: number,
+    public probationStartDate?: Date,
+    public probationEndDate?: Date
   ) { }
 }

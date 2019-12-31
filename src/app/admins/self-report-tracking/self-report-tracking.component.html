@@ -4,10 +4,8 @@
   <div class="card-body bg-white">
     <span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
     <span *ngIf="successMessage" class="alert alert-success">{{successMessage}}</span>
-
     <div>
       <div class="controls">
-
         <label for="yearSelector">&nbsp;Report Year/Period:</label>
         <select name="yearSelector" [(ngModel)]="selectedYear" (change)="setSelectedYear($event.target.value)">>
           <option *ngFor="let year of years" [value]="year.value">{{year.label}}</option>
@@ -16,20 +14,6 @@
           <option value="0">[Select]</option>
           <option *ngFor="let period of periods" [value]="period.value">{{period.label}}</option>
         </select>
-
-        <!-- <label for="SRReviewedStatusSelector">Reviewed Status:</label>
-        <select name="SRReviewedStatusSelector" [(ngModel)]="selectedSRReviewedStatus"
-                (change)="setSelectedSRReviewedStatus($event.target.value)">
-          <option *ngFor="let status of ssrReviewedStatuses" [value]="status.value">{{status.label}}</option>
-        </select> -->
-
-        <!-- <label>&nbsp;Highlight Status:
-          <select name="highlightStatusSelector" [(ngModel)]="selectedHighlightStatus"
-                  (change)="setSelectedHighlightStatus($event.target.value)">
-            <option *ngFor="let status of highlightStatuses" [value]="status.value">{{status.label}}</option>
-          </select>
-        </label> -->
-
         <span class="checkboxes">
           &nbsp;&nbsp;<label><input type="checkbox" [(ngModel)]="displayOriginalFields">&nbsp;<span>Display Partial
               Description</span></label>
@@ -37,7 +21,6 @@
       </div>
       <app-ssr-status-counts [year]=selectedYear [period]=selectedPeriod>
       </app-ssr-status-counts>
-
     </div>
 
     <div [ngSwitch]="isLoading">

@@ -2,12 +2,24 @@
   <div class="card-header text-white" style="font-size:large">
     Quarterly Report Statuses
   </div>
+
   <div class="card-body bg-white">
     <span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
     <span *ngIf="successMessage" class="alert alert-success">{{successMessage}}</span>
-
     <div>
+      <div class="controls">
+        <label for="yearSelector">&nbsp;Report Year/Period:</label>
+        <select name="yearSelector" [(ngModel)]="selectedYear" (change)="setSelectedYear($event.target.value)">>
+          <option *ngFor="let year of years" [value]="year.value">{{year.label}}</option>
+        </select>
+        <select name="periodSelector" [(ngModel)]="selectedPeriod" (change)="setSelectedPeriod($event.target.value)">
+          <option value="0">[Select]</option>
+          <option *ngFor="let period of periods" [value]="period.value">{{period.label}}</option>
+        </select>
+
+      </div>
     </div>
+
     <div [ngSwitch]="isLoading">
       <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
         <app-loading-container>

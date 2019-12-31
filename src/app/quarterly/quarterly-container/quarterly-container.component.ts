@@ -17,7 +17,10 @@ export class QuarterlyContainerComponent implements OnInit {
   isLoading = false;
   errorMessage: string;
   successMessage: string;
-
+  years: SELECTITEM[];
+  periods: SELECTITEM[];
+  selectedYear: string;
+  selectedPeriod: string;
   qrMinis: QuarterlyReportRPT[];
   qrMini: QuarterlyReportRPT;
   readonly reviewedStatuses: SELECTITEM[] = constants.reviewedQRStatuses;
@@ -34,16 +37,19 @@ export class QuarterlyContainerComponent implements OnInit {
 
     console.log('quarterly-container constructor');
 
-    // this.gradeRptsStatus = 'yellowWarning.jpg'
-    // this.gpaStatus = 'greenCheck.jpg'
+    this.years = constants.years;
+    this.periods = constants.periods;
+
+    this.selectedYear = '2019'; // '' + today.getFullYear(); //
+    this.selectedPeriod = '4'; // + today.getPeriod() + 1;// '5';
 
     this.isLoading = false;
   }
 
   ngOnInit() {
     console.log('ngOnInit');
-    // this.processRouteParams();
-    this.fetchData();
+
+    this.fetchFilteredData();
   }
 
   scrollIntoView() {
@@ -52,6 +58,15 @@ export class QuarterlyContainerComponent implements OnInit {
     if (element) {
       element.scrollIntoView(true);
     }
+  }
+
+  setSelectedYear(year: string) {
+    this.selectedYear = year;
+    this.fetchFilteredData();
+  }
+  setSelectedPeriod(period: string) {
+    this.selectedPeriod = period;
+    this.fetchFilteredData();
   }
 
   gotoStudent(studentGUId: string, studentName: string) {
@@ -77,14 +92,18 @@ export class QuarterlyContainerComponent implements OnInit {
     console.log('sorted event received');
   }
 
-  fetchData() {
+  fetchFilteredData() {
     console.log('fetchData for QR Overview');
     this.isLoading = true;
     // this.miscData.getStudentSelfReportsByPeriod('2019', '3', '0', this.studentGUId)
-    this.quarterlyData.getQRMinisForPeriod(2019, 3, 0)
+    this.quarterlyData.getQRMinisForPeriod(
+      this.selectedYear, this.selectedPeriod, 0)
       .subscribe(
         data => { this.qrMinis = data; },
-        err => console.error('Subscribe error: ' + err),
+        err => {
+          console.error('Subscribe error: ' + err);
+          this.isLoading = false;
+        },
         () => {
           this.isLoading = false;
           // console.log(JSON.stringify(this.qrMinis));
