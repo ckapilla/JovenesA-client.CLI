@@ -12,13 +12,21 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "plugins": [
-      { "name": "typescript-tslint-plugin" }
+      {
+        "name": "typescript-tslint-plugin"
+      }
     ],
     "target": "es2015",
     "paths": {
-      "auth0-js": ["node_modules/auth0-js/build/auth0.js"],
-      "@app/*": ["app/*"],
-      "@env/*": ["environments/*"]
+      "auth0-js": [
+        "node_modules/auth0-js/build/auth0.js"
+      ],
+      "@app/*": [
+        "app/*"
+      ],
+      "@env/*": [
+        "environments/*"
+      ]
     },
     "typeRoots": [
       "node_modules/@types"

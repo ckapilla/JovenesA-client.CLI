@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EMPTY, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { TruncateDatePipe } from 'src/app/_shared/pipes/truncate-date-pipe';
 import { MiscDataService } from 'src/app/_shared/services/misc-data.service';
 import { StudentDataService } from 'src/app/_shared/services/student-data.service';
 import { UrlService } from 'src/app/_shared/services/url.service';
@@ -11,6 +12,7 @@ import { constants } from '../../../_shared/constants/constants';
 import { SELECTITEM } from '../../../_shared/interfaces/SELECTITEM';
 import { Student } from '../../../_shared/models/student';
 import { StudentDTO } from '../../../_shared/models/studentDTO';
+
 
 @Component({
   selector: 'app-admins-student-profile',
@@ -126,13 +128,13 @@ export class AdminsStudentComponent implements OnInit {
     // this.fetchSponsorGroups();
 
     this.myForm = formBuilder.group({
-      studentId: '',
-      firstNames: ['',
-        Validators.compose([Validators.required, Validators.maxLength(30)])],
-      lastNames: [{ value: '' },
-      Validators.compose([Validators.required, Validators.maxLength(30)])],
-      email: [{ value: '' },
-      Validators.compose([Validators.required, Validators.email, Validators.maxLength(50)])],
+      studentId: [{ value: '', }],
+      // firstNames: ['',
+      //   Validators.compose([Validators.required, Validators.maxLength(30)])],
+      // lastNames: [{ value: '' },
+      // Validators.compose([Validators.required, Validators.email, Validators.maxLength(30)])],
+      // email: [{ value: '' },
+      // Validators.compose([Validators.required, Validators.maxLength(50)])],
       cellPhone: [{ value: '' },
       Validators.compose([Validators.minLength(7), Validators.maxLength(13)])],
       homePhone: [{ value: '' },
@@ -156,19 +158,28 @@ export class AdminsStudentComponent implements OnInit {
       gradMonthNum: [{ value: '' }],
       credentialYear: [{ value: '' }],
       credentialMonthNum: [{ value: '' }],
-      probationStartDate: [{ value: '' }],
-      probationEndDate: [{ value: '' }],
+      probationStartDate: [{ value: '' },
+      Validators.compose([Validators.pattern(/^\d{4}\-\d{1,2}\-\d{1,2}$/), Validators.maxLength(10)])],
+      probationEndDate: [{ value: '' },
+      Validators.compose([Validators.pattern(/^\d{4}\-\d{1,2}\-\d{1,2}$/), Validators.maxLength(10)])],
+
+      mentorAssignedDate: [{ value: '' },
+      Validators.compose([Validators.pattern(/^\d{4}\-\d{1,2}\-\d{1,2}$/), Validators.maxLength(10)])],
+      mentoringEndDate: [{ value: '' },
+      Validators.compose([Validators.pattern(/^\d{4}\-\d{1,2}\-\d{1,2}$/), Validators.maxLength(10)])],
+
       curp: [{ value: '' }],
       rfc: [{ value: '' }],
       bankAccount: [{ value: '' }],
       sponsorGroupId: [{ value: '' }],
       mentorGUId: [{ value: '' }],
       studentGUId: [{ value: '' }]
-      // mentorName: ['']
-      // inputInitialInterview: [{value: ''}, Validators.maxLength(2000)],
-      // studentStory: [{value: ''}, Validators.maxLength(2000)],
     });
     this.myForm.disable();
+    console.log(this.myForm.controls);
+    // this.myForm.controls.probationStartDate.valueChanges.subscribe(() => {
+    //   console.log(this.myForm.controls.probationStartDate.errors); // {pattern: {requiredPattern: '^[a-zA-Z ]*$', actualValue: '1'}}
+    // });
 
     this.student = new Student();
 
@@ -255,9 +266,9 @@ export class AdminsStudentComponent implements OnInit {
     console.log('>>>>>>>>>>>mentorGUId: ' + student.mentorGUId);
     this.myForm.setValue({
       studentId: student.studentId,
-      firstNames: student.firstNames,
-      lastNames: student.lastNames,
-      email: student.email,
+      // firstNames: student.firstNames,
+      // lastNames: student.lastNames,
+      // email: student.email,
       gender: student.gender,
       cellPhone: student.cellPhone,
       homePhone: student.homePhone,
@@ -277,8 +288,11 @@ export class AdminsStudentComponent implements OnInit {
       gradMonthNum: student.gradMonthNum,
       credentialYear: student.credentialYear,
       credentialMonthNum: student.credentialMonthNum,
-      probationStartDate: student.probationStartDate,
-      probationEndDate: student.probationEndDate,
+      probationStartDate: new TruncateDatePipe().transform('' + student.probationStartDate),
+      probationEndDate: new TruncateDatePipe().transform('' + student.probationEndDate),
+      mentorAssignedDate: new TruncateDatePipe().transform('' + student.mentorAssignedDate),
+      mentoringEndDate: new TruncateDatePipe().transform('' + student.mentoringEndDate),
+
       curp: student.curp,
       rfc: student.rfc,
       bankAccount: student.bankAccount,
@@ -352,6 +366,7 @@ export class AdminsStudentComponent implements OnInit {
   public hasChanges() {
     // if have changes then ask for confirmation
     // ask if form is dirty and has not just been submitted
+
     console.log('hasChanges has submitted ' + this.submitted);
     console.log('hasChanges has form dirty ' + this.myForm.dirty);
     console.log('hasChanges net is ' + this.myForm.dirty || this.submitted);
@@ -379,6 +394,9 @@ export class AdminsStudentComponent implements OnInit {
       this.myForm.enable();
       this.showEditLink = true;
     }
+  }
+  onDateSelect() {
+    alert('data selected');
   }
 
   // fetchMentors() {

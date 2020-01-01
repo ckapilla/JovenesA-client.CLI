@@ -33,9 +33,7 @@
 
             </app-person-shared>
 
-
             <div class="form-group">
-
 
               <label for="nickName">Nick Name</label>
               <input id="nickName" formControlName="nickName" type="text"
@@ -51,7 +49,6 @@
                 'maxlength': 'Photo Filename cannot exceed 225 characters in length.'
               }"></app-display-errors>
 
-
               <label for="cellPhone">Cell Phone</label>
               <input id="cellPhone" formControlName="cellPhone" type="text"
                      class="form-control form-control-sm" placeholder="Cell Phone Number: ###-###-####" />
@@ -60,7 +57,6 @@
                 'maxlength': 'Cell Phone cannot exceed 13 characters in length.'
               }"></app-display-errors>
 
-
               <label for="homePhone">Home Phone</label>
               <input id="homePhone" formControlName="homePhone" type="text"
                      class="form-control form-control-sm" placeholder="Home Phone Number: ###-###-####" />
@@ -68,7 +64,6 @@
                     'minlength': 'Cell Phone must be at least 7 characters in length.',
                     'maxlength': 'Cell Phone cannot exceed 13 characters in length.'
                   }"></app-display-errors>
-
 
               <label for="englishSkillLevelId">English Level:</label>
               <select formControlName="englishSkillLevelId"
@@ -101,24 +96,17 @@
                 </select>
               </div>
 
+              <label for="universityId">University</label>
+              <div *ngIf="universities$ | async as universities">
+                <select id="universityId" formControlName="universityId"
+                        class="form-control form-control-sm">
+                  <option *ngFor="let status of universities" [value]="status.value">{{status.label}}</option>
+                </select>
+              </div>
 
-              <!-- <label for="inputInitialInterview">Initial Interview:</label>
-          <textarea id="inputInitialInterview" formControlName="inputInitialInterview"
-            [(ngModel)]="student.initialInterview" type="text" class="form-control form-control-sm"
-            placeholder="Intitial Interview with Student">
-          </textarea>
-          <app-display-errors control="inputInitialInterview" class="red" [errors]="{
-                'maxlength': 'Initial Interview cannot exceed 2000 characters in length.'
-              }"></app-display-errors> -->
-
-              <!-- <label for="studentStory">Student Story:</label>
-          <textarea id="studentStory" formControlName="studentStory" [(ngModel)]="student.studentStory"
-            type="text" class="form-control form-control-sm" placeholder="Consolidated Student Story">
-          </textarea>
-          <app-display-errors control="studentStory" class="red" [errors]="{
-                'maxlength': 'Student Story cannot exceed 2000 characters in length.'
-              }"></app-display-errors> -->
-
+              <label for="major">Major</label>
+              <input id="major" formControlName="major" type="text"
+                     class="form-control form-control-sm" placeholder="" />
 
             </div>
           </div>
@@ -157,7 +145,11 @@
 
                 <label for="probationStartDate">Probation Start Dt</label>
                 <input id="probationStartDate" formControlName="probationStartDate"
-                       class="form-control form-control-sm" placeholder="" />
+                       class="form-control form-control-sm" placeholder="yyyy-mm-dd" />
+
+                <label for="mentorAssignedDate">Mentor Assigned Dt</label>
+                <input id="mentorAssignedDate" formControlName="mentorAssignedDate"
+                       class="form-control form-control-sm" placeholder="yyyy-mm-dd" />
 
                 <label for="gender">Gender</label>
                 <select id="gender" formControlName="gender"
@@ -192,7 +184,11 @@
 
                 <label for="probationEndDate">Probation End Dt</label>
                 <input id="probationEndDate" formControlName="probationEndDate"
-                       class="form-control form-control-sm" placeholder="" />
+                       class="form-control form-control-sm" placeholder="yyyy-mm-dd" />
+
+                <label for="mentoringEndDate">Mentoring End Dt</label>
+                <input id="mentoringEndDate" formControlName="mentoringEndDate"
+                       class="form-control form-control-sm" placeholder="yyyy-mm-dd" />
 
                 <label for="studentId">StudentId</label>
                 <input id="studentId" formControlName="studentId"
@@ -207,18 +203,6 @@
                      readonly
                      class="form-control form-control-sm" type="text" />
 
-              <label for="universityId">University</label>
-              <div *ngIf="universities$ | async as universities">
-                <select id="universityId" formControlName="universityId"
-                        class="form-control form-control-sm">
-                  <option *ngFor="let status of universities" [value]="status.value">{{status.label}}</option>
-                </select>
-              </div>
-
-              <label for="major">Major</label>
-              <input id="major" formControlName="major" type="text"
-                     class="form-control form-control-sm" placeholder="" />
-
               <label for="curp">CURP</label>
               <input id="curp" formControlName="curp"
                      class="form-control form-control-sm" placeholder="" />
@@ -230,6 +214,7 @@
               <label for="bankAccount">Bank Account</label>
               <input id="bankAccount" formControlName="bankAccount" type="text"
                      class="form-control form-control-sm" placeholder="" />
+
             </div>
           </div>
 
@@ -256,19 +241,6 @@
                 <option *ngFor="let mentor of mentors" [value]="mentor.value">{{mentor.label}}</option>
               </select>
             </div>
-            <!-- <label for="mentorName">Mentor (Read Only for Now)</label>
-            <input id="mentorName" formControlName="mentorName" type="text"
-                   readonly
-                   class="form-control form-control-sm" placeholder="" /> -->
-
-            <!-- <label for="mentorGUId">Mentor</label>
-            <select id="mentorGUId" formControlName="mentorGUId" class="form-control form-control-sm">
-              <option *ngFor="let mentor of mentors" [value]="mentor.value">{{mentor.label}}</option>
-            </select> -->
-            <!-- <app-mentor-selector
-                                 [initialMemberGUId]="student.mentorGUId"
-                                 (onSelectedMemberGUId)="receiveSelectedMemberEvent($event)">
-            </app-mentor-selector> -->
 
             <label for="gradeMonths">Academic Year / Grade Months</label>
             <app-grade-months [universityId]="student.universityId">
@@ -297,3 +269,8 @@
     </div>
   </div>
 </div>
+<!-- <div>
+  Valid: {{ myForm.valid }}
+  Value: {{ myForm.value | json }}
+  Errors: {{ myForm.errors | json }}
+</div> -->
