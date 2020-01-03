@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -8,13 +8,12 @@ import { QuarterlyReport } from '../../_shared/models/quarterly-report';
 import { QuarterlyDataService } from '../../_shared/services/quarterly-data.service';
 import { SessionService } from '../../_shared/services/session.service';
 
-
 @Component({
   selector: 'app-mr-consolidated',
   templateUrl: './mr-consolidated.component.html',
   styleUrls: ['./mr-consolidated.component.css']
 })
-export class MrConsolidatedComponent implements OnInit, OnDestroy {
+export class MrConsolidatedComponent implements OnInit, OnChanges, OnDestroy {
   isLoading: boolean;
   isSubmitted: boolean;
   errorMessage: string;
@@ -28,6 +27,8 @@ export class MrConsolidatedComponent implements OnInit, OnDestroy {
   reportIdCtl: AbstractControl;
   studentGUId: string;
   @Input() bEditable: boolean;
+  @Input() selectedYear: string;
+  @Input() selectedPeriod: string;
   private subscription: Subscription;
 
   constructor(
@@ -46,7 +47,6 @@ export class MrConsolidatedComponent implements OnInit, OnDestroy {
       narrative_Spanish: [''],
       mentorReportId: [this.reportIdCtl]
     });
-
 
     this.narrative_EnglishCtl = this.myForm.controls['narrative_English'];
     this.narrative_SpanishCtl = this.myForm.controls['narrative_Spanish'];
@@ -81,18 +81,18 @@ export class MrConsolidatedComponent implements OnInit, OnDestroy {
         this.studentGUId = message;
         console.log('MR new StudentGUId received' + this.studentGUId);
         if (this.studentGUId && this.studentGUId !== '0000') {
-          this.fetchData();
+          this.fetchFilteredData();
         }
 
         // console.log('subscribe next ' + this.studentSelected.getInternalSubject().observers.length);
       });
   }
 
-  fetchData() {
+  fetchFilteredData() {
 
     console.log('MR fetchData');
     this.isLoading = true;
-    this.quarterlyData.getPartialQuarterlyReportByPeriod('MR', this.studentGUId, '2019', '3', '0')
+    this.quarterlyData.getPartialQuarterlyReportByPeriod('MR', this.studentGUId, this.selectedYear, this.selectedPeriod, '0')
       .subscribe(
         data => { this.mentorReport = data; },
         err => console.error('Subscribe error: ' + err),
@@ -163,4 +163,12 @@ export class MrConsolidatedComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl(target);
   }
 
+  public ngOnChanges(changes: SimpleChanges) {
+    if (changes.selectedYear) {
+      this.fetchFilteredData();
+    }
+    if (changes.selectedPeriod) {
+      this.fetchFilteredData();
+    }
+  }
 }

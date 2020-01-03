@@ -1,57 +1,50 @@
-<div class="card bg-primary">
-  <div class="card-header text-white" style="font-size:large">
-    Jovenes Adelante Comments
-  </div>
-  <div class="card-body bg-white">
-    <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
-    <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
-    <form [formGroup]="myForm">
-      <fieldset>
-        <div class="form-group">
-          <div hidden class="controls">
-            <label for="quarterlyReportId">Id</label>
-            <textarea id="quarterlyReportId"
-                      formControlName="quarterlyReportId"
-                      type="text"
-                      class="form-control input-sm">
+<div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+<div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
+<form [formGroup]="myForm">
+  <fieldset>
+    <div class="form-group">
+      <div hidden class="controls">
+        <label for="quarterlyReportId">Id</label>
+        <textarea id="quarterlyReportId"
+                  formControlName="quarterlyReportId"
+                  type="text"
+                  class="form-control input-sm">
                   </textarea>
-          </div>
-          <div class="controls">
-            <label for="narrative">Text</label>
-            <textarea id="narrative" #success
-                      formControlName="narrative"
-                      type="text"
+      </div>
+      <div class="controls">
+        <label for="narrative">Text</label>
+        <textarea id="narrative" #success
+                  formControlName="narrative"
+                  type="text"
 
-                      class="form-control input-sm narrative" placeholder="">
+                  class="form-control input-sm narrative" placeholder="">
                   </textarea>
-            <app-display-errors control="narrative" class="red"
-                                [errors]="{'required': 'Se requiere una entrada, aun si es sólo N/A.',
+        <app-display-errors control="narrative" class="red"
+                            [errors]="{'required': 'Se requiere una entrada, aun si es sólo N/A.',
                   'maxlength': 'La entrada no puede exceder 4000 caracteres del largo.'
                         }"></app-display-errors>
-          </div>
+      </div>
 
-          <div class="col-md-6 col-md-offset-1">
-            <span>
-              <button class="btn btn-primary"
-                      style="width:140px;margin-right:10px"
-                      [hidden]="!bEditable"
-                      (click)="onSubmit()">
-                Guardar/Save
-              </button>
-            </span>&nbsp;
-            <span>
-              <button type="button"
-                      class="btn btn-default"
-                      style="width:95px"
-                      [hidden]="!bEditable"
-                      (click)="onCancel()">
-                Cancelar
-              </button>
-              <div class="red" [hidden]="myForm.valid || !bEditable"></div>
-            </span>
-          </div>
-        </div>
-      </fieldset>
-    </form>
-  </div>
-</div>
+      <div class="col-md-6 col-md-offset-1">
+        <span>
+          <button class="btn btn-primary"
+                  style="width:140px;margin-right:10px"
+                  [hidden]="!bEditable"
+                  (click)="onSubmit()">
+            Guardar/Save
+          </button>
+        </span>&nbsp;
+        <span>
+          <button type="button"
+                  class="btn btn-default"
+                  style="width:95px"
+                  [hidden]="!bEditable"
+                  (click)="onCancel()">
+            Cancelar
+          </button>
+          <div class="red" [hidden]="myForm.valid || !bEditable"></div>
+        </span>
+      </div>
+    </div>
+  </fieldset>
+</form>

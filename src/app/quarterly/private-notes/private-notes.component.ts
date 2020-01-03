@@ -1,5 +1,5 @@
 
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -14,7 +14,7 @@ import { SessionService } from '../../_shared/services/session.service';
   selector: 'app-private-notes',
   templateUrl: './private-notes.component.html'
 })
-export class PrivateNotesComponent implements OnInit, OnDestroy {
+export class PrivateNotesComponent implements OnInit, OnChanges, OnDestroy {
   isLoading: boolean;
   isSubmitted: boolean;
   errorMessage: string;
@@ -26,6 +26,8 @@ export class PrivateNotesComponent implements OnInit, OnDestroy {
   reportIdCtl: AbstractControl;
   studentGUId: string;
   @Input() bEditable: boolean;
+  @Input() selectedYear: string;
+  @Input() selectedPeriod: string;
   private subscription: Subscription;
 
   constructor(
@@ -78,17 +80,18 @@ export class PrivateNotesComponent implements OnInit, OnDestroy {
         this.studentGUId = message;
         console.log('PN new StudentGUId received' + this.studentGUId);
         if (this.studentGUId && this.studentGUId !== '0000') {
-          this.fetchData();
+          this.fetchFilteredData();
         }
 
         // console.log('subscribe next ' + this.studentSelected.getInternalSubject().observers.length);
       });
   }
 
-  fetchData() {
+  fetchFilteredData() {
 
     this.isLoading = true;
-    this.quarterlyData.getPartialQuarterlyReportByPeriod('PN', this.studentGUId, '2019', '3', '0')
+    this.quarterlyData.getPartialQuarterlyReportByPeriod('PN', this.studentGUId,
+      this.selectedYear, this.selectedPeriod, '0')
       .subscribe(
         data => { this.privateNotes = data; },
         err => console.error('Subscribe error: ' + err),
@@ -151,6 +154,15 @@ export class PrivateNotesComponent implements OnInit, OnDestroy {
     const target = '/quarterly';
     console.log('navigating to ' + target);
     this.router.navigateByUrl(target);
+  }
+
+  public ngOnChanges(changes: SimpleChanges) {
+    if (changes.selectedYear) {
+      this.fetchFilteredData();
+    }
+    if (changes.selectedPeriod) {
+      this.fetchFilteredData();
+    }
   }
 
 }
