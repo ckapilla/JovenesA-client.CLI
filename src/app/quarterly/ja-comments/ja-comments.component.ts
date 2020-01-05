@@ -92,34 +92,36 @@ export class JaCommentsComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   fetchFilteredData() {
+    if (this.studentGUId && this.studentGUId !== undefined && this.studentGUId !== '0000') {
 
-    this.isLoading = true;
-    this.quarterlyData.getPartialQuarterlyReportByPeriod('JA', this.studentGUId,
-      this.selectedYear, this.selectedPeriod, '0')
-      .subscribe(
-        data => { this.jaComment = data; },
-        err => console.error('Subscribe error: ' + err),
-        () => {
-          this.isLoading = false;
-          if (this.jaComment) {
-            console.log('### after retreiving, set form controls to retreived selfReport');
-            this.narrative_SpanishCtl.setValue(this.jaComment.jA_Narrative_Spanish);
-            if (!this.bEditable) {
-              if (this.jaComment.jA_Narrative_English.length === 0) {
-                this.jaComment.jA_Narrative_English = '-- No additional comments this quarter --';
+      this.isLoading = true;
+      this.quarterlyData.getPartialQuarterlyReportByPeriod('JA', this.studentGUId,
+        this.selectedYear, this.selectedPeriod, '0')
+        .subscribe(
+          data => { this.jaComment = data; },
+          err => console.error('Subscribe error: ' + err),
+          () => {
+            this.isLoading = false;
+            if (this.jaComment) {
+              console.log('### after retreiving, set form controls to retreived selfReport');
+              this.narrative_SpanishCtl.setValue(this.jaComment.jA_Narrative_Spanish);
+              if (!this.bEditable) {
+                if (this.jaComment.jA_Narrative_English.length === 0) {
+                  this.jaComment.jA_Narrative_English = '-- No additional comments this quarter --';
+                }
+                if (this.jaComment.jA_Narrative_Spanish.length === 0) {
+                  this.jaComment.jA_Narrative_Spanish = '-- No hay comentarios adicionales este trimestre --';
+                }
               }
-              if (this.jaComment.jA_Narrative_Spanish.length === 0) {
-                this.jaComment.jA_Narrative_Spanish = '-- No hay comentarios adicionales este trimestre --';
-              }
+              this.narrative_EnglishCtl.setValue(this.jaComment.jA_Narrative_English);
+              this.narrative_SpanishCtl.setValue(this.jaComment.jA_Narrative_Spanish);
+            } else {
+              console.log('no results returned');
+              this.narrative_EnglishCtl.setValue('--No Report Found--');
+              this.narrative_SpanishCtl.setValue('--No Report Found--');
             }
-            this.narrative_EnglishCtl.setValue(this.jaComment.jA_Narrative_English);
-            this.narrative_SpanishCtl.setValue(this.jaComment.jA_Narrative_Spanish);
-          } else {
-            console.log('no results returned');
-            this.narrative_EnglishCtl.setValue('--No Report Found--');
-            this.narrative_SpanishCtl.setValue('--No Report Found--');
-          }
-        });
+          });
+    }
   }
 
   onSubmit() {
@@ -174,10 +176,8 @@ export class JaCommentsComponent implements OnInit, OnChanges, OnDestroy {
   // tslint:disable-next-line: no-trailing-whitespace
 
   public ngOnChanges(changes: SimpleChanges) {
-    if (changes.selectedYear) {
-      this.fetchFilteredData();
-    }
-    if (changes.selectedPeriod) {
+    if (changes.selectedYear || changes.selectedPeriod) {
+      console.log(changes);
       this.fetchFilteredData();
     }
   }

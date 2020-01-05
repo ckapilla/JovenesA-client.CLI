@@ -48,7 +48,7 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
     this.highlightStatuses = constants.highlightStatuses;
 
     const today = new Date();
-    this.selectedYear = '2019'; // '' + today.getFullYear(); //
+    this.selectedYear = '2020'; // '' + today.getFullYear(); //
     this.selectedMonth = '0'; // + today.getMonth() + 1;// '5';
 
     this.selectedMRReviewedStatus = '0'; // this.mrReviewedStatuses[0].value;

@@ -91,27 +91,28 @@ export class SelfReportsComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   fetchFilteredData() {
+    if (this.studentGUId && this.studentGUId !== undefined && this.studentGUId !== '0000') {
 
-    this.isLoading = true;
-    this.quarterlyData.getPartialQuarterlyReportByPeriod('SR', this.studentGUId,
-      this.selectedYear, this.selectedPeriod, '0')
-      .subscribe(
-        data => { this.studentSelfReport = data; },
-        err => console.error('Subscribe error: ' + err),
-        () => {
-          this.isLoading = false;
-          if (this.studentSelfReport) {
-            console.log('### after retreiving, set form controls to retreived selfReport');
-            this.reportIdCtl.setValue(this.studentSelfReport.quarterlyReportId);
-            this.narrative_EnglishCtl.setValue(this.studentSelfReport.sR_Narrative_English);
-            this.narrative_SpanishCtl.setValue(this.studentSelfReport.sR_Narrative_Spanish);
-          } else {
-            console.log('no results returned');
-            this.narrative_EnglishCtl.setValue('--No Report Found--');
-            this.narrative_SpanishCtl.setValue('--No Report Found--');
-          }
-
-        });
+      this.isLoading = true;
+      this.quarterlyData.getPartialQuarterlyReportByPeriod('SR', this.studentGUId,
+        this.selectedYear, this.selectedPeriod, '0')
+        .subscribe(
+          data => { this.studentSelfReport = data; },
+          err => console.error('Subscribe error: ' + err),
+          () => {
+            this.isLoading = false;
+            if (this.studentSelfReport) {
+              console.log('### after retreiving, set form controls to retreived selfReport');
+              this.reportIdCtl.setValue(this.studentSelfReport.quarterlyReportId);
+              this.narrative_EnglishCtl.setValue(this.studentSelfReport.sR_Narrative_English);
+              this.narrative_SpanishCtl.setValue(this.studentSelfReport.sR_Narrative_Spanish);
+            } else {
+              console.log('no results returned');
+              this.narrative_EnglishCtl.setValue('--No Report Found--');
+              this.narrative_SpanishCtl.setValue('--No Report Found--');
+            }
+          });
+    }
   }
 
   onSubmit() {
@@ -165,10 +166,8 @@ export class SelfReportsComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   public ngOnChanges(changes: SimpleChanges) {
-    if (changes.selectedYear) {
-      this.fetchFilteredData();
-    }
-    if (changes.selectedPeriod) {
+    if (changes.selectedYear || changes.selectedPeriod) {
+      console.log(changes);
       this.fetchFilteredData();
     }
   }

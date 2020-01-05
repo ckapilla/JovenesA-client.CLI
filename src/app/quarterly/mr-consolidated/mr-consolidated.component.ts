@@ -80,36 +80,34 @@ export class MrConsolidatedComponent implements OnInit, OnChanges, OnDestroy {
       .subscribe(message => {
         this.studentGUId = message;
         console.log('MR new StudentGUId received' + this.studentGUId);
-        if (this.studentGUId && this.studentGUId !== '0000') {
-          this.fetchFilteredData();
-        }
-
+        this.fetchFilteredData();
         // console.log('subscribe next ' + this.studentSelected.getInternalSubject().observers.length);
       });
   }
 
   fetchFilteredData() {
+    if (this.studentGUId && this.studentGUId !== undefined && this.studentGUId !== '0000') {
+      console.log('MR fetchData');
+      this.isLoading = true;
+      this.quarterlyData.getPartialQuarterlyReportByPeriod('MR', this.studentGUId, this.selectedYear, this.selectedPeriod, '0')
+        .subscribe(
+          data => { this.mentorReport = data; },
+          err => console.error('Subscribe error: ' + err),
+          () => {
+            this.isLoading = false;
+            if (this.mentorReport) {
+              console.log('### after retreiving, set form controls to retreived mentorReport');
+              this.reportIdCtl.setValue(this.mentorReport.quarterlyReportId);
+              this.narrative_EnglishCtl.setValue(this.mentorReport.mR_Narrative_English);
+              this.narrative_SpanishCtl.setValue(this.mentorReport.mR_Narrative_Spanish);
+            } else {
+              console.log('no results returned');
+              this.narrative_EnglishCtl.setValue('--No Report Found--');
+              this.narrative_SpanishCtl.setValue('--No Report Found--');
+            }
 
-    console.log('MR fetchData');
-    this.isLoading = true;
-    this.quarterlyData.getPartialQuarterlyReportByPeriod('MR', this.studentGUId, this.selectedYear, this.selectedPeriod, '0')
-      .subscribe(
-        data => { this.mentorReport = data; },
-        err => console.error('Subscribe error: ' + err),
-        () => {
-          this.isLoading = false;
-          if (this.mentorReport) {
-            console.log('### after retreiving, set form controls to retreived mentorReport');
-            this.reportIdCtl.setValue(this.mentorReport.quarterlyReportId);
-            this.narrative_EnglishCtl.setValue(this.mentorReport.mR_Narrative_English);
-            this.narrative_SpanishCtl.setValue(this.mentorReport.mR_Narrative_Spanish);
-          } else {
-            console.log('no results returned');
-            this.narrative_EnglishCtl.setValue('--No Report Found--');
-            this.narrative_SpanishCtl.setValue('--No Report Found--');
-          }
-
-        });
+          });
+    }
   }
 
   onSubmit() {
@@ -164,10 +162,8 @@ export class MrConsolidatedComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   public ngOnChanges(changes: SimpleChanges) {
-    if (changes.selectedYear) {
-      this.fetchFilteredData();
-    }
-    if (changes.selectedPeriod) {
+    if (changes.selectedYear || changes.selectedPeriod) {
+      console.log(changes);
       this.fetchFilteredData();
     }
   }

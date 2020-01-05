@@ -88,23 +88,25 @@ export class PrivateNotesComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   fetchFilteredData() {
+    if (this.studentGUId && this.studentGUId !== undefined && this.studentGUId !== '0000') {
 
-    this.isLoading = true;
-    this.quarterlyData.getPartialQuarterlyReportByPeriod('PN', this.studentGUId,
-      this.selectedYear, this.selectedPeriod, '0')
-      .subscribe(
-        data => { this.privateNotes = data; },
-        err => console.error('Subscribe error: ' + err),
-        () => {
-          this.isLoading = false;
-          if (this.privateNotes && this.privateNotes.pN_Narrative && this.privateNotes.pN_Narrative.length > 0) {
-            console.log('### after retreiving, set form controls to retreived selfReport');
-            this.narrativeCtl.setValue(this.privateNotes.pN_Narrative);
-          } else {
-            console.log('no results returned');
-            this.narrativeCtl.setValue('');
-          }
-        });
+      this.isLoading = true;
+      this.quarterlyData.getPartialQuarterlyReportByPeriod('PN', this.studentGUId,
+        this.selectedYear, this.selectedPeriod, '0')
+        .subscribe(
+          data => { this.privateNotes = data; },
+          err => console.error('Subscribe error: ' + err),
+          () => {
+            this.isLoading = false;
+            if (this.privateNotes && this.privateNotes.pN_Narrative && this.privateNotes.pN_Narrative.length > 0) {
+              console.log('### after retreiving, set form controls to retreived selfReport');
+              this.narrativeCtl.setValue(this.privateNotes.pN_Narrative);
+            } else {
+              console.log('no results returned');
+              this.narrativeCtl.setValue('');
+            }
+          });
+    }
   }
 
   onSubmit() {
@@ -157,10 +159,8 @@ export class PrivateNotesComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   public ngOnChanges(changes: SimpleChanges) {
-    if (changes.selectedYear) {
-      this.fetchFilteredData();
-    }
-    if (changes.selectedPeriod) {
+    if (changes.selectedYear || changes.selectedPeriod) {
+      console.log(changes);
       this.fetchFilteredData();
     }
   }

@@ -13,6 +13,7 @@ export class QuarterlyHomeComponent implements OnInit {
   selectedYear: string;
   selectedPeriod: string;
   studentGUId: string;
+  studentGUIdReceived: boolean;
   constructor(
     private route: ActivatedRoute
   ) {
@@ -21,10 +22,8 @@ export class QuarterlyHomeComponent implements OnInit {
 
     this.selectedYear = '2019'; // '' + today.getFullYear(); //
     this.selectedPeriod = '4'; // + today.getPeriod() + 1;// '5';
-
+    this.studentGUIdReceived = false;
   }
-
-
 
   ngOnInit() {
     this.processRouteParams();
@@ -47,6 +46,8 @@ export class QuarterlyHomeComponent implements OnInit {
   setSelectedPeriod(period: string) {
     this.selectedPeriod = period;
   }
-
+  onStudentGUIdReceived(bSet: boolean) {
+    this.studentGUIdReceived = bSet;
+  }
 
 }

@@ -1,10 +1,10 @@
 <div class="row">
   <div class="col-12">
-    <app-student-header-quarterly>
+    <app-student-header-quarterly (onStudentGUIdSet)="onStudentGUIdReceived($event)">
     </app-student-header-quarterly>
   </div>
 </div>
-<div class="row">
+<div *ngIf="studentGUIdReceived" class="row">
   <div class="col">
     <div class="card bg-primary">
       <div class="card-header text-white">

@@ -47,7 +47,7 @@ export class MonthlyReports2EditComponent
     this.contactMonths = constants.months;
 
     this.myForm = _fb.group({
-      lastContactYearSelector: ['2019', Validators.required],
+      lastContactYearSelector: ['0', Validators.required],
       lastContactMonthSelector: ['0', { validators: [this.validateMonth], updateOn: 'change' }],
       // use bogus integer value so change detection works:
       inputEmoji: [666, { validators: [Validators.required, this.validateEmojis], updateOn: 'change' }],

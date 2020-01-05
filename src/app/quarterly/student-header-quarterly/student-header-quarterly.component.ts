@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { StudentSelectedService } from '../../_shared/services/student-selected.service';
@@ -9,7 +9,7 @@ import { StudentSelectedService } from '../../_shared/services/student-selected.
 })
 export class StudentHeaderQuarterlyComponent implements OnInit, OnDestroy {
 
-
+  @Output() onStudentGUIdSet = new EventEmitter<boolean>();
   photoPathName: string;
   private subscription: Subscription;
   public studentGUId: string;
@@ -35,6 +35,8 @@ export class StudentHeaderQuarterlyComponent implements OnInit, OnDestroy {
       .subscribe(message => {
         this.studentGUId = message;
         console.log('header new StudentGUId received' + this.studentGUId);
+        // console.log(this.studentGUId && this.studentGUId !== undefined && this.studentGUId !== '0000');
+        this.onStudentGUIdSet.emit(this.studentGUId && this.studentGUId !== undefined && this.studentGUId !== '0000');
         // console.log('subscribe next ' + this.studentSelected.getInternalSubject().observers.length);
       });
   }
