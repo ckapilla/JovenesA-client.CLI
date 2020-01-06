@@ -2,14 +2,14 @@ export class MemberWithAnyRelatedStudent {
 
   constructor(
     public memberId: number,
-    public lastNames: string,
-    public firstNames: string,
-    public email: string,
-    public photoUrl: string,
+    public lastNames?: string,
+    public firstNames?: string,
+    public email?: string,
+    public photoUrl?: string,
 
-    public memberType: string,
-    public memberStatusId: number,
-    public memberStatus: string,
+    public memberType?: string,
+    public memberStatusId?: number,
+    public memberStatus?: string,
 
     public relatedStudentId?: number,
     public relatedStudentName?: string,

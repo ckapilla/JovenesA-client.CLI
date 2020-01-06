@@ -96,9 +96,15 @@ export class AdminsMemberListComponent implements OnInit {
     this.memberData.getMemberWithAnyRelatedStudent(this.selectedType.label, Number(this.selectedStatus.value),
       Number(this.selectedStudentStatus.value))
       .subscribe(
-        data => { this.members = data; },
+        data => {
+          // if (data.length > 0) {
+          this.members = data;
+          // } else {
+          // this.members = null;
+          // }
+        },
         err => this.errorMessage = err,
-        () => { console.log('done' + this.members[0].memberStatusId); this.isLoading = false; }
+        () => { console.log('done'); this.isLoading = false; }
       );
   }
   gotoMember(guid: string, memberName: string) {

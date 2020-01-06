@@ -49,10 +49,11 @@ export class SelfReportsAddComponent
                 [Validators.required, Validators.maxLength(4500)])]
         });
 
-        // this.reportYear = this.myForm.controls['reportYear'];
+        // this.npm run startreportYear = this.myForm.controls['reportYear'];
         // this.reportPeriod = this.myForm.controls['reportPeriod'];
         // this.Narrative_English = this.myForm.controls['narrative_English'];
-
+        this.myForm.controls.reportYear.disable();
+        this.myForm.controls.reportPeriod.disable();
 
         this.selfReport = new StudentSelfReport();
         this.selfReport.sponsorGroupId = 0;
@@ -64,8 +65,8 @@ export class SelfReportsAddComponent
         this.selfReport.reportDateTime = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
         console.log(this.selfReport.reportDateTime);
 
-        this.selfReport.reportYear = null; // moment(new Date).format('YYYY-MM-DD');
-        this.selfReport.reportPeriod = null;
+        this.selfReport.reportYear = 2019;
+        this.selfReport.reportPeriod = 3;
         this.selfReport.narrative_English = '';
 
         this.errorMessage = '';
