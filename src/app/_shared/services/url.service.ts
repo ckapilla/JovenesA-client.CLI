@@ -22,7 +22,7 @@ export class UrlService {
       // check ipconfig to verify IPv4 address for current router gateway (usually Wi-Fi)
       //
       // this.webApiPrefix = 'http://192.168.1.100:1100/api/'; // Local Production
-      this.webApiPrefix = 'http://192.168.1.100:1099/api/'; // Local  Development
+      this.webApiPrefix = 'http://192.168.2.33:1099/api/'; // Local  Development
       // this.webApiPrefix = 'https://JAWebAPI-dev.jovenesadelante.org/api/';
       // this.webApiPrefix = 'https://JAWebAPI.jovenesadelante.org/api/';  // Production
       this.clientUrl = 'http://localhost:3000';

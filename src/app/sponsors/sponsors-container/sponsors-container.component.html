@@ -4,8 +4,24 @@
     </app-student-header-sponsors>
   </div>
 </div>
-<div class="row">
-  <div class="col">
+<div class="col">
+<div class="card bg-primary">
+  <div class="card-header text-white">
+    <span style="font-size:large">
+      Quarterly Report Statuses
+    </span>
+    <span style="margin-left:10rem">
+      Report Year/Month:
+      <select name="yearSelector" [(ngModel)]="selectedYear" (change)="setSelectedYear($event.target.value)">>
+        <option *ngFor="let year of years" [value]="year.value">{{year.label}}</option>
+      </select>
+      <select name="periodSelector" [(ngModel)]="selectedPeriod" (change)="setSelectedPeriod($event.target.value)">
+        <option value="0">[Select]</option>
+        <option *ngFor="let period of periods" [value]="period.value">{{period.label}}</option>
+      </select>
+    </span>
+  </div>
+  <div class="card-body bg-white">
     <ngb-tabset>
 
       <ngb-tab title="Student Reports">
