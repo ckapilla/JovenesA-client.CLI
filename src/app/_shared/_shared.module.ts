@@ -21,7 +21,6 @@ import { MentorReports2ListComponent } from './components/mentor-reports2-list/m
 import { MentorSelectorComponent } from './components/mentor-selector/mentor-selector.component';
 import { MentorsForStudentListComponent } from './components/mentors-for-student-list/mentors-for-student-list.component';
 import { PersonSharedComponent } from './components/person-shared/person-shared.component';
-import { ProfileComponent } from './components/profile.component';
 import { QrStatusSelectorComponent } from './components/qr-status-selector/qr-status-selector.component';
 import { SortableColumnComponent } from './components/sortable-column.component';
 import { SponsorGroupMemberEditComponent } from './components/sponsor-group-member-edit/sponsor-group-member-edit.component';
@@ -85,7 +84,6 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     StudentMRStatusComponent,
     GradeMonthsComponent,
     CallbackComponent,
-    ProfileComponent,
     AlphaMonthPipe,
     AlphaLanguagePipe,
     TruncateDatePipe,
@@ -131,7 +129,6 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     StudentGradesStatusComponent,
     StudentMRStatusComponent,
     CallbackComponent,
-    ProfileComponent,
     AlphaMonthPipe,
     AlphaLanguagePipe,
     TruncateDatePipe,

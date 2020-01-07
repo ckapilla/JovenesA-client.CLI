@@ -6,7 +6,6 @@ import { SelfReportsEditComponent } from './self-reports-edit/self-reports-edit.
 import { SponsorLettersAddComponent } from './sponsor-letters-add/sponsor-letters-add.component';
 import { StudentsHomeComponent } from './students-home/students-home.component';
 import { StudentsNavbarComponent } from './students-navbar/students-navbar.component';
-import { StudentsProfileComponent } from './students-profile/students-profile.component';
 import { StudentsRoutingModule } from './students-routing.module';
 import { StudentsSelfReportsComponent } from './students-self-reports/students-self-reports.component';
 import { StudentsSponsorLettersComponent } from './students-sponsor-letters/students-sponsor-letters.component';
@@ -23,7 +22,6 @@ import { StudentsComponent } from './students.component';
     StudentsComponent,
     StudentsNavbarComponent,
     StudentsHomeComponent,
-    StudentsProfileComponent,
     StudentsSponsorLettersComponent,
     SponsorLettersAddComponent,
     StudentsSelfReportsComponent,

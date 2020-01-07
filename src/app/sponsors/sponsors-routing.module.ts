@@ -20,14 +20,6 @@ const sponsorRoutes: Routes = [
         path: 'home',
         component: SponsorsContainerComponent
       },
-      // {
-      //   path: 'profile/:id',
-      //   component: MentorsProfileComponent
-      // },
-      // {
-      //   path: 'quarterly-reports',
-      //   component: ConsolidatedReportsComponent
-      // },
 
     ]
   }

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CallbackComponent } from './_shared/components/callback.component';
-import { ProfileComponent } from './_shared/components/profile.component';
 
 const appRoutes: Routes = [
   {
@@ -9,10 +8,10 @@ const appRoutes: Routes = [
     component: CallbackComponent
   },
   {
-    path: 'profile',
-    component: ProfileComponent
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
   },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'Home/Mentors',
     redirectTo: '/mentors'
