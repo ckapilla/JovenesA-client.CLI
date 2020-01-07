@@ -97,11 +97,7 @@ export class AdminsMemberListComponent implements OnInit {
       Number(this.selectedStudentStatus.value))
       .subscribe(
         data => {
-          // if (data.length > 0) {
           this.members = data;
-          // } else {
-          // this.members = null;
-          // }
         },
         err => this.errorMessage = err,
         () => { console.log('done'); this.isLoading = false; }

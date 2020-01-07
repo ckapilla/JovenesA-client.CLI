@@ -13,7 +13,7 @@ import { MemberDataService } from '../../_shared/services/member-data.service';
   templateUrl: './mentors-profile.component.html'
 })
 export class MentorsProfileComponent implements OnInit {
-  profileForm: FormGroup;
+  myForm: FormGroup;
   data: Object;
   isLoading: boolean;
   submitted: boolean;
@@ -37,13 +37,13 @@ export class MentorsProfileComponent implements OnInit {
     console.log('hi from profile.component constructor');
     this.languageStatuses = constants.languageStatuses;
 
-    this.profileForm = formBuilder.group({
-      inputMentorFName: ['', Validators.required],
-      inputMentorLName: ['', Validators.required],
-      inputMentorPhone: ['', Validators.required],
-      inputMonthsinSma: ['', Validators.required],
-      SpanishLevelSelector: ['', Validators.required],
-      EnglishLevelSelector: ['', Validators.required],
+    this.myForm = formBuilder.group({
+      firstNames: ['', Validators.required],
+      lastNames: ['', Validators.required],
+      smA_Phone: ['', Validators.required],
+      monthsinSma: ['', Validators.required],
+      spanishSkillLevelId: ['', Validators.required],
+      englishSkillLevelId: ['', Validators.required],
     });
     this.mentor = new Member();
 
@@ -54,9 +54,17 @@ export class MentorsProfileComponent implements OnInit {
 
   ngOnInit() {
     console.log('ngOnInit');
-    // this.currRoute.params
-    //   .map(params => params['id'])
-    //   .subscribe((id) => {
+    this.fetchData();
+    this.myForm.valueChanges.subscribe(
+      (form: any) => {
+        // this.errorMessage = '';
+        // this.successMessage = '';
+        this.submitted = false;
+      }
+    );
+  }
+
+  fetchData() {
     const id = this.currRoute.snapshot.params['id'];
     console.log('calling data service with mentorId: ' + id);
     this.isLoading = true;
@@ -66,21 +74,36 @@ export class MentorsProfileComponent implements OnInit {
         err => console.error('Subscribe error: ' + err),
         () => {
           console.log('done loading');
+          this.setFormValues(this.mentor);
           this.isLoading = false;
         }
       );
-
-    this.profileForm.valueChanges.subscribe(
-      (form: any) => {
-        // this.errorMessage = '';
-        // this.successMessage = '';
-        this.submitted = false;
-      }
-    );
   }
 
-  saveProfile(): boolean {
+  setFormValues(mentor: Member) {
+    this.myForm.patchValue({
+      firstNames: mentor.firstNames,
+      lastNames: mentor.lastNames,
+      smA_Phone: mentor.smA_Phone,
+      monthsinSma: mentor.monthsinSma,
+      spanishSkillLevelId: mentor.spanishSkillLevelId,
+      englishSkillLevelId: mentor.englishSkillLevelId
+    });
+  }
+
+  retrieveFormValues(): void {
+    console.log('retrieveFormValues ' + JSON.stringify(this.myForm.value));
+    this.mentor.firstNames = this.myForm.controls.firstNames.value;
+    this.mentor.lastNames = this.myForm.controls.lastNames.value;
+    this.mentor.smA_Phone = this.myForm.controls.smA_Phone.value;
+    this.mentor.spanishSkillLevelId = this.myForm.controls.spanishSkillLevelId.value;
+    this.mentor.englishSkillLevelId = this.myForm.controls.englishSkillLevelId.value;
+  }
+
+  saveMyForm(): boolean {
     console.log('saving ');
+    this.isLoading = true;
+    this.retrieveFormValues();
     this.memberData.updateMember(this.mentor)
       .subscribe(
         (student) => {
@@ -100,13 +123,14 @@ export class MentorsProfileComponent implements OnInit {
     return false;
   }
 
+
   public hasChanges() {
     // if have changes then ask for confirmation
     // ask if form is dirty and has not just been submitted
     console.log('hasChanges has submitted ' + this.submitted);
-    console.log('hasChanges has form dirty ' + this.profileForm.dirty);
-    console.log('hasChanges net is ' + this.profileForm.dirty || this.submitted);
-    return this.profileForm.dirty && !this.submitted;
+    console.log('hasChanges has form dirty ' + this.myForm.dirty);
+    console.log('hasChanges net is ' + this.myForm.dirty || this.submitted);
+    return this.myForm.dirty && !this.submitted;
   }
 
 }

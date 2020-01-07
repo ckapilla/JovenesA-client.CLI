@@ -305,24 +305,8 @@ export class AdminsStudentComponent implements OnInit {
   }
 
   retrieveFormValues(): void {
-
     console.log('retrieveFormValues ' + JSON.stringify(this.myForm.value));
     this.student = this.myForm.value;
-
-    // const ctls = this.myForm.controls;
-    // this.student.firstNames = ctls.firstNames.value;
-    // this.student.lastNames = ctls.lastNames.value;
-    // this.student.email = ctls.email.value;
-
-  }
-
-
-  scrollIntoView() {
-
-    const element = document.body;
-    if (element) {
-      element.scrollIntoView(true);
-    }
   }
 
   saveMyForm(): boolean {
@@ -352,6 +336,13 @@ export class AdminsStudentComponent implements OnInit {
       );
     // prevent default action of reload
     return false;
+  }
+
+  scrollIntoView() {
+    const element = document.body;
+    if (element) {
+      element.scrollIntoView(true);
+    }
   }
 
   backToStudentsList() {
@@ -385,6 +376,7 @@ export class AdminsStudentComponent implements OnInit {
     const link = ['/admins/students/grade-history/' + id + '/'];
     this.router.navigate(link);
   }
+
   setReadOnly() {
     console.log('toggle readOnly');
     if (this.myForm.enabled) {
@@ -398,66 +390,6 @@ export class AdminsStudentComponent implements OnInit {
   onDateSelect() {
     alert('data selected');
   }
-
-  // fetchMentors() {
-  //   this.miscData.getMentorNamesWithGUId()
-  //     .subscribe(
-  //       data => { this.mentors = data; console.log('getMentorNamesWithGUId returned'); },
-  //       err => console.error('Subscribe error: ' + err),
-  //       () => {
-  //       }
-  //     );
-  // }
-
-  // fetchMentorObservable() {
-  //   // this.mentors$ = this.miscData.mentors$
-  //   //   .pipe(
-  //   //     tap((x) => console.log('mentors$ returned in component')),
-  //   //     catchError(err => {
-  //   //       this.errorMessage = err;
-  //   //       console.log('CAUGHT ERROR IN Component ' + err);
-  //   //       return EMPTY;
-  //   //     })
-  //   //   );
-  //   this.mentors$ = this.miscData.getMentorNamesWithGUId()
-  //     .pipe(
-  //       catchError(err => {
-  //         this.errorMessage = err;
-  //         console.log('CAUGHT ERROR IN Component ' + err);
-  //         return EMPTY;
-  //       })
-  //     );
-  // }
-
-  // fetchPrepas() {
-  //   this.miscData.getPrepaNames()
-  //     .subscribe(
-  //       data => { this.prepas = data; console.log('getPrepaNames'); },
-  //       err => console.error('Subscribe error: ' + err),
-  //       () => {
-  //       }
-  //     );
-  // }
-
-  // fetchUniversities() {
-  //   this.miscData.getUniversityNames()
-  //     .subscribe(
-  //       data => { this.universities = data; console.log('getUniversityNames'); },
-  //       err => console.error('Subscribe error: ' + err),
-  //       () => {
-  //       }
-  //     );
-  // }
-
-  // fetchSponsorGroups() {
-  //   this.miscData.getSponsorGroups()
-  //     .subscribe(
-  //       data => { this.sponsorGroups = data; console.log('getSponsorGroups'); },
-  //       err => console.error('Subscribe error: ' + err),
-  //       () => {
-  //       }
-  //     );
-  // }
 
   getNumericStatus(studentDTO: StudentDTO): StudentDTO {
 
