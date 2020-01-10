@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { FollowUpEvent } from 'src/app/_shared/models/follow-up-event';
 import { FollowUpDataService } from 'src/app/_shared/services/follow-up-data.service';
@@ -20,7 +20,7 @@ export class FollowUpRequestsAddComponent implements OnInit {
   isLoading: boolean;
   submitted: boolean;
 
-  followUpStatusSelector: AbstractControl;
+  // followUpStatusSelector: AbstractControl;
 
   errorMessage: string;
   successMessage: string;
@@ -70,7 +70,7 @@ export class FollowUpRequestsAddComponent implements OnInit {
       description_Spanish: [''],
     });
 
-
+    //                      [(ngModel)]="followUpRequest.description_English"
 
     this.followUpRequest = new FollowUpRequest();
     this.followUpRequest.studentId = 0;
@@ -98,6 +98,12 @@ export class FollowUpRequestsAddComponent implements OnInit {
         // console.log('form change event');
       }
     );
+  }
+
+  retrieveFormValues(): void {
+    console.log('retrieveFormValues ' + JSON.stringify(this.myForm.value));
+    // use spread operator to merge changes:
+    this.followUpRequest = { ...this.followUpRequest, ...this.myForm.value };
   }
 
   onSubmit() {

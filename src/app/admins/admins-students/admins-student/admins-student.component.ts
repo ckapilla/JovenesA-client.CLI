@@ -306,7 +306,8 @@ export class AdminsStudentComponent implements OnInit {
 
   retrieveFormValues(): void {
     console.log('retrieveFormValues ' + JSON.stringify(this.myForm.value));
-    this.student = this.myForm.value;
+    // use spread operator to merge changes:
+    this.student = { ...this.student, ...this.myForm.value };
   }
 
   saveMyForm(): boolean {

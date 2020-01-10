@@ -23,15 +23,11 @@ export class StudentDTO {
 
     public numericTimelyMentorMeetingStatus?: number,
     public numericTimelyMentorReportStatus?: number,
-
-    public studentAssessmentStatus?: number,
     public studentSnapshotStatus?: number,
     public mentorId?: number,  // MentorID
     public mentorName?: number, // MentorName
     public sponsorGroupName?: string, // MentorName
     public sponsorId?: number,
-    public timelyStudentLetterStatus?: string,
-    public ssrReportDateString?: string,
     public universityAbbrev?: string,
     public major?: string,
     public joinedFromId?: number,

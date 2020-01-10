@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// import {NgSwitch, NgSwitchCase } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { constants } from '../../_shared/constants/constants';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
@@ -24,9 +23,6 @@ export class MentorsProfileComponent implements OnInit {
   firstNames: string;
   lastNames: string;
   mentor: Member;
-  //
-  // private curSegment: RouteSegment;
-  //
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -81,7 +77,7 @@ export class MentorsProfileComponent implements OnInit {
   }
 
   setFormValues(mentor: Member) {
-    this.myForm.patchValue({
+    this.myForm.setValue({
       firstNames: mentor.firstNames,
       lastNames: mentor.lastNames,
       smA_Phone: mentor.smA_Phone,
@@ -93,11 +89,8 @@ export class MentorsProfileComponent implements OnInit {
 
   retrieveFormValues(): void {
     console.log('retrieveFormValues ' + JSON.stringify(this.myForm.value));
-    this.mentor.firstNames = this.myForm.controls.firstNames.value;
-    this.mentor.lastNames = this.myForm.controls.lastNames.value;
-    this.mentor.smA_Phone = this.myForm.controls.smA_Phone.value;
-    this.mentor.spanishSkillLevelId = this.myForm.controls.spanishSkillLevelId.value;
-    this.mentor.englishSkillLevelId = this.myForm.controls.englishSkillLevelId.value;
+    // use spread operator to merge changes:
+    this.mentor = { ...this.mentor, ...this.myForm.value };
   }
 
   saveMyForm(): boolean {

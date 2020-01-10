@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { constants } from 'src/app/_shared/constants/constants';
 import { FollowUpEvent } from 'src/app/_shared/models/follow-up-event';
@@ -19,9 +19,9 @@ export class FollowUpEventsAddComponent implements OnInit {
   isLoading: boolean;
   submitted: boolean;
 
-  followUpNeeded: AbstractControl;
-  followUpStatusSelector: AbstractControl;
-  followUpHistory: AbstractControl;
+  // followUpNeeded: AbstractControl;
+  // statusSelector: AbstractControl;
+  // followUpHistory: AbstractControl;
 
   errorMessage: string;
   successMessage: string;
@@ -61,7 +61,7 @@ export class FollowUpEventsAddComponent implements OnInit {
   ngOnInit() {
 
     this.myForm = this._fb.group({
-      statusSelector: [this.followUpStatusSelector],
+      requestStatusId: [this.followUpEvent.requestStatusId],
       assignedToSelector: [this.followUpEvent.assignedToRoleId],
       assignedToRoleSelector: [this.followUpEvent.assignedToId],
       comments_English: [this.followUpEvent.comments_English],
@@ -86,9 +86,16 @@ export class FollowUpEventsAddComponent implements OnInit {
 
   }
 
+  retrieveFormValues(): void {
+    console.log('retrieveFormValues ' + JSON.stringify(this.myForm.value));
+    // use spread operator to merge changes:
+    this.followUpEvent = { ...this.followUpEvent, ...this.myForm.value };
+  }
+
   onSubmit() {
     console.log('Hi followUpEvents Submit with event object ');
     console.log(this.followUpEvent);
+    this.retrieveFormValues();
     if (this.myForm.invalid) {
       this.errorMessage = '';
       window.scrollTo(0, 0);

@@ -58,10 +58,6 @@
               <th app-sortable-column="numericTimelyMentorReportStatus" (onSortColumn)="onSortColumn($event)" >Mentor<br />Rpt</th> -->
               <th app-sortable-column="studentSnapshotStatus" (onSortColumn)="onSortColumn($event)">Emoji</th>
               <th app-sortable-column="sponsorGroupName" (onSortColumn)="onSortColumn($event)">Sponsor</th>
-              <!-- <th app-sortable-column="timelyStudentLetterStatus" (onSortColumn)="onSortColumn($event)">Sponsor Letters
-              </th> -->
-              <th app-sortable-column="ssrReportDateString" (onSortColumn)="onSortColumn($event)">Self Report Date
-              </th>
               <th app-sortable-column="universityAbbrev" (onSortColumn)="onSortColumn($event)">Univ</th>
               <th app-sortable-column="major" (onSortColumn)="onSortColumn($event)">Major</th>
               <!-- <th app-sortable-column="major" (onSortColumn)="onSortColumn($event)" >Major</th> -->
@@ -116,27 +112,9 @@
                 <img src="{{smileys[student.studentSnapshotStatus + 1]}}" width="24" />
               </td>
 
-              <!-- <td style="text-align:center;white-space: nowrap">
-                <span (click)='gotoReport(student.studentId)' class='link'>
-                View</span>
-              </td> -->
-              <!--<td class='centered'>
-                      <img ng-src="{{vm.smileys[student.studentAssessmentStatus + 1]}}" width="24" />
-            <a ui-sref="quarterlyReportList({studentId: {{student.studentId}}, studentName: '{{student.studentName}}' })">
-              <button class="btn btn-sm">&gt;</button>
-              </a>
-          </td>-->
-
-
               <td>
                 {{ student.sponsorGroupName }}
               </td>
-              <td>
-                {{ student.ssrReportDateString }}
-              </td>
-              <!-- <td class='centered'>
-                <img src="/assets/images/{{student.timelyStudentLetterStatus}}.jpg" height="22">
-              </td> -->
               <td>
                 {{ student.universityAbbrev }}
               </td>

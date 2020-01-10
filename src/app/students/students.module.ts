@@ -3,13 +3,10 @@ import { AppSharedModule } from '../_shared/_shared.module';
 import { GradeTrackingComponent } from './grade-tracking/grade-tracking.component';
 import { SelfReportsAddComponent } from './self-reports-add/self-reports-add.component';
 import { SelfReportsEditComponent } from './self-reports-edit/self-reports-edit.component';
-import { SponsorLettersAddComponent } from './sponsor-letters-add/sponsor-letters-add.component';
 import { StudentsHomeComponent } from './students-home/students-home.component';
 import { StudentsNavbarComponent } from './students-navbar/students-navbar.component';
 import { StudentsRoutingModule } from './students-routing.module';
 import { StudentsSelfReportsComponent } from './students-self-reports/students-self-reports.component';
-import { StudentsSponsorLettersComponent } from './students-sponsor-letters/students-sponsor-letters.component';
-import { StudentsStudentStatusComponent } from './students-student-status/students-student-status.component';
 import { StudentsComponent } from './students.component';
 
 
@@ -22,13 +19,10 @@ import { StudentsComponent } from './students.component';
     StudentsComponent,
     StudentsNavbarComponent,
     StudentsHomeComponent,
-    StudentsSponsorLettersComponent,
-    SponsorLettersAddComponent,
     StudentsSelfReportsComponent,
     SelfReportsEditComponent,
     SelfReportsAddComponent,
-    GradeTrackingComponent,
-    StudentsStudentStatusComponent
+    GradeTrackingComponent
   ]
 })
 

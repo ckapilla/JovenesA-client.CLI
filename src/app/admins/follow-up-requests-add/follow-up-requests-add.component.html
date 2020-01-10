@@ -12,46 +12,26 @@
         <div class="form-group">
           <div class="controls">
             <app-student-selector
-            (onSelectedStudentId)="onSelectedStudentId($event)"
-            >
+                                  (onSelectedStudentId)="onSelectedStudentId($event)">
             </app-student-selector>
           </div>
 
           <div class="controls">
             <app-member-selector
-            [memberTypeLabel] = "'Requestor'"
-            (onSelectedRoleId)="onSelectedRoleId($event)"
-            (onSelectedMemberId)="onSelectedMemberId($event)"
-            >
+                                 [memberTypeLabel]="'Requestor'"
+                                 (onSelectedRoleId)="onSelectedRoleId($event)"
+                                 (onSelectedMemberId)="onSelectedMemberId($event)">
             </app-member-selector>
           </div>
-
-          <!-- <div class="controls">
-              <label>Target Date</label>
-              <input #success formControlName="targetDate"
-                        [(ngModel)]= "followUpRequest.targetDate"
-                        type="text"
-                        class="form-control input-sm"
-                        placeholder="Date Required (or none)"/>
-
-            </div> -->
 
           <div class="controls">
             <label>Brief Description (English or Spanish)</label>
             <input #success formControlName="description_English"
-                     [(ngModel)]="followUpRequest.description_English"
-                      type="text"
-                      class="form-control input-sm"
-                      placeholder="Brief Description of Request"/>
+                   type="text"
+                   class="form-control input-sm"
+                   placeholder="Brief Description of Request" />
           </div>
-          <!-- <div class="controls">
-            <label>Breve Descripción (español)</label>
-            <input #success formControlName="description_Spanish"
-                     [(ngModel)]="followUpRequest.description_Spanish"
-                      type="text"
-                      class="form-control input-sm"
-                      placeholder="Description in brief"/>
-          </div> -->
+
         </div>
         <div class="form-group">
           <div class="col-md-6 col-md-offset-1">

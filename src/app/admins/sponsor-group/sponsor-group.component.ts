@@ -70,7 +70,9 @@ export class SponsorGroupComponent implements OnInit {
   }
 
   retrieveFormValues(): void {
-    this.sponsorGroup = this.myForm.value;
+    console.log('retrieveFormValues ' + JSON.stringify(this.myForm.value));
+    // use spread operator to merge changes:
+    this.sponsorGroup = { ...this.sponsorGroup, ...this.myForm.value };
   }
 
 

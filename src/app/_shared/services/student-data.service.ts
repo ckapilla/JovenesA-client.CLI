@@ -77,7 +77,7 @@ export class StudentDataService extends BaseDataService {
   }
 
   public getCurrentStudentMiniDTOs(searchStr: string): Observable<StudentMiniDTO[]> {
-    const url = this.WebApiPrefix + 'students/names/' + searchStr + '/' + 1005;
+    const url = this.WebApiPrefix + 'students/names/' + ((searchStr > '') ? searchStr : '-') + '/' + 1005;
     console.log('sending AuthHttp get request for StudentMini with url ' + url);
     return this.http.get<StudentMiniDTO[]>(url).pipe(
       catchError(this.handleError)

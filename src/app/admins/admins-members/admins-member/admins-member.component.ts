@@ -198,14 +198,14 @@ export class AdminsMemberComponent implements OnInit {
   }
 
   retrieveFormValues(): void {
-    console.log('retrieve myForm.value is ');
-    console.log(JSON.stringify(this.myForm.value));
-    this.member = this.myForm.value;
+    console.log('retrieveFormValues ' + JSON.stringify(this.myForm.value));
+    // use spread operator to merge changes:
+    this.member = { ...this.member, ...this.myForm.value };
   }
 
   saveMyForm(): boolean {
     console.log('saving admin member ');
-    console.log(JSON.stringify(this.member));
+    console.log(JSON.stringify(this.myForm.value));
     this.isLoading = true;
     this.retrieveFormValues();
     this.memberData.updateMember(this.member)
