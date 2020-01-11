@@ -13,7 +13,7 @@ import { AppSharedModule } from './_shared/_shared.module';
 @NgModule({
   imports: [
     BrowserModule,
-    ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
+    ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'once' }),
     HttpClientModule,
     AppRoutingModule,
     HomeModule,

@@ -26,8 +26,6 @@ import { MentorReportsSubmittedComponent } from './reports/mentor-reports-submit
 import { ReportsComponent } from './reports/reports.component';
 import { ServerEnvironmentComponent } from './reports/server-environment/server-environment.component';
 import { SponsorSummariesSentComponent } from './reports/sponsor-summaries-sent/sponsor-summaries-sent.component';
-// import { StudentLettersComponent } from './reports/student-letters/student-letters.component';
-// import { StudentLetters2Component } from './reports/student-letters2/student-letters2.component';
 import { SelfReportsTrackingComponent } from './self-report-tracking/self-report-tracking.component';
 import { SponsorGroupComponent } from './sponsor-group/sponsor-group.component';
 import { SponsorGroupsComponent } from './sponsor-groups/sponsor-groups.component';

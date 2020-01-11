@@ -3,7 +3,6 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AdminStudentNotesComponent } from './components/admin-student-notes/admin-student-notes.component';
 import { CallbackComponent } from './components/callback.component';
 import { ConfidentialReportsListComponent } from './components/confidential-reports-list/confidential-reports-list.component';
 import { DisplayErrorsComponent } from './components/display-errors.component';
@@ -16,7 +15,6 @@ import { MemberHeaderComponent } from './components/member-header/member-header.
 import { MemberLookupComponent } from './components/member-lookup/member-lookup';
 import { MemberPhotoComponent } from './components/member-photo/member-photo.component';
 import { MemberSelectorComponent } from './components/member-selector/member-selector.component';
-import { MentorReportsForPeriodComponent } from './components/mentor-reports-for-period/mentor-reports-for-period.component';
 import { MentorReports2ListComponent } from './components/mentor-reports2-list/mentor-reports2-list.component';
 import { MentorSelectorComponent } from './components/mentor-selector/mentor-selector.component';
 import { MentorsForStudentListComponent } from './components/mentors-for-student-list/mentors-for-student-list.component';
@@ -33,7 +31,6 @@ import { StudentLookupComponent } from './components/student-lookup/student-look
 import { StudentMRStatusComponent } from './components/student-mr-status.component';
 import { StudentPhotoComponent } from './components/student-photo/student-photo.component';
 import { StudentSelectorComponent } from './components/student-selector/student-selector.component';
-import { StudentSelfReportComponent } from './components/student-self-report/student-self-report.component';
 import { StudentsForMentorGridComponent } from './components/students-for-mentor-grid/students-for-mentor-grid.component';
 import { StudentsForMentorListComponent } from './components/students-for-mentor-list/students-for-mentor-list.component';
 import { StudentsForSponsorGridComponent } from './components/students-for-sponsor-grid/students-for-sponsor-grid.component';
@@ -89,9 +86,6 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     TruncateDatePipe,
     UnsafeHtmlPipe,
     MarkedPipe,
-    StudentSelfReportComponent,
-    AdminStudentNotesComponent,
-    MentorReportsForPeriodComponent,
     StudentLookupComponent,
     StudentHeaderDetailsComponent,
     MemberPhotoComponent,
@@ -134,9 +128,6 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     TruncateDatePipe,
     UnsafeHtmlPipe,
     MarkedPipe,
-    StudentSelfReportComponent,
-    AdminStudentNotesComponent,
-    MentorReportsForPeriodComponent,
     StudentLookupComponent,
     StudentHeaderDetailsComponent,
     StudentHeaderComponent,

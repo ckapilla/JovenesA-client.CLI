@@ -151,6 +151,7 @@ export class MentorReportSummaryUpdatesComponent
       return false;
     }
 
+    this.mentorReport2.reviewedStatusId = this.reviewedStatus.value;
     this.mentorReport2.emoji = this.emojiCtl.value;
     this.mentorReport2.narrative_English = this.narrative_EnglishCtl.value;
     this.mentorReport2.narrative_Spanish = this.narrative_SpanishCtl.value;

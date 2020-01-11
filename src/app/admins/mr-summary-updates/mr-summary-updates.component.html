@@ -22,8 +22,7 @@
 
           <div class="controls">
             <label for="reviewedStatusSelector">Reviewed Status:</label>
-            <select formControlName="reviewedStatusSelector" class="form-control input-sm"
-                    [(ngModel)]="mentorReport2.reviewedStatusId">
+            <select formControlName="reviewedStatusSelector" class="form-control input-sm">
               <option *ngFor="let status of reviewedStatuses" [value]="status.value">{{status.label}}</option>
             </select>
             <app-display-errors control="reviewedStatusSelector" class="red" [errors]="{
