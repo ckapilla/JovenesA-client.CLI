@@ -1,5 +1,16 @@
 import { Injectable } from '@angular/core';
 
+// // declare global {
+// //   interface Window {
+// //     RTCPeerConnection: any;
+// //     mozRTCPeerConnection: any;
+// //     webkitRTCPeerConnection: any;
+// //   }
+// // }
+// // window.RTCPeerConnection = window.RTCPeerConnection || {};
+// // window.mozRTCPeerConnection = window.mozRTCPeerConnection || {};
+// // window.webkitRTCPeerConnection = window.webkitRTCPeerConnection || {};
+
 @Injectable({ providedIn: 'root' })
 export class UrlService {
   webApiPrefix: string;
@@ -7,7 +18,7 @@ export class UrlService {
 
   constructor() {
 
-    console.log('urlService constructor has' + window.location.hostname);
+    console.log('urlService constructor has ' + window.location.hostname);
     const hostName = window.location.hostname.toLocaleLowerCase();
 
     if (hostName === 'privada.jovenesadelante.org') {
@@ -17,6 +28,26 @@ export class UrlService {
       this.webApiPrefix = 'https://JAWebAPI-dev.jovenesadelante.org/api/';
       this.clientUrl = 'https://privada-dev.jovenesadelante.org';
     } else if (hostName === 'localhost') {
+
+      // // window.RTCPeerConnection = window.RTCPeerConnection
+      // //   || window.mozRTCPeerConnection
+      // //   || window.webkitRTCPeerConnection; // compatibility for firefox and chrome
+      // // const pc = new RTCPeerConnection({ iceServers: [] }), noop = function () { };
+      // // // create a bogus data channel:
+      // // pc.createDataChannel('');
+      // // // create offer and set local description:
+      // // pc.createOffer(pc.setLocalDescription.bind(pc)); // , noop  );
+      // // // listen for candidate events:
+      // // pc.onicecandidate = function (ice) {
+      // //   console.log('>>> onicecandidate listening...');
+      // //   if (!ice || !ice.candidate || !ice.candidate.candidate) {
+      // //     console.log('>>> onicecandidate, no ice');
+      // //     return;
+      // //   }
+      // //   const myIP = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/.exec(ice.candidate.candidate)[1];
+      // //   console.log('IP: ' + myIP);
+      // //   pc.onicecandidate = noop;
+      // // };
 
       //
       // check ipconfig to verify IPv4 address for current router gateway (usually Wi-Fi)

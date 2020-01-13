@@ -7,7 +7,7 @@ import { JaCommentsComponent } from './ja-comments/ja-comments.component';
 import { MrConsolidatedComponent } from './mr-consolidated/mr-consolidated.component';
 import { PrivateNotesComponent } from './private-notes/private-notes.component';
 import { QuarterlyContainerComponent } from './quarterly-container/quarterly-container.component';
-import { QuarterlyHomeComponent } from './quarterly-home/quarterly-home.component';
+import { QuarterlyListComponent } from './quarterly-list/quarterly-list.component';
 import { QuarterlyNavbarComponent } from './quarterly-navbar/quarterly-navbar.component';
 import { QuarterlyRoutingModule } from './quarterly-routing.module';
 import { QuarterlyComponent } from './quarterly.component';
@@ -16,12 +16,12 @@ import { SelfReportsComponent } from './self-reports/self-reports.component';
 @NgModule({
   declarations: [
     QuarterlyComponent,
-    QuarterlyHomeComponent,
+    QuarterlyContainerComponent,
     QuarterlyNavbarComponent,
     JaCommentsComponent,
     MrConsolidatedComponent,
     SelfReportsComponent,
-    QuarterlyContainerComponent,
+    QuarterlyListComponent,
     PrivateNotesComponent,
     StudentHeaderQuarterlyComponent,
   ],

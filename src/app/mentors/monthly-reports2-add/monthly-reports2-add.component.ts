@@ -124,14 +124,14 @@ export class MonthlyReports2AddComponent
 
     onSubmit(): void {
         console.log('Hi from mentor Report2 Submit');
-        // console.log(this.mentorReport);
-        // if (!this.myForm.valid) {
-        //     return;
-        // }
+        if (this.isSubmitted) {
+            return; // prevent dups
+        }
+
         if (!this.checkFormControlsAreValid(true)) {
             return;
         }
-
+        this.isSubmitted = true; // need to set guard immediately to prevent dups
         console.log('###before submitting update model with form control values');
         // mentorId and studentId and studentGUId do not have corresponding controls
         this.mentorReport2.lastContactYear = this.lastYearCtl.value;
@@ -143,7 +143,7 @@ export class MonthlyReports2AddComponent
             .subscribe(
                 (student) => {
                     console.log(this.successMessage = <any>student);
-                    this.isSubmitted = true;
+                    // this.isSubmitted = true;
                     this.isLoading = false;
                     const target = '/mentors/monthly-reports/' + this.mentorReport2.mentorId; // + '/' + this.mentorReport.studentId;
                     console.log('after call to addMentorReport; navigating to ' + target);

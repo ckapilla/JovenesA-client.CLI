@@ -90,6 +90,12 @@ const periods: SELECTITEM[] = [
   { value: '3', label: '3:Jul-Set' },
   { value: '4', label: '4:Oct-Dic' }
 ];
+const activeQRperiods = [
+  { value: '2019-3', label: '2019 3:Jul-Set' },
+  { value: '2019-4', label: '2019 4:Oct-Dic' }
+];
+
+
 const studentStatuses: SELECTITEM[] = [
   { value: '1003', label: 'Dropped' },
   { value: '1004', label: 'Grad' },
@@ -171,6 +177,7 @@ export const constants = {
   months,
   periods,
   periodYears,
+  activeQRperiods,
   studentStatuses,
   memberStatuses: roleStatuses,
   reviewedQRStatuses,

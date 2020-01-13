@@ -92,7 +92,7 @@ export class StudentsSelfReportsComponent implements OnInit {
     this.router.navigateByUrl(link);
   }
 
-  sponsorLetterAdd() {
+  studentSelfReportAdd() {
     const target = 'students/self-reports-add/' + this.studentId + '/' + this.sponsorGroupId + '/' + this.studentGUId;
     console.log('in students-sponsor-letters: ready to navigate to' + target);
     this.router.navigateByUrl(target);

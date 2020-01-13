@@ -104,6 +104,10 @@ export class SelfReportsAddComponent
     onSubmit() {
         console.log('Hi from self report Submit');
 
+        if (this.submitted) {
+            return false; // prevent dups
+        }
+
 
         if (this.myForm.invalid) {
             // let i = 0;
@@ -121,13 +125,13 @@ export class SelfReportsAddComponent
 
             return false;
         }
-
+        this.submitted = true; // need to set guard immediately to prevent dups
 
         this.ssrData.postStudentSelfReport(this.selfReport)
             .subscribe(
                 (student) => {
                     console.log(this.successMessage = <any>student);
-                    this.submitted = true;
+                    // this.submitted = true;
                     this.isLoading = false;
                     const target = '/students/self-reports/' + this.selfReport.studentId;
                     console.log('after call to postStudentSelfReports; navigating to ' + target);
