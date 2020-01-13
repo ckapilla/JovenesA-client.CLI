@@ -112,8 +112,8 @@ const roleStatuses: SELECTITEM[] = [
 const reviewedStatuses: SELECTITEM[] = [
   { value: '2086', label: 'NeedsSetup' },
   { value: '2087', label: 'NeedsReview' },
-  { value: '2088', label: 'ReadyFor QR' },
-  { value: '2089', label: 'Sent' },
+  { value: '2147', label: 'Ready For QR' },
+  { value: '2148', label: 'Copied To QR' },
   { value: '2090', label: 'Skipped' }
 ];
 const reviewedQRStatuses: SELECTITEM[] = [

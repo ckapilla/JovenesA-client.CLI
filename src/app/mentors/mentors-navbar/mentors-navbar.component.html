@@ -1,10 +1,9 @@
 <nav>
-  <a [routerLinkActive]="['active']" [routerLink]="['/mentors/profile', currUserId]">[Profile/Perfil]</a>
-  <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
-     [routerLink]="['/mentors']">[Reports/Informes]</a>
-  <a id="myLink" title="Assistence/Asistencia"
-     href="#" onclick="alert('Please use the Assistance tab below');return false;">Assistence/Asistencia</a>
-
-  <a href="https://forum.jovenesadelante.org" target="blank">Forum>></a>
+   <a [routerLinkActive]="['active']" [routerLink]="['/mentors/profile', currUserId]">[Profile/Perfil]</a>
+   <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+      [routerLink]="['/mentors']">[Reports/Informes]</a>
+   <a id="myLink" title="Assistence/Asistencia"
+      href="javascript:alert('Please use the Assistance tab below / Por favor, utilice la pestaña Asistencia abajo')">Assistence/Asistencia</a>
+   <a href="https://forum.jovenesadelante.org" target="blank">Forum>></a>
 
 </nav>

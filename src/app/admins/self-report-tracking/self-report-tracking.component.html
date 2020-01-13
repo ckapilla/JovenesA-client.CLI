@@ -32,9 +32,8 @@
         <div class="row" style="border-bottom: 3px solid #ccc; margin-top: 2px;"
              *ngFor="let ssr of studentReportsByPeriod, let i = index">
           <div class="col-md-12">
-            <div class="row" id='{{"id" + ssr.studentSelfReportId}}'>
+            <div class="row mx-auto" id='{{"id" + ssr.studentSelfReportId}}'>
               &nbsp;
-
               <span (click)='gotoStudent(ssr.studentGUId, ssr.studentName)' class="padded link">
                 [Student:
                 {{ ssr.studentName }} ]
@@ -44,15 +43,15 @@
                 {{ ssr.sponsorGroupName }} ]
               </span>
 
-              <div class="row">
+              <div>
                 <span class="padded col-md2">
-                  &nbsp;Submitted Date:
+                  Submitted Date:
                   {{ ssr.reportDateTime | truncateDate }}
                 </span>
 
-                <div class="row" [hidden]=!displayOriginalFields>
+                <div [hidden]=!displayOriginalFields>
                   <div class="col-md2 padded">
-                    &nbsp;Description (Spanish)
+                    Description (Spanish)
                   </div>
                   <div class="col-md-10"
                        [innerHTML]="ssr.narrative_Spanish">
