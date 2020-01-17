@@ -8,7 +8,6 @@ import { ConfidentialReportsListComponent } from './components/confidential-repo
 import { DisplayErrorsComponent } from './components/display-errors.component';
 import { FollowUpEventsComponent } from './components/follow-up-events/follow-up-events.component';
 import { FollowUpRequestsListComponent } from './components/follow-up-requests-list/follow-up-requests-list.component';
-import { GradeMonthsComponent } from './components/grade-months.component';
 import { LoadingContainerComponent } from './components/loading-container.component';
 import { MemberHeaderDetailsComponent } from './components/member-header-details/member-header-details.component';
 import { MemberHeaderComponent } from './components/member-header/member-header.component';
@@ -35,6 +34,7 @@ import { StudentsForMentorGridComponent } from './components/students-for-mentor
 import { StudentsForMentorListComponent } from './components/students-for-mentor-list/students-for-mentor-list.component';
 import { StudentsForSponsorGridComponent } from './components/students-for-sponsor-grid/students-for-sponsor-grid.component';
 import { StudentsForSponsorComponent } from './components/students-for-sponsor-list/students-for-sponsor-list';
+import { UniversityGradeMonthsComponent } from './components/university-grade-months/university-grade-months.component';
 import { SortableTableDirective } from './directives/sortable-table.directive';
 import { AlphaLanguagePipe } from './pipes/alpha-language-pipe';
 import { AlphaMonthPipe } from './pipes/alpha-month-pipe';
@@ -79,7 +79,7 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     MentorsForStudentListComponent,
     StudentGradesStatusComponent,
     StudentMRStatusComponent,
-    GradeMonthsComponent,
+    UniversityGradeMonthsComponent,
     CallbackComponent,
     AlphaMonthPipe,
     AlphaLanguagePipe,
@@ -119,7 +119,7 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     FollowUpRequestsListComponent,
     SortableColumnComponent,
     SortableTableDirective,
-    GradeMonthsComponent,
+    UniversityGradeMonthsComponent,
     StudentGradesStatusComponent,
     StudentMRStatusComponent,
     CallbackComponent,

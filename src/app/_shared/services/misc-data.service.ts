@@ -31,6 +31,13 @@ export class MiscDataService extends BaseDataService {
       shareReplay(1),
       catchError(this.handleError));
 
+  private universityGradeMonthsUrl = this.WebApiPrefix + 'lookup/universities/grade-months';
+  universityGradeMonths$: Observable<SELECTITEM[]>
+    = this.http.get<SELECTITEM[]>(this.universityGradeMonthsUrl).pipe(
+      tap((data) => console.log('universitiy Grade Months ', JSON.stringify(data[0]))),
+      shareReplay(1),
+      catchError(this.handleError));
+
   private prepasUrl = this.WebApiPrefix + 'lookup/prepas';
   prepas$: Observable<SELECTITEM[]>
     = this.http.get<SELECTITEM[]>(this.prepasUrl).pipe(

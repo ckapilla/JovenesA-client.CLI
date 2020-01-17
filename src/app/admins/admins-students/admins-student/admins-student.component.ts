@@ -69,6 +69,16 @@ export class AdminsStudentComponent implements OnInit {
         })
       );
 
+  // universityGradeMonths: SELECTITEM[];
+  universityGradeMonths$: Observable<SELECTITEM[]>
+    = this.miscData.universityGradeMonths$
+      .pipe(
+        catchError(err => {
+          this.errorMessage = err;
+          console.log('CAUGHT ERROR IN Component ' + err);
+          return EMPTY;
+        })
+      );
 
   // sponsorGroups: SELECTITEM[];
   sponsorGroups$: Observable<SELECTITEM[]>
@@ -154,6 +164,7 @@ export class AdminsStudentComponent implements OnInit {
       joinedFromId: [{ value: '' }],
       prepaId: [{ value: '' }],
       universityId: [{ value: '' }],
+      universityGradeMonthId: [{ value: '' }],
       gradYear: [{ value: '' }],
       gradMonthNum: [{ value: '' }],
       credentialYear: [{ value: '' }],
@@ -284,6 +295,7 @@ export class AdminsStudentComponent implements OnInit {
       joinedFromId: student.joinedFromId,
       prepaId: student.prepaId,
       universityId: student.universityId,
+      universityGradeMonthId: student.universityId,
       gradYear: student.gradYear,
       gradMonthNum: student.gradMonthNum,
       credentialYear: student.credentialYear,
@@ -301,7 +313,10 @@ export class AdminsStudentComponent implements OnInit {
       mentorGUId: student.mentorGUId.toUpperCase(),
       // mentorGUId: mentorId, // student.mentorId,
       studentGUId: student.studentGUId
+
     });
+    console.log('++++++++++++++++universityGradeMonthId = ' + this.myForm.controls.universityGradeMonthId.value);
+
   }
 
   retrieveFormValues(): void {
