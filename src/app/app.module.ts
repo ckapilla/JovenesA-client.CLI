@@ -5,10 +5,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderbarComponent } from './headerbar/headerbar.component';
+import { HeaderbarComponent } from './app-navbar/headerbar.component';
 // every module that has a routing component no longer needs to be imported here
 import { HomeModule } from './home/home.module';
 import { AppSharedModule } from './_shared/_shared.module';
+import { HomeComponent } from './becas/home/home.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { AppSharedModule } from './_shared/_shared.module';
 
   declarations: [
     AppComponent,
-    HeaderbarComponent
+    HeaderbarComponent,
+    HomeComponent
   ],
 
   exports: [

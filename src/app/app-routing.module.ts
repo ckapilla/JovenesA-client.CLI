@@ -40,7 +40,10 @@ const appRoutes: Routes = [
     path: 'confidential',
     loadChildren: () => import('./confidential/confidential.module').then(m => m.ConfidentialModule)
   },
-
+  {
+    path: 'becas',
+    loadChildren: () => import('./becas/becas.module').then(m => m.BecasModule)
+  },
   { path: '**', redirectTo: '' }
 ];
 

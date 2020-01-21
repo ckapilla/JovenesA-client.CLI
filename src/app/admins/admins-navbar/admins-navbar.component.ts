@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { SessionService } from '../../_shared/services/session.service';
 
-/**
- * This class represents the navigation bar component.
- */
 @Component({
 
   selector: 'app-admins-navbar',

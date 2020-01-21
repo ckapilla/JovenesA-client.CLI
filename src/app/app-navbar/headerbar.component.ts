@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../_shared/services/auth.service';
 import { SessionService } from '../_shared/services/session.service';
 /**
- * This class represents the headerbar component.
+ * This class represents the app-navbar component.
  */
 @Component({
 
