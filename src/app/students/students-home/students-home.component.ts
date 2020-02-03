@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 
 /**
- * This class represents the lazy loaded HomeComponent.
+ * This class represents the lazy loaded BecasHomeComponent.
  */
 @Component({
 

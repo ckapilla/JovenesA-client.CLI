@@ -119,7 +119,7 @@ export class GradesListComponent implements OnInit {
 
     // this.session.setCurrentStudent(this.gradesGivenEntryDTOs[idx]);
     // const link = ['/admins/grades/student', id];
-    const link = ['admins/grades/student', { guid: guid }];
+    const link = ['admins/students/student', { guid: guid }];
 
     console.log('navigating to ' + link);
     this.router.navigate(link);

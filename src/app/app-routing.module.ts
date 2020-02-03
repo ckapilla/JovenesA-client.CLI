@@ -9,7 +9,7 @@ const appRoutes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'becas-home',
     pathMatch: 'full'
   },
   {

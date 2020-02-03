@@ -184,7 +184,7 @@ export class AuthService {
 
     //////////// cjk
     localStorage.clear();
-    // Go back to the home route
+    // Go back to the becas-home route
     this.router.navigate(['/']);
     // from prev code:
     this.session.setAdminStatus(undefined);
@@ -254,7 +254,7 @@ export class AuthService {
   //   // Remove tokens and expiry time from localStorage
   //   localStorage.clear();
 
-  //   // Go back to the home route
+  //   // Go back to the becas-home route
   //   this.router.navigate(['/']);
   //   // from prev code:
 

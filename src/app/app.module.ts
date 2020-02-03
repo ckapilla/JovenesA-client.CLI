@@ -3,13 +3,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { HeaderbarComponent } from './app-navbar/headerbar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderbarComponent } from './app-navbar/headerbar.component';
 // every module that has a routing component no longer needs to be imported here
-import { HomeModule } from './home/home.module';
 import { AppSharedModule } from './_shared/_shared.module';
-import { HomeComponent } from './becas/home/home.component';
 
 @NgModule({
   imports: [
@@ -17,14 +15,12 @@ import { HomeComponent } from './becas/home/home.component';
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'always' }),
     HttpClientModule,
     AppRoutingModule,
-    HomeModule,
     AppSharedModule.forRoot(),
   ],
 
   declarations: [
     AppComponent,
-    HeaderbarComponent,
-    HomeComponent
+    HeaderbarComponent
   ],
 
   exports: [

@@ -38,15 +38,17 @@
               <th app-sortable-column="studentName" sort-direction="asc" (onSortColumn)="onSortColumn($event)">Student
               </th>
               <th app-sortable-column="univ" (onSortColumn)="onSortColumn($event)">Univ</th>
-              <th app-sortable-column="academicYear" (onSortColumn)="onSortColumn($event)">YearType</th>
+              <!-- <th app-sortable-column="academicYear" (onSortColumn)="onSortColumn($event)">YearType</th> -->
               <th app-sortable-column="gradeMonths" (onSortColumn)="onSortColumn($event)">Grade Months</th>
-              <th app-sortable-column="year" (onSortColumn)="onSortColumn($event)">Year</th>
-              <th app-sortable-column="periodNumber" (onSortColumn)="onSortColumn($event)">Period</th>
-              <th app-sortable-column="gradesGiven" (onSortColumn)="onSortColumn($event)">Grades Given</th>
-              <th app-sortable-column="gradesDue" (onSortColumn)="onSortColumn($event)">Grades Due</th>
-              <th app-sortable-column="gradesTurnedIn" (onSortColumn)="onSortColumn($event)">Grades Turned In</th>
+              <!-- <th app-sortable-column="year" (onSortColumn)="onSortColumn($event)">Year</th> -->
+              <!-- <th app-sortable-column="periodNumber" (onSortColumn)="onSortColumn($event)">Period</th> -->
+              <th app-sortable-column="gradesGivenDate" (onSortColumn)="onSortColumn($event)">Period End</th>
+              <th app-sortable-column="gradesDueDate" (onSortColumn)="onSortColumn($event)">Grades Due</th>
+              <th app-sortable-column="gradesTurnedInDate" (onSortColumn)="onSortColumn($event)">Grades Turned In</th>
               <th app-sortable-column="gradePointAvg" (onSortColumn)="onSortColumn($event)">GPA</th>
-
+              <th app-sortable-column="gradePointAvgException" (onSortColumn)="onSortColumn($event)">GPA Exception</th>
+              <th app-sortable-column="gradesTurnedInException" (onSortColumn)="onSortColumn($event)">Late Exception
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -61,29 +63,38 @@
               <td>
                 {{ entry.univ }}
               </td>
-              <td>
+              <!-- <td>
                 {{  entry.academicYear }}
-              </td>
+              </td> -->
               <td>
                 {{ entry.gradeMonths }}
               </td>
-              <td>
+              <!-- <td>
                 {{ entry.year }}
-              </td>
-              <td>
+              </td> -->
+              <!-- <td>
                 {{ entry.periodNumber }}
+              </td> -->
+              <td>
+                {{ entry.gradesGivenDate | truncateDate }}
               </td>
               <td>
-                {{ entry.gradesGiven | truncateDate }}
+                {{ entry.gradesDueDate | truncateDate }}
               </td>
               <td>
-                {{ entry.gradesDue | truncateDate }}
-              </td>
-              <td>
-                {{ entry.gradesTurnedIn | truncateDate }}
+                {{ entry.gradesTurnedInDate | truncateDate }}
               </td>
               <td>
                 {{ entry.gradePointAvg }}
+              </td>
+              <td>
+                {{ entry.becaApproved }}
+              </td>
+              <td>
+                {{ entry.gradesTurnedInException | emptyStatus  }}
+              </td>
+              <td>
+                {{ entry.gradePointAvgException | emptyStatus }}
               </td>
             </tr>
           </tbody>

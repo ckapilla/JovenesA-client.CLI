@@ -32,7 +32,7 @@ const adminRoutes: Routes = [
         component: AdminsMemberSearchComponent// AdminsHomeComponent
       },
       // {
-      //   path: 'home',
+      //   path: 'becas-home',
       //   component: AdminsHomeComponent
       // },
       {

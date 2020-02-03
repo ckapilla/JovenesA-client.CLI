@@ -45,11 +45,11 @@ export class MonthlyReports2AddComponent
         console.log('Hi from MonthlyReportsAddComponent');
 
         this.myForm = _fb.group({
-            lastContactYearSelector: ['2020', Validators.required],
+            lastContactYearSelector: ['2020'], // Validators.required],
             lastContactMonthSelector: ['0', { validators: [this.validateMonth], updateOn: 'change' }],
             // use bogus integer value so change detection works:
             inputEmoji: [666, { validators: [Validators.required, this.validateEmojis], updateOn: 'change' }],
-            inputNarrative_English: ['', { validators: [Validators.required], updateOn: 'blur' }],
+            inputNarrative_English: ['', Validators.required], // { validators: [Validators.required], updateOn: 'blur' }],
             inputNarrative_Spanish: [''],
             mentorReportId: [this.reportIdCtl]
         });
@@ -165,11 +165,12 @@ export class MonthlyReports2AddComponent
     }
 
     validateMonth(control: FormControl): { [error: string]: any } {
-        console.log('month validator ' + control.value);
-        const rtnVal: any = ('' + control.value === '0')  // can be either string or number
+        console.log('validateMonth has input ' + control.value);
+        // tslint:disable-next-line: triple-equals
+        const rtnVal: any = ('' + control.value == '0')  // can be either string or number
             ? { validateMonth: { valid: false } }
             : null;
-        console.log(rtnVal);
+        console.log('validateMonth returning' + rtnVal);
         return rtnVal;
     }
     validateEmojis(control: FormControl): { [error: string]: any } {

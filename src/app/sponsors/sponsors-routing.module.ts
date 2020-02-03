@@ -17,7 +17,7 @@ const sponsorRoutes: Routes = [
         // redirectTo: 'sponsors-container.component'
       },
       {
-        path: 'home',
+        path: 'becas-home',
         component: SponsorsContainerComponent
       },
 

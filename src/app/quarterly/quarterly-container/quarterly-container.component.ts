@@ -25,7 +25,7 @@ export class QuarterlyContainerComponent implements OnInit {
 
     this.selectedYear = '2019'; // '' + today.getFullYear(); //
     this.selectedPeriod = '4'; // + today.getPeriod() + 1;// '5';
-    this.selectedYearPeriod = '2019-3';
+    this.selectedYearPeriod = '2019-4';
     this.studentGUIdReceived = false;
   }
 

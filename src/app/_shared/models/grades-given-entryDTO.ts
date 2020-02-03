@@ -9,9 +9,13 @@ export class GradesGivenEntryDTO {
     public gradeMonths?: string,
     public year?: number,
     public periodNumber?: number,
-    public gradesGiven?: Date,
-    public gradesDue?: Date,
-    public gradesTurnedIn?: Date,
-    public gradePointAvg?: number
+    public gradesGivenDate?: Date,
+    public gradesDueDate?: Date,
+    public gradesTurnedInDate?: Date,
+    public gradePointAvg?: number,
+    public becaApproved?: number,
+    public gradesTurnedInException?: string,
+    public gradePointAvgException?: string,
+
   ) { }
 }

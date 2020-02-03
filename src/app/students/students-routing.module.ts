@@ -20,7 +20,7 @@ const routes: Routes = [
         component: StudentsSelfReportsComponent
       },
       // {
-      //   path: 'home',
+      //   path: 'becas-home',
       //   component: StudentsHomeComponent
       // },
       {

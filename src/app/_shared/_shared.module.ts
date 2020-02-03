@@ -38,9 +38,11 @@ import { UniversityGradeMonthsComponent } from './components/university-grade-mo
 import { SortableTableDirective } from './directives/sortable-table.directive';
 import { AlphaLanguagePipe } from './pipes/alpha-language-pipe';
 import { AlphaMonthPipe } from './pipes/alpha-month-pipe';
+import { EmptyStatusPipe } from './pipes/empty-status-pipe';
 import { MarkedPipe } from './pipes/marked-pipe';
 import { TruncateDatePipe } from './pipes/truncate-date-pipe';
 import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
+
 
 
 
@@ -96,6 +98,7 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     MemberHeaderDetailsComponent,
     StudentHeaderComponent,
     StudentPhotoComponent,
+    EmptyStatusPipe
   ],
   exports: [
     CommonModule,
@@ -138,7 +141,8 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     MemberHeaderDetailsComponent,
     ConfidentialReportsListComponent,
     MemberPhotoComponent,
-    StudentPhotoComponent
+    StudentPhotoComponent,
+    EmptyStatusPipe
   ]
 })
 

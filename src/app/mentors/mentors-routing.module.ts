@@ -23,7 +23,7 @@ const mentorRoutes: Routes = [
         component: MentorsHomeComponent
       },
       {
-        path: 'home',
+        path: 'becas-home',
         component: MentorsHomeComponent
       },
       {
