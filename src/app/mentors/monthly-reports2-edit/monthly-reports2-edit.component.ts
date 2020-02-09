@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MentorReport2DataService } from 'src/app/_shared/services/mentor-report2-data.service';
 import { constants } from '../../_shared/constants/constants';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 import { MentorReport2RPT } from '../../_shared/models/mentor-report2';
 import { SessionService } from '../../_shared/services/session.service';
+
+interface IValidationType { [error: string]: boolean | null; }
 
 @Component({
   templateUrl: '../monthly-reports2-edit/monthly-reports2-edit.component.html'
@@ -25,13 +27,15 @@ export class MonthlyReports2EditComponent
   narrative_SpanishCtl: AbstractControl;
   reportIdCtl: AbstractControl;
 
-  contactYears: SELECTITEM[];
-  contactMonths: SELECTITEM[];
   errorMessage: string;
   successMessage: string;
   mentorReportId: number;
   studentName: string;
-
+  monthValidationMessage = '';
+  emojiValidationMessage = '';
+  narrativeValidationMessage = '';
+  readonly contactYears: SELECTITEM[] = constants.years;
+  readonly contactMonths: SELECTITEM[] = constants.months;
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -42,21 +46,18 @@ export class MonthlyReports2EditComponent
   ) {
 
     console.log('Hi from MonthlyReports2EditComponent');
-    this.contactYears = constants.years;
-
-    this.contactMonths = constants.months;
 
     this.myForm = _fb.group({
-      lastContactYearSelector: ['0', Validators.required],
-      lastContactMonthSelector: ['0', { validators: [this.validateMonth], updateOn: 'change' }],
+      lastContactYearSelector: ['2020'], // Validators.required],
+      lastContactMonthSelector: ['0', { validators: [this.validateMonth] }],
       // use bogus integer value so change detection works:
-      inputEmoji: [666, { validators: [Validators.required, this.validateEmojis], updateOn: 'change' }],
-      narrative_English: ['', { updateOn: 'blur' }],
-      narrative_Spanish: ['', { updateOn: 'blur' }],
+      inputEmoji: [666, { validators: [Validators.required, this.validateEmojis] }],
+      narrative_English: ['', Validators.required],
+      narrative_Spanish: [''],
       mentorReportId: [this.reportIdCtl]
     });
 
-    this.myForm.setValidators(this.validateNarrativeFields());
+    // this.myForm.setValidators(this.validateNarrativeFields());
 
     this.lastYearCtl = this.myForm.controls['lastContactYearSelector'];
     this.lastMonthCtl = this.myForm.controls['lastContactMonthSelector'];
@@ -64,6 +65,7 @@ export class MonthlyReports2EditComponent
     this.narrative_EnglishCtl = this.myForm.controls['narrative_English'];
     this.narrative_SpanishCtl = this.myForm.controls['narrative_Spanish'];
     this.reportIdCtl = this.myForm.controls['mentorReportId'];
+    this.mentorReport2.reviewedStatusId = 2087; // needs review
 
     this.errorMessage = '';
     this.successMessage = '';
@@ -100,6 +102,7 @@ export class MonthlyReports2EditComponent
           this.lastYearCtl.setValue(this.mentorReport2.lastContactYear);
           this.lastMonthCtl.setValue(this.mentorReport2.lastContactMonth);
           this.emojiCtl.setValue(this.mentorReport2.emoji);
+          this.emojiCtl.setValue(0);
           this.narrative_EnglishCtl.setValue(this.mentorReport2.narrative_English);
           this.narrative_SpanishCtl.setValue(this.mentorReport2.narrative_Spanish);
           this.studentName = this.session.getStudentInContextName();
@@ -108,40 +111,45 @@ export class MonthlyReports2EditComponent
 
     console.log('after init form values');
     this.myForm.valueChanges.subscribe(
-      (form: any) => {
+      (value: any) => {
+        console.log('valueChanges fired for form with values');
+        console.log(JSON.stringify(value));
         this.errorMessage = '';
         this.successMessage = '';
         this.isSubmitted = false;
         // console.log('form change event');
+        this.checkFormControlsAreValid(false);
       }
     );
   }
 
+  checkFormControlsAreValid(bSubmitting: boolean): boolean {
+    console.log('checking for valid form controls');
+    let allCorrect = true;
+    this.errorMessage = '';
+    this.monthValidationMessage = '';
+    this.emojiValidationMessage = '';
+    this.narrativeValidationMessage = '';
+    if (this.lastMonthCtl.invalid && (this.lastMonthCtl.dirty || bSubmitting)) {
+      this.monthValidationMessage = 'Please select the correct month. Por favor selecciona el mes corecto';
+      allCorrect = false;
+    }
+    if (this.emojiCtl.invalid && (this.emojiCtl.dirty || bSubmitting)) {
+      this.emojiValidationMessage = 'An emoji must be selected. Se debe seleccionar un Emoji';
+      allCorrect = false;
+    }
+    if (this.narrative_EnglishCtl.invalid && (this.narrative_EnglishCtl.dirty || bSubmitting)) {
+      this.narrativeValidationMessage = 'Description must be filled in. Descripcione debe rellenarse';
+      allCorrect = false;
+    }
+    window.scrollTo(0, 0);
+    return allCorrect;
+  }
   onSubmit() {
     console.log('Hi from mentor Report2 Submit');
-    // console.log(this.mentorReport);
 
-    if (this.myForm.invalid) {
-      let i = 0;
-      this.errorMessage = '';
-
-      if (!this.lastYearCtl.valid || !this.lastMonthCtl.valid) {
-        this.errorMessage = this.errorMessage + 'Year and month must be selected from drop-downs.<br /> Año y mes deben ser seleccionados de listas desplegables';
-        ++i;
-      }
-
-      if (!this.emojiCtl.valid) {
-        this.errorMessage = this.errorMessage + ' An emoji must be selected. Se debe seleccionar un Emoji';
-        ++i;
-      }
-
-      if ((!this.narrative_EnglishCtl.valid) || (!this.narrative_SpanishCtl.valid)) {
-        this.errorMessage = this.errorMessage + ' English OR Spanish Description must be filled in. Descripcione ingles O español debe rellenarse';
-        ++i;
-      }
-
-      window.scrollTo(0, 0);
-      return false;
+    if (!this.checkFormControlsAreValid(true)) {
+      return;
     }
 
     console.log('###before submitting update model with form control values');
@@ -158,7 +166,7 @@ export class MonthlyReports2EditComponent
       .subscribe(
         (student) => {
           console.log(this.successMessage = <any>student);
-          this.isSubmitted = true;
+
           this.isLoading = false;
           const target = '/mentors/monthly-reports/' + this.mentorReport2.mentorId; // + '/' + this.mentorReport.studentId;
           console.log('after call to editMentorReport; navigating to ' + target);
@@ -169,6 +177,7 @@ export class MonthlyReports2EditComponent
           this.isLoading = false;
         }
       );
+    this.isSubmitted = true;
     return false;
   }
 
@@ -178,41 +187,40 @@ export class MonthlyReports2EditComponent
     this.router.navigateByUrl(target);
   }
 
-  validateMonth(control: FormControl): { [error: string]: any } {
-    console.log('month validator ' + control.value);
-    const rtnVal: any = ('' + control.value === '0') ? { // can be either string or number
-      validateMonth: {
-        valid: false
-      }
-    } : null;
-    console.log(rtnVal);
-    return rtnVal;
-  }
-
-  validateEmojis(control: FormControl): { [error: string]: any } {
-    console.log('emoji validator ' + control.value);
-    const rtnVal: any = (control.value === 666)
-      ? { validateEmojis: { valid: false } }
+  validateMonth(control: FormControl): IValidationType {
+    console.log('validateMonth has input ' + control.value);
+    // tslint:disable-next-line: triple-equals
+    const rtnVal: IValidationType = ('' + control.value == '0')  // can be either string or number
+      ? { validateMonth: true }
       : null;
-    console.log(rtnVal);
+    console.log('validateMonth returning' + JSON.stringify(rtnVal));
     return rtnVal;
   }
 
-  validateNarrativeFields(): ValidatorFn {
-    return (group: FormGroup): ValidationErrors => {
-      if (this.narrative_EnglishCtl.value.length || this.narrative_SpanishCtl.value.length) {
-        this.narrative_EnglishCtl.setErrors(null);
-        this.narrative_SpanishCtl.setErrors(null);
-        // console.log('OK: at least one narrative not empty');
-      } else {
-        this.narrative_EnglishCtl.setErrors({ bothEmpty: true });
-        this.narrative_SpanishCtl.setErrors({ bothEmpty: true });
-        // console.log('ERROR: both narratives empty');
-      }
-
-      return;
-    };
+  validateEmojis(control: FormControl): IValidationType {
+    console.log('emoji validator ' + control.value);
+    const rtnVal: IValidationType = (control.value === 666)
+      ? { validateEmojis: true }
+      : null;
+    console.log('validate emoji returning' + JSON.stringify(rtnVal));
+    return rtnVal;
   }
+
+  // validateNarrativeFields(): ValidatorFn {
+  //   return (group: FormGroup): ValidationErrors => {
+  //     //   if (this.narrative_EnglishCtl.value.length || this.narrative_SpanishCtl.value.length) {
+  //     //     this.narrative_EnglishCtl.setErrors(null);
+  //     //     this.narrative_SpanishCtl.setErrors(null);
+  //     //     // console.log('OK: at least one narrative not empty');
+  //     //   } else {
+  //     //     this.narrative_EnglishCtl.setErrors({ bothEmpty: true });
+  //     //     this.narrative_SpanishCtl.setErrors({ bothEmpty: true });
+  //     //     // console.log('ERROR: both narratives empty');
+  //     //   }
+
+  //     return;
+  //   };
+  // }
 
   public hasChanges() {
     // if have changes then ask for confirmation

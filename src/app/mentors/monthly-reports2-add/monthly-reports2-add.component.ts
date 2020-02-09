@@ -7,6 +7,8 @@ import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 import { MentorReport2RPT } from '../../_shared/models/mentor-report2';
 import { SessionService } from '../../_shared/services/session.service';
 
+interface IValidationType { [error: string]: boolean | null; }
+
 @Component({
 
     templateUrl: './monthly-reports2-add.component.html'
@@ -30,9 +32,18 @@ export class MonthlyReports2AddComponent
     successMessage: string;
     mentorReportId: number;
     studentName: string;
+    monthValidationMessage = '';
+    emojiValidationMessage = '';
+    narrativeValidationMessage = '';
 
     readonly contactYears: SELECTITEM[] = constants.years;
     readonly contactMonths: SELECTITEM[] = constants.months;
+
+    // private validationMessages = {
+    //     required: 'All required fields must be given a value',
+    //     monthValidator: 'Please select a month'
+    // };
+
 
     constructor(
         public currRoute: ActivatedRoute,
@@ -46,21 +57,21 @@ export class MonthlyReports2AddComponent
 
         this.myForm = _fb.group({
             lastContactYearSelector: ['2020'], // Validators.required],
-            lastContactMonthSelector: ['0', { validators: [this.validateMonth], updateOn: 'change' }],
+            lastContactMonthSelector: ['0', { validators: [this.validateMonth] }],
             // use bogus integer value so change detection works:
-            inputEmoji: [666, { validators: [Validators.required, this.validateEmojis], updateOn: 'change' }],
-            inputNarrative_English: ['', Validators.required], // { validators: [Validators.required], updateOn: 'blur' }],
-            inputNarrative_Spanish: [''],
+            inputEmoji: [666, { validators: [Validators.required, this.validateEmojis] }],
+            narrative_English: ['', Validators.required],
+            narrative_Spanish: [''],
             mentorReportId: [this.reportIdCtl]
         });
 
         this.lastYearCtl = this.myForm.controls.lastContactYearSelector;
         this.lastMonthCtl = this.myForm.controls.lastContactMonthSelector;
         this.emojiCtl = this.myForm.controls.inputEmoji;
-        this.narrative_EnglishCtl = this.myForm.controls.inputNarrative_English;
-        this.narrative_SpanishCtl = this.myForm.controls.inputNarrative_Spanish;
+        this.narrative_EnglishCtl = this.myForm.controls.narrative_English;
+        this.narrative_SpanishCtl = this.myForm.controls.narrative_Spanish;
         this.reportIdCtl = this.myForm.controls.mentorReportId;
-        this.mentorReport2.reviewedStatusId = 2086; // needs setup
+        this.mentorReport2.reviewedStatusId = 2087; // needs review
 
         this.errorMessage = '';
         this.successMessage = '';
@@ -87,8 +98,9 @@ export class MonthlyReports2AddComponent
         this.mentorReport2.lastContactMonth = 0;
 
         this.myForm.valueChanges.subscribe(
-            (form: any) => {
-                console.log('valueChanges fired for blur');
+            (value: any) => {
+                console.log('valueChanges fired for form with values');
+                console.log(JSON.stringify(value));
                 this.errorMessage = '';
                 this.successMessage = '';
                 this.isSubmitted = false;
@@ -97,29 +109,27 @@ export class MonthlyReports2AddComponent
             }
         );
     }
-    checkFormControlsAreValid(bSubmitting: boolean) {
+    checkFormControlsAreValid(bSubmitting: boolean): boolean {
         console.log('checking for valid form controls');
-        if (this.myForm.invalid) {
-            let i = 0;
-            // this.errorMessage = 'Some information is incorrect or missing.';
-            this.errorMessage = '';
-            if (!this.lastMonthCtl.valid && (this.lastMonthCtl.touched || bSubmitting)) {
-                this.errorMessage = this.errorMessage + 'Year and month must be selected from drop-downs. Año y mes deben ser seleccionados de listas desplegables';
-                ++i;
-            }
-            if (!this.emojiCtl.valid && (this.emojiCtl.touched || bSubmitting)) {
-                this.errorMessage = this.errorMessage + ' | An emoji must be selected. Se debe seleccionar un Emoji';
-                ++i;
-            }
-            if (!this.narrative_EnglishCtl.valid && (this.narrative_EnglishCtl.touched || bSubmitting)) {
-                this.errorMessage = this.errorMessage + ' | Description must be filled in. Descripcione debe rellenarse';
-                ++i;
-            }
-            window.scrollTo(0, 0);
-            return false;
-        } else {
-            return true;
+        let allCorrect = true;
+        this.errorMessage = '';
+        this.monthValidationMessage = '';
+        this.emojiValidationMessage = '';
+        this.narrativeValidationMessage = '';
+        if (this.lastMonthCtl.invalid && (this.lastMonthCtl.dirty || bSubmitting)) {
+            this.monthValidationMessage = 'Please select the correct month. Por favor selecciona el mes corecto';
+            allCorrect = false;
         }
+        if (this.emojiCtl.invalid && (this.emojiCtl.dirty || bSubmitting)) {
+            this.emojiValidationMessage = 'An emoji must be selected. Se debe seleccionar un Emoji';
+            allCorrect = false;
+        }
+        if (this.narrative_EnglishCtl.invalid && (this.narrative_EnglishCtl.dirty || bSubmitting)) {
+            this.narrativeValidationMessage = 'Description must be filled in. Descripcione debe rellenarse';
+            allCorrect = false;
+        }
+        window.scrollTo(0, 0);
+        return allCorrect;
     }
 
     onSubmit(): void {
@@ -164,21 +174,21 @@ export class MonthlyReports2AddComponent
         this.router.navigateByUrl(target);
     }
 
-    validateMonth(control: FormControl): { [error: string]: any } {
+    validateMonth(control: FormControl): IValidationType {
         console.log('validateMonth has input ' + control.value);
         // tslint:disable-next-line: triple-equals
-        const rtnVal: any = ('' + control.value == '0')  // can be either string or number
-            ? { validateMonth: { valid: false } }
+        const rtnVal: IValidationType = ('' + control.value == '0')  // can be either string or number
+            ? { validateMonth: true }
             : null;
-        console.log('validateMonth returning' + rtnVal);
+        console.log('validateMonth returning' + JSON.stringify(rtnVal));
         return rtnVal;
     }
-    validateEmojis(control: FormControl): { [error: string]: any } {
+    validateEmojis(control: FormControl): IValidationType {
         console.log('emoji validator ' + control.value);
-        const rtnVal: any = (control.value === 666)
-            ? { validateEmojis: { valid: false } }
+        const rtnVal: IValidationType = (control.value === 666)
+            ? { validateEmojis: true }
             : null;
-        console.log(rtnVal);
+        console.log('validate emoji returning' + JSON.stringify(rtnVal));
         return rtnVal;
     }
     public hasChanges() {

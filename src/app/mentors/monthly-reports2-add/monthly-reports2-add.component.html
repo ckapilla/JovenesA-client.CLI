@@ -18,9 +18,10 @@
             <span *ngIf="!lastYearCtl.valid &amp;&amp; lastYearCtl.touched" class="red"> Select Year</span>
 
             <select formControlName="lastContactMonthSelector">
+              <option [value]="0">Select Month</option>
               <option *ngFor="let month of contactMonths" [value]="month.value">{{month.label}}</option>
             </select>
-            <span *ngIf="!lastMonthCtl.valid &amp;&amp; lastMonthCtl.touched" class="red">Select Month</span>
+            <span [ngClass]="{ 'red': monthValidationMessage }">{{ monthValidationMessage }}</span>
           </div>
         </div>
 
@@ -30,17 +31,20 @@
             <span> Student Emoji: (How are things going overall with the student?)<br />Emoji de Estudiante: (cómo van
               las cosas en general con el estudiante?)</span>>
             <label>&nbsp;&nbsp;&nbsp;&nbsp;
-              <input type="radio" id="inputEmoji" formControlName="inputEmoji" [checked]="emojiCtl.value==1" value=1>
+              <input type="radio" id="inputEmoji" formControlName="inputEmoji"
+                     [checked]="emojiCtl.value==1" value=1>
               <img src="/assets/images/celebrate.jpg" width="32px" />
               Celebrar
             </label>
             <label>&nbsp;&nbsp;&nbsp;&nbsp;
-              <input type="radio" id="inputEmoji" formControlName="inputEmoji" [checked]="emojiCtl.value==0" value=0>
+              <input type="radio" id="inputEmoji" formControlName="inputEmoji"
+                     [checked]="emojiCtl.value==0" value=0>
               <img src="/assets/images/thumbsUp.jpg" width="30px" />
               Todo Bien
             </label>
             <label>&nbsp;&nbsp;&nbsp;&nbsp;
-              <input type="radio" id="inputEmoji" formControlName="inputEmoji" [checked]="emojiCtl.value==-1" value=-1>
+              <input type="radio" id="inputEmoji" formControlName="inputEmoji"
+                     [checked]="emojiCtl.value==-1" value=-1>
               <img src="/assets/images/needsAttention.jpg" width="30px" />
               Problemas
               <span *ngIf="emojiCtl.hasError('required')" class="red">Please select an emoji.</span>
@@ -56,20 +60,23 @@
         </div>
 
         <div class="controls">
-          <label for="inputNarrative_English">Describe positive events or special challenges in the student's life
+          <label for="narrative_English">Describe positive events or special challenges in the student's life
             during the past month<br />Describa logros y eventos positivos o obstáculos en la vida del
             estudiante</label>
-          <textarea id="inputNarrative_English" #success formControlName="inputNarrative_English" type="text"
+          <textarea id="narrative_English" #success formControlName="narrative_English" type="text"
                     class="form-control input-sm" placeholder="">
           </textarea>
-          <app-display-errors control="inputNarrative_English" class="red" [errors]="{'required': 'An entry is required, even if it is just N/A. Se requiere una entrada, aun si es sólo N/A.',
+          <app-display-errors control="narrative_English" class="red" [errors]="{'required': 'An entry is required, even if it is just N/A. Se requiere una entrada, aun si es sólo N/A.',
           'maxlength': 'Entry cannot exceed 4000 characters in length.<br />La entrada no puede exceder 4000 caracteres del largo.'
                 }"></app-display-errors>
         </div>
 
         <div class="col-md-6 col-md-offset-1">
           <span>
-            <button type="submit" class="btn btn-primary" style="width:80px;margin-right:10px" (click)="onSubmit()">
+            <button type="submit"
+                    class="btn btn-primary"
+                    style="width:80px;margin-right:10px"
+                    (click)="onSubmit()">
               Submit
             </button>
           </span>&nbsp;
