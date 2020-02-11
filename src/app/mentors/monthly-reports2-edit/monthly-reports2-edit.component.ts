@@ -190,20 +190,22 @@ export class MonthlyReports2EditComponent
   validateMonth(control: FormControl): IValidationType {
     console.log('validateMonth has input ' + control.value);
     // tslint:disable-next-line: triple-equals
-    const rtnVal: IValidationType = ('' + control.value == '0')  // can be either string or number
-      ? { validateMonth: true }
-      : null;
-    console.log('validateMonth returning' + JSON.stringify(rtnVal));
-    return rtnVal;
+    if ('' + control.value == '0') {// can be either string or number
+      console.log('validateMonth failed');
+      return { validateMonth: true }
+    } else {
+      return null;
+    }
   }
 
   validateEmojis(control: FormControl): IValidationType {
     console.log('emoji validator ' + control.value);
-    const rtnVal: IValidationType = (control.value === 666)
-      ? { validateEmojis: true }
-      : null;
-    console.log('validate emoji returning' + JSON.stringify(rtnVal));
-    return rtnVal;
+    if (control.value === 666) {
+      console.log('validate emoji failed');
+      return { validateEmojis: true };
+    } else {
+      return null;
+    }
   }
 
   // validateNarrativeFields(): ValidatorFn {
