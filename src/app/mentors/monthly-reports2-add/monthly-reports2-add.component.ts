@@ -49,7 +49,7 @@ export class MonthlyReports2AddComponent
         public currRoute: ActivatedRoute,
         private router: Router,
         public mentorReportData: MentorReport2DataService,
-        private _fb: FormBuilder,
+        public _fb: FormBuilder,
         private session: SessionService
     ) {
 
@@ -195,7 +195,7 @@ export class MonthlyReports2AddComponent
         }
     }
     public hasChanges() {
-        // if have changes then ask for confirmation
+        // if have changes then routing guard will ask for confirmation
         // ask if form is dirty and has not just been submitted
         console.log('hasChanges has submitted ' + this.isSubmitted);
         console.log('hasChanges has form dirty ' + this.myForm.dirty);

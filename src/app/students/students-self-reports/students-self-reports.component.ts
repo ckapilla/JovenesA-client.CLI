@@ -97,4 +97,8 @@ export class StudentsSelfReportsComponent implements OnInit {
     console.log('in students-sponsor-letters: ready to navigate to' + target);
     this.router.navigateByUrl(target);
   }
+  isCurrentReportDate(rptDate: string) {
+    console.log(rptDate.substr(0, 7));
+    return (rptDate.substr(0, 7) >= '2020-03');
+  }
 }

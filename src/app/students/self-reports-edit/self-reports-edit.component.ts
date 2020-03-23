@@ -37,7 +37,7 @@ export class SelfReportsEditComponent implements OnInit {
     public session: SessionService) {
 
     this.myForm = _fb.group({
-      lastContactYearSelector: ['2019', Validators.required],
+      lastContactYearSelector: ['2020', Validators.required],
       narrative_English: ['', { validators: [Validators.required], updateOn: 'blur' }],
       narrative_Spanish: [''],
       selfReportId: [this.reportIdCtl]

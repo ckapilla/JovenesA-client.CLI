@@ -23,7 +23,7 @@
              *ngFor="let i of studentSelfReports">
           <div class="col-md-12">
             <div class="row">
-              <button class="btn default-btn btn-primary btn-sm"
+              <button *ngIf="isCurrentReportDate(i.reportDateTime)" class="btn default-btn btn-primary btn-sm"
                       (click)="selfReportEdit(i.studentSelfReportId,i.studentName)">Editar</button>
               &nbsp;
               <span class="padded">

@@ -54,7 +54,7 @@ export class UrlService {
       //
       // this.webApiPrefix = 'http://192.168.1.100:1100/api/'; // Local Production
       // telmex this.webApiPrefix = 'http://192.168.1.100:1099/api/'; // Local  Development
-      this.webApiPrefix = 'http://192.168.0.77:1099/api/'; // megacable Local  Development
+      this.webApiPrefix = 'http://192.168.0.15:1099/api/'; // megacable Local  Development
       // this.webApiPrefix = 'https://JAWebAPI-dev.jovenesadelante.org/api/';
       // this.webApiPrefix = 'https://JAWebAPI.jovenesadelante.org/api/';  // Production
       this.clientUrl = 'http://localhost:3000';

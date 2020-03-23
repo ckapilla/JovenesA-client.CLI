@@ -70,12 +70,8 @@ export class QuarterlyListComponent implements OnInit {
   }
 
   gotoStudent(studentGUId: string, studentName: string) {
-    // console.log('setting studentName to ' + studentName);
-    // this.session.setStudentInContextName(studentName);
-
     this.studentSelected.notifyNewStudentGUId(studentGUId);
-
-    const link = ['quarterly/edits']; // , { guid: studentGUId }];
+    const link = ['quarterly/edit']; // , { guid: studentGUId }];
 
     console.log('navigating to ' + link);
     this.router.navigate(link);

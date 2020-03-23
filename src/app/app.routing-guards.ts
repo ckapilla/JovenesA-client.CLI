@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanDeactivate, Router, RouterStateSnapshot } from '@angular/router';
 import { MentorReportSummaryUpdatesComponent } from './admins/mr-summary-updates/mr-summary-updates.component';
+import { GradesEditComponent } from './becas/grades-edit/grades-edit.component';
+import { MonthlyReports2AddComponent } from './mentors/monthly-reports2-add/monthly-reports2-add.component';
 import { AuthService } from './_shared/services/auth.service';
 import { SessionService } from './_shared/services/session.service';
-import { MonthlyReports2AddComponent } from './mentors/monthly-reports2-add/monthly-reports2-add.component';
 
 @Injectable({ providedIn: 'root' })
 export class CanActivateViaAdminAuthGuard implements CanActivate {
@@ -142,7 +143,28 @@ export class ConfirmDeactivateMRSummaryUpdatesGuard
   implements CanDeactivate<MentorReportSummaryUpdatesComponent> {
 
   canDeactivate(component: MentorReportSummaryUpdatesComponent): boolean {
+    if (component.hasChanges()) {
+      console.log('CanDeactivate');
+      // tslint:disable-next-line:max-line-length
+      return window.confirm('You have unsaved changes. Click OK to leave the page without saving.\nTiene cambios no guardados. Haga clic OK para salir de la página sin guardar');
+    }
     console.log('CanDeactivate for MRSummaryUpdates clearing unauthenticate_retry+url');
+    localStorage.removeItem('unauthenticated_retry_url');
+    return true;
+  }
+}
+
+@Injectable({ providedIn: 'root' })
+export class ConfirmDeactivateGradesEditGuard
+  implements CanDeactivate<GradesEditComponent> {
+
+  canDeactivate(component: GradesEditComponent): boolean {
+    if (component.hasChanges()) {
+      console.log('CanDeactivate');
+      // tslint:disable-next-line:max-line-length
+      return window.confirm('You have unsaved changes. Click OK to leave the page without saving.\nTiene cambios no guardados. Haga clic OK para salir de la página sin guardar');
+    }
+    console.log('CanDeactivate for GradesEdit clearing unauthenticate_retry+url');
     localStorage.removeItem('unauthenticated_retry_url');
     return true;
   }

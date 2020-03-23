@@ -95,7 +95,7 @@ export class MonthlyReports2Component implements OnInit, OnDestroy {
           console.log('done: ');
           this.isLoading = false;
           for (const x of this.mentorReports2) {
-            if (x.reviewedStatusId === 2086) { // Needs_Setup
+            if (x.reviewedStatusId === 2087) { // Needs_Review
               // console.log('current report found; disable add function');
               this.haveCurrentReport = true;
             }

@@ -215,6 +215,12 @@ export class AuthService {
       this.session.setStudentGUId((<any>app_metadata)['studentRecordGUId']);
       console.log('studentRecordGUId: ' + this.session.getStudentGUId());
 
+      // // use to force student status for testing only (BE CAREFUL)
+      // this.session.setStudentId(275);
+      // console.log('studentId: ' + this.session.getStudentId());
+      // this.session.setStudentGUId('10DBE12D-6B18-4766-B607-FFB07CEB230B');
+      // console.log('studentRecordGUId: ' + this.session.getStudentGUId());
+
       this.session.setUserGUId((<any>app_metadata)['memberGUId']);
       console.log('memberGUId: ' + this.session.getUserGUId());
 

@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { GradesGivenEntryDTO } from '../models/grades-given-entryDTO';
+import { StudentGrades } from '../models/student-grades';
 import { UrlService } from './url.service';
 
 @Injectable({ providedIn: 'root' })
@@ -24,6 +25,28 @@ export class BecaDataService {
     const url = this.WebApiPrefix + 'becas/' + 'grades-list';
     console.log('sending AuthHttp get request for GradesList');
     return this.http.get<GradesGivenEntryDTO[]>(url).pipe(catchError(this.handleError));
+  }
+
+  public getStudentGrades(studentGUId: string): Observable<StudentGrades[]> {
+    const url = this.WebApiPrefix + 'becas/' + 'student-grades/' + studentGUId;
+    console.log('sending AuthHttp get request for StudentGrades');
+    return this.http.get<StudentGrades[]>(url).pipe(catchError(this.handleError));
+  }
+
+  public updateStudentGrades(studentGradeEntry: StudentGrades): Observable<any> {
+    const url = this.WebApiPrefix + 'becas/' + 'student-grades/' + studentGradeEntry.studentGradeId;
+    let body = JSON.stringify({ studentGradeEntry });  //
+    // strip outer 'studentGradeEntry' name
+    const x = JSON.parse(body);
+    body = JSON.stringify(x.studentGradeEntry);
+    console.log('in updateStudentGradeEntry');
+    // tslint:disable-next-line:max-line-length
+    const returnedToken = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlFVWTBOemxFTnpjMVJFUTJRMEZFTkVZNVJFSkVPVE5DUVVFMlJqYzRNRFJHTVRJd05qZ3hOQSJ9.eyJpc3MiOiJodHRwczovL2NrYXBpbGxhLmF1dGgwLmNvbS8iLCJzdWIiOiJVa3R5NEhhb0czc0UzeDJqWE1HMm1TOHo2dFM0R0JPUEBjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9Kb3ZlbmVzQWRlbGFudGVXZWJBUEkiLCJpYXQiOjE1MDc4NTEzNzAsImV4cCI6MTUwNzkzNzc3MCwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.U02NuYo1yguqjtV0gczSkC6UiiGV-QZEjE1k22UOGYI-SbjZQx9h1wkqa3PNiOIPlc3TLnBLW91c5Gz8apuIePnwugq2KApuupmhaS8eDLKFwRx5CZM0XPwYc6kHuxCkn3mk8Y_Siu8A0WpqAaVPhuUHv-szR0MABgBZ27B-KmeGJ-ub05bddwwS4ghpVu-OF7awelwZ74GJ-e7drhCHedwrsLp1bOgKUrzo9JUMs4tk4pmr7Sm4zX6HKqdQ7j53qys_A935m15aHwkNnnhNYWuul8LrbjDwvpTGdcQ55JxnR0logFL2XsYAFFeYykManb5EseXE7dsix_JrE82ICw';
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('authorization', returnedToken);
+    console.log('ready to put ' + url + ' body: ' + body + ' options ' + headers);
+    return this.http.put(url, body, { headers: headers });
   }
 
   private handleError(error: any) {

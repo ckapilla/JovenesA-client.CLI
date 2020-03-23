@@ -18,7 +18,7 @@ const quarterlyRoutes: Routes = [
         component: QuarterlyListComponent
       },
       {
-        path: 'edits',
+        path: 'edit',
         component: QuarterlyContainerComponent
       },
       {

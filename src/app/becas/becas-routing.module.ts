@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CanActivateViaAdminAuthGuard } from '../app.routing-guards';
-import { BecasComponent } from './becas.component';
-import { GradesListComponent } from './grades-list/grades-list.component';
+import { CanActivateViaAdminAuthGuard, ConfirmDeactivateGradesEditGuard } from '../app.routing-guards';
 import { BecasHomeComponent } from './becas-home/becas-home.component';
+import { BecasComponent } from './becas.component';
+import { GradesEditComponent } from './grades-edit/grades-edit.component';
+import { GradesListComponent } from './grades-list/grades-list.component';
 
 
 const gradesRoutes: Routes = [
@@ -17,13 +18,14 @@ const gradesRoutes: Routes = [
         pathMatch: 'full',
         component: BecasHomeComponent// AdminsHomeComponent
       },
-      // {
-      //   path: 'becas-home',
-      //   component: AdminsHomeComponent
-      // },
       {
         path: 'grades-list',
         component: GradesListComponent
+      },
+      {
+        path: 'grades-edit',
+        component: GradesEditComponent,
+        canDeactivate: [ConfirmDeactivateGradesEditGuard]
       },
     ]
   }

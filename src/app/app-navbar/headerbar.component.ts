@@ -31,6 +31,8 @@ export class HeaderbarComponent {
   }
 
   public isStudentWithValidToken(): boolean {
+    // use to force student status for testing only (BE CAREFUL!)
+    // return true;
     return this.auth.loggedIn && this.session.getStudentId() !== 0;
   }
 }

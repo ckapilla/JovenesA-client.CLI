@@ -17,7 +17,7 @@
 
       <ngb-tab title="Student Self Reports">
         <ng-template ngbTabContent>
-          <app-self-reports>
+          <app-self-reports [bEditable]="true" [selectedYear]="2019" [selectedPeriod]="4">
           </app-self-reports>
         </ng-template>
       </ngb-tab>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GradesGivenEntryDTO } from 'src/app/_shared/models/grades-given-entryDTO';
 import { BecaDataService } from 'src/app/_shared/services/beca-data.service';
+import { StudentSelectedService } from 'src/app/_shared/services/student-selected.service';
 import { constants } from '../../_shared/constants/constants';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 import { SORTCRITERIA } from '../../_shared/interfaces/SORTCRITERIA';
@@ -32,6 +33,7 @@ export class GradesListComponent implements OnInit {
     public becaData: BecaDataService,
     public router: Router,
     // private route: ActivatedRoute,
+    public studentSelected: StudentSelectedService,
     private session: SessionService,
     private columnSorter: ColumnSortService
   ) {
@@ -61,7 +63,7 @@ export class GradesListComponent implements OnInit {
         data => { this.gradesGivenEntryDTOs = data; },
         err => { this.errorMessage = err; },
         () => {
-          this.gradesGivenEntryDTOs = this.gradesGivenEntryDTOs.filter(s => s.studentId !== 275); // N/A
+          // this.gradesGivenEntryDTOs = this.gradesGivenEntryDTOs.filter(s => s.studentId !== 275); // N/A
           console.log(this.gradesGivenEntryDTOs[0]);
           console.log('data loaded now set timeout for scroll');
           setTimeout(() => {
@@ -112,14 +114,14 @@ export class GradesListComponent implements OnInit {
     this.selectedMonth = month;
     this.fetchFilteredData();
   }
-  gotoStudent(guid: string, studentName: string) {
+
+  gotoStudent(studentGUId: string, studentName: string) {
+
     console.log('setting studentName to ' + studentName);
     this.session.setStudentInContextName(studentName);
-    // const idx = this.gradesGivenEntryDTOs.findIndex(s => s.studentId === id);
 
-    // this.session.setCurrentStudent(this.gradesGivenEntryDTOs[idx]);
-    // const link = ['/admins/grades/student', id];
-    const link = ['admins/students/student', { guid: guid }];
+    this.studentSelected.notifyNewStudentGUId(studentGUId);
+    const link = ['becas/grades-edit']; // , { guid: guid }];
 
     console.log('navigating to ' + link);
     this.router.navigate(link);
