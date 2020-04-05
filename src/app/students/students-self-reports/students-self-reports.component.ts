@@ -73,8 +73,8 @@ export class StudentsSelfReportsComponent implements OnInit {
 
 
   fetchSelfReports() {
-    console.log('fetch reports with sponsorGroupId: ' + this.sponsorGroupId);
-    this.studentSelfReportData.getStudentSelfReports(this.studentId, this.sponsorGroupId)
+    console.log('fetch reports with sponsorGroupId: 0 so only for this student');
+    this.studentSelfReportData.getStudentSelfReports(this.studentId, 0)
       .subscribe(
         data => { this.studentSelfReports = data; },
         err => console.error('Subscribe error: ' + err),

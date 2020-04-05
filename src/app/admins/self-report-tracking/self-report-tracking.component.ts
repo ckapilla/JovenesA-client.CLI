@@ -22,10 +22,12 @@ export class SelfReportsTrackingComponent implements OnInit {
   studentReportStatuses: SELECTITEM[];
   years: SELECTITEM[];
   periods: SELECTITEM[];
+  activeQRPeriods: SELECTITEM[];
   ssrReviewedStatuses: SELECTITEM[];
   highlightStatuses: SELECTITEM[];
   selectedYear: string;
   selectedPeriod: string;
+  selectedYearPeriod: string;
   selectedSRReviewedStatus: string;
   // selectedHighlightStatus: string;
   displayOriginalFields = true;
@@ -39,18 +41,18 @@ export class SelfReportsTrackingComponent implements OnInit {
     private route: ActivatedRoute
   ) {
 
-
     this.years = constants.years;
     this.periods = constants.periods;
+    this.activeQRPeriods = constants.activeQRperiods;
+
+    this.selectedYear = '2020'; // '' + today.getFullYear(); //
+    this.selectedPeriod = '1'; // + today.getPeriod() + 1;// '5';
+    this.selectedYearPeriod = '2020-1';
     this.ssrReviewedStatuses = constants.reviewedStatuses;
 
-    const today = new Date();
-    this.selectedYear = '2019'; // '' + today.getFullYear(); //
-    this.selectedPeriod = '0'; // + today.getPeriod() + 1;// '5';
 
     this.selectedSRReviewedStatus = '0'; // this.ssrReviewedStatuses[0].value;
     // this.selectedHighlightStatus = this.highlightStatuses[0].value;
-
 
     this.smileys = constants.smileys;
   }
@@ -63,28 +65,28 @@ export class SelfReportsTrackingComponent implements OnInit {
   processRouteParams() {
     console.log('SelfReportTracking setting filters form queryParams');
 
-    const year = this.route.snapshot.queryParams['year'];
-    console.log('year param = ' + year);
-    if (year !== undefined) {
-      this.selectedYear = year;
-    }
+    // const year = this.route.snapshot.queryParams['year'];
+    // console.log('year param = ' + year);
+    // if (year !== undefined) {
+    //   this.selectedYear = year;
+    // }
 
-    const period = this.route.snapshot.queryParams['period'];
-    console.log('period param = ' + period);
-    if (period !== undefined) {
-      this.selectedPeriod = period;
-    }
-    const summary = this.route.snapshot.queryParams['summaryStatus'];
-    console.log('summary param = ' + summary);
-    if (period !== undefined) {
-      this.selectedSRReviewedStatus = summary;
-    } else {
-      this.selectedSRReviewedStatus = '0';
-    }
+    // const period = this.route.snapshot.queryParams['period'];
+    // console.log('period param = ' + period);
+    // if (period !== undefined) {
+    //   this.selectedPeriod = period;
+    // }
+    // const summary = this.route.snapshot.queryParams['summaryStatus'];
+    // console.log('summary param = ' + summary);
+    // if (period !== undefined) {
+    //   this.selectedSRReviewedStatus = summary;
+    // } else {
+    //   this.selectedSRReviewedStatus = '0';
+    // }
 
-    if (period > 0) {
-      this.fetchFilteredData();
-    }
+    // if (period > 0) {
+    this.fetchFilteredData();
+    // }
 
   }
 
@@ -124,22 +126,28 @@ export class SelfReportsTrackingComponent implements OnInit {
     }
   }
 
-  setSelectedSRReviewedStatus(status: string) {
-    this.selectedSRReviewedStatus = status;
-    this.fetchFilteredData();
-  }
+  // setSelectedSRReviewedStatus(status: string) {
+  //   this.selectedSRReviewedStatus = status;
+  //   this.fetchFilteredData();
+  // }
 
   // setSelectedHighlightStatus(status: string) {
   //   this.selectedHighlightStatus = status;
   //   this.fetchFilteredData();
   // }
 
-  setSelectedYear(year: string) {
-    this.selectedYear = year;
-    this.fetchFilteredData();
-  }
-  setSelectedPeriod(period: string) {
-    this.selectedPeriod = period;
+  // setSelectedYear(year: string) {
+  //   this.selectedYear = year;
+  //   this.fetchFilteredData();
+  // }
+  // setSelectedPeriod(period: string) {
+  //   this.selectedPeriod = period;
+  //   this.fetchFilteredData();
+  // }
+  setSelectedYearPeriod(yearPeriod: string) {
+    this.selectedYearPeriod = yearPeriod;
+    this.selectedYear = yearPeriod.substr(0, 4);
+    this.selectedPeriod = yearPeriod.substr(5, 1);
     this.fetchFilteredData();
   }
 

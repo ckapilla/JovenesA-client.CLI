@@ -23,9 +23,9 @@ export class QuarterlyContainerComponent implements OnInit {
     this.periods = constants.periods;
     this.activeQRPeriods = constants.activeQRperiods;
 
-    this.selectedYear = '2019'; // '' + today.getFullYear(); //
-    this.selectedPeriod = '4'; // + today.getPeriod() + 1;// '5';
-    this.selectedYearPeriod = '2019-4';
+    this.selectedYear = '2020'; // '' + today.getFullYear(); //
+    this.selectedPeriod = '1'; // + today.getPeriod() + 1;// '5';
+    this.selectedYearPeriod = '2020-1';
     this.studentGUIdReceived = false;
   }
 
@@ -44,12 +44,12 @@ export class QuarterlyContainerComponent implements OnInit {
   }
 
 
-  setSelectedYear(year: string) {
-    this.selectedYear = year;
-  }
-  setSelectedPeriod(period: string) {
-    this.selectedPeriod = period;
-  }
+  // setSelectedYear(year: string) {
+  //   this.selectedYear = year;
+  // }
+  // setSelectedPeriod(period: string) {
+  //   this.selectedPeriod = period;
+  // }
   setSelectedYearPeriod(yearPeriod: string) {
     this.selectedYearPeriod = yearPeriod;
     this.selectedYear = yearPeriod.substr(0, 4);

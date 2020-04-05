@@ -6,14 +6,21 @@
     <span *ngIf="successMessage" class="alert alert-success">{{successMessage}}</span>
     <div>
       <div class="controls">
-        <label for="yearSelector">&nbsp;Report Year/Period:</label>
+        Report Year-Period:
+        <select name="activePeriodSelector" [(ngModel)]="selectedYearPeriod"
+                (change)="setSelectedYearPeriod($event.target.value)">
+          <option *ngFor="let yearPeriod of activeQRPeriods" [value]="yearPeriod.value">{{yearPeriod.label}}</option>
+        </select>
+
+        <!-- <label for="yearSelector">&nbsp;Report Year/Period:</label>
         <select name="yearSelector" [(ngModel)]="selectedYear" (change)="setSelectedYear($event.target.value)">>
           <option *ngFor="let year of years" [value]="year.value">{{year.label}}</option>
         </select>
         <select name="periodSelector" [(ngModel)]="selectedPeriod" (change)="setSelectedPeriod($event.target.value)">
           <option value="0">[Select]</option>
           <option *ngFor="let period of periods" [value]="period.value">{{period.label}}</option>
-        </select>
+        </select> -->
+
         <span class="checkboxes">
           &nbsp;&nbsp;<label><input type="checkbox" [(ngModel)]="displayOriginalFields">&nbsp;<span>Display Partial
               Description</span></label>

@@ -19,8 +19,10 @@ export class QuarterlyListComponent implements OnInit {
   successMessage: string;
   years: SELECTITEM[];
   periods: SELECTITEM[];
+  activeQRPeriods: SELECTITEM[];
   selectedYear: string;
   selectedPeriod: string;
+  selectedYearPeriod: string;
   qrMinis: QuarterlyReportRPT[];
   qrMini: QuarterlyReportRPT;
   readonly reviewedStatuses: SELECTITEM[] = constants.reviewedQRStatuses;
@@ -39,9 +41,11 @@ export class QuarterlyListComponent implements OnInit {
 
     this.years = constants.years;
     this.periods = constants.periods;
+    this.activeQRPeriods = constants.activeQRperiods;
 
-    this.selectedYear = '2019'; // '' + today.getFullYear(); //
-    this.selectedPeriod = '4'; // + today.getPeriod() + 1;// '5';
+    this.selectedYear = '2020'; // '' + today.getFullYear(); //
+    this.selectedPeriod = '1'; // + today.getPeriod() + 1;// '5';
+    this.selectedYearPeriod = '2020-1';
 
     this.isLoading = false;
   }
@@ -60,12 +64,10 @@ export class QuarterlyListComponent implements OnInit {
     }
   }
 
-  setSelectedYear(year: string) {
-    this.selectedYear = year;
-    this.fetchFilteredData();
-  }
-  setSelectedPeriod(period: string) {
-    this.selectedPeriod = period;
+  setSelectedYearPeriod(yearPeriod: string) {
+    this.selectedYearPeriod = yearPeriod;
+    this.selectedYear = yearPeriod.substr(0, 4);
+    this.selectedPeriod = yearPeriod.substr(5, 1);
     this.fetchFilteredData();
   }
 
