@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { MentorReportsStatusCount } from '../models/mentor-reports-status-count';
 import { StudentSelfReport } from '../models/student-self-report';
+import { StudentMiniDTO } from '../models/studentMiniDTO';
 import { BaseDataService } from './base-data.service';
 import { UrlService } from './url.service';
 
@@ -51,6 +52,14 @@ export class StudentSelfReportDataService extends BaseDataService {
       + '&studentGUId=' + studentGUId;
     console.log('sending AuthHttp get request for StudentSelfReportsByMonth with ' + url);
     return this.http.get<StudentSelfReport[]>(url).pipe(catchError(this.handleError));
+  }
+
+  public getMissingStudentSelfReportsByPeriod(year: string, period: string): Observable<StudentMiniDTO[]> {
+    const url = this.WebApiPrefix + 'student_self_reports/missing/by_period'
+      + '?year=' + year
+      + '&period=' + period;
+    console.log('sending AuthHttp get request for MissingStudentSelfReportsByMonth with ' + url);
+    return this.http.get<StudentMiniDTO[]>(url).pipe(catchError(this.handleError));
   }
 
   public postStudentSelfReport(selfReport: StudentSelfReport): Observable<StudentSelfReport> {

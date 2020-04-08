@@ -19,35 +19,18 @@
       </app-loading-container>
     </div>
     <div *ngSwitchCase="false">
-      <div class="row" style="border-bottom: 3px solid #ccc; margin-top: 2px;"
-           *ngFor="let ssr of studentReportsByPeriod, let i = index">
+      <div class="row" style="margin-top: 2px;"
+           *ngFor="let s of studentMini, let i = index">
         <div class="col-md-12">
-          <div class="row mx-auto" id='{{"id" + ssr.studentSelfReportId}}'>
+          <div class="row mx-auto" id='{{"id" + s.studentId}}'>
             &nbsp;
-            <span (click)='gotoStudent(ssr.studentGUId, ssr.studentName)' class="padded link">
-              [Student:
-              {{ ssr.studentName }} ]
+            <span (click)='gotoStudent(s.studentGUId, s.studentName)' class="padded link">
+              {{ s.studentName }}
             </span>
             <span class="padded">
-              [Sponsor:
-              {{ ssr.sponsorGroupName }} ]
+              [
+              {{ s.email }} ]
             </span>
-
-            <div>
-              <span class="padded col-md2">
-                Submitted Date:
-                {{ ssr.reportDateTime | truncateDate }}
-              </span>
-
-              <div [hidden]=!displayOriginalFields>
-                <div class="col-md2 padded">
-                  Description (Spanish)
-                </div>
-                <div class="col-md-10"
-                     [innerHTML]="ssr.narrative_Spanish">
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

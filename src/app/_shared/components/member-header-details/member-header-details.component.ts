@@ -23,7 +23,7 @@ export class MemberHeaderDetailsComponent implements OnInit, OnDestroy {
   // lastNames: string;
 
   member: MemberHeaderDTO;
-  photoPathName: string;
+  photoPathName: string | undefined;
   memberGUId: string;
   @Output() onPhotoPathNameSet = new EventEmitter<string>();
   private subscription: Subscription;

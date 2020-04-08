@@ -1,0 +1,36 @@
+<div class="col">
+  <div class="card bg-primary">
+    <div class="card-header text-white">
+      <span style="font-size:large">
+        Quarterly Reports
+      </span>
+      <span style="margin-left:10rem">
+        Report Year-Period:
+        <select name="activePeriodSelector" [(ngModel)]="selectedYearPeriod"
+                (change)="setSelectedYearPeriod($event.target.value)">
+          <option *ngFor="let yearPeriod of activeQRPeriods" [value]="yearPeriod.value">{{yearPeriod.label}}</option>
+        </select>
+      </span>
+    </div>
+    <div class="card-body bg-white">
+      <ngb-tabset>
+        <ngb-tab title="Reports Received">
+          <ng-template ngbTabContent>
+            <app-self-report-tracking [selectedYear]="selectedYear"
+                                      [selectedPeriod]="selectedPeriod">
+            </app-self-report-tracking>
+          </ng-template>
+        </ngb-tab>
+
+        <ngb-tab title="Reports Needed">
+          <ng-template ngbTabContent>
+            <app-self-report-missing [selectedYear]="selectedYear"
+                                     [selectedPeriod]="selectedPeriod">
+            </app-self-report-missing>
+          </ng-template>
+        </ngb-tab>
+
+      </ngb-tabset>
+    </div>
+  </div>
+</div>

@@ -1,19 +1,19 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { StudentMiniDTO } from 'src/app/_shared/models/studentMiniDTO';
 import { StudentSelfReportDataService } from 'src/app/_shared/services/student-self-report-data.service';
 import { constants } from '../../_shared/constants/constants';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
-import { StudentSelfReport } from '../../_shared/models/student-self-report';
 import { SessionService } from '../../_shared/services/session.service';
 
 
 @Component({
-  selector: 'app-self-report-tracking',
-  templateUrl: 'self-report-tracking.component.html',
-  styleUrls: ['self-report-tracking.component.css']
+  selector: 'app-self-report-missing',
+  templateUrl: 'self-report-missing.component.html',
+  styleUrls: ['self-report-missing.component.css']
 })
-export class SelfReportTrackingComponent implements OnInit, OnChanges {
-  studentReportsByPeriod: StudentSelfReport[];
+export class SelfReportMissingComponent implements OnInit, OnChanges {
+  studentMini: StudentMiniDTO[];
   isLoading: boolean;
   smileys: Array<string>;
   public errorMessage: string;
@@ -50,7 +50,6 @@ export class SelfReportTrackingComponent implements OnInit, OnChanges {
     this.selectedYearPeriod = '2020-1';
     this.ssrReviewedStatuses = constants.reviewedStatuses;
 
-
     this.selectedSRReviewedStatus = '0'; // this.ssrReviewedStatuses[0].value;
     // this.selectedHighlightStatus = this.highlightStatuses[0].value;
 
@@ -63,44 +62,19 @@ export class SelfReportTrackingComponent implements OnInit, OnChanges {
   }
 
   processRouteParams() {
-    console.log('SelfReportTracking setting filters form queryParams');
-
-    // const year = this.route.snapshot.queryParams['year'];
-    // console.log('year param = ' + year);
-    // if (year !== undefined) {
-    //   this.selectedYear = year;
-    // }
-
-    // const period = this.route.snapshot.queryParams['period'];
-    // console.log('period param = ' + period);
-    // if (period !== undefined) {
-    //   this.selectedPeriod = period;
-    // }
-    // const summary = this.route.snapshot.queryParams['summaryStatus'];
-    // console.log('summary param = ' + summary);
-    // if (period !== undefined) {
-    //   this.selectedSRReviewedStatus = summary;
-    // } else {
-    //   this.selectedSRReviewedStatus = '0';
-    // }
+    console.log('SelfReportMissing setting filters form queryParams');
 
     // if (period > 0) {
     this.fetchFilteredData();
     // }
-
   }
-
 
   fetchFilteredData() {
     this.isLoading = true;
     console.log('in fetchData for StudentReportsByPeriod');
-    this.ssrData.getStudentSelfReportsByPeriod(this.selectedYear,
-      this.selectedPeriod,
-      '0', // this.selectedSRReviewedStatus,
-      null
-    )
+    this.ssrData.getMissingStudentSelfReportsByPeriod(this.selectedYear, this.selectedPeriod)
       .subscribe(
-        data => { this.studentReportsByPeriod = data; console.log('studentReportByPeriod has'); console.log(this.studentReportsByPeriod[0]); },
+        data => { this.studentMini = data; console.log('studentReportByPeriod has'); console.log(this.studentMini[0]); },
         err => console.error('Subscribe error: ' + err),
         () => {
           console.log('data loaded now set timeout for scroll');
@@ -126,31 +100,6 @@ export class SelfReportTrackingComponent implements OnInit, OnChanges {
     }
   }
 
-  // setSelectedSRReviewedStatus(status: string) {
-  //   this.selectedSRReviewedStatus = status;
-  //   this.fetchFilteredData();
-  // }
-
-  // setSelectedHighlightStatus(status: string) {
-  //   this.selectedHighlightStatus = status;
-  //   this.fetchFilteredData();
-  // }
-
-  // setSelectedYear(year: string) {
-  //   this.selectedYear = year;
-  //   this.fetchFilteredData();
-  // }
-  // setSelectedPeriod(period: string) {
-  //   this.selectedPeriod = period;
-  //   this.fetchFilteredData();
-  // }
-  setSelectedYearPeriod(yearPeriod: string) {
-    this.selectedYearPeriod = yearPeriod;
-    this.selectedYear = yearPeriod.substr(0, 4);
-    this.selectedPeriod = yearPeriod.substr(5, 1);
-    this.fetchFilteredData();
-  }
-
   gotoStudent(guid: string, studentName: string) {
     console.log('setting studentName to ' + studentName);
     this.session.setStudentInContextName(studentName);
@@ -159,30 +108,6 @@ export class SelfReportTrackingComponent implements OnInit, OnChanges {
 
     console.log('navigating to ' + link);
     this.router.navigate(link);
-  }
-
-  gotoReportSummary(id: number, studentName: string) {
-    // const link = ['/admins/student-reports/summary-updates?id=' + id + '&summaryStatus=' + 2087 + '&highlight=' + 2106];
-    this.session.setStudentInContextName(studentName);
-    const link: [string, { studentReportId: number, summaryStatus: string }]
-      = ['/admins/self-reports/updates',
-        { studentReportId: id, summaryStatus: this.selectedSRReviewedStatus }];
-
-    console.log('navigating to ' + link);
-    this.router.navigate(link);
-  }
-
-
-  getHighlightColor(highlightStatusId: number): string {
-
-    if (highlightStatusId === 2106) {
-      // console.log('returning ' + 'green-row');
-      return 'green-row';
-    } else if (highlightStatusId === 2105) {
-      return 'red-row';
-    } else {
-      return '';
-    }
   }
 
   public ngOnChanges(changes: SimpleChanges) {

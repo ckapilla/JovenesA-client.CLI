@@ -22,7 +22,7 @@ export class StudentsSelfReportsComponent implements OnInit {
   studentSelfReports: Array<StudentSelfReport>;
   sponsorGroup: SponsorGroup;
   sponsorGroupName: string;
-  sponsorGroupId: number;
+  sponsorGroupId: number | undefined;
 
   constructor(
     public currRoute: ActivatedRoute,
