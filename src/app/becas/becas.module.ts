@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppSharedModule } from '../_shared/_shared.module';
 import { BecasHomeComponent } from './becas-home/becas-home.component';
 import { BecasNavbarComponent } from './becas-navbar/becas-navbar.component';
@@ -20,7 +21,8 @@ import { GradesListComponent } from './grades-list/grades-list.component';
   imports: [
     CommonModule,
     AppSharedModule,
-    BecasRoutingModule
+    BecasRoutingModule,
+    NgbModule
   ]
 })
 export class BecasModule { }

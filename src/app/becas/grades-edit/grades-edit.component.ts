@@ -1,5 +1,6 @@
+import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { GradesGivenEntryDTO } from 'src/app/_shared/models/grades-given-entryDTO';
@@ -31,7 +32,6 @@ export class GradesEditComponent implements OnInit, OnDestroy {
   // sortCriteria: SORTCRITERIA;
   years: SELECTITEM[];
   months: SELECTITEM[];
-  ctls: AbstractControl[];
   studentGUId: string;
   private subscription: Subscription;
   studentName: string;
@@ -43,7 +43,8 @@ export class GradesEditComponent implements OnInit, OnDestroy {
     private session: SessionService,
     private columnSorter: ColumnSortService,
     private _fb: FormBuilder,
-    private studentSelected: StudentSelectedService
+    private studentSelected: StudentSelectedService,
+    public location: Location
   ) {
 
     console.log('Hi from gradesEdit Ctrl controller function');
@@ -67,8 +68,10 @@ export class GradesEditComponent implements OnInit, OnDestroy {
     return this._fb.group({
       gradesGivenDate: ({ value: '', disabled: true }),
       gradesDueDate: ({ value: '', disabled: true }),
-      gradesTurnedInDate: [''],
-      gradePointAvg: [''],
+      gradesTurnedInDate: [{ value: '' },
+      Validators.compose([Validators.pattern(/^\d{4}\-\d{1,2}\-\d{1,2}$/), Validators.maxLength(10)])],
+      gradePointAvg: [{ value: '' },
+      Validators.pattern(/^\d{1,2}\.\d{1,1}$/)],
       gradesTurnedInException: [''],
       gradePointAvgException: ['']
     });
@@ -76,16 +79,16 @@ export class GradesEditComponent implements OnInit, OnDestroy {
 
   updateGradeEntryRow(gradeEntryRow: FormGroup, entryData: StudentGrades): FormGroup {
     console.log('updateGradeEntryRow update existing row with actual data');
-
+    console.log(JSON.stringify(entryData));
     gradeEntryRow.patchValue({
       gradesGivenDate: new TruncateDatePipe().transform('' + entryData.gradesGivenDate),
       gradesDueDate: new TruncateDatePipe().transform('' + entryData.gradesDueDate),
       gradesTurnedInDate: new TruncateDatePipe().transform('' + entryData.gradesTurnedInDate),
-      gradePointAvg: entryData.gradePointAvg,
-      gradesTurnedInException: [''],
-      gradePointAvgException: ['']
+      gradePointAvg: this.toFixedValue(entryData.gradePointAvg),
+      gradesTurnedInException: entryData.gradesTurnedInException,
+      gradePointAvgException: entryData.gradePointAvgException
     });
-
+    gradeEntryRow.markAsPristine();
     return gradeEntryRow;
   }
 
@@ -160,44 +163,124 @@ export class GradesEditComponent implements OnInit, OnDestroy {
   gotoStudent(guid: string, studentName: string) {
     console.log('setting studentName to ' + studentName);
     this.session.setStudentInContextName(studentName);
-    // const idx = this.studentGrades.findIndex(s => s.studentId === id);
-
-    // this.session.setCurrentStudent(this.studentGrades[idx]);
-    // const link = ['/admins/grades/student', id];
     const link = ['admins/students/student', { guid: guid }];
 
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }
 
+  saveAllChangedEntries() {
+    console.log('studentGradesData length is ' + this.studentGradesData.length);
+    for (let i = 0; i < this.studentGradesData.length; ++i) {
+      console.log('saveEntry ' + i);
+      this.saveEntry(i);
+    }
+    this.myForm.markAsPristine();
+  }
+
+  resetAllChangedEntries() {
+    console.log('studentGradesData length is ' + this.studentGradesData.length);
+    for (let i = 0; i < this.studentGradesData.length; ++i) {
+      console.log('saveEntry ' + i);
+      this.resetEntry(i);
+    }
+    this.myForm.markAsPristine();
+  }
+
+  retrieveFormValuesForRow(i: number): void {
+    console.log('retrieveFormValues for row' + JSON.stringify(this.gradeEntryRows().value[i]));
+    this.studentGradesData[i] = { ...this.studentGradesData[i], ...this.gradeEntryRows().value[i] };
+  }
+
+  isRowDirty(i: number): boolean {
+    // console.log('checking dirty state of i ' + i + ' -- ' + this.gradeEntryRows().controls[i].dirty);
+    return this.gradeEntryRows().controls[i].dirty;
+  }
+
+
   saveEntry(i: number): boolean {
     console.log('saveEntry for ' + i);
-
     this.isLoading = true;
-    // this.retrieveFormValues();
-    this.becaData.updateStudentGrades(this.studentGradesData[i])
-      .subscribe(
-        (student) => {
-          // console.log('subscribe result in updateStudent');
-          // need timeout to avoid "Expression has changed error"
-          window.setTimeout(() => {
-            this.successMessage = 'Changes were saved successfully.';
-          }, 0);
-          // this.successMessage = 'Changes were saved successfully.';
-          this.isLoading = false;
-          window.scrollTo(0, 0);
-          window.setTimeout(() => {// console.log('clearing success message');
-            this.successMessage = '';
-            this.myForm.markAsPristine(); // this is oversimplification if multiple dirty rows
-          }, 3000);
-        },
-        (error) => {
-          this.errorMessage = <any>error;
-          this.isLoading = false;
-        }
-      );
+    this.errorMessage = '';
+    console.log('row dirty value is ' + this.gradeEntryRows().controls[i].dirty);
+    if (this.gradeEntryRows().controls[i].dirty) {
+      this.retrieveFormValuesForRow(i);
+      this.becaData.updateStudentGrades(this.studentGradesData[i])
+        .subscribe(
+          (gradeRowData) => {
+            console.log('subscribe result in updateGradeRowData');
+            console.log(JSON.stringify(gradeRowData));
+            // need timeout to avoid "Expression has changed error"
+            window.setTimeout(() => {
+              this.successMessage = 'Changes were saved successfully.';
+            }, 0);
+            const currRowFormGroup = this.gradeEntryRows().controls[i] as FormGroup;
+            // this fails for some reason, and isn't needed because the update won't change any of these values
+            // this.updateGradeEntryRow(currRowFormGroup, gradeRowData);
+            currRowFormGroup.markAsPristine();
+            // this.successMessage = 'Changes were saved successfully.';
+            this.isLoading = false;
+            window.scrollTo(0, 0);
+            window.setTimeout(() => {// console.log('clearing success message');
+              this.successMessage = '';
+            }, 3000);
+          },
+          (error) => {
+            this.errorMessage = 'Please check Date Format, must be YYYY-MM-DD';
+            this.isLoading = false;
+          }
+        );
+    }
     // prevent default action of reload
     return false;
+  }
+
+  resetEntry(i: number): boolean {
+    console.log('resetEntry for ' + i);
+
+    if (this.gradeEntryRows().controls[i].dirty) {
+      this.retrieveFormValuesForRow(i);
+      this.gradeEntryRows().controls[i].reset();
+      this.gradeEntryRows().controls[i].markAsPristine();
+    }
+    // prevent default action of reload
+    return false;
+  }
+
+
+  setReceivedDate(i: number, currDateValue: string): void {
+    console.log('setReceivedDate with curr = ' + currDateValue);
+    // https://stackoverflow.com/questions/23593052/format-javascript-date-as-yyyy-mm-dd
+    let d: Date;
+    // if empty set it to two days ago; if currently has a value, increment by one day
+    if (currDateValue > '') {
+      d = new Date(currDateValue + ' 00:00:01');
+      d.setDate(d.getDate() - 1);
+    } else {
+      d = new Date();
+    }
+
+
+    const strDate = [
+      d.getFullYear(),
+      ('0' + (d.getMonth() + 1)).slice(-2),
+      ('0' + d.getDate()).slice(-2)
+    ].join('-');
+
+    const gradeEntryRow: FormGroup = this.gradeEntryRows().controls[i] as FormGroup;
+
+    gradeEntryRow.patchValue({
+      gradesTurnedInDate: strDate
+    });
+    gradeEntryRow.markAsDirty();
+  }
+
+  toFixedValue(num: number | null) {
+    if (num === null || num === undefined) {
+      return '';
+    } else {
+      return num.toFixed(1);
+    }
   }
 
   public hasChanges() {

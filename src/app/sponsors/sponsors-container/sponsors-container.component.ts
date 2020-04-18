@@ -18,9 +18,9 @@ export class SponsorsContainerComponent implements OnInit {
     this.periods = constants.periods;
     this.activeQRPeriods = constants.activeQRperiods;
 
-    this.selectedYear = '2019'; // '' + today.getFullYear(); //
-    this.selectedPeriod = '4'; // + today.getPeriod() + 1;// '5';
-    this.selectedYearPeriod = '2019-4';
+    this.selectedYear = '2020'; // '' + today.getFullYear(); //
+    this.selectedPeriod = '1'; // + today.getPeriod() + 1;// '5';
+    this.selectedYearPeriod = '2020-1';
 
   }
 

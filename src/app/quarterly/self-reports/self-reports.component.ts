@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MiscDataService } from 'src/app/_shared/services/misc-data.service';
@@ -44,7 +44,7 @@ export class SelfReportsComponent implements OnInit, OnChanges, OnDestroy {
   ) {
 
     this.myForm = _fb.group({
-      lastContactYearSelector: ['2019', Validators.required],
+      // lastContactYearSelector: ['', Validators.required],
       narrative_English: ['', {}],
       narrative_Spanish: [''],
       quarterlyReportId: [this.reportIdCtl]

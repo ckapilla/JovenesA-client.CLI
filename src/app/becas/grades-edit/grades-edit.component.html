@@ -16,12 +16,24 @@
         </div>
         <div *ngSwitchCase="false">
           <form [formGroup]="myForm">
+            <p>
+              <button [disabled]="myForm.pristine"
+                      type="submit"
+                      class="btn btn-primary"
+                      (click)="saveAllChangedEntries()">Save</button>
+              <!-- <button [disabled]="!(myForm.dirty && myForm.touched)"
+                      type="cancel"
+                      class="btn btn-primary"
+                      (click)="resetAllChangedEntries()">Cancel</button> -->
+              <button class="btn btn-primary"
+                      (click)="location.back()">Back</button>
+            </p>
             <table class="table-sm table-striped">
               <thead>
                 <tr>
                   <!--<td>Id</td>-->
                   <!-- <th></th> -->
-                  <!-- <th app-sortable-column="studentName" sort-direction="asc" (onSortColumn)="onSortColumn($event)">Student
+                  <!-- <th app-sortable-column="studentName" sort-direFstudentIDion="asc" (onSortColumn)="onSortColumn($event)">Student
                 </th>
                 <th app-sortable-column="univ" (onSortColumn)="onSortColumn($event)">Univ</th> -->
                   <!-- <th app-sortable-column="academicYear" (onSortColumn)="onSortColumn($event)">YearType</th> -->
@@ -79,7 +91,8 @@
                              class="form-control form-control-sm" type="text" size="8" />
                     </td>
                     <td>
-                      <input formControlName="gradesTurnedInDate"
+                      <input formControlName="gradesTurnedInDate" placeholder="yyyy-mm-dd"
+                             (dblclick)="setReceivedDate(i, $event.target.value)"
                              class="form-control form-control-sm" type="text" size="8" />
                     </td>
                     <td>
@@ -94,8 +107,14 @@
                       <input formControlName="gradePointAvgException"
                              class="form-control form-control-sm" type="text" />
                     </td>
-                    <td>
+                    <!-- <td>
                       <button (click)="saveEntry(i)">Save</button>
+                    </td> -->
+                    <td *ngIf="isRowDirty(i)">
+                      +-+
+                    </td>
+                    <td *ngIf="!isRowDirty(i)">
+
                     </td>
                   </ng-container>
                 </tr>
@@ -103,6 +122,8 @@
             </table>
           </form>
 
-          <!-- <br />Dirty: {{ myForm.dirty }} -->
-
+          <!-- <br />Dirty: {{ myForm.dirty }}
+          <br />Pristine: {{ myForm.pristine }}
+          <br />Touched: {{ myForm.touched }}
+          <br />Valid: {{ myForm.valid }} -->
         </div>
