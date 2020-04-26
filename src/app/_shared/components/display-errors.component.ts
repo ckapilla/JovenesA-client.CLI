@@ -1,7 +1,5 @@
-import { Component, Input, Host } from '@angular/core';
-import {
-  FormGroup,
-  FormGroupDirective } from '@angular/forms';
+import { Component, Host, Input } from '@angular/core';
+import { FormGroup, FormGroupDirective } from '@angular/forms';
 
 @Component({
   template: `<div>{{currentError}}</div>`,
@@ -12,7 +10,7 @@ export class DisplayErrorsComponent {
   @Input() control: string;
   myFormGroup: FormGroup;
   // constructor(@Host() private formDir: NgForm) {}
-  constructor(@Host() private myFormGroupDirective: FormGroupDirective) {}
+  constructor(@Host() private myFormGroupDirective: FormGroupDirective) { }
   get currentError() {
     this.myFormGroup = this.myFormGroupDirective.control;
     const control = this.myFormGroup.controls[this.control];
@@ -31,7 +29,7 @@ export class DisplayErrorsComponent {
       //   // [text of msg1 ]
 
       errorMessages = Object.keys(this.errors)
-        .map(k => control.hasError(k) ? (<any> this.errors)[k] : null)
+        .map(k => control.hasError(k) ? (<any>this.errors)[k] : null)
         .filter(error => !!error);
     }
     return errorMessages.pop();

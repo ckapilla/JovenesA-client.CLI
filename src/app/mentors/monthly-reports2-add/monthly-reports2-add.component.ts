@@ -76,7 +76,6 @@ export class MonthlyReports2AddComponent
         this.errorMessage = '';
         this.successMessage = '';
         this.isSubmitted = false;
-        this.studentName = this.session.getStudentInContextName();
     }
 
     ngOnInit() {
@@ -155,7 +154,8 @@ export class MonthlyReports2AddComponent
                     console.log(this.successMessage = <any>student);
                     // this.isSubmitted = true;
                     this.isLoading = false;
-                    const target = '/mentors/monthly-reports/' + this.mentorReport2.mentorId; // + '/' + this.mentorReport.studentId;
+                    // don't need to provide params, StudentGuid service will do the job
+                    const target = '/mentors';
                     console.log('after call to addMentorReport; navigating to ' + target);
                     this.router.navigateByUrl(target);
                 },
@@ -169,7 +169,8 @@ export class MonthlyReports2AddComponent
     }
 
     onCancel() {
-        const target = '/mentors/monthly-reports/' + this.mentorReport2.mentorId; // + '/' + this.studentId;
+        // don't need to provide params, StudentGuid service will do the job
+        const target = '/mentors';
         console.log('navigating to ' + target);
         this.router.navigateByUrl(target);
     }
@@ -179,7 +180,7 @@ export class MonthlyReports2AddComponent
         // tslint:disable-next-line: triple-equals
         if ('' + control.value == '0') {// can be either string or number
             console.log('validateMonth failed');
-            return { validateMonth: true }
+            return { validateMonth: true };
         } else {
             return null;
         }

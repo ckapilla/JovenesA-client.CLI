@@ -168,7 +168,8 @@ export class MonthlyReports2EditComponent
           console.log(this.successMessage = <any>student);
 
           this.isLoading = false;
-          const target = '/mentors/monthly-reports/' + this.mentorReport2.mentorId; // + '/' + this.mentorReport.studentId;
+          // don't need to provide params, StudentGuid service will do the job
+          const target = '/mentors';
           console.log('after call to editMentorReport; navigating to ' + target);
           this.router.navigateByUrl(target);
         },
@@ -182,7 +183,8 @@ export class MonthlyReports2EditComponent
   }
 
   onCancel() {
-    const target = '/mentors/monthly-reports/' + this.mentorReport2.mentorId; // + '/' + this.studentId;
+    // don't need to provide params, StudentGuid service will do the job
+    const target = '/mentors';
     console.log('navigating to ' + target);
     this.router.navigateByUrl(target);
   }

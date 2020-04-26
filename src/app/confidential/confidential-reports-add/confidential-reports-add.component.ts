@@ -45,7 +45,7 @@ export class ConfidentialReportsAddComponent
         console.log('Hi from MonthlyReportsAddComponent');
 
         this.myForm = _fb.group({
-            lastContactYearSelector: ['2019', Validators.required],
+            lastContactYearSelector: ['2020', Validators.required],
             lastContactMonthSelector: ['0', { validators: [this.validateMonth], updateOn: 'change' }],
             // use bogus integer value so change detection works:
             inputEmoji: [666, { validators: [Validators.required, this.validateEmojis], updateOn: 'change' }],
@@ -145,7 +145,7 @@ export class ConfidentialReportsAddComponent
                     console.log(this.successMessage = <any>student);
                     this.isSubmitted = true;
                     this.isLoading = false;
-                    const target = '/mentors/monthly-reports/' + this.confidentialReport.adminId; // + '/' + this.confidentialReportId.studentId;
+                    const target = '/confidential';
                     console.log('after call to addMentorReport; navigating to ' + target);
                     this.router.navigateByUrl(target);
                 },
@@ -159,7 +159,7 @@ export class ConfidentialReportsAddComponent
     }
 
     onCancel() {
-        const target = '/mentors/monthly-reports/' + this.confidentialReport.adminId; // + '/' + this.studentId;
+        const target = '/confidential';
         console.log('navigating to ' + target);
         this.router.navigateByUrl(target);
     }

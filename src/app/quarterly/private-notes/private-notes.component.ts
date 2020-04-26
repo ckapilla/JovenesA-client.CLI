@@ -66,9 +66,8 @@ export class PrivateNotesComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnDestroy() {
     // console.log('{{{{{{{{{{{{{PN ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
-    // this.studentSelected.unsubscribe();
     this.subscription.unsubscribe();
-    // this.subscription.unsubscribe();
+
     console.log(' after unsubscribe ' + this.studentSelected.getInternalSubject().observers.length);
   }
 

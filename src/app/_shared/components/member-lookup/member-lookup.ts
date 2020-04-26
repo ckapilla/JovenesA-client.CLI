@@ -58,7 +58,7 @@ export class MemberLookupComponent implements OnInit, OnDestroy {
     // console.log('{{{{{{{{{{{{{JA ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
     // this.memberSelected.unsubscribe();
     this.subscription.unsubscribe();
-    // this.subscription.unsubscribe();
+
     console.log(' after unsubscribe ' + this.memberSelected.getInternalSubject().observers.length);
   }
 
@@ -162,6 +162,11 @@ export class MemberLookupComponent implements OnInit, OnDestroy {
 
   gotoMemberList() {
     const link = 'admins/members/memberList';
+    this.router.navigateByUrl(link);
+  }
+
+  gotoCreateNewMember() {
+    const link = 'admins/members/createNewMember';
     this.router.navigateByUrl(link);
   }
 

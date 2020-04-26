@@ -45,7 +45,7 @@ export class GradesListComponent implements OnInit {
 
     const today = new Date();
     this.selectedYear = '2020'; // '' + today.getFullYear(); //
-    this.selectedMonth = '1'; //  + today.getMonth() + 1;// '5';
+    this.selectedMonth = '3'; //  + today.getMonth() + 1;// '5';
 
     this.isLoading = false;
   }

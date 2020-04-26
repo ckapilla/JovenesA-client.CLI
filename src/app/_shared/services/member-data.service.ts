@@ -103,6 +103,19 @@ export class MemberDataService extends BaseDataService {
     return this.http.put(url, body, { headers: headers });
   }
 
+  public addMember(member: Member): Observable<Member> {
+
+    const url = this.WebApiPrefix + 'members';
+
+    let body = JSON.stringify({ member });
+    // strip outer 'member' name
+    const x = JSON.parse(body);
+    body = JSON.stringify(x.member);
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    console.log('post new member with url ' + url);
+    return this.http.post(url, body, { headers: headers });
+  }
+
   public addNewSponsorGroupMember(groupMember: SponsorGroupMember): Observable<SponsorGroupMember> {
     const url = this.WebApiPrefix + 'sponsor_groups/members';
     console.log(groupMember);

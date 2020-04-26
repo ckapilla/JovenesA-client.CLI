@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FollowUpEvent } from 'src/app/_shared/models/follow-up-event';
 import { FollowUpDataService } from 'src/app/_shared/services/follow-up-data.service';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
@@ -177,16 +177,10 @@ export class FollowUpRequestsAddComponent implements OnInit {
   }
 
   navigateBackInContext() {
-    const target = '/mentors/follow-up-requests';
-    console.log('after Submit or Cancel navigating to ' + target);
-
-    const navigationExtras: NavigationExtras = {
-      // queryParams: { id: 'id' + this.followUpRequest.followUpRequestId,
-      //                 summary: this.savedFollowUpStatusId
-      //               }
-    };
-
-    this.router.navigate([target], navigationExtras);
+    // don't need to provide params, StudentGuid service will do the job
+    const target = '/mentors';
+    console.log('navigating to ' + target);
+    this.router.navigateByUrl(target);
   }
 
   public hasChanges() {

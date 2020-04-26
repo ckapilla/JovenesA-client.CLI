@@ -45,9 +45,8 @@ export class FollowUpRequestsComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy() {
     // console.log('{{{{{{{{{{{{{Assistance ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
-    // this.studentSelected.unsubscribe();
     this.subscription.unsubscribe();
-    // this.subscription.unsubscribe();
+
     console.log(' after unsubscribe ' + this.studentSelected.getInternalSubject().observers.length);
   }
 

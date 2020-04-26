@@ -59,10 +59,8 @@ export class ConfidentialReportsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // console.log('{{{{{{{{{{{{{MR ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
-    // this.studentSelected.unsubscribe();
+    console.log('{{{{{{{{{{{{{MR ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
     this.subscription.unsubscribe();
-    // this.subscription.unsubscribe();
     console.log(' after unsubscribe ' + this.studentSelected.getInternalSubject().observers.length);
   }
 
@@ -108,6 +106,7 @@ export class ConfidentialReportsComponent implements OnInit, OnDestroy {
 
   confidentialReportAdd() {
     console.log('in confidential-reports: monthlyReportAdd, ready to navigate');
+    console.log(this.studentGUId);
     if (this.studentGUId !== null) {
       const link = ['/confidential/confidential-reports-add', { adminId: this.adminId, studentGUId: this.studentGUId }];
       console.log('navigating to ' + JSON.stringify(link));

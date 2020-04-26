@@ -59,9 +59,8 @@ export class MonthlyReports2Component implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     // console.log('{{{{{{{{{{{{{MR ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
-    // this.studentSelected.unsubscribe();
     this.subscription.unsubscribe();
-    // this.subscription.unsubscribe();
+
     console.log(' after unsubscribe ' + this.studentSelected.getInternalSubject().observers.length);
   }
 

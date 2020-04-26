@@ -70,9 +70,8 @@ export class JaCommentsComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnDestroy() {
     // console.log('{{{{{{{{{{{{{JA ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
-    // this.studentSelected.unsubscribe();
     this.subscription.unsubscribe();
-    // this.subscription.unsubscribe();
+
     console.log(' after unsubscribe ' + this.studentSelected.getInternalSubject().observers.length);
   }
 

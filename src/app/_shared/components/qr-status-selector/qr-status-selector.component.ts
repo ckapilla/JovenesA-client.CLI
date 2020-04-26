@@ -39,9 +39,8 @@ export class QrStatusSelectorComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     // console.log('{{{{{{{{{{{{{status selector ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
-    // this.studentSelected.unsubscribe();
     this.subscription.unsubscribe();
-    // this.subscription.unsubscribe();
+
     console.log(' after unsubscribe' + this.studentSelected.getInternalSubject().observers.length);
   }
 

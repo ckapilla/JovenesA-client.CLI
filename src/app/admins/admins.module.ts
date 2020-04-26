@@ -4,6 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppSharedModule } from '../_shared/_shared.module';
 // import { SelfReportsUpdatesComponent } from '../students/self-reports-updates/self-reports-updates.component';
 import { AdminsHomeComponent } from './admins-home/admins-home.component';
+import { AdminsAddMemberComponent } from './admins-members/admins-add-member/admins-add-member.component';
 import { AdminsMemberListComponent } from './admins-members/admins-member-list/admins-member-list.component';
 import { AdminsMemberSearchComponent } from './admins-members/admins-member-search/admins-member-search.component';
 import { AdminsMemberComponent } from './admins-members/admins-member/admins-member.component';
@@ -45,6 +46,7 @@ import { StudentReportsStatusCountsComponent } from './ssr-status-counts/ssr-sta
         AdminsHomeComponent,
         AdminsMemberListComponent,
         AdminsMemberComponent,
+        AdminsAddMemberComponent,
         AdminsStudentListComponent,
         AdminsStudentComponent,
         AdminsStudentMRsComponent,

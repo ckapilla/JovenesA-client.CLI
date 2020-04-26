@@ -41,6 +41,7 @@ export class Member {
     public careerBackground?: string,
     public otherRelevantExperience?: string,
     public comments?: string,
+    public personGUId?: string,
     public photoUrl?: string,
 
     public studentRecordGUId?: string,

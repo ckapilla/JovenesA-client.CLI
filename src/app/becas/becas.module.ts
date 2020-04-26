@@ -6,7 +6,6 @@ import { BecasHomeComponent } from './becas-home/becas-home.component';
 import { BecasNavbarComponent } from './becas-navbar/becas-navbar.component';
 import { BecasRoutingModule } from './becas-routing.module';
 import { BecasComponent } from './becas.component';
-import { GradeRowComponent } from './grade-row/grade-row.component';
 import { GradesEditComponent } from './grades-edit/grades-edit.component';
 import { GradesListComponent } from './grades-list/grades-list.component';
 @NgModule({
@@ -15,8 +14,7 @@ import { GradesListComponent } from './grades-list/grades-list.component';
     BecasComponent,
     GradesListComponent,
     GradesEditComponent,
-    BecasHomeComponent,
-    GradeRowComponent,
+    BecasHomeComponent
   ],
   imports: [
     CommonModule,
