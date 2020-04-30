@@ -2,7 +2,7 @@ export class ConfidentialReportRPT {
 
   constructor(
     public confidentialReportId?: number,
-    public confidentialId?: number,
+    public adminId?: number,
     public studentId?: number,
     public confidentialName?: string,
     public studentName?: string,
