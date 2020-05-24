@@ -402,6 +402,8 @@ export class AdminsStudentComponent implements OnInit {
       this.myForm.enable();
       this.showEditLink = true;
     }
+    // needs to always be read only
+    this.myForm.controls.universityGradeMonthId.disable();
   }
   onDateSelect() {
     alert('data selected');

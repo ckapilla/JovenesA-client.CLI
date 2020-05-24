@@ -7,7 +7,7 @@
     <span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
     <span *ngIf="successMessage" class="alert alert-success">{{successMessage}}</span>
 
-    <div>
+    <!-- <div>
 
       <label for="yearSelector">&nbsp;As Of Year/Month:</label>
       <select name="yearSelector"
@@ -23,7 +23,7 @@
         <option value="0">[Select]</option>
         <option *ngFor="let month of months" [value]="month.value">{{month.label}}</option>
       </select>
-    </div>
+    </div> -->
     <div [ngSwitch]="isLoading">
       <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
         <app-loading-container>

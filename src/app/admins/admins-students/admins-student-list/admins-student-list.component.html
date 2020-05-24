@@ -10,9 +10,18 @@
 
     <div>
 
+      <label for="ActiveStatusSelector">Active Status:</label>
+      <select name="ActiveStatusSelector" [(ngModel)]="selectedActiveStatus"
+              (change)="setSelectedActiveStatus($event.target.value)">
+        <option value="-1">--</option>
+        <option value="1">All Active</option>
+      </select>
+
+
       <label for="StatusSelector">Status:</label>
-      <select name="StatusSelector" [(ngModel)]="selectedStatus" (change)="setSelectedStatus($event.target.value)">
-        <option value="0">[All]</option>
+      <select name="StatusSelector" [(ngModel)]="selectedStatus" (change)="setSelectedStatus($event.target.value)"
+              [disabled]="selectedActiveStatus == '1'">
+        <option value="-1">--</option>
         <option *ngFor="let status of studentStatuses" [value]="status.value">{{status.label}}</option>
       </select>
 
@@ -43,11 +52,12 @@
               <!--<td>Id</td>-->
               <th></th>
               <th></th>
+
               <th app-sortable-column="studentName" sort-direction="asc" (onSortColumn)="onSortColumn($event)">Student
               </th>
-              <th app-sortable-column="status" (onSortColumn)="onSortColumn($event)">Status</th>
               <th app-sortable-column="yearJoinedJa" (onSortColumn)="onSortColumn($event)">Year<br /> Joined</th>
               <th app-sortable-column="joinedFrom" (onSortColumn)="onSortColumn($event)">Joined<br /> From</th>
+              <th app-sortable-column="status" (onSortColumn)="onSortColumn($event)">Status</th>
               <th app-sortable-column="gradYear" (onSortColumn)="onSortColumn($event)">Grad<br /> Year/Mo</th>
               <th app-sortable-column="credentialYear" (onSortColumn)="onSortColumn($event)">Credential<br /> Year/Mo
               </th>
@@ -75,15 +85,17 @@
               <td (click)='gotoStudent(student.studentGUId, student.studentName)' class='link'>
                 {{ student.studentName }}
               </td>
-              <td class='centered'>
-                {{ student.status }}
-              </td>
+
               <td class='centered'>
                 {{ student.yearJoinedJa}}
               </td>
               <td class='centered'>
                 {{ student.joinedFrom}}
               </td>
+              <td class='centered'>
+                {{ student.status }}
+              </td>
+
               <td class='centered'>
                 {{ student.gradYear}}/{{ student.gradMonth}}
               </td>

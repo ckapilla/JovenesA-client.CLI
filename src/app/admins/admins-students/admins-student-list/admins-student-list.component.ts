@@ -18,7 +18,7 @@ import { SessionService } from '../../../_shared/services/session.service';
 })
 
 export class AdminsStudentListComponent implements OnInit {
-
+  selectedActiveStatus: string;
   selectedStatus: string;
   selectedYearJoined: string;
   selectedGradYear: string;
@@ -46,7 +46,8 @@ export class AdminsStudentListComponent implements OnInit {
 
     console.log('Hi from student List Ctrl controller function');
 
-    this.selectedStatus = this.studentStatuses[2].value; // Current
+    this.selectedActiveStatus = '-1';
+    this.selectedStatus = this.studentStatuses[2].value;
     this.selectedYearJoined = '0'; //  + this.session.getSelectedYearJoined(); // this.joinedYears[0].value;
     this.selectedGradYear = this.session.getSelectedGradYear(); // this.gradYears[0].value; // All
 
@@ -73,11 +74,24 @@ export class AdminsStudentListComponent implements OnInit {
   // }
   // can't rely on two way binding to have updated the selected values
   // in time so we do it manually below
+
+  setSelectedActiveStatus(activeStatus: string) {
+    console.log('selected activeStatus: ' + activeStatus);
+    this.selectedActiveStatus = activeStatus;
+    if (activeStatus === '1') {
+      this.selectedStatus = '-1';
+    } else {
+      this.selectedStatus = this.studentStatuses[2].value; // current
+    }
+    this.fetchFilteredData();
+  }
   setSelectedStatus(status: string) {
-    // console.log('selected status: ' + status);
+    console.log('selected status: ' + status);
     this.selectedStatus = status;
     this.fetchFilteredData();
   }
+
+
   setSelectedGradYear(year: string) {
     console.log('setting SelectedGradYear: ' + year);
     this.session.setSelectedGradYear(year);
@@ -98,7 +112,7 @@ export class AdminsStudentListComponent implements OnInit {
     //        'gradyear: ' + this.selectedGradYear
     //        );
     this.isLoading = true;
-    this.studentData.getStudentDTOsByStatusAndYear(this.selectedStatus, this.selectedYearJoined, this.selectedGradYear)
+    this.studentData.getStudentDTOsByStatusAndYear(this.selectedActiveStatus, this.selectedStatus, this.selectedYearJoined, this.selectedGradYear)
       .subscribe(
         data => { this.studentDTOs = data.map(this.getNumericStatus); },
         err => { this.errorMessage = err; },
