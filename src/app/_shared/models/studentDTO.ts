@@ -8,6 +8,7 @@ export class StudentDTO {
     public gender: string, // Gender
     public status: string, // Status
     public esStatus: string, // Status
+    public activeStatus: number,
     public yearJoinedJa?: number, // YearJoinedJA
     public statusId?: number, // StatusID
     public gradYear?: number, // GradYear

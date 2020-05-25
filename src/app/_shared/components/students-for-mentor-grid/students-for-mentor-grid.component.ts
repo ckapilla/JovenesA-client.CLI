@@ -100,13 +100,15 @@ export class StudentsForMentorGridComponent implements OnInit, OnDestroy {
     console.log('student selected studentGUId: ' + studentGUId + 'idx: ' + idx);
     const studentName: string = this.students[idx].studentName;
     this.studentGUId = studentGUId;
-    this.setRowClasses(this.students[idx].studentGUId);
+    this.setRowClasses(this.students[idx].studentGUId, this.students[idx].activeStatus);
     this.studentSelected.notifyNewStudentGUId(studentGUId);
   }
 
-  public setRowClasses(studentGUId: string) {
+  // called from code (above) and from template
+  public setRowClasses(studentGUId: string, activeStatus: number) {
     const classes = {
       'table-success': studentGUId === this.studentGUId,
+      'dimmed': activeStatus === 0,
       'student-row': true,
       'clickable': true
     };

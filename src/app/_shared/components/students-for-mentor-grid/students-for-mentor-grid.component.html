@@ -15,7 +15,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let item of students, let i = index"
-              [ngClass]="setRowClasses(item.studentGUId)"
+              [ngClass]="setRowClasses(item.studentGUId, item.activeStatus)"
               id="item.studentId"
               (click)='selectStudent(item.studentGUId, i)'>
             <td>{{item.studentName}}</td>
