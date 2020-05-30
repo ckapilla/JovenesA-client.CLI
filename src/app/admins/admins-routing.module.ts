@@ -17,8 +17,6 @@ import { FollowUpRequestsComponent } from './follow-up-requests/follow-up-reques
 import { MentorReportsSummaryTrackingComponent } from './mr-summary-tracking/mr-summary-tracking.component';
 import { MentorReportSummaryUpdatesComponent } from './mr-summary-updates/mr-summary-updates.component';
 import { ReportsComponent } from './reports/reports.component';
-import { SelfReportTrackingContainerComponent } from './self-report-tracking-container/self-report-tracking-container.component';
-// import { SelfReportTrackingComponent } from './self-report-tracking/self-report-tracking.component';
 import { SponsorGroupComponent } from './sponsor-group/sponsor-group.component';
 import { SponsorGroupsComponent } from './sponsor-groups/sponsor-groups.component';
 
@@ -106,10 +104,7 @@ const adminRoutes: Routes = [
         path: 'follow-up-requests',
         component: FollowUpRequestsComponent
       },
-      {
-        path: 'self-reports/tracking',
-        component: SelfReportTrackingContainerComponent
-      },
+
       // {
       //   path: 'self-reports/tracking/:id/:year/:period/:summaryStatus/:highlight',
       //   component: SelfReportTrackingComponent

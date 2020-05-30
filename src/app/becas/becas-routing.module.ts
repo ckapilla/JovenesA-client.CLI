@@ -4,7 +4,7 @@ import { CanActivateViaAdminAuthGuard, ConfirmDeactivateGradesEditGuard } from '
 import { BecasComponent } from './becas.component';
 import { GradesEditComponent } from './grades-edit/grades-edit.component';
 import { GradesListComponent } from './grades-list/grades-list.component';
-
+import { SelfReportTrackingContainerComponent } from './self-report-tracking-container/self-report-tracking-container.component';
 
 const gradesRoutes: Routes = [
   {
@@ -26,6 +26,10 @@ const gradesRoutes: Routes = [
         component: GradesEditComponent,
         canDeactivate: [ConfirmDeactivateGradesEditGuard]
       },
+      {
+        path: 'self-reports/tracking',
+        component: SelfReportTrackingContainerComponent
+      }
     ]
   }
 ];

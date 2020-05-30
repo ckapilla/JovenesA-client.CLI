@@ -27,9 +27,6 @@ import { MentorReportsSubmittedComponent } from './reports/mentor-reports-submit
 import { ReportsComponent } from './reports/reports.component';
 import { ServerEnvironmentComponent } from './reports/server-environment/server-environment.component';
 import { SponsorSummariesSentComponent } from './reports/sponsor-summaries-sent/sponsor-summaries-sent.component';
-import { SelfReportMissingComponent } from './self-report-missing/self-report-missing.component';
-import { SelfReportTrackingContainerComponent } from './self-report-tracking-container/self-report-tracking-container.component';
-import { SelfReportTrackingComponent } from './self-report-tracking/self-report-tracking.component';
 import { SponsorGroupComponent } from './sponsor-group/sponsor-group.component';
 import { SponsorGroupsComponent } from './sponsor-groups/sponsor-groups.component';
 import { StudentReportsStatusCountsComponent } from './ssr-status-counts/ssr-status-counts.component';
@@ -60,21 +57,11 @@ import { StudentReportsStatusCountsComponent } from './ssr-status-counts/ssr-sta
         FollowUpRequestsComponent,
         FollowUpRequestsAddComponent,
         FollowUpEventsAddComponent,
-        SelfReportTrackingComponent,
-        SelfReportMissingComponent,
-        SelfReportTrackingContainerComponent,
         // SelfReportsUpdatesComponent,
         SponsorGroupsComponent,
         SponsorGroupComponent,
         // FollowUpEventsComponent
-
-
         ReportsComponent,
-        // MentorReportsComponent,
-        // ReportsMentorReports2Component,
-        // StudentLettersComponent,
-        // StudentLetters2Component,
-        // ReportsSponsorSummariesStatusComponent,
         SponsorSummariesSentComponent,
         MentorReportsSubmittedComponent,
         AdminsStudentSearchComponent,
@@ -86,11 +73,7 @@ import { StudentReportsStatusCountsComponent } from './ssr-status-counts/ssr-sta
         AdminsStudentMRsComponent,
         SponsorGroupsComponent
     ],
-    entryComponents: [ // MentorReportsComponent,
-        // Mentor2Component,
-        // StudentLettersComponent,
-        // StudentLetters2Component,
-        // SponsorSummariesStatusComponent,
+    entryComponents: [
         SponsorSummariesSentComponent,
         ServerEnvironmentComponent,
         MentorReportsSubmittedComponent]
