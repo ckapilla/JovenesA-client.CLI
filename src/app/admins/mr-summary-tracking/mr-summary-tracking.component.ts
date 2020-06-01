@@ -8,7 +8,7 @@ import { SessionService } from '../../_shared/services/session.service';
 
 
 @Component({
-  selector: 'app-summary-tracking',
+
   templateUrl: 'mr-summary-tracking.component.html',
   styleUrls: ['mr-summary-tracking.component.css']
 })

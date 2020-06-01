@@ -118,5 +118,8 @@
       }
     }
   },
-  "defaultProject": "ja"
+  "defaultProject": "ja",
+  "cli": {
+    "analytics": false
+  }
 }
