@@ -14,6 +14,7 @@ import { AdminsComponent } from './admins.component';
 import { FollowUpEventsAddComponent } from './follow-up-events-add/follow-up-events-add.component';
 import { FollowUpRequestsAddComponent } from './follow-up-requests-add/follow-up-requests-add.component';
 import { FollowUpRequestsComponent } from './follow-up-requests/follow-up-requests.component';
+import { MentorReportsContainerComponent } from './mr-container/mr-container.component';
 import { MentorReportsSummaryTrackingComponent } from './mr-summary-tracking/mr-summary-tracking.component';
 import { MentorReportSummaryUpdatesComponent } from './mr-summary-updates/mr-summary-updates.component';
 import { ReportsComponent } from './reports/reports.component';
@@ -81,10 +82,10 @@ const adminRoutes: Routes = [
         path: 'students/student/mentorReports/:guid/:studentName',
         component: AdminsStudentMRsComponent
       },
-      // {
-      //   path: 'students/grade-history/:id',
-      //   component: AdminsGradeHistoryComponent
-      // },
+      {
+        path: 'mentor-reports',
+        component: MentorReportsContainerComponent
+      },
       {
         path: 'mentor-reports/summary-tracking/:id/:year/:month/:summaryStatus/:highlight',
         component: MentorReportsSummaryTrackingComponent

@@ -52,3 +52,7 @@ package-lock.json
 # System Files
 .DS_Store
 Thumbs.db
+
+# archives
+/*.7z
+/*.zip

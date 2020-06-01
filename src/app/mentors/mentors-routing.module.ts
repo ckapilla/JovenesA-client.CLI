@@ -4,7 +4,7 @@ import { CanActivateViaMentorAuthGuard, ConfirmDeactivateMonthlyReportAddGuard }
 import { FollowUpRequestsAddComponent } from './follow-up-requests-add/follow-up-requests-add.component';
 import { FollowUpRequestsComponent } from './follow-up-requests/follow-up-requests.component';
 import { ForumComponent } from './forum/forum.component';
-import { MentorsHomeComponent } from './mentors-container/mentors-home.component';
+import { MentorsContainerComponent } from './mentors-container/mentors-container.component';
 import { MentorsProfileComponent } from './mentors-profile/mentors-profile.component';
 import { MentorsComponent } from './mentors.component';
 import { MonthlyReports2AddComponent } from './monthly-reports2-add/monthly-reports2-add.component';
@@ -20,11 +20,11 @@ const mentorRoutes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        component: MentorsHomeComponent
+        component: MentorsContainerComponent
       },
       {
         path: 'becas-home',
-        component: MentorsHomeComponent
+        component: MentorsContainerComponent
       },
       {
         path: 'profile/:id',

@@ -14,6 +14,7 @@ import { MemberHeaderComponent } from './components/member-header/member-header.
 import { MemberLookupComponent } from './components/member-lookup/member-lookup';
 import { MemberPhotoComponent } from './components/member-photo/member-photo.component';
 import { MemberSelectorComponent } from './components/member-selector/member-selector.component';
+import { MentorLookupComponent } from './components/mentor-lookup/memtor-lookup';
 import { MentorReports2ListComponent } from './components/mentor-reports2-list/mentor-reports2-list.component';
 import { MentorSelectorComponent } from './components/mentor-selector/mentor-selector.component';
 import { MentorsForStudentListComponent } from './components/mentors-for-student-list/mentors-for-student-list.component';
@@ -94,6 +95,7 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     QrStatusSelectorComponent,
     PersonSharedComponent,
     MemberLookupComponent,
+    MentorLookupComponent,
     MemberHeaderComponent,
     MemberHeaderDetailsComponent,
     StudentHeaderComponent,
@@ -137,6 +139,7 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     QrStatusSelectorComponent,
     PersonSharedComponent,
     MemberLookupComponent,
+    MentorLookupComponent,
     MemberHeaderComponent,
     MemberHeaderDetailsComponent,
     ConfidentialReportsListComponent,
