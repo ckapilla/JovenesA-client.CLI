@@ -89,26 +89,34 @@ export class MonthlyReports2AddComponent
         console.log('mentorGUId ' + this.mentorReport2.mentorGUId);
         console.log('studentId ' + this.mentorReport2.studentId);
         console.log('studentGUId ' + this.mentorReport2.studentGUId);
-        // SQL Server will adjust the time to UTC by adding TimezoneOffset
-        // we want to store local time so we adjust for that.
-        const now = new Date();
-        this.mentorReport2.reportDateTime = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
-        console.log('reportDateTime = ' + this.mentorReport2.reportDateTime);
-        // this.mentorReport.lastContactYear = (Number)(this.contactYears[this.contactYears.length - 1].value);
-        this.mentorReport2.lastContactYear = 2020;
-        this.mentorReport2.lastContactMonth = 0;
 
-        this.myForm.valueChanges.subscribe(
-            (value: any) => {
-                console.log('valueChanges fired for form with values');
-                console.log(JSON.stringify(value));
-                this.errorMessage = '';
-                this.successMessage = '';
-                this.isSubmitted = false;
-                // console.log('form change event');
-                this.checkFormControlsAreValid(false);
-            }
-        );
+        if (this.mentorReport2.mentorGUId === 'undefined' || this.mentorReport2.mentorGUId === 'null') {  // strange but needed since came from string parameter
+            console.log('null or undefined value for mentorGUId');
+            alert('Sorry, you must log out and log back in again before adding a new monthly report');
+            this.onCancel();
+        } else {
+            // SQL Server will adjust the time to UTC by adding TimezoneOffset
+            // we want to store local time so we adjust for that.
+            const now = new Date();
+            this.mentorReport2.reportDateTime = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
+            console.log('reportDateTime = ' + this.mentorReport2.reportDateTime);
+            // this.mentorReport.lastContactYear = (Number)(this.contactYears[this.contactYears.length - 1].value);
+            this.mentorReport2.lastContactYear = 2020;
+            this.mentorReport2.lastContactMonth = 0;
+
+            this.myForm.valueChanges.subscribe(
+                (value: any) => {
+                    console.log('valueChanges fired for form with values');
+                    console.log(JSON.stringify(value));
+                    this.errorMessage = '';
+                    this.successMessage = '';
+                    this.isSubmitted = false;
+                    // console.log('form change event');
+                    this.checkFormControlsAreValid(false);
+                }
+            );
+        }
+
     }
     checkFormControlsAreValid(bSubmitting: boolean): boolean {
         console.log('checking for valid form controls');

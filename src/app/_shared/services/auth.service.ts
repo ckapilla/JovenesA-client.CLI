@@ -215,8 +215,8 @@ export class AuthService {
       this.session.setStudentGUId((<any>app_metadata)['studentRecordGUId']);
       console.log('studentRecordGUId: ' + this.session.getStudentGUId());
 
-      //this.session.setUserGUId((<any>app_metadata)['memberGUId']);
       this.session.setUserGUId((<any>userProfile)['memberGUId']);
+      // for testing abort: this.session.setUserGUId(null);
       console.log('memberGUId: ' + this.session.getUserGUId());
 
       this.session.setUserId((<any>userProfile)['user_id'].substr('auth0|'.length));
