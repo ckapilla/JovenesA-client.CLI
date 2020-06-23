@@ -97,7 +97,7 @@ export class MonthlyReports2EditComponent
         () => {
           this.isLoading = false;
           console.log('### after retreiving, set form controls to retreived mentorReport2-- reportId to ' + this.mentorReportId);
-          // mentorId and studentId do not have corresponding controls
+          // mentorId, mentorGUId and studentId do not have corresponding controls
           this.reportIdCtl.setValue(this.mentorReportId);
           this.lastYearCtl.setValue(this.mentorReport2.lastContactYear);
           this.lastMonthCtl.setValue(this.mentorReport2.lastContactMonth);
@@ -153,7 +153,7 @@ export class MonthlyReports2EditComponent
     }
 
     console.log('###before submitting update model with form control values');
-    // mentorId and studentId do not have corresponding controls
+    // mentorId, mentorGUId and studentId do not have corresponding controls
     this.mentorReport2.lastContactYear = this.lastYearCtl.value;
     this.mentorReport2.lastContactMonth = this.lastMonthCtl.value;
     this.mentorReport2.emoji = this.emojiCtl.value;

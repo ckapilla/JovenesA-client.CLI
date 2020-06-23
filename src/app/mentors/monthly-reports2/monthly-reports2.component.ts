@@ -20,6 +20,7 @@ export class MonthlyReports2Component implements OnInit, OnDestroy {
   studentId: number;
   studentGUId: string;
   mentorId: number;
+  mentorGUId: string;
   mentorReportId: number;
   mentorReports2: Array<MentorReport2RPT>;
   smileys: Array<string>;
@@ -44,6 +45,8 @@ export class MonthlyReports2Component implements OnInit, OnDestroy {
     // this.mentorId = this.currRoute.snapshot.params['mentorId'];
     this.mentorId = this.session.getUserId();
     console.log('mentorId ' + this.mentorId);
+    this.mentorGUId = this.session.getUserGUId();
+    console.log('mentorId ' + this.mentorGUId);
 
     // // may be undefined at this point:
     // console.log('studentId ' + this.studentId);
@@ -112,7 +115,7 @@ export class MonthlyReports2Component implements OnInit, OnDestroy {
       if (this.studentGUId !== null) {
         // const target = '/mentors/monthly-reports-add';
         // this.router.navigate([target, { mentorId: this.mentorId, studentGUId: this.studentGUId }]);
-        const link = ['/mentors/monthly-reports-add', { mentorId: this.mentorId, studentGUId: this.studentGUId }];
+        const link = ['/mentors/monthly-reports-add', { mentorId: this.mentorId, mentorGUId: this.mentorGUId, studentGUId: this.studentGUId }];
         console.log('navigating to ' + JSON.stringify(link));
         this.router.navigate(link);
       }

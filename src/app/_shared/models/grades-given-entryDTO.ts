@@ -16,6 +16,7 @@ export class GradesGivenEntryDTO {
     public becaApproved?: number,
     public gradesTurnedInException?: string,
     public gradePointAvgException?: string,
-
+    public gradesTurnedInStatus?: string,
+    public gradePointAvgStatus?: string
   ) { }
 }

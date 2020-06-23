@@ -82,9 +82,11 @@ export class MonthlyReports2AddComponent
         console.log('monthlyReportsAdd ngOnInit');
 
         this.mentorReport2.mentorId = this.currRoute.snapshot.params['mentorId'];
+        this.mentorReport2.mentorGUId = this.currRoute.snapshot.params['mentorGUId'];
         this.mentorReport2.studentId = 0; // this.currRoute.snapshot.params['studentId'];
         this.mentorReport2.studentGUId = this.currRoute.snapshot.params['studentGUId'];
         console.log('mentorId ' + this.mentorReport2.mentorId);
+        console.log('mentorGUId ' + this.mentorReport2.mentorGUId);
         console.log('studentId ' + this.mentorReport2.studentId);
         console.log('studentGUId ' + this.mentorReport2.studentGUId);
         // SQL Server will adjust the time to UTC by adding TimezoneOffset

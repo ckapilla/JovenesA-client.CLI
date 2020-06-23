@@ -18,7 +18,7 @@ import { SessionService } from '../../../_shared/services/session.service';
 export class AdminsMemberListComponent implements OnInit {
   memberTypes: SELECTITEM[];
   _selectedType: SELECTITEM;
-  memberStatuses: SELECTITEM[];
+  roleStatuses: SELECTITEM[];
   _selectedStatus: SELECTITEM;
   studentStatuses: SELECTITEM[];
   _selectedStudentStatus: SELECTITEM;
@@ -36,7 +36,7 @@ export class AdminsMemberListComponent implements OnInit {
   ) {
 
     console.log('Hi from member List Ctrl controller function');
-    this.memberStatuses = constants.memberStatuses;
+    this.roleStatuses = constants.roleStatuses;
     this.memberTypes = constants.memberTypes;
     this.studentStatuses = constants.studentStatuses;
     this.isLoading = false;
@@ -80,8 +80,8 @@ export class AdminsMemberListComponent implements OnInit {
       console.log('setting MemberType to saved ' + memType);
     }
     this._selectedType = this.memberTypes[idx];
-    console.log('statuses[0] = ' + this.memberStatuses[0].value);
-    this._selectedStatus = this.memberStatuses[0];
+    console.log('statuses[0] = ' + this.roleStatuses[0].value);
+    this._selectedStatus = this.roleStatuses[0];
     this._selectedStudentStatus = this.studentStatuses[2];
     this.fetchFilteredData();
   }

@@ -1,6 +1,6 @@
 <div class="card bg-primary">
   <div class="card-header text-white" style="font-size:large">
-    <span>Grade Status for Period</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span>Grade Status for This Month</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   </div>
 
   <div class="card-body bg-white">
@@ -37,18 +37,21 @@
               <th></th>
               <th app-sortable-column="studentName" sort-direction="asc" (onSortColumn)="onSortColumn($event)">Student
               </th>
+              <th app-sortable-column="gradesTurnedInStatus" (onSortColumn)="onSortColumn($event)">Turned-In Status</th>
+              <th app-sortable-column="gradePointAvgStatus" (onSortColumn)="onSortColumn($event)">GPA Status</th>
               <th app-sortable-column="univ" (onSortColumn)="onSortColumn($event)">Univ</th>
               <!-- <th app-sortable-column="academicYear" (onSortColumn)="onSortColumn($event)">YearType</th> -->
               <th app-sortable-column="gradeMonths" (onSortColumn)="onSortColumn($event)">Grade Months</th>
               <!-- <th app-sortable-column="year" (onSortColumn)="onSortColumn($event)">Year</th> -->
               <!-- <th app-sortable-column="periodNumber" (onSortColumn)="onSortColumn($event)">Period</th> -->
-              <th app-sortable-column="gradesGivenDate" (onSortColumn)="onSortColumn($event)">Period End</th>
+              <th app-sortable-column="gradesGivenDate" (onSortColumn)="onSortColumn($event)">Grades Given By</th>
               <th app-sortable-column="gradesDueDate" (onSortColumn)="onSortColumn($event)">Grades Due</th>
               <th app-sortable-column="gradesTurnedInDate" (onSortColumn)="onSortColumn($event)">Grades Turned In</th>
               <th app-sortable-column="gradePointAvg" (onSortColumn)="onSortColumn($event)">GPA</th>
               <th app-sortable-column="gradePointAvgException" (onSortColumn)="onSortColumn($event)">GPA Exception</th>
               <th app-sortable-column="gradesTurnedInException" (onSortColumn)="onSortColumn($event)">Late Exception
               </th>
+
             </tr>
           </thead>
           <tbody>
@@ -59,6 +62,12 @@
 
               <td (click)='gotoStudent(entry.studentGUId, entry.studentName)' class='link'>
                 {{ entry.studentName }}
+              </td>
+              <td>
+                {{ entry.gradesTurnedInStatus }}
+              </td>
+              <td>
+                {{ entry.gradePointAvgStatus }}
               </td>
               <td>
                 {{ entry.univ }}
@@ -96,6 +105,7 @@
               <td>
                 {{ entry.gradePointAvgException | emptyStatus }}
               </td>
+
             </tr>
           </tbody>
         </table>

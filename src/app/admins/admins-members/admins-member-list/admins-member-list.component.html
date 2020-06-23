@@ -15,7 +15,7 @@
       &nbsp;
       <label for="StatusSelector">Member Status:</label>
       <select name="StatusSelector" [(ngModel)]="selectedStatus">
-        <option *ngFor="let status of memberStatuses" [ngValue]="status">{{status.label}}</option>
+        <option *ngFor="let status of roleStatuses" [ngValue]="status">{{status.label}}</option>
       </select>
       &nbsp;
       <label for="StudentStatusSelector">Student Status:</label>

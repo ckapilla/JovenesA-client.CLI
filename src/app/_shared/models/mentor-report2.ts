@@ -18,7 +18,8 @@ export class MentorReport2RPT {
     public originalLanguageId?: number,
     public sponsorRequiredLanguageId?: number,
     public sponsorPreferredLanguageId?: number,
-    public studentGUId?: string
+    public studentGUId?: string,
+    public mentorGUId?: string
   ) {
 
   }

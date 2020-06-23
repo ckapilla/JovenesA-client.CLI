@@ -12,8 +12,8 @@ export class GradeTrackingComponent implements OnInit {
   successMessage: string;
 
   constructor(public router: Router,
-              public session: SessionService
-  ) {  }
+    public session: SessionService
+  ) { }
 
   ngOnInit() {
     this.fetchData();
@@ -21,12 +21,5 @@ export class GradeTrackingComponent implements OnInit {
 
   fetchData() {
     this.isLoading = true;
-    console.log('in fetchData for LatestMentorReports');
-    // this.sqlReports.getLatestMentorReports()
-    //   .subscribe(
-    //     data => {this.latestMentorReports = data;},
-    //     err => console.error('Subscribe error: ' + err),
-    //     () => { console.log('done'); console.log(this.latestMentorReports[0]); this.isLoading = false;}
-    //   );
   }
 }

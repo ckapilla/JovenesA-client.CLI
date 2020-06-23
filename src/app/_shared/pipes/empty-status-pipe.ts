@@ -9,7 +9,7 @@ export class EmptyStatusPipe implements PipeTransform {
     // console.log('TruncateDatePipe has value ' + value);
     let img: string;
     if (value > '') {
-      img = 'Yes';
+      img = value; // .substr(0, 12);
     } else {
       img = '';
     }

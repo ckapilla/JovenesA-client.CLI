@@ -39,17 +39,17 @@ export class SponsorSummariesSentComponent implements OnInit {
   }
 
   fetchData() {
-    console.log('fetchData for SponsorSummarySentCounts');
-    this.isLoading = true;
-    this.sqlReports.getSponsorSummarySentCounts()
-      .subscribe(
-        data => {
-          this.sponsorSummarySentCounts = data;
-          console.log(this.sponsorSummarySentCounts[0]);
-        },
-        err => { this.errorMessage = err; },
-        () => { console.log('done'); this.isLoading = false; }
-      );
+    // console.log('fetchData for SponsorSummarySentCounts');
+    // this.isLoading = true;
+    // this.sqlReports.getSponsorSummarySentCounts()
+    //   .subscribe(
+    //     data => {
+    //       this.sponsorSummarySentCounts = data;
+    //       console.log(this.sponsorSummarySentCounts[0]);
+    //     },
+    //     err => { this.errorMessage = err; },
+    //     () => { console.log('done'); this.isLoading = false; }
+    //   );
   }
 
   public onSortColumn(sortCriteria: SORTCRITERIA) {

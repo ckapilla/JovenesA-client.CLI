@@ -46,8 +46,8 @@ export class SelfReportTrackingComponent implements OnInit, OnChanges {
     this.activeQRPeriods = constants.activeQRperiods;
 
     this.selectedYear = '2020'; // '' + today.getFullYear(); //
-    this.selectedPeriod = '1'; // + today.getPeriod() + 1;// '5';
-    this.selectedYearPeriod = '2020-1';
+    this.selectedPeriod = '2'; // + today.getPeriod() + 1;// '5';
+    this.selectedYearPeriod = constants.selectedYearPeriod;
     this.ssrReviewedStatuses = constants.reviewedStatuses;
 
 

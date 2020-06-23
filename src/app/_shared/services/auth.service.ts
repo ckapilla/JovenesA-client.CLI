@@ -215,17 +215,19 @@ export class AuthService {
       this.session.setStudentGUId((<any>app_metadata)['studentRecordGUId']);
       console.log('studentRecordGUId: ' + this.session.getStudentGUId());
 
-      this.session.setUserGUId((<any>app_metadata)['memberGUId']);
+      //this.session.setUserGUId((<any>app_metadata)['memberGUId']);
+      this.session.setUserGUId((<any>userProfile)['memberGUId']);
       console.log('memberGUId: ' + this.session.getUserGUId());
 
       this.session.setUserId((<any>userProfile)['user_id'].substr('auth0|'.length));
       console.log('userId: ' + this.session.userId);
+
       // tslint:disable-next-line: triple-equals
       if (this.session.getUserId() == 1216) {
         // used to force student status for Chris Kapilla
         this.session.setStudentId(321);
         // this.session.setStudentId(342);
-        console.log('forced studentId: ' + this.session.getStudentId());
+        console.log('forced studentId: for Chris Kapilla' + this.session.getStudentId());
         this.session.setStudentGUId('c29f9ae6-7a89-4269-a6ab-cf1c76bcbaa9');
         // this.session.setStudentGUId('80f92f41-ac1c-49fc-bb84-4cfbab891df3');
         console.log('forced studentRecordGUId: ' + this.session.getStudentGUId());

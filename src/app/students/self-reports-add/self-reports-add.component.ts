@@ -21,9 +21,6 @@ export class SelfReportsAddComponent
     isLoading: boolean;
     submitted: boolean;
 
-    // reportYear: AbstractControl;
-    // reportPeriod: AbstractControl;
-    // Narrative_English: AbstractControl;
     periodYears: SELECTITEM[];
     periodMonths: SELECTITEM[];
     errorMessage: string;
@@ -66,7 +63,7 @@ export class SelfReportsAddComponent
         console.log(this.selfReport.reportDateTime);
 
         this.selfReport.reportYear = 2020;
-        this.selfReport.reportPeriod = 1;
+        this.selfReport.reportPeriod = 2;
         this.selfReport.narrative_English = '';
 
         this.errorMessage = '';
