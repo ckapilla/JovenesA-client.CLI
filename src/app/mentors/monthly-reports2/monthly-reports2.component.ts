@@ -46,7 +46,7 @@ export class MonthlyReports2Component implements OnInit, OnDestroy {
     this.mentorId = this.session.getUserId();
     console.log('mentorId ' + this.mentorId);
     this.mentorGUId = this.session.getUserGUId();
-    console.log('mentorId ' + this.mentorGUId);
+    console.log('mentorGUId ' + this.mentorGUId);
 
     // // may be undefined at this point:
     // console.log('studentId ' + this.studentId);
@@ -75,21 +75,20 @@ export class MonthlyReports2Component implements OnInit, OnDestroy {
         this.studentGUId = message;
         console.log('MR new StudentGUId received' + this.studentGUId);
         if (this.studentGUId && this.studentGUId !== '0000') {
-          this.fetchData(this.studentGUId);
+          this.fetchData();
         }
         // console.log('subscribe next ' + this.studentSelected.getInternalSubject().observers.length);
       });
   }
 
 
-  fetchData(studentGUId: string) {
+  fetchData() {
 
     console.log('mr fetchData');
     this.isLoading = true;
     this.isLoading = true;
     this.haveCurrentReport = false;
-    this.studentGUId = studentGUId;
-    this.mentorReport2Data.getMentorReport2RPTsViaGUID(this.mentorId, studentGUId)
+    this.mentorReport2Data.getMentorReport2RPTsViaGUID(this.mentorGUId, this.studentGUId)
       .subscribe(
         data => { this.mentorReports2 = data; },
         err => console.error('Subscribe error: ' + err),
@@ -113,9 +112,12 @@ export class MonthlyReports2Component implements OnInit, OnDestroy {
     } else {
       console.log('in monthly-reports: monthlyReportAdd, ready to navigate');
       if (this.studentGUId !== null) {
-        // const target = '/mentors/monthly-reports-add';
-        // this.router.navigate([target, { mentorId: this.mentorId, studentGUId: this.studentGUId }]);
-        const link = ['/mentors/monthly-reports-add', { mentorId: this.mentorId, mentorGUId: this.mentorGUId, studentGUId: this.studentGUId }];
+        const link = ['/mentors/monthly-reports-add', {
+          mentorId: this.mentorId,
+          mentorGUId: this.mentorGUId,
+          studentGUId: this.studentGUId,
+          studentName: this.mentorReports2[0]?.studentName
+        }];
         console.log('navigating to ' + JSON.stringify(link));
         this.router.navigate(link);
       }
@@ -126,7 +128,7 @@ export class MonthlyReports2Component implements OnInit, OnDestroy {
     console.log('in monthly-reports: monthlyReportEdit, ready to navigate');
     if (this.studentId !== null) {
       const target = '/mentors/monthly-reports-edit/' + mentorReportId;
-      this.router.navigateByUrl(target); // , //{mentorId: this.mentorId, studentId: this.studentId}]);
+      this.router.navigateByUrl(target);
     }
   }
 }

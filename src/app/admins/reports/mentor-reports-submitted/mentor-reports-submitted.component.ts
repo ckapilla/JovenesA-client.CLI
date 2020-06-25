@@ -9,7 +9,7 @@ import { MentorReportSubmittedCount } from '../report-models/mentor-report-submi
 
 
 @Component({
-  selector: 'app-misc-reports',
+  selector: 'app-mr-submitted-count',
   templateUrl: './mentor-reports-submitted.component.html',
   styleUrls: ['./mentor-reports-submitted.component.css']
 })

@@ -8,7 +8,7 @@ import { SessionService } from '../../_shared/services/session.service';
 
 
 @Component({
-
+  selector: 'app-mr-summary-tracking',
   templateUrl: 'mr-summary-tracking.component.html',
   styleUrls: ['mr-summary-tracking.component.css']
 })
@@ -39,7 +39,7 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
     private route: ActivatedRoute
   ) {
 
-
+    console.log('mr-summary-tracking constructor');
     this.years = constants.years;
     this.months = constants.months;
 

@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -35,6 +36,8 @@ export class MonthlyReports2AddComponent
     monthValidationMessage = '';
     emojiValidationMessage = '';
     narrativeValidationMessage = '';
+    byProxy: string;
+    returnTarget: string;
 
     readonly contactYears: SELECTITEM[] = constants.years;
     readonly contactMonths: SELECTITEM[] = constants.months;
@@ -46,6 +49,7 @@ export class MonthlyReports2AddComponent
 
 
     constructor(
+        public location: Location,
         public currRoute: ActivatedRoute,
         private router: Router,
         public mentorReportData: MentorReport2DataService,
@@ -76,6 +80,10 @@ export class MonthlyReports2AddComponent
         this.errorMessage = '';
         this.successMessage = '';
         this.isSubmitted = false;
+        this.byProxy = this.currRoute.snapshot.params['byProxy'];
+        if (this.byProxy === 'true') {
+            this.returnTarget = ''
+        }
     }
 
     ngOnInit() {
@@ -85,6 +93,7 @@ export class MonthlyReports2AddComponent
         this.mentorReport2.mentorGUId = this.currRoute.snapshot.params['mentorGUId'];
         this.mentorReport2.studentId = 0; // this.currRoute.snapshot.params['studentId'];
         this.mentorReport2.studentGUId = this.currRoute.snapshot.params['studentGUId'];
+        this.studentName = this.currRoute.snapshot.params['studentName'];
         console.log('mentorId ' + this.mentorReport2.mentorId);
         console.log('mentorGUId ' + this.mentorReport2.mentorGUId);
         console.log('studentId ' + this.mentorReport2.studentId);
@@ -165,9 +174,10 @@ export class MonthlyReports2AddComponent
                     // this.isSubmitted = true;
                     this.isLoading = false;
                     // don't need to provide params, StudentGuid service will do the job
-                    const target = '/mentors';
-                    console.log('after call to addMentorReport; navigating to ' + target);
-                    this.router.navigateByUrl(target);
+                    // const target = '/mentors';
+                    // console.log('after call to addMentorReport; navigating to ' + target);
+                    // this.router.navigateByUrl(target);
+                    this.location.back();
                 },
                 (error) => {
                     this.errorMessage = <any>error;
@@ -197,7 +207,7 @@ export class MonthlyReports2AddComponent
     }
 
     validateEmojis(control: FormControl): IValidationType {
-        console.log('emoji validator ' + control.value);
+        // console.log('emoji validator ' + control.value);
         if (control.value === 666) {
             console.log('validate emoji failed');
             return { validateEmojis: true };

@@ -229,12 +229,13 @@ export class MentorReportSummaryUpdatesComponent
         highlight: this.savedHighlightStatusId
       }
     };
-    console.log(navigationExtras.queryParams);
+    console.log('after Submit or Cancele navigating to ' + target);
+    console.log('with queryParams ' + navigationExtras.queryParams);
     this.router.navigate([target], navigationExtras);
   }
 
   validateEmojis(control: FormControl): { [error: string]: any } {
-    console.log('emoji validator ' + control.value);
+    // console.log('emoji validator ' + control.value);
     const rtnVal: any = (control.value === 666)
       ? { validateEmojis: { valid: false } }
       : null;

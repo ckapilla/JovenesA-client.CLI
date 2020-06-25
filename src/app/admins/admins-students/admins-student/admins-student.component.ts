@@ -366,9 +366,22 @@ export class AdminsStudentComponent implements OnInit {
   }
 
   mentorReportsReview() {
-    const guid = this.currRoute.snapshot.params['guid'];
-    this.router.navigate(['/admins/students/student/mentorReports/' + guid + '/' + this.student.firstNames + ' ' + this.student.lastNames]);
+    // const guid = this.currRoute.snapshot.params['guid'];
+    this.router.navigate(['/admins/students/student/mentorReports/', { mentorId: this.studentDTO.mentorId, mentorGUId: this.studentDTO.mentorGUId, studentGUId: this.studentDTO.studentGUId, studentName: this.student.firstNames + ' ' + this.student.lastNames }]);
   }
+
+  // createProxyMentorReport() {
+  //   // const guid = this.currRoute.snapshot.params['guid'];
+  //   // this.router.navigate(['/admins/mr-proxy-add/' + this.studentGUIdParam + '/' + this.student.firstNames + ' ' + this.student.lastNames]);
+
+  //   console.log('#######studentDTO: mentorGUId ' + this.studentDTO.mentorGUId);
+  //   console.log('#######studentDTO: mentorId ' + this.studentDTO.mentorId);
+  //   const link = ['/mentors/monthly-reports-add', { mentorId: this.studentDTO.mentorId, mentorGUId: this.studentDTO.mentorGUId, studentGUId: this.studentDTO.studentGUId }];
+  //   console.log('navigating to ' + JSON.stringify(link));
+  //   this.router.navigate(link);
+
+  // }
+
 
   public hasChanges() {
     // if have changes then ask for confirmation

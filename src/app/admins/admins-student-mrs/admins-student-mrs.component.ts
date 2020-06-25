@@ -15,8 +15,9 @@ export class AdminsStudentMRsComponent implements OnInit {
   errorMessage: string;
 
   studentId: number;
-  studentGUId: number;
+  studentGUId: string;
   mentorId: number;
+  mentorGUId: string;
   mentorReportId: number;
   mentorReports2: Array<MentorReport2RPT>;
   studentName: string;
@@ -32,16 +33,17 @@ export class AdminsStudentMRsComponent implements OnInit {
   ngOnInit() {
     console.log('admins MRs ngOnInit');
     //  not here this.mentorId = this.currRoute.snapshot.params['mentorId'];
-    this.mentorId = 0; // 2208;
+    this.mentorId = this.currRoute.snapshot.params['mentorId'];
     console.log('mentorId ' + this.mentorId);
-    this.studentGUId = this.currRoute.snapshot.params['guid'];
+    this.mentorGUId = this.currRoute.snapshot.params['mentorGUId'];
+    this.studentGUId = this.currRoute.snapshot.params['studentGUId'];
     this.studentName = this.currRoute.snapshot.params['studentName'];
     if (this.studentName === '') {
       this.studentName = this.session.getStudentInContextName();
     }
     console.log('studentGUId  ' + this.studentGUId);
     this.isLoading = true;
-    this.mentorReportData.getMentorReport2RPTs(this.mentorId, this.studentGUId)
+    this.mentorReportData.getMentorReport2RPTsViaGUID(this.mentorGUId, this.studentGUId)
       .subscribe(
         data => { this.mentorReports2 = data; },
         err => console.error('Subscribe error: ' + err),
@@ -50,5 +52,14 @@ export class AdminsStudentMRsComponent implements OnInit {
           this.isLoading = false;
         }
       );
+  }
+  createProxyReport() {
+
+
+    console.log('#######studentDTO: mentorGUId ' + this.mentorGUId);
+    console.log('#######studentDTO: mentorId ' + this.mentorId);
+    const link = ['/mentors/monthly-reports-add', { mentorId: this.mentorId, mentorGUId: this.mentorGUId, studentGUId: this.studentGUId }];
+    console.log('navigating to ' + JSON.stringify(link));
+    this.router.navigate(link);
   }
 }

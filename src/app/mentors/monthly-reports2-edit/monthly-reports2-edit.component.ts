@@ -201,7 +201,7 @@ export class MonthlyReports2EditComponent
   }
 
   validateEmojis(control: FormControl): IValidationType {
-    console.log('emoji validator ' + control.value);
+    // console.log('emoji validator ' + control.value);
     if (control.value === 666) {
       console.log('validate emoji failed');
       return { validateEmojis: true };

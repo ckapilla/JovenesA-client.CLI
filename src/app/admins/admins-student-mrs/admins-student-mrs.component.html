@@ -1,6 +1,6 @@
 <div class="btn btn-primary btn-xs"
-(click)="location.back()">
-Back
+     (click)="location.back()">
+  Back
 </div>
 <div>&nbsp;</div>
 
@@ -18,6 +18,9 @@ Back
         <span>Past Reports for </span>
         <span>{{studentName}}</span>
         <span>
+          <span class="btn btn-default active" (click)="createProxyReport()" style="margin: 4px 0 0 10px">
+            Create Proxy Report
+          </span>
         </span>
       </div>
       <app-mentor-reports2-list [mentorReports2]="mentorReports2"></app-mentor-reports2-list>
