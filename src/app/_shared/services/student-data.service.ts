@@ -85,14 +85,6 @@ export class StudentDataService extends BaseDataService {
     );
   }
 
-  public getStudentsForMentor(mentorId: Number): Observable<StudentDTO[]> {
-    const url = this.WebApiPrefix + 'students/for_mentor/' + mentorId;
-    console.log('sending AuthHttp get request for StudentsForMentor with url ' + url);
-    const xx = this.http.get<StudentDTO[]>(url).pipe(catchError(this.handleError));
-    console.log(xx);
-    return xx;
-  }
-
   public getStudentsForMentorByGUId(mentorGUId: string): Observable<StudentDTO[]> {
     const url = this.WebApiPrefix + 'students/for_mentor/' + mentorGUId;
     console.log('sending AuthHttp get request for StudentsForMentor with url ' + url);
@@ -103,12 +95,6 @@ export class StudentDataService extends BaseDataService {
 
   public getStudentsForSponsor(sponsorId: Number): Observable<StudentSponsorXRef[]> {
     const url = this.WebApiPrefix + 'students/for_sponsor/' + sponsorId;
-    console.log('sending AuthHttp get request ' + url);
-    return this.http.get<StudentSponsorXRef[]>(url).pipe(catchError(this.handleError));
-  }
-
-  public getStudentsForSponsorByGUId(sponsorGUId: string): Observable<StudentSponsorXRef[]> {
-    const url = this.WebApiPrefix + 'students/for_sponsor/' + sponsorGUId;
     console.log('sending AuthHttp get request ' + url);
     return this.http.get<StudentSponsorXRef[]>(url).pipe(catchError(this.handleError));
   }

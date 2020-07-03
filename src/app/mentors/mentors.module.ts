@@ -14,6 +14,8 @@ import { MentorsComponent } from './mentors.component';
 import { MonthlyReports2AddComponent } from './monthly-reports2-add/monthly-reports2-add.component';
 import { MonthlyReports2EditComponent } from './monthly-reports2-edit/monthly-reports2-edit.component';
 import { MonthlyReports2Component } from './monthly-reports2/monthly-reports2.component';
+import { StudentSelfReportContainerComponent } from './student-self-report-container/student-self-report-container.component';
+
 
 
 @NgModule({
@@ -35,6 +37,7 @@ import { MonthlyReports2Component } from './monthly-reports2/monthly-reports2.co
         FollowUpRequestsComponent,
         ForumComponent,
         StudentHeaderMentorsComponent,
+        StudentSelfReportContainerComponent
     ],
 })
 

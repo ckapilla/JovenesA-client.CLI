@@ -59,7 +59,7 @@ export class StudentsForMentorGridComponent implements OnInit, OnDestroy {
 
   fetchGridData() {
     console.log('studentGrid calling getStudentsForMentor');
-    this.studentData.getStudentsForMentor(this.session.getUserId())
+    this.studentData.getStudentsForMentorByGUId(this.session.getUserGUId())
       .subscribe(
         data => {
           this.students = data;
