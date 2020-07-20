@@ -62,7 +62,7 @@ export class QrStatusSelectorComponent implements OnInit, OnDestroy {
   fetchData() {
     console.log('fetchData');
     this.isLoading = true;
-    this.quarterlyData.getQRMiniForStudentPeriod(this.studentGUId, 2019, 3, 0)
+    this.quarterlyData.getQRMiniForStudentPeriod(this.studentGUId, "2019", "3")
       .subscribe(
         data => { this.qrMini = data; },
         err => console.error('Subscribe error: ' + err),

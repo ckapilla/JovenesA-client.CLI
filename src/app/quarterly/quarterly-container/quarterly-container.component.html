@@ -11,11 +11,20 @@
         <span style="font-size:large">
           Quarterly Reports
         </span>
-        <span style="margin-left:10rem">
+        <span style="margin-left:5rem">
           Report Year-Period:
           <select name="activePeriodSelector" [(ngModel)]="selectedYearPeriod"
                   (change)="setSelectedYearPeriod($event.target.value)">
             <option *ngFor="let yearPeriod of activeQRPeriods" [value]="yearPeriod.value">{{yearPeriod.label}}</option>
+          </select>
+        </span>
+
+        <span style="margin-left:5rem">
+          Set Report Status:
+          <select name="StatusSelector" [(ngModel)]="selectedReviewedStatusID"
+                  (change)="setStatusForQR( $event.target.value)">
+            <option *ngFor="let status of reviewedStatuses" [value]="status.value">{{status.label}}
+            </option>
           </select>
         </span>
       </div>

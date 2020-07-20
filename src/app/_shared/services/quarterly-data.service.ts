@@ -33,15 +33,15 @@ export class QuarterlyDataService {
     return this.http.get<QuarterlyReport[]>(url).pipe(catchError(this.handleError));
   }
 
-  public getQRMiniForStudentPeriod(studentGUId: string, year: number, period: Number, reviewedStatusId: number): Observable<QuarterlyReportRPT> {
-    const url = this.WebApiPrefix + 'quarterly/' + studentGUId + '/' + year + '/' + period + '/' + reviewedStatusId;
-    console.log('sending AuthHttp get request for QuarterlyReportForStudentPeriod');
+  public getQRMiniForStudentPeriod(studentGUId: string, year: string, period: string): Observable<QuarterlyReportRPT> {
+    const url = this.WebApiPrefix + 'quarterly/single/' + studentGUId + '/' + year + '/' + period;
+    console.log('sending AuthHttp get request for QRMiniForStudentPeriod with url' + url);
     return this.http.get<QuarterlyReportRPT>(url).pipe(catchError(this.handleError));
   }
 
   public getQRMinisForPeriod(year: string, period: string, reviewedStatusId: number): Observable<QuarterlyReportRPT[]> {
     const url = this.WebApiPrefix + 'quarterly/' + year + '/' + period + '/' + reviewedStatusId;
-    console.log('sending AuthHttp get request for QuarterlyReportForPeriod');
+    console.log('sending AuthHttp get request for QRMinisForPeriod');
     return this.http.get<QuarterlyReportRPT[]>(url).pipe(catchError(this.handleError));
   }
 
@@ -56,6 +56,12 @@ export class QuarterlyDataService {
     console.log('sending AuthHttp get request for getPartialQuarterlyReportByPeriod with ' + url);
     return this.http.get<QuarterlyReport>(url).pipe(catchError(this.handleError));
   }
+
+  // public getQRReviewedStatus(studentGUId: string, year: string, period: string): Observable<any> {
+  //   const url = this.WebApiPrefix + 'quarterly/status/' + studentGUId
+  //   console.log('sending AuthHttp put request to get reviewedStatusId ');
+  //   return this.http.get<QRMini>(url).pipe(catchError(this.handleError));
+  // }
 
   public setQRReviewedStatus(quarterlyReportGUId: string, reviewedStatusId: number): Observable<any> {
     const url = this.WebApiPrefix + 'quarterly/status/' + quarterlyReportGUId + '/' + reviewedStatusId;
