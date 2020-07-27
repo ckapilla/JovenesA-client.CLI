@@ -17,6 +17,9 @@ export class StudentsForMentorListComponent implements OnInit {
   studentId: number;
   errorMessage = '';
   haveData: boolean;
+  mentorGUId: string;
+  mentorId: number;
+  studentGUId: string;
 
   constructor(public session: SessionService,
     private studentData: StudentDataService,
@@ -28,8 +31,8 @@ export class StudentsForMentorListComponent implements OnInit {
 
   public ngOnInit() {
     this.haveData = false;
-    const guid = this.currRoute.snapshot.params['guid'];
-    this.studentData.getStudentsForMentorByGUId(guid)
+    this.mentorGUId = this.currRoute.snapshot.params['guid'];
+    this.studentData.getStudentsForMentorByGUId(this.mentorGUId)
       .subscribe(
         data => {
           this.students = data;
@@ -55,6 +58,9 @@ export class StudentsForMentorListComponent implements OnInit {
     console.log('navigating to ' + link);
     this.router.navigateByUrl(link);
   }
-
+  mentorReportsReview() {
+    // const guid = this.currRoute.snapshot.params['guid'];
+    this.router.navigate(['/admins/students/student/mentorReports/', { mentorId: this.mentorId, mentorGUId: this.mentorGUId, studentGUId: this.studentGUId }]);
+  }
 
 }

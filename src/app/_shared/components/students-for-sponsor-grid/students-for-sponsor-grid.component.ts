@@ -27,7 +27,7 @@ export class StudentsForSponsorGridComponent implements OnInit {
   }
 
   public ngOnInit() {
-    this.studentData.getStudentsForSponsor(this.session.getUserId())
+    this.studentData.getStudentsForSponsorByGUId(this.session.getUserGUId())
       .subscribe(
         data => {
           this.students = data;

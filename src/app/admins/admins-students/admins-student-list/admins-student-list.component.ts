@@ -199,6 +199,13 @@ export class AdminsStudentListComponent implements OnInit {
     this.router.navigate(link);
   }
 
+  gotoMentor(guid: string) {
+    const link = ['admins/members/member', { guid: guid }];
+
+    console.log('navigating to ' + link);
+    this.router.navigate(link);
+  }
+
   gotoReport(id: number) {
     const link = ['/admins/students/mentorReports', id];
     console.log('navigating to ' + link);

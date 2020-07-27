@@ -93,11 +93,18 @@ export class StudentDataService extends BaseDataService {
     return xx;
   }
 
-  public getStudentsForSponsor(sponsorId: Number): Observable<StudentSponsorXRef[]> {
-    const url = this.WebApiPrefix + 'students/for_sponsor/' + sponsorId;
+  // public getStudentsForSponsor(sponsorId: Number): Observable<StudentSponsorXRef[]> {
+  //   const url = this.WebApiPrefix + 'students/for_sponsor/' + sponsorId;
+  //   console.log('sending AuthHttp get request ' + url);
+  //   return this.http.get<StudentSponsorXRef[]>(url).pipe(catchError(this.handleError));
+  // }
+
+  public getStudentsForSponsorByGUId(sponsorGUId: string): Observable<StudentSponsorXRef[]> {
+    const url = this.WebApiPrefix + 'students/for_sponsor/' + sponsorGUId;
     console.log('sending AuthHttp get request ' + url);
     return this.http.get<StudentSponsorXRef[]>(url).pipe(catchError(this.handleError));
   }
+
 
   public getSponsorGroupMembersForStudent(studentId: number): Observable<StudentSponsorXRef[]> {
     const url = this.WebApiPrefix + 'students/sponsor_group_members_for/' + studentId;

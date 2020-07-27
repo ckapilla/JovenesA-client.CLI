@@ -110,7 +110,7 @@
               <td style="text-align:center;white-space: nowrap">
                 <img src="/assets/images/{{student.gradeRptStatus}}.jpg" height="22">
               </td> -->
-              <td>
+              <td (click)='gotoMentor(student.mentorGUId)' class='link'>
                 {{ student.mentorName }}
               </td>
               <!-- <td>

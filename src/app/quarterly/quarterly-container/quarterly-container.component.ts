@@ -127,6 +127,7 @@ export class QuarterlyContainerComponent implements OnInit, OnDestroy {
     this.selectedYearPeriod = yearPeriod;
     this.selectedYear = yearPeriod.substr(0, 4);
     this.selectedPeriod = yearPeriod.substr(5, 1);
+    this.fetchFilteredData();
   }
   onStudentGUIdReceived(bSet: boolean) {
     this.studentGUIdReceived = bSet;

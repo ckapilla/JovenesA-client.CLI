@@ -1,11 +1,8 @@
-export class ConfidentialReportRPT {
-
+export class ConfidentialReport {
   constructor(
     public confidentialReportId?: number,
     public adminId?: number,
-    public studentId?: number,
-    public confidentialName?: string,
-    public studentName?: string,
+    // public studentId?: number,
     public reportDateTime?: Date,
     public lastContactYear?: number,
     public lastContactMonth?: number,
@@ -13,11 +10,6 @@ export class ConfidentialReportRPT {
     public narrative_English?: string,
     public narrative_Spanish?: string,
     public reviewedStatusId?: number,
-    public reviewedStatus?: string,
-    public sponsorGroupName?: string,
-    public originalLanguageId?: number,
-    public sponsorRequiredLanguageId?: number,
-    public sponsorPreferredLanguageId?: number,
     public studentGUId?: string
   ) {
 

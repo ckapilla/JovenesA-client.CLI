@@ -30,7 +30,7 @@ export class StudentsForSponsorComponent implements OnInit {
 
     const guid = this.currRoute.snapshot.params['guid'];
     console.log('++++++++++++++++++++have guid param' + guid);
-    this.studentData.getStudentsForSponsor(guid)
+    this.studentData.getStudentsForSponsorByGUId(guid)
       .subscribe(
         data => { this.studentsForSponsor = data; console.log(this.studentsForSponsor); },
         err => console.error('Subscribe error: ' + err),

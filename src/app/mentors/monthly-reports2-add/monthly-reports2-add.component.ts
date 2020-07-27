@@ -89,12 +89,10 @@ export class MonthlyReports2AddComponent
     ngOnInit() {
         console.log('monthlyReportsAdd ngOnInit');
 
-        this.mentorReport2.mentorId = this.currRoute.snapshot.params['mentorId'];
         this.mentorReport2.mentorGUId = this.currRoute.snapshot.params['mentorGUId'];
         this.mentorReport2.studentId = 0; // this.currRoute.snapshot.params['studentId'];
         this.mentorReport2.studentGUId = this.currRoute.snapshot.params['studentGUId'];
         this.studentName = this.currRoute.snapshot.params['studentName'];
-        console.log('mentorId ' + this.mentorReport2.mentorId);
         console.log('mentorGUId ' + this.mentorReport2.mentorGUId);
         console.log('studentId ' + this.mentorReport2.studentId);
         console.log('studentGUId ' + this.mentorReport2.studentGUId);
@@ -161,7 +159,6 @@ export class MonthlyReports2AddComponent
         }
         this.isSubmitted = true; // need to set guard immediately to prevent dups
         console.log('###before submitting update model with form control values');
-        // mentorId and studentId and studentGUId do not have corresponding controls
         this.mentorReport2.lastContactYear = this.lastYearCtl.value;
         this.mentorReport2.lastContactMonth = this.lastMonthCtl.value;
         this.mentorReport2.emoji = this.emojiCtl.value;

@@ -1,9 +1,10 @@
 export class ConfidentialReportRPT {
+
   constructor(
     public confidentialReportId?: number,
     public adminId?: number,
-    public studentId?: number,
-    public adminName?: string,
+    //public studentId?: number,
+    public admiName?: string,
     public studentName?: string,
     public reportDateTime?: Date,
     public lastContactYear?: number,

@@ -116,7 +116,7 @@ export class ConfidentialReportsComponent implements OnInit, OnDestroy {
 
   confidentialReportEdit(confidentialReportId: number) {
     console.log('in confidential-reports: confidentialReportEdit, ready to navigate');
-    if (this.studentId !== null) {
+    if (this.studentGUId !== null) {
       const target = '/confidential/confidential-reports-edit/' + confidentialReportId;
       this.router.navigateByUrl(target); // , //{mentorId: this.mentorId, studentId: this.studentId}]);
     }

@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ConfidentialDataService } from 'src/app/_shared/services/confidential-data.service';
 import { constants } from '../../_shared/constants/constants';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
-import { ConfidentialReportRPT } from '../../_shared/models/confidential-report';
+import { ConfidentialReport } from '../../_shared/models/confidential-report';
 import { SessionService } from '../../_shared/services/session.service';
 
 interface IValidationType { [error: string]: boolean | null; }
@@ -17,7 +17,7 @@ interface IValidationType { [error: string]: boolean | null; }
 export class ConfidentialReportsAddComponent
     implements OnInit {
     myForm: FormGroup;
-    confidentialReport: ConfidentialReportRPT = new ConfidentialReportRPT();
+    confidentialReport: ConfidentialReport = new ConfidentialReport();
     isLoading: boolean;
     isSubmitted = false;
 
@@ -81,11 +81,11 @@ export class ConfidentialReportsAddComponent
     ngOnInit() {
         console.log('monthlyReportsAdd ngOnInit');
 
-        this.confidentialReport.adminId = this.currRoute.snapshot.params['mentorId'];
-        this.confidentialReport.studentId = 0; // this.currRoute.snapshot.params['studentId'];
+        this.confidentialReport.adminId = this.currRoute.snapshot.params['adminId'];
+        // this.confidentialReport.studentId = 0; // this.currRoute.snapshot.params['studentId'];
         this.confidentialReport.studentGUId = this.currRoute.snapshot.params['studentGUId'];
         console.log('mentorId ' + this.confidentialReport.adminId);
-        console.log('studentId ' + this.confidentialReport.studentId);
+        // console.log('studentId ' + this.confidentialReport.studentId);
         console.log('studentGUId ' + this.confidentialReport.studentGUId);
         // SQL Server will adjust the time to UTC by adding TimezoneOffset
         // we want to store local time so we adjust for that.

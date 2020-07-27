@@ -15,6 +15,7 @@ const schoolTypes: SELECTITEM[] = [
   { value: '2058', label: 'N/A' }
 ];
 const joinedYears: SELECTITEM[] = [
+  { value: '2020', label: '2020' },
   { value: '2019', label: '2019' },
   { value: '2018', label: '2018' },
   { value: '2017', label: '2017' },
@@ -35,6 +36,7 @@ const joinedYears: SELECTITEM[] = [
   { value: '2002', label: '2002' }
 ];
 const gradYears: SELECTITEM[] = [
+  { value: '2025', label: '2025' },
   { value: '2024', label: '2024' },
   { value: '2023', label: '2023' },
   { value: '2022', label: '2022' },
