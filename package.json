@@ -30,7 +30,6 @@
     "rxjs": "^6.5.4",
     "tslib": "^2.0.0",
     "tslint": "^6.1.2",
-    "xvfb": "^0.4.0",
     "zone.js": "~0.10.3"
   },
   "devDependencies": {
