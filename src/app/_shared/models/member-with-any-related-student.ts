@@ -1,7 +1,7 @@
 export class MemberWithAnyRelatedStudent {
 
   constructor(
-    public memberId: number,
+    public memberGUId?: string,
     public lastNames?: string,
     public firstNames?: string,
     public email?: string,
@@ -16,6 +16,6 @@ export class MemberWithAnyRelatedStudent {
     public relatedStudentStatusId?: number,
     public relatedStudentStatus?: string,
     public relatedStudentGUId?: string,
-    public memberGUId?: string
+
   ) { }
 }

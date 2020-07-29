@@ -26,7 +26,6 @@ import { MentorReportsSubmittedComponent } from './reports/mentor-reports-submit
 // import { MentorReportsComponent } from './reports/mentor-reports/mentor-reports.component';
 import { ReportsComponent } from './reports/reports.component';
 import { ServerEnvironmentComponent } from './reports/server-environment/server-environment.component';
-import { SponsorSummariesSentComponent } from './reports/sponsor-summaries-sent/sponsor-summaries-sent.component';
 import { SponsorGroupComponent } from './sponsor-group/sponsor-group.component';
 import { SponsorGroupsComponent } from './sponsor-groups/sponsor-groups.component';
 import { StudentReportsStatusCountsComponent } from './ssr-status-counts/ssr-status-counts.component';
@@ -63,7 +62,6 @@ import { StudentReportsStatusCountsComponent } from './ssr-status-counts/ssr-sta
         SponsorGroupComponent,
         // FollowUpEventsComponent
         ReportsComponent,
-        SponsorSummariesSentComponent,
         MentorReportsSubmittedComponent,
         AdminsStudentSearchComponent,
         AdminsMemberSearchComponent
@@ -75,7 +73,6 @@ import { StudentReportsStatusCountsComponent } from './ssr-status-counts/ssr-sta
         SponsorGroupsComponent
     ],
     entryComponents: [
-        SponsorSummariesSentComponent,
         ServerEnvironmentComponent,
         MentorReportsSubmittedComponent]
 })

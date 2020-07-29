@@ -84,7 +84,7 @@ export class MemberDataService extends BaseDataService {
   public getMemberWithAnyRelatedStudent(type: string, status: number, studentStatus: number): Observable<MemberWithAnyRelatedStudent[]> {
 
     const url = this.WebApiPrefix
-      + 'members/student_relations/' + type + '/' + status + '/' + studentStatus;
+      + 'members/related_students/' + type + '/' + status + '/' + studentStatus;
     // statusId: vm.selectedStatus.statusId, gradYear: vm.selectedGradYear.year, yearJoinedJA: vm.selectedYearJoined.year },
     console.log('sending AuthHttp get request with url ' + url);
     return this.http.get<MemberWithAnyRelatedStudent[]>(url).pipe(catchError(this.handleError));
