@@ -29,7 +29,7 @@ export class AppComponent {
     //     console.log('event: ', e);
     //   });
     // auth.handleAuthentication();
-    console.log('AppComponentConstructor');
+    console.log('AppComponentConstructor, calling localAuthSetup');
     auth.localAuthSetup();
 
   }

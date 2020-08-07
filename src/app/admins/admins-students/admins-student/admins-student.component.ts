@@ -406,6 +406,13 @@ export class AdminsStudentComponent implements OnInit {
     this.router.navigate(link);
   }
 
+  gotoMentor(guid: string) {
+    const link = ['admins/members/member', { guid: guid }];
+
+    console.log('navigating to ' + link);
+    this.router.navigate(link);
+  }
+
   setReadOnly() {
     console.log('toggle readOnly');
     if (this.myForm.enabled) {

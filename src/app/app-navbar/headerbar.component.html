@@ -15,10 +15,13 @@
     </li>
     <li class="nav-item">
       <a [routerLinkActive]="['active']" [routerLink]="['sponsors/becas-home']"
+         data-cy="top-sponsors"
          [hidden]=!isSponsorWithValidToken()>Sponsors</a>
     </li>
     <li class="nav-item">
-      <a [routerLinkActive]="['active']" [routerLink]="['students']" [hidden]=!isStudentWithValidToken()>Estudiantes</a>
+      <a [routerLinkActive]="['active']" [routerLink]="['students']"
+         data-cy="top-students"
+         [hidden]=!isStudentWithValidToken()>Estudiantes</a>
     </li>
     <li class="nav-item">
       <a [routerLinkActive]="['active']" [routerLink]="['confidential']"
@@ -33,12 +36,13 @@
          [hidden]=!isAdminWithValidToken()>Quarterly</a>
     </li>
   </ul>
-  <div class="navbar-text ml-auto">
+  <div class="navbar-text ml-auto" data-cy="login_welcome">
     <section id="login">
-      <button class="btn btn-primary btn-sm" (click)="auth.login()" *ngIf="!auth.loggedIn">Log In / Iniciar
+      <button class="btn btn-primary btn-sm" data-cy="login" (click)="auth.login()" *ngIf="!auth.loggedIn">Log In /
+        Iniciar
         sesión</button>
       <span *ngIf="auth.loggedIn">Welcome {{auth.nickname}} <br /></span>
-      <span class="link" (click)="auth.logout()" *ngIf="auth.loggedIn">Log Out</span>
+      <span class="link" data-cy="logout" (click)="auth.logout()" *ngIf="auth.loggedIn">Log Out</span>
     </section>
   </div>
 </nav>

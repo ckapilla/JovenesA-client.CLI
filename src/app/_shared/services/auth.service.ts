@@ -77,7 +77,7 @@ export class AuthService {
 
   localAuthSetup() {
     console.log('localAuthSetup');
-    // This should only be called on app initialization
+    // called from AppComponent constructor
     // Set up local authentication streams
     const checkAuth$ = this.isAuthenticated$.pipe(
       concatMap((loggedIn: boolean) => {
