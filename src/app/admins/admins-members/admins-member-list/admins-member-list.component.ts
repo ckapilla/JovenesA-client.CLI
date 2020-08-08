@@ -97,7 +97,7 @@ export class AdminsMemberListComponent implements OnInit {
       Number(this.selectedStudentStatus.value))
       .subscribe(
         data => {
-          this.members = data;
+          this.members = data.filter(item => item['lastNames'] !== '_Test')
         },
         err => this.errorMessage = err,
         () => { console.log('done'); this.isLoading = false; }

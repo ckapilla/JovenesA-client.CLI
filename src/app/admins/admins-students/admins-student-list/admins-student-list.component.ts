@@ -115,7 +115,7 @@ export class AdminsStudentListComponent implements OnInit {
     this.studentData.getStudentDTOsByStatusAndYear(this.selectedActiveStatus, this.selectedStatus, this.selectedYearJoined, this.selectedGradYear)
       .subscribe(
         data => {
-          this.studentDTOs = data.filter(item => item['statusId'] !== 2050)
+          this.studentDTOs = data.filter(item => item['studentName'] !== '_Test, _Student')
             .map(this.getNumericStatus);
         },
         err => { this.errorMessage = err; },
