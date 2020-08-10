@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SELECTITEM } from '../../../_shared/interfaces/SELECTITEM';
-import { SORTCRITERIA } from '../../../_shared/interfaces/SORTCRITERIA';
-import { ColumnSortService } from '../../../_shared/services/column-sort.service';
-import { ReportsDataService } from '../../../_shared/services/reports-data.service';
-import { MentorReportSubmittedCount } from '../report-models/mentor-report-submitted-count';
-
-
+import { SELECTITEM } from 'src/app/_shared/interfaces/SELECTITEM';
+import { SORTCRITERIA } from 'src/app/_shared/interfaces/SORTCRITERIA';
+import { MentorReportSubmittedCount } from 'src/app/_shared/models/mentor-report-submitted-count';
+import { ColumnSortService } from 'src/app/_shared/services/column-sort.service';
+import { MentorReport2DataService } from 'src/app/_shared/services/mentor-report2-data.service';
 
 @Component({
   selector: 'app-mr-submitted-count',
@@ -22,7 +20,7 @@ export class MentorReportsSubmittedComponent implements OnInit {
   sortCriteria: SORTCRITERIA;
 
   constructor(
-    public sqlReports: ReportsDataService,
+    public sqlReports: MentorReport2DataService,
     private columnSorter: ColumnSortService,
     private router: Router
   ) {

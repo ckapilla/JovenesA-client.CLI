@@ -1,14 +1,14 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { constants } from 'src/app/_shared/constants/constants';
+import { SELECTITEM } from 'src/app/_shared/interfaces/SELECTITEM';
+import { SORTCRITERIA } from 'src/app/_shared/interfaces/SORTCRITERIA';
+import { MemberWithAnyRelatedStudent } from 'src/app/_shared/models/member-with-any-related-student';
+import { ColumnSortService } from 'src/app/_shared/services/column-sort.service';
 import { MemberDataService } from 'src/app/_shared/services/member-data.service';
-import { constants } from '../../../_shared/constants/constants';
-import { SELECTITEM } from '../../../_shared/interfaces/SELECTITEM';
-import { SORTCRITERIA } from '../../../_shared/interfaces/SORTCRITERIA';
-import { MemberWithAnyRelatedStudent } from '../../../_shared/models/member-with-any-related-student';
-import { ColumnSortService } from '../../../_shared/services/column-sort.service';
-import { SessionService } from '../../../_shared/services/session.service';
-
+import { SessionService } from 'src/app/_shared/services/session.service';
+import { TestNamesVisibilityService } from 'src/app/_shared/services/test-names-visibility.service';
 
 @Component({
   templateUrl: './admins-member-list.component.html',
@@ -27,12 +27,14 @@ export class AdminsMemberListComponent implements OnInit {
   errorMessage: string;
   successMessage: string;
   sortCriteria: SORTCRITERIA;
+  displayTestNames: boolean;
 
   constructor(
     public memberData: MemberDataService,
     public router: Router,
     private session: SessionService,
-    private columnSorter: ColumnSortService
+    private columnSorter: ColumnSortService,
+    public testNamesVisibilityService: TestNamesVisibilityService
   ) {
 
     console.log('Hi from member List Ctrl controller function');
@@ -40,6 +42,7 @@ export class AdminsMemberListComponent implements OnInit {
     this.memberTypes = constants.memberTypes;
     this.studentStatuses = constants.studentStatuses;
     this.isLoading = false;
+    this.displayTestNames = testNamesVisibilityService.getLatestTestNamesVisibility();
   }
 
   public set selectedStatus(status: SELECTITEM) {
@@ -86,10 +89,6 @@ export class AdminsMemberListComponent implements OnInit {
     this.fetchFilteredData();
   }
 
-  // can't rely on two way binding to have updated the selected values
-  // in time so we do it manually below
-
-
   fetchFilteredData() {
     this.isLoading = true;
     console.log('in fetchFilteredData');
@@ -97,7 +96,14 @@ export class AdminsMemberListComponent implements OnInit {
       Number(this.selectedStudentStatus.value))
       .subscribe(
         data => {
-          this.members = data.filter(item => item['lastNames'] !== '_Test')
+          this.members = data.filter((item) => {
+            console.log('displayTestNames is ' + this.displayTestNames);
+            if (this.displayTestNames) {
+              return item;
+            } else if (!this.displayTestNames && (item['lastNames'] !== '_Test')) {
+              return item;
+            }
+          })
         },
         err => this.errorMessage = err,
         () => { console.log('done'); this.isLoading = false; }

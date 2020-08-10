@@ -4,14 +4,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EMPTY, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { constants } from 'src/app/_shared/constants/constants';
+import { SELECTITEM } from 'src/app/_shared/interfaces/SELECTITEM';
+import { Student } from 'src/app/_shared/models/student';
+import { StudentDTO } from 'src/app/_shared/models/studentDTO';
 import { TruncateDatePipe } from 'src/app/_shared/pipes/truncate-date-pipe';
 import { MiscDataService } from 'src/app/_shared/services/misc-data.service';
 import { StudentDataService } from 'src/app/_shared/services/student-data.service';
 import { UrlService } from 'src/app/_shared/services/url.service';
-import { constants } from '../../../_shared/constants/constants';
-import { SELECTITEM } from '../../../_shared/interfaces/SELECTITEM';
-import { Student } from '../../../_shared/models/student';
-import { StudentDTO } from '../../../_shared/models/studentDTO';
 
 
 @Component({

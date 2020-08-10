@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ReportsDataService } from 'src/app/_shared/services/reports-data.service';
-import { ServerEnvironment } from '../report-models/server-environment';
+import { ServerEnvironment } from 'src/app/_shared/models/server-environment';
+import { UtilitiesDataService } from 'src/app/_shared/services/utilities-data.service';
 
 @Component({
   selector: 'app-server-environment',
@@ -14,7 +14,7 @@ export class ServerEnvironmentComponent implements OnInit, OnDestroy {
   successMessage: string;
 
   constructor(
-    public sqlReports: ReportsDataService
+    public sqlReports: UtilitiesDataService
   ) {
     console.log('hi from server-environment constructor');
   }

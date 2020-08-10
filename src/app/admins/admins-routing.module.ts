@@ -6,6 +6,9 @@ import { AdminsAddMemberComponent } from './admins-members/admins-add-member/adm
 import { AdminsMemberListComponent } from './admins-members/admins-member-list/admins-member-list.component';
 import { AdminsMemberSearchComponent } from './admins-members/admins-member-search/admins-member-search.component';
 import { AdminsMemberComponent } from './admins-members/admins-member/admins-member.component';
+import { MentorReportsContainerComponent } from './admins-mr/mr-container/mr-container.component';
+import { MentorReportsSummaryTrackingComponent } from './admins-mr/mr-summary-tracking/mr-summary-tracking.component';
+import { MentorReportSummaryUpdatesComponent } from './admins-mr/mr-summary-updates/mr-summary-updates.component';
 import { AdminsStudentMRsComponent } from './admins-student-mrs/admins-student-mrs.component';
 import { AdminsStudentListComponent } from './admins-students/admins-student-list/admins-student-list.component';
 import { AdminsStudentSearchComponent } from './admins-students/admins-student-search/admins-student-search.component';
@@ -14,12 +17,9 @@ import { AdminsComponent } from './admins.component';
 import { FollowUpEventsAddComponent } from './follow-up-events-add/follow-up-events-add.component';
 import { FollowUpRequestsAddComponent } from './follow-up-requests-add/follow-up-requests-add.component';
 import { FollowUpRequestsComponent } from './follow-up-requests/follow-up-requests.component';
-import { MentorReportsContainerComponent } from './mr-container/mr-container.component';
-import { MentorReportsSummaryTrackingComponent } from './mr-summary-tracking/mr-summary-tracking.component';
-import { MentorReportSummaryUpdatesComponent } from './mr-summary-updates/mr-summary-updates.component';
-import { ReportsComponent } from './reports/reports.component';
 import { SponsorGroupComponent } from './sponsor-group/sponsor-group.component';
 import { SponsorGroupsComponent } from './sponsor-groups/sponsor-groups.component';
+import { UtilitiesComponent } from './utilities/utilities.component';
 
 const adminRoutes: Routes = [
   {
@@ -126,9 +126,13 @@ const adminRoutes: Routes = [
         path: 'follow-up-events-add/:requestId',
         component: FollowUpEventsAddComponent
       },
+      // {
+      //   path: 'reports',
+      //   component: ReportsComponent
+      // },
       {
-        path: 'reports',
-        component: ReportsComponent
+        path: 'utilities',
+        component: UtilitiesComponent
       },
     ]
   }

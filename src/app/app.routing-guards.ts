@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanDeactivate, Router, RouterStateSnapshot } from '@angular/router';
-import { MentorReportSummaryUpdatesComponent } from './admins/mr-summary-updates/mr-summary-updates.component';
+import { MentorReportSummaryUpdatesComponent } from './admins/admins-mr/mr-summary-updates/mr-summary-updates.component';
 import { GradesEditComponent } from './becas/grades-edit/grades-edit.component';
 import { MonthlyReports2AddComponent } from './mentors/monthly-reports2-add/monthly-reports2-add.component';
 import { AuthService } from './_shared/services/auth.service';

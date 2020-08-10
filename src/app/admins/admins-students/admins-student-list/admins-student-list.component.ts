@@ -1,14 +1,14 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { constants } from 'src/app/_shared/constants/constants';
+import { SELECTITEM } from 'src/app/_shared/interfaces/SELECTITEM';
+import { SORTCRITERIA } from 'src/app/_shared/interfaces/SORTCRITERIA';
+import { StudentDTO } from 'src/app/_shared/models/studentDTO';
+import { ColumnSortService } from 'src/app/_shared/services/column-sort.service';
+import { SessionService } from 'src/app/_shared/services/session.service';
 import { StudentDataService } from 'src/app/_shared/services/student-data.service';
-import { constants } from '../../../_shared/constants/constants';
-import { SELECTITEM } from '../../../_shared/interfaces/SELECTITEM';
-import { SORTCRITERIA } from '../../../_shared/interfaces/SORTCRITERIA';
-import { StudentDTO } from '../../../_shared/models/studentDTO';
-import { ColumnSortService } from '../../../_shared/services/column-sort.service';
-import { SessionService } from '../../../_shared/services/session.service';
-
+import { TestNamesVisibilityService } from 'src/app/_shared/services/test-names-visibility.service';
 
 
 @Component({
@@ -35,13 +35,15 @@ export class AdminsStudentListComponent implements OnInit {
   readonly joinedYears: SELECTITEM[] = constants.joinedYears;
   readonly gradYears: SELECTITEM[] = constants.gradYears;
   readonly smileys: string[] = constants.smileys;
+  displayTestNames: boolean;
 
   constructor(
     public studentData: StudentDataService,
     public router: Router,
     // private route: ActivatedRoute,
     private session: SessionService,
-    private columnSorter: ColumnSortService
+    private columnSorter: ColumnSortService,
+    public testNamesVisibilityService: TestNamesVisibilityService
   ) {
 
     console.log('Hi from student List Ctrl controller function');
@@ -55,6 +57,7 @@ export class AdminsStudentListComponent implements OnInit {
     // this.gpaStatus = 'greenCheck.jpg'
 
     this.isLoading = false;
+    this.displayTestNames = testNamesVisibilityService.getLatestTestNamesVisibility();
   }
 
   ngOnInit() {
@@ -115,8 +118,17 @@ export class AdminsStudentListComponent implements OnInit {
     this.studentData.getStudentDTOsByStatusAndYear(this.selectedActiveStatus, this.selectedStatus, this.selectedYearJoined, this.selectedGradYear)
       .subscribe(
         data => {
-          this.studentDTOs = data.filter(item => item['studentName'] !== '_Test, _Student')
-            .map(this.getNumericStatus);
+          this.studentDTOs = data.filter((item) => {
+            console.log('displayTestNames is ' + this.displayTestNames);
+            if (this.displayTestNames) {
+              console.log('displayTestNames is true returning  item ' + item);
+              return item;
+            } else if (!this.displayTestNames && (item['studentName'] !== '_Test, _Student')) {
+              console.log('displayTestNames is false and item.studentName = ' + item.studentName);
+              console.log(' returning  item ' + item);
+              return item;
+            }
+          }).map(this.getNumericStatus);
         },
         err => { this.errorMessage = err; },
         () => {

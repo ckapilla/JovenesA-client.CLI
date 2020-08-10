@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { MentorReportSubmittedCount } from '../models/mentor-report-submitted-count';
 import { MentorReport2RPT } from '../models/mentor-report2';
 import { MentorReportsStatusCount } from '../models/mentor-reports-status-count';
 import { BaseDataService } from './base-data.service';
@@ -95,6 +96,12 @@ export class MentorReport2DataService extends BaseDataService {
     // + '&highlightStatusId=' + highlightStatusId;
     console.log('sending AuthHttp get request for MentorReportsStatusCounts with ' + url);
     return this.http.get<MentorReportsStatusCount[]>(url).pipe(catchError(this.handleError));
+  }
+
+  public getMentorReportSubmittedCounts(): Observable<MentorReportSubmittedCount[]> {
+    const url = this.WebApiPrefix + 'reports/mentor_report_submitted_counts';
+    console.log('sending AuthHttp get request for MentorReportSubmittedCounts with ' + url);
+    return this.http.get<MentorReportSubmittedCount[]>(url).pipe(catchError(this.handleError));
   }
 
 }

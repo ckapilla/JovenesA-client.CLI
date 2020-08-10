@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { constants } from 'src/app/_shared/constants/constants';
+import { SELECTITEM } from 'src/app/_shared/interfaces/SELECTITEM';
+import { MentorReport2RPT } from 'src/app/_shared/models/mentor-report2';
 import { MentorReport2DataService } from 'src/app/_shared/services/mentor-report2-data.service';
-import { constants } from '../../_shared/constants/constants';
-import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
-import { MentorReport2RPT } from '../../_shared/models/mentor-report2';
-import { SessionService } from '../../_shared/services/session.service';
+import { SessionService } from 'src/app/_shared/services/session.service';
 
 
 @Component({
