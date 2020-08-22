@@ -42,7 +42,9 @@ export class StudentDTO {
     public credentialMonthNum?: number,
     public credentialMonth?: string,
     public probationStartDate?: Date,
-    public probationEndDate?: Date
+    public probationEndDate?: Date,
+    public pilotProxyId?: number,
+    public educationalLevelId?: number
 
   ) { }
 }

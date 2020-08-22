@@ -2,7 +2,6 @@ export class Student {
 
   constructor(
     public studentId?: number,
-    public ja_Id?: string, // JA_ID
     public lastNames?: string,
     public firstNames?: string,
 
@@ -22,8 +21,6 @@ export class Student {
     public sponsor?: string, // Sponsor
     public prepaId?: number, // PrepaID
     public major?: string, // Major
-    // mentorId is no longer part of Student, only StudentDTO from associate dMember
-    // public mentorId?: number, // MentorID
     public ageWhenJoined?: string, // AgeWhenJoined
     public yearJoinedJa?: string, // YearJoinedJA
     public universityId?: string, // UniversityID
@@ -54,6 +51,8 @@ export class Student {
     public credentialYear?: number,
     public credentialMonthNum?: number,
     public probationStartDate?: Date,
-    public probationEndDate?: Date
+    public probationEndDate?: Date,
+    public pilotProxyId?: number,
+    public educationalLevelId?: number
   ) { }
 }

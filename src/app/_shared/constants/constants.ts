@@ -1,19 +1,7 @@
 
 import { SELECTITEM } from '../interfaces/SELECTITEM';
 
-const languageStatuses: SELECTITEM[] = [
-  { value: '1024', label: 'None' },
-  { value: '1025', label: 'Basic' },
-  { value: '1026', label: 'Intermediate' },
-  { value: '1027', label: 'Advanced' },
-  { value: '1028', label: 'Native' }
-];
-const schoolTypes: SELECTITEM[] = [
-  { value: '0', label: '' },
-  { value: '2056', label: 'Prepa' },
-  { value: '2057', label: 'Univ' },
-  { value: '2058', label: 'N/A' }
-];
+
 const joinedYears: SELECTITEM[] = [
   { value: '2020', label: '2020' },
   { value: '2019', label: '2019' },
@@ -100,57 +88,6 @@ const activeQRperiods = [
 ];
 const selectedYearPeriod = "2020-2";
 
-const studentStatuses: SELECTITEM[] = [
-  { value: '1003', label: 'Dropped' },
-  { value: '1004', label: 'Grad' },
-  { value: '1005', label: 'Current' },
-  { value: '1006', label: 'Service' },
-  { value: '2146', label: 'Sabbatical' }
-];
-const roleStatuses: SELECTITEM[] = [
-  { value: '1015', label: 'Active' },
-  { value: '1016', label: 'Inactive Temporary' },
-  { value: '1017', label: 'Inactive Permanent' },
-  { value: '2055', label: 'Deceased' }
-];
-const reviewedStatuses: SELECTITEM[] = [
-  { value: '2086', label: 'NeedsSetup' },
-  { value: '2087', label: 'NeedsReview' },
-  { value: '2147', label: 'Ready For QR' },
-  { value: '2148', label: 'Copied To QR' },
-  { value: '2090', label: 'Skipped' }
-];
-const reviewedQRStatuses: SELECTITEM[] = [
-  { value: '2086', label: 'NeedsSetup (CK)' },
-  { value: '2087', label: 'NeedsReview (DK)' },
-  { value: '2088', label: 'ReadyToSend/single' },
-  { value: '2089', label: 'Sent' },
-  { value: '2090', label: 'On Hold (DK)' },
-  { value: '2129', label: 'ReadyToSend/CC' },
-  { value: '2130', label: 'ReadyToSend/UU' },
-  { value: '2149', label: 'ReadyToSend/Amistad' },
-  { value: '2131', label: 'ReadyToSend/NoEmail' },
-  { value: '2132', label: 'On Hold/AmistadPool' },
-  { value: '2133', label: 'Sent/Bounced' },
-
-];
-const memberTypes: SELECTITEM[] = [
-  { value: '2068', label: 'Admin' },
-  { value: '1012', label: 'Employee' },
-  { value: '1010', label: 'Mentor' },
-  // { value: '2072', label: 'NonPerson' },
-  { value: '2041', label: 'Pledger' },
-  // { value: '2040', label: 'President' },
-  // { value: '2067', label: '[All]' },
-  { value: '1009', label: 'Sponsor' },
-  // { value: '2069', label: 'Student' },
-  { value: '1008', label: 'Volunteer' }
-];
-const joinedFromTypes: SELECTITEM[] = [
-  { value: '2056', label: 'Prepa' },
-  { value: '2057', label: 'University' },
-  { value: '2058', label: 'N/A' }
-];
 const genders: SELECTITEM[] = [
   { value: 'M', label: 'Male/Hombre' },
   { value: 'F', label: 'Female/Mujer' },
@@ -161,22 +98,86 @@ const smileys = ['/assets/images/needsAttention.jpg',
   '/assets/images/NA.jpg'
 ];
 const emojis = smileys;
-const followUpStatuses = [
-  // { value: '0', label: '[None]' },
-  // { value: '2091', label: 'Requested' },
-  { value: '2092', label: 'Assigned' },
-  { value: '2104', label: 'Closed' },
+
+interface CODEVALUE {
+  codeValueId: number;   codeSet: string; stringValue: string; intValue: number;
+}
+
+let languageStatuses: SELECTITEM[] = [
+  // { value: '1024', label: 'None' },
+  // { value: '1025', label: 'Basic' },
+  // { value: '1026', label: 'Intermediate' },
+  // { value: '1027', label: 'Advanced' },
+  // { value: '1028', label: 'Native' }
 ];
-const highlightStatuses = [
-  { value: '0', label: '' },
-  { value: '2105', label: 'Problems' },
-  { value: '2106', label: 'GoodNews' },
+
+let studentStatuses: SELECTITEM[] = [
+  // { value: '1003', label: 'Dropped' },
+  // { value: '1004', label: 'Grad' },
+  // { value: '1005', label: 'Current' },
+  // { value: '1006', label: 'Service' },
+  // { value: '2146', label: 'Sabbatical' },
+  // { value: '2152', label: 'Pending' },
+
 ];
-export const constants = {
-  languageStatuses,
-  roleStatuses,
-  schoolTypes,
-  joinedYears,
+let roleStatuses: SELECTITEM[] = [
+  // { value: '1015', label: 'Active' },
+  // { value: '1016', label: 'Inactive Temporary' },
+  // { value: '1017', label: 'Inactive Permanent' },
+  // { value: '2055', label: 'Deceased' }
+];
+let reviewedStatuses: SELECTITEM[] = [
+  // { value: '2086', label: 'NeedsSetup' },
+  // { value: '2087', label: 'NeedsReview' },
+  // { value: '2147', label: 'Ready For QR' },
+  // { value: '2148', label: 'Copied To QR' },
+  // { value: '2090', label: 'Skipped' }
+];
+let reviewedQRStatuses: SELECTITEM[] = [
+  // { value: '2086', label: 'NeedsSetup (CK)' },
+  // { value: '2087', label: 'NeedsReview (DK)' },
+  // { value: '2088', label: 'ReadyToSend/single' },
+  // { value: '2089', label: 'Sent' },
+  // { value: '2090', label: 'On Hold (DK)' },
+  // { value: '2129', label: 'ReadyToSend/CC' },
+  // { value: '2130', label: 'ReadyToSend/UU' },
+  // { value: '2149', label: 'ReadyToSend/Amistad' },
+  // { value: '2131', label: 'ReadyToSend/NoEmail' },
+  // { value: '2132', label: 'On Hold/AmistadPool' },
+  // { value: '2133', label: 'Sent/Bounced' },
+
+];
+let memberTypes: SELECTITEM[] = [
+  // { value: '2068', label: 'Admin' },
+  // { value: '1012', label: 'Employee' },
+  // { value: '1010', label: 'Mentor' },
+  // { value: '2041', label: 'Pledger' },
+  // { value: '1009', label: 'Sponsor' },
+  // { value: '1008', label: 'Volunteer' }
+];
+let schoolTypes: SELECTITEM[] = [
+  // { value: '2056', label: 'Prepa' },
+  // { value: '2057', label: 'University' },
+  // { value: '2058', label: 'N/A' }
+];
+
+let followUpStatuses = [
+  // { value: '2092', label: 'Assigned' },
+  // { value: '2104', label: 'Closed' },
+];
+let highlightStatuses = [
+  // { value: '0', label: '' },
+  // { value: '2105', label: 'Problems' },
+  // { value: '2106', label: 'GoodNews' },
+];
+
+
+
+
+
+
+export const constants = {  joinedYears,
+  // non-db
   gradYears,
   years,
   months,
@@ -184,14 +185,17 @@ export const constants = {
   periodYears,
   activeQRperiods,
   selectedYearPeriod,
+  genders,
+  smileys,
+  emojis,
+  // db
+  languageStatuses,
+  roleStatuses,
+  schoolTypes,
   studentStatuses,
   reviewedQRStatuses,
   reviewedStatuses,
   memberTypes,
-  joinedFromTypes,
-  genders,
-  smileys,
-  emojis,
   followUpStatuses,
   highlightStatuses
 };

@@ -21,9 +21,9 @@
     "@angular/platform-browser": "^9.1.9",
     "@angular/platform-browser-dynamic": "^9.1.9",
     "@angular/router": "^9.1.9",
-    "@auth0/auth0-spa-js": "^1.8.2",
+    "@auth0/auth0-spa-js": "^1.11.0",
     "@ng-bootstrap/ng-bootstrap": "^6.1.0",
-    "auth0-js": "^9.13.2",
+    "auth0-js": "^9.13.4",
     "core-js": "^3.6.5",
     "marked": "^1.1.0",
     "postcss": "^7.0.31",
@@ -33,7 +33,7 @@
     "zone.js": "~0.10.3"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.901.7",
+    "@angular-devkit/build-angular": "^0.1000.7",
     "@angular/cli": "^9.1.7",
     "@angular/compiler-cli": "^9.1.9",
     "@angular/language-service": "^9.1.9",

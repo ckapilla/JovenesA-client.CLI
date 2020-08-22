@@ -1,11 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError, shareReplay, tap } from 'rxjs/operators';
 import { SELECTITEM } from '../interfaces/SELECTITEM';
 import { BaseDataService } from './base-data.service';
-import { UrlService } from './url.service';
-
 
 @Injectable({ providedIn: 'root' })
 export class MiscDataService extends BaseDataService {
@@ -44,10 +41,5 @@ export class MiscDataService extends BaseDataService {
       tap((data) => console.log('prepas ', JSON.stringify(data[0]))),
       shareReplay(1),
       catchError(this.handleError));
-
-  constructor(public http: HttpClient,
-    public webApiPrefixService: UrlService) {
-    super(http, webApiPrefixService);
-  }
 
 }

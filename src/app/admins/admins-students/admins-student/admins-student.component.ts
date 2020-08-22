@@ -28,7 +28,7 @@ export class AdminsStudentComponent implements OnInit {
 
   studentStatuses: SELECTITEM[];
   languageStatuses: SELECTITEM[];
-  joinedFromTypes: SELECTITEM[];
+  schoolTypes: SELECTITEM[];
   joinedYears: SELECTITEM[];
   gradYears: SELECTITEM[];
   gradMonths: SELECTITEM[];
@@ -122,7 +122,7 @@ export class AdminsStudentComponent implements OnInit {
 
     this.languageStatuses = constants.languageStatuses;
     this.studentStatuses = constants.studentStatuses;
-    this.joinedFromTypes = constants.joinedFromTypes;
+    this.schoolTypes = constants.schoolTypes;
     this.joinedYears = constants.joinedYears;
     this.gradYears = constants.gradYears;
     this.gradMonths = constants.months;
@@ -153,7 +153,7 @@ export class AdminsStudentComponent implements OnInit {
       photoUrl: [{ value: '' }, Validators.maxLength(255)],
       gender: ['',
         Validators.compose([Validators.required, Validators.maxLength(1)])],
-      ja_Id: [{ value: '' }],
+      educationalLevelId: [{ value: '' }],
       emergencyContactPhone: [{ value: '' },
       Validators.compose([Validators.minLength(7), Validators.maxLength(13)])],
       emergencyContactName: [{ value: '' }],
@@ -285,7 +285,7 @@ export class AdminsStudentComponent implements OnInit {
       homePhone: student.homePhone,
       nickName: student.nickName,
       photoUrl: student.photoUrl,
-      ja_Id: student.ja_Id,
+      educationalLevelId: student.educationalLevelId,
       emergencyContactPhone: student.emergencyContactPhone,
       emergencyContactName: student.emergencyContactName,
       major: student.major,

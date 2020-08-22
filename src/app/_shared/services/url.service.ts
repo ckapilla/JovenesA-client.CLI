@@ -26,7 +26,7 @@ export class UrlService {
       this.webApiPrefix = 'https://JAWebAPI-dev.jovenesadelante.org/api/';
       // this.webApiPrefix = 'https://JAWebAPI.jovenesadelante.org/api/';  // Production
       // all local for Carlos' machine
-      //this.webApiPrefix = 'http://192.168.0.15:1099/api/';
+      this.webApiPrefix = 'http://localhost:1099/api/';
       this.clientUrl = 'http://localhost:3000';
     }
 
