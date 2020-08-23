@@ -33,18 +33,13 @@ export class CodeValuesService extends BaseDataService {
     this.codeValues$.pipe(toArray())
     .subscribe(
       data => {
-        console.log(data);
-        console.log(data[0]);
         const x = data[0];
-
         x.forEach(item => {
           console.log(item);
-
           var subset = (
             ({value, label}) =>
             ({value, label})
             )(item);
-            console.log(item);
 
           switch(item.codeSet) {
             case 'StudentStatus':
@@ -57,6 +52,30 @@ export class CodeValuesService extends BaseDataService {
             case 'SchoolType':
               constants.schoolTypes.push(subset);
               break;
+            case '':
+                constants.memberTypes.push(subset);
+                break;
+                case 'MemberType':
+                  constants.memberTypes.push(subset);
+                  break;
+                  case 'ReviewedStatus':
+                    constants.reviewedStatuses.push(subset);
+                    break;
+                    case 'MemberStatus':
+                      constants.memberStatuses.push(subset);
+                      break;
+                      case 'FollowUpStatus':
+                        constants.followUpStatuses.push(subset);
+                        break;
+                        case 'HighlightStatus':
+                          constants.highlightStatuses.push(subset);
+                          break;
+                          case 'AcademicYearType':
+                            constants.highlightStatuses.push(subset);
+                            break;
+                            case 'Country':
+                              constants.countryList.push(subset);
+                              break;
             default:
               // console.log('skipping');
               // console.log(subset);

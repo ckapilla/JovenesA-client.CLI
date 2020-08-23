@@ -57,10 +57,9 @@
                      type="text" class="form-control form-control-sm" placeholder="Best Phone Number when not in SMA" />
 
               <label for="countryOfResidenceId">Country of Residence</label>
-              <input id="countryOfResidenceId" formControlName="countryOfResidenceId"
-                     readonly
-                     type="text" class="form-control form-control-sm" placeholder="Best Phone Number when not in SMA" />
-
+              <select formControlName="countryOfResidenceId" class="form-control form-control-sm">
+                <option *ngFor="let country of countryList" [value]="country.value">{{country.label}}</option>
+              </select>
 
               <label for="englishSkillLevelId">English Level:</label>
               <select formControlName="englishSkillLevelId" class="form-control form-control-sm">

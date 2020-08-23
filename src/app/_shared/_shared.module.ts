@@ -146,8 +146,9 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
   ]
 })
 
+
 export class AppSharedModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<AppSharedModule> {
     return {
       ngModule: AppSharedModule
     };

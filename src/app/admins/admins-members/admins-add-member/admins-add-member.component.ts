@@ -22,6 +22,7 @@ export class AdminsAddMemberComponent implements OnInit {
   errorMessage: string;
   successMessage: string;
 
+  countryList: SELECTITEM[];
   languageStatuses: SELECTITEM[];
   roleStatuses: SELECTITEM[];
 
@@ -49,7 +50,7 @@ export class AdminsAddMemberComponent implements OnInit {
     this.webPrefix = urlService.getClientUrl();
 
     this.languageStatuses = constants.languageStatuses;
-    this.roleStatuses = constants.roleStatuses;
+    this.roleStatuses = constants.memberStatuses;
 
     this.myForm = _fb.group({
       textGroup: _fb.group({

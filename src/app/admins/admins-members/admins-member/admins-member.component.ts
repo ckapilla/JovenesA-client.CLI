@@ -22,6 +22,7 @@ export class AdminsMemberComponent implements OnInit {
   errorMessage: string;
   successMessage: string;
 
+  countryList: SELECTITEM[];
   languageStatuses: SELECTITEM[];
   roleStatuses: SELECTITEM[];
 
@@ -43,8 +44,9 @@ export class AdminsMemberComponent implements OnInit {
     console.log('hi from AdminsMember constructor');
     this.webPrefix = urlService.getClientUrl();
 
+    this.countryList = constants.countryList;
     this.languageStatuses = constants.languageStatuses;
-    this.roleStatuses = constants.roleStatuses;
+    this.roleStatuses = constants.memberStatuses;
 
     this.myForm = formBuilder.group({
       firstNames: ['', Validators.compose(

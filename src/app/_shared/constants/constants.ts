@@ -120,7 +120,7 @@ let studentStatuses: SELECTITEM[] = [
   // { value: '2152', label: 'Pending' },
 
 ];
-let roleStatuses: SELECTITEM[] = [
+let memberStatuses: SELECTITEM[] = [
   // { value: '1015', label: 'Active' },
   // { value: '1016', label: 'Inactive Temporary' },
   // { value: '1017', label: 'Inactive Permanent' },
@@ -161,20 +161,18 @@ let schoolTypes: SELECTITEM[] = [
   // { value: '2058', label: 'N/A' }
 ];
 
-let followUpStatuses = [
+let followUpStatuses: SELECTITEM[] = [
   // { value: '2092', label: 'Assigned' },
   // { value: '2104', label: 'Closed' },
 ];
-let highlightStatuses = [
+let highlightStatuses: SELECTITEM[] = [
   // { value: '0', label: '' },
   // { value: '2105', label: 'Problems' },
   // { value: '2106', label: 'GoodNews' },
 ];
+let countryList: SELECTITEM[] = [
 
-
-
-
-
+];
 
 export const constants = {  joinedYears,
   // non-db
@@ -190,12 +188,13 @@ export const constants = {  joinedYears,
   emojis,
   // db
   languageStatuses,
-  roleStatuses,
+  memberStatuses,
   schoolTypes,
   studentStatuses,
   reviewedQRStatuses,
   reviewedStatuses,
   memberTypes,
   followUpStatuses,
-  highlightStatuses
+  highlightStatuses,
+  countryList
 };

@@ -38,7 +38,7 @@ export class AdminsMemberListComponent implements OnInit {
   ) {
 
     console.log('Hi from member List Ctrl controller function');
-    this.roleStatuses = constants.roleStatuses;
+    this.roleStatuses = constants.memberStatuses;
     this.memberTypes = constants.memberTypes;
     this.studentStatuses = constants.studentStatuses;
     this.isLoading = false;
