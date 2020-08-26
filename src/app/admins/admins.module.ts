@@ -27,54 +27,43 @@ import { SponsorGroupComponent } from './sponsor-group/sponsor-group.component';
 import { SponsorGroupsComponent } from './sponsor-groups/sponsor-groups.component';
 import { StudentReportsStatusCountsComponent } from './ssr-status-counts/ssr-status-counts.component';
 import { ServerEnvironmentComponent } from './utilities/server-environment/server-environment.component';
+import { TestNamesVisibilityComponent } from './utilities/test-names-visibility/test-names-visibility.component';
 import { UtilitiesComponent } from './utilities/utilities.component';
 // import { MentorReportsComponent } from './reports/mentor-reports/mentor-reports.component';
 
 @NgModule({
-    imports: [
-        AppSharedModule,
-        AdminsRoutingModule,
-        ReactiveFormsModule,
-        FormsModule,
-        NgbModule
-    ],
-    declarations: [
-        AdminsComponent,
-        AdminsHomeComponent,
-        AdminsMemberListComponent,
-        AdminsMemberComponent,
-        AdminsAddMemberComponent,
-        AdminsStudentListComponent,
-        AdminsStudentComponent,
-        AdminsStudentMRsComponent,
-        MentorReportsContainerComponent,
-        MentorReportsSummaryTrackingComponent,
-        MentorReportsStatusCountsComponent,
-        MentorReportSummaryUpdatesComponent,
-        ServerEnvironmentComponent,
-        // MentorReportFollowUpUpdatesComponent,
-        StudentReportsStatusCountsComponent,
-        AdminsNavbarComponent,
-        FollowUpRequestsComponent,
-        FollowUpRequestsAddComponent,
-        FollowUpEventsAddComponent,
-        // SelfReportsUpdatesComponent,
-        SponsorGroupsComponent,
-        SponsorGroupComponent,
-        // FollowUpEventsComponent
-        UtilitiesComponent,
-        MentorReportsSubmittedComponent,
-        AdminsStudentSearchComponent,
-        AdminsMemberSearchComponent
-
-
-    ],
-    exports: [
-        AdminsStudentMRsComponent,
-        SponsorGroupsComponent
-    ],
-    entryComponents: [
-        ServerEnvironmentComponent,
-        MentorReportsSubmittedComponent]
+	imports: [ AppSharedModule, AdminsRoutingModule, ReactiveFormsModule, FormsModule, NgbModule ],
+	declarations: [
+		AdminsComponent,
+		AdminsHomeComponent,
+		AdminsMemberListComponent,
+		AdminsMemberComponent,
+		AdminsAddMemberComponent,
+		AdminsStudentListComponent,
+		AdminsStudentComponent,
+		AdminsStudentMRsComponent,
+		MentorReportsContainerComponent,
+		MentorReportsSummaryTrackingComponent,
+		MentorReportsStatusCountsComponent,
+		MentorReportSummaryUpdatesComponent,
+		ServerEnvironmentComponent,
+		// MentorReportFollowUpUpdatesComponent,
+		StudentReportsStatusCountsComponent,
+		AdminsNavbarComponent,
+		FollowUpRequestsComponent,
+		FollowUpRequestsAddComponent,
+		FollowUpEventsAddComponent,
+		// SelfReportsUpdatesComponent,
+		SponsorGroupsComponent,
+		SponsorGroupComponent,
+		// FollowUpEventsComponent
+		UtilitiesComponent,
+		MentorReportsSubmittedComponent,
+		AdminsStudentSearchComponent,
+		AdminsMemberSearchComponent,
+		TestNamesVisibilityComponent
+	],
+	exports: [ AdminsStudentMRsComponent, SponsorGroupsComponent ],
+	entryComponents: [ ServerEnvironmentComponent, MentorReportsSubmittedComponent ]
 })
-export class AdminsModule { }
+export class AdminsModule {}

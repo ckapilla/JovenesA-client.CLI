@@ -1,7 +1,18 @@
 <div>
   <div class="row">
-    <div>WebAPI ServerName {{ env.webApiServerName }}</div>
-    <div>Database ServerName {{ env.databaseServerName }}</div>
-    <div>Database Name {{ env.databaseName }}</div>
+    <div class="col">
+      <table>
+        <tr>
+          <th>WebAPI ServerName </th>{{ env.webApiServerName }} <th></th>
+        </tr>
+        <tr>
+          <th>Database ServerName </th>{{ env.databaseServerName }} <th></th>
+        </tr>
+        <tr>
+          <th>Database Name </th>{{ env.databaseName }} <th></th>
+        </tr>
+
+      </table>
+    </div>
   </div>
 </div>
