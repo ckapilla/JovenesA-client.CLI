@@ -28,7 +28,7 @@ export class CodeValuesService extends BaseDataService {
 			(data) => {
 				const x = data[0];
 				x.forEach((item) => {
-					console.log(item);
+					// console.log(item);
 					var subset = (({ value, label }) => ({ value, label }))(item);
 
 					switch (item.codeSet) {
