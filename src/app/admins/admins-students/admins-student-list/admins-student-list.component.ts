@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { constants } from 'src/app/_shared/constants/constants';
@@ -10,239 +9,232 @@ import { SessionService } from 'src/app/_shared/services/session.service';
 import { StudentDataService } from 'src/app/_shared/services/student-data.service';
 import { TestNamesVisibilityService } from 'src/app/_shared/services/test-names-visibility.service';
 
-
 @Component({
-  selector: 'app-admins-student-list',
-  templateUrl: './admins-student-list.component.html',
-  styleUrls: ['./admins-student-list.component.css']
+	selector: 'app-admins-student-list',
+	templateUrl: './admins-student-list.component.html',
+	styleUrls: [ './admins-student-list.component.css' ]
 })
-
 export class AdminsStudentListComponent implements OnInit {
-  selectedActiveStatus: string;
-  selectedStatus: string;
-  selectedYearJoined: string;
-  selectedGradYear: string;
+	selectedActiveStatus: string;
+	selectedStatus: string;
+	selectedYearJoined: string;
+	selectedGradYear: string;
 
-  studentDTO: StudentDTO;
-  studentDTOs: StudentDTO[];
-  isLoading: boolean;
-  errorMessage: string;
-  successMessage: string;
-  sortCriteria: SORTCRITERIA;
+	studentDTO: StudentDTO;
+	studentDTOs: StudentDTO[];
+	isLoading: boolean;
+	errorMessage: string;
+	successMessage: string;
+	sortCriteria: SORTCRITERIA;
 
-  readonly studentStatuses: SELECTITEM[] = constants.studentStatuses;
-  readonly schoolTypes: SELECTITEM[] = constants.schoolTypes;
-  readonly joinedYears: SELECTITEM[] = constants.joinedYears;
-  readonly gradYears: SELECTITEM[] = constants.gradYears;
-  readonly smileys: string[] = constants.smileys;
-  displayTestNames: boolean;
+	readonly studentStatuses: SELECTITEM[] = constants.studentStatuses;
+	readonly schoolTypes: SELECTITEM[] = constants.schoolTypes;
+	readonly joinedYears: SELECTITEM[] = constants.joinedYears;
+	readonly gradYears: SELECTITEM[] = constants.gradYears;
+	readonly smileys: string[] = constants.smileys;
+	displayTestNames: boolean;
 
-  constructor(
-    public studentData: StudentDataService,
-    public router: Router,
-    // private route: ActivatedRoute,
-    private session: SessionService,
-    private columnSorter: ColumnSortService,
-    public testNamesVisibilityService: TestNamesVisibilityService
-  ) {
+	constructor(
+		public studentData: StudentDataService,
+		public router: Router,
+		// private route: ActivatedRoute,
+		private session: SessionService,
+		private columnSorter: ColumnSortService,
+		public testNamesVisibilityService: TestNamesVisibilityService
+	) {
+		console.log('Hi from student List Ctrl controller function');
 
-    console.log('Hi from student List Ctrl controller function');
+		this.selectedActiveStatus = '-1';
+		this.selectedStatus = this.studentStatuses[2].value;
+		this.selectedYearJoined = '0'; //  + this.session.getSelectedYearJoined(); // this.joinedYears[0].value;
+		this.selectedGradYear = this.session.getSelectedGradYear(); // this.gradYears[0].value; // All
 
-    this.selectedActiveStatus = '-1';
-    this.selectedStatus = this.studentStatuses[2].value;
-    this.selectedYearJoined = '0'; //  + this.session.getSelectedYearJoined(); // this.joinedYears[0].value;
-    this.selectedGradYear = this.session.getSelectedGradYear(); // this.gradYears[0].value; // All
+		// this.gradeRptsStatus = 'yellowWarning.jpg'
+		// this.gpaStatus = 'greenCheck.jpg'
 
-    // this.gradeRptsStatus = 'yellowWarning.jpg'
-    // this.gpaStatus = 'greenCheck.jpg'
+		this.isLoading = false;
+		this.displayTestNames = testNamesVisibilityService.getLatestTestNamesVisibility();
+	}
 
-    this.isLoading = false;
-    this.displayTestNames = testNamesVisibilityService.getLatestTestNamesVisibility();
-  }
+	ngOnInit() {
+		console.log('ngOnInit');
+		// this.processRouteParams();
+		this.fetchFilteredData();
+	}
 
-  ngOnInit() {
-    console.log('ngOnInit');
-    // this.processRouteParams();
-    this.fetchFilteredData();
-  }
+	// processRouteParams() {
+	//   console.log('students setting filters form queryParams');
 
-  // processRouteParams() {
-  //   console.log('students setting filters form queryParams');
+	//   const yearJoined = this.route.snapshot.queryParams['yearJoined'];
+	//   console.log('yearJoined param = ' + yearJoined);
+	//   if (yearJoined !== undefined) {
+	//     this.selectedYearJoined = yearJoined;
+	//   }
+	// }
+	// can't rely on two way binding to have updated the selected values
+	// in time so we do it manually below
 
-  //   const yearJoined = this.route.snapshot.queryParams['yearJoined'];
-  //   console.log('yearJoined param = ' + yearJoined);
-  //   if (yearJoined !== undefined) {
-  //     this.selectedYearJoined = yearJoined;
-  //   }
-  // }
-  // can't rely on two way binding to have updated the selected values
-  // in time so we do it manually below
+	setSelectedActiveStatus(activeStatus: string) {
+		console.log('selected activeStatus: ' + activeStatus);
+		this.selectedActiveStatus = activeStatus;
+		if (activeStatus === '1') {
+			this.selectedStatus = '-1';
+		} else {
+			this.selectedStatus = this.studentStatuses[2].value; // current
+		}
+		this.fetchFilteredData();
+	}
+	setSelectedStatus(status: string) {
+		console.log('selected status: ' + status);
+		this.selectedStatus = status;
+		this.fetchFilteredData();
+	}
 
-  setSelectedActiveStatus(activeStatus: string) {
-    console.log('selected activeStatus: ' + activeStatus);
-    this.selectedActiveStatus = activeStatus;
-    if (activeStatus === '1') {
-      this.selectedStatus = '-1';
-    } else {
-      this.selectedStatus = this.studentStatuses[2].value; // current
-    }
-    this.fetchFilteredData();
-  }
-  setSelectedStatus(status: string) {
-    console.log('selected status: ' + status);
-    this.selectedStatus = status;
-    this.fetchFilteredData();
-  }
+	setSelectedGradYear(year: string) {
+		console.log('setting SelectedGradYear: ' + year);
+		this.session.setSelectedGradYear(year);
+		this.selectedGradYear = year;
+		this.fetchFilteredData();
+	}
+	setSelectedYearJoined(year: string) {
+		console.log('setting SelectedYearJoined: ' + year);
+		this.session.setSelectedYearJoined(year);
+		this.selectedYearJoined = year;
+		this.fetchFilteredData();
+	}
 
+	fetchFilteredData() {
+		// console.log('data service for getStudents: ' +
+		//        'status: ' + this.selectedStatus + ' ' +
+		//        'yearjoined: ' + this.selectedYearJoined +  + ' ' +
+		//        'gradyear: ' + this.selectedGradYear
+		//        );
+		this.isLoading = true;
+		this.studentData
+			.getStudentDTOsByStatusAndYear(
+				this.selectedActiveStatus,
+				this.selectedStatus,
+				this.selectedYearJoined,
+				this.selectedGradYear
+			)
+			.subscribe(
+				(data) => {
+					this.studentDTOs = data
+						.filter((item) => {
+							console.log('displayTestNames is ' + this.displayTestNames);
+							if (this.displayTestNames) {
+								console.log('displayTestNames is true returning  item ' + item);
+								return item;
+							} else if (!this.displayTestNames && item['studentName'] !== '_Test, _Student') {
+								console.log('displayTestNames is false and item.studentName = ' + item.studentName);
+								console.log(' returning  item ' + item);
+								return item;
+							}
+						})
+						.map(this.getNumericStatus);
+				},
+				(err) => {
+					this.errorMessage = err;
+				},
+				() => {
+					// this.studentDTOs = this.studentDTOs.filter(s => s.studentId !== 275); // N/A
+					console.log(this.studentDTOs[0]);
+					console.log('data loaded now set timeout for scroll');
+					setTimeout(() => {
+						this.scrollIntoView();
+					}, 0);
+					this.isLoading = false;
+				}
+			);
+	}
 
-  setSelectedGradYear(year: string) {
-    console.log('setting SelectedGradYear: ' + year);
-    this.session.setSelectedGradYear(year);
-    this.selectedGradYear = year;
-    this.fetchFilteredData();
-  }
-  setSelectedYearJoined(year: string) {
-    console.log('setting SelectedYearJoined: ' + year);
-    this.session.setSelectedYearJoined(year);
-    this.selectedYearJoined = year;
-    this.fetchFilteredData();
-  }
+	scrollIntoView() {
+		const element = document.body;
+		if (element) {
+			element.scrollIntoView(true);
+		}
+	}
 
-  fetchFilteredData() {
-    // console.log('data service for getStudents: ' +
-    //        'status: ' + this.selectedStatus + ' ' +
-    //        'yearjoined: ' + this.selectedYearJoined +  + ' ' +
-    //        'gradyear: ' + this.selectedGradYear
-    //        );
-    this.isLoading = true;
-    this.studentData.getStudentDTOsByStatusAndYear(this.selectedActiveStatus, this.selectedStatus, this.selectedYearJoined, this.selectedGradYear)
-      .subscribe(
-        data => {
-          this.studentDTOs = data.filter((item) => {
-            console.log('displayTestNames is ' + this.displayTestNames);
-            if (this.displayTestNames) {
-              console.log('displayTestNames is true returning  item ' + item);
-              return item;
-            } else if (!this.displayTestNames && (item['studentName'] !== '_Test, _Student')) {
-              console.log('displayTestNames is false and item.studentName = ' + item.studentName);
-              console.log(' returning  item ' + item);
-              return item;
-            }
-          }).map(this.getNumericStatus);
-        },
-        err => { this.errorMessage = err; },
-        () => {
-          // this.studentDTOs = this.studentDTOs.filter(s => s.studentId !== 275); // N/A
-          console.log(this.studentDTOs[0]);
-          console.log('data loaded now set timeout for scroll');
-          setTimeout(() => {
-            this.scrollIntoView();
-          }, 0);
-          this.isLoading = false;
-        }
-      );
-  }
+	getNumericStatus(studentDTO: StudentDTO): StudentDTO {
+		studentDTO.numericTimelyMentorMeetingStatus = 0;
+		if (studentDTO.timelyMentorMeetingStatus === 'red') {
+			studentDTO.numericTimelyMentorMeetingStatus = 1;
+		} else if (studentDTO.timelyMentorMeetingStatus === 'yellow') {
+			studentDTO.numericTimelyMentorMeetingStatus = 2;
+		} else if (studentDTO.timelyMentorMeetingStatus === 'green') {
+			studentDTO.numericTimelyMentorMeetingStatus = 3;
+		}
 
-  scrollIntoView() {
+		studentDTO.numericTimelyMentorReportStatus = 0;
+		if (studentDTO.timelyMentorReportStatus === 'red') {
+			studentDTO.numericTimelyMentorReportStatus = 1;
+		} else if (studentDTO.timelyMentorReportStatus === 'yellow') {
+			studentDTO.numericTimelyMentorReportStatus = 2;
+		} else if (studentDTO.timelyMentorReportStatus === 'green') {
+			studentDTO.numericTimelyMentorReportStatus = 3;
+		}
 
-    const element = document.body;
-    if (element) {
-      element.scrollIntoView(true);
-    }
-  }
+		studentDTO.numericGradeRptStatus = 0;
+		if (studentDTO.gradeRptStatus === 'red') {
+			studentDTO.numericGradeRptStatus = 1;
+		} else if (studentDTO.gradeRptStatus === 'yellow') {
+			studentDTO.numericGradeRptStatus = 2;
+		} else if (studentDTO.gradeRptStatus === 'green') {
+			studentDTO.numericGradeRptStatus = 3;
+		}
 
+		studentDTO.numericGPAStatus = 0;
+		if (studentDTO.gpaStatus === 'red') {
+			studentDTO.numericGPAStatus = 1;
+		} else if (studentDTO.gpaStatus === 'yellow') {
+			studentDTO.numericGPAStatus = 2;
+		} else if (studentDTO.gpaStatus === 'green') {
+			studentDTO.numericGPAStatus = 3;
+		}
 
-  getNumericStatus(studentDTO: StudentDTO): StudentDTO {
+		return studentDTO;
+	}
 
-    studentDTO.numericTimelyMentorMeetingStatus = 0;
-    if (studentDTO.timelyMentorMeetingStatus === 'red') {
-      studentDTO.numericTimelyMentorMeetingStatus = 1;
-    } else if (studentDTO.timelyMentorMeetingStatus === 'yellow') {
-      studentDTO.numericTimelyMentorMeetingStatus = 2;
-    } else if (studentDTO.timelyMentorMeetingStatus === 'green') {
-      studentDTO.numericTimelyMentorMeetingStatus = 3;
-    }
+	gotoStudent(guid: string, studentName: string) {
+		console.log('setting studentName to ' + studentName);
+		this.session.setStudentInContextName(studentName);
+		// const idx = this.studentDTOs.findIndex(s => s.studentId === id);
 
-    studentDTO.numericTimelyMentorReportStatus = 0;
-    if (studentDTO.timelyMentorReportStatus === 'red') {
-      studentDTO.numericTimelyMentorReportStatus = 1;
-    } else if (studentDTO.timelyMentorReportStatus === 'yellow') {
-      studentDTO.numericTimelyMentorReportStatus = 2;
-    } else if (studentDTO.timelyMentorReportStatus === 'green') {
-      studentDTO.numericTimelyMentorReportStatus = 3;
-    }
+		// this.session.setCurrentStudent(this.studentDTOs[idx]);
+		// const link = ['/admins/students/student', id];
+		const link = [ 'admins/students/student', { guid: guid } ];
 
+		console.log('navigating to ' + link);
+		this.router.navigate(link);
+	}
 
-    studentDTO.numericGradeRptStatus = 0;
-    if (studentDTO.gradeRptStatus === 'red') {
-      studentDTO.numericGradeRptStatus = 1;
-    } else if (studentDTO.gradeRptStatus === 'yellow') {
-      studentDTO.numericGradeRptStatus = 2;
-    } else if (studentDTO.gradeRptStatus === 'green') {
-      studentDTO.numericGradeRptStatus = 3;
-    }
+	gotoMentor(guid: string) {
+		const link = [ 'admins/members/member', { guid: guid } ];
 
-    studentDTO.numericGPAStatus = 0;
-    if (studentDTO.gpaStatus === 'red') {
-      studentDTO.numericGPAStatus = 1;
-    } else if (studentDTO.gpaStatus === 'yellow') {
-      studentDTO.numericGPAStatus = 2;
-    } else if (studentDTO.gpaStatus === 'green') {
-      studentDTO.numericGPAStatus = 3;
-    }
+		console.log('navigating to ' + link);
+		this.router.navigate(link);
+	}
 
-    studentDTO.joinedFrom = 'N/A';
-    if (studentDTO.joinedFromId === 2056) {
-      studentDTO.joinedFrom = 'Prepa';
-    } else if (studentDTO.joinedFromId === 2057) {
-      studentDTO.joinedFrom = 'Univ';
-    }
+	gotoReport(id: number) {
+		const link = [ '/admins/students/mentorReports', id ];
+		console.log('navigating to ' + link);
+		this.router.navigate(link);
+	}
 
-    return studentDTO;
-  }
+	gotoStudentSearch() {
+		const link = '/admins/students';
+		console.log('navigating to ' + link);
+		this.router.navigateByUrl(link);
+	}
 
-  gotoStudent(guid: string, studentName: string) {
-    console.log('setting studentName to ' + studentName);
-    this.session.setStudentInContextName(studentName);
-    // const idx = this.studentDTOs.findIndex(s => s.studentId === id);
+	public onSortColumn(sortCriteria: SORTCRITERIA) {
+		console.log('parent received sortColumnCLick event with ' + sortCriteria.sortColumn);
+		return this.studentDTOs.sort((a, b) => {
+			return this.columnSorter.compareValues(a, b, sortCriteria);
+		});
+	}
 
-    // this.session.setCurrentStudent(this.studentDTOs[idx]);
-    // const link = ['/admins/students/student', id];
-    const link = ['admins/students/student', { guid: guid }];
-
-    console.log('navigating to ' + link);
-    this.router.navigate(link);
-  }
-
-  gotoMentor(guid: string) {
-    const link = ['admins/members/member', { guid: guid }];
-
-    console.log('navigating to ' + link);
-    this.router.navigate(link);
-  }
-
-  gotoReport(id: number) {
-    const link = ['/admins/students/mentorReports', id];
-    console.log('navigating to ' + link);
-    this.router.navigate(link);
-  }
-
-  gotoStudentSearch() {
-    const link = '/admins/students';
-    console.log('navigating to ' + link);
-    this.router.navigateByUrl(link);
-  }
-
-
-  public onSortColumn(sortCriteria: SORTCRITERIA) {
-    console.log('parent received sortColumnCLick event with ' + sortCriteria.sortColumn);
-    return this.studentDTOs.sort((a, b) => {
-      return this.columnSorter.compareValues(a, b, sortCriteria);
-    });
-  }
-
-  onSorted($event) {
-    console.log('sorted event received');
-  }
-
+	onSorted($event) {
+		console.log('sorted event received');
+	}
 }

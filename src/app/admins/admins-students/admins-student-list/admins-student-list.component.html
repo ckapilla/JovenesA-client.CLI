@@ -57,13 +57,16 @@
               </th>
               <th app-sortable-column="yearJoinedJa" (onSortColumn)="onSortColumn($event)">Year<br /> Joined</th>
               <th app-sortable-column="joinedFrom" (onSortColumn)="onSortColumn($event)">Joined<br /> From</th>
+              <th app-sortable-column="educationalLevel" (onSortColumn)="onSortColumn($event)">Ed Level</th>
+              <th app-sortable-column="pilotProgram" (onSortColumn)="onSortColumn($event)">Pilot</th>
               <th app-sortable-column="status" (onSortColumn)="onSortColumn($event)">Status</th>
+
               <th app-sortable-column="gradYear" (onSortColumn)="onSortColumn($event)">Grad<br /> Year/Mo</th>
-              <th app-sortable-column="credentialYear" (onSortColumn)="onSortColumn($event)">Credential<br /> Year/Mo
-              </th>
+              <!-- <th app-sortable-column="credentialYear" (onSortColumn)="onSortColumn($event)">Credential<br /> Year/Mo
+              </th> -->
               <!-- <th app-sortable-column="gpaStatus" (onSortColumn)="onSortColumn($event)">GPA</th>
               <th app-sortable-column="gradeRptStatus" (onSortColumn)="onSortColumn($event)">Grades<br />OnTime</th> -->
-              <th app-sortable-column="mentorName" (onSortColumn)="onSortColumn($event)">Assigned Mentor</th>
+              <th app-sortable-column="mentorName" (onSortColumn)="onSortColumn($event)">Mentor</th>
               <!-- <th app-sortable-column="numericTimelyMentorMeetingStatus" (onSortColumn)="onSortColumn($event)" >Mentor<br />Mtg</th>
               <th app-sortable-column="numericTimelyMentorReportStatus" (onSortColumn)="onSortColumn($event)" >Mentor<br />Rpt</th> -->
               <th app-sortable-column="studentSnapshotStatus" (onSortColumn)="onSortColumn($event)">Emoji</th>
@@ -93,15 +96,22 @@
                 {{ student.joinedFrom}}
               </td>
               <td class='centered'>
+                {{ student.educationalLevel}}
+              </td>
+              <td class='centered'>
+                {{ student.pilotProgram}}
+              </td>
+
+              <td class='centered'>
                 {{ student.status }}
               </td>
 
               <td class='centered'>
                 {{ student.gradYear}}/{{ student.gradMonth}}
               </td>
-              <td class='centered'>
+              <!-- <td class='centered'>
                 {{ student.credentialYear}}/{{ student.credentialMonth}}
-              </td>
+              </td> -->
 
 
               <!-- <td style="text-align:center;white-space: nowrap">
