@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { GradesGivenEntryDTO } from 'src/app/_shared/models/grades-given-entryDTO';
 import { BecaDataService } from 'src/app/_shared/services/beca-data.service';
 import { StudentSelectedService } from 'src/app/_shared/services/student-selected.service';
+import { TestNamesVisibilityService } from 'src/app/_shared/services/test-names-visibility.service';
 import { constants } from '../../_shared/constants/constants';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 import { SORTCRITERIA } from '../../_shared/interfaces/SORTCRITERIA';
@@ -11,131 +12,134 @@ import { ColumnSortService } from '../../_shared/services/column-sort.service';
 import { SessionService } from '../../_shared/services/session.service';
 
 @Component({
-  templateUrl: './grades-list.component.html',
-  styleUrls: ['./grades-list.component.css']
+	templateUrl: './grades-list.component.html',
+	styleUrls: [ './grades-list.component.css' ]
 })
-
-
 export class GradesListComponent implements OnInit {
+	studentDTO: StudentDTO;
+	gradesGivenEntryDTOs: GradesGivenEntryDTO[];
+	isLoading: boolean;
+	errorMessage: string;
+	successMessage: string;
+	sortCriteria: SORTCRITERIA;
+	years: SELECTITEM[];
+	months: SELECTITEM[];
+	selectedYear: string;
+	selectedMonth: string;
+	displayTestNames: boolean;
 
-  studentDTO: StudentDTO;
-  gradesGivenEntryDTOs: GradesGivenEntryDTO[];
-  isLoading: boolean;
-  errorMessage: string;
-  successMessage: string;
-  sortCriteria: SORTCRITERIA;
-  years: SELECTITEM[];
-  months: SELECTITEM[];
-  selectedYear: string;
-  selectedMonth: string;
+	constructor(
+		public becaData: BecaDataService,
+		public router: Router,
+		// private route: ActivatedRoute,
+		public studentSelected: StudentSelectedService,
+		private session: SessionService,
+		private columnSorter: ColumnSortService,
+		public testNamesVisibilityService: TestNamesVisibilityService
+	) {
+		console.log('Hi from grades List Ctrl controller function');
 
-  constructor(
-    public becaData: BecaDataService,
-    public router: Router,
-    // private route: ActivatedRoute,
-    public studentSelected: StudentSelectedService,
-    private session: SessionService,
-    private columnSorter: ColumnSortService
-  ) {
+		this.years = constants.years;
+		this.months = constants.months;
 
-    console.log('Hi from grades List Ctrl controller function');
+		const today = new Date();
+		this.selectedYear = '2020'; // '' + today.getFullYear(); //
+		this.selectedMonth = '4'; //  + today.getMonth() + 1;// '5';
 
-    this.years = constants.years;
-    this.months = constants.months;
+		this.isLoading = false;
+		this.displayTestNames = testNamesVisibilityService.getLatestTestNamesVisibility();
+	}
 
-    const today = new Date();
-    this.selectedYear = '2020'; // '' + today.getFullYear(); //
-    this.selectedMonth = '4'; //  + today.getMonth() + 1;// '5';
+	ngOnInit() {
+		console.log('ngOnInit');
+		// this.processRouteParams();
+		this.fetchFilteredData();
+	}
 
-    this.isLoading = false;
-  }
+	fetchFilteredData() {
+		this.isLoading = true;
+		this.becaData.getGradesListEntryDTOs().subscribe(
+			(data) => {
+				this.gradesGivenEntryDTOs = data.filter((item) => {
+					if (this.displayTestNames) {
+						return item;
+					} else if (!this.displayTestNames && item.studentName !== '_Test, _Student') {
+						return item;
+					}
+				});
+			},
+			(err) => {
+				this.errorMessage = err;
+			},
+			() => {
+				// this.gradesGivenEntryDTOs = this.gradesGivenEntryDTOs.filter(s => s.studentId !== 275); // N/A
+				console.log(this.gradesGivenEntryDTOs[0]);
+				console.log('data loaded now set timeout for scroll');
+				setTimeout(() => {
+					this.scrollIntoView();
+				}, 0);
+				this.isLoading = false;
+			}
+		);
+	}
 
-  ngOnInit() {
-    console.log('ngOnInit');
-    // this.processRouteParams();
-    this.fetchFilteredData();
-  }
+	scrollIntoView() {
+		const element = document.body;
+		if (element) {
+			element.scrollIntoView(true);
+		}
+	}
 
-  fetchFilteredData() {
-    this.isLoading = true;
-    this.becaData.getGradesListEntryDTOs()
-      .subscribe(
-        data => { this.gradesGivenEntryDTOs = data; },
-        err => { this.errorMessage = err; },
-        () => {
-          // this.gradesGivenEntryDTOs = this.gradesGivenEntryDTOs.filter(s => s.studentId !== 275); // N/A
-          console.log(this.gradesGivenEntryDTOs[0]);
-          console.log('data loaded now set timeout for scroll');
-          setTimeout(() => {
-            this.scrollIntoView();
-          }, 0);
-          this.isLoading = false;
-        }
-      );
-  }
+	getNumericStatus(studentDTO: StudentDTO): StudentDTO {
+		studentDTO.numericGradeRptStatus = 0;
+		if (studentDTO.gradeRptStatus === 'red') {
+			studentDTO.numericGradeRptStatus = 1;
+		} else if (studentDTO.gradeRptStatus === 'yellow') {
+			studentDTO.numericGradeRptStatus = 2;
+		} else if (studentDTO.gradeRptStatus === 'green') {
+			studentDTO.numericGradeRptStatus = 3;
+		}
 
-  scrollIntoView() {
+		studentDTO.numericGPAStatus = 0;
+		if (studentDTO.gpaStatus === 'red') {
+			studentDTO.numericGPAStatus = 1;
+		} else if (studentDTO.gpaStatus === 'yellow') {
+			studentDTO.numericGPAStatus = 2;
+		} else if (studentDTO.gpaStatus === 'green') {
+			studentDTO.numericGPAStatus = 3;
+		}
 
-    const element = document.body;
-    if (element) {
-      element.scrollIntoView(true);
-    }
-  }
+		return studentDTO;
+	}
 
+	setSelectedYear(year: string) {
+		this.selectedYear = year;
+		this.fetchFilteredData();
+	}
+	setSelectedMonth(month: string) {
+		this.selectedMonth = month;
+		this.fetchFilteredData();
+	}
 
-  getNumericStatus(studentDTO: StudentDTO): StudentDTO {
+	gotoStudent(studentGUId: string, studentName: string) {
+		console.log('setting studentName to ' + studentName);
+		this.session.setStudentInContextName(studentName);
 
-    studentDTO.numericGradeRptStatus = 0;
-    if (studentDTO.gradeRptStatus === 'red') {
-      studentDTO.numericGradeRptStatus = 1;
-    } else if (studentDTO.gradeRptStatus === 'yellow') {
-      studentDTO.numericGradeRptStatus = 2;
-    } else if (studentDTO.gradeRptStatus === 'green') {
-      studentDTO.numericGradeRptStatus = 3;
-    }
+		this.studentSelected.notifyNewStudentGUId(studentGUId);
+		const link = [ 'becas/grades-edit' ]; // , { guid: guid }];
 
-    studentDTO.numericGPAStatus = 0;
-    if (studentDTO.gpaStatus === 'red') {
-      studentDTO.numericGPAStatus = 1;
-    } else if (studentDTO.gpaStatus === 'yellow') {
-      studentDTO.numericGPAStatus = 2;
-    } else if (studentDTO.gpaStatus === 'green') {
-      studentDTO.numericGPAStatus = 3;
-    }
+		console.log('navigating to ' + link);
+		this.router.navigate(link);
+	}
 
-    return studentDTO;
-  }
+	public onSortColumn(sortCriteria: SORTCRITERIA) {
+		console.log('parent received sortColumnCLick event with ' + sortCriteria.sortColumn);
+		return this.gradesGivenEntryDTOs.sort((a, b) => {
+			return this.columnSorter.compareValues(a, b, sortCriteria);
+		});
+	}
 
-  setSelectedYear(year: string) {
-    this.selectedYear = year;
-    this.fetchFilteredData();
-  }
-  setSelectedMonth(month: string) {
-    this.selectedMonth = month;
-    this.fetchFilteredData();
-  }
-
-  gotoStudent(studentGUId: string, studentName: string) {
-
-    console.log('setting studentName to ' + studentName);
-    this.session.setStudentInContextName(studentName);
-
-    this.studentSelected.notifyNewStudentGUId(studentGUId);
-    const link = ['becas/grades-edit']; // , { guid: guid }];
-
-    console.log('navigating to ' + link);
-    this.router.navigate(link);
-  }
-
-  public onSortColumn(sortCriteria: SORTCRITERIA) {
-    console.log('parent received sortColumnCLick event with ' + sortCriteria.sortColumn);
-    return this.gradesGivenEntryDTOs.sort((a, b) => {
-      return this.columnSorter.compareValues(a, b, sortCriteria);
-    });
-  }
-
-  onSorted($event) {
-    console.log('sorted event received');
-  }
-
+	onSorted($event) {
+		console.log('sorted event received');
+	}
 }

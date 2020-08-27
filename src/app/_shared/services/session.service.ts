@@ -1,206 +1,146 @@
 import { Injectable } from '@angular/core';
 import { SELECTITEM } from '../interfaces/SELECTITEM';
-import { StudentDTO } from '../models/studentDTO';
 
 @Injectable({ providedIn: 'root' })
 export class SessionService {
-  adminStatus: number;
-  mentorStatus: number;
-  sponsorStatus: number;
-  studentId: number;
-  studentGUId: string;
-  userId: number;
-  userGUId: string;
-  assignedStudentId: number;
-  assignedStudentGUId: string;
-  assignedStudentName: string;
-  currentStudent: StudentDTO;
-  failedAuthorizationRoute: string;
-  mostRecentMemberType: SELECTITEM;
-  selectedYearJoined: string;
-  selectedGradYear: string;
-  inContextStudentGUId: string;
+	adminStatus: number;
+	mentorStatus: number;
+	sponsorStatus: number;
+	studentId: number;
+	studentGUId: string;
 
-  constructor() {
-    // this.loading$ = new Observable(observer => this._observer = observer)
-    // .share();
-    console.log('SessionService constructor');
-    this.userId = 0;
-    this.assignedStudentId = 0;
-    this.selectedYearJoined = '2019';
-    this.selectedGradYear = '0';
-  }
+	userId: number;
+	userGUId: string;
+	inContextStudentName: string;
 
+	inContextMemberType: SELECTITEM;
+	selectedYearJoined: string;
+	selectedGradYear: string;
+	selectedStudentStatus: string;
 
-  public setAdminStatus(status: number): void {
-    this.adminStatus = status;
-    // temp for testing 8/2/2019
-    // no mas: this.studentId = 275; // N/A
-  }
+	constructor() {
+		console.log('SessionService constructor');
+		this.userId = 0;
+		this.selectedStudentStatus = '1005';
+		this.selectedYearJoined = '0';
+		this.selectedGradYear = '0';
+	}
 
-  public isAdmin(): boolean {
-    if (!this.adminStatus) {
-      return false;
-    } else {
-      return this.adminStatus === 1015;
-    }
-  }
+	public setAdminStatus(status: number): void {
+		this.adminStatus = status;
+	}
 
+	public isAdmin(): boolean {
+		if (!this.adminStatus) {
+			return false;
+		} else {
+			return this.adminStatus === 1015;
+		}
+	}
 
-  public setMentorStatus(status: number): void {
-    this.mentorStatus = status;
-  }
+	public setMentorStatus(status: number): void {
+		this.mentorStatus = status;
+	}
 
-  public isMentor(): boolean {
-    if (!this.mentorStatus) {
-      return false;
-    } else {
-      return this.mentorStatus === 1015;
-    }
-  }
+	public isMentor(): boolean {
+		if (!this.mentorStatus) {
+			return false;
+		} else {
+			return this.mentorStatus === 1015;
+		}
+	}
 
+	public setStudentId(studentId: number): void {
+		this.studentId = studentId;
+	}
 
+	public setStudentGUId(studentGUId: string): void {
+		this.studentGUId = studentGUId;
+	}
 
-  public setStudentId(studentId: number): void {
-    this.studentId = studentId;
-  }
+	public getStudentId(): number {
+		return this.studentId ? this.studentId : 0;
+	}
 
-  public setStudentGUId(studentGUId: string): void {
-    this.studentGUId = studentGUId;
-  }
+	public getStudentGUId(): string {
+		return this.studentGUId ? this.studentGUId : '';
+	}
 
-  public getStudentId(): number {
-    return this.studentId ? this.studentId : 0;
-  }
+	public isStudent(): boolean {
+		if (!this.studentId) {
+			console.log('Session: Is Not student -- have !studentId: ');
+			return false;
+		} else {
+			console.log('Session: have studentId: ' + this.studentId);
+			return this.studentId !== 0;
+		}
+	}
 
-  public getStudentGUId(): string {
-    return this.studentGUId ? this.studentGUId : '';
-  }
+	public setSponsorStatus(status: number): void {
+		this.sponsorStatus = status;
+	}
 
-  public isStudent(): boolean {
-    if (!this.studentId) {
-      console.log('Session: Is Not student -- have !studentId: ');
-      return false;
-    } else {
-      console.log('Session: have studentId: ' + this.studentId);
-      return this.studentId !== 0;
-    }
+	public isSponsor(): boolean {
+		if (!this.sponsorStatus) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 
-  }
+	public setUserId(Id: number): void {
+		this.userId = Id;
+	}
 
-  public setSponsorStatus(status: number): void {
-    this.sponsorStatus = status;
-  }
+	public setUserGUId(guid: string): void {
+		this.userGUId = guid;
+	}
 
-  public isSponsor(): boolean {
-    if (!this.sponsorStatus) {
-      return false;
-    } else {
-      // return this.sponsorStatus === 1015;
-      return true;
-    }
-  }
+	public getUserId(): number {
+		return this.userId;
+	}
 
-  public setUserId(Id: number): void {
-    console.log('setUserId = ' + Id);
-    this.userId = Id;
-  }
+	public getUserGUId(): string {
+		return this.userGUId;
+	}
 
-  public setUserGUId(guid: string): void {
-    console.log('setUserGUId = ' + guid);
-    this.userGUId = guid;
-  }
+	public setStudentInContextName(name: string): void {
+		this.inContextStudentName = name;
+	}
 
-  public getUserId(): number {
-    return this.userId;
-  }
+	public getStudentInContextName(): string {
+		return this.inContextStudentName;
+	}
 
-  public getUserGUId(): string {
-    return this.userGUId;
-  }
+	public setMemberType(memberType: SELECTITEM): void {
+		this.inContextMemberType = memberType;
+	}
 
+	public getMemberType(): SELECTITEM {
+		return this.inContextMemberType;
+	}
 
-  public setAssignedStudentId(Id: number): void {
-    console.log('session studentId set to ' + Id);
-    this.assignedStudentId = Id;
-  }
+	public setSelectedYearJoined(yearJoined: string) {
+		this.selectedYearJoined = yearJoined;
+	}
 
-  public setAssignedStudentGUId(guid: string): void {
-    console.log('session studentGUId set to ' + guid);
-    this.assignedStudentGUId = guid;
-  }
+	public getSelectedYearJoined(): string {
+		return this.selectedYearJoined;
+	}
 
-  public setInContextStudentGUId(guid: string): void {
-    console.log('session inContextStudentGUId set to ' + guid);
-    this.inContextStudentGUId = guid;
-  }
+	public setSelectedStudentStatus(studentStatus: string) {
+		this.selectedStudentStatus = studentStatus;
+	}
 
+	public getSelectedStudentStatus(): string {
+		return this.selectedStudentStatus;
+	}
 
-  public getAssignedStudentId(): number {
-    console.log('session studentId getting ' + this.assignedStudentId);
-    return this.assignedStudentId;
-  }
+	public setSelectedGradYear(gradYear: string) {
+		this.selectedGradYear = gradYear;
+	}
 
-  public getAssignedStudentGUId(): string {
-    console.log('session studentGUId getting ' + this.assignedStudentGUId);
-    return this.assignedStudentGUId;
-  }
-
-  public getInContextStudentGUId(): string {
-    console.log('session InContexStudentGUId getting ' + this.inContextStudentGUId);
-    return this.inContextStudentGUId;
-  }
-
-  public setStudentInContextName(name: string): void {
-    this.assignedStudentName = name;
-  }
-
-  public getStudentInContextName(): string {
-    return this.assignedStudentName;
-  }
-
-  public setCurrentStudent(student: StudentDTO): void {
-    this.currentStudent = student;
-  }
-
-  public getCurrentStudent(): StudentDTO {
-    return this.currentStudent;
-  }
-
-  // public setFailedAuthorizationRoute(route: string): void {
-  //   console.log('setFailedRoute setting ' + route);
-  //   this.failedAuthorizationRoute = route;
-  // }
-
-  // public getFailedAuthorizationRoute(): string {
-  //   console.log('getFailedRoute returning ' + this.failedAuthorizationRoute);
-  //   return this.failedAuthorizationRoute;
-  // }
-  public setMemberType(memberType: SELECTITEM): void {
-    this.mostRecentMemberType = memberType;
-  }
-
-  public getMemberType(): SELECTITEM {
-    return this.mostRecentMemberType;
-  }
-
-
-  public setSelectedYearJoined(yearJoined: string) {
-    this.selectedYearJoined = yearJoined;
-  }
-
-  public getSelectedYearJoined(): string {
-    return this.selectedYearJoined;
-  }
-
-  public setSelectedGradYear(gradYear: string) {
-    this.selectedGradYear = gradYear;
-  }
-
-  public getSelectedGradYear(): string {
-    return this.selectedGradYear;
-  }
-
-
-
+	public getSelectedGradYear(): string {
+		return this.selectedGradYear;
+	}
 }

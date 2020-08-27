@@ -6,31 +6,26 @@ import { SessionService } from '../_shared/services/session.service';
  * This class represents the app-navbar component.
  */
 @Component({
-
-  selector: 'app-headerbar',
-  templateUrl: 'headerbar.component.html',
-  styleUrls: ['headerbar.component.css'],
+	selector: 'app-headerbar',
+	templateUrl: 'headerbar.component.html',
+	styleUrls: [ 'headerbar.component.css' ]
 })
 export class HeaderbarComponent {
-  constructor(public auth: AuthService,
-    public session: SessionService
-  ) {
-    // console.log('***session: ' + session.getUserId());
-  }
+	constructor(public auth: AuthService, public session: SessionService) {}
 
-  public isAdminWithValidToken(): boolean {
-    return this.auth.loggedIn && this.session.isAdmin();
-  }
+	public isAdminWithValidToken(): boolean {
+		return this.auth.loggedIn && this.session.isAdmin();
+	}
 
-  public isMentorWithValidToken(): boolean {
-    return this.auth.loggedIn && this.session.isMentor();
-  }
+	public isMentorWithValidToken(): boolean {
+		return this.auth.loggedIn && this.session.isMentor();
+	}
 
-  public isSponsorWithValidToken(): boolean {
-    return this.auth.loggedIn && this.session.isSponsor();
-  }
+	public isSponsorWithValidToken(): boolean {
+		return this.auth.loggedIn && this.session.isSponsor();
+	}
 
-  public isStudentWithValidToken(): boolean {
-    return this.auth.loggedIn && this.session.getStudentId() !== 0;
-  }
+	public isStudentWithValidToken(): boolean {
+		return this.auth.loggedIn && this.session.getStudentId() !== 0;
+	}
 }

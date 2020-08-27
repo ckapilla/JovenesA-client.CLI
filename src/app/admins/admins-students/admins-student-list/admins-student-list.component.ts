@@ -45,9 +45,9 @@ export class AdminsStudentListComponent implements OnInit {
 		console.log('Hi from student List Ctrl controller function');
 
 		this.selectedActiveStatus = '-1';
-		this.selectedStatus = this.studentStatuses[2].value;
-		this.selectedYearJoined = '0'; //  + this.session.getSelectedYearJoined(); // this.joinedYears[0].value;
-		this.selectedGradYear = this.session.getSelectedGradYear(); // this.gradYears[0].value; // All
+		this.selectedStatus = this.session.getSelectedStudentStatus();
+		this.selectedYearJoined = this.session.getSelectedYearJoined();
+		this.selectedGradYear = this.session.getSelectedGradYear();
 
 		// this.gradeRptsStatus = 'yellowWarning.jpg'
 		// this.gpaStatus = 'greenCheck.jpg'
@@ -62,31 +62,21 @@ export class AdminsStudentListComponent implements OnInit {
 		this.fetchFilteredData();
 	}
 
-	// processRouteParams() {
-	//   console.log('students setting filters form queryParams');
-
-	//   const yearJoined = this.route.snapshot.queryParams['yearJoined'];
-	//   console.log('yearJoined param = ' + yearJoined);
-	//   if (yearJoined !== undefined) {
-	//     this.selectedYearJoined = yearJoined;
-	//   }
-	// }
-	// can't rely on two way binding to have updated the selected values
-	// in time so we do it manually below
-
 	setSelectedActiveStatus(activeStatus: string) {
 		console.log('selected activeStatus: ' + activeStatus);
 		this.selectedActiveStatus = activeStatus;
 		if (activeStatus === '1') {
 			this.selectedStatus = '-1';
 		} else {
-			this.selectedStatus = this.studentStatuses[2].value; // current
+			this.selectedStatus = '1005'; // current
 		}
 		this.fetchFilteredData();
 	}
+
 	setSelectedStatus(status: string) {
 		console.log('selected status: ' + status);
 		this.selectedStatus = status;
+		this.session.setSelectedStudentStatus(status);
 		this.fetchFilteredData();
 	}
 
@@ -104,11 +94,6 @@ export class AdminsStudentListComponent implements OnInit {
 	}
 
 	fetchFilteredData() {
-		// console.log('data service for getStudents: ' +
-		//        'status: ' + this.selectedStatus + ' ' +
-		//        'yearjoined: ' + this.selectedYearJoined +  + ' ' +
-		//        'gradyear: ' + this.selectedGradYear
-		//        );
 		this.isLoading = true;
 		this.studentData
 			.getStudentDTOsByStatusAndYear(
@@ -121,13 +106,9 @@ export class AdminsStudentListComponent implements OnInit {
 				(data) => {
 					this.studentDTOs = data
 						.filter((item) => {
-							console.log('displayTestNames is ' + this.displayTestNames);
 							if (this.displayTestNames) {
-								console.log('displayTestNames is true returning  item ' + item);
 								return item;
-							} else if (!this.displayTestNames && item['studentName'] !== '_Test, _Student') {
-								console.log('displayTestNames is false and item.studentName = ' + item.studentName);
-								console.log(' returning  item ' + item);
+							} else if (!this.displayTestNames && item.studentName !== '_Test, _Student') {
 								return item;
 							}
 						})
@@ -198,10 +179,7 @@ export class AdminsStudentListComponent implements OnInit {
 	gotoStudent(guid: string, studentName: string) {
 		console.log('setting studentName to ' + studentName);
 		this.session.setStudentInContextName(studentName);
-		// const idx = this.studentDTOs.findIndex(s => s.studentId === id);
 
-		// this.session.setCurrentStudent(this.studentDTOs[idx]);
-		// const link = ['/admins/students/student', id];
 		const link = [ 'admins/students/student', { guid: guid } ];
 
 		console.log('navigating to ' + link);

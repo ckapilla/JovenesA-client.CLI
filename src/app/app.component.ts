@@ -8,29 +8,12 @@ import { SessionService } from './_shared/services/session.service';
  * applications routes, configuring the paths for the lazy loaded components (BecasHomeComponent, AboutComponent).
  */
 @Component({
-
-  selector: 'app-ja',
-  templateUrl: 'app.component.html'
+	selector: 'app-ja',
+	templateUrl: 'app.component.html'
 })
 export class AppComponent {
-
-  constructor(
-    private auth: AuthService,
-    session: SessionService,
-    router: Router
-  ) {
-    // if (session.getUserId() === 0) {
-    //   auth.tryGetAuthResultFromStorage();
-    // }
-    // console.log('@@@@session: ' + session.getUserId());
-    // router.events
-    //   //.filter(e => e instanceof NavigationEnd || e instanceof NavigationError)
-    //   .subscribe(e => {
-    //     console.log('event: ', e);
-    //   });
-    // auth.handleAuthentication();
-    console.log('AppComponentConstructor, calling localAuthSetup');
-    auth.localAuthSetup();
-
-  }
+	constructor(private auth: AuthService, session: SessionService, router: Router) {
+		console.log('AppComponentConstructor, calling localAuthSetup');
+		auth.localAuthSetup();
+	}
 }

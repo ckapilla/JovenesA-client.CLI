@@ -11,6 +11,7 @@ export class TestNamesVisibilityComponent {
 
 	constructor(public testNamesVisibilityService: TestNamesVisibilityService) {
 		this.displayTestNames = testNamesVisibilityService.getLatestTestNamesVisibility();
+		this.strVisibility = this.displayTestNames ? 'Visible' : 'Not Visible';
 	}
 
 	toggleTestNamesVisibility() {
