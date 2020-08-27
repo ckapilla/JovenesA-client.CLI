@@ -6,7 +6,7 @@ export class SessionService {
 	adminStatus: number;
 	mentorStatus: number;
 	sponsorStatus: number;
-	studentId: number;
+	// studentId: number;
 	studentGUId: string;
 
 	userId: number;
@@ -50,29 +50,29 @@ export class SessionService {
 		}
 	}
 
-	public setStudentId(studentId: number): void {
-		this.studentId = studentId;
-	}
+	// public setXXStudentId(studentId: number): void {
+	// 	this.studentId = studentId;
+	// }
 
 	public setStudentGUId(studentGUId: string): void {
 		this.studentGUId = studentGUId;
 	}
 
-	public getStudentId(): number {
-		return this.studentId ? this.studentId : 0;
-	}
+	// public getXXStudentId(): number {
+	// 	return this.studentId ? this.studentId : 0;
+	// }
 
 	public getStudentGUId(): string {
 		return this.studentGUId ? this.studentGUId : '';
 	}
 
 	public isStudent(): boolean {
-		if (!this.studentId) {
-			console.log('Session: Is Not student -- have !studentId: ');
+		if (!this.studentGUId) {
+			console.log('Session: Is Not student -- have !studentGUId: ');
 			return false;
 		} else {
-			console.log('Session: have studentId: ' + this.studentId);
-			return this.studentId !== 0;
+			console.log('Session: have studentGUId: ' + this.studentGUId);
+			return this.studentGUId !== '0000';
 		}
 	}
 
