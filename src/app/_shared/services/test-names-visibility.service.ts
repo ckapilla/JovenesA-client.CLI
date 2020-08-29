@@ -8,6 +8,7 @@ export class TestNamesVisibilityService {
 	private subject = new BehaviorSubject<boolean>(false);
 
 	subscribeForTestNamesVisibility(): Observable<boolean> {
+		console.log('after subscribe testNamesVisibilityService has ' + this.subject.observers + ' observables');
 		return this.subject.asObservable();
 	}
 

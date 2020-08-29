@@ -8,7 +8,7 @@ export class StudentSelectedService {
 	private subject = new BehaviorSubject<string>('0000');
 
 	subscribeForStudentGUIds(): Observable<string> {
-		// console.log('after subscribe studentSelectedService has ' + this.subject.observers + ' observables');
+		console.log('after subscribe studentSelectedService has ' + this.subject.observers + ' observables');
 		return this.subject.asObservable();
 	}
 

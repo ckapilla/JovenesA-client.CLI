@@ -117,13 +117,6 @@ export class AdminsStudentComponent implements OnInit {
 		this.credentialMonths = constants.months;
 		this.genders = constants.genders;
 
-		// this.fetchMentors();
-		// this.fetchMentorObservable();
-
-		// this.fetchPrepas();
-		// this.fetchUniversities();
-		// this.fetchSponsorGroups();
-
 		this.myForm = formBuilder.group({
 			studentId: [ { value: '' } ],
 			// firstNames: ['',
