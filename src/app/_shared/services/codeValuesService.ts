@@ -21,9 +21,11 @@ export class CodeValuesService extends BaseDataService {
 
 	constructor(public http: HttpClient, public webApiPrefixService: UrlService) {
 		super(http, webApiPrefixService);
+		console.log('VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVCode Values constructoer');
 	}
 
 	public buildArrays() {
+		console.log('VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVbuildArrays call');
 		this.codeValues$.pipe(toArray()).subscribe(
 			(data) => {
 				const x = data[0];
@@ -33,7 +35,6 @@ export class CodeValuesService extends BaseDataService {
 
 					switch (item.codeSet) {
 						case 'StudentStatus':
-							console.log('StudentStatus push ');
 							constants.studentStatuses.push(subset);
 							break;
 						case 'LanguageSkillLevel':
@@ -42,7 +43,7 @@ export class CodeValuesService extends BaseDataService {
 						case 'SchoolType':
 							constants.schoolTypes.push(subset);
 							break;
-						case '':
+						case 'MemberType':
 							constants.memberTypes.push(subset);
 							break;
 						case 'MemberType':

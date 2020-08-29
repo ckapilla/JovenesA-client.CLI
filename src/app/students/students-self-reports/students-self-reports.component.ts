@@ -67,6 +67,7 @@ export class StudentsSelfReportsComponent implements OnInit {
 				} else {
 					this.errorMessage = 'No Assigned Sponsors.';
 					// this.onNoAssignedStudents.emit();
+					this.isLoading = false;
 				}
 			}
 		);

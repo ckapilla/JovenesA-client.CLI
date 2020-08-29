@@ -23,6 +23,7 @@ export class SponsorGroupDataService extends BaseDataService {
 		console.log('sending AuthHttp get request ' + url);
 		return this.http.get<SponsorGroupMemberDTO[]>(url).pipe(catchError(this.handleError));
 	}
+
 	public getSponsorGroupsWithMembers(): Observable<SponsorGroupMemberDTO[]> {
 		const url = this.WebApiPrefix + 'sponsor_groups/members/0';
 		console.log('sending AuthHttp get request ' + url);

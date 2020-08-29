@@ -24,7 +24,7 @@ export class StudentDTO {
 		public mentorId?: number, // MentorID
 		public mentorName?: number, // MentorName
 		public sponsorGroupName?: string, // MentorName
-		public sponsorId?: number,
+		public sponsorGroupId?: string,
 		public universityAbbrev?: string,
 		public major?: string,
 		public joinedFromId?: number,
