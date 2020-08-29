@@ -4,49 +4,37 @@ import { Subscription } from 'rxjs';
 import { MemberSelectedService } from '../../services/member-selected-service';
 
 @Component({
-  selector: 'app-member-header',
-  templateUrl: './member-header.component.html'
+	selector: 'app-member-header',
+	templateUrl: './member-header.component.html'
 })
 export class MemberHeaderComponent implements OnInit, OnDestroy {
+	photoPathName: string;
+	private subscription: Subscription;
+	public memberGUId: string;
 
+	constructor(public router: Router, private memberSelected: MemberSelectedService) {
+		console.log('hi from member-header constructor');
+	}
 
-  photoPathName: string;
-  private subscription: Subscription;
-  public memberGUId: string;
+	ngOnInit() {
+		console.log('MemberHeader ngOnInit');
+		this.subscribeForMemberGUIds();
+	}
 
-  constructor(
-    public router: Router,
-    private memberSelected: MemberSelectedService
-  ) {
-    console.log('hi from member-header constructor');
+	ngOnDestroy() {
+		this.subscription.unsubscribe();
+	}
 
-  }
+	subscribeForMemberGUIds() {
+		console.log('header set up memberGUId subscription');
+		this.subscription = this.memberSelected.subscribeForMemberGUIds().subscribe((message) => {
+			this.memberGUId = message;
+			console.log('header new MemberGUId received' + this.memberGUId);
+		});
+	}
 
-  ngOnInit() {
-    console.log('MemberHeader ngOnInit');
-    this.subscribeForMemberGUIds();
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
-
-
-  subscribeForMemberGUIds() {
-    console.log('header set up memberGUId subscription');
-    this.subscription = this.memberSelected.subscribeForMemberGUIds()
-      // .pipe(takeWhile(() => this.notDestroyed))
-      .subscribe(message => {
-        this.memberGUId = message;
-        console.log('header new MemberGUId received' + this.memberGUId);
-        // console.log('subscribe next ' + this.memberSelected.getInternalSubject().observers.length);
-      });
-  }
-
-
-  public onPhotoPathNameSet(photoPathName: string) {
-    this.photoPathName = photoPathName;
-    console.log('parent memberHeader has onPhotoPathNameSet called with' + photoPathName);
-  }
-
+	public onPhotoPathNameSet(photoPathName: string) {
+		this.photoPathName = photoPathName;
+		console.log('parent memberHeader has onPhotoPathNameSet called with' + photoPathName);
+	}
 }

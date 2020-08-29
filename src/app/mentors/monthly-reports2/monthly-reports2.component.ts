@@ -56,28 +56,22 @@ export class MonthlyReports2Component implements OnInit, OnDestroy {
 
     // console.log('(((((((((((((((((MR ngOnInit)))))))))))))');
     this.subscribeForStudentGUIds();
-    // console.log('after subscribe' + this.studentSelected.getInternalSubject().observers.length);
-
   }
 
   ngOnDestroy() {
     // console.log('{{{{{{{{{{{{{MR ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
     this.subscription.unsubscribe();
-
-    console.log(' after unsubscribe ' + this.studentSelected.getInternalSubject().observers.length);
   }
 
   subscribeForStudentGUIds() {
     // console.log('MR set up studentGUId subscription');
     this.subscription = this.studentSelected.subscribeForStudentGUIds()
-      // .pipe(takeWhile(() => this.notDestroyed))
       .subscribe(message => {
         this.studentGUId = message;
         console.log('MR new StudentGUId received' + this.studentGUId);
         if (this.studentGUId && this.studentGUId !== '0000') {
           this.fetchData();
         }
-        // console.log('subscribe next ' + this.studentSelected.getInternalSubject().observers.length);
       });
   }
 

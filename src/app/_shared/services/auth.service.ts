@@ -238,49 +238,4 @@ export class AuthService {
 			() => {}
 		);
 	}
-
-	// public logout(): void {
-	//   console.log('in logout');
-	//   // from sample:
-	//   // Remove tokens and expiry time from localStorage
-	//   localStorage.clear();
-
-	//   // Go back to the becas-home route
-	//   this.router.navigate(['/']);
-	//   // from prev code:
-
-	//   this.session.setAdminStatus(undefined);
-	//   this.session.setMentorStatus(undefined);
-	//   this.session.setSponsorStatus(undefined);
-	//   this.session.setXXStudentId(undefined);
-
-	//   this.authResult = undefined;
-	//   this.userProfile = undefined;
-	//   // this.router.navigate(['']);
-	//   console.log('return to address: ' + 'https://ckapilla.auth0.com/v2/logout?returnTo=' + this.urlService.getClientUrl());
-	//   setTimeout(() => {
-	//     console.log('in timeout callback with return to address ' +
-	//       'https://ckapilla.auth0.com/v2/logout?returnTo=' + this.urlService.getClientUrl());
-	//     document.location.href =
-	//       'https://ckapilla.auth0.com/v2/logout?returnTo=' + this.urlService.getClientUrl();
-	//   }
-	//     , 50);
-	// }
-
-	// private isTokenUnexpired(): boolean {
-	//   // abort if not set or not authenticated
-	//   if (!this.expiresAt) { // || !this.authenticated) {
-	//     // console.log('isTokenUnexpired has null');
-	//     return false;
-	//   } else {
-	//     const now: string = new Date().getTime() + '';
-	//     // console.log('isTokenUnexpired num has ' + now + ' ' + this.expiresAt);
-	//     const isNotExpired = this.expiresAt > now;
-	//     return isNotExpired;
-	//   }
-	// }
-
-	// public isAuthenticated(): boolean {
-	//   return this.isTokenUnexpired();
-	// }
 }

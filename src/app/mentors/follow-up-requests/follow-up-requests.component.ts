@@ -39,13 +39,10 @@ export class FollowUpRequestsComponent implements OnInit, OnDestroy {
 
 		// console.log('(((((((((((((((((Assistance ngOnInit)))))))))))))');
 		this.subscribeForStudentGUIds();
-		// console.log('after subscribe' + this.studentSelected.getInternalSubject().observers.length);
 	}
 	ngOnDestroy() {
 		// console.log('{{{{{{{{{{{{{Assistance ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
 		this.subscription.unsubscribe();
-
-		console.log(' after unsubscribe ' + this.studentSelected.getInternalSubject().observers.length);
 	}
 
 	subscribeForStudentGUIds() {
@@ -59,7 +56,6 @@ export class FollowUpRequestsComponent implements OnInit, OnDestroy {
 				if (this.studentGUId && this.studentGUId !== '0000') {
 					this.fetchData(this.studentGUId);
 				}
-				// console.log('subscribe next ' + this.studentSelected.getInternalSubject().observers.length);
 			});
 	}
 

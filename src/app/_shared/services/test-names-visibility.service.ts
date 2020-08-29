@@ -22,8 +22,4 @@ export class TestNamesVisibilityService {
 	unsubscribe() {
 		this.subject.complete();
 	}
-
-	getInternalSubject() {
-		return this.subject;
-	}
 }
