@@ -19,7 +19,8 @@
 
 
       <label for="StatusSelector">Status:</label>
-      <select name="StatusSelector" [(ngModel)]="selectedStatus" (change)="setSelectedStatus($event.target.value)"
+      <select name="StatusSelector" [(ngModel)]="selectedStatus"
+              (change)="setSelectedStatus($event.target.value)"
               [disabled]="selectedActiveStatus == '1'">
         <option value="-1">--</option>
         <option *ngFor="let status of studentStatuses" [value]="status.value">{{status.label}}</option>

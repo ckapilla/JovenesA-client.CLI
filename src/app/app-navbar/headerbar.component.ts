@@ -26,6 +26,6 @@ export class HeaderbarComponent {
 	}
 
 	public isStudentWithValidToken(): boolean {
-		return this.auth.loggedIn && this.session.getStudentGUId() !== '0000';
+		return this.auth.loggedIn && this.session.isStudent();
 	}
 }

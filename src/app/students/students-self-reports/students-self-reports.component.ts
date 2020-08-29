@@ -44,7 +44,7 @@ export class StudentsSelfReportsComponent implements OnInit {
 		// this.studentGUId = this.currRoute.snapshot.params['studentGUId'];
 		// console.log('studentGUId from route: ' + this.studentGUId);
 		// if (!this.studentGUId) {
-		this.studentGUId = this.session.getStudentGUId();
+		this.studentGUId = this.session.getUserGUId();
 		console.log('studentGUId from session:' + this.studentGUId);
 		// }
 		this.fetchSponsorGroup();

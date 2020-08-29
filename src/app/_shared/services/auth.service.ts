@@ -196,11 +196,8 @@ export class AuthService {
 			this.session.setSponsorStatus((<any>app_metadata)['sponsorStatus']);
 			console.log('isSponsor: ' + this.session.isSponsor());
 
-			// this.session.setXXStudentId((<any>app_metadata)['studentId']);
-			// console.log('studentId: ' + this.session.getXXStudentId());
-
 			this.session.setStudentGUId((<any>app_metadata)['studentRecordGUId']);
-			console.log('studentRecordGUId: ' + this.session.getStudentGUId());
+			console.log('studentStatus: ' + this.session.isStudent());
 
 			this.session.setUserGUId((<any>userProfile)['memberGUId']);
 			// for testing abort: this.session.setUserGUId(null);
@@ -213,8 +210,7 @@ export class AuthService {
 			if (this.session.getUserId() == 1216) {
 				// used to force student status for Chris Kapilla
 				this.session.setStudentGUId('c29f9ae6-7a89-4269-a6ab-cf1c76bcbaa9');
-				// this.session.setStudentGUId('80f92f41-ac1c-49fc-bb84-4cfbab891df3');
-				console.log('forced studentRecordGUId: ' + this.session.getStudentGUId());
+				console.log('forced studentRecordGUId, so isStudent =  ' + this.session.isStudent());
 			}
 
 			// this.email = (<any>userProfile)['email'];

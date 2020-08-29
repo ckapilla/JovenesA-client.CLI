@@ -6,7 +6,6 @@ export class SessionService {
 	adminStatus: number;
 	mentorStatus: number;
 	sponsorStatus: number;
-	// studentId: number;
 	studentGUId: string;
 
 	userId: number;
@@ -50,20 +49,8 @@ export class SessionService {
 		}
 	}
 
-	// public setXXStudentId(studentId: number): void {
-	// 	this.studentId = studentId;
-	// }
-
 	public setStudentGUId(studentGUId: string): void {
 		this.studentGUId = studentGUId;
-	}
-
-	// public getXXStudentId(): number {
-	// 	return this.studentId ? this.studentId : 0;
-	// }
-
-	public getStudentGUId(): string {
-		return this.studentGUId ? this.studentGUId : '';
 	}
 
 	public isStudent(): boolean {
@@ -92,12 +79,12 @@ export class SessionService {
 		this.userId = Id;
 	}
 
-	public setUserGUId(guid: string): void {
-		this.userGUId = guid;
-	}
-
 	public getUserId(): number {
 		return this.userId;
+	}
+
+	public setUserGUId(guid: string): void {
+		this.userGUId = guid;
 	}
 
 	public getUserGUId(): string {
