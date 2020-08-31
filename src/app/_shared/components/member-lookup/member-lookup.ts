@@ -2,9 +2,9 @@ import { Component, Injectable, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of, Subscription } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
+import { SelectedMemberService } from 'src/app/_store/selectedMember/selected-member.service';
+import { MemberDataService } from '../../data/member-data.service';
 import { MemberMiniDTO } from '../../models/memberMiniDTO';
-import { MemberDataService } from '../../services/member-data.service';
-import { MemberSelectedService } from '../../services/member-selected-service';
 
 @Injectable({
 	providedIn: 'root'
@@ -44,7 +44,7 @@ export class MemberLookupComponent implements OnInit, OnDestroy {
 		private _service: MemberNameService,
 		private router: Router,
 		private memberData: MemberDataService,
-		private memberSelected: MemberSelectedService
+		private selectedMember: SelectedMemberService
 	) {
 		console.log('name-lookup constructor!');
 	}
@@ -54,7 +54,7 @@ export class MemberLookupComponent implements OnInit, OnDestroy {
 	}
 	ngOnDestroy() {
 		// console.log('{{{{{{{{{{{{{JA ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
-		// this.memberSelected.unsubscribe();
+		// this.selectedMember.unsubscribe();
 		this.subscription.unsubscribe();
 	}
 
@@ -64,7 +64,7 @@ export class MemberLookupComponent implements OnInit, OnDestroy {
 		console.log(item.item.memberGUId);
 		this.currentGUId = item.item.memberGUId;
 		// this.onSelectedMemberGUId.emit(item.item.memberGUId);
-		this.memberSelected.notifyNewMemberGUId(item.item.memberGUId);
+		this.selectedMember.notifyNewMemberGUId(item.item.memberGUId);
 		this.email = item.item.email;
 		this.memberName = item.item.memberName;
 	}
@@ -94,7 +94,7 @@ export class MemberLookupComponent implements OnInit, OnDestroy {
 
 	subscribeForMemberGUIds() {
 		console.log('Name Lookup set up memberGUId subscription');
-		this.subscription = this.memberSelected.subscribeForMemberGUIds().subscribe((message) => {
+		this.subscription = this.selectedMember.subscribeForMemberGUIds().subscribe((message) => {
 			this.memberGUId = message;
 			console.log('Name Search new MemberGUId received' + this.memberGUId);
 			if (this.memberGUId && this.memberGUId !== '0000') {
@@ -121,7 +121,7 @@ export class MemberLookupComponent implements OnInit, OnDestroy {
 
 	resetMemberData() {
 		console.log('memberLookup reset');
-		this.memberSelected.notifyNewMemberGUId('0000');
+		this.selectedMember.notifyNewMemberGUId('0000');
 		this.currentGUId = '0000';
 	}
 

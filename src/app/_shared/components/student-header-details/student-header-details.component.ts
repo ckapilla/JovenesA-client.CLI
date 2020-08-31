@@ -2,10 +2,11 @@ import { Location } from '@angular/common';
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { SelectedStudent } from 'src/app/_store/selectedStudent/selected-student.service';
+import { StudentDataService } from '../../data/student-data.service';
 import { StudentHeaderDTO } from '../../models/studentHeaderDTO';
 import { SessionService } from '../../services/session.service';
-import { StudentDataService } from '../../services/student-data.service';
-import { StudentSelectedService } from '../../services/student-selected.service';
+
 @Component({
 	selector: 'app-student-header-details',
 	templateUrl: './student-header-details.component.html'
@@ -33,7 +34,7 @@ export class StudentHeaderDetailsComponent implements OnInit, OnDestroy {
 		private session: SessionService,
 		public studentData: StudentDataService,
 		public location: Location,
-		private studentSelected: StudentSelectedService
+		private selectedStudent: SelectedStudent
 	) {
 		console.log('hi from StudentHeaderDetails constructor');
 
@@ -55,7 +56,7 @@ export class StudentHeaderDetailsComponent implements OnInit, OnDestroy {
 
 	subscribeForStudentGUIds() {
 		// console.log('header set up studentGUId subscription');
-		this.subscription = this.studentSelected.subscribeForStudentGUIds().subscribe((message) => {
+		this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
 			this.studentGUId = message;
 			console.log('header new StudentGUId received' + this.studentGUId);
 			if (this.studentGUId && this.studentGUId !== '0000') {

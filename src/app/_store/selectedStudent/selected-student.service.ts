@@ -4,11 +4,11 @@ import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable({
 	providedIn: 'root'
 })
-export class StudentSelectedService {
+export class SelectedStudent {
 	private subject = new BehaviorSubject<string>('0000');
 
 	subscribeForStudentGUIds(): Observable<string> {
-		console.log('after subscribe studentSelectedService has ' + this.subject.observers + ' observables');
+		console.log('after subscribe selectedStudentService has ' + this.subject.observers + ' observables');
 		return this.subject.asObservable();
 	}
 
@@ -22,6 +22,6 @@ export class StudentSelectedService {
 
 	unsubscribe() {
 		this.subject.complete();
-		// console.log('after unsubscribe studentSelectedService has ' + this.subject.observers + ' observables');
+		// console.log('after unsubscribe selectedStudentService has ' + this.subject.observers + ' observables');
 	}
 }

@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ConfidentialDataService } from 'src/app/_shared/data/confidential-data.service';
 import { ConfidentialReportRPT } from 'src/app/_shared/models/confidential-reportRPT';
-import { ConfidentialDataService } from 'src/app/_shared/services/confidential-data.service';
-import { StudentSelectedService } from 'src/app/_shared/services/student-selected.service';
+import { SelectedStudent } from 'src/app/_store/selectedStudent/selected-student.service';
 import { constants } from '../../_shared/constants/constants';
 import { SessionService } from '../../_shared/services/session.service';
 
@@ -30,7 +30,7 @@ export class ConfidentialReportsComponent implements OnInit, OnDestroy {
 		private router: Router,
 		public confidentialReportData: ConfidentialDataService,
 		public session: SessionService,
-		private studentSelected: StudentSelectedService
+		private selectedStudent: SelectedStudent
 	) {
 		console.log('confidentialReports constructor');
 		this.smileys = constants.smileys;
@@ -58,7 +58,7 @@ export class ConfidentialReportsComponent implements OnInit, OnDestroy {
 
 	subscribeForStudentGUIds() {
 		// console.log('CR set up studentGUId subscription');
-		this.subscription = this.studentSelected.subscribeForStudentGUIds().subscribe((message) => {
+		this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
 			this.studentGUId = message;
 			console.log('CR new StudentGUId received' + this.studentGUId);
 			if (this.studentGUId && this.studentGUId !== '0000') {

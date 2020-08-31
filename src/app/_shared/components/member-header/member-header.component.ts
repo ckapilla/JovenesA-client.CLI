@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { MemberSelectedService } from '../../services/member-selected-service';
+import { SelectedMemberService } from 'src/app/_store/selectedMember/selected-member.service';
 
 @Component({
 	selector: 'app-member-header',
@@ -12,7 +12,7 @@ export class MemberHeaderComponent implements OnInit, OnDestroy {
 	private subscription: Subscription;
 	public memberGUId: string;
 
-	constructor(public router: Router, private memberSelected: MemberSelectedService) {
+	constructor(public router: Router, private selectedMember: SelectedMemberService) {
 		console.log('hi from member-header constructor');
 	}
 
@@ -27,7 +27,7 @@ export class MemberHeaderComponent implements OnInit, OnDestroy {
 
 	subscribeForMemberGUIds() {
 		console.log('header set up memberGUId subscription');
-		this.subscription = this.memberSelected.subscribeForMemberGUIds().subscribe((message) => {
+		this.subscription = this.selectedMember.subscribeForMemberGUIds().subscribe((message) => {
 			this.memberGUId = message;
 			console.log('header new MemberGUId received' + this.memberGUId);
 		});

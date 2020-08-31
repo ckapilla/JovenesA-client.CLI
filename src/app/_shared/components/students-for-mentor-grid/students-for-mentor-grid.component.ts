@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { SelectedStudent } from 'src/app/_store/selectedStudent/selected-student.service';
 import { constants } from '../../constants/constants';
+import { StudentDataService } from '../../data/student-data.service';
 import { StudentDTO } from '../../models/studentDTO';
 import { SessionService } from '../../services/session.service';
-import { StudentDataService } from '../../services/student-data.service';
-import { StudentSelectedService } from '../../services/student-selected.service';
 
 @Component({
 	// tslint:disable-next-line: component-selector
@@ -24,7 +24,7 @@ export class StudentsForMentorGridComponent implements OnInit, OnDestroy {
 	constructor(
 		public session: SessionService,
 		private studentData: StudentDataService,
-		private studentSelected: StudentSelectedService
+		private selectedStudent: SelectedStudent
 	) {
 		this.emojis = constants.emojis;
 
@@ -43,7 +43,7 @@ export class StudentsForMentorGridComponent implements OnInit, OnDestroy {
 
 	subscribeForStudentGUIds() {
 		console.log('studentGrid set up studentGUId subscription');
-		this.subscription = this.studentSelected.subscribeForStudentGUIds().subscribe((message) => {
+		this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
 			this.studentGUId = message;
 			console.log('students grid new StudentGUId received' + message);
 			// only want to respond on initial load; don't want changes from self (user click)
@@ -98,7 +98,7 @@ export class StudentsForMentorGridComponent implements OnInit, OnDestroy {
 		const studentName: string = this.students[idx].studentName;
 		this.studentGUId = studentGUId;
 		this.setRowClasses(this.students[idx].studentGUId, this.students[idx].activeStatus);
-		this.studentSelected.notifyNewStudentGUId(studentGUId);
+		this.selectedStudent.notifyNewStudentGUId(studentGUId);
 	}
 
 	// called from code (above) and from template

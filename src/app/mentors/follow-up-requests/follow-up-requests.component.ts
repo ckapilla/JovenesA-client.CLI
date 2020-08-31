@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { FollowUpDataService } from 'src/app/_shared/services/follow-up-data.service';
-import { StudentSelectedService } from 'src/app/_shared/services/student-selected.service';
+import { FollowUpDataService } from 'src/app/_shared/data/follow-up-data.service';
+import { SelectedStudent } from 'src/app/_store/selectedStudent/selected-student.service';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 import { FollowUpRequestRPT } from '../../_shared/models/follow-up-requestRPT';
 import { SessionService } from '../../_shared/services/session.service';
@@ -29,7 +29,7 @@ export class FollowUpRequestsComponent implements OnInit, OnDestroy {
 		public followUpData: FollowUpDataService,
 		public router: Router,
 		public session: SessionService,
-		private studentSelected: StudentSelectedService
+		private selectedStudent: SelectedStudent
 	) {}
 
 	ngOnInit() {
@@ -47,7 +47,7 @@ export class FollowUpRequestsComponent implements OnInit, OnDestroy {
 
 	subscribeForStudentGUIds() {
 		// console.log('Assistance set up studentGUId subscription');
-		this.subscription = this.studentSelected
+		this.subscription = this.selectedStudent
 			.subscribeForStudentGUIds()
 			// .pipe(takeWhile(() => this.notDestroyed))
 			.subscribe((message) => {

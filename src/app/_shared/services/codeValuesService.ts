@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError, tap, toArray } from 'rxjs/operators';
 import { constants } from '../constants/constants';
-import { BaseDataService } from './base-data.service';
+import { BaseDataService } from '../data/base-data.service';
 import { UrlService } from './url.service';
 
 interface CODEVALUE {

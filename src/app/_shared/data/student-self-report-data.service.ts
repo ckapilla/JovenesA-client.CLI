@@ -5,8 +5,8 @@ import { catchError } from 'rxjs/operators';
 import { MentorReportsStatusCount } from '../models/mentor-reports-status-count';
 import { StudentSelfReport } from '../models/student-self-report';
 import { StudentMiniDTO } from '../models/studentMiniDTO';
+import { UrlService } from '../services/url.service';
 import { BaseDataService } from './base-data.service';
-import { UrlService } from './url.service';
 
 @Injectable({ providedIn: 'root' })
 export class StudentSelfReportDataService extends BaseDataService {

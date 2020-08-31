@@ -4,11 +4,11 @@ import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable({
 	providedIn: 'root'
 })
-export class MemberSelectedService {
+export class SelectedMemberService {
 	private subject = new BehaviorSubject<string>('0000');
 
 	subscribeForMemberGUIds(): Observable<string> {
-		console.log('after subscribe memberSelectedService has ' + this.subject.observers + ' observables');
+		console.log('after subscribe selectedMemberService has ' + this.subject.observers + ' observables');
 		return this.subject.asObservable();
 	}
 

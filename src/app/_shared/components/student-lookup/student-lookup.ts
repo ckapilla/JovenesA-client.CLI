@@ -2,9 +2,10 @@ import { Component, Injectable, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of, Subscription } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
+import { SelectedStudent } from 'src/app/_store/selectedStudent/selected-student.service';
+import { StudentDataService } from '../../data/student-data.service';
 import { StudentMiniDTO } from '../../models/studentMiniDTO';
-import { StudentDataService } from '../../services/student-data.service';
-import { StudentSelectedService } from '../../services/student-selected.service';
+
 @Injectable({
 	providedIn: 'root'
 })
@@ -47,7 +48,7 @@ export class StudentLookupComponent implements OnInit, OnDestroy {
 		private _service: StudentNameService,
 		private router: Router,
 		private studentData: StudentDataService,
-		private studentSelected: StudentSelectedService
+		private selectedStudent: SelectedStudent
 	) {
 		console.log('name-lookup constructor!');
 	}
@@ -65,7 +66,7 @@ export class StudentLookupComponent implements OnInit, OnDestroy {
 		console.log(item.item.studentGUId);
 		this.currentGUId = item.item.studentGUId;
 		// this.onSelectedStudentGUId.emit(item.item.studentGUId);
-		this.studentSelected.notifyNewStudentGUId(item.item.studentGUId);
+		this.selectedStudent.notifyNewStudentGUId(item.item.studentGUId);
 		this.email = item.item.email;
 		this.studentName = item.item.studentName;
 	}
@@ -93,7 +94,7 @@ export class StudentLookupComponent implements OnInit, OnDestroy {
 	}
 	subscribeForStudentGUIds() {
 		// console.log('Name Lookup set up studentGUId subscription');
-		this.subscription = this.studentSelected.subscribeForStudentGUIds().subscribe((message) => {
+		this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
 			this.studentGUId = message;
 			console.log('Name Search new StudentGUId received' + this.studentGUId);
 			if (this.studentGUId && this.studentGUId !== '0000') {
@@ -105,7 +106,7 @@ export class StudentLookupComponent implements OnInit, OnDestroy {
 
 	resetStudentData() {
 		console.log('studentLookup reset');
-		this.studentSelected.notifyNewStudentGUId('0000');
+		this.selectedStudent.notifyNewStudentGUId('0000');
 		this.currentGUId = '0000';
 	}
 

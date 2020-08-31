@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StudentSelfReportDataService } from 'src/app/_shared/services/student-self-report-data.service';
+import { StudentSelfReportDataService } from 'src/app/_shared/data/student-self-report-data.service';
 import { StudentSelfReport } from '../../_shared/models/student-self-report';
 import { StudentDTO } from '../../_shared/models/studentDTO';
 import { SessionService } from '../../_shared/services/session.service';

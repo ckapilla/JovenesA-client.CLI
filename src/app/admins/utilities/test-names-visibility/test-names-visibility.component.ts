@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TestNamesVisibilityService } from 'src/app/_shared/services/test-names-visibility.service';
+import { TestNamesVisibilityService } from 'src/app/_store/testNamesVisibility/test-names-visibility.service';
 
 @Component({
 	selector: 'app-test-names-visibility',

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FollowUpDataService } from 'src/app/_shared/data/follow-up-data.service';
 import { FollowUpEvent } from 'src/app/_shared/models/follow-up-event';
-import { FollowUpDataService } from 'src/app/_shared/services/follow-up-data.service';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 import { FollowUpRequest } from '../../_shared/models/follow-up-request';
 import { SessionService } from '../../_shared/services/session.service';

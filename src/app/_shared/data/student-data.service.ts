@@ -2,13 +2,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { BaseDataService } from '../data/base-data.service';
 import { Student } from '../models/student';
 import { StudentSponsorXRef } from '../models/student-sponsor-xref';
 import { StudentDTO } from '../models/studentDTO';
 import { StudentHeaderDTO } from '../models/studentHeaderDTO';
 import { StudentMiniDTO } from '../models/studentMiniDTO';
-import { BaseDataService } from './base-data.service';
-import { UrlService } from './url.service';
+import { UrlService } from '../services/url.service';
 
 @Injectable({ providedIn: 'root' })
 export class StudentDataService extends BaseDataService {

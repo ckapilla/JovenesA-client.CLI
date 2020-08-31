@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { MentorReport2DataService } from 'src/app/_shared/services/mentor-report2-data.service';
-import { StudentSelectedService } from 'src/app/_shared/services/student-selected.service';
+import { MentorReport2DataService } from 'src/app/_shared/data/mentor-report2-data.service';
+import { SelectedStudent } from 'src/app/_store/selectedStudent/selected-student.service';
 import { constants } from '../../_shared/constants/constants';
 import { MentorReport2RPT } from '../../_shared/models/mentor-report2';
 import { SessionService } from '../../_shared/services/session.service';
@@ -33,7 +33,7 @@ export class MonthlyReports2Component implements OnInit, OnDestroy {
     private router: Router,
     public mentorReport2Data: MentorReport2DataService,
     public session: SessionService,
-    private studentSelected: StudentSelectedService
+    private selectedStudent: SelectedStudent
   ) {
 
     console.log('monthlyReports constructor');
@@ -65,7 +65,7 @@ export class MonthlyReports2Component implements OnInit, OnDestroy {
 
   subscribeForStudentGUIds() {
     // console.log('MR set up studentGUId subscription');
-    this.subscription = this.studentSelected.subscribeForStudentGUIds()
+    this.subscription = this.selectedStudent.subscribeForStudentGUIds()
       .subscribe(message => {
         this.studentGUId = message;
         console.log('MR new StudentGUId received' + this.studentGUId);

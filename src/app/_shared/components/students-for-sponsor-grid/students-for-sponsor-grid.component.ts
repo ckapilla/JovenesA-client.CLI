@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { SelectedStudent } from 'src/app/_store/selectedStudent/selected-student.service';
 import { constants } from '../../constants/constants';
+import { StudentDataService } from '../../data/student-data.service';
 import { StudentSponsorXRef } from '../../models/student-sponsor-xref';
 import { SessionService } from '../../services/session.service';
-import { StudentDataService } from '../../services/student-data.service';
-import { StudentSelectedService } from '../../services/student-selected.service';
 
 @Component({
 	// tslint:disable-next-line: component-selector
@@ -20,7 +20,7 @@ export class StudentsForSponsorGridComponent implements OnInit {
 	constructor(
 		public session: SessionService,
 		private studentData: StudentDataService,
-		private studentSelected: StudentSelectedService
+		private selectedStudent: SelectedStudent
 	) {
 		this.emojis = constants.emojis;
 
@@ -56,7 +56,7 @@ export class StudentsForSponsorGridComponent implements OnInit {
 		console.log('student selected studentGUId: ' + studentGUId + 'idx: ' + idx);
 		const studentName: string = this.students[idx].studentName;
 		this.studentGUId = studentGUId;
-		this.studentSelected.notifyNewStudentGUId(studentGUId);
+		this.selectedStudent.notifyNewStudentGUId(studentGUId);
 	}
 
 	public setRowClasses(studentGUId: string) {

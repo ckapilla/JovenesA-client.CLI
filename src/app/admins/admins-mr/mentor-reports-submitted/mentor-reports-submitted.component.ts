@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MentorReport2DataService } from 'src/app/_shared/data/mentor-report2-data.service';
 import { SELECTITEM } from 'src/app/_shared/interfaces/SELECTITEM';
 import { SORTCRITERIA } from 'src/app/_shared/interfaces/SORTCRITERIA';
 import { MentorReportSubmittedCount } from 'src/app/_shared/models/mentor-report-submitted-count';
 import { ColumnSortService } from 'src/app/_shared/services/column-sort.service';
-import { MentorReport2DataService } from 'src/app/_shared/services/mentor-report2-data.service';
 
 @Component({
 	selector: 'app-mr-submitted-count',

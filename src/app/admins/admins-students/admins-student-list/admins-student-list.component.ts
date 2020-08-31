@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { constants } from 'src/app/_shared/constants/constants';
+import { StudentDataService } from 'src/app/_shared/data/student-data.service';
 import { SELECTITEM } from 'src/app/_shared/interfaces/SELECTITEM';
 import { SORTCRITERIA } from 'src/app/_shared/interfaces/SORTCRITERIA';
 import { StudentDTO } from 'src/app/_shared/models/studentDTO';
 import { ColumnSortService } from 'src/app/_shared/services/column-sort.service';
 import { SessionService } from 'src/app/_shared/services/session.service';
-import { StudentDataService } from 'src/app/_shared/services/student-data.service';
-import { TestNamesVisibilityService } from 'src/app/_shared/services/test-names-visibility.service';
+import { TestNamesVisibilityService } from 'src/app/_store/testNamesVisibility/test-names-visibility.service';
 
 @Component({
 	selector: 'app-admins-student-list',

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BecaDataService } from 'src/app/_shared/data/beca-data.service';
 import { GradesGivenEntryDTO } from 'src/app/_shared/models/grades-given-entryDTO';
-import { BecaDataService } from 'src/app/_shared/services/beca-data.service';
-import { StudentSelectedService } from 'src/app/_shared/services/student-selected.service';
-import { TestNamesVisibilityService } from 'src/app/_shared/services/test-names-visibility.service';
+import { SelectedStudent } from 'src/app/_store/selectedStudent/selected-student.service';
+import { TestNamesVisibilityService } from 'src/app/_store/testNamesVisibility/test-names-visibility.service';
 import { constants } from '../../_shared/constants/constants';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 import { SORTCRITERIA } from '../../_shared/interfaces/SORTCRITERIA';
@@ -32,7 +32,7 @@ export class GradesListComponent implements OnInit {
 		public becaData: BecaDataService,
 		public router: Router,
 		// private route: ActivatedRoute,
-		public studentSelected: StudentSelectedService,
+		public selectedStudent: SelectedStudent,
 		private session: SessionService,
 		private columnSorter: ColumnSortService,
 		public testNamesVisibilityService: TestNamesVisibilityService
@@ -125,7 +125,7 @@ export class GradesListComponent implements OnInit {
 		console.log('setting studentName to ' + studentName);
 		this.session.setStudentInContextName(studentName);
 
-		this.studentSelected.notifyNewStudentGUId(studentGUId);
+		this.selectedStudent.notifyNewStudentGUId(studentGUId);
 		const link = [ 'becas/grades-edit' ]; // , { guid: guid }];
 
 		console.log('navigating to ' + link);

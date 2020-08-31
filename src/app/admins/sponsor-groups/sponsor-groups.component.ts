@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SponsorGroupDataService } from 'src/app/_shared/data/sponsor-group-data.service';
 import { SponsorGroup } from 'src/app/_shared/models/sponsor-group';
 import { SponsorGroupMemberDTO } from 'src/app/_shared/models/sponsor-group-memberDTO';
-import { SponsorGroupDataService } from 'src/app/_shared/services/sponsor-group-data.service';
-import { TestNamesVisibilityService } from 'src/app/_shared/services/test-names-visibility.service';
+import { TestNamesVisibilityService } from 'src/app/_store/testNamesVisibility/test-names-visibility.service';
 import { SORTCRITERIA } from '../../_shared/interfaces/SORTCRITERIA';
 import { ColumnSortService } from '../../_shared/services/column-sort.service';
 

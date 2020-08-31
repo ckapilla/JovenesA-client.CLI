@@ -2,10 +2,10 @@ import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { MiscDataService } from 'src/app/_shared/services/misc-data.service';
-import { StudentSelectedService } from 'src/app/_shared/services/student-selected.service';
+import { MiscDataService } from 'src/app/_shared/data/misc-data.service';
+import { SelectedStudent } from 'src/app/_store/selectedStudent/selected-student.service';
+import { QuarterlyDataService } from '../../_shared/data/quarterly-data.service';
 import { QuarterlyReport } from '../../_shared/models/quarterly-report';
-import { QuarterlyDataService } from '../../_shared/services/quarterly-data.service';
 import { SessionService } from '../../_shared/services/session.service';
 
 @Component({
@@ -35,7 +35,7 @@ export class PrivateNotesComponent implements OnInit, OnChanges, OnDestroy {
 		private _fb: FormBuilder,
 		public session: SessionService,
 		public quarterlyData: QuarterlyDataService,
-		private studentSelected: StudentSelectedService
+		private selectedStudent: SelectedStudent
 	) {
 		this.myForm = _fb.group({
 			// lastContactYearSelector: ['', Validators.required],
@@ -64,7 +64,7 @@ export class PrivateNotesComponent implements OnInit, OnChanges, OnDestroy {
 
 	subscribeForStudentGUIds() {
 		// console.log('PN set up studentGUId subscription');
-		this.subscription = this.studentSelected.subscribeForStudentGUIds().subscribe((message) => {
+		this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
 			this.studentGUId = message;
 			console.log('PN new StudentGUId received' + this.studentGUId);
 			if (this.studentGUId && this.studentGUId !== '0000') {

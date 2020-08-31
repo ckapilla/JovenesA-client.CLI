@@ -3,11 +3,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { BecaDataService } from 'src/app/_shared/data/beca-data.service';
 import { GradesGivenEntryDTO } from 'src/app/_shared/models/grades-given-entryDTO';
 import { StudentGrades } from 'src/app/_shared/models/student-grades';
 import { TruncateDatePipe } from 'src/app/_shared/pipes/truncate-date-pipe';
-import { BecaDataService } from 'src/app/_shared/services/beca-data.service';
-import { StudentSelectedService } from 'src/app/_shared/services/student-selected.service';
+import { SelectedStudent } from 'src/app/_store/selectedStudent/selected-student.service';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 // import { SORTCRITERIA } from '../../_shared/interfaces/SORTCRITERIA';
 import { StudentDTO } from '../../_shared/models/studentDTO';
@@ -41,7 +41,7 @@ export class GradesEditComponent implements OnInit, OnDestroy {
 		private session: SessionService,
 		private columnSorter: ColumnSortService,
 		private _fb: FormBuilder,
-		private studentSelected: StudentSelectedService,
+		private selectedStudent: SelectedStudent,
 		public location: Location
 	) {
 		console.log('Hi from gradesEdit Ctrl controller function');
@@ -111,7 +111,7 @@ export class GradesEditComponent implements OnInit, OnDestroy {
 
 	subscribeForStudentGUIds() {
 		console.log('GradesEdit set up studentGUId subscription');
-		this.subscription = this.studentSelected.subscribeForStudentGUIds().subscribe((message) => {
+		this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
 			this.studentGUId = message;
 			console.log('SR new StudentGUId received' + this.studentGUId);
 			if (this.studentGUId && this.studentGUId !== '0000') {

@@ -2,10 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { QuarterlyReportRPT } from 'src/app/_shared/models/quarterly-reportRPT';
-import { StudentSelectedService } from 'src/app/_shared/services/student-selected.service';
+import { SelectedStudent } from 'src/app/_store/selectedStudent/selected-student.service';
 import { constants } from '../../_shared/constants/constants';
+import { QuarterlyDataService } from '../../_shared/data/quarterly-data.service';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
-import { QuarterlyDataService } from '../../_shared/services/quarterly-data.service';
 
 @Component({
 	selector: 'app-quarterly-container',
@@ -32,7 +32,7 @@ export class QuarterlyContainerComponent implements OnInit, OnDestroy {
 	constructor(
 		private route: ActivatedRoute,
 		public quarterlyData: QuarterlyDataService,
-		private studentSelected: StudentSelectedService
+		private selectedStudent: SelectedStudent
 	) {
 		this.years = constants.years;
 		this.periods = constants.periods;
@@ -57,7 +57,7 @@ export class QuarterlyContainerComponent implements OnInit, OnDestroy {
 
 	subscribeForStudentGUIds() {
 		// console.log('JA set up studentGUId subscription');
-		this.subscription = this.studentSelected.subscribeForStudentGUIds().subscribe((message) => {
+		this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
 			this.studentGUId = message;
 			console.log('JA new StudentGUId received' + this.studentGUId);
 			if (this.studentGUId && this.studentGUId !== '0000') {

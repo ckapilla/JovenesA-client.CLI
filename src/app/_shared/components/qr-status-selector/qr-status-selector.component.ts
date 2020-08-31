@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { QuarterlyDataService } from 'src/app/_shared/data/quarterly-data.service';
 import { QuarterlyReportRPT } from 'src/app/_shared/models/quarterly-reportRPT';
-import { QuarterlyDataService } from 'src/app/_shared/services/quarterly-data.service';
-import { StudentSelectedService } from 'src/app/_shared/services/student-selected.service';
+import { SelectedStudent } from 'src/app/_store/selectedStudent/selected-student.service';
 import { constants } from '../../constants/constants';
 import { SELECTITEM } from '../../interfaces/SELECTITEM';
 import { SessionService } from '../../services/session.service';
@@ -23,7 +23,7 @@ export class QrStatusSelectorComponent implements OnInit, OnDestroy {
 
 	constructor(
 		public quarterlyData: QuarterlyDataService,
-		public studentSelected: StudentSelectedService,
+		public selectedStudent: SelectedStudent,
 		public session: SessionService
 	) {}
 
@@ -40,7 +40,7 @@ export class QrStatusSelectorComponent implements OnInit, OnDestroy {
 
 	subscribeForStudentGUIds() {
 		// console.log('status selector set up studentGUId subscription');
-		this.subscription = this.studentSelected.subscribeForStudentGUIds().subscribe((message) => {
+		this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
 			this.studentGUId = message;
 			console.log('status selector new StudentGUId received' + this.studentGUId);
 			if (this.studentGUId && this.studentGUId !== '0000') {

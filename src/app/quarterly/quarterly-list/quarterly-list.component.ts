@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ColumnSortService } from 'src/app/_shared/services/column-sort.service';
-import { StudentSelectedService } from 'src/app/_shared/services/student-selected.service';
-import { TestNamesVisibilityService } from 'src/app/_shared/services/test-names-visibility.service';
+import { SelectedStudent } from 'src/app/_store/selectedStudent/selected-student.service';
+import { TestNamesVisibilityService } from 'src/app/_store/testNamesVisibility/test-names-visibility.service';
 import { constants } from '../../_shared/constants/constants';
+import { QuarterlyDataService } from '../../_shared/data/quarterly-data.service';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 import { SORTCRITERIA } from '../../_shared/interfaces/SORTCRITERIA';
 import { QuarterlyReportRPT } from '../../_shared/models/quarterly-reportRPT';
-import { QuarterlyDataService } from '../../_shared/services/quarterly-data.service';
 import { SessionService } from '../../_shared/services/session.service';
 
 @Component({
@@ -35,7 +35,7 @@ export class QuarterlyListComponent implements OnInit {
 		private router: Router,
 		public quarterlyData: QuarterlyDataService,
 		public columnSorter: ColumnSortService,
-		public studentSelected: StudentSelectedService,
+		public selectedStudent: SelectedStudent,
 		public session: SessionService,
 		public testNamesVisibilityService: TestNamesVisibilityService
 	) {
@@ -74,7 +74,7 @@ export class QuarterlyListComponent implements OnInit {
 	}
 
 	gotoStudent(studentGUId: string, studentName: string) {
-		this.studentSelected.notifyNewStudentGUId(studentGUId);
+		this.selectedStudent.notifyNewStudentGUId(studentGUId);
 		const link = [ 'quarterly/edit' ]; // , { guid: studentGUId }];
 
 		console.log('navigating to ' + link);

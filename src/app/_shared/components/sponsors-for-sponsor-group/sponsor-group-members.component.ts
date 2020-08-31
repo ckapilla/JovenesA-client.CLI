@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { SponsorGroupDataService } from '../../data/sponsor-group-data.service';
 import { SponsorGroupMemberDTO } from '../../models/sponsor-group-memberDTO';
 import { SessionService } from '../../services/session.service';
-import { SponsorGroupDataService } from '../../services/sponsor-group-data.service';
 
 @Component({
 	selector: 'app-sponsor-group-members',

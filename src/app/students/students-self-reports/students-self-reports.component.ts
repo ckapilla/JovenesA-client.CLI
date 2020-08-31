@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SponsorGroupDataService } from 'src/app/_shared/data/sponsor-group-data.service';
+import { StudentSelfReportDataService } from 'src/app/_shared/data/student-self-report-data.service';
 import { SponsorGroup } from 'src/app/_shared/models/sponsor-group';
-import { SponsorGroupDataService } from 'src/app/_shared/services/sponsor-group-data.service';
-import { StudentSelfReportDataService } from 'src/app/_shared/services/student-self-report-data.service';
 import { StudentSelfReport } from '../../_shared/models/student-self-report';
 import { StudentDTO } from '../../_shared/models/studentDTO';
 import { SessionService } from '../../_shared/services/session.service';

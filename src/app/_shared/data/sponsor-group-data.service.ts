@@ -2,12 +2,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { BaseDataService } from '../data/base-data.service';
 import { SponsorGroup } from '../models/sponsor-group';
 import { SponsorGroupMember } from '../models/sponsor-group-member';
 import { SponsorGroupMemberDTO } from '../models/sponsor-group-memberDTO';
 import { StudentSponsorXRef } from '../models/student-sponsor-xref';
-import { BaseDataService } from './base-data.service';
-import { UrlService } from './url.service';
+import { UrlService } from '../services/url.service';
 
 @Injectable({ providedIn: 'root' })
 export class SponsorGroupDataService extends BaseDataService {

@@ -2,9 +2,9 @@ import { Location } from '@angular/common';
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { SelectedMemberService } from 'src/app/_store/selectedMember/selected-member.service';
+import { MemberDataService } from '../../data/member-data.service';
 import { MemberHeaderDTO } from '../../models/memberHeaderDTO';
-import { MemberDataService } from '../../services/member-data.service';
-import { MemberSelectedService } from '../../services/member-selected-service';
 import { SessionService } from '../../services/session.service';
 
 @Component({
@@ -34,7 +34,7 @@ export class MemberHeaderDetailsComponent implements OnInit, OnDestroy {
 		private session: SessionService,
 		public memberData: MemberDataService,
 		public location: Location,
-		private memberSelected: MemberSelectedService
+		private selectedMember: SelectedMemberService
 	) {
 		console.log('hi from MemberHeaderDetails constructor');
 
@@ -56,7 +56,7 @@ export class MemberHeaderDetailsComponent implements OnInit, OnDestroy {
 
 	subscribeForMemberGUIds() {
 		console.log('header details set up memberGUId subscription');
-		this.subscription = this.memberSelected.subscribeForMemberGUIds().subscribe((message) => {
+		this.subscription = this.selectedMember.subscribeForMemberGUIds().subscribe((message) => {
 			this.memberGUId = message;
 			console.log('header details new MemberGUId received' + this.memberGUId);
 			if (this.memberGUId && this.memberGUId !== '0000') {

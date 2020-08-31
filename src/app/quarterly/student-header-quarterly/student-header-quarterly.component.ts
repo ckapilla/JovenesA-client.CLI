@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { StudentSelectedService } from '../../_shared/services/student-selected.service';
+import { SelectedStudent } from 'src/app/_store/selectedStudent/selected-student.service';
 
 @Component({
 	selector: 'app-student-header-quarterly',
@@ -13,7 +13,7 @@ export class StudentHeaderQuarterlyComponent implements OnInit, OnDestroy {
 	private subscription: Subscription;
 	public studentGUId: string;
 
-	constructor(public router: Router, private studentSelected: StudentSelectedService) {
+	constructor(public router: Router, private selectedStudent: SelectedStudent) {
 		console.log('hi from student-header constructor');
 	}
 
@@ -25,7 +25,7 @@ export class StudentHeaderQuarterlyComponent implements OnInit, OnDestroy {
 	}
 	subscribeForStudentGUIds() {
 		// console.log('header set up studentGUId subscription');
-		this.subscription = this.studentSelected.subscribeForStudentGUIds().subscribe((message) => {
+		this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
 			this.studentGUId = message;
 			console.log('header new StudentGUId received' + this.studentGUId);
 			// console.log(this.studentGUId && this.studentGUId !== undefined && this.studentGUId !== '0000');

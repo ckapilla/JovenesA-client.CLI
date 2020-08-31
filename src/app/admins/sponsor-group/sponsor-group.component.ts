@@ -2,8 +2,8 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SponsorGroupDataService } from 'src/app/_shared/data/sponsor-group-data.service';
 import { SponsorGroup } from 'src/app/_shared/models/sponsor-group';
-import { SponsorGroupDataService } from 'src/app/_shared/services/sponsor-group-data.service';
 import { SORTCRITERIA } from '../../_shared/interfaces/SORTCRITERIA';
 
 @Component({

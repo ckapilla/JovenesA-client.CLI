@@ -5,12 +5,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EMPTY, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { constants } from 'src/app/_shared/constants/constants';
+import { MiscDataService } from 'src/app/_shared/data/misc-data.service';
+import { StudentDataService } from 'src/app/_shared/data/student-data.service';
 import { SELECTITEM } from 'src/app/_shared/interfaces/SELECTITEM';
 import { Student } from 'src/app/_shared/models/student';
 import { StudentDTO } from 'src/app/_shared/models/studentDTO';
 import { TruncateDatePipe } from 'src/app/_shared/pipes/truncate-date-pipe';
-import { MiscDataService } from 'src/app/_shared/services/misc-data.service';
-import { StudentDataService } from 'src/app/_shared/services/student-data.service';
 import { UrlService } from 'src/app/_shared/services/url.service';
 
 @Component({

@@ -1,208 +1,209 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { constants } from 'src/app/_shared/constants/constants';
+import { MentorReport2DataService } from 'src/app/_shared/data/mentor-report2-data.service';
 import { SELECTITEM } from 'src/app/_shared/interfaces/SELECTITEM';
 import { MentorReport2RPT } from 'src/app/_shared/models/mentor-report2';
-import { MentorReport2DataService } from 'src/app/_shared/services/mentor-report2-data.service';
 import { SessionService } from 'src/app/_shared/services/session.service';
 
-
 @Component({
-  selector: 'app-mr-summary-tracking',
-  templateUrl: 'mr-summary-tracking.component.html',
-  styleUrls: ['mr-summary-tracking.component.css']
+	selector: 'app-mr-summary-tracking',
+	templateUrl: 'mr-summary-tracking.component.html',
+	styleUrls: [ 'mr-summary-tracking.component.css' ]
 })
 export class MentorReportsSummaryTrackingComponent implements OnInit {
-  mentorReportByMonth: MentorReport2RPT[];
-  isLoading: boolean;
-  smileys: Array<string>;
-  public errorMessage: string;
-  successMessage: string;
-  submitted: string;
-  mentorReportStatuses: SELECTITEM[];
-  years: SELECTITEM[];
-  months: SELECTITEM[];
-  mrReviewedStatuses: SELECTITEM[];
-  highlightStatuses: SELECTITEM[];
-  selectedYear: string;
-  selectedMonth: string;
-  selectedMRReviewedStatus: string;
-  selectedHighlightStatus: string;
-  displayOriginalFields = true;
-  x: any;
-  studentName: string;
+	mentorReportByMonth: MentorReport2RPT[];
+	isLoading: boolean;
+	smileys: Array<string>;
+	public errorMessage: string;
+	successMessage: string;
+	submitted: string;
+	mentorReportStatuses: SELECTITEM[];
+	years: SELECTITEM[];
+	months: SELECTITEM[];
+	mrReviewedStatuses: SELECTITEM[];
+	highlightStatuses: SELECTITEM[];
+	selectedYear: string;
+	selectedMonth: string;
+	selectedMRReviewedStatus: string;
+	selectedHighlightStatus: string;
+	displayOriginalFields = true;
+	x: any;
+	studentName: string;
 
-  constructor(
-    public router: Router,
-    public session: SessionService,
-    public mentorReport2Data: MentorReport2DataService,
-    private route: ActivatedRoute
-  ) {
+	constructor(
+		public router: Router,
+		public session: SessionService,
+		public mentorReport2Data: MentorReport2DataService,
+		private route: ActivatedRoute
+	) {
+		console.log('mr-summary-tracking constructor');
+		this.years = constants.years;
+		this.months = constants.months;
 
-    console.log('mr-summary-tracking constructor');
-    this.years = constants.years;
-    this.months = constants.months;
+		this.mrReviewedStatuses = constants.reviewedStatuses;
 
-    this.mrReviewedStatuses = constants.reviewedStatuses;
+		this.highlightStatuses = constants.highlightStatuses;
 
-    this.highlightStatuses = constants.highlightStatuses;
+		const today = new Date();
+		this.selectedYear = '2020'; // '' + today.getFullYear(); //
+		this.selectedMonth = '0'; // + today.getMonth() + 1;// '5';
 
-    const today = new Date();
-    this.selectedYear = '2020'; // '' + today.getFullYear(); //
-    this.selectedMonth = '0'; // + today.getMonth() + 1;// '5';
+		this.selectedMRReviewedStatus = '0'; // this.mrReviewedStatuses[0].value;
+		this.selectedHighlightStatus = this.highlightStatuses[0].value;
 
-    this.selectedMRReviewedStatus = '0'; // this.mrReviewedStatuses[0].value;
-    this.selectedHighlightStatus = this.highlightStatuses[0].value;
+		this.smileys = constants.smileys;
+	}
 
+	ngOnInit() {
+		console.log('onInit');
+		this.processRouteParams();
+	}
 
-    this.smileys = constants.smileys;
-  }
+	processRouteParams() {
+		console.log('summaryTracking setting filters form queryParams');
 
-  ngOnInit() {
-    console.log('onInit');
-    this.processRouteParams();
-  }
+		const year = this.route.snapshot.queryParams['year'];
+		console.log('year param = ' + year);
+		if (year !== undefined) {
+			this.selectedYear = year;
+		}
 
-  processRouteParams() {
-    console.log('summaryTracking setting filters form queryParams');
+		let month = this.route.snapshot.queryParams['month'];
+		console.log('month param = ' + month);
+		if (month !== undefined) {
+			this.selectedMonth = month;
+		} else {
+			// const x: Date;
+			const x: Date = new Date();
+			console.log(x);
+			const y = this.addDays(x, -2);
+			console.log(y);
+			month = '' + (y.getMonth() + 1);
+			this.selectedMonth = month;
+		}
 
-    const year = this.route.snapshot.queryParams['year'];
-    console.log('year param = ' + year);
-    if (year !== undefined) {
-      this.selectedYear = year;
-    }
+		const reviewedStatus = this.route.snapshot.queryParams['reviewedStatus'];
+		console.log('reviewed param = ' + reviewedStatus);
+		if (reviewedStatus !== undefined) {
+			this.selectedMRReviewedStatus = reviewedStatus;
+		} else {
+			this.selectedMRReviewedStatus = '0';
+		}
 
-    let month = this.route.snapshot.queryParams['month'];
-    console.log('month param = ' + month);
-    if (month !== undefined) {
-      this.selectedMonth = month;
-    } else {
-      // const x: Date;
-      const x: Date = new Date();
-      console.log(x);
-      const y = this.addDays(x, -2);
-      console.log(y);
-      month = '' + (y.getMonth() + 1);
-      this.selectedMonth = month;
-    }
+		const highlight = this.route.snapshot.queryParams['highlight'];
+		console.log('highlight param = ' + highlight);
+		if (highlight !== undefined) {
+			this.selectedHighlightStatus = highlight;
+		} else {
+			this.selectedHighlightStatus = '0';
+		}
 
-    const reviewedStatus = this.route.snapshot.queryParams['reviewedStatus'];
-    console.log('reviewed param = ' + reviewedStatus);
-    if (reviewedStatus !== undefined) {
-      this.selectedMRReviewedStatus = reviewedStatus;
-    } else {
-      this.selectedMRReviewedStatus = '0';
-    }
+		if (month !== undefined && month > 0) {
+			this.fetchFilteredData();
+		}
+	}
 
-    const highlight = this.route.snapshot.queryParams['highlight'];
-    console.log('highlight param = ' + highlight);
-    if (highlight !== undefined) {
-      this.selectedHighlightStatus = highlight;
-    } else {
-      this.selectedHighlightStatus = '0';
-    }
+	fetchFilteredData() {
+		this.isLoading = true;
+		console.log('in fetchData for MentorReportsByMonth');
+		this.mentorReport2Data
+			.getMentorReportsByMonth(this.selectedYear, this.selectedMonth, this.selectedMRReviewedStatus)
+			.subscribe(
+				(data) => {
+					this.mentorReportByMonth = data;
+					console.log('mentorReportByMonth has');
+					console.log(this.mentorReportByMonth[0]);
+				},
+				(err) => console.error('Subscribe error: ' + err),
+				() => {
+					console.log('data loaded now set timeout for scroll');
+					setTimeout(() => {
+						this.scrollIntoView();
+					}, 0);
+					this.isLoading = false;
+				}
+			);
+	}
 
-    if (month !== undefined && month > 0) {
-      this.fetchFilteredData();
-    }
+	scrollIntoView() {
+		console.log('in scrollIntoView');
+		if (this.route.snapshot.queryParams['id']) {
+			console.log(this.route.snapshot.queryParams['id']);
+			const idSelector = '#' + this.route.snapshot.queryParams['id'];
+			console.log('id param = ' + this.route.snapshot.queryParams['id']);
+			const element = document.querySelector(idSelector);
+			if (element) {
+				console.log('querySelector returns element ' + element);
+				element.scrollIntoView(true);
+			}
+		}
+	}
 
-  }
+	setSelectedMRReviewedStatus(status: string) {
+		this.selectedMRReviewedStatus = status;
+		this.fetchFilteredData();
+	}
 
+	setSelectedHighlightStatus(status: string) {
+		this.selectedHighlightStatus = status;
+		this.fetchFilteredData();
+	}
 
-  fetchFilteredData() {
-    this.isLoading = true;
-    console.log('in fetchData for MentorReportsByMonth');
-    this.mentorReport2Data.getMentorReportsByMonth(this.selectedYear,
-      this.selectedMonth,
-      this.selectedMRReviewedStatus)
-      .subscribe(
-        data => { this.mentorReportByMonth = data; console.log('mentorReportByMonth has'); console.log(this.mentorReportByMonth[0]); },
-        err => console.error('Subscribe error: ' + err),
-        () => {
-          console.log('data loaded now set timeout for scroll');
-          setTimeout(() => {
-            this.scrollIntoView();
-          }, 0);
-          this.isLoading = false;
-        }
-      );
-  }
+	setSelectedYear(year: string) {
+		this.selectedYear = year;
+		this.fetchFilteredData();
+	}
+	setSelectedMonth(month: string) {
+		this.selectedMonth = month;
+		this.fetchFilteredData();
+	}
 
-  scrollIntoView() {
-    console.log('in scrollIntoView');
-    if (this.route.snapshot.queryParams['id']) {
-      console.log(this.route.snapshot.queryParams['id']);
-      const idSelector = '#' + this.route.snapshot.queryParams['id'];
-      console.log('id param = ' + this.route.snapshot.queryParams['id']);
-      const element = document.querySelector(idSelector);
-      if (element) {
-        console.log('querySelector returns element ' + element);
-        element.scrollIntoView(true);
-      }
-    }
-  }
+	gotoStudent(guid: string, studentName: string) {
+		console.log('setting studentName to ' + studentName);
+		this.session.setStudentInContextName(studentName);
 
-  setSelectedMRReviewedStatus(status: string) {
-    this.selectedMRReviewedStatus = status;
-    this.fetchFilteredData();
-  }
+		// const link = ['/admins/students/student/' + id];
+		const link = [ 'admins/students/student', { guid: guid } ];
 
-  setSelectedHighlightStatus(status: string) {
-    this.selectedHighlightStatus = status;
-    this.fetchFilteredData();
-  }
+		console.log('navigating to ' + link);
+		this.router.navigate(link);
+	}
 
-  setSelectedYear(year: string) {
-    this.selectedYear = year;
-    this.fetchFilteredData();
-  }
-  setSelectedMonth(month: string) {
-    this.selectedMonth = month;
-    this.fetchFilteredData();
-  }
+	updateSummaryTracking(id: number, studentName: string) {
+		// const link = ['/admins/mentor-reports/reviewed-updates?id=' + id + '&reviewedStatus=' + 2087 + '&highlight=' + 2106];
+		this.session.setStudentInContextName(studentName);
+		const link: [string, { mentorReportId: number; reviewedStatus: string; highlight: string }] = [
+			'/admins/mentor-reports/summary-updates',
+			{
+				mentorReportId: id,
+				reviewedStatus: this.selectedMRReviewedStatus,
+				highlight: this.selectedHighlightStatus
+			}
+		];
 
-  gotoStudent(guid: string, studentName: string) {
-    console.log('setting studentName to ' + studentName);
-    this.session.setStudentInContextName(studentName);
+		console.log('navigating to ' + link);
+		this.router.navigate(link);
+	}
 
-    // const link = ['/admins/students/student/' + id];
-    const link = ['admins/students/student', { guid: guid }];
+	translationNeeded(lang1: number, lang2: number): string {
+		console.log(lang1, lang2);
+		return lang1 === lang2 ? '' : 'Translation Needed';
+	}
 
-    console.log('navigating to ' + link);
-    this.router.navigate(link);
-  }
-
-  updateSummaryTracking(id: number, studentName: string) {
-    // const link = ['/admins/mentor-reports/reviewed-updates?id=' + id + '&reviewedStatus=' + 2087 + '&highlight=' + 2106];
-    this.session.setStudentInContextName(studentName);
-    const link: [string, { mentorReportId: number, reviewedStatus: string, highlight: string }]
-      = ['/admins/mentor-reports/summary-updates',
-        { mentorReportId: id, reviewedStatus: this.selectedMRReviewedStatus, highlight: this.selectedHighlightStatus }];
-
-    console.log('navigating to ' + link);
-    this.router.navigate(link);
-  }
-
-  translationNeeded(lang1: number, lang2: number): string {
-    console.log(lang1, lang2);
-    return (lang1 === lang2) ? '' : 'Translation Needed';
-  }
-
-  getHighlightColor(highlightStatusId: number): string {
-
-    if (highlightStatusId === 2106) {
-      // console.log('returning ' + 'green-row');
-      return 'green-row';
-    } else if (highlightStatusId === 2105) {
-      return 'red-row';
-    } else {
-      return '';
-    }
-  }
-  addDays(date, days) {
-    const result = new Date(date);
-    result.setDate(result.getDate() + days);
-    return result;
-  }
-
+	getHighlightColor(highlightStatusId: number): string {
+		if (highlightStatusId === 2106) {
+			// console.log('returning ' + 'green-row');
+			return 'green-row';
+		} else if (highlightStatusId === 2105) {
+			return 'red-row';
+		} else {
+			return '';
+		}
+	}
+	addDays(date, days) {
+		const result = new Date(date);
+		result.setDate(result.getDate() + days);
+		return result;
+	}
 }

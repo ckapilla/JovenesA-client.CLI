@@ -4,8 +4,8 @@ import createAuth0Client from '@auth0/auth0-spa-js';
 import Auth0Client from '@auth0/auth0-spa-js/dist/typings/Auth0Client';
 import { BehaviorSubject, combineLatest, from, Observable, of, throwError } from 'rxjs';
 import { catchError, concatMap, shareReplay, tap } from 'rxjs/operators';
+import { MemberDataService } from '../data/member-data.service';
 import { AUTH_CONFIG } from './auth0-config';
-import { MemberDataService } from './member-data.service';
 import { SessionService } from './session.service';
 import { UrlService } from './url.service';
 
