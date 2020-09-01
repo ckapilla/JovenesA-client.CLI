@@ -2,7 +2,7 @@ import { Component, Host, Input } from '@angular/core';
 import { FormGroup, FormGroupDirective } from '@angular/forms';
 
 @Component({
-  template: `<div>{{currentError}}</div>`,
+  template: '<div>{{currentError}}</div>',
   selector: 'app-display-errors'
 })
 export class DisplayErrorsComponent {

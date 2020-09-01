@@ -84,7 +84,9 @@ export class MonthlyReports2Component implements OnInit, OnDestroy {
     this.haveCurrentReport = false;
     this.mentorReport2Data.getMentorReport2RPTsViaGUID(this.mentorGUId, this.studentGUId)
       .subscribe(
-        data => { this.mentorReports2 = data; },
+        data => {
+          this.mentorReports2 = data;
+        },
         err => console.error('Subscribe error: ' + err),
         () => {
           console.log('done: ');

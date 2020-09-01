@@ -8,141 +8,141 @@ import { SessionService } from './_shared/services/session.service';
 
 @Injectable({ providedIn: 'root' })
 export class CanActivateViaAdminAuthGuard implements CanActivate {
-	constructor(private auth: AuthService, private router: Router, private session: SessionService) {}
+  constructor(private auth: AuthService, private router: Router, private session: SessionService) {}
 
-	canActivate(next: ActivatedRouteSnapshot, routerState: RouterStateSnapshot) {
-		console.log('canActivate for Admin AuthGuard with url' + routerState.url);
-		if (this.auth.loggedIn) {
-			console.log('Can Activate Admin 1');
-			if (this.session.isAdmin()) {
-				console.log('Authenticated and Can Activate Admin');
-				return true;
-			} else {
-				console.log('Authenticated but unauthorized for Admin');
-				return false;
-			}
-		} else {
-			console.log("Not authenticated -- Can't Activate Admin");
-			this.router.navigate([ '' ]); // just to clean up url bar
-			this.auth.login(routerState.url);
-			return false;
-		}
-	}
+  canActivate(next: ActivatedRouteSnapshot, routerState: RouterStateSnapshot) {
+    console.log('canActivate for Admin AuthGuard with url' + routerState.url);
+    if (this.auth.loggedIn) {
+      console.log('Can Activate Admin 1');
+      if (this.session.isAdmin()) {
+        console.log('Authenticated and Can Activate Admin');
+        return true;
+      } else {
+        console.log('Authenticated but unauthorized for Admin');
+        return false;
+      }
+    } else {
+      console.log('Not authenticated -- Can\'t Activate Admin');
+      this.router.navigate([ '' ]); // just to clean up url bar
+      this.auth.login(routerState.url);
+      return false;
+    }
+  }
 }
 @Injectable({ providedIn: 'root' })
 export class CanActivateViaMentorAuthGuard implements CanActivate {
-	constructor(private auth: AuthService, private router: Router, private session: SessionService) {}
+  constructor(private auth: AuthService, private router: Router, private session: SessionService) {}
 
-	canActivate(next: ActivatedRouteSnapshot, routerState: RouterStateSnapshot) {
-		console.log('canActivate for /mentors');
-		if (this.auth.loggedIn) {
-			// following has issue of race condition with callback to get profile
-			if (this.session.isMentor()) {
-				console.log('Authenticated and Can Activate Mentor');
-				return true;
-			} else {
-				return false;
-			}
-		} else {
-			console.log('link to Mentor but not authenticated -- save /mentors retry url:');
-			this.router.navigate([ '' ]); // just to clean up URL bar
-			this.auth.login(routerState.url);
+  canActivate(next: ActivatedRouteSnapshot, routerState: RouterStateSnapshot) {
+    console.log('canActivate for /mentors');
+    if (this.auth.loggedIn) {
+      // following has issue of race condition with callback to get profile
+      if (this.session.isMentor()) {
+        console.log('Authenticated and Can Activate Mentor');
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      console.log('link to Mentor but not authenticated -- save /mentors retry url:');
+      this.router.navigate([ '' ]); // just to clean up URL bar
+      this.auth.login(routerState.url);
 
-			return false;
-		}
-	}
+      return false;
+    }
+  }
 }
 
 @Injectable({ providedIn: 'root' })
 export class CanActivateViaSponsorAuthGuard implements CanActivate {
-	constructor(private auth: AuthService, private router: Router, private session: SessionService) {}
+  constructor(private auth: AuthService, private router: Router, private session: SessionService) {}
 
-	canActivate(next: ActivatedRouteSnapshot, routerState: RouterStateSnapshot) {
-		console.log('canActivate for /sponsors');
-		if (this.auth.loggedIn) {
-			// following has issue of race condition with callback to get profile
-			if (this.session.isSponsor()) {
-				console.log('Authenticated and Can Activate Sponsor');
-				return true;
-			} else {
-				return false;
-			}
-		} else {
-			console.log('link to Sponsor but not authenticated -- save /sponsors retry url:');
-			this.router.navigate([ '' ]); // just to clean up URL bar
-			this.auth.login(routerState.url);
+  canActivate(next: ActivatedRouteSnapshot, routerState: RouterStateSnapshot) {
+    console.log('canActivate for /sponsors');
+    if (this.auth.loggedIn) {
+      // following has issue of race condition with callback to get profile
+      if (this.session.isSponsor()) {
+        console.log('Authenticated and Can Activate Sponsor');
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      console.log('link to Sponsor but not authenticated -- save /sponsors retry url:');
+      this.router.navigate([ '' ]); // just to clean up URL bar
+      this.auth.login(routerState.url);
 
-			return false;
-		}
-	}
+      return false;
+    }
+  }
 }
 
 @Injectable({ providedIn: 'root' })
 export class CanActivateViaStudentAuthGuard implements CanActivate {
-	constructor(private auth: AuthService, private router: Router, private session: SessionService) {}
+  constructor(private auth: AuthService, private router: Router, private session: SessionService) {}
 
-	canActivate(next: ActivatedRouteSnapshot, routerState: RouterStateSnapshot) {
-		console.log('canActivate for /students');
-		if (this.auth.loggedIn) {
-			// following has issue of race condition with callback to get profile
-			if (this.session.isStudent()) {
-				console.log('Authenticated and Can Activate Student');
-				return true;
-			} else {
-				console.log('Authenticated but unauthorized for Student');
-				return false;
-			}
-		} else {
-			console.log('link to Mentor but not authenticated -- save /students retry url:');
-			this.router.navigate([ '' ]); // just to clean up URL bar
-			this.auth.login(routerState.url);
+  canActivate(next: ActivatedRouteSnapshot, routerState: RouterStateSnapshot) {
+    console.log('canActivate for /students');
+    if (this.auth.loggedIn) {
+      // following has issue of race condition with callback to get profile
+      if (this.session.isStudent()) {
+        console.log('Authenticated and Can Activate Student');
+        return true;
+      } else {
+        console.log('Authenticated but unauthorized for Student');
+        return false;
+      }
+    } else {
+      console.log('link to Mentor but not authenticated -- save /students retry url:');
+      this.router.navigate([ '' ]); // just to clean up URL bar
+      this.auth.login(routerState.url);
 
-			return false;
-		}
-	}
+      return false;
+    }
+  }
 }
 
 @Injectable({ providedIn: 'root' })
 export class ConfirmDeactivateMonthlyReportAddGuard implements CanDeactivate<MonthlyReports2AddComponent> {
-	canDeactivate(component: MonthlyReports2AddComponent): boolean {
-		if (component.hasChanges()) {
-			console.log('CanDeactivate');
-			// tslint:disable-next-line:max-line-length
-			return window.confirm(
-				'You have unsaved changes. Click OK to leave the page without saving.\nTiene cambios no guardados. Haga clic OK para salir de la página sin guardar'
-			);
-		}
-		return true;
-	}
+  canDeactivate(component: MonthlyReports2AddComponent): boolean {
+    if (component.hasChanges()) {
+      console.log('CanDeactivate');
+      // tslint:disable-next-line:max-line-length
+      return window.confirm(
+        'You have unsaved changes. Click OK to leave the page without saving.\nTiene cambios no guardados. Haga clic OK para salir de la página sin guardar'
+      );
+    }
+    return true;
+  }
 }
 @Injectable({ providedIn: 'root' })
 export class ConfirmDeactivateMRSummaryUpdatesGuard implements CanDeactivate<MentorReportSummaryUpdatesComponent> {
-	canDeactivate(component: MentorReportSummaryUpdatesComponent): boolean {
-		if (component.hasChanges()) {
-			console.log('CanDeactivate');
-			// tslint:disable-next-line:max-line-length
-			return window.confirm(
-				'You have unsaved changes. Click OK to leave the page without saving.\nTiene cambios no guardados. Haga clic OK para salir de la página sin guardar'
-			);
-		}
-		console.log('CanDeactivate for MRSummaryUpdates clearing unauthenticate_retry+url');
-		localStorage.removeItem('unauthenticated_retry_url');
-		return true;
-	}
+  canDeactivate(component: MentorReportSummaryUpdatesComponent): boolean {
+    if (component.hasChanges()) {
+      console.log('CanDeactivate');
+      // tslint:disable-next-line:max-line-length
+      return window.confirm(
+        'You have unsaved changes. Click OK to leave the page without saving.\nTiene cambios no guardados. Haga clic OK para salir de la página sin guardar'
+      );
+    }
+    console.log('CanDeactivate for MRSummaryUpdates clearing unauthenticate_retry+url');
+    localStorage.removeItem('unauthenticated_retry_url');
+    return true;
+  }
 }
 
 @Injectable({ providedIn: 'root' })
 export class ConfirmDeactivateGradesEditGuard implements CanDeactivate<GradesEditComponent> {
-	canDeactivate(component: GradesEditComponent): boolean {
-		if (component.hasChanges()) {
-			console.log('CanDeactivate');
-			// tslint:disable-next-line:max-line-length
-			return window.confirm(
-				'You have unsaved changes. Click OK to leave the page without saving.\nTiene cambios no guardados. Haga clic OK para salir de la página sin guardar'
-			);
-		}
-		console.log('CanDeactivate for GradesEdit clearing unauthenticate_retry+url');
-		localStorage.removeItem('unauthenticated_retry_url');
-		return true;
-	}
+  canDeactivate(component: GradesEditComponent): boolean {
+    if (component.hasChanges()) {
+      console.log('CanDeactivate');
+      // tslint:disable-next-line:max-line-length
+      return window.confirm(
+        'You have unsaved changes. Click OK to leave the page without saving.\nTiene cambios no guardados. Haga clic OK para salir de la página sin guardar'
+      );
+    }
+    console.log('CanDeactivate for GradesEdit clearing unauthenticate_retry+url');
+    localStorage.removeItem('unauthenticated_retry_url');
+    return true;
+  }
 }

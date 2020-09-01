@@ -15,14 +15,14 @@ export class HomeComponent {
 
   }
   public onLoginClick = ($event: Event) => {
-        $event.preventDefault(); // don't navigate to href.
-        this.auth.login();
-  }
+    $event.preventDefault(); // don't navigate to href.
+    this.auth.login();
+  };
 
   public onLogoutClick = ($event: Event) => {
     console.log('onLogoutClick');
     $event.preventDefault(); // don't navigate to href.
     this.auth.logout();
-  }
+  };
 
 }

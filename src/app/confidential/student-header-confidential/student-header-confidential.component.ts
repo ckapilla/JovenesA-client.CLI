@@ -4,34 +4,34 @@ import { Subscription } from 'rxjs';
 import { SelectedStudent } from 'src/app/_store/selectedStudent/selected-student.service';
 
 @Component({
-	selector: 'app-student-header-confidential',
-	templateUrl: './student-header-confidential.component.html'
+  selector: 'app-student-header-confidential',
+  templateUrl: './student-header-confidential.component.html'
 })
 export class StudentHeaderConfidentialComponent implements OnInit, OnDestroy {
-	photoPathName: string;
-	private subscription: Subscription;
-	public studentGUId: string;
+  photoPathName: string;
+  private subscription: Subscription;
+  public studentGUId: string;
 
-	constructor(public router: Router, private selectedStudent: SelectedStudent) {
-		console.log('hi from student-header constructor');
-	}
+  constructor(public router: Router, private selectedStudent: SelectedStudent) {
+    console.log('hi from student-header constructor');
+  }
 
-	ngOnInit() {
-		this.subscribeForStudentGUIds();
-	}
-	ngOnDestroy() {
-		this.subscription.unsubscribe();
-	}
-	subscribeForStudentGUIds() {
-		// console.log('header set up studentGUId subscription');
-		this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
-			this.studentGUId = message;
-			console.log('header new StudentGUId received' + this.studentGUId);
-		});
-	}
+  ngOnInit() {
+    this.subscribeForStudentGUIds();
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+  subscribeForStudentGUIds() {
+    // console.log('header set up studentGUId subscription');
+    this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
+      this.studentGUId = message;
+      console.log('header new StudentGUId received' + this.studentGUId);
+    });
+  }
 
-	public onPhotoPathNameSet(photoPathName: string) {
-		this.photoPathName = photoPathName;
-		// console.log('parent studentHeader has onPhotoPathNameSet called with' + photoPathName);
-	}
+  public onPhotoPathNameSet(photoPathName: string) {
+    this.photoPathName = photoPathName;
+    // console.log('parent studentHeader has onPhotoPathNameSet called with' + photoPathName);
+  }
 }

@@ -7,44 +7,44 @@ import { StudentsSelfReportsComponent } from './students-self-reports/students-s
 import { StudentsComponent } from './students.component';
 
 const routes: Routes = [
-	{
-		// path: 'students', // non lazy loading
-		path: '', // lazy loading
-		component: StudentsComponent,
-		canActivate: [ CanActivateViaStudentAuthGuard ],
-		children: [
-			{
-				path: '',
-				pathMatch: 'full',
-				// shortcut to SelfReport /////
-				component: StudentsSelfReportsComponent
-			},
-			// {
-			//   path: 'becas-home',
-			//   component: StudentsHomeComponent
-			// },
-			// {
-			//   path: 'self-reports/:studentId',
-			//   component: StudentsSelfReportsComponent
-			// },
-			{
-				path: 'self-reports', // use session userId
-				component: StudentsSelfReportsComponent
-			},
-			{
-				path: 'self-reports-add/:studentId/:sponsorId/:studentGUId',
-				component: SelfReportsAddComponent
-			},
-			{
-				path: 'self-reports-edit/:selfReportId',
-				component: SelfReportsEditComponent
-			}
-		]
-	}
+  {
+    // path: 'students', // non lazy loading
+    path: '', // lazy loading
+    component: StudentsComponent,
+    canActivate: [ CanActivateViaStudentAuthGuard ],
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        // shortcut to SelfReport /////
+        component: StudentsSelfReportsComponent
+      },
+      // {
+      //   path: 'becas-home',
+      //   component: StudentsHomeComponent
+      // },
+      // {
+      //   path: 'self-reports/:studentId',
+      //   component: StudentsSelfReportsComponent
+      // },
+      {
+        path: 'self-reports', // use session userId
+        component: StudentsSelfReportsComponent
+      },
+      {
+        path: 'self-reports-add/:studentId/:sponsorId/:studentGUId',
+        component: SelfReportsAddComponent
+      },
+      {
+        path: 'self-reports-edit/:selfReportId',
+        component: SelfReportsEditComponent
+      }
+    ]
+  }
 ];
 
 @NgModule({
-	imports: [ RouterModule.forChild(routes) ],
-	exports: [ RouterModule ]
+  imports: [ RouterModule.forChild(routes) ],
+  exports: [ RouterModule ]
 })
 export class StudentsRoutingModule {}

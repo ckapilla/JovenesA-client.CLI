@@ -48,7 +48,7 @@ export const LOCK_DICTIONARY: any  = {
   // notYourAccountAction: 'Use different account or Change Password / Usar otra cuenta o Cambiar contraseña',
 
   passwordInputPlaceholder: 'your password / su contraseña',
-   // welcome: 'Not / ¿No es %s?',
+  // welcome: 'Not / ¿No es %s?',
 
   retryLabel: 'Retry',
   sentLabel: 'Sent!',

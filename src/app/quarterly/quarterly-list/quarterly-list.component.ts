@@ -11,152 +11,150 @@ import { QuarterlyReportRPT } from '../../_shared/models/quarterly-reportRPT';
 import { SessionService } from '../../_shared/services/session.service';
 
 @Component({
-	templateUrl: './quarterly-list.html',
-	styleUrls: [ './quarterly-list.component.css' ]
+  templateUrl: './quarterly-list.html',
+  styleUrls: [ './quarterly-list.component.css' ]
 })
 export class QuarterlyListComponent implements OnInit {
-	isLoading = false;
-	errorMessage: string;
-	successMessage: string;
-	years: SELECTITEM[];
-	periods: SELECTITEM[];
-	activeQRPeriods: SELECTITEM[];
-	selectedYear: string;
-	selectedPeriod: string;
-	selectedYearPeriod: string;
-	qrMinis: QuarterlyReportRPT[];
-	qrMini: QuarterlyReportRPT;
-	readonly reviewedStatuses: SELECTITEM[] = constants.reviewedQRStatuses;
-	readonly highlightStatuses: SELECTITEM[] = constants.highlightStatuses;
-	displayTestNames: boolean;
+  isLoading = false;
+  errorMessage: string;
+  successMessage: string;
+  years: SELECTITEM[];
+  periods: SELECTITEM[];
+  activeQRPeriods: SELECTITEM[];
+  selectedYear: string;
+  selectedPeriod: string;
+  selectedYearPeriod: string;
+  qrMinis: QuarterlyReportRPT[];
+  qrMini: QuarterlyReportRPT;
+  readonly reviewedStatuses: SELECTITEM[] = constants.reviewedQRStatuses;
+  readonly highlightStatuses: SELECTITEM[] = constants.highlightStatuses;
+  displayTestNames: boolean;
 
-	constructor(
-		public currRoute: ActivatedRoute,
-		private router: Router,
-		public quarterlyData: QuarterlyDataService,
-		public columnSorter: ColumnSortService,
-		public selectedStudent: SelectedStudent,
-		public session: SessionService,
-		public testNamesVisibilityService: TestNamesVisibilityService
-	) {
-		console.log('quarterly-list constructor');
+  constructor(
+    public currRoute: ActivatedRoute,
+    private router: Router,
+    public quarterlyData: QuarterlyDataService,
+    public columnSorter: ColumnSortService,
+    public selectedStudent: SelectedStudent,
+    public session: SessionService,
+    public testNamesVisibilityService: TestNamesVisibilityService
+  ) {
+    console.log('quarterly-list constructor');
 
-		this.years = constants.years;
-		this.periods = constants.periods;
-		this.activeQRPeriods = constants.activeQRperiods;
+    this.years = constants.years;
+    this.periods = constants.periods;
+    this.activeQRPeriods = constants.activeQRperiods;
 
-		this.selectedYear = '2020'; // '' + today.getFullYear(); //
-		this.selectedPeriod = '2'; // + today.getPeriod() + 1;// '5';
-		this.selectedYearPeriod = constants.selectedYearPeriod;
+    this.selectedYear = '2020'; // '' + today.getFullYear(); //
+    this.selectedPeriod = '2'; // + today.getPeriod() + 1;// '5';
+    this.selectedYearPeriod = constants.selectedYearPeriod;
 
-		this.isLoading = false;
-		this.displayTestNames = testNamesVisibilityService.getLatestTestNamesVisibility();
-	}
+    this.isLoading = false;
+    this.displayTestNames = testNamesVisibilityService.getLatestTestNamesVisibility();
+  }
 
-	ngOnInit() {
-		console.log('ngOnInit');
+  ngOnInit() {
+    console.log('ngOnInit');
 
-		this.fetchFilteredData();
-	}
+    this.fetchFilteredData();
+  }
 
-	scrollIntoView() {
-		const element = document.body;
-		if (element) {
-			element.scrollIntoView(true);
-		}
-	}
+  scrollIntoView() {
+    const element = document.body;
+    if (element) {
+      element.scrollIntoView(true);
+    }
+  }
 
-	setSelectedYearPeriod(yearPeriod: string) {
-		this.selectedYearPeriod = yearPeriod;
-		this.selectedYear = yearPeriod.substr(0, 4);
-		this.selectedPeriod = yearPeriod.substr(5, 1);
-		this.fetchFilteredData();
-	}
+  setSelectedYearPeriod(yearPeriod: string) {
+    this.selectedYearPeriod = yearPeriod;
+    this.selectedYear = yearPeriod.substr(0, 4);
+    this.selectedPeriod = yearPeriod.substr(5, 1);
+    this.fetchFilteredData();
+  }
 
-	gotoStudent(studentGUId: string, studentName: string) {
-		this.selectedStudent.notifyNewStudentGUId(studentGUId);
-		const link = [ 'quarterly/edit' ]; // , { guid: studentGUId }];
+  gotoStudent(studentGUId: string, studentName: string) {
+    this.selectedStudent.notifyNewStudentGUId(studentGUId);
+    const link = [ 'quarterly/edit' ]; // , { guid: studentGUId }];
 
-		console.log('navigating to ' + link);
-		this.router.navigate(link);
-	}
+    console.log('navigating to ' + link);
+    this.router.navigate(link);
+  }
 
-	public onSortColumn(sortCriteria: SORTCRITERIA) {
-		console.log('parent received sortColumnCLick event with ' + sortCriteria.sortColumn);
-		return this.qrMinis.sort((a, b) => {
-			return this.columnSorter.compareValues(a, b, sortCriteria);
-		});
-	}
+  public onSortColumn(sortCriteria: SORTCRITERIA) {
+    console.log('parent received sortColumnCLick event with ' + sortCriteria.sortColumn);
+    return this.qrMinis.sort((a, b) => this.columnSorter.compareValues(a, b, sortCriteria));
+  }
 
-	onSorted($event) {
-		console.log('sorted event received');
-	}
+  onSorted($event) {
+    console.log('sorted event received');
+  }
 
-	fetchFilteredData() {
-		console.log('fetchData for QR Overview');
-		this.isLoading = true;
-		// this.miscData.getStudentSelfReportsByPeriod('2019', '3', '0', this.studentGUId)
-		this.quarterlyData.getQRMinisForPeriod(this.selectedYear, this.selectedPeriod, 0).subscribe(
-			(data) => {
-				this.qrMinis = data.filter((item) => {
-					if (this.displayTestNames) {
-						return item;
-					} else if (!this.displayTestNames && item.studentName !== '_Test, _Student') {
-						return item;
-					}
-				});
-			},
-			(err) => {
-				console.error('Subscribe error: ' + err);
-				this.isLoading = false;
-			},
-			() => {
-				this.isLoading = false;
-				// console.log(JSON.stringify(this.qrMinis));
-				if (this.qrMinis && this.qrMinis.length > 0) {
-					console.log('### after retreiving, grid to data ' + this.qrMinis[0].quarterlyReportGUId);
-				} else {
-					console.log('no results returned');
-				}
-			}
-		);
-	}
-	setStatusForQR(rptEntryIdx: number, statusId: number) {
-		console.log('selected reviewedStatusId: ' + statusId);
-		console.log('selected RQGUID:' + this.qrMinis[rptEntryIdx].quarterlyReportGUId);
+  fetchFilteredData() {
+    console.log('fetchData for QR Overview');
+    this.isLoading = true;
+    // this.miscData.getStudentSelfReportsByPeriod('2019', '3', '0', this.studentGUId)
+    this.quarterlyData.getQRMinisForPeriod(this.selectedYear, this.selectedPeriod, 0).subscribe(
+      (data) => {
+        this.qrMinis = data.filter((item) => {
+          if (this.displayTestNames) {
+            return item;
+          } else if (!this.displayTestNames && item.studentName !== '_Test, _Student') {
+            return item;
+          }
+        });
+      },
+      (err) => {
+        console.error('Subscribe error: ' + err);
+        this.isLoading = false;
+      },
+      () => {
+        this.isLoading = false;
+        // console.log(JSON.stringify(this.qrMinis));
+        if (this.qrMinis && this.qrMinis.length > 0) {
+          console.log('### after retreiving, grid to data ' + this.qrMinis[0].quarterlyReportGUId);
+        } else {
+          console.log('no results returned');
+        }
+      }
+    );
+  }
+  setStatusForQR(rptEntryIdx: number, statusId: number) {
+    console.log('selected reviewedStatusId: ' + statusId);
+    console.log('selected RQGUID:' + this.qrMinis[rptEntryIdx].quarterlyReportGUId);
 
-		this.quarterlyData.setQRReviewedStatus(this.qrMinis[rptEntryIdx].quarterlyReportGUId, statusId).subscribe(
-			(student) => {
-				this.successMessage = 'Updated';
-				window.setTimeout(() => {
-					// console.log('clearing success message');
-					this.successMessage = '';
-				}, 500);
-			},
-			(error) => {
-				this.errorMessage = <any>error;
-				this.isLoading = false;
-			}
-		);
-	}
-	setHighlightStatusForQR(rptEntryIdx: number, highlightStatusId: number) {
-		console.log('selected highlightStatusId: ' + highlightStatusId);
-		console.log('selected RQGUID:' + this.qrMinis[rptEntryIdx].quarterlyReportGUId);
+    this.quarterlyData.setQRReviewedStatus(this.qrMinis[rptEntryIdx].quarterlyReportGUId, statusId).subscribe(
+      (student) => {
+        this.successMessage = 'Updated';
+        window.setTimeout(() => {
+          // console.log('clearing success message');
+          this.successMessage = '';
+        }, 500);
+      },
+      (error) => {
+        this.errorMessage = error;
+        this.isLoading = false;
+      }
+    );
+  }
+  setHighlightStatusForQR(rptEntryIdx: number, highlightStatusId: number) {
+    console.log('selected highlightStatusId: ' + highlightStatusId);
+    console.log('selected RQGUID:' + this.qrMinis[rptEntryIdx].quarterlyReportGUId);
 
-		this.quarterlyData
-			.setQRHighlightStatus(this.qrMinis[rptEntryIdx].quarterlyReportGUId, highlightStatusId)
-			.subscribe(
-				(student) => {
-					this.successMessage = 'Updated';
-					window.setTimeout(() => {
-						// console.log('clearing success message');
-						this.successMessage = '';
-					}, 500);
-				},
-				(error) => {
-					this.errorMessage = <any>error;
-					this.isLoading = false;
-				}
-			);
-	}
+    this.quarterlyData
+      .setQRHighlightStatus(this.qrMinis[rptEntryIdx].quarterlyReportGUId, highlightStatusId)
+      .subscribe(
+        (student) => {
+          this.successMessage = 'Updated';
+          window.setTimeout(() => {
+            // console.log('clearing success message');
+            this.successMessage = '';
+          }, 500);
+        },
+        (error) => {
+          this.errorMessage = error;
+          this.isLoading = false;
+        }
+      );
+  }
 }

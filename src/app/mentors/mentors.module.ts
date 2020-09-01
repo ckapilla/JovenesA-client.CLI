@@ -19,26 +19,26 @@ import { StudentSelfReportContainerComponent } from './student-self-report-conta
 
 
 @NgModule({
-    imports: [
-        AppSharedModule,
-        MentorsRoutingModule,
-        QuarterlyModule,
-        NgbModule
-    ],
-    declarations: [
-        MentorsComponent,
-        MentorsNavbarComponent,
-        MentorsContainerComponent,
-        MentorsProfileComponent,
-        MonthlyReports2Component,
-        MonthlyReports2AddComponent,
-        MonthlyReports2EditComponent,
-        FollowUpRequestsAddComponent,
-        FollowUpRequestsComponent,
-        ForumComponent,
-        StudentHeaderMentorsComponent,
-        StudentSelfReportContainerComponent
-    ],
+  imports: [
+    AppSharedModule,
+    MentorsRoutingModule,
+    QuarterlyModule,
+    NgbModule
+  ],
+  declarations: [
+    MentorsComponent,
+    MentorsNavbarComponent,
+    MentorsContainerComponent,
+    MentorsProfileComponent,
+    MonthlyReports2Component,
+    MonthlyReports2AddComponent,
+    MonthlyReports2EditComponent,
+    FollowUpRequestsAddComponent,
+    FollowUpRequestsComponent,
+    ForumComponent,
+    StudentHeaderMentorsComponent,
+    StudentSelfReportContainerComponent
+  ],
 })
 
 export class MentorsModule { }

@@ -5,8 +5,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'app-loading-container',
-    template: `
+  selector: 'app-loading-container',
+  template: `
     <div>
 <style type='text/css'> width: 100%;
 @-webkit-keyframes uilsquare {
@@ -264,12 +264,12 @@ import { Component } from '@angular/core';
     </div>`
 })
 export class LoadingContainerComponent {
-    // @Input() isLoading: boolean;
+  // @Input() isLoading: boolean;
 
-    constructor() {
-        // console.log("passed in isLoading is " + this.isLoading);
+  constructor() {
+    // console.log("passed in isLoading is " + this.isLoading);
 
-    }
+  }
 }
 
 // export class LoadingPage {

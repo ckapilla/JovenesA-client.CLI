@@ -86,7 +86,7 @@ const activeQRperiods = [
   { value: '2020-1', label: '2020 1:Ene-Mar' },
   { value: '2020-2', label: '2020 2:Abr-Jun' },
 ];
-const selectedYearPeriod = "2020-2";
+const selectedYearPeriod = '2020-2';
 
 const genders: SELECTITEM[] = [
   { value: 'M', label: 'Male/Hombre' },
@@ -103,7 +103,7 @@ interface CODEVALUE {
   codeValueId: number;   codeSet: string; stringValue: string; intValue: number;
 }
 
-let languageStatuses: SELECTITEM[] = [
+const languageStatuses: SELECTITEM[] = [
   // { value: '1024', label: 'None' },
   // { value: '1025', label: 'Basic' },
   // { value: '1026', label: 'Intermediate' },
@@ -111,7 +111,7 @@ let languageStatuses: SELECTITEM[] = [
   // { value: '1028', label: 'Native' }
 ];
 
-let studentStatuses: SELECTITEM[] = [
+const studentStatuses: SELECTITEM[] = [
   // { value: '1003', label: 'Dropped' },
   // { value: '1004', label: 'Grad' },
   // { value: '1005', label: 'Current' },
@@ -120,20 +120,20 @@ let studentStatuses: SELECTITEM[] = [
   // { value: '2152', label: 'Pending' },
 
 ];
-let memberStatuses: SELECTITEM[] = [
+const memberStatuses: SELECTITEM[] = [
   // { value: '1015', label: 'Active' },
   // { value: '1016', label: 'Inactive Temporary' },
   // { value: '1017', label: 'Inactive Permanent' },
   // { value: '2055', label: 'Deceased' }
 ];
-let reviewedStatuses: SELECTITEM[] = [
+const reviewedStatuses: SELECTITEM[] = [
   // { value: '2086', label: 'NeedsSetup' },
   // { value: '2087', label: 'NeedsReview' },
   // { value: '2147', label: 'Ready For QR' },
   // { value: '2148', label: 'Copied To QR' },
   // { value: '2090', label: 'Skipped' }
 ];
-let reviewedQRStatuses: SELECTITEM[] = [
+const reviewedQRStatuses: SELECTITEM[] = [
   // { value: '2086', label: 'NeedsSetup (CK)' },
   // { value: '2087', label: 'NeedsReview (DK)' },
   // { value: '2088', label: 'ReadyToSend/single' },
@@ -147,7 +147,7 @@ let reviewedQRStatuses: SELECTITEM[] = [
   // { value: '2133', label: 'Sent/Bounced' },
 
 ];
-let memberTypes: SELECTITEM[] = [
+const memberTypes: SELECTITEM[] = [
   // { value: '2068', label: 'Admin' },
   // { value: '1012', label: 'Employee' },
   // { value: '1010', label: 'Mentor' },
@@ -155,22 +155,22 @@ let memberTypes: SELECTITEM[] = [
   // { value: '1009', label: 'Sponsor' },
   // { value: '1008', label: 'Volunteer' }
 ];
-let schoolTypes: SELECTITEM[] = [
+const schoolTypes: SELECTITEM[] = [
   // { value: '2056', label: 'Prepa' },
   // { value: '2057', label: 'University' },
   // { value: '2058', label: 'N/A' }
 ];
 
-let followUpStatuses: SELECTITEM[] = [
+const followUpStatuses: SELECTITEM[] = [
   // { value: '2092', label: 'Assigned' },
   // { value: '2104', label: 'Closed' },
 ];
-let highlightStatuses: SELECTITEM[] = [
+const highlightStatuses: SELECTITEM[] = [
   // { value: '0', label: '' },
   // { value: '2105', label: 'Problems' },
   // { value: '2106', label: 'GoodNews' },
 ];
-let countryList: SELECTITEM[] = [
+const countryList: SELECTITEM[] = [
 
 ];
 

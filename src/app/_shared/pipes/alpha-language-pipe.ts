@@ -5,7 +5,7 @@ import { PipeTransform, Pipe } from '@angular/core';
 })
 
 export class AlphaLanguagePipe implements PipeTransform {
-    result: string;
+  result: string;
 
   transform(value: number): string {
     // console.log('AlphaLanguagePipe has value [' + value + ']');
@@ -18,6 +18,6 @@ export class AlphaLanguagePipe implements PipeTransform {
     } else {
       this.result = 'unkown';
     }
-     return this.result;
+    return this.result;
   }
 }

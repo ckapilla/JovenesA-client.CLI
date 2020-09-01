@@ -11,7 +11,5 @@ export class ConfidentialReport {
     public narrative_Spanish?: string,
     public reviewedStatusId?: number,
     public studentGUId?: string
-  ) {
-
-  }
+  ) {}
 }
