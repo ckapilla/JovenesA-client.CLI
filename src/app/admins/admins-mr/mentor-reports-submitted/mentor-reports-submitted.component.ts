@@ -59,14 +59,11 @@ https://plnkr.co/edit/DITVzCSqHHB1uNrTxFit?p=info
     return this.mentorReportSubmittedCounts.sort((a, b) => this.columnSorter.compareValues(a, b, sortCriteria));
   }
 
-  onSorted($event) {
-    console.log('sorted event received');
-  }
+  // onSorted($event) {
+  //   console.log('sorted event received');
+  // }
 
-  gotoMember(guid: string, memberName: string) {
-    console.log('setting memberName to ' + memberName);
-    // this.session.setAssignedMemberName(memberName);
-
+  gotoMember(guid: string) {
     const link = [ '/admins/members/member/' + guid ];
     console.log('navigating to ' + link);
     this.router.navigate(link);

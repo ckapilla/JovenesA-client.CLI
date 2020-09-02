@@ -109,7 +109,7 @@ export class MentorReportSummaryUpdatesComponent implements OnInit {
       }
     );
 
-    this.myForm.valueChanges.subscribe((form: any) => {
+    this.myForm.valueChanges.subscribe(() => {
       this.errorMessage = '';
       this.successMessage = '';
       this.submitted = false;
@@ -122,22 +122,18 @@ export class MentorReportSummaryUpdatesComponent implements OnInit {
     // console.log(this.mentorReport);
 
     if (this.myForm.invalid) {
-      let i = 0;
       this.errorMessage = '';
 
       if (!this.lastYear.valid || !this.lastMonth.valid) {
         this.errorMessage = this.errorMessage + 'Year and month must be selected from drop-downs. ';
-        ++i;
       }
 
       if (!this.emojiCtl.valid) {
         this.errorMessage = this.errorMessage + 'An emoji must be selected. Se debe seleccionar un Emoji';
-        ++i;
       }
 
       if (!this.followUp.valid || !this.success.valid || !this.challenge.valid) {
         this.errorMessage = this.errorMessage + 'All 3 text boxes must be filled in . ';
-        ++i;
       }
 
       window.scrollTo(0, 0);
@@ -171,10 +167,9 @@ export class MentorReportSummaryUpdatesComponent implements OnInit {
   onDelete() {
     console.log('delete with userID = ' + this.session.getUserId());
     // tslint:disable-next-line: triple-equals
-    if (this.session.getUserId() == 1216 || this.session.getUserId() == 2094) {
+    if (this.session.getUserId() === 1216 || this.session.getUserId() === 2094) {
       const response = window.confirm(
-        'Caution this action will permanently delete this mentor report! Proceed? ' +
-					this.mentorReport2.mentorReportId
+        'Caution this action will permanently delete this mentor report! Proceed? ' + this.mentorReport2.mentorReportId
       );
       if (response === true) {
         this.mentorReportData.deleteMentorReport2(this.mentorReport2.mentorReportId).subscribe(

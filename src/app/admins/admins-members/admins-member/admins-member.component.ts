@@ -139,7 +139,7 @@ export class AdminsMemberComponent implements OnInit {
       }
     );
 
-    this.myForm.valueChanges.subscribe((form: any) => {
+    this.myForm.valueChanges.subscribe(() => {
       this.errorMessage = '';
       this.successMessage = '';
       this.submitted = false;
@@ -202,7 +202,7 @@ export class AdminsMemberComponent implements OnInit {
     this.isLoading = true;
     this.retrieveFormValues();
     this.memberData.updateMember(this.member).subscribe(
-      (student) => {
+      () => {
         console.log('subscribe result in updateMember');
         // need timeout to avoid "Expression has changed error"
         window.setTimeout(() => {

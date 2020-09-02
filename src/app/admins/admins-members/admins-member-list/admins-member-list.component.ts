@@ -110,7 +110,7 @@ export class AdminsMemberListComponent implements OnInit {
         }
       );
   }
-  gotoMember(guid: string, memberName: string) {
+  gotoMember(guid: string) {
     const link = [ 'admins/members/member', { guid: guid } ];
     console.log('navigating to ' + link);
     this.router.navigate(link);
@@ -136,7 +136,7 @@ export class AdminsMemberListComponent implements OnInit {
     return this.members.sort((a, b) => this.columnSorter.compareValues(a, b, sortCriteria));
   }
 
-  onSorted($event) {
-    console.log('sorted event received');
-  }
+  // onSorted($event) {
+  //   console.log('sorted event received');
+  // }
 }

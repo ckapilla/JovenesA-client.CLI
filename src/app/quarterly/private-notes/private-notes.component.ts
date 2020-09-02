@@ -87,8 +87,8 @@ export class PrivateNotesComponent implements OnInit, OnChanges, OnDestroy {
             this.isLoading = false;
             if (
               this.privateNotes &&
-							this.privateNotes.pN_Narrative &&
-							this.privateNotes.pN_Narrative.length > 0
+                            this.privateNotes.pN_Narrative &&
+                            this.privateNotes.pN_Narrative.length > 0
             ) {
               console.log('### after retreiving, set form controls to retreived selfReport');
               this.narrativeCtl.setValue(this.privateNotes.pN_Narrative);
@@ -106,12 +106,10 @@ export class PrivateNotesComponent implements OnInit, OnChanges, OnDestroy {
     // console.log(this.mentorReport);
 
     if (this.myForm.invalid) {
-      let i = 0;
       this.errorMessage = '';
 
       if (!this.narrativeCtl.valid) {
         this.errorMessage = this.errorMessage + 'Description must be filled in. Descripcione debe rellenarse';
-        ++i;
       }
       window.scrollTo(0, 0);
       return false;
@@ -124,7 +122,7 @@ export class PrivateNotesComponent implements OnInit, OnChanges, OnDestroy {
     // this.selfReport.reviewedStatusId = 2086; // already is needs setup or wouldn't be here
 
     this.quarterlyData.updatePartialQuarterlyReport(this.privateNotes, 'PN').subscribe(
-      (partial) => {
+      () => {
         this.successMessage = 'Saved successfully / Guardar con exito';
         window.setTimeout(() => {
           // console.log('clearing success message');

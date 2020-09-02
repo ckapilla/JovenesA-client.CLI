@@ -55,7 +55,7 @@ export class PersonSharedComponent implements OnInit {
       }
     );
 
-    this.myForm.valueChanges.subscribe((form: any) => {
+    this.myForm.valueChanges.subscribe(() => {
       this.errorMessage = '';
       this.successMessage = '';
       this.submitted = false;

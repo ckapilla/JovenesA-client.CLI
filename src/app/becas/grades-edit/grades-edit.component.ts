@@ -217,7 +217,7 @@ export class GradesEditComponent implements OnInit, OnDestroy {
             this.successMessage = '';
           }, 3000);
         },
-        (error) => {
+        () => {
           this.errorMessage = 'Please check Date Format, must be YYYY-MM-DD';
           this.isLoading = false;
         }
@@ -251,9 +251,7 @@ export class GradesEditComponent implements OnInit, OnDestroy {
       d = new Date();
     }
 
-    const strDate = [ d.getFullYear(), ('0' + (d.getMonth() + 1)).slice(-2), ('0' + d.getDate()).slice(-2) ].join(
-      '-'
-    );
+    const strDate = [ d.getFullYear(), ('0' + (d.getMonth() + 1)).slice(-2), ('0' + d.getDate()).slice(-2) ].join('-');
 
     const gradeEntryRow: FormGroup = this.gradeEntryRows().controls[i] as FormGroup;
 

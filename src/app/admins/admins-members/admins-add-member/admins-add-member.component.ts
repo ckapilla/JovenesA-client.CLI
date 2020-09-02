@@ -55,10 +55,7 @@ export class AdminsAddMemberComponent implements OnInit {
         {
           firstNames: [ '', Validators.compose([ Validators.required, Validators.maxLength(30) ]) ],
           lastNames: [ '', Validators.compose([ Validators.required, Validators.maxLength(30) ]) ],
-          email: [
-            '',
-            Validators.compose([ Validators.required, Validators.email, Validators.maxLength(50) ])
-          ]
+          email: [ '', Validators.compose([ Validators.required, Validators.email, Validators.maxLength(50) ]) ]
         },
         { validator: this.setAllTextFields }
       ),
@@ -152,7 +149,7 @@ export class AdminsAddMemberComponent implements OnInit {
         // need timeout to avoid "Expression has changed error"
         window.setTimeout(() => {
           this.successMessage =
-						'New Member was created successfully. Click [Edit New Member] below to fill in additional details for this member.';
+            'New Member was created successfully. Click [Edit New Member] below to fill in additional details for this member.';
         }, 0);
         this.newGUId = member.memberGUId;
         this.submitted = true;
@@ -164,8 +161,8 @@ export class AdminsAddMemberComponent implements OnInit {
         // }, 10000);
       },
       (error) => {
-        this.errorMessage =
-					'An error occurred; please check if a member with that email address already exits.'; // <any>error.message;
+        console.log(error);
+        this.errorMessage = 'An error occurred; please check if a member with that email address already exits.'; // <any>error.message;
         this.isLoading = false;
         window.setTimeout(() => {
           // console.log('clearing error message');
@@ -189,11 +186,7 @@ export class AdminsAddMemberComponent implements OnInit {
 
   setAllTextFields(fg: FormGroup) {
     console.log('must set all text fields');
-    if (
-      fg.controls.firstNames.value === '' ||
-			fg.controls.lastNames.value === '' ||
-			fg.controls.email.value === ''
-    ) {
+    if (fg.controls.firstNames.value === '' || fg.controls.lastNames.value === '' || fg.controls.email.value === '') {
       console.log(' set -- setting error allText');
 
       return { allText: true };
@@ -204,13 +197,13 @@ export class AdminsAddMemberComponent implements OnInit {
   setAtLeastOneStatus(fg: FormGroup) {
     if (
       fg.controls.mentorStatusId.value === '' &&
-			fg.controls.sponsorStatusId.value === '' &&
-			fg.controls.adminStatusId.value === '' &&
-			fg.controls.employeeStatusId.value === '' &&
-			fg.controls.donorStatusId.value === '' &&
-			fg.controls.volunteerStatusId.value === '' &&
-			fg.controls.presidentStatusId.value === '' &&
-			fg.controls.boardStatusId.value === ''
+      fg.controls.sponsorStatusId.value === '' &&
+      fg.controls.adminStatusId.value === '' &&
+      fg.controls.employeeStatusId.value === '' &&
+      fg.controls.donorStatusId.value === '' &&
+      fg.controls.volunteerStatusId.value === '' &&
+      fg.controls.presidentStatusId.value === '' &&
+      fg.controls.boardStatusId.value === ''
     ) {
       console.log('no Status set -- setting error atLeastOne');
       return { atLeastOne: true };

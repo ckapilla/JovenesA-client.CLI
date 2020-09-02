@@ -74,7 +74,7 @@ export class QrStatusSelectorComponent implements OnInit, OnDestroy {
     console.log('current RQGUID:' + this.qrMini.quarterlyReportGUId);
 
     this.quarterlyData.setQRReviewedStatus(this.qrMini.quarterlyReportGUId, statusId).subscribe(
-      (student) => {
+      () => {
         this.successMessage = 'Updated';
         window.setTimeout(() => {
           // console.log('clearing success message');

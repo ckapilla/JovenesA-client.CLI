@@ -23,7 +23,7 @@ export class AuthService {
   // authenticated: boolean;
 
   // Create an observable of Auth0 instance of client
-  auth0Client$ = (from(
+  auth0Client$ = from(
     createAuth0Client({
       domain: AUTH_CONFIG.domain,
       client_id: AUTH_CONFIG.clientID,
@@ -33,7 +33,7 @@ export class AuthService {
       // audience: `https://${AUTH_CONFIG.domain}/userinfo`,
       // scope: 'openid '
     })
-  )).pipe(shareReplay(1), catchError((err) => throwError(err)));
+  ).pipe(shareReplay(1), catchError((err) => throwError(err)));
   // Define observables for SDK methods that return promises by default
   // For each Auth0 SDK method, first ensure the client instance is ready
   // concatMap: Using the client instance, call SDK method; SDK returns a promise
@@ -135,7 +135,7 @@ export class AuthService {
       concatMap(() =>
       // Redirect callback complete; create stream
       // returning user data and authentication status
-				 combineLatest(this.getUser$(), this.isAuthenticated$)
+        combineLatest(this.getUser$(), this.isAuthenticated$)
       )
     );
 
@@ -186,35 +186,35 @@ export class AuthService {
     console.log('in extractElementsFromProfile with userProfile:');
     console.log(userProfile);
     if (userProfile !== null && userProfile !== undefined) {
-      const app_metadata = (userProfile)['app_metadata'];
-      this.session.setAdminStatus((app_metadata)['adminStatus']);
+      const app_metadata = userProfile['app_metadata'];
+      this.session.setAdminStatus(app_metadata['adminStatus']);
       console.log('isAdmin: ' + this.session.isAdmin());
 
-      this.session.setMentorStatus((app_metadata)['mentorStatus']);
+      this.session.setMentorStatus(app_metadata['mentorStatus']);
       console.log('isMentor: ' + this.session.isMentor());
 
-      this.session.setSponsorStatus((app_metadata)['sponsorStatus']);
+      this.session.setSponsorStatus(app_metadata['sponsorStatus']);
       console.log('isSponsor: ' + this.session.isSponsor());
 
-      this.session.setStudentGUId((app_metadata)['studentRecordGUId']);
+      this.session.setStudentGUId(app_metadata['studentRecordGUId']);
       console.log('studentStatus: ' + this.session.isStudent());
 
-      this.session.setUserGUId((userProfile)['memberGUId']);
+      this.session.setUserGUId(userProfile['memberGUId']);
       // for testing abort: this.session.setUserGUId(null);
       console.log('memberGUId: ' + this.session.getUserGUId());
 
-      this.session.setUserId((userProfile)['user_id'].substr('auth0|'.length));
+      this.session.setUserId(userProfile['user_id'].substr('auth0|'.length));
       console.log('userId: ' + this.session.userId);
 
       // tslint:disable-next-line: triple-equals
-      if (this.session.getUserId() == 1216) {
+      if (this.session.getUserId() === 1216) {
         // used to force student status for Chris Kapilla
         this.session.setStudentGUId('c29f9ae6-7a89-4269-a6ab-cf1c76bcbaa9');
         console.log('forced studentRecordGUId, so isStudent =  ' + this.session.isStudent());
       }
 
       // this.email = (<any>userProfile)['email'];
-      this.nickname = (userProfile)['nickname'];
+      this.nickname = userProfile['nickname'];
     }
   }
 
@@ -231,7 +231,7 @@ export class AuthService {
   public UpdateLastLogin(): void {
     // console.log('calling data service UpdateLastLogin with useId' + this.session.userId);
     this.memberData.UpdateLastLogin(this.session.userId).subscribe(
-      (data) => {
+      () => {
         /* console.log('');*/
       },
       (err) => console.error('last login Subscribe error: ' + err),

@@ -47,13 +47,13 @@ export class MonthlyReports2EditComponent implements OnInit {
     console.log('Hi from MonthlyReports2EditComponent');
 
     this.myForm = _fb.group({
-      lastContactYearSelector: [ '2020' ], // Validators.required],
-      lastContactMonthSelector: [ '0', { validators: [ this.validateMonth ] } ],
+      lastContactYearSelector: ['2020'], // Validators.required],
+      lastContactMonthSelector: ['0', { validators: [this.validateMonth] }],
       // use bogus integer value so change detection works:
-      inputEmoji: [ 666, { validators: [ Validators.required, this.validateEmojis ] } ],
-      narrative_English: [ '', Validators.required ],
-      narrative_Spanish: [ '' ],
-      mentorReportId: [ this.reportIdCtl ]
+      inputEmoji: [666, { validators: [Validators.required, this.validateEmojis] }],
+      narrative_English: ['', Validators.required],
+      narrative_Spanish: [''],
+      mentorReportId: [this.reportIdCtl]
     });
 
     // this.myForm.setValidators(this.validateNarrativeFields());
@@ -97,8 +97,7 @@ export class MonthlyReports2EditComponent implements OnInit {
       () => {
         this.isLoading = false;
         console.log(
-          '### after retreiving, set form controls to retreived mentorReport2-- reportId to ' +
-						this.mentorReportId
+          '### after retreiving, set form controls to retreived mentorReport2-- reportId to ' + this.mentorReportId
         );
         // mentorId, mentorGUId and studentId do not have corresponding controls
         this.reportIdCtl.setValue(this.mentorReportId);
@@ -191,7 +190,7 @@ export class MonthlyReports2EditComponent implements OnInit {
   validateMonth(control: FormControl): IValidationType {
     console.log('validateMonth has input ' + control.value);
     // tslint:disable-next-line: triple-equals
-    if ('' + control.value == '0') {
+    if ('' + control.value === '0') {
       // can be either string or number
       console.log('validateMonth failed');
       return { validateMonth: true };

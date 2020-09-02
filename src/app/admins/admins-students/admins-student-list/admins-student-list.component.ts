@@ -210,7 +210,7 @@ export class AdminsStudentListComponent implements OnInit {
     return this.studentDTOs.sort((a, b) => this.columnSorter.compareValues(a, b, sortCriteria));
   }
 
-  onSorted($event) {
-    console.log('sorted event received');
-  }
+  // onSorted($event) {
+  //   console.log('sorted event received');
+  // }
 }

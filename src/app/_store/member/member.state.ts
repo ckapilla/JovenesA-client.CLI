@@ -41,7 +41,6 @@ export class MemberState {
 
   @Action(SetSelectedMemberGUId)
   setSelectedMemberGUId(ctx: StateContext<MemberStateModel>, { payload }: SetSelectedMemberGUId) {
-    const selectedMemberGUId = payload;
     const state = ctx.getState();
     ctx.patchState({
       ...state,

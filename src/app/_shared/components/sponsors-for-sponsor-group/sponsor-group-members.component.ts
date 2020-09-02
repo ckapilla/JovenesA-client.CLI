@@ -62,7 +62,7 @@ export class SponsorGroupMembersComponent implements OnInit, OnChanges {
   deleteSponsorGroupMember(sponsorGroupId: number, sponsorGroupMemberId: number) {
     console.log('delete click for ' + sponsorGroupId + '|' + sponsorGroupMemberId);
     this.sponsorGroupData.deleteSponsorGroupMember(sponsorGroupId, sponsorGroupMemberId).subscribe(
-      (data) => {
+      () => {
         console.log('deleteSponsorsForSponsorGroup');
         window.setTimeout(() => {
           this.successMessage = 'Changes were saved successfully.';

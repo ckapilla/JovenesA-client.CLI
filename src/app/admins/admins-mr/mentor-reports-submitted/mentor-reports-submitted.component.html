@@ -26,10 +26,10 @@
           </thead>
           <tbody>
             <tr *ngFor="let row of mentorReportSubmittedCounts">
-              <td *ngIf="row.mentorId" (click)='gotoMember(row.mentorId, row.mentorName)' class="report-row link">
+              <td *ngIf="row.mentorGUId" (click)='gotoMember(row.mentorGUId, row.mentorName)' class="report-row link">
                 {{ row.mentorName }}
               </td>
-              <td *ngIf="!row.mentorId" class="report-row">
+              <td *ngIf="!row.mentorGUId" class="report-row">
                 {{ row.mentorName }}
               </td>
               <td class="report-row">

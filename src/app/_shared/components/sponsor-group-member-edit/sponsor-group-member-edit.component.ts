@@ -67,7 +67,7 @@ export class SponsorGroupMemberEditComponent implements OnInit {
     console.log('after constructor assignments');
     console.log(newSponsorGroupMember);
     this.memberData.addNewSponsorGroupMember(newSponsorGroupMember).subscribe(
-      (sponsorGroupMember) => {
+      () => {
         // console.log('subscribe result in updateStudent');
         // need timeout to avoid "Expression has changed error"
         window.setTimeout(() => {

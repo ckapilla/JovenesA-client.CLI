@@ -49,7 +49,7 @@ export class MentorsProfileComponent implements OnInit {
   ngOnInit() {
     console.log('ngOnInit');
     this.fetchData();
-    this.myForm.valueChanges.subscribe((form: any) => {
+    this.myForm.valueChanges.subscribe(() => {
       // this.errorMessage = '';
       // this.successMessage = '';
       this.submitted = false;
@@ -95,7 +95,7 @@ export class MentorsProfileComponent implements OnInit {
     this.isLoading = true;
     this.retrieveFormValues();
     this.memberData.updateMember(this.mentor).subscribe(
-      (student) => {
+      () => {
         this.successMessage = 'Changes were saved successfully.';
         this.submitted = true;
         this.isLoading = false;

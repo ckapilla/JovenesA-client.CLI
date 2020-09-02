@@ -59,7 +59,7 @@
               <!-- <td>
                 <img [src]="qr.photoUrl" height="30" class="thumbnail" />
               </td> -->
-              <td (click)='gotoStudent(qr.studentGUId, qr.studentName)'
+              <td (click)='gotoStudent(qr.studentGUId)'
                   [class.link]="true" [class.red]="qr.reviewedStatusId==2087"
                   [class.alert-success]="qr.highlightStatusId==2106"
                   [class.alert-danger]="qr.highlightStatusId==2105">

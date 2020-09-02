@@ -53,13 +53,13 @@ export class ConfidentialReportsAddComponent implements OnInit {
     console.log('Hi from MonthlyReportsAddComponent');
 
     this.myForm = _fb.group({
-      lastContactYearSelector: [ '2020' ], // Validators.required],
-      lastContactMonthSelector: [ '0', { validators: [ this.validateMonth ] } ],
+      lastContactYearSelector: ['2020'], // Validators.required],
+      lastContactMonthSelector: ['0', { validators: [this.validateMonth] }],
       // use bogus integer value so change detection works:
-      inputEmoji: [ 666, { validators: [ Validators.required, this.validateEmojis ] } ],
-      narrative_English: [ '', Validators.required ],
-      narrative_Spanish: [ '' ],
-      confidentialReportId: [ this.reportIdCtl ]
+      inputEmoji: [666, { validators: [Validators.required, this.validateEmojis] }],
+      narrative_English: ['', Validators.required],
+      narrative_Spanish: [''],
+      confidentialReportId: [this.reportIdCtl]
     });
 
     this.lastYearCtl = this.myForm.controls.lastContactYearSelector;
@@ -172,7 +172,7 @@ export class ConfidentialReportsAddComponent implements OnInit {
   validateMonth(control: FormControl): IValidationType {
     console.log('validateMonth has input ' + control.value);
     // tslint:disable-next-line: triple-equals
-    if ('' + control.value == '0') {
+    if ('' + control.value === '0') {
       // can be either string or number
       console.log('validateMonth failed');
       return { validateMonth: true };

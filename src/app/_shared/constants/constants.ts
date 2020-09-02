@@ -1,6 +1,4 @@
-
 import { SELECTITEM } from '../interfaces/SELECTITEM';
-
 
 const joinedYears: SELECTITEM[] = [
   { value: '2020', label: '2020' },
@@ -45,7 +43,7 @@ const gradYears: SELECTITEM[] = [
   { value: '2007', label: '2007' },
   { value: '2006', label: '2006' },
   { value: '2005', label: '2005' },
-  { value: '2004', label: '2004' },
+  { value: '2004', label: '2004' }
 ];
 const years: SELECTITEM[] = [
   { value: '2017', label: '2017' },
@@ -84,24 +82,22 @@ const activeQRperiods = [
   { value: '2019-3', label: '2019 3:Jul-Set' },
   { value: '2019-4', label: '2019 4:Oct-Dic' },
   { value: '2020-1', label: '2020 1:Ene-Mar' },
-  { value: '2020-2', label: '2020 2:Abr-Jun' },
+  { value: '2020-2', label: '2020 2:Abr-Jun' }
 ];
 const selectedYearPeriod = '2020-2';
 
-const genders: SELECTITEM[] = [
-  { value: 'M', label: 'Male/Hombre' },
-  { value: 'F', label: 'Female/Mujer' },
-];
-const smileys = ['/assets/images/needsAttention.jpg',
+const genders: SELECTITEM[] = [ { value: 'M', label: 'Male/Hombre' }, { value: 'F', label: 'Female/Mujer' } ];
+const smileys = [
+  '/assets/images/needsAttention.jpg',
   '/assets/images/thumbsUp.jpg',
   '/assets/images/celebrate.jpg',
   '/assets/images/NA.jpg'
 ];
 const emojis = smileys;
 
-interface CODEVALUE {
-  codeValueId: number;   codeSet: string; stringValue: string; intValue: number;
-}
+// interface CODEVALUE {
+//   codeValueId: number;   codeSet: string; stringValue: string; intValue: number;
+// }
 
 const languageStatuses: SELECTITEM[] = [
   // { value: '1024', label: 'None' },
@@ -118,7 +114,6 @@ const studentStatuses: SELECTITEM[] = [
   // { value: '1006', label: 'Service' },
   // { value: '2146', label: 'Sabbatical' },
   // { value: '2152', label: 'Pending' },
-
 ];
 const memberStatuses: SELECTITEM[] = [
   // { value: '1015', label: 'Active' },
@@ -145,7 +140,6 @@ const reviewedQRStatuses: SELECTITEM[] = [
   // { value: '2131', label: 'ReadyToSend/NoEmail' },
   // { value: '2132', label: 'On Hold/AmistadPool' },
   // { value: '2133', label: 'Sent/Bounced' },
-
 ];
 const memberTypes: SELECTITEM[] = [
   // { value: '2068', label: 'Admin' },
@@ -170,11 +164,10 @@ const highlightStatuses: SELECTITEM[] = [
   // { value: '2105', label: 'Problems' },
   // { value: '2106', label: 'GoodNews' },
 ];
-const countryList: SELECTITEM[] = [
+const countryList: SELECTITEM[] = [];
 
-];
-
-export const constants = {  joinedYears,
+export const constants = {
+  joinedYears,
   // non-db
   gradYears,
   years,

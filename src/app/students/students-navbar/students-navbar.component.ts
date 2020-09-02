@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { SessionService } from '../../_shared/services/session.service';
 
 /**
  * This class represents the navigation bar component.
@@ -13,5 +12,5 @@ export class StudentsNavbarComponent {
   currStudentId: number;
   currStudentGUId: string;
 
-  constructor(session: SessionService) {}
+  constructor() {}
 }

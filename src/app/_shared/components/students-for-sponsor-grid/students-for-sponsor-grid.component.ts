@@ -39,8 +39,7 @@ export class StudentsForSponsorGridComponent implements OnInit {
         if (this.students.length > 0) {
           this.selectFirstRow();
         } else {
-          this.errorMessage =
-						'No students are assigned at this time. / No hay estudiantes asignado en este momento';
+          this.errorMessage = 'No students are assigned at this time. / No hay estudiantes asignado en este momento';
         }
       }
     );
@@ -54,7 +53,6 @@ export class StudentsForSponsorGridComponent implements OnInit {
 
   public selectStudent(studentGUId: string, idx: number) {
     console.log('student selected studentGUId: ' + studentGUId + 'idx: ' + idx);
-    const studentName: string = this.students[idx].studentName;
     this.studentGUId = studentGUId;
     this.selectedStudent.notifyNewStudentGUId(studentGUId);
   }

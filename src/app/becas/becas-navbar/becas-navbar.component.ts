@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 
 @Component({
-	selector: 'app-becas-navbar',
-	templateUrl: 'becas-navbar.component.html',
-	styleUrls: [ 'becas-navbar.component.css' ]
+  selector: 'app-becas-navbar',
+  templateUrl: 'becas-navbar.component.html',
+  styleUrls: [ 'becas-navbar.component.css' ]
 })
 export class BecasNavbarComponent {
-	currUserId: number;
+  currUserId: number;
 
-	constructor() {}
+  constructor() {}
 }

@@ -69,8 +69,7 @@ export class StudentsForMentorGridComponent implements OnInit, OnDestroy {
         if (this.students.length > 0) {
           this.selectInitialStudentAfterLoad();
         } else {
-          this.errorMessage =
-						'No students are assigned at this time. / No hay estudiantes asignado en este momento';
+          this.errorMessage = 'No students are assigned at this time. / No hay estudiantes asignado en este momento';
         }
       }
     );
@@ -95,7 +94,6 @@ export class StudentsForMentorGridComponent implements OnInit, OnDestroy {
 
   public selectStudent(studentGUId: string, idx: number) {
     console.log('student selected studentGUId: ' + studentGUId + 'idx: ' + idx);
-    const studentName: string = this.students[idx].studentName;
     this.studentGUId = studentGUId;
     this.setRowClasses(this.students[idx].studentGUId, this.students[idx].activeStatus);
     this.selectedStudent.notifyNewStudentGUId(studentGUId);

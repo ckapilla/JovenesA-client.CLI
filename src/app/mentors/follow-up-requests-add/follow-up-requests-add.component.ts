@@ -88,7 +88,7 @@ export class FollowUpRequestsAddComponent implements OnInit {
 
   ngOnInit() {
     this.isLoading = true;
-    this.myForm.valueChanges.subscribe((form: any) => {
+    this.myForm.valueChanges.subscribe(() => {
       this.errorMessage = '';
       this.successMessage = '';
       this.submitted = false;

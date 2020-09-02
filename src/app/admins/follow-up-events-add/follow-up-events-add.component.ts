@@ -68,7 +68,7 @@ export class FollowUpEventsAddComponent implements OnInit {
 
     console.log('Hi followUpEvents constructor with event object ');
     console.log(this.followUpEvent);
-    this.myForm.valueChanges.subscribe((form: any) => {
+    this.myForm.valueChanges.subscribe(() => {
       this.errorMessage = '';
       this.successMessage = '';
       this.submitted = false;

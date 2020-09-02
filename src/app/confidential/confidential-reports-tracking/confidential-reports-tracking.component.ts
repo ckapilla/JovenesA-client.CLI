@@ -38,9 +38,6 @@ export class ConfidentialReportsTrackingComponent implements OnInit {
   ) {
     this.years = constants.years;
     this.months = constants.months;
-
-    const today = new Date();
-
     this.smileys = constants.smileys;
   }
 

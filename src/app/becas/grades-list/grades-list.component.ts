@@ -42,7 +42,6 @@ export class GradesListComponent implements OnInit {
     this.years = constants.years;
     this.months = constants.months;
 
-    const today = new Date();
     this.selectedYear = '2020'; // '' + today.getFullYear(); //
     this.selectedMonth = '4'; //  + today.getMonth() + 1;// '5';
 
@@ -139,5 +138,6 @@ export class GradesListComponent implements OnInit {
 
   onSorted($event) {
     console.log('sorted event received');
+    console.log($event);
   }
 }

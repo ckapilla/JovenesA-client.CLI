@@ -125,7 +125,7 @@ export class MemberDataService extends BaseDataService {
     const url = this.WebApiPrefix + 'members' + '/LastLogin/' + userId;
     console.log('sending AuthHttp put request to set LastLogin datetime');
     return this.http.put(url, null).pipe(
-      map((response: Response) => {
+      map(() => {
         console.log('updateLastLogin success; no json expected ');
       }, catchError(this.handleError))
     );

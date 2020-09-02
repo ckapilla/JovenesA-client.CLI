@@ -73,7 +73,7 @@ export class QuarterlyListComponent implements OnInit {
     this.fetchFilteredData();
   }
 
-  gotoStudent(studentGUId: string, studentName: string) {
+  gotoStudent(studentGUId: string) {
     this.selectedStudent.notifyNewStudentGUId(studentGUId);
     const link = [ 'quarterly/edit' ]; // , { guid: studentGUId }];
 
@@ -88,6 +88,7 @@ export class QuarterlyListComponent implements OnInit {
 
   onSorted($event) {
     console.log('sorted event received');
+    console.log($event);
   }
 
   fetchFilteredData() {
@@ -124,7 +125,7 @@ export class QuarterlyListComponent implements OnInit {
     console.log('selected RQGUID:' + this.qrMinis[rptEntryIdx].quarterlyReportGUId);
 
     this.quarterlyData.setQRReviewedStatus(this.qrMinis[rptEntryIdx].quarterlyReportGUId, statusId).subscribe(
-      (student) => {
+      () => {
         this.successMessage = 'Updated';
         window.setTimeout(() => {
           // console.log('clearing success message');
@@ -144,7 +145,7 @@ export class QuarterlyListComponent implements OnInit {
     this.quarterlyData
       .setQRHighlightStatus(this.qrMinis[rptEntryIdx].quarterlyReportGUId, highlightStatusId)
       .subscribe(
-        (student) => {
+        () => {
           this.successMessage = 'Updated';
           window.setTimeout(() => {
             // console.log('clearing success message');

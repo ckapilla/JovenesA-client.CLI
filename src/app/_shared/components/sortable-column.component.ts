@@ -4,27 +4,28 @@ import { SORTCRITERIA } from '../interfaces/SORTCRITERIA';
 import { ColumnSortService } from '../services/column-sort.service';
 
 @Component({
-// tslint:disable-next-line: component-selector
+  // tslint:disable-next-line: component-selector
   selector: '[app-sortable-column]',
-  styles: [`
-    .up-arrow:after {
-      content: "^";
+  styles: [
+    `
+      .up-arrow:after {
+        content: '^';
       }
 
       .down-arrow:after {
-        content: "v";
+        content: 'v';
       }
-    `],
-  template:
-    `<span class="up-arrow" *ngIf="sortDirection === 'asc'"></span>
+    `
+  ],
+  template: `<span class="up-arrow" *ngIf="sortDirection === 'asc'"></span>
     <span class="down-arrow" *ngIf="sortDirection === 'desc'"></span>
     <ng-content></ng-content>`
 })
 export class SortableColumnComponent implements OnInit, OnDestroy {
-// tslint:disable-next-line: no-input-rename
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('app-sortable-column')
   columnName: string;
-  // tslint:disable-next-line: no-input-rename
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('sort-direction')
   sortDirection: string;
 
@@ -34,8 +35,8 @@ export class SortableColumnComponent implements OnInit, OnDestroy {
   sortCriteria: SORTCRITERIA;
   private columnSortedSubscription: Subscription;
 
-  constructor(private columnSortService: ColumnSortService ) {
-    this.sortCriteria = { sortColumn: '', sortDirection: ''};
+  constructor(private columnSortService: ColumnSortService) {
+    this.sortCriteria = { sortColumn: '', sortDirection: '' };
   }
 
   @HostListener('click') headerClicked() {
@@ -51,14 +52,13 @@ export class SortableColumnComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // subscribe to sort changes so we can react when other columns are sorted
-    this.columnSortedSubscription = this.columnSortService.columnSorted$.subscribe(event => {
+    this.columnSortedSubscription = this.columnSortService.columnSorted$.subscribe((event) => {
       // reset this column's sort direction to hide the sort icons
       console.log('have column sort subscribption event');
       if (this.columnName !== event.sortColumn) {
         this.sortDirection = '';
       }
     });
-
   }
 
   ngOnDestroy() {

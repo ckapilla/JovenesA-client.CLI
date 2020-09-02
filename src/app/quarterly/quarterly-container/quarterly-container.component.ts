@@ -92,7 +92,7 @@ export class QuarterlyContainerComponent implements OnInit, OnDestroy {
     console.log('selected RQGUID:' + this.quarterlyReportGUId);
 
     this.quarterlyData.setQRReviewedStatus(this.quarterlyReportGUId, statusId).subscribe(
-      (student) => {
+      () => {
         this.successMessage = 'Updated';
         window.setTimeout(() => {
           // console.log('clearing success message');

@@ -77,7 +77,7 @@ export class SelfReportsAddComponent implements OnInit {
     console.log('sponsorGroupId ' + this.selfReport.sponsorGroupId);
     console.log('studentId ' + this.selfReport.studentId);
 
-    this.myForm.valueChanges.subscribe((form: any) => {
+    this.myForm.valueChanges.subscribe(() => {
       this.errorMessage = '';
       this.successMessage = '';
       this.submitted = false;
@@ -135,15 +135,7 @@ export class SelfReportsAddComponent implements OnInit {
 
   validateMonth(control: FormControl): { [error: string]: any } {
     // console.log('month validator ' + control.value);
-    const rtnVal: any =
-			'' + control.value === '0'
-			  ? {
-			    // can be either string or number
-			    validateMonth: {
-			      valid: false
-			    }
-			  }
-			  : null;
+    const rtnVal: any = '' + control.value === '0' ? { validateMonth: { valid: false } } : null;
     console.log(rtnVal);
     return rtnVal;
   }

@@ -109,12 +109,10 @@ export class MrConsolidatedComponent implements OnInit, OnChanges, OnDestroy {
     // console.log(this.mentorReport);
 
     if (this.myForm.invalid) {
-      let i = 0;
       this.errorMessage = '';
 
       if (!this.narrative_EnglishCtl.valid) {
         this.errorMessage = this.errorMessage + 'Description must be filled in. Descripcione debe rellenarse';
-        ++i;
       }
       window.scrollTo(0, 0);
       return false;
@@ -128,7 +126,7 @@ export class MrConsolidatedComponent implements OnInit, OnChanges, OnDestroy {
     // this.mentorReport.reviewedStatusId = 2086; // already is needs setup or wouldn't be here
 
     this.quarterlyData.updatePartialQuarterlyReport(this.mentorReport, 'MR').subscribe(
-      (partial) => {
+      () => {
         this.successMessage = 'Saved successfully / Guardar con exito';
         window.setTimeout(() => {
           // console.log('clearing success message');
@@ -145,7 +143,6 @@ export class MrConsolidatedComponent implements OnInit, OnChanges, OnDestroy {
         this.isLoading = false;
       }
     );
-    return false;
     return false;
   }
 

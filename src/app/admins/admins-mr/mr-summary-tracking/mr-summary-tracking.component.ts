@@ -9,7 +9,7 @@ import { SessionService } from 'src/app/_shared/services/session.service';
 @Component({
   selector: 'app-mr-summary-tracking',
   templateUrl: 'mr-summary-tracking.component.html',
-  styleUrls: [ 'mr-summary-tracking.component.css' ]
+  styleUrls: ['mr-summary-tracking.component.css']
 })
 export class MentorReportsSummaryTrackingComponent implements OnInit {
   mentorReportByMonth: MentorReport2RPT[];
@@ -45,7 +45,6 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
 
     this.highlightStatuses = constants.highlightStatuses;
 
-    const today = new Date();
     this.selectedYear = '2020'; // '' + today.getFullYear(); //
     this.selectedMonth = '0'; // + today.getMonth() + 1;// '5';
 
@@ -164,7 +163,7 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
     this.session.setStudentInContextName(studentName);
 
     // const link = ['/admins/students/student/' + id];
-    const link = [ 'admins/students/student', { guid: guid } ];
+    const link = ['admins/students/student', { guid: guid }];
 
     console.log('navigating to ' + link);
     this.router.navigate(link);

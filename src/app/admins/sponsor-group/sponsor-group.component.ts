@@ -79,7 +79,7 @@ export class SponsorGroupComponent implements OnInit {
     this.isLoading = true;
     this.retrieveFormValues();
     this.sponsorGroupData.updateSponsorGroup(this.sponsorGroup).subscribe(
-      (sponsorGroup) => {
+      () => {
         // console.log('subscribe result in updateStudent');
         // need timeout to avoid "Expression has changed error"
         window.setTimeout(() => {

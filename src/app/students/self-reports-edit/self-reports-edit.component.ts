@@ -78,12 +78,10 @@ export class SelfReportsEditComponent implements OnInit {
     // console.log(this.mentorReport);
 
     if (this.myForm.invalid) {
-      let i = 0;
       this.errorMessage = '';
 
       if (!this.narrative_EnglishCtl.valid) {
         this.errorMessage = this.errorMessage + 'Description must be filled in. Descripcione debe rellenarse';
-        ++i;
       }
       window.scrollTo(0, 0);
       return false;

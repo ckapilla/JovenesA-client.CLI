@@ -97,8 +97,7 @@ export class JaCommentsComponent implements OnInit, OnChanges, OnDestroy {
                   this.jaComment.jA_Narrative_English = '-- No additional comments this quarter --';
                 }
                 if (this.jaComment.jA_Narrative_Spanish.length === 0) {
-                  this.jaComment.jA_Narrative_Spanish =
-										'-- No hay comentarios adicionales este trimestre --';
+                  this.jaComment.jA_Narrative_Spanish = '-- No hay comentarios adicionales este trimestre --';
                 }
               }
               this.narrative_EnglishCtl.setValue(this.jaComment.jA_Narrative_English);
@@ -118,12 +117,10 @@ export class JaCommentsComponent implements OnInit, OnChanges, OnDestroy {
     // console.log(this.mentorReport);
 
     if (this.myForm.invalid) {
-      let i = 0;
       this.errorMessage = '';
 
       if (!this.narrative_EnglishCtl.valid) {
         this.errorMessage = this.errorMessage + 'Description must be filled in. Descripcione debe rellenarse';
-        ++i;
       }
       window.scrollTo(0, 0);
       return false;
@@ -137,7 +134,7 @@ export class JaCommentsComponent implements OnInit, OnChanges, OnDestroy {
     // this.selfReport.reviewedStatusId = 2086; // already is needs setup or wouldn't be here
 
     this.quarterlyData.updatePartialQuarterlyReport(this.jaComment, 'JA').subscribe(
-      (partial) => {
+      () => {
         this.successMessage = 'Saved successfully / Guardar con exito';
         window.setTimeout(() => {
           // console.log('clearing success message');

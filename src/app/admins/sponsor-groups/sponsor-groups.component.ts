@@ -82,7 +82,7 @@ export class SponsorGroupsComponent implements OnInit {
 
     console.log('adding sponsorGroupName ' + sg.sponsorGroupName);
     this.sponsorGroupData.addNewSponsorGroup(sg).subscribe(
-      (sponsorGroup) => {
+      () => {
         console.log((this.successMessage = 'New SponsorGroup ' + sponsorGroupName + ' added successfully'));
         this.isLoading = false;
         this.fetchData();
@@ -103,7 +103,7 @@ export class SponsorGroupsComponent implements OnInit {
     return this.sponsorGroups.sort((a, b) => this.columnSorter.compareValues(a, b, sortCriteria));
   }
 
-  onSorted($event) {
+  onSorted() {
     console.log('sorted event received');
   }
 }

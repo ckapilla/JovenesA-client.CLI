@@ -1,4 +1,3 @@
-
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { FollowUpRequestRPT } from '../../models/follow-up-requestRPT';
@@ -8,7 +7,6 @@ import { FollowUpRequestRPT } from '../../models/follow-up-requestRPT';
   templateUrl: './follow-up-requests-list.component.html'
 })
 export class FollowUpRequestsListComponent {
-
   @Input() followUpRequests: FollowUpRequestRPT[];
   @Input() displayCompleteHistory: boolean;
   @Input() showAddDetails: boolean;
@@ -37,16 +35,14 @@ export class FollowUpRequestsListComponent {
     this.router.navigateByUrl(link);
   }
 
-  gotoStudent(guid: string, studentName: string) {
+  gotoStudent(guid: string) {
     // console.log('setting studentName to ' + studentName);
     // this.session.setStudentInContextName(studentName);
 
     if (guid && guid.length > 0) {
-      const link = ['admins/students/student', { guid: guid }];
+      const link = [ 'admins/students/student', { guid: guid } ];
       console.log('navigating to ' + link);
       this.router.navigate(link);
     }
-
   }
-
 }

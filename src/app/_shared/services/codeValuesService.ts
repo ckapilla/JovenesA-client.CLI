@@ -15,9 +15,10 @@ interface CODEVALUE {
 @Injectable({ providedIn: 'root' })
 export class CodeValuesService extends BaseDataService {
   private codeValuesUrl = this.WebApiPrefix + 'lookup/codeValues';
-  codeValues$: Observable<CODEVALUE[]> = this.http
-    .get<CODEVALUE[]>(this.codeValuesUrl)
-    .pipe(tap((data) => console.log('codeValues ', JSON.stringify(data[0]))), catchError(this.handleError));
+  codeValues$: Observable<CODEVALUE[]> = this.http.get<CODEVALUE[]>(this.codeValuesUrl).pipe(
+    tap((data) => console.log('codeValues ', JSON.stringify(data[0]))),
+    catchError(this.handleError)
+  );
 
   constructor(public http: HttpClient, public webApiPrefixService: UrlService) {
     super(http, webApiPrefixService);
@@ -42,9 +43,6 @@ export class CodeValuesService extends BaseDataService {
               break;
             case 'SchoolType':
               constants.schoolTypes.push(subset);
-              break;
-            case 'MemberType':
-              constants.memberTypes.push(subset);
               break;
             case 'MemberType':
               constants.memberTypes.push(subset);
