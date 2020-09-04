@@ -1,8 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Select } from '@ngxs/store';
+import { Observable, Subscription } from 'rxjs';
 import { MentorReport2DataService } from 'src/app/_shared/data/mentor-report2-data.service';
-import { SelectedStudent } from 'src/app/_store/selectedStudent/selected-student.service';
+import { StudentState } from 'src/app/_store/student/student.state';
 import { constants } from '../../_shared/constants/constants';
 import { MentorReport2RPT } from '../../_shared/models/mentor-report2';
 import { SessionService } from '../../_shared/services/session.service';
@@ -12,7 +13,7 @@ import { SessionService } from '../../_shared/services/session.service';
   templateUrl: './monthly-reports2.component.html',
 })
 
-export class MonthlyReports2Component implements OnInit, OnDestroy {
+export class MonthlyReports2Component implements OnInit {
 
   isLoading: boolean;
   errorMessage: string;
@@ -28,12 +29,14 @@ export class MonthlyReports2Component implements OnInit, OnDestroy {
   haveCurrentReport: boolean;
   private subscription: Subscription;
 
+  @Select(StudentState.getSelectedStudentGUId)  currentGUId$: Observable<string>;
+
   constructor(
     public currRoute: ActivatedRoute,
     private router: Router,
     public mentorReport2Data: MentorReport2DataService,
     public session: SessionService,
-    private selectedStudent: SelectedStudent
+    // delete me private selectedStudent: SelectedStudent
   ) {
 
     console.log('monthlyReports constructor');
@@ -55,24 +58,35 @@ export class MonthlyReports2Component implements OnInit, OnDestroy {
     this.haveCurrentReport = false;
 
     // console.log('(((((((((((((((((MR ngOnInit)))))))))))))');
-    this.subscribeForStudentGUIds();
+    this.subscribeForStudentGUIds2();
   }
 
-  ngOnDestroy() {
-    // console.log('{{{{{{{{{{{{{MR ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
-    this.subscription.unsubscribe();
-  }
+  // ngOnDestroy() {
+  //   // console.log('{{{{{{{{{{{{{MR ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
+  //   this.subscription.unsubscribe();
+  // }
 
-  subscribeForStudentGUIds() {
-    // console.log('MR set up studentGUId subscription');
-    this.subscription = this.selectedStudent.subscribeForStudentGUIds()
-      .subscribe(message => {
-        this.studentGUId = message;
-        console.log('MR new StudentGUId received' + this.studentGUId);
-        if (this.studentGUId && this.studentGUId !== '0000') {
-          this.fetchData();
-        }
-      });
+  // subscribeForStudentGUIds() {
+  //   // console.log('MR set up studentGUId subscription');
+  //   this.subscription = this.selectedStudent.subscribeForStudentGUIds()
+  //     .subscribe(message => {
+  //       this.studentGUId = message;
+  //       console.log('MR new StudentGUId received' + this.studentGUId);
+  //       if (this.studentGUId && this.studentGUId !== '0000') {
+  //         this.fetchData();
+  //       }
+  //     });
+  // }
+
+  subscribeForStudentGUIds2() {
+    // console.log('header set up studentGUId subscription');
+    this.subscription = this.currentGUId$.subscribe((message) => {
+      this.studentGUId = message;
+      console.log('************NGXS: header new StudentGUId received' + this.studentGUId);
+      if (this.studentGUId && this.studentGUId !== '0000') {
+        this.fetchData();
+      }
+    });
   }
 
 

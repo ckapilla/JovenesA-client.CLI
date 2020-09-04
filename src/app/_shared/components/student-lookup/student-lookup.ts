@@ -1,11 +1,12 @@
-import { Component, Injectable, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Injectable, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Select, Store } from '@ngxs/store';
 import { Observable, of, Subscription } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
-import { SelectedStudent } from 'src/app/_store/selectedStudent/selected-student.service';
+import { SetSelectedStudentGUId } from 'src/app/_store/student/student.action';
+import { StudentState } from 'src/app/_store/student/student.state';
 import { StudentDataService } from '../../data/student-data.service';
 import { StudentMiniDTO } from '../../models/studentMiniDTO';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -31,7 +32,7 @@ export class StudentNameService {
   templateUrl: './student-lookup.html',
   styles: [ '.form-control { width: 300px; display: inline; }' ]
 })
-export class StudentLookupComponent implements OnInit, OnDestroy {
+export class StudentLookupComponent implements OnInit {
   studentMiniDTO: StudentMiniDTO;
   searching = false;
   searchFailed = false;
@@ -43,30 +44,36 @@ export class StudentLookupComponent implements OnInit, OnDestroy {
   @Input() showSearchButton: boolean;
 
   // @Output() onSelectedStudentGUId = new EventEmitter<string>();
+  @Select(StudentState.getSelectedStudentGUId)  currentGUId$: Observable<string>;
 
   constructor(
     private _service: StudentNameService,
     private router: Router,
     private studentData: StudentDataService,
-    private selectedStudent: SelectedStudent
+    // delete me private selectedStudent: SelectedStudent,
+    private store: Store
   ) {
     console.log('name-lookup constructor!');
   }
 
   ngOnInit() {
-    this.subscribeForStudentGUIds();
+    this.subscribeForStudentGUIds2();
   }
-  ngOnDestroy() {
-    // console.log('{{{{{{{{{{{{{JA ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
+  // ngOnDestroy() {
+  //   // console.log('{{{{{{{{{{{{{JA ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
 
-    this.subscription.unsubscribe();
-  }
+  //   this.subscription.unsubscribe();
+  // }
   onSelect(item) {
     console.log(item.item.studentId);
     console.log(item.item.studentGUId);
     this.currentGUId = item.item.studentGUId;
     // this.onSelectedStudentGUId.emit(item.item.studentGUId);
-    this.selectedStudent.notifyNewStudentGUId(item.item.studentGUId);
+    // this.selectedStudent.notifyNewStudentGUId(item.item.studentGUId);
+
+
+    this.store.dispatch(new SetSelectedStudentGUId(this.currentGUId))
+
     this.email = item.item.email;
     this.studentName = item.item.studentName;
   }
@@ -92,21 +99,35 @@ export class StudentLookupComponent implements OnInit, OnDestroy {
     input.value = '';
     this.resetStudentData();
   }
-  subscribeForStudentGUIds() {
-    // console.log('Name Lookup set up studentGUId subscription');
-    this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
+  // subscribeForStudentGUIds() {
+  //   // console.log('Name Lookup set up studentGUId subscription');
+  //   this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
+  //     this.studentGUId = message;
+  //     console.log('Name Search new StudentGUId received' + this.studentGUId);
+  //     if (this.studentGUId && this.studentGUId !== '0000') {
+  //       this.currentGUId = this.studentGUId;
+  //       this.fetchData();
+  //     }
+  //   });
+  // }
+  subscribeForStudentGUIds2() {
+    // console.log('header set up studentGUId subscription');
+    this.subscription = this.currentGUId$.subscribe((message) => {
       this.studentGUId = message;
-      console.log('Name Search new StudentGUId received' + this.studentGUId);
+      console.log('************NGXS: header new StudentGUId received' + this.studentGUId);
       if (this.studentGUId && this.studentGUId !== '0000') {
         this.currentGUId = this.studentGUId;
         this.fetchData();
       }
     });
   }
-
   resetStudentData() {
     console.log('studentLookup reset');
-    this.selectedStudent.notifyNewStudentGUId('0000');
+    // this.selectedStudent.notifyNewStudentGUId(studentGUId);
+
+    this.currentGUId = '0000';
+    this.store.dispatch(new SetSelectedStudentGUId(this.studentGUId))
+
     this.currentGUId = '0000';
   }
 

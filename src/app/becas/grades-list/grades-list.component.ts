@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngxs/store';
 import { BecaDataService } from 'src/app/_shared/data/beca-data.service';
 import { GradesGivenEntryDTO } from 'src/app/_shared/models/grades-given-entryDTO';
-import { SelectedStudent } from 'src/app/_store/selectedStudent/selected-student.service';
+import { SetSelectedStudentGUId } from 'src/app/_store/student/student.action';
+// delete me import { SelectedStudent } from 'src/app/_store/selectedStudent/selected-student.service';
 import { TestNamesVisibilityService } from 'src/app/_store/testNamesVisibility/test-names-visibility.service';
 import { constants } from '../../_shared/constants/constants';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
@@ -10,6 +12,7 @@ import { SORTCRITERIA } from '../../_shared/interfaces/SORTCRITERIA';
 import { StudentDTO } from '../../_shared/models/studentDTO';
 import { ColumnSortService } from '../../_shared/services/column-sort.service';
 import { SessionService } from '../../_shared/services/session.service';
+
 
 @Component({
   templateUrl: './grades-list.component.html',
@@ -32,7 +35,8 @@ export class GradesListComponent implements OnInit {
     public becaData: BecaDataService,
     public router: Router,
     // private route: ActivatedRoute,
-    public selectedStudent: SelectedStudent,
+    // public selectedStudent: SelectedStudent,
+    private store: Store,
     private session: SessionService,
     private columnSorter: ColumnSortService,
     public testNamesVisibilityService: TestNamesVisibilityService
@@ -124,7 +128,9 @@ export class GradesListComponent implements OnInit {
     console.log('setting studentName to ' + studentName);
     this.session.setStudentInContextName(studentName);
 
-    this.selectedStudent.notifyNewStudentGUId(studentGUId);
+    // this.selectedStudent.notifyNewStudentGUId(studentGUId);
+    this.store.dispatch(new SetSelectedStudentGUId(studentGUId))
+
     const link = [ 'becas/grades-edit' ]; // , { guid: guid }];
 
     console.log('navigating to ' + link);

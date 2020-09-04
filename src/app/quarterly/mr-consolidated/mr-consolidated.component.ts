@@ -1,9 +1,10 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Select } from '@ngxs/store';
+import { Observable, Subscription } from 'rxjs';
 import { MiscDataService } from 'src/app/_shared/data/misc-data.service';
-import { SelectedStudent } from 'src/app/_store/selectedStudent/selected-student.service';
+import { StudentState } from 'src/app/_store/student/student.state';
 import { QuarterlyDataService } from '../../_shared/data/quarterly-data.service';
 import { QuarterlyReport } from '../../_shared/models/quarterly-report';
 import { SessionService } from '../../_shared/services/session.service';
@@ -13,7 +14,7 @@ import { SessionService } from '../../_shared/services/session.service';
   templateUrl: './mr-consolidated.component.html',
   styleUrls: [ './mr-consolidated.component.css' ]
 })
-export class MrConsolidatedComponent implements OnInit, OnChanges, OnDestroy {
+export class MrConsolidatedComponent implements OnInit, OnChanges  {
   isLoading: boolean;
   isSubmitted: boolean;
   errorMessage: string;
@@ -31,6 +32,8 @@ export class MrConsolidatedComponent implements OnInit, OnChanges, OnDestroy {
   @Input() selectedPeriod: string;
   private subscription: Subscription;
 
+  @Select(StudentState.getSelectedStudentGUId)  currentGUId$: Observable<string>;
+
   constructor(
     public currRoute: ActivatedRoute,
     private router: Router,
@@ -38,7 +41,7 @@ export class MrConsolidatedComponent implements OnInit, OnChanges, OnDestroy {
     private _fb: FormBuilder,
     public session: SessionService,
     public quarterlyData: QuarterlyDataService,
-    private selectedStudent: SelectedStudent
+    // delete me private selectedStudent: SelectedStudent
   ) {
     this.myForm = _fb.group({
       // lastContactYearSelector: ['', Validators.required],
@@ -59,20 +62,31 @@ export class MrConsolidatedComponent implements OnInit, OnChanges, OnDestroy {
       this.myForm.disable();
     }
     // console.log('(((((((((((((((((MR ngOnInit)))))))))))))');
-    this.subscribeForStudentGUIds();
+    this.subscribeForStudentGUIds2();
   }
 
-  ngOnDestroy() {
-    // console.log('{{{{{{{{{{{{{MR ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
-    this.subscription.unsubscribe();
-  }
+  // ngOnDestroy() {
+  //   // console.log('{{{{{{{{{{{{{MR ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
+  //   this.subscription.unsubscribe();
+  // }
 
-  subscribeForStudentGUIds() {
-    // console.log('MR set up studentGUId subscription');
-    this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
+  // subscribeForStudentGUIds() {
+  //   // console.log('MR set up studentGUId subscription');
+  //   this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
+  //     this.studentGUId = message;
+  //     console.log('MR new StudentGUId received' + this.studentGUId);
+  //     this.fetchFilteredData();
+  //   });
+  // }
+
+  subscribeForStudentGUIds2() {
+    // console.log('header set up studentGUId subscription');
+    this.subscription = this.currentGUId$.subscribe((message) => {
       this.studentGUId = message;
-      console.log('MR new StudentGUId received' + this.studentGUId);
-      this.fetchFilteredData();
+      console.log('************NGXS: header new StudentGUId received' + this.studentGUId);
+      if (this.studentGUId && this.studentGUId !== '0000') {
+        this.fetchFilteredData();
+      }
     });
   }
 

@@ -1,8 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Select } from '@ngxs/store';
+import { Observable, Subscription } from 'rxjs';
 import { FollowUpDataService } from 'src/app/_shared/data/follow-up-data.service';
-import { SelectedStudent } from 'src/app/_store/selectedStudent/selected-student.service';
+import { StudentState } from 'src/app/_store/student/student.state';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 import { FollowUpRequestRPT } from '../../_shared/models/follow-up-requestRPT';
 import { SessionService } from '../../_shared/services/session.service';
@@ -11,7 +12,7 @@ import { SessionService } from '../../_shared/services/session.service';
   selector: 'app-follow-up-requests',
   templateUrl: 'follow-up-requests.component.html'
 })
-export class FollowUpRequestsComponent implements OnInit, OnDestroy {
+export class FollowUpRequestsComponent implements OnInit {
   followUpRequests: FollowUpRequestRPT[];
   isLoading: boolean;
   smileys: Array<string>;
@@ -25,11 +26,13 @@ export class FollowUpRequestsComponent implements OnInit, OnDestroy {
   haveData = false;
   private subscription: Subscription;
 
+  @Select(StudentState.getSelectedStudentGUId)  currentGUId$: Observable<string>;
+
   constructor(
     public followUpData: FollowUpDataService,
     public router: Router,
     public session: SessionService,
-    private selectedStudent: SelectedStudent
+    // delete me private selectedStudent: SelectedStudent
   ) {}
 
   ngOnInit() {
@@ -38,30 +41,40 @@ export class FollowUpRequestsComponent implements OnInit, OnDestroy {
     console.log('mentorId ' + this.mentorId);
 
     // console.log('(((((((((((((((((Assistance ngOnInit)))))))))))))');
-    this.subscribeForStudentGUIds();
+    this.subscribeForStudentGUIds2();
   }
-  ngOnDestroy() {
-    // console.log('{{{{{{{{{{{{{Assistance ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
-    this.subscription.unsubscribe();
+  // ngOnDestroy() {
+  //   // console.log('{{{{{{{{{{{{{Assistance ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
+  //   this.subscription.unsubscribe();
+  // }
+
+  // subscribeForStudentGUIds() {
+  //   // console.log('Assistance set up studentGUId subscription');
+  //   this.subscription = this.selectedStudent
+  //     .subscribeForStudentGUIds()
+  //   // .pipe(takeWhile(() => this.notDestroyed))
+  //     .subscribe((message) => {
+  //       this.studentGUId = message;
+  //       console.log('MR new StudentGUId received' + this.studentGUId);
+  //       if (this.studentGUId && this.studentGUId !== '0000') {
+  //         this.fetchData(this.studentGUId);
+  //       }
+  //     });
+  // }
+
+  subscribeForStudentGUIds2() {
+    // console.log('header set up studentGUId subscription');
+    this.subscription = this.currentGUId$.subscribe((message) => {
+      this.studentGUId = message;
+      console.log('************NGXS: header new StudentGUId received' + this.studentGUId);
+      if (this.studentGUId && this.studentGUId !== '0000') {
+        this.fetchData();
+      }
+    });
   }
 
-  subscribeForStudentGUIds() {
-    // console.log('Assistance set up studentGUId subscription');
-    this.subscription = this.selectedStudent
-      .subscribeForStudentGUIds()
-    // .pipe(takeWhile(() => this.notDestroyed))
-      .subscribe((message) => {
-        this.studentGUId = message;
-        console.log('MR new StudentGUId received' + this.studentGUId);
-        if (this.studentGUId && this.studentGUId !== '0000') {
-          this.fetchData(this.studentGUId);
-        }
-      });
-  }
-
-  fetchData(studentGUId: string) {
+  fetchData() {
     this.isLoading = true;
-    this.studentGUId = studentGUId;
     console.log('in fetchData for Assistance with studentId' + this.studentGUId);
     this.followUpData.getFollowUpRequestsForStudentByGUID(this.studentGUId).subscribe(
       (data) => {

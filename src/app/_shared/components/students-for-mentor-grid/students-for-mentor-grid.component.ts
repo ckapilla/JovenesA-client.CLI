@@ -1,6 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { SelectedStudent } from 'src/app/_store/selectedStudent/selected-student.service';
+import { Component, OnInit } from '@angular/core';
+import { Select, Store } from '@ngxs/store';
+import { Observable, Subscription } from 'rxjs';
+import { SetSelectedStudentGUId } from 'src/app/_store/student/student.action';
+import { StudentState } from 'src/app/_store/student/student.state';
 import { constants } from '../../constants/constants';
 import { StudentDataService } from '../../data/student-data.service';
 import { StudentDTO } from '../../models/studentDTO';
@@ -11,7 +13,7 @@ import { SessionService } from '../../services/session.service';
   selector: 'students-for-mentor-grid',
   templateUrl: './students-for-mentor-grid.component.html'
 })
-export class StudentsForMentorGridComponent implements OnInit, OnDestroy {
+export class StudentsForMentorGridComponent implements OnInit {
   students: Array<StudentDTO>;
   emojis: Array<string> = [];
   studentId: number;
@@ -21,10 +23,13 @@ export class StudentsForMentorGridComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   gridLoaded: boolean;
 
+  @Select(StudentState.getSelectedStudentGUId)  currentGUId$: Observable<string>;
+
   constructor(
     public session: SessionService,
     private studentData: StudentDataService,
-    private selectedStudent: SelectedStudent
+    // delete me private selectedStudent: SelectedStudent
+    private store: Store
   ) {
     this.emojis = constants.emojis;
 
@@ -35,27 +40,42 @@ export class StudentsForMentorGridComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.studentGUId = '';
     this.gridLoaded = false;
-    this.subscribeForStudentGUIds();
+    this.subscribeForStudentGUIds2();
   }
-  public ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
+  // public ngOnDestroy() {
+  //   this.subscription.unsubscribe();
+  // }
 
-  subscribeForStudentGUIds() {
-    console.log('studentGrid set up studentGUId subscription');
-    this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
+  // subscribeForStudentGUIds() {
+  //   console.log('studentGrid set up studentGUId subscription');
+  //   this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
+  //     this.studentGUId = message;
+  //     console.log('students grid new StudentGUId received' + message);
+  //     // only want to respond on initial load; don't want changes from self (user click)
+  //     if (!this.gridLoaded) {
+  //       // initial load no student preselcted
+  //       this.fetchGridData();
+  //       this.gridLoaded = true;
+  //     }
+  //   });
+  // }
+
+  subscribeForStudentGUIds2() {
+    // console.log('header set up studentGUId subscription');
+    this.subscription = this.currentGUId$.subscribe((message) => {
       this.studentGUId = message;
-      console.log('students grid new StudentGUId received' + message);
+      console.log('************NGXS: header new StudentGUId received' + this.studentGUId);
       // only want to respond on initial load; don't want changes from self (user click)
       if (!this.gridLoaded) {
         // initial load no student preselcted
-        this.fetchGridData();
+        this.fetchData();
         this.gridLoaded = true;
       }
     });
   }
 
-  fetchGridData() {
+
+  fetchData() {
     console.log('studentGrid calling getStudentsForMentor');
     this.studentData.getStudentsForMentorByGUId(this.session.getUserGUId()).subscribe(
       (data) => {
@@ -96,7 +116,9 @@ export class StudentsForMentorGridComponent implements OnInit, OnDestroy {
     console.log('student selected studentGUId: ' + studentGUId + 'idx: ' + idx);
     this.studentGUId = studentGUId;
     this.setRowClasses(this.students[idx].studentGUId, this.students[idx].activeStatus);
-    this.selectedStudent.notifyNewStudentGUId(studentGUId);
+    // this.selectedStudent.notifyNewStudentGUId(studentGUId);
+    this.store.dispatch(new SetSelectedStudentGUId(this.studentGUId))
+
   }
 
   // called from code (above) and from template

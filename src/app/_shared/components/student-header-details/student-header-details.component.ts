@@ -1,17 +1,22 @@
 import { Location } from '@angular/common';
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { SelectedStudent } from 'src/app/_store/selectedStudent/selected-student.service';
+import { Select } from '@ngxs/store';
+import { Observable, Subscription } from 'rxjs';
+import { StudentState } from 'src/app/_store/student/student.state';
 import { StudentDataService } from '../../data/student-data.service';
 import { StudentHeaderDTO } from '../../models/studentHeaderDTO';
 import { SessionService } from '../../services/session.service';
+
+
+
 
 @Component({
   selector: 'app-student-header-details',
   templateUrl: './student-header-details.component.html'
 })
-export class StudentHeaderDetailsComponent implements OnInit, OnDestroy {
+
+export class StudentHeaderDetailsComponent implements OnInit {
   data: Object;
   loadingState = 0;
   submitted: boolean;
@@ -28,13 +33,15 @@ export class StudentHeaderDetailsComponent implements OnInit, OnDestroy {
   @Output() onPhotoPathNameSet = new EventEmitter<string>();
   private subscription: Subscription;
 
+  @Select(StudentState.getSelectedStudentGUId)  currentGUId$: Observable<string>;
+
   constructor(
     public currRoute: ActivatedRoute,
     private router: Router,
     private session: SessionService,
     public studentData: StudentDataService,
     public location: Location,
-    private selectedStudent: SelectedStudent
+    // delete me private selectedStudent: SelectedStudent
   ) {
     console.log('hi from StudentHeaderDetails constructor');
 
@@ -47,18 +54,31 @@ export class StudentHeaderDetailsComponent implements OnInit, OnDestroy {
     // console.log('StudentHeaderDetails ngOnInit');
     // this.fetchStudentDTOData();
     this.loadingState = 0;
-    this.subscribeForStudentGUIds();
+    // this.subscribeForStudentGUIds();
+
+    this.subscribeForStudentGUIds2();
+
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
+  // ngOnDestroy() {
+  //   this.subscription.unsubscribe();
+  // }
 
-  subscribeForStudentGUIds() {
+  // subscribeForStudentGUIds() {
+  //   // console.log('header set up studentGUId subscription');
+  //   this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
+  //     this.studentGUId = message;
+  //     console.log('************header new StudentGUId received' + this.studentGUId);
+  //     if (this.studentGUId && this.studentGUId !== '0000') {
+  //       this.fetchData();
+  //     }
+  //   });
+  // }
+  subscribeForStudentGUIds2() {
     // console.log('header set up studentGUId subscription');
-    this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
+    this.subscription = this.currentGUId$.subscribe((message) => {
       this.studentGUId = message;
-      console.log('header new StudentGUId received' + this.studentGUId);
+      console.log('************NGXS: header new StudentGUId received' + this.studentGUId);
       if (this.studentGUId && this.studentGUId !== '0000') {
         this.fetchData();
       }

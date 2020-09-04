@@ -1,8 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Select } from '@ngxs/store';
+import { Observable, Subscription } from 'rxjs';
 import { QuarterlyReportRPT } from 'src/app/_shared/models/quarterly-reportRPT';
-import { SelectedStudent } from 'src/app/_store/selectedStudent/selected-student.service';
+import { StudentState } from 'src/app/_store/student/student.state';
 import { constants } from '../../_shared/constants/constants';
 import { QuarterlyDataService } from '../../_shared/data/quarterly-data.service';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
@@ -11,7 +12,7 @@ import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
   selector: 'app-quarterly-container',
   templateUrl: './quarterly-container.component.html'
 })
-export class QuarterlyContainerComponent implements OnInit, OnDestroy {
+export class QuarterlyContainerComponent implements OnInit {
   isLoading = false;
   errorMessage: string;
   successMessage: string;
@@ -29,10 +30,12 @@ export class QuarterlyContainerComponent implements OnInit, OnDestroy {
   qrMini = new QuarterlyReportRPT();
   private subscription: Subscription;
 
+  @Select(StudentState.getSelectedStudentGUId)  currentGUId$: Observable<string>;
+
   constructor(
     private route: ActivatedRoute,
     public quarterlyData: QuarterlyDataService,
-    private selectedStudent: SelectedStudent
+    // delete me private selectedStudent: SelectedStudent
   ) {
     this.years = constants.years;
     this.periods = constants.periods;
@@ -47,19 +50,30 @@ export class QuarterlyContainerComponent implements OnInit, OnDestroy {
   ngOnInit() {
     console.log('containerInit');
     // this.processRouteParams();
-    this.subscribeForStudentGUIds();
+    this.subscribeForStudentGUIds2();
   }
 
-  ngOnDestroy() {
-    // console.log('{{{{{{{{{{{{{JA ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
-    this.subscription.unsubscribe();
-  }
+  // ngOnDestroy() {
+  //   // console.log('{{{{{{{{{{{{{JA ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
+  //   this.subscription.unsubscribe();
+  // }
 
-  subscribeForStudentGUIds() {
-    // console.log('JA set up studentGUId subscription');
-    this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
+  // subscribeForStudentGUIds() {
+  //   // console.log('JA set up studentGUId subscription');
+  //   this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
+  //     this.studentGUId = message;
+  //     console.log('JA new StudentGUId received' + this.studentGUId);
+  //     if (this.studentGUId && this.studentGUId !== '0000') {
+  //       this.fetchFilteredData();
+  //     }
+  //   });
+  // }
+
+  subscribeForStudentGUIds2() {
+    // console.log('header set up studentGUId subscription');
+    this.subscription = this.currentGUId$.subscribe((message) => {
       this.studentGUId = message;
-      console.log('JA new StudentGUId received' + this.studentGUId);
+      console.log('************NGXS: header new StudentGUId received' + this.studentGUId);
       if (this.studentGUId && this.studentGUId !== '0000') {
         this.fetchFilteredData();
       }

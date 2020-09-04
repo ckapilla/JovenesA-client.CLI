@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { SelectedStudent } from 'src/app/_store/selectedStudent/selected-student.service';
+import { Select, Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { SetSelectedStudentGUId } from 'src/app/_store/student/student.action';
+import { StudentState } from 'src/app/_store/student/student.state';
 import { constants } from '../../constants/constants';
 import { StudentDataService } from '../../data/student-data.service';
 import { StudentSponsorXRef } from '../../models/student-sponsor-xref';
@@ -17,10 +20,13 @@ export class StudentsForSponsorGridComponent implements OnInit {
   studentGUId: string;
   errorMessage = '';
 
+  @Select(StudentState.getSelectedStudentGUId)  currentGUId$: Observable<string>;
+
   constructor(
     public session: SessionService,
     private studentData: StudentDataService,
-    private selectedStudent: SelectedStudent
+    // delete me private selectedStudent: SelectedStudent
+    private store: Store
   ) {
     this.emojis = constants.emojis;
 
@@ -54,7 +60,9 @@ export class StudentsForSponsorGridComponent implements OnInit {
   public selectStudent(studentGUId: string, idx: number) {
     console.log('student selected studentGUId: ' + studentGUId + 'idx: ' + idx);
     this.studentGUId = studentGUId;
-    this.selectedStudent.notifyNewStudentGUId(studentGUId);
+    // this.selectedStudent.notifyNewStudentGUId(studentGUId);
+    this.store.dispatch(new SetSelectedStudentGUId(this.studentGUId))
+
   }
 
   public setRowClasses(studentGUId: string) {

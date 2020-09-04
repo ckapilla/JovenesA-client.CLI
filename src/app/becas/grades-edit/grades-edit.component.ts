@@ -2,12 +2,13 @@ import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Select } from '@ngxs/store';
+import { Observable, Subscription } from 'rxjs';
 import { BecaDataService } from 'src/app/_shared/data/beca-data.service';
 import { GradesGivenEntryDTO } from 'src/app/_shared/models/grades-given-entryDTO';
 import { StudentGrades } from 'src/app/_shared/models/student-grades';
 import { TruncateDatePipe } from 'src/app/_shared/pipes/truncate-date-pipe';
-import { SelectedStudent } from 'src/app/_store/selectedStudent/selected-student.service';
+import { StudentState } from 'src/app/_store/student/student.state';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 // import { SORTCRITERIA } from '../../_shared/interfaces/SORTCRITERIA';
 import { StudentDTO } from '../../_shared/models/studentDTO';
@@ -34,6 +35,8 @@ export class GradesEditComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   studentName: string;
 
+  @Select(StudentState.getSelectedStudentGUId)  currentGUId$: Observable<string>;
+
   constructor(
     public becaData: BecaDataService,
     public router: Router,
@@ -41,7 +44,7 @@ export class GradesEditComponent implements OnInit, OnDestroy {
     private session: SessionService,
     private columnSorter: ColumnSortService,
     private _fb: FormBuilder,
-    private selectedStudent: SelectedStudent,
+    // delete me private selectedStudent: SelectedStudent,
     public location: Location
   ) {
     console.log('Hi from gradesEdit Ctrl controller function');
@@ -101,7 +104,7 @@ export class GradesEditComponent implements OnInit, OnDestroy {
     console.log('gradesEdit ngOnInit');
     // this.processRouteParams();
 
-    this.subscribeForStudentGUIds();
+    this.subscribeForStudentGUIds2();
   }
 
   ngOnDestroy() {
@@ -109,11 +112,21 @@ export class GradesEditComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  subscribeForStudentGUIds() {
-    console.log('GradesEdit set up studentGUId subscription');
-    this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
+  // subscribeForStudentGUIds() {
+  //   console.log('GradesEdit set up studentGUId subscription');
+  //   this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
+  //     this.studentGUId = message;
+  //     console.log('SR new StudentGUId received' + this.studentGUId);
+  //     if (this.studentGUId && this.studentGUId !== '0000') {
+  //       this.fetchFilteredData();
+  //     }
+  //   });
+  // }
+  subscribeForStudentGUIds2() {
+    // console.log('header set up studentGUId subscription');
+    this.subscription = this.currentGUId$.subscribe((message) => {
       this.studentGUId = message;
-      console.log('SR new StudentGUId received' + this.studentGUId);
+      console.log('************NGXS: header new StudentGUId received' + this.studentGUId);
       if (this.studentGUId && this.studentGUId !== '0000') {
         this.fetchFilteredData();
       }

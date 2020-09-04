@@ -1,9 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Select } from '@ngxs/store';
+import { Observable, Subscription } from 'rxjs';
 import { ConfidentialDataService } from 'src/app/_shared/data/confidential-data.service';
 import { ConfidentialReportRPT } from 'src/app/_shared/models/confidential-reportRPT';
-import { SelectedStudent } from 'src/app/_store/selectedStudent/selected-student.service';
+import { StudentState } from 'src/app/_store/student/student.state';
 import { constants } from '../../_shared/constants/constants';
 import { SessionService } from '../../_shared/services/session.service';
 
@@ -11,7 +12,7 @@ import { SessionService } from '../../_shared/services/session.service';
   selector: 'app-confidential-reports',
   templateUrl: './confidential-reports.component.html'
 })
-export class ConfidentialReportsComponent implements OnInit, OnDestroy {
+export class ConfidentialReportsComponent implements OnInit {
   isLoading: boolean;
   errorMessage: string;
 
@@ -25,12 +26,14 @@ export class ConfidentialReportsComponent implements OnInit, OnDestroy {
   haveCurrentReport: boolean;
   private subscription: Subscription;
 
+  @Select(StudentState.getSelectedStudentGUId)  currentGUId$: Observable<string>;
+
   constructor(
     public currRoute: ActivatedRoute,
     private router: Router,
     public confidentialReportData: ConfidentialDataService,
     public session: SessionService,
-    private selectedStudent: SelectedStudent
+    // delete me private selectedStudent: SelectedStudent
   ) {
     console.log('confidentialReports constructor');
     this.smileys = constants.smileys;
@@ -48,32 +51,44 @@ export class ConfidentialReportsComponent implements OnInit, OnDestroy {
     this.haveCurrentReport = false;
 
     // console.log('(((((((((((((((((MR ngOnInit)))))))))))))');
-    this.subscribeForStudentGUIds();
+    this.subscribeForStudentGUIds2();
   }
 
-  ngOnDestroy() {
-    // console.log('{{{{{{{{{{{{{MR ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
-    this.subscription.unsubscribe();
-  }
+  // ngOnDestroy() {
+  //   // console.log('{{{{{{{{{{{{{MR ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
+  //   this.subscription.unsubscribe();
+  // }
 
-  subscribeForStudentGUIds() {
-    // console.log('CR set up studentGUId subscription');
-    this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
+  // subscribeForStudentGUIds() {
+  //   // console.log('CR set up studentGUId subscription');
+  //   this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
+  //     this.studentGUId = message;
+  //     console.log('CR new StudentGUId received' + this.studentGUId);
+  //     if (this.studentGUId && this.studentGUId !== '0000') {
+  //       this.fetchData(this.studentGUId);
+  //     }
+  //   });
+  // }
+
+  subscribeForStudentGUIds2() {
+    // console.log('header set up studentGUId subscription');
+    this.subscription = this.currentGUId$.subscribe((message) => {
       this.studentGUId = message;
-      console.log('CR new StudentGUId received' + this.studentGUId);
+      console.log('************NGXS: header new StudentGUId received' + this.studentGUId);
       if (this.studentGUId && this.studentGUId !== '0000') {
-        this.fetchData(this.studentGUId);
+        this.fetchData();
       }
     });
   }
 
-  fetchData(studentGUId: string) {
+
+  fetchData() {
     console.log('cr fetchData');
     this.isLoading = true;
     this.isLoading = true;
     this.haveCurrentReport = false;
-    this.studentGUId = studentGUId;
-    this.confidentialReportData.getConfidentialReportRPTsViaGUID(0, studentGUId).subscribe(
+    this.studentGUId = this.studentGUId;
+    this.confidentialReportData.getConfidentialReportRPTsViaGUID(0, this.studentGUId).subscribe(
       (data) => {
         this.confidentialReports = data;
       },

@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TestNamesVisibilityService {
-  private subject = new BehaviorSubject<boolean>(false);
+  private subject = new BehaviorSubject<boolean>(true);
 
   subscribeForTestNamesVisibility(): Observable<boolean> {
     console.log('after subscribe testNamesVisibilityService has ' + this.subject.observers + ' observables');

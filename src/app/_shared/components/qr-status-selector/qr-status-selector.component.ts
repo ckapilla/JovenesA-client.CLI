@@ -1,8 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { Select } from '@ngxs/store';
+import { Observable, Subscription } from 'rxjs';
 import { QuarterlyDataService } from 'src/app/_shared/data/quarterly-data.service';
 import { QuarterlyReportRPT } from 'src/app/_shared/models/quarterly-reportRPT';
-import { SelectedStudent } from 'src/app/_store/selectedStudent/selected-student.service';
+import { StudentState } from 'src/app/_store/student/student.state';
+// delete me import { SelectedStudent } from 'src/app/_store/selectedStudent/selected-student.service';
 import { constants } from '../../constants/constants';
 import { SELECTITEM } from '../../interfaces/SELECTITEM';
 import { SessionService } from '../../services/session.service';
@@ -12,7 +14,7 @@ import { SessionService } from '../../services/session.service';
   templateUrl: './qr-status-selector.component.html',
   styleUrls: [ './qr-status-selector.component.css' ]
 })
-export class QrStatusSelectorComponent implements OnInit, OnDestroy {
+export class QrStatusSelectorComponent implements OnInit {
   isLoading = false;
   errorMessage: string;
   successMessage: string;
@@ -21,28 +23,40 @@ export class QrStatusSelectorComponent implements OnInit, OnDestroy {
   studentGUId: string; // 'model' for this component
   private subscription: Subscription;
 
+  @Select(StudentState.getSelectedStudentGUId)  currentGUId$: Observable<string>;
+
   constructor(
     public quarterlyData: QuarterlyDataService,
-    public selectedStudent: SelectedStudent,
+    // public selectedStudent: SelectedStudent,
     public session: SessionService
   ) {}
 
   ngOnInit() {
     this.qrMini = new QuarterlyReportRPT();
-    // console.log('(((((((((((((((((status selector ngOnInit)))))))))))))');
-    this.subscribeForStudentGUIds();
+    this.subscribeForStudentGUIds2();
   }
 
-  ngOnDestroy() {
-    // console.log('{{{{{{{{{{{{{status selector ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
-    this.subscription.unsubscribe();
-  }
+  // ngOnDestroy() {
+  //   // console.log('{{{{{{{{{{{{{status selector ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
+  //   this.subscription.unsubscribe();
+  // }
 
-  subscribeForStudentGUIds() {
-    // console.log('status selector set up studentGUId subscription');
-    this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
+  // subscribeForStudentGUIds() {
+  //   // console.log('status selector set up studentGUId subscription');
+  //   this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
+  //     this.studentGUId = message;
+  //     console.log('status selector new StudentGUId received' + this.studentGUId);
+  //     if (this.studentGUId && this.studentGUId !== '0000') {
+  //       this.fetchData();
+  //     }
+  //   });
+  // }
+
+  subscribeForStudentGUIds2() {
+    // console.log('header set up studentGUId subscription');
+    this.subscription = this.currentGUId$.subscribe((message) => {
       this.studentGUId = message;
-      console.log('status selector new StudentGUId received' + this.studentGUId);
+      console.log('************NGXS: header new StudentGUId received' + this.studentGUId);
       if (this.studentGUId && this.studentGUId !== '0000') {
         this.fetchData();
       }
