@@ -1,8 +1,11 @@
-import { Component, Injectable, OnDestroy, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Select, Store } from '@ngxs/store';
 import { Observable, of, Subscription } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
-import { SelectedMemberService } from 'src/app/_store/selectedMember/selected-member.service';
+import { SetSelectedMemberGUId } from 'src/app/_store/member/member.action';
+import { MemberState } from 'src/app/_store/member/member.state';
+// delete me import { SelectedMemberService } from 'src/app/_store/selectedMember/selected-member.service';
 import { MemberDataService } from '../../data/member-data.service';
 import { MemberMiniDTO } from '../../models/memberMiniDTO';
 
@@ -10,12 +13,8 @@ import { MemberMiniDTO } from '../../models/memberMiniDTO';
   providedIn: 'root'
 })
 export class MemberNameService {
-  constructor(private memberData: MemberDataService, private x: SelectedMemberService) {
-    console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
-    console.log(x);
 
-    console.log(x.getLatestMemberGUId);
-  }
+  constructor(private memberData: MemberDataService) {}
 
   search(searchStr: string) {
     if (searchStr === '') {
@@ -33,7 +32,7 @@ export class MemberNameService {
   selector: 'app-member-lookup',
   templateUrl: './member-lookup.html'
 })
-export class MemberLookupComponent implements OnInit, OnDestroy {
+export class MemberLookupComponent implements OnInit {
   memberMiniDTO: MemberMiniDTO;
   searching = false;
   searchFailed = false;
@@ -43,25 +42,26 @@ export class MemberLookupComponent implements OnInit, OnDestroy {
   memberGUId: string;
   private subscription: Subscription;
 
-  // @Output() onSelectedMemberGUId = new EventEmitter<string>();
+  @Select(MemberState.getSelectedMemberGUId)  currentGUId$: Observable<string>;
 
   constructor(
     private _service: MemberNameService,
     private router: Router,
     private memberData: MemberDataService,
-    private selectedMember: SelectedMemberService
+    // private selectedMember: SelectedMemberService
+    private store: Store
   ) {
     console.log('name-lookup constructor!');
   }
 
   ngOnInit() {
-    this.subscribeForMemberGUIds();
+    this.subscribeForMemberGUIds2();
   }
-  ngOnDestroy() {
-    // console.log('{{{{{{{{{{{{{JA ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
-    // this.selectedMember.unsubscribe();
-    this.subscription.unsubscribe();
-  }
+  // ngOnDestroy() {
+  //   // console.log('{{{{{{{{{{{{{JA ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
+  //   // this.selectedMember.unsubscribe();
+  //   this.subscription.unsubscribe();
+  // }
 
   onSelect(item) {
     console.log('onSelect');
@@ -69,7 +69,9 @@ export class MemberLookupComponent implements OnInit, OnDestroy {
     console.log(item.item.memberGUId);
     this.currentGUId = item.item.memberGUId;
     // this.onSelectedMemberGUId.emit(item.item.memberGUId);
-    this.selectedMember.notifyNewMemberGUId(item.item.memberGUId);
+    // this.selectedMember.notifyNewMemberGUId(item.item.memberGUId);
+    this.store.dispatch(new SetSelectedMemberGUId(this.currentGUId))
+
     this.email = item.item.email;
     this.memberName = item.item.memberName;
   }
@@ -97,13 +99,23 @@ export class MemberLookupComponent implements OnInit, OnDestroy {
     this.resetMemberData();
   }
 
-  subscribeForMemberGUIds() {
-    console.log('Name Lookup set up memberGUId subscription');
-    this.subscription = this.selectedMember.subscribeForMemberGUIds().subscribe((message) => {
+  // subscribeForMemberGUIds() {
+  //   console.log('Name Lookup set up memberGUId subscription');
+  //   this.subscription = this.selectedMember.subscribeForMemberGUIds().subscribe((message) => {
+  //     this.memberGUId = message;
+  //     console.log('Name Search new MemberGUId received' + this.memberGUId);
+  //     if (this.memberGUId && this.memberGUId !== '0000') {
+  //       this.currentGUId = this.memberGUId;
+  //       this.fetchData();
+  //     }
+  //   });
+  // }
+  subscribeForMemberGUIds2() {
+    // console.log('header set up studentGUId subscription');
+    this.subscription = this.currentGUId$.subscribe((message) => {
       this.memberGUId = message;
-      console.log('Name Search new MemberGUId received' + this.memberGUId);
+      console.log('************NGXS: header new MemberGUId received' + this.memberGUId);
       if (this.memberGUId && this.memberGUId !== '0000') {
-        this.currentGUId = this.memberGUId;
         this.fetchData();
       }
     });
@@ -124,8 +136,8 @@ export class MemberLookupComponent implements OnInit, OnDestroy {
 
   resetMemberData() {
     console.log('memberLookup reset');
-    this.selectedMember.notifyNewMemberGUId('0000');
     this.currentGUId = '0000';
+    this.store.dispatch(new SetSelectedMemberGUId(this.memberGUId))
   }
 
   search = (text$: Observable<string>) =>

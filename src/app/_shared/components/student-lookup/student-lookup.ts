@@ -11,7 +11,6 @@ import { StudentMiniDTO } from '../../models/studentMiniDTO';
   providedIn: 'root'
 })
 export class StudentNameService {
-  public hideSearch = 'true';
 
   constructor(private studentData: StudentDataService) {}
 
@@ -123,11 +122,8 @@ export class StudentLookupComponent implements OnInit {
   }
   resetStudentData() {
     console.log('studentLookup reset');
-    // this.selectedStudent.notifyNewStudentGUId(studentGUId);
-
     this.currentGUId = '0000';
     this.store.dispatch(new SetSelectedStudentGUId(this.studentGUId))
-
     this.currentGUId = '0000';
   }
 

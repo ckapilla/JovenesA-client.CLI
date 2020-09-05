@@ -1,7 +1,9 @@
 import { Location } from '@angular/common';
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Select } from '@ngxs/store';
+import { Observable, Subscription } from 'rxjs';
+import { MemberState } from 'src/app/_store/member/member.state';
 import { SelectedMemberService } from 'src/app/_store/selectedMember/selected-member.service';
 import { MemberDataService } from '../../data/member-data.service';
 import { MemberHeaderDTO } from '../../models/memberHeaderDTO';
@@ -11,7 +13,7 @@ import { SessionService } from '../../services/session.service';
   selector: 'app-member-header-details',
   templateUrl: './member-header-details.component.html'
 })
-export class MemberHeaderDetailsComponent implements OnInit, OnDestroy {
+export class MemberHeaderDetailsComponent implements OnInit {
   data: Object;
   loadingState = 0;
   submitted: boolean;
@@ -27,6 +29,8 @@ export class MemberHeaderDetailsComponent implements OnInit, OnDestroy {
   memberGUId: string;
   @Output() onPhotoPathNameSet = new EventEmitter<string>();
   private subscription: Subscription;
+
+  @Select(MemberState.getSelectedMemberGUId)  currentGUId$: Observable<string>;
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -47,18 +51,29 @@ export class MemberHeaderDetailsComponent implements OnInit, OnDestroy {
     console.log('MemberHeaderDetails ngOnInit');
     // this.fetchMemberDTOData();
     this.loadingState = 0;
-    this.subscribeForMemberGUIds();
+    this.subscribeForMemberGUIds2();
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
+  // ngOnDestroy() {
+  //   this.subscription.unsubscribe();
+  // }
 
-  subscribeForMemberGUIds() {
-    console.log('header details set up memberGUId subscription');
-    this.subscription = this.selectedMember.subscribeForMemberGUIds().subscribe((message) => {
+  // subscribeForMemberGUIds() {
+  //   console.log('header details set up memberGUId subscription');
+  //   this.subscription = this.selectedMember.subscribeForMemberGUIds().subscribe((message) => {
+  //     this.memberGUId = message;
+  //     console.log('header details new MemberGUId received' + this.memberGUId);
+  //     if (this.memberGUId && this.memberGUId !== '0000') {
+  //       this.fetchData();
+  //     }
+  //   });
+  // }
+
+  subscribeForMemberGUIds2() {
+    // console.log('header set up memberGUId subscription');
+    this.subscription = this.currentGUId$.subscribe((message) => {
       this.memberGUId = message;
-      console.log('header details new MemberGUId received' + this.memberGUId);
+      console.log('************NGXS: header new StudentGUId received' + this.memberGUId);
       if (this.memberGUId && this.memberGUId !== '0000') {
         this.fetchData();
       }

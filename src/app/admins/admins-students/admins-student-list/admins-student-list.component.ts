@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Select } from '@ngxs/store';
+import { Observable } from 'rxjs';
 import { constants } from 'src/app/_shared/constants/constants';
 import { StudentDataService } from 'src/app/_shared/data/student-data.service';
 import { SELECTITEM } from 'src/app/_shared/interfaces/SELECTITEM';
@@ -7,7 +9,8 @@ import { SORTCRITERIA } from 'src/app/_shared/interfaces/SORTCRITERIA';
 import { StudentDTO } from 'src/app/_shared/models/studentDTO';
 import { ColumnSortService } from 'src/app/_shared/services/column-sort.service';
 import { SessionService } from 'src/app/_shared/services/session.service';
-import { TestNamesVisibilityService } from 'src/app/_store/testNamesVisibility/test-names-visibility.service';
+import { UIState } from 'src/app/_store/ui/ui.state';
+// delete me import { TestNamesVisibilityService } from 'src/app/_store/testNamesVisibility/test-names-visibility.service';
 
 @Component({
   selector: 'app-admins-student-list',
@@ -28,11 +31,12 @@ export class AdminsStudentListComponent implements OnInit {
   sortCriteria: SORTCRITERIA;
 
   readonly studentStatuses: SELECTITEM[] = constants.studentStatuses;
-  readonly schoolTypes: SELECTITEM[] = constants.schoolTypes;
   readonly joinedYears: SELECTITEM[] = constants.joinedYears;
   readonly gradYears: SELECTITEM[] = constants.gradYears;
   readonly smileys: string[] = constants.smileys;
   displayTestNames: boolean;
+
+@Select(UIState.getTestNamesVisibility) testNameVisibility$: Observable<boolean>;
 
   constructor(
     public studentData: StudentDataService,
@@ -40,7 +44,7 @@ export class AdminsStudentListComponent implements OnInit {
     // private route: ActivatedRoute,
     private session: SessionService,
     private columnSorter: ColumnSortService,
-    public testNamesVisibilityService: TestNamesVisibilityService
+    // public testNamesVisibilityService: TestNamesVisibilityService
   ) {
     console.log('Hi from student List Ctrl controller function');
 
@@ -53,7 +57,9 @@ export class AdminsStudentListComponent implements OnInit {
     // this.gpaStatus = 'greenCheck.jpg'
 
     this.isLoading = false;
-    this.displayTestNames = testNamesVisibilityService.getLatestTestNamesVisibility();
+    this.testNameVisibility$.subscribe((flag) => {
+      this.displayTestNames = flag;
+    });
   }
 
   ngOnInit() {

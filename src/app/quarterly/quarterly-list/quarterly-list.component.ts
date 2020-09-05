@@ -5,8 +5,9 @@ import { Observable } from 'rxjs';
 import { ColumnSortService } from 'src/app/_shared/services/column-sort.service';
 import { SetSelectedStudentGUId } from 'src/app/_store/student/student.action';
 import { StudentState } from 'src/app/_store/student/student.state';
+import { UIState } from 'src/app/_store/ui/ui.state';
 // delete me import { SelectedStudent } from 'src/app/_store/selectedStudent/selected-student.service';
-import { TestNamesVisibilityService } from 'src/app/_store/testNamesVisibility/test-names-visibility.service';
+// import { TestNamesVisibilityService } from 'src/app/_store/testNamesVisibility/test-names-visibility.service';
 import { constants } from '../../_shared/constants/constants';
 import { QuarterlyDataService } from '../../_shared/data/quarterly-data.service';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
@@ -34,6 +35,7 @@ export class QuarterlyListComponent implements OnInit {
   displayTestNames: boolean;
 
   @Select(StudentState.getSelectedStudentGUId)  currentGUId$: Observable<string>;
+  @Select(UIState.getTestNamesVisibility) testNameVisibility$: Observable<boolean>;
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -43,7 +45,7 @@ export class QuarterlyListComponent implements OnInit {
     // public selectedStudent: SelectedStudent,
     public store: Store,
     public session: SessionService,
-    public testNamesVisibilityService: TestNamesVisibilityService
+    // public testNamesVisibilityService: TestNamesVisibilityService
   ) {
     console.log('quarterly-list constructor');
 
@@ -56,7 +58,9 @@ export class QuarterlyListComponent implements OnInit {
     this.selectedYearPeriod = constants.selectedYearPeriod;
 
     this.isLoading = false;
-    this.displayTestNames = testNamesVisibilityService.getLatestTestNamesVisibility();
+    this.testNameVisibility$.subscribe((flag) => {
+      this.displayTestNames = flag;
+    });
   }
 
   ngOnInit() {

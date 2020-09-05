@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Select } from '@ngxs/store';
+import { Observable } from 'rxjs';
 import { constants } from 'src/app/_shared/constants/constants';
 import { MemberDataService } from 'src/app/_shared/data/member-data.service';
 import { SELECTITEM } from 'src/app/_shared/interfaces/SELECTITEM';
@@ -7,8 +9,8 @@ import { SORTCRITERIA } from 'src/app/_shared/interfaces/SORTCRITERIA';
 import { MemberWithAnyRelatedStudent } from 'src/app/_shared/models/member-with-any-related-student';
 import { ColumnSortService } from 'src/app/_shared/services/column-sort.service';
 import { SessionService } from 'src/app/_shared/services/session.service';
-import { TestNamesVisibilityService } from 'src/app/_store/testNamesVisibility/test-names-visibility.service';
-
+// import { TestNamesVisibilityService } from 'src/app/_store/testNamesVisibility/test-names-visibility.service';
+import { UIState } from 'src/app/_store/ui/ui.state';
 @Component({
   templateUrl: './admins-member-list.component.html',
   styleUrls: [ './admins-member-list.component.css' ]
@@ -27,19 +29,24 @@ export class AdminsMemberListComponent implements OnInit {
   sortCriteria: SORTCRITERIA;
   displayTestNames: boolean;
 
+  @Select(UIState.getTestNamesVisibility) testNameVisibility$: Observable<boolean>;
+
   constructor(
     public memberData: MemberDataService,
     public router: Router,
     private session: SessionService,
-    private columnSorter: ColumnSortService,
-    public testNamesVisibilityService: TestNamesVisibilityService
+    private columnSorter: ColumnSortService
+    // public testNamesVisibilityService: TestNamesVisibilityService
   ) {
     console.log('Hi from member List Ctrl controller function');
     this.roleStatuses = constants.memberStatuses;
     this.memberTypes = constants.memberTypes;
     this.studentStatuses = constants.studentStatuses;
     this.isLoading = false;
-    this.displayTestNames = testNamesVisibilityService.getLatestTestNamesVisibility();
+    //this.displayTestNames = testNamesVisibilityService.getLatestTestNamesVisibility();
+    this.testNameVisibility$.subscribe((flag) => {
+      this.displayTestNames = flag;
+    });
   }
 
   public set selectedStatus(status: SELECTITEM) {
