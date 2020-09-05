@@ -15,18 +15,15 @@ interface CODEVALUE {
 @Injectable({ providedIn: 'root' })
 export class CodeValuesService extends BaseDataService {
   private codeValuesUrl = this.WebApiPrefix + 'lookup/codeValues';
-  codeValues$: Observable<CODEVALUE[]> = this.http.get<CODEVALUE[]>(this.codeValuesUrl).pipe(
-    tap((data) => console.log('codeValues ', JSON.stringify(data[0]))),
-    catchError(this.handleError)
-  );
+  codeValues$: Observable<CODEVALUE[]> = this.http
+    .get<CODEVALUE[]>(this.codeValuesUrl)
+    .pipe(tap((data) => console.log('codeValues ', JSON.stringify(data[0]))), catchError(this.handleError));
 
   constructor(public http: HttpClient, public webApiPrefixService: UrlService) {
     super(http, webApiPrefixService);
-    console.log('VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVCode Values constructoer');
   }
 
   public buildArrays() {
-    console.log('VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVbuildArrays call');
     this.codeValues$.pipe(toArray()).subscribe(
       (data) => {
         const x = data[0];
@@ -48,13 +45,10 @@ export class CodeValuesService extends BaseDataService {
               constants.memberTypes.push(subset);
               break;
             case 'ReviewedStatus':
-              console.log('>>>>>>>>>>>>> ' + item.value);
               if (item.value < '2100') {
-                console.log('both ' + item.value);
                 constants.reviewedStatuses.push(subset);
                 constants.reviewedQRStatuses.push(subset);
               } else {
-                console.log('QR only ' + item.value);
                 constants.reviewedQRStatuses.push(subset);
               }
               break;
@@ -77,8 +71,6 @@ export class CodeValuesService extends BaseDataService {
               constants.countryList.push(subset);
               break;
             default:
-              // console.log('skipping');
-              // console.log(subset);
               break;
           }
         });

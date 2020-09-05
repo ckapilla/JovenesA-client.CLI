@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Select } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { MemberState } from 'src/app/_store/member/member.state';
-import { SelectedMemberService } from 'src/app/_store/selectedMember/selected-member.service';
 import { MemberDataService } from '../../data/member-data.service';
 import { MemberHeaderDTO } from '../../models/memberHeaderDTO';
 import { SessionService } from '../../services/session.service';
@@ -30,15 +29,14 @@ export class MemberHeaderDetailsComponent implements OnInit {
   @Output() onPhotoPathNameSet = new EventEmitter<string>();
   private subscription: Subscription;
 
-  @Select(MemberState.getSelectedMemberGUId)  currentGUId$: Observable<string>;
+  @Select(MemberState.getSelectedMemberGUId) currentGUId$: Observable<string>;
 
   constructor(
     public currRoute: ActivatedRoute,
     private router: Router,
     private session: SessionService,
     public memberData: MemberDataService,
-    public location: Location,
-    private selectedMember: SelectedMemberService
+    public location: Location
   ) {
     console.log('hi from MemberHeaderDetails constructor');
 
@@ -53,21 +51,6 @@ export class MemberHeaderDetailsComponent implements OnInit {
     this.loadingState = 0;
     this.subscribeForMemberGUIds2();
   }
-
-  // ngOnDestroy() {
-  //   this.subscription.unsubscribe();
-  // }
-
-  // subscribeForMemberGUIds() {
-  //   console.log('header details set up memberGUId subscription');
-  //   this.subscription = this.selectedMember.subscribeForMemberGUIds().subscribe((message) => {
-  //     this.memberGUId = message;
-  //     console.log('header details new MemberGUId received' + this.memberGUId);
-  //     if (this.memberGUId && this.memberGUId !== '0000') {
-  //       this.fetchData();
-  //     }
-  //   });
-  // }
 
   subscribeForMemberGUIds2() {
     // console.log('header set up memberGUId subscription');

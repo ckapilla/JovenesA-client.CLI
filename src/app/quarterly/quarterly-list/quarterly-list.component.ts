@@ -34,7 +34,7 @@ export class QuarterlyListComponent implements OnInit {
   readonly highlightStatuses: SELECTITEM[] = constants.highlightStatuses;
   displayTestNames: boolean;
 
-  @Select(StudentState.getSelectedStudentGUId)  currentGUId$: Observable<string>;
+  @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
   @Select(UIState.getTestNamesVisibility) testNameVisibility$: Observable<boolean>;
 
   constructor(
@@ -44,8 +44,7 @@ export class QuarterlyListComponent implements OnInit {
     public columnSorter: ColumnSortService,
     // public selectedStudent: SelectedStudent,
     public store: Store,
-    public session: SessionService,
-    // public testNamesVisibilityService: TestNamesVisibilityService
+    public session: SessionService
   ) {
     console.log('quarterly-list constructor');
 
@@ -58,15 +57,15 @@ export class QuarterlyListComponent implements OnInit {
     this.selectedYearPeriod = constants.selectedYearPeriod;
 
     this.isLoading = false;
-    this.testNameVisibility$.subscribe((flag) => {
-      this.displayTestNames = flag;
-    });
   }
 
   ngOnInit() {
     console.log('ngOnInit');
 
-    this.fetchFilteredData();
+    this.testNameVisibility$.subscribe((flag) => {
+      this.displayTestNames = flag;
+      this.fetchFilteredData();
+    });
   }
 
   scrollIntoView() {
@@ -84,10 +83,8 @@ export class QuarterlyListComponent implements OnInit {
   }
 
   gotoStudent(studentGUId: string) {
-    // this.selectedStudent.notifyNewStudentGUId(studentGUId);
-    this.store.dispatch(new SetSelectedStudentGUId(studentGUId))
-    const link = [ 'quarterly/edit' ]; // , { guid: studentGUId }];
-
+    this.store.dispatch(new SetSelectedStudentGUId(studentGUId));
+    const link = [ 'quarterly/edit' ];
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }
@@ -105,7 +102,6 @@ export class QuarterlyListComponent implements OnInit {
   fetchFilteredData() {
     console.log('fetchData for QR Overview');
     this.isLoading = true;
-    // this.miscData.getStudentSelfReportsByPeriod('2019', '3', '0', this.studentGUId)
     this.quarterlyData.getQRMinisForPeriod(this.selectedYear, this.selectedPeriod, 0).subscribe(
       (data) => {
         this.qrMinis = data.filter((item) => {
@@ -153,20 +149,18 @@ export class QuarterlyListComponent implements OnInit {
     console.log('selected highlightStatusId: ' + highlightStatusId);
     console.log('selected RQGUID:' + this.qrMinis[rptEntryIdx].quarterlyReportGUId);
 
-    this.quarterlyData
-      .setQRHighlightStatus(this.qrMinis[rptEntryIdx].quarterlyReportGUId, highlightStatusId)
-      .subscribe(
-        () => {
-          this.successMessage = 'Updated';
-          window.setTimeout(() => {
-            // console.log('clearing success message');
-            this.successMessage = '';
-          }, 500);
-        },
-        (error) => {
-          this.errorMessage = error;
-          this.isLoading = false;
-        }
-      );
+    this.quarterlyData.setQRHighlightStatus(this.qrMinis[rptEntryIdx].quarterlyReportGUId, highlightStatusId).subscribe(
+      () => {
+        this.successMessage = 'Updated';
+        window.setTimeout(() => {
+          // console.log('clearing success message');
+          this.successMessage = '';
+        }, 500);
+      },
+      (error) => {
+        this.errorMessage = error;
+        this.isLoading = false;
+      }
+    );
   }
 }

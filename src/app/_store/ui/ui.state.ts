@@ -4,7 +4,7 @@ import { SetTestNamesVisibility } from './ui.action';
 import { UIStateModel } from './ui.model';
 
 @State<UIStateModel>({
-  name: 'student',
+  name: 'ui',
   defaults: {
     testNamesVisibility: false
   }
@@ -17,7 +17,6 @@ export class UIState {
   static getTestNamesVisibility(state: UIStateModel) {
     return state.testNamesVisibility;
   }
-
 
   @Action(SetTestNamesVisibility)
   setTestNamesVisibility(ctx: StateContext<UIStateModel>, { payload }: SetTestNamesVisibility) {

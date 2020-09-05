@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Select } from '@ngxs/store';
+import { Observable } from 'rxjs';
 import { SponsorGroupDataService } from 'src/app/_shared/data/sponsor-group-data.service';
 import { SponsorGroup } from 'src/app/_shared/models/sponsor-group';
 import { SponsorGroupMemberDTO } from 'src/app/_shared/models/sponsor-group-memberDTO';
-import { TestNamesVisibilityService } from 'src/app/_store/testNamesVisibility/test-names-visibility.service';
+import { UIState } from 'src/app/_store/ui/ui.state';
 import { SORTCRITERIA } from '../../_shared/interfaces/SORTCRITERIA';
 import { ColumnSortService } from '../../_shared/services/column-sort.service';
 
@@ -20,18 +22,21 @@ export class SponsorGroupsComponent implements OnInit {
   sortCriteria: SORTCRITERIA;
   displayTestNames: boolean;
 
+  @Select(UIState.getTestNamesVisibility) testNameVisibility$: Observable<boolean>;
+
   constructor(
     public sponsorGroupData: SponsorGroupDataService,
     public router: Router,
-    private columnSorter: ColumnSortService,
-    public testNamesVisibilityService: TestNamesVisibilityService
+    private columnSorter: ColumnSortService
   ) {
     this.isLoading = false;
-    this.displayTestNames = testNamesVisibilityService.getLatestTestNamesVisibility();
   }
 
   ngOnInit() {
-    this.fetchData();
+    this.testNameVisibility$.subscribe((flag) => {
+      this.displayTestNames = flag;
+      this.fetchData();
+    });
   }
 
   // can't rely on two way binding to have updated the selected values
@@ -45,7 +50,7 @@ export class SponsorGroupsComponent implements OnInit {
         this.sponsorGroups = data.filter((item) => {
           if (this.displayTestNames) {
             return item;
-          } else if (!this.displayTestNames && item.sponsorGroupName !== '_Test _SponsorGroup') {
+          } else if (!this.displayTestNames && item.sponsorGroupName !== '_Test _Sponsor _Group') {
             return item;
           }
         });

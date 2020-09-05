@@ -36,14 +36,13 @@ export class AdminsMemberListComponent implements OnInit {
     public router: Router,
     private session: SessionService,
     private columnSorter: ColumnSortService
-    // public testNamesVisibilityService: TestNamesVisibilityService
-  ) {
+  ) // public testNamesVisibilityService: TestNamesVisibilityService
+  {
     console.log('Hi from member List Ctrl controller function');
     this.roleStatuses = constants.memberStatuses;
     this.memberTypes = constants.memberTypes;
     this.studentStatuses = constants.studentStatuses;
     this.isLoading = false;
-    //this.displayTestNames = testNamesVisibilityService.getLatestTestNamesVisibility();
     this.testNameVisibility$.subscribe((flag) => {
       this.displayTestNames = flag;
     });

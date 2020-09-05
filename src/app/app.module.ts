@@ -6,6 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsModule } from '@ngxs/store';
+import { environment } from 'src/environments/environment';
 import { HeaderbarComponent } from './app-navbar/headerbar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,7 @@ import { CodeValuesService } from './_shared/services/codeValuesService';
 import { AppSharedModule } from './_shared/_shared.module';
 import { MemberState } from './_store/member/member.state';
 import { StudentState } from './_store/student/student.state';
+import { UIState } from './_store/ui/ui.state';
 
 export function appInit(codeValuesService: CodeValuesService) {
   return () => codeValuesService.buildArrays();
@@ -25,7 +27,7 @@ export function appInit(codeValuesService: CodeValuesService) {
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'always' }),
     HttpClientModule,
     AppRoutingModule,
-    NgxsModule.forRoot([ StudentState, MemberState ]),
+    NgxsModule.forRoot([ StudentState, MemberState, UIState ], { developmentMode: !environment.production }),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot(),
     AppSharedModule.forRoot()

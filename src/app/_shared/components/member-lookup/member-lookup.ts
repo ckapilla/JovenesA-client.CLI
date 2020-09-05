@@ -13,7 +13,6 @@ import { MemberMiniDTO } from '../../models/memberMiniDTO';
   providedIn: 'root'
 })
 export class MemberNameService {
-
   constructor(private memberData: MemberDataService) {}
 
   search(searchStr: string) {
@@ -42,13 +41,12 @@ export class MemberLookupComponent implements OnInit {
   memberGUId: string;
   private subscription: Subscription;
 
-  @Select(MemberState.getSelectedMemberGUId)  currentGUId$: Observable<string>;
+  @Select(MemberState.getSelectedMemberGUId) currentGUId$: Observable<string>;
 
   constructor(
     private _service: MemberNameService,
     private router: Router,
     private memberData: MemberDataService,
-    // private selectedMember: SelectedMemberService
     private store: Store
   ) {
     console.log('name-lookup constructor!');
@@ -57,11 +55,6 @@ export class MemberLookupComponent implements OnInit {
   ngOnInit() {
     this.subscribeForMemberGUIds2();
   }
-  // ngOnDestroy() {
-  //   // console.log('{{{{{{{{{{{{{JA ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
-  //   // this.selectedMember.unsubscribe();
-  //   this.subscription.unsubscribe();
-  // }
 
   onSelect(item) {
     console.log('onSelect');
@@ -70,7 +63,7 @@ export class MemberLookupComponent implements OnInit {
     this.currentGUId = item.item.memberGUId;
     // this.onSelectedMemberGUId.emit(item.item.memberGUId);
     // this.selectedMember.notifyNewMemberGUId(item.item.memberGUId);
-    this.store.dispatch(new SetSelectedMemberGUId(this.currentGUId))
+    this.store.dispatch(new SetSelectedMemberGUId(this.currentGUId));
 
     this.email = item.item.email;
     this.memberName = item.item.memberName;
@@ -137,7 +130,7 @@ export class MemberLookupComponent implements OnInit {
   resetMemberData() {
     console.log('memberLookup reset');
     this.currentGUId = '0000';
-    this.store.dispatch(new SetSelectedMemberGUId(this.memberGUId))
+    this.store.dispatch(new SetSelectedMemberGUId(this.memberGUId));
   }
 
   search = (text$: Observable<string>) =>

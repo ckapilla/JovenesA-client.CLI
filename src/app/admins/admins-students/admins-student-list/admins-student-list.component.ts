@@ -10,7 +10,6 @@ import { StudentDTO } from 'src/app/_shared/models/studentDTO';
 import { ColumnSortService } from 'src/app/_shared/services/column-sort.service';
 import { SessionService } from 'src/app/_shared/services/session.service';
 import { UIState } from 'src/app/_store/ui/ui.state';
-// delete me import { TestNamesVisibilityService } from 'src/app/_store/testNamesVisibility/test-names-visibility.service';
 
 @Component({
   selector: 'app-admins-student-list',
@@ -36,15 +35,14 @@ export class AdminsStudentListComponent implements OnInit {
   readonly smileys: string[] = constants.smileys;
   displayTestNames: boolean;
 
-@Select(UIState.getTestNamesVisibility) testNameVisibility$: Observable<boolean>;
+  @Select(UIState.getTestNamesVisibility) testNameVisibility$: Observable<boolean>;
 
   constructor(
     public studentData: StudentDataService,
     public router: Router,
     // private route: ActivatedRoute,
     private session: SessionService,
-    private columnSorter: ColumnSortService,
-    // public testNamesVisibilityService: TestNamesVisibilityService
+    private columnSorter: ColumnSortService
   ) {
     console.log('Hi from student List Ctrl controller function');
 
@@ -53,19 +51,15 @@ export class AdminsStudentListComponent implements OnInit {
     this.selectedYearJoined = this.session.getSelectedYearJoined();
     this.selectedGradYear = this.session.getSelectedGradYear();
 
-    // this.gradeRptsStatus = 'yellowWarning.jpg'
-    // this.gpaStatus = 'greenCheck.jpg'
-
     this.isLoading = false;
-    this.testNameVisibility$.subscribe((flag) => {
-      this.displayTestNames = flag;
-    });
   }
 
   ngOnInit() {
     console.log('ngOnInit');
-    // this.processRouteParams();
-    this.fetchFilteredData();
+    this.testNameVisibility$.subscribe((flag) => {
+      this.displayTestNames = flag;
+      this.fetchFilteredData();
+    });
   }
 
   setSelectedActiveStatus(activeStatus: string) {
