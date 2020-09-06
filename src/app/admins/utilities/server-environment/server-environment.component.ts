@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UtilitiesDataService } from 'src/app/_shared/data/utilities-data.service';
 import { ServerEnvironment } from 'src/app/_shared/models/server-environment';
 
@@ -6,7 +6,7 @@ import { ServerEnvironment } from 'src/app/_shared/models/server-environment';
   selector: 'app-server-environment',
   templateUrl: './server-environment.component.html'
 })
-export class ServerEnvironmentComponent implements OnInit, OnDestroy {
+export class ServerEnvironmentComponent implements OnInit {
   env: ServerEnvironment;
   isLoading: boolean;
   errorMessage: string;
@@ -41,6 +41,4 @@ export class ServerEnvironmentComponent implements OnInit, OnDestroy {
       }
     );
   }
-
-  ngOnDestroy() {}
 }

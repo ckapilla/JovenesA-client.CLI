@@ -30,13 +30,9 @@ export class QuarterlyContainerComponent implements OnInit {
   qrMini = new QuarterlyReportRPT();
   private subscription: Subscription;
 
-  @Select(StudentState.getSelectedStudentGUId)  currentGUId$: Observable<string>;
+  @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
 
-  constructor(
-    private route: ActivatedRoute,
-    public quarterlyData: QuarterlyDataService,
-    // delete me private selectedStudent: SelectedStudent
-  ) {
+  constructor(private route: ActivatedRoute, public quarterlyData: QuarterlyDataService) {
     this.years = constants.years;
     this.periods = constants.periods;
     this.activeQRPeriods = constants.activeQRperiods;
@@ -53,24 +49,7 @@ export class QuarterlyContainerComponent implements OnInit {
     this.subscribeForStudentGUIds2();
   }
 
-  // ngOnDestroy() {
-  //   // console.log('{{{{{{{{{{{{{JA ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
-  //   this.subscription.unsubscribe();
-  // }
-
-  // subscribeForStudentGUIds() {
-  //   // console.log('JA set up studentGUId subscription');
-  //   this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
-  //     this.studentGUId = message;
-  //     console.log('JA new StudentGUId received' + this.studentGUId);
-  //     if (this.studentGUId && this.studentGUId !== '0000') {
-  //       this.fetchFilteredData();
-  //     }
-  //   });
-  // }
-
   subscribeForStudentGUIds2() {
-    // console.log('header set up studentGUId subscription');
     this.subscription = this.currentGUId$.subscribe((message) => {
       this.studentGUId = message;
       console.log('************NGXS: header new StudentGUId received' + this.studentGUId);
@@ -84,20 +63,18 @@ export class QuarterlyContainerComponent implements OnInit {
     console.log('fetchtFilteredData');
     if (this.studentGUId && this.studentGUId !== undefined && this.studentGUId !== '0000') {
       this.isLoading = true;
-      this.quarterlyData
-        .getQRMiniForStudentPeriod(this.studentGUId, this.selectedYear, this.selectedPeriod)
-        .subscribe(
-          (data) => {
-            this.qrMini = data;
-            console.log(data);
-            this.selectedReviewedStatusID = '' + this.qrMini.reviewedStatusId;
-            this.quarterlyReportGUId = this.qrMini.quarterlyReportGUId;
-          },
-          (err) => console.error('Subscribe error: ' + err),
-          () => {
-            this.isLoading = false;
-          }
-        );
+      this.quarterlyData.getQRMiniForStudentPeriod(this.studentGUId, this.selectedYear, this.selectedPeriod).subscribe(
+        (data) => {
+          this.qrMini = data;
+          console.log(data);
+          this.selectedReviewedStatusID = '' + this.qrMini.reviewedStatusId;
+          this.quarterlyReportGUId = this.qrMini.quarterlyReportGUId;
+        },
+        (err) => console.error('Subscribe error: ' + err),
+        () => {
+          this.isLoading = false;
+        }
+      );
     }
   }
 

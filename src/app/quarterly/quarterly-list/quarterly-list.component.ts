@@ -6,7 +6,6 @@ import { ColumnSortService } from 'src/app/_shared/services/column-sort.service'
 import { SetSelectedStudentGUId } from 'src/app/_store/student/student.action';
 import { StudentState } from 'src/app/_store/student/student.state';
 import { UIState } from 'src/app/_store/ui/ui.state';
-// delete me import { SelectedStudent } from 'src/app/_store/selectedStudent/selected-student.service';
 // import { TestNamesVisibilityService } from 'src/app/_store/testNamesVisibility/test-names-visibility.service';
 import { constants } from '../../_shared/constants/constants';
 import { QuarterlyDataService } from '../../_shared/data/quarterly-data.service';
@@ -14,6 +13,7 @@ import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 import { SORTCRITERIA } from '../../_shared/interfaces/SORTCRITERIA';
 import { QuarterlyReportRPT } from '../../_shared/models/quarterly-reportRPT';
 import { SessionService } from '../../_shared/services/session.service';
+
 @Component({
   templateUrl: './quarterly-list.html',
   styleUrls: [ './quarterly-list.component.css' ]

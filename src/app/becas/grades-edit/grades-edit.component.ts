@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Select } from '@ngxs/store';
@@ -19,23 +19,21 @@ import { SessionService } from '../../_shared/services/session.service';
   templateUrl: './grades-edit.component.html',
   styleUrls: [ './grades-edit.component.css' ]
 })
-export class GradesEditComponent implements OnInit, OnDestroy {
+export class GradesEditComponent implements OnInit {
   myForm: FormGroup;
   studentDTO: StudentDTO;
-  // gradesGivenEntryDTOs: GradesGivenEntryDTO[];
   studentGradesData: StudentGrades[];
   entry: GradesGivenEntryDTO;
   isLoading: boolean;
   errorMessage: string;
   successMessage: string;
-  // sortCriteria: SORTCRITERIA;
   years: SELECTITEM[];
   months: SELECTITEM[];
   studentGUId: string;
   private subscription: Subscription;
   studentName: string;
 
-  @Select(StudentState.getSelectedStudentGUId)  currentGUId$: Observable<string>;
+  @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
 
   constructor(
     public becaData: BecaDataService,
@@ -44,7 +42,6 @@ export class GradesEditComponent implements OnInit, OnDestroy {
     private session: SessionService,
     private columnSorter: ColumnSortService,
     private _fb: FormBuilder,
-    // delete me private selectedStudent: SelectedStudent,
     public location: Location
   ) {
     console.log('Hi from gradesEdit Ctrl controller function');
@@ -102,28 +99,10 @@ export class GradesEditComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     console.log('gradesEdit ngOnInit');
-    // this.processRouteParams();
-
     this.subscribeForStudentGUIds2();
   }
 
-  ngOnDestroy() {
-    // console.log('{{{{{{{{{{{{GE ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
-    this.subscription.unsubscribe();
-  }
-
-  // subscribeForStudentGUIds() {
-  //   console.log('GradesEdit set up studentGUId subscription');
-  //   this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
-  //     this.studentGUId = message;
-  //     console.log('SR new StudentGUId received' + this.studentGUId);
-  //     if (this.studentGUId && this.studentGUId !== '0000') {
-  //       this.fetchFilteredData();
-  //     }
-  //   });
-  // }
   subscribeForStudentGUIds2() {
-    // console.log('header set up studentGUId subscription');
     this.subscription = this.currentGUId$.subscribe((message) => {
       this.studentGUId = message;
       console.log('************NGXS: header new StudentGUId received' + this.studentGUId);

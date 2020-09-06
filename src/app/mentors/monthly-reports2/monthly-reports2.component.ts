@@ -36,7 +36,6 @@ export class MonthlyReports2Component implements OnInit {
     private router: Router,
     public mentorReport2Data: MentorReport2DataService,
     public session: SessionService,
-    // delete me private selectedStudent: SelectedStudent
   ) {
 
     console.log('monthlyReports constructor');
@@ -45,41 +44,16 @@ export class MonthlyReports2Component implements OnInit {
 
   ngOnInit() {
     console.log('monthlyReports ngOnInit');
-    // this.mentorId = this.currRoute.snapshot.params['mentorId'];
     this.mentorId = this.session.getUserId();
     console.log('mentorId ' + this.mentorId);
     this.mentorGUId = this.session.getUserGUId();
     console.log('mentorGUId ' + this.mentorGUId);
 
-    // // may be undefined at this point:
-    // console.log('studentId ' + this.studentId);
-
-
     this.haveCurrentReport = false;
-
-    // console.log('(((((((((((((((((MR ngOnInit)))))))))))))');
     this.subscribeForStudentGUIds2();
   }
 
-  // ngOnDestroy() {
-  //   // console.log('{{{{{{{{{{{{{MR ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
-  //   this.subscription.unsubscribe();
-  // }
-
-  // subscribeForStudentGUIds() {
-  //   // console.log('MR set up studentGUId subscription');
-  //   this.subscription = this.selectedStudent.subscribeForStudentGUIds()
-  //     .subscribe(message => {
-  //       this.studentGUId = message;
-  //       console.log('MR new StudentGUId received' + this.studentGUId);
-  //       if (this.studentGUId && this.studentGUId !== '0000') {
-  //         this.fetchData();
-  //       }
-  //     });
-  // }
-
   subscribeForStudentGUIds2() {
-    // console.log('header set up studentGUId subscription');
     this.subscription = this.currentGUId$.subscribe((message) => {
       this.studentGUId = message;
       console.log('************NGXS: header new StudentGUId received' + this.studentGUId);

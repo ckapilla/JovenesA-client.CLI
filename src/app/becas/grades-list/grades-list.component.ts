@@ -39,8 +39,6 @@ export class GradesListComponent implements OnInit {
     private session: SessionService,
     private columnSorter: ColumnSortService
   ) {
-    console.log('Hi from grades List Ctrl controller function');
-
     this.years = constants.years;
     this.months = constants.months;
 
@@ -126,8 +124,6 @@ export class GradesListComponent implements OnInit {
   gotoStudent(studentGUId: string, studentName: string) {
     console.log('setting studentName to ' + studentName);
     this.session.setStudentInContextName(studentName);
-
-    // this.selectedStudent.notifyNewStudentGUId(studentGUId);
     this.store.dispatch(new SetSelectedStudentGUId(studentGUId));
 
     const link = [ 'becas/grades-edit' ]; // , { guid: guid }];

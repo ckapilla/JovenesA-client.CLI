@@ -20,7 +20,6 @@ export class SelfReportsComponent implements OnInit, OnChanges {
   errorMessage: string;
   successMessage: string;
 
-
   studentSelfReport: QuarterlyReport;
   quarterlyReportId: number;
   myForm: FormGroup;
@@ -33,7 +32,7 @@ export class SelfReportsComponent implements OnInit, OnChanges {
   @Input() selectedPeriod: string;
   private subscription: Subscription;
 
-  @Select(StudentState.getSelectedStudentGUId)  currentGUId$: Observable<string>;
+  @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -41,8 +40,7 @@ export class SelfReportsComponent implements OnInit, OnChanges {
     public miscData: MiscDataService,
     private _fb: FormBuilder,
     public session: SessionService,
-    public quarterlyData: QuarterlyDataService,
-    // delete me private selectedStudent: SelectedStudent
+    public quarterlyData: QuarterlyDataService
   ) {
     this.myForm = _fb.group({
       // lastContactYearSelector: ['', Validators.required],
@@ -66,24 +64,7 @@ export class SelfReportsComponent implements OnInit, OnChanges {
     this.subscribeForStudentGUIds2();
   }
 
-  // ngOnDestroy() {
-  //   // console.log('{{{{{{{{{{{{{SR ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
-  //   this.subscription.unsubscribe();
-  // }
-
-  // subscribeForStudentGUIds() {
-  //   // console.log('SR set up studentGUId subscription');
-  //   this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
-  //     this.studentGUId = message;
-  //     console.log('SR new StudentGUId received' + this.studentGUId);
-  //     if (this.studentGUId && this.studentGUId !== '0000') {
-  //       this.fetchFilteredData();
-  //     }
-  //   });
-  // }
-
   subscribeForStudentGUIds2() {
-    // console.log('header set up studentGUId subscription');
     this.subscription = this.currentGUId$.subscribe((message) => {
       this.studentGUId = message;
       console.log('************NGXS: header new StudentGUId received' + this.studentGUId);

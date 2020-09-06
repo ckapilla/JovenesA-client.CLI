@@ -25,7 +25,6 @@ export class TestNamesVisibilityComponent {
     console.log('toggle');
     this.displayTestNames = !this.displayTestNames;
     this.strVisibility = this.displayTestNames ? 'Visible' : 'Not Visible';
-    // this.testNamesVisibilityService.notifyNewTestNamesVisibility(this.displayTestNames);
     this.store.dispatch(new SetTestNamesVisibility(this.displayTestNames));
   }
 }

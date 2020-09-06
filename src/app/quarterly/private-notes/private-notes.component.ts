@@ -29,7 +29,7 @@ export class PrivateNotesComponent implements OnInit, OnChanges {
   @Input() selectedPeriod: string;
   private subscription: Subscription;
 
-  @Select(StudentState.getSelectedStudentGUId)  currentGUId$: Observable<string>;
+  @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -37,8 +37,7 @@ export class PrivateNotesComponent implements OnInit, OnChanges {
     public miscData: MiscDataService,
     private _fb: FormBuilder,
     public session: SessionService,
-    public quarterlyData: QuarterlyDataService,
-    // delete me private selectedStudent: SelectedStudent
+    public quarterlyData: QuarterlyDataService
   ) {
     this.myForm = _fb.group({
       // lastContactYearSelector: ['', Validators.required],
@@ -60,24 +59,7 @@ export class PrivateNotesComponent implements OnInit, OnChanges {
     this.subscribeForStudentGUIds2();
   }
 
-  // ngOnDestroy() {
-  //   // console.log('{{{{{{{{{{{{{PN ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
-  //   this.subscription.unsubscribe();
-  // }
-
-  // subscribeForStudentGUIds() {
-  //   // console.log('PN set up studentGUId subscription');
-  //   this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
-  //     this.studentGUId = message;
-  //     console.log('PN new StudentGUId received' + this.studentGUId);
-  //     if (this.studentGUId && this.studentGUId !== '0000') {
-  //       this.fetchFilteredData();
-  //     }
-  //   });
-  // }
-
   subscribeForStudentGUIds2() {
-    // console.log('header set up studentGUId subscription');
     this.subscription = this.currentGUId$.subscribe((message) => {
       this.studentGUId = message;
       console.log('************NGXS: header new StudentGUId received' + this.studentGUId);
@@ -99,11 +81,7 @@ export class PrivateNotesComponent implements OnInit, OnChanges {
           (err) => console.error('Subscribe error: ' + err),
           () => {
             this.isLoading = false;
-            if (
-              this.privateNotes &&
-                            this.privateNotes.pN_Narrative &&
-                            this.privateNotes.pN_Narrative.length > 0
-            ) {
+            if (this.privateNotes && this.privateNotes.pN_Narrative && this.privateNotes.pN_Narrative.length > 0) {
               console.log('### after retreiving, set form controls to retreived selfReport');
               this.narrativeCtl.setValue(this.privateNotes.pN_Narrative);
             } else {

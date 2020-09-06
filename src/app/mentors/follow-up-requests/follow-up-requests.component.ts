@@ -26,14 +26,9 @@ export class FollowUpRequestsComponent implements OnInit {
   haveData = false;
   private subscription: Subscription;
 
-  @Select(StudentState.getSelectedStudentGUId)  currentGUId$: Observable<string>;
+  @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
 
-  constructor(
-    public followUpData: FollowUpDataService,
-    public router: Router,
-    public session: SessionService,
-    // delete me private selectedStudent: SelectedStudent
-  ) {}
+  constructor(public followUpData: FollowUpDataService, public router: Router, public session: SessionService) {}
 
   ngOnInit() {
     console.log('followUpRequest ngOnInit');
@@ -43,27 +38,8 @@ export class FollowUpRequestsComponent implements OnInit {
     // console.log('(((((((((((((((((Assistance ngOnInit)))))))))))))');
     this.subscribeForStudentGUIds2();
   }
-  // ngOnDestroy() {
-  //   // console.log('{{{{{{{{{{{{{Assistance ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
-  //   this.subscription.unsubscribe();
-  // }
-
-  // subscribeForStudentGUIds() {
-  //   // console.log('Assistance set up studentGUId subscription');
-  //   this.subscription = this.selectedStudent
-  //     .subscribeForStudentGUIds()
-  //   // .pipe(takeWhile(() => this.notDestroyed))
-  //     .subscribe((message) => {
-  //       this.studentGUId = message;
-  //       console.log('MR new StudentGUId received' + this.studentGUId);
-  //       if (this.studentGUId && this.studentGUId !== '0000') {
-  //         this.fetchData(this.studentGUId);
-  //       }
-  //     });
-  // }
 
   subscribeForStudentGUIds2() {
-    // console.log('header set up studentGUId subscription');
     this.subscription = this.currentGUId$.subscribe((message) => {
       this.studentGUId = message;
       console.log('************NGXS: header new StudentGUId received' + this.studentGUId);
@@ -94,10 +70,7 @@ export class FollowUpRequestsComponent implements OnInit {
   followUpRequestAdd() {
     console.log('in follow-up-requests: FollowUpRequestAdd, ready to navigate');
     if (this.studentGUId !== null) {
-      const link = [
-        '/mentors/follow-up-requests-add',
-        { mentorId: this.mentorId, studentGUId: this.studentGUId }
-      ];
+      const link = [ '/mentors/follow-up-requests-add', { mentorId: this.mentorId, studentGUId: this.studentGUId } ];
       console.log('navigating to ' + JSON.stringify(link));
       this.router.navigate(link);
     }

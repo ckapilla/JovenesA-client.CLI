@@ -11,7 +11,6 @@ import { StudentMiniDTO } from '../../models/studentMiniDTO';
   providedIn: 'root'
 })
 export class StudentNameService {
-
   constructor(private studentData: StudentDataService) {}
 
   search(searchStr: string) {
@@ -43,13 +42,12 @@ export class StudentLookupComponent implements OnInit {
   @Input() showSearchButton: boolean;
 
   // @Output() onSelectedStudentGUId = new EventEmitter<string>();
-  @Select(StudentState.getSelectedStudentGUId)  currentGUId$: Observable<string>;
+  @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
 
   constructor(
     private _service: StudentNameService,
     private router: Router,
     private studentData: StudentDataService,
-    // delete me private selectedStudent: SelectedStudent,
     private store: Store
   ) {
     console.log('name-lookup constructor!');
@@ -58,20 +56,12 @@ export class StudentLookupComponent implements OnInit {
   ngOnInit() {
     this.subscribeForStudentGUIds2();
   }
-  // ngOnDestroy() {
-  //   // console.log('{{{{{{{{{{{{{JA ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
 
-  //   this.subscription.unsubscribe();
-  // }
   onSelect(item) {
     console.log(item.item.studentId);
     console.log(item.item.studentGUId);
     this.currentGUId = item.item.studentGUId;
-    // this.onSelectedStudentGUId.emit(item.item.studentGUId);
-    // this.selectedStudent.notifyNewStudentGUId(item.item.studentGUId);
-
-
-    this.store.dispatch(new SetSelectedStudentGUId(this.currentGUId))
+    this.store.dispatch(new SetSelectedStudentGUId(this.currentGUId));
 
     this.email = item.item.email;
     this.studentName = item.item.studentName;
@@ -110,7 +100,6 @@ export class StudentLookupComponent implements OnInit {
   //   });
   // }
   subscribeForStudentGUIds2() {
-    // console.log('header set up studentGUId subscription');
     this.subscription = this.currentGUId$.subscribe((message) => {
       this.studentGUId = message;
       console.log('************NGXS: header new StudentGUId received' + this.studentGUId);
@@ -123,7 +112,7 @@ export class StudentLookupComponent implements OnInit {
   resetStudentData() {
     console.log('studentLookup reset');
     this.currentGUId = '0000';
-    this.store.dispatch(new SetSelectedStudentGUId(this.studentGUId))
+    this.store.dispatch(new SetSelectedStudentGUId(this.studentGUId));
     this.currentGUId = '0000';
   }
 

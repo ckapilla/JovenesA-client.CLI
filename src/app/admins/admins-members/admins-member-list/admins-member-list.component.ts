@@ -9,7 +9,6 @@ import { SORTCRITERIA } from 'src/app/_shared/interfaces/SORTCRITERIA';
 import { MemberWithAnyRelatedStudent } from 'src/app/_shared/models/member-with-any-related-student';
 import { ColumnSortService } from 'src/app/_shared/services/column-sort.service';
 import { SessionService } from 'src/app/_shared/services/session.service';
-// import { TestNamesVisibilityService } from 'src/app/_store/testNamesVisibility/test-names-visibility.service';
 import { UIState } from 'src/app/_store/ui/ui.state';
 @Component({
   templateUrl: './admins-member-list.component.html',
@@ -36,8 +35,7 @@ export class AdminsMemberListComponent implements OnInit {
     public router: Router,
     private session: SessionService,
     private columnSorter: ColumnSortService
-  ) // public testNamesVisibilityService: TestNamesVisibilityService
-  {
+  ) {
     console.log('Hi from member List Ctrl controller function');
     this.roleStatuses = constants.memberStatuses;
     this.memberTypes = constants.memberTypes;
@@ -124,8 +122,6 @@ export class AdminsMemberListComponent implements OnInit {
   gotoStudent(guid: string, studentName: string) {
     console.log('setting studentName to ' + studentName);
     this.session.setStudentInContextName(studentName);
-
-    // const link = ['/admins/students/student', id];
     const link = [ 'admins/students/student', { guid: guid } ];
 
     console.log('navigating to ' + link);
@@ -141,8 +137,4 @@ export class AdminsMemberListComponent implements OnInit {
     console.log('parent received sortColumnCLick event with ' + sortCriteria.sortColumn);
     return this.members.sort((a, b) => this.columnSorter.compareValues(a, b, sortCriteria));
   }
-
-  // onSorted($event) {
-  //   console.log('sorted event received');
-  // }
 }

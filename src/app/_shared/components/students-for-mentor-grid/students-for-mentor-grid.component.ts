@@ -23,14 +23,9 @@ export class StudentsForMentorGridComponent implements OnInit {
   private subscription: Subscription;
   gridLoaded: boolean;
 
-  @Select(StudentState.getSelectedStudentGUId)  currentGUId$: Observable<string>;
+  @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
 
-  constructor(
-    public session: SessionService,
-    private studentData: StudentDataService,
-    // delete me private selectedStudent: SelectedStudent
-    private store: Store
-  ) {
+  constructor(public session: SessionService, private studentData: StudentDataService, private store: Store) {
     this.emojis = constants.emojis;
 
     console.log('in StudentsForMentorGridComponent constructor');
@@ -42,26 +37,8 @@ export class StudentsForMentorGridComponent implements OnInit {
     this.gridLoaded = false;
     this.subscribeForStudentGUIds2();
   }
-  // public ngOnDestroy() {
-  //   this.subscription.unsubscribe();
-  // }
-
-  // subscribeForStudentGUIds() {
-  //   console.log('studentGrid set up studentGUId subscription');
-  //   this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
-  //     this.studentGUId = message;
-  //     console.log('students grid new StudentGUId received' + message);
-  //     // only want to respond on initial load; don't want changes from self (user click)
-  //     if (!this.gridLoaded) {
-  //       // initial load no student preselcted
-  //       this.fetchGridData();
-  //       this.gridLoaded = true;
-  //     }
-  //   });
-  // }
 
   subscribeForStudentGUIds2() {
-    // console.log('header set up studentGUId subscription');
     this.subscription = this.currentGUId$.subscribe((message) => {
       this.studentGUId = message;
       console.log('************NGXS: header new StudentGUId received' + this.studentGUId);
@@ -73,7 +50,6 @@ export class StudentsForMentorGridComponent implements OnInit {
       }
     });
   }
-
 
   fetchData() {
     console.log('studentGrid calling getStudentsForMentor');
@@ -116,9 +92,7 @@ export class StudentsForMentorGridComponent implements OnInit {
     console.log('student selected studentGUId: ' + studentGUId + 'idx: ' + idx);
     this.studentGUId = studentGUId;
     this.setRowClasses(this.students[idx].studentGUId, this.students[idx].activeStatus);
-    // this.selectedStudent.notifyNewStudentGUId(studentGUId);
-    this.store.dispatch(new SetSelectedStudentGUId(this.studentGUId))
-
+    this.store.dispatch(new SetSelectedStudentGUId(this.studentGUId));
   }
 
   // called from code (above) and from template

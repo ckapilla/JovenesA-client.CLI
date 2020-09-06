@@ -20,14 +20,9 @@ export class StudentsForSponsorGridComponent implements OnInit {
   studentGUId: string;
   errorMessage = '';
 
-  @Select(StudentState.getSelectedStudentGUId)  currentGUId$: Observable<string>;
+  @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
 
-  constructor(
-    public session: SessionService,
-    private studentData: StudentDataService,
-    // delete me private selectedStudent: SelectedStudent
-    private store: Store
-  ) {
+  constructor(public session: SessionService, private studentData: StudentDataService, private store: Store) {
     this.emojis = constants.emojis;
 
     console.log('in StudentsForMentorGridComponent constructor');
@@ -60,9 +55,7 @@ export class StudentsForSponsorGridComponent implements OnInit {
   public selectStudent(studentGUId: string, idx: number) {
     console.log('student selected studentGUId: ' + studentGUId + 'idx: ' + idx);
     this.studentGUId = studentGUId;
-    // this.selectedStudent.notifyNewStudentGUId(studentGUId);
-    this.store.dispatch(new SetSelectedStudentGUId(this.studentGUId))
-
+    this.store.dispatch(new SetSelectedStudentGUId(this.studentGUId));
   }
 
   public setRowClasses(studentGUId: string) {

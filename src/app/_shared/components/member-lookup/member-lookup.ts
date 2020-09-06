@@ -5,7 +5,6 @@ import { Observable, of, Subscription } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
 import { SetSelectedMemberGUId } from 'src/app/_store/member/member.action';
 import { MemberState } from 'src/app/_store/member/member.state';
-// delete me import { SelectedMemberService } from 'src/app/_store/selectedMember/selected-member.service';
 import { MemberDataService } from '../../data/member-data.service';
 import { MemberMiniDTO } from '../../models/memberMiniDTO';
 
@@ -61,8 +60,6 @@ export class MemberLookupComponent implements OnInit {
     console.log(item.item.memberId);
     console.log(item.item.memberGUId);
     this.currentGUId = item.item.memberGUId;
-    // this.onSelectedMemberGUId.emit(item.item.memberGUId);
-    // this.selectedMember.notifyNewMemberGUId(item.item.memberGUId);
     this.store.dispatch(new SetSelectedMemberGUId(this.currentGUId));
 
     this.email = item.item.email;
@@ -104,7 +101,6 @@ export class MemberLookupComponent implements OnInit {
   //   });
   // }
   subscribeForMemberGUIds2() {
-    // console.log('header set up studentGUId subscription');
     this.subscription = this.currentGUId$.subscribe((message) => {
       this.memberGUId = message;
       console.log('************NGXS: header new MemberGUId received' + this.memberGUId);

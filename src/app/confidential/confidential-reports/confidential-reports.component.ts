@@ -26,14 +26,13 @@ export class ConfidentialReportsComponent implements OnInit {
   haveCurrentReport: boolean;
   private subscription: Subscription;
 
-  @Select(StudentState.getSelectedStudentGUId)  currentGUId$: Observable<string>;
+  @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
 
   constructor(
     public currRoute: ActivatedRoute,
     private router: Router,
     public confidentialReportData: ConfidentialDataService,
-    public session: SessionService,
-    // delete me private selectedStudent: SelectedStudent
+    public session: SessionService
   ) {
     console.log('confidentialReports constructor');
     this.smileys = constants.smileys;
@@ -54,24 +53,7 @@ export class ConfidentialReportsComponent implements OnInit {
     this.subscribeForStudentGUIds2();
   }
 
-  // ngOnDestroy() {
-  //   // console.log('{{{{{{{{{{{{{MR ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
-  //   this.subscription.unsubscribe();
-  // }
-
-  // subscribeForStudentGUIds() {
-  //   // console.log('CR set up studentGUId subscription');
-  //   this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
-  //     this.studentGUId = message;
-  //     console.log('CR new StudentGUId received' + this.studentGUId);
-  //     if (this.studentGUId && this.studentGUId !== '0000') {
-  //       this.fetchData(this.studentGUId);
-  //     }
-  //   });
-  // }
-
   subscribeForStudentGUIds2() {
-    // console.log('header set up studentGUId subscription');
     this.subscription = this.currentGUId$.subscribe((message) => {
       this.studentGUId = message;
       console.log('************NGXS: header new StudentGUId received' + this.studentGUId);
@@ -80,7 +62,6 @@ export class ConfidentialReportsComponent implements OnInit {
       }
     });
   }
-
 
   fetchData() {
     console.log('cr fetchData');

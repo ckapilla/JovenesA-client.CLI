@@ -8,14 +8,10 @@ import { StudentDataService } from '../../data/student-data.service';
 import { StudentHeaderDTO } from '../../models/studentHeaderDTO';
 import { SessionService } from '../../services/session.service';
 
-
-
-
 @Component({
   selector: 'app-student-header-details',
   templateUrl: './student-header-details.component.html'
 })
-
 export class StudentHeaderDetailsComponent implements OnInit {
   data: Object;
   loadingState = 0;
@@ -33,15 +29,14 @@ export class StudentHeaderDetailsComponent implements OnInit {
   @Output() onPhotoPathNameSet = new EventEmitter<string>();
   private subscription: Subscription;
 
-  @Select(StudentState.getSelectedStudentGUId)  currentGUId$: Observable<string>;
+  @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
 
   constructor(
     public currRoute: ActivatedRoute,
     private router: Router,
     private session: SessionService,
     public studentData: StudentDataService,
-    public location: Location,
-    // delete me private selectedStudent: SelectedStudent
+    public location: Location
   ) {
     console.log('hi from StudentHeaderDetails constructor');
 
@@ -57,25 +52,9 @@ export class StudentHeaderDetailsComponent implements OnInit {
     // this.subscribeForStudentGUIds();
 
     this.subscribeForStudentGUIds2();
-
   }
 
-  // ngOnDestroy() {
-  //   this.subscription.unsubscribe();
-  // }
-
-  // subscribeForStudentGUIds() {
-  //   // console.log('header set up studentGUId subscription');
-  //   this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
-  //     this.studentGUId = message;
-  //     console.log('************header new StudentGUId received' + this.studentGUId);
-  //     if (this.studentGUId && this.studentGUId !== '0000') {
-  //       this.fetchData();
-  //     }
-  //   });
-  // }
   subscribeForStudentGUIds2() {
-    // console.log('header set up studentGUId subscription');
     this.subscription = this.currentGUId$.subscribe((message) => {
       this.studentGUId = message;
       console.log('************NGXS: header new StudentGUId received' + this.studentGUId);

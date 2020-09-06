@@ -14,7 +14,7 @@ import { SessionService } from '../../_shared/services/session.service';
   templateUrl: './mr-consolidated.component.html',
   styleUrls: [ './mr-consolidated.component.css' ]
 })
-export class MrConsolidatedComponent implements OnInit, OnChanges  {
+export class MrConsolidatedComponent implements OnInit, OnChanges {
   isLoading: boolean;
   isSubmitted: boolean;
   errorMessage: string;
@@ -32,7 +32,7 @@ export class MrConsolidatedComponent implements OnInit, OnChanges  {
   @Input() selectedPeriod: string;
   private subscription: Subscription;
 
-  @Select(StudentState.getSelectedStudentGUId)  currentGUId$: Observable<string>;
+  @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -40,8 +40,7 @@ export class MrConsolidatedComponent implements OnInit, OnChanges  {
     public miscData: MiscDataService,
     private _fb: FormBuilder,
     public session: SessionService,
-    public quarterlyData: QuarterlyDataService,
-    // delete me private selectedStudent: SelectedStudent
+    public quarterlyData: QuarterlyDataService
   ) {
     this.myForm = _fb.group({
       // lastContactYearSelector: ['', Validators.required],
@@ -65,22 +64,7 @@ export class MrConsolidatedComponent implements OnInit, OnChanges  {
     this.subscribeForStudentGUIds2();
   }
 
-  // ngOnDestroy() {
-  //   // console.log('{{{{{{{{{{{{{MR ngOnDestroy / unsubscribe }}}}}}}}}}}}}');
-  //   this.subscription.unsubscribe();
-  // }
-
-  // subscribeForStudentGUIds() {
-  //   // console.log('MR set up studentGUId subscription');
-  //   this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
-  //     this.studentGUId = message;
-  //     console.log('MR new StudentGUId received' + this.studentGUId);
-  //     this.fetchFilteredData();
-  //   });
-  // }
-
   subscribeForStudentGUIds2() {
-    // console.log('header set up studentGUId subscription');
     this.subscription = this.currentGUId$.subscribe((message) => {
       this.studentGUId = message;
       console.log('************NGXS: header new StudentGUId received' + this.studentGUId);
