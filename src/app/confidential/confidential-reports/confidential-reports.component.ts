@@ -68,7 +68,6 @@ export class ConfidentialReportsComponent implements OnInit {
     this.isLoading = true;
     this.isLoading = true;
     this.haveCurrentReport = false;
-    this.studentGUId = this.studentGUId;
     this.confidentialReportData.getConfidentialReportRPTsViaGUID(0, this.studentGUId).subscribe(
       (data) => {
         this.confidentialReports = data;

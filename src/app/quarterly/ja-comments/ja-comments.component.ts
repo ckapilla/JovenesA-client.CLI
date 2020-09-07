@@ -59,14 +59,14 @@ export class JaCommentsComponent implements OnInit, OnChanges {
       this.myForm.disable();
     }
 
-    // console.log('(((((((((((((((((JA ngOnInit)))))))))))))');
+    console.log('(((((((((((((((((JA ngOnInit)))))))))))))');
     this.subscribeForStudentGUIds2();
   }
 
   subscribeForStudentGUIds2() {
     this.subscription = this.currentGUId$.subscribe((message) => {
       this.studentGUId = message;
-      console.log('************NGXS: header new StudentGUId received' + this.studentGUId);
+      console.log('************NGXS: jaComments new StudentGUId received' + this.studentGUId);
       if (this.studentGUId && this.studentGUId !== '0000') {
         this.fetchFilteredData();
       }
@@ -86,7 +86,7 @@ export class JaCommentsComponent implements OnInit, OnChanges {
           () => {
             this.isLoading = false;
             if (this.jaComment) {
-              console.log('### after retreiving, set form controls to retreived selfReport');
+              console.log('### after retreiving, set form controls to retreived jaComments');
               this.narrative_SpanishCtl.setValue(this.jaComment.jA_Narrative_Spanish);
               if (!this.bEditable) {
                 if (this.jaComment.jA_Narrative_English.length === 0) {

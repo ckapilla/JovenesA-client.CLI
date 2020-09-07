@@ -60,14 +60,14 @@ export class SelfReportsComponent implements OnInit, OnChanges {
       this.myForm.disable();
     }
 
-    // console.log('(((((((((((((((((SR ngOnInit)))))))))))))');
+    console.log('(((((((((((((((((SelfReports ngOnInit)))))))))))))');
     this.subscribeForStudentGUIds2();
   }
 
   subscribeForStudentGUIds2() {
     this.subscription = this.currentGUId$.subscribe((message) => {
       this.studentGUId = message;
-      console.log('************NGXS: header new StudentGUId received' + this.studentGUId);
+      console.log('************NGXS: selfReports new StudentGUId received' + this.studentGUId);
       if (this.studentGUId && this.studentGUId !== '0000') {
         this.fetchFilteredData();
       }

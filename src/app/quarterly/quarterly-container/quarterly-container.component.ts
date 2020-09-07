@@ -40,20 +40,19 @@ export class QuarterlyContainerComponent implements OnInit {
     this.selectedYear = '2020'; // '' + today.getFullYear(); //
     this.selectedPeriod = '2'; // + today.getPeriod() + 1;// '5';
     this.selectedYearPeriod = constants.selectedYearPeriod; // '2020-2';
-    this.studentGUIdReceived = false;
   }
 
   ngOnInit() {
-    console.log('containerInit');
-    // this.processRouteParams();
+    console.log('QR containerInit');
     this.subscribeForStudentGUIds2();
   }
 
   subscribeForStudentGUIds2() {
     this.subscription = this.currentGUId$.subscribe((message) => {
       this.studentGUId = message;
-      console.log('************NGXS: header new StudentGUId received' + this.studentGUId);
+      console.log('************NGXS: quarterlyContainer new StudentGUId received' + this.studentGUId);
       if (this.studentGUId && this.studentGUId !== '0000') {
+        this.studentGUIdReceived = true;
         this.fetchFilteredData();
       }
     });
@@ -68,6 +67,7 @@ export class QuarterlyContainerComponent implements OnInit {
           this.qrMini = data;
           console.log(data);
           this.selectedReviewedStatusID = '' + this.qrMini.reviewedStatusId;
+          console.log('+++++++++++++++++++++selectedReviewedStatusID ' + this.qrMini.reviewedStatusId);
           this.quarterlyReportGUId = this.qrMini.quarterlyReportGUId;
         },
         (err) => console.error('Subscribe error: ' + err),
@@ -102,8 +102,5 @@ export class QuarterlyContainerComponent implements OnInit {
     this.selectedYear = yearPeriod.substr(0, 4);
     this.selectedPeriod = yearPeriod.substr(5, 1);
     this.fetchFilteredData();
-  }
-  onStudentGUIdReceived(bSet: boolean) {
-    this.studentGUIdReceived = bSet;
   }
 }

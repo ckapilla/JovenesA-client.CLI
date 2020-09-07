@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { SessionService } from 'src/app/_shared/services/session.service';
 import { constants } from '../../_shared/constants/constants';
 import { MemberDataService } from '../../_shared/data/member-data.service';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
@@ -24,7 +25,7 @@ export class MentorsProfileComponent implements OnInit {
 
   constructor(
     public currRoute: ActivatedRoute,
-    private router: Router,
+    private session: SessionService,
     public memberData: MemberDataService,
     public formBuilder: FormBuilder
   ) {
@@ -57,10 +58,11 @@ export class MentorsProfileComponent implements OnInit {
   }
 
   fetchData() {
-    const id = this.currRoute.snapshot.params['id'];
-    console.log('calling data service with mentorId: ' + id);
+    // const id = this.currRoute.snapshot.params['id'];
+    const guid = this.session.getUserGUId();
+    console.log('calling data service with mentorGUId: ' + guid);
     this.isLoading = true;
-    this.memberData.getMember(id).subscribe(
+    this.memberData.getMemberByGUId(guid).subscribe(
       (data) => {
         this.mentor = data;
       },
