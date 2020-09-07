@@ -9,3 +9,13 @@ export class SetTestNamesVisibility {
   static readonly type = '[UI] update testNamesVisibility';
   constructor(public readonly payload: boolean) {}
 }
+
+export class GetSelectedYearPeriod {
+  static readonly type = '[UI] Get selectedYearPeriod';
+  constructor(public payload: UIStateModel) {}
+}
+
+export class SetSelectedYearPeriod {
+  static readonly type = '[UI] update selectedYearPeriod';
+  constructor(public readonly payload: string) {}
+}

@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { SetTestNamesVisibility } from './ui.action';
+import { SetSelectedYearPeriod, SetTestNamesVisibility } from './ui.action';
 import { UIStateModel } from './ui.model';
 
 @State<UIStateModel>({
   name: 'ui',
   defaults: {
-    testNamesVisibility: false
+    testNamesVisibility: false,
+    selectedYearPeriod: '2020-2'
   }
 })
 @Injectable()
@@ -25,6 +26,21 @@ export class UIState {
     ctx.patchState({
       ...state,
       testNamesVisibility
+    });
+  }
+
+  @Selector()
+  static getSelectedYearPeriod(state: UIStateModel) {
+    return state.selectedYearPeriod;
+  }
+
+  @Action(SetSelectedYearPeriod)
+  setSelectedYearPeriod(ctx: StateContext<UIStateModel>, { payload }: SetSelectedYearPeriod) {
+    const selectedYearPeriod = payload;
+    const state = ctx.getState();
+    ctx.patchState({
+      ...state,
+      selectedYearPeriod
     });
   }
 }

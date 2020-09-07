@@ -1,10 +1,11 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Select } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { MiscDataService } from 'src/app/_shared/data/misc-data.service';
 import { StudentState } from 'src/app/_store/student/student.state';
+import { UIState } from 'src/app/_store/ui/ui.state';
 import { QuarterlyDataService } from '../../_shared/data/quarterly-data.service';
 import { QuarterlyReport } from '../../_shared/models/quarterly-report';
 import { SessionService } from '../../_shared/services/session.service';
@@ -13,7 +14,7 @@ import { SessionService } from '../../_shared/services/session.service';
   selector: 'app-private-notes',
   templateUrl: './private-notes.component.html'
 })
-export class PrivateNotesComponent implements OnInit, OnChanges {
+export class PrivateNotesComponent implements OnInit {
   isLoading: boolean;
   isSubmitted: boolean;
   errorMessage: string;
@@ -25,11 +26,11 @@ export class PrivateNotesComponent implements OnInit, OnChanges {
   reportIdCtl: AbstractControl;
   studentGUId: string;
   @Input() bEditable: boolean;
-  @Input() selectedYear: string;
-  @Input() selectedPeriod: string;
+  selectedYearPeriod = '';
   private subscription: Subscription;
 
   @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
+  @Select(UIState.getSelectedYearPeriod) selectedYearPeriod$: Observable<string>;
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -41,8 +42,8 @@ export class PrivateNotesComponent implements OnInit, OnChanges {
   ) {
     this.myForm = _fb.group({
       // lastContactYearSelector: ['', Validators.required],
-      narrative: [ '' ],
-      quarterlyReportId: [ this.reportIdCtl ]
+      narrative: [''],
+      quarterlyReportId: [this.reportIdCtl]
     });
 
     this.narrativeCtl = this.myForm.controls['narrative'];
@@ -55,25 +56,39 @@ export class PrivateNotesComponent implements OnInit, OnChanges {
       this.myForm.disable();
     }
 
-    console.log('(((((((((((((((((PN ngOnInit)))))))))))))');
+    // console.log('(((((((((((((((((PN ngOnInit)))))))))))))');
     this.subscribeForStudentGUIds2();
+    this.subscribeForSelectedYearPeriod();
   }
 
   subscribeForStudentGUIds2() {
     this.subscription = this.currentGUId$.subscribe((message) => {
       this.studentGUId = message;
-      console.log('************NGXS: privateNotes new StudentGUId received' + this.studentGUId);
+      console.log('************NGXS: PN new StudentGUId received' + this.studentGUId);
       if (this.studentGUId && this.studentGUId !== '0000') {
         this.fetchFilteredData();
       }
     });
   }
 
+  subscribeForSelectedYearPeriod() {
+    this.subscription = this.selectedYearPeriod$.subscribe((message) => {
+      this.selectedYearPeriod = message;
+      console.log('************NGXS: PN new selectedYearPeriod received' + this.selectedYearPeriod);
+      this.fetchFilteredData();
+    });
+  }
+
   fetchFilteredData() {
-    if (this.studentGUId && this.studentGUId !== undefined && this.studentGUId !== '0000') {
+    if (
+      this.studentGUId &&
+      this.studentGUId !== undefined &&
+      this.studentGUId !== '0000' &&
+      this.selectedYearPeriod !== ''
+    ) {
       this.isLoading = true;
       this.quarterlyData
-        .getPartialQuarterlyReportByPeriod('PN', this.studentGUId, this.selectedYear, this.selectedPeriod, '0')
+        .getPartialQuarterlyReportByPeriod('PN', this.studentGUId, this.selectedYearPeriod, '0')
         .subscribe(
           (data) => {
             this.privateNotes = data;
@@ -94,9 +109,6 @@ export class PrivateNotesComponent implements OnInit, OnChanges {
   }
 
   onSubmit() {
-    console.log('Hi from Self Reports Submit');
-    // console.log(this.mentorReport);
-
     if (this.myForm.invalid) {
       this.errorMessage = '';
 
@@ -107,24 +119,16 @@ export class PrivateNotesComponent implements OnInit, OnChanges {
       return false;
     }
 
-    console.log('###before submitting update model with form control values');
-    // mentorId and studentId do not have corresponding controls
-
     this.privateNotes.pN_Narrative = this.narrativeCtl.value;
-    // this.selfReport.reviewedStatusId = 2086; // already is needs setup or wouldn't be here
 
     this.quarterlyData.updatePartialQuarterlyReport(this.privateNotes, 'PN').subscribe(
       () => {
         this.successMessage = 'Saved successfully / Guardar con exito';
         window.setTimeout(() => {
-          // console.log('clearing success message');
           this.successMessage = '';
         }, 5000);
         this.isSubmitted = true;
         this.isLoading = false;
-        const target = '/quarterly';
-        console.log('after call to edit PN; navigating to ' + target);
-        // this.router.navigateByUrl(target);
       },
       (error) => {
         this.errorMessage = error.message;
@@ -138,12 +142,5 @@ export class PrivateNotesComponent implements OnInit, OnChanges {
     const target = '/quarterly';
     console.log('navigating to ' + target);
     this.router.navigateByUrl(target);
-  }
-
-  public ngOnChanges(changes: SimpleChanges) {
-    if (changes.selectedYear || changes.selectedPeriod) {
-      console.log(changes);
-      this.fetchFilteredData();
-    }
   }
 }

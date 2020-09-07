@@ -1,10 +1,11 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Select } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { MiscDataService } from 'src/app/_shared/data/misc-data.service';
 import { StudentState } from 'src/app/_store/student/student.state';
+import { UIState } from 'src/app/_store/ui/ui.state';
 import { QuarterlyDataService } from '../../_shared/data/quarterly-data.service';
 import { QuarterlyReport } from '../../_shared/models/quarterly-report';
 import { SessionService } from '../../_shared/services/session.service';
@@ -12,9 +13,9 @@ import { SessionService } from '../../_shared/services/session.service';
 @Component({
   selector: 'app-self-reports',
   templateUrl: './self-reports.component.html',
-  styleUrls: [ './self-reports.component.css', '../../../assets/css/forms.css' ]
+  styleUrls: ['./self-reports.component.css', '../../../assets/css/forms.css']
 })
-export class SelfReportsComponent implements OnInit, OnChanges {
+export class SelfReportsComponent implements OnInit {
   isLoading: boolean;
   isSubmitted: boolean;
   errorMessage: string;
@@ -28,11 +29,11 @@ export class SelfReportsComponent implements OnInit, OnChanges {
   reportIdCtl: AbstractControl;
   studentGUId: string;
   @Input() bEditable: boolean;
-  @Input() selectedYear: string;
-  @Input() selectedPeriod: string;
+  selectedYearPeriod = '';
   private subscription: Subscription;
 
   @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
+  @Select(UIState.getSelectedYearPeriod) selectedYearPeriod$: Observable<string>;
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -44,9 +45,9 @@ export class SelfReportsComponent implements OnInit, OnChanges {
   ) {
     this.myForm = _fb.group({
       // lastContactYearSelector: ['', Validators.required],
-      narrative_English: [ '', {} ],
-      narrative_Spanish: [ '' ],
-      quarterlyReportId: [ this.reportIdCtl ]
+      narrative_English: ['', {}],
+      narrative_Spanish: [''],
+      quarterlyReportId: [this.reportIdCtl]
     });
 
     this.narrative_EnglishCtl = this.myForm.controls['narrative_English'];
@@ -60,25 +61,39 @@ export class SelfReportsComponent implements OnInit, OnChanges {
       this.myForm.disable();
     }
 
-    console.log('(((((((((((((((((SelfReports ngOnInit)))))))))))))');
+    // console.log('(((((((((((((((((SelfReports ngOnInit)))))))))))))');
     this.subscribeForStudentGUIds2();
+    this.subscribeForSelectedYearPeriod();
   }
 
   subscribeForStudentGUIds2() {
     this.subscription = this.currentGUId$.subscribe((message) => {
       this.studentGUId = message;
-      console.log('************NGXS: selfReports new StudentGUId received' + this.studentGUId);
+      console.log('************NGXS: SR new StudentGUId received' + this.studentGUId);
       if (this.studentGUId && this.studentGUId !== '0000') {
         this.fetchFilteredData();
       }
     });
   }
 
+  subscribeForSelectedYearPeriod() {
+    this.subscription = this.selectedYearPeriod$.subscribe((message) => {
+      this.selectedYearPeriod = message;
+      console.log('************NGXS: SR new selectedYearPeriod received' + this.selectedYearPeriod);
+      this.fetchFilteredData();
+    });
+  }
+
   fetchFilteredData() {
-    if (this.studentGUId && this.studentGUId !== undefined && this.studentGUId !== '0000') {
+    if (
+      this.studentGUId &&
+      this.studentGUId !== undefined &&
+      this.studentGUId !== '0000' &&
+      this.selectedYearPeriod !== ''
+    ) {
       this.isLoading = true;
       this.quarterlyData
-        .getPartialQuarterlyReportByPeriod('SR', this.studentGUId, this.selectedYear, this.selectedPeriod, '0')
+        .getPartialQuarterlyReportByPeriod('SR', this.studentGUId, this.selectedYearPeriod, '0')
         .subscribe(
           (data) => {
             this.studentSelfReport = data;
@@ -102,9 +117,6 @@ export class SelfReportsComponent implements OnInit, OnChanges {
   }
 
   onSubmit() {
-    console.log('Hi from Self Reports Submit');
-    // console.log(this.mentorReport);
-
     if (this.myForm.invalid) {
       this.errorMessage = '';
 
@@ -116,24 +128,18 @@ export class SelfReportsComponent implements OnInit, OnChanges {
     }
 
     console.log('###before submitting update model with form control values');
-    // mentorId and studentId do not have corresponding controls
 
     this.studentSelfReport.sR_Narrative_English = this.narrative_EnglishCtl.value;
     this.studentSelfReport.sR_Narrative_Spanish = this.narrative_SpanishCtl.value;
-    // this.selfReport.reviewedStatusId = 2086; // already is needs setup or wouldn't be here
 
     this.quarterlyData.updatePartialQuarterlyReport(this.studentSelfReport, 'SR').subscribe(
       () => {
         this.successMessage = 'Saved successfully / Guardar con exito';
         window.setTimeout(() => {
-          // console.log('clearing success message');
           this.successMessage = '';
         }, 5000);
         this.isSubmitted = true;
         this.isLoading = false;
-        const target = '/quarterly';
-        console.log('after call to edit SSR; navigating to ' + target);
-        // this.router.navigateByUrl(target);
       },
       (error) => {
         this.errorMessage = error.message;
@@ -147,12 +153,5 @@ export class SelfReportsComponent implements OnInit, OnChanges {
     const target = '/quarterly';
     console.log('navigating to ' + target);
     this.router.navigateByUrl(target);
-  }
-
-  public ngOnChanges(changes: SimpleChanges) {
-    if (changes.selectedYear || changes.selectedPeriod) {
-      console.log(changes);
-      this.fetchFilteredData();
-    }
   }
 }

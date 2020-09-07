@@ -20,8 +20,6 @@ export class StudentHeaderDetailsComponent implements OnInit {
 
   errorMessage: string;
   successMessage: string;
-  // firstNames: string;
-  // lastNames: string;
 
   student: StudentHeaderDTO;
   photoPathName: string;
@@ -46,46 +44,35 @@ export class StudentHeaderDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    // console.log('StudentHeaderDetails ngOnInit');
-    // this.fetchStudentDTOData();
     this.loadingState = 0;
-    // this.subscribeForStudentGUIds();
-
     this.subscribeForStudentGUIds2();
   }
 
   subscribeForStudentGUIds2() {
     this.subscription = this.currentGUId$.subscribe((message) => {
       this.studentGUId = message;
-      console.log('************NGXS: header new StudentGUId received' + this.studentGUId);
-      if (this.studentGUId && this.studentGUId !== '0000') {
-        this.fetchData();
-      }
+      console.log('************NGXS: header details new StudentGUId received' + this.studentGUId);
+      this.fetchData();
     });
   }
 
   fetchData() {
-    this.loadingState = 1;
-    this.studentData.getStudentHeaderDTO(this.studentGUId).subscribe(
-      (data) => {
-        this.student = data;
-      },
-      (err) => {
-        this.errorMessage = err;
-      },
-      () => {
-        this.loadingState = 2;
-        this.photoPathName = this.student.photoUrl;
-        // console.log('StudentHeaderDetails: emitting photo path: ' + this.photoPathName);
-        this.onPhotoPathNameSet.emit(this.photoPathName);
-      }
-    );
+    if (this.studentGUId && this.studentGUId !== undefined && this.studentGUId !== '0000') {
+      this.loadingState = 1;
+      this.studentData.getStudentHeaderDTO(this.studentGUId).subscribe(
+        (data) => {
+          this.student = data;
+        },
+        (err) => {
+          this.errorMessage = err;
+        },
+        () => {
+          this.loadingState = 2;
+          this.photoPathName = this.student.photoUrl;
+          // console.log('StudentHeaderDetails: emitting photo path: ' + this.photoPathName);
+          this.onPhotoPathNameSet.emit(this.photoPathName);
+        }
+      );
+    }
   }
-
-  // public ngOnChanges(changes: SimpleChanges) {
-  //   if (changes.studentGUId) {
-  //     console.log('studentHeaderDetails changes has studentGUId:' + this.studentGUId);
-  //     this.fetchData();
-  //   }
-  // }
 }

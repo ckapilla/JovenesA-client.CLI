@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Select } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { QuarterlyReportRPT } from 'src/app/_shared/models/quarterly-reportRPT';
 import { StudentState } from 'src/app/_store/student/student.state';
+import { SetSelectedYearPeriod } from 'src/app/_store/ui/ui.action';
+import { UIState } from 'src/app/_store/ui/ui.state';
 import { constants } from '../../_shared/constants/constants';
 import { QuarterlyDataService } from '../../_shared/data/quarterly-data.service';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
@@ -16,14 +18,10 @@ export class QuarterlyContainerComponent implements OnInit {
   isLoading = false;
   errorMessage: string;
   successMessage: string;
-  years: SELECTITEM[];
-  periods: SELECTITEM[];
-  activeQRPeriods: SELECTITEM[];
-  selectedYear: string;
-  selectedPeriod: string;
-  selectedYearPeriod: string;
+  selectedYearPeriod = '';
   studentGUId: string;
   studentGUIdReceived: boolean;
+  readonly activeQRPeriods: SELECTITEM[] = constants.activeQRperiods;
   readonly reviewedStatuses: SELECTITEM[] = constants.reviewedQRStatuses;
   quarterlyReportGUId: string;
   selectedReviewedStatusID: string;
@@ -31,20 +29,14 @@ export class QuarterlyContainerComponent implements OnInit {
   private subscription: Subscription;
 
   @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
+  @Select(UIState.getSelectedYearPeriod) selectedYearPeriod$: Observable<string>;
 
-  constructor(private route: ActivatedRoute, public quarterlyData: QuarterlyDataService) {
-    this.years = constants.years;
-    this.periods = constants.periods;
-    this.activeQRPeriods = constants.activeQRperiods;
-
-    this.selectedYear = '2020'; // '' + today.getFullYear(); //
-    this.selectedPeriod = '2'; // + today.getPeriod() + 1;// '5';
-    this.selectedYearPeriod = constants.selectedYearPeriod; // '2020-2';
-  }
+  constructor(private route: ActivatedRoute, public quarterlyData: QuarterlyDataService, public store: Store) {}
 
   ngOnInit() {
     console.log('QR containerInit');
     this.subscribeForStudentGUIds2();
+    this.subscribeForSelectedYearPeriod();
   }
 
   subscribeForStudentGUIds2() {
@@ -58,14 +50,26 @@ export class QuarterlyContainerComponent implements OnInit {
     });
   }
 
+  subscribeForSelectedYearPeriod() {
+    this.subscription = this.selectedYearPeriod$.subscribe((message) => {
+      this.selectedYearPeriod = message;
+      console.log('************NGXS: SR new selectedYearPeriod received' + this.selectedYearPeriod);
+      this.fetchFilteredData();
+    });
+  }
+
   fetchFilteredData() {
-    console.log('fetchtFilteredData');
-    if (this.studentGUId && this.studentGUId !== undefined && this.studentGUId !== '0000') {
+    if (
+      this.studentGUId &&
+      this.studentGUId !== undefined &&
+      this.studentGUId !== '0000' &&
+      this.selectedYearPeriod !== ''
+    ) {
       this.isLoading = true;
-      this.quarterlyData.getQRMiniForStudentPeriod(this.studentGUId, this.selectedYear, this.selectedPeriod).subscribe(
+      this.quarterlyData.getQRMiniForStudentPeriod(this.studentGUId, this.selectedYearPeriod).subscribe(
         (data) => {
           this.qrMini = data;
-          console.log(data);
+          // console.log(data);
           this.selectedReviewedStatusID = '' + this.qrMini.reviewedStatusId;
           console.log('+++++++++++++++++++++selectedReviewedStatusID ' + this.qrMini.reviewedStatusId);
           this.quarterlyReportGUId = this.qrMini.quarterlyReportGUId;
@@ -80,13 +84,11 @@ export class QuarterlyContainerComponent implements OnInit {
 
   setStatusForQR(statusId: number) {
     console.log('selected reviewedStatusId: ' + statusId);
-    console.log('selected RQGUID:' + this.quarterlyReportGUId);
 
     this.quarterlyData.setQRReviewedStatus(this.quarterlyReportGUId, statusId).subscribe(
       () => {
         this.successMessage = 'Updated';
         window.setTimeout(() => {
-          // console.log('clearing success message');
           this.successMessage = '';
         }, 500);
       },
@@ -98,9 +100,7 @@ export class QuarterlyContainerComponent implements OnInit {
   }
 
   setSelectedYearPeriod(yearPeriod: string) {
-    this.selectedYearPeriod = yearPeriod;
-    this.selectedYear = yearPeriod.substr(0, 4);
-    this.selectedPeriod = yearPeriod.substr(5, 1);
+    this.store.dispatch(new SetSelectedYearPeriod(yearPeriod));
     this.fetchFilteredData();
   }
 }

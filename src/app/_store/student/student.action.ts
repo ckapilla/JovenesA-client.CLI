@@ -5,11 +5,6 @@ export class GetStudents {
   constructor(public payload: StudentStateModel) {}
 }
 
-// export class SetSelectedStudentGUId {
-// 	static readonly type = '[StudentLookupComponent] Set Current';
-// 	constructor(public payload: string) {}
-// }
-
 export class SetSelectedStudentGUId {
   static readonly type = '[Student Lookup Component] update studentGUId';
   constructor(public readonly payload: string) {}

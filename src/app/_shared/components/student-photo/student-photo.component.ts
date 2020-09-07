@@ -1,21 +1,15 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { UrlService } from '../../services/url.service';
 @Component({
   selector: 'app-student-photo',
-  templateUrl: './student-photo.component.html',
+  templateUrl: './student-photo.component.html'
 })
 export class StudentPhotoComponent implements OnChanges {
-
-  @Input() studentGUId: string;
   @Input() photoPathName: string;
   fullPhotoPathName: string;
   clientUrl: string;
 
-  constructor(urlService: UrlService
-
-  ) {
+  constructor() {
     console.log('hi from student-header constructor');
-    this.clientUrl = urlService.getClientUrl();
   }
 
   public ngOnChanges(changes: SimpleChanges) {
