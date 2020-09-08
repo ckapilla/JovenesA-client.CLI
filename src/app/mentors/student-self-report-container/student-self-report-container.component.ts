@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Select, Store } from '@ngxs/store';
+import { Observable, Subscription } from 'rxjs';
 import { constants } from 'src/app/_shared/constants/constants';
 import { SELECTITEM } from 'src/app/_shared/interfaces/SELECTITEM';
+import { SetSelectedYearPeriod } from 'src/app/_store/ui/ui.action';
+import { UIState } from 'src/app/_store/ui/ui.state';
 
 @Component({
   selector: 'student-self-report-container',
@@ -8,30 +12,28 @@ import { SELECTITEM } from 'src/app/_shared/interfaces/SELECTITEM';
 })
 export class StudentSelfReportContainerComponent implements OnInit {
   isLoading = false;
-  years: SELECTITEM[];
-  periods: SELECTITEM[];
-  activeQRPeriods: SELECTITEM[];
-  selectedYear: string;
-  selectedPeriod: string;
+  readonly activeQRPeriods: SELECTITEM[] = constants.activeQRperiods;
+  studentGUId: string;
+  studentGUIdReceived: boolean;
   selectedYearPeriod: string;
-  constructor() {
-    this.years = constants.years;
-    this.periods = constants.periods;
-    this.activeQRPeriods = constants.activeQRperiods;
+  private subscription: Subscription;
 
-    this.selectedYear = '2020'; // '' + today.getFullYear(); //
-    this.selectedPeriod = '2'; // + today.getPeriod() + 1;// '5';
-    this.selectedYearPeriod = constants.selectedYearPeriod;
+  @Select(UIState.getSelectedYearPeriod) selectedYearPeriod$: Observable<string>;
 
-  }
+  constructor(private store: Store) {}
 
   ngOnInit() {
+    this.subscribeForSelectedYearPeriod();
+  }
+
+  subscribeForSelectedYearPeriod() {
+    this.subscription = this.selectedYearPeriod$.subscribe((message) => {
+      this.selectedYearPeriod = message;
+      console.log('************NGXS: SR new selectedYearPeriod received' + this.selectedYearPeriod);
+    });
   }
 
   setSelectedYearPeriod(yearPeriod: string) {
-    this.selectedYearPeriod = yearPeriod;
-    this.selectedYear = yearPeriod.substr(0, 4);
-    this.selectedPeriod = yearPeriod.substr(5, 1);
+    this.store.dispatch(new SetSelectedYearPeriod(yearPeriod));
   }
-
 }

@@ -69,7 +69,6 @@ export class QuarterlyContainerComponent implements OnInit {
       this.quarterlyData.getQRMiniForStudentPeriod(this.studentGUId, this.selectedYearPeriod).subscribe(
         (data) => {
           this.qrMini = data;
-          // console.log(data);
           this.selectedReviewedStatusID = '' + this.qrMini.reviewedStatusId;
           console.log('+++++++++++++++++++++selectedReviewedStatusID ' + this.qrMini.reviewedStatusId);
           this.quarterlyReportGUId = this.qrMini.quarterlyReportGUId;
