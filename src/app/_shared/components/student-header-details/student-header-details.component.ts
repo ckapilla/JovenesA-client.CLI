@@ -1,12 +1,11 @@
 import { Location } from '@angular/common';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Select } from '@ngxs/store';
+import { Component, OnInit } from '@angular/core';
+import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
+import { SetPhotoPathname } from 'src/app/_store/student/student.action';
 import { StudentState } from 'src/app/_store/student/student.state';
 import { StudentDataService } from '../../data/student-data.service';
 import { StudentHeaderDTO } from '../../models/studentHeaderDTO';
-import { SessionService } from '../../services/session.service';
 
 @Component({
   selector: 'app-student-header-details',
@@ -22,20 +21,12 @@ export class StudentHeaderDetailsComponent implements OnInit {
   successMessage: string;
 
   student: StudentHeaderDTO;
-  photoPathName: string;
   studentGUId: string;
-  @Output() onPhotoPathNameSet = new EventEmitter<string>();
   private subscription: Subscription;
 
   @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
 
-  constructor(
-    public currRoute: ActivatedRoute,
-    private router: Router,
-    private session: SessionService,
-    public studentData: StudentDataService,
-    public location: Location
-  ) {
+  constructor(private store: Store, public studentData: StudentDataService, public location: Location) {
     console.log('hi from StudentHeaderDetails constructor');
 
     this.errorMessage = '';
@@ -68,9 +59,7 @@ export class StudentHeaderDetailsComponent implements OnInit {
         },
         () => {
           this.loadingState = 2;
-          this.photoPathName = this.student.photoUrl;
-          // console.log('StudentHeaderDetails: emitting photo path: ' + this.photoPathName);
-          this.onPhotoPathNameSet.emit(this.photoPathName);
+          this.store.dispatch(new SetPhotoPathname(this.student.photoUrl));
         }
       );
     }

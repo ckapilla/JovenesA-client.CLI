@@ -9,7 +9,8 @@ import { MemberStateModel } from './member.model';
   name: 'member',
   defaults: {
     members: [],
-    selectedMemberGUId: '0000'
+    selectedMemberGUId: '0000',
+    photoPathname: ''
   }
 })
 @Injectable()
@@ -24,6 +25,11 @@ export class MemberState {
   @Selector()
   static getSelectedMemberGUId(state: MemberStateModel) {
     return state.selectedMemberGUId;
+  }
+
+  @Selector()
+  static getPhotoPathname(state: MemberStateModel) {
+    return state.photoPathname;
   }
 
   @Action(GetMembers)

@@ -29,7 +29,7 @@
         <span>
           <button class="btn btn-primary"
                   style="width:140px;margin-right:10px"
-                  [hidden]="!bEditable"
+                  [hidden]="!qrComponentsEditable"
                   (click)="onSubmit()">
             Guardar/Save
           </button>
@@ -38,11 +38,11 @@
           <button type="button"
                   class="btn btn-default"
                   style="width:95px"
-                  [hidden]="!bEditable"
+                  [hidden]="!qrComponentsEditable"
                   (click)="onCancel()">
             Cancelar
           </button>
-          <div class="red" [hidden]="myForm.valid || !bEditable"></div>
+          <div class="red" [hidden]="myForm.valid || !qrComponentsEditable"></div>
         </span>
       </div>
     </div>

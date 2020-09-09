@@ -16,7 +16,7 @@ import { UrlService } from 'src/app/_shared/services/url.service';
 @Component({
   selector: 'app-admins-student-profile',
   templateUrl: './admins-student.component.html',
-  styleUrls: [ './admins-student.component.css' ]
+  styleUrls: ['./admins-student.component.css']
 })
 export class AdminsStudentComponent implements OnInit {
   myForm: FormGroup;
@@ -86,7 +86,7 @@ export class AdminsStudentComponent implements OnInit {
   // lastNames: string;
   student: Student;
   studentDTO: StudentDTO;
-  photoPathName: string;
+  photoPathname: string;
   studentIdParam: number;
   studentGUIdParam: string;
   sponsorGroupIdParam: number;
@@ -118,60 +118,57 @@ export class AdminsStudentComponent implements OnInit {
     this.genders = constants.genders;
 
     this.myForm = formBuilder.group({
-      studentId: [ { value: '' } ],
+      studentId: [{ value: '' }],
       // firstNames: ['',
       //   Validators.compose([Validators.required, Validators.maxLength(30)])],
       // lastNames: [{ value: '' },
       // Validators.compose([Validators.required, Validators.email, Validators.maxLength(30)])],
       // email: [{ value: '' },
       // Validators.compose([Validators.required, Validators.maxLength(50)])],
-      cellPhone: [ { value: '' }, Validators.compose([ Validators.minLength(7), Validators.maxLength(13) ]) ],
-      homePhone: [ { value: '' }, Validators.compose([ Validators.minLength(7), Validators.maxLength(13) ]) ],
-      nickName: [ { value: '' }, Validators.maxLength(20) ],
-      photoUrl: [ { value: '' }, Validators.maxLength(255) ],
-      gender: [ '', Validators.compose([ Validators.required, Validators.maxLength(1) ]) ],
-      educationalLevelId: [ { value: '' } ],
-      emergencyContactPhone: [
-        { value: '' },
-        Validators.compose([ Validators.minLength(7), Validators.maxLength(13) ])
-      ],
-      emergencyContactName: [ { value: '' } ],
-      major: [ { value: '' } ],
-      englishSkillLevelId: [ { value: '' } ],
-      statusId: [ { value: '' } ],
-      yearJoinedJa: [ { value: '' } ],
-      joinedFromId: [ { value: '' } ],
-      prepaId: [ { value: '' } ],
-      universityId: [ { value: '' } ],
-      universityGradeMonthId: [ { value: '' } ],
-      gradYear: [ { value: '' } ],
-      gradMonthNum: [ { value: '' } ],
-      credentialYear: [ { value: '' } ],
-      credentialMonthNum: [ { value: '' } ],
+      cellPhone: [{ value: '' }, Validators.compose([Validators.minLength(7), Validators.maxLength(13)])],
+      homePhone: [{ value: '' }, Validators.compose([Validators.minLength(7), Validators.maxLength(13)])],
+      nickName: [{ value: '' }, Validators.maxLength(20)],
+      photoUrl: [{ value: '' }, Validators.maxLength(255)],
+      gender: ['', Validators.compose([Validators.required, Validators.maxLength(1)])],
+      educationalLevelId: [{ value: '' }],
+      emergencyContactPhone: [{ value: '' }, Validators.compose([Validators.minLength(7), Validators.maxLength(13)])],
+      emergencyContactName: [{ value: '' }],
+      major: [{ value: '' }],
+      englishSkillLevelId: [{ value: '' }],
+      statusId: [{ value: '' }],
+      yearJoinedJa: [{ value: '' }],
+      joinedFromId: [{ value: '' }],
+      prepaId: [{ value: '' }],
+      universityId: [{ value: '' }],
+      universityGradeMonthId: [{ value: '' }],
+      gradYear: [{ value: '' }],
+      gradMonthNum: [{ value: '' }],
+      credentialYear: [{ value: '' }],
+      credentialMonthNum: [{ value: '' }],
       probationStartDate: [
         { value: '' },
-        Validators.compose([ Validators.pattern(/^\d{4}\-\d{1,2}\-\d{1,2}$/), Validators.maxLength(10) ])
+        Validators.compose([Validators.pattern(/^\d{4}\-\d{1,2}\-\d{1,2}$/), Validators.maxLength(10)])
       ],
       probationEndDate: [
         { value: '' },
-        Validators.compose([ Validators.pattern(/^\d{4}\-\d{1,2}\-\d{1,2}$/), Validators.maxLength(10) ])
+        Validators.compose([Validators.pattern(/^\d{4}\-\d{1,2}\-\d{1,2}$/), Validators.maxLength(10)])
       ],
 
       mentorAssignedDate: [
         { value: '' },
-        Validators.compose([ Validators.pattern(/^\d{4}\-\d{1,2}\-\d{1,2}$/), Validators.maxLength(10) ])
+        Validators.compose([Validators.pattern(/^\d{4}\-\d{1,2}\-\d{1,2}$/), Validators.maxLength(10)])
       ],
       mentoringEndDate: [
         { value: '' },
-        Validators.compose([ Validators.pattern(/^\d{4}\-\d{1,2}\-\d{1,2}$/), Validators.maxLength(10) ])
+        Validators.compose([Validators.pattern(/^\d{4}\-\d{1,2}\-\d{1,2}$/), Validators.maxLength(10)])
       ],
 
-      curp: [ { value: '' } ],
-      rfc: [ { value: '' } ],
-      bankAccount: [ { value: '' } ],
-      sponsorGroupId: [ { value: '' } ],
-      mentorGUId: [ { value: '' } ],
-      studentGUId: [ { value: '' } ]
+      curp: [{ value: '' }],
+      rfc: [{ value: '' }],
+      bankAccount: [{ value: '' }],
+      sponsorGroupId: [{ value: '' }],
+      mentorGUId: [{ value: '' }],
+      studentGUId: [{ value: '' }]
     });
     this.myForm.disable();
     console.log(this.myForm.controls);
@@ -223,10 +220,9 @@ export class AdminsStudentComponent implements OnInit {
     this.studentData.getStudentViaGUID(this.studentGUIdParam).subscribe(
       (data) => {
         this.student = data;
-        this.photoPathName = this.webPrefix + '/assets/images/StudentPhotos/' + this.student.yearJoinedJa;
-        // this.photoPathName = '../../../../assets/images/StudentPhotos/' + this.student.yearJoinedJa;
-        this.photoPathName = this.photoPathName + '/' + this.student.photoUrl;
-        console.log('photoPathName is ' + this.photoPathName);
+        this.photoPathname = this.webPrefix + '/assets/images/StudentPhotos/' + this.student.yearJoinedJa;
+        this.photoPathname = this.photoPathname + '/' + this.student.photoUrl;
+        console.log('photoPathname is ' + this.photoPathname);
         console.log(this.student);
         this.emojiPathname = this.smileys[this.studentDTO.studentSnapshotStatus + 1];
         console.log('emoji is ' + this.emojiPathname);
@@ -344,7 +340,7 @@ export class AdminsStudentComponent implements OnInit {
   }
 
   backToStudentsList() {
-    this.router.navigate([ '/admins/students' ]);
+    this.router.navigate(['/admins/students']);
   }
 
   mentorReportsReview() {
@@ -383,19 +379,19 @@ export class AdminsStudentComponent implements OnInit {
   }
 
   gotoMemberRecord() {
-    const link = [ 'admins/members/member', { guid: this.studentDTO.memberRecordGUId } ];
+    const link = ['admins/members/member', { guid: this.studentDTO.memberRecordGUId }];
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }
 
   gotoGradeHistory() {
     const id = this.currRoute.snapshot.params['id'];
-    const link = [ '/admins/students/grade-history/' + id + '/' ];
+    const link = ['/admins/students/grade-history/' + id + '/'];
     this.router.navigate(link);
   }
 
   gotoMentor(guid: string) {
-    const link = [ 'admins/members/member', { guid: guid } ];
+    const link = ['admins/members/member', { guid: guid }];
 
     console.log('navigating to ' + link);
     this.router.navigate(link);

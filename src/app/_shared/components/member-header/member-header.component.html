@@ -9,14 +9,13 @@
 
     <div class="col-2">
       <div class="row">
-        <app-member-photo [hidden]="memberGUId==='0000'" [photoPathName]="photoPathName"></app-member-photo>
+        <app-member-photo></app-member-photo>
       </div>
     </div>
 
     <div class="col-4">
       <div class="row">
-        <app-member-header-details [hidden]="memberGUId==='0000'"
-                                   (onPhotoPathNameSet)="onPhotoPathNameSet($event)">
+        <app-member-header-details>
         </app-member-header-details>
       </div>
     </div>

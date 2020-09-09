@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Select } from '@ngxs/store';
@@ -27,12 +27,13 @@ export class JaCommentsComponent implements OnInit {
   narrative_SpanishCtl: AbstractControl;
   reportIdCtl: AbstractControl;
   studentGUId: string;
-  @Input() bEditable: boolean;
+  qrComponentsEditable: boolean;
   selectedYearPeriod = '';
   private subscription: Subscription;
 
   @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
   @Select(UIState.getSelectedYearPeriod) selectedYearPeriod$: Observable<string>;
+  @Select(UIState.getQRComponentsEditable) qrComponentsEditable$: Observable<boolean>;
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -53,8 +54,13 @@ export class JaCommentsComponent implements OnInit {
     this.narrative_SpanishCtl = this.myForm.controls['narrative_Spanish'];
     this.reportIdCtl = this.myForm.controls['quarterlyReportId'];
   }
+
   ngOnInit() {
-    if (this.bEditable) {
+    this.qrComponentsEditable$.subscribe((flag) => {
+      this.qrComponentsEditable = flag;
+    });
+
+    if (this.qrComponentsEditable) {
       this.myForm.enable();
     } else {
       this.myForm.disable();
@@ -101,7 +107,7 @@ export class JaCommentsComponent implements OnInit {
             if (this.jaComment) {
               console.log('### after retreiving, set form controls to retreived jaComments');
               this.narrative_SpanishCtl.setValue(this.jaComment.jA_Narrative_Spanish);
-              if (!this.bEditable) {
+              if (!this.qrComponentsEditable) {
                 if (this.jaComment.jA_Narrative_English.length === 0) {
                   this.jaComment.jA_Narrative_English = '-- No additional comments this quarter --';
                 }

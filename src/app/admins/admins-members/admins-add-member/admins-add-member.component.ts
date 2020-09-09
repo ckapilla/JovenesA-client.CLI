@@ -10,7 +10,7 @@ import { UrlService } from 'src/app/_shared/services/url.service';
 
 @Component({
   templateUrl: './admins-add-member.component.html',
-  styleUrls: [ './admins-add-member.component.css' ]
+  styleUrls: ['./admins-add-member.component.css']
 })
 export class AdminsAddMemberComponent implements OnInit {
   myForm: FormGroup;
@@ -28,8 +28,6 @@ export class AdminsAddMemberComponent implements OnInit {
   firstNames: string;
   lastNames: string;
   member: Member;
-  photoPathName: string;
-  webPrefix: string;
   newGUId: string;
 
   public bInvalidSubmitState = false;
@@ -45,7 +43,6 @@ export class AdminsAddMemberComponent implements OnInit {
     public location: Location
   ) {
     console.log('hi from AdminsAddMember constructor');
-    this.webPrefix = urlService.getClientUrl();
 
     this.languageStatuses = constants.languageStatuses;
     this.roleStatuses = constants.memberStatuses;
@@ -53,22 +50,22 @@ export class AdminsAddMemberComponent implements OnInit {
     this.myForm = _fb.group({
       textGroup: _fb.group(
         {
-          firstNames: [ '', Validators.compose([ Validators.required, Validators.maxLength(30) ]) ],
-          lastNames: [ '', Validators.compose([ Validators.required, Validators.maxLength(30) ]) ],
-          email: [ '', Validators.compose([ Validators.required, Validators.email, Validators.maxLength(50) ]) ]
+          firstNames: ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
+          lastNames: ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
+          email: ['', Validators.compose([Validators.required, Validators.email, Validators.maxLength(50)])]
         },
         { validator: this.setAllTextFields }
       ),
       statusGroup: _fb.group(
         {
-          mentorStatusId: [ '' ],
-          sponsorStatusId: [ '' ],
-          adminStatusId: [ '' ],
-          employeeStatusId: [ '' ],
-          donorStatusId: [ '' ],
-          volunteerStatusId: [ '' ],
-          presidentStatusId: [ '' ],
-          boardStatusId: [ '' ]
+          mentorStatusId: [''],
+          sponsorStatusId: [''],
+          adminStatusId: [''],
+          employeeStatusId: [''],
+          donorStatusId: [''],
+          volunteerStatusId: [''],
+          presidentStatusId: [''],
+          boardStatusId: ['']
         },
         { validator: this.setAtLeastOneStatus }
       )
@@ -175,11 +172,11 @@ export class AdminsAddMemberComponent implements OnInit {
   }
 
   backToMemberSearch() {
-    this.router.navigate([ '/admins/members' ]);
+    this.router.navigate(['/admins/members']);
   }
 
   gotoMember() {
-    const link = [ 'admins/members/member', { guid: this.newGUId } ];
+    const link = ['admins/members/member', { guid: this.newGUId }];
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }

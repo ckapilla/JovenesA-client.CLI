@@ -19,3 +19,13 @@ export class SetSelectedYearPeriod {
   static readonly type = '[UI] update selectedYearPeriod';
   constructor(public readonly payload: string) {}
 }
+
+export class GetQRComponentsEditable {
+  static readonly type = '[UI] Get QRComponentsEditable';
+  constructor(public payload: UIStateModel) {}
+}
+
+export class SetQRComponentsEditable {
+  static readonly type = '[UI] update QRComponentsEditable';
+  constructor(public readonly payload: boolean) {}
+}

@@ -43,7 +43,7 @@
         <span>
           <button class="btn btn-primary"
                   style="width:140px;margin-right:10px"
-                  [hidden]="!bEditable"
+                  [hidden]="!qrComponentsEditable"
                   (click)="onSubmit()">
             Guardar/Save
           </button>
@@ -52,11 +52,11 @@
           <button type="button"
                   class="btn btn-default"
                   style="width:95px"
-                  [hidden]="!bEditable"
+                  [hidden]="!qrComponentsEditable"
                   (click)="onCancel()">
             Cancelar
           </button>
-          <div class="red" [hidden]="myForm.valid || !bEditable">Year, Month, Emoji and description must be
+          <div class="red" [hidden]="myForm.valid || !qrComponentsEditable">Year, Month, Emoji and description must be
             filled in before saving.<br />Año, mes, Emoji y descripción rellenarse antes de guardar.</div>
         </span>
       </div>

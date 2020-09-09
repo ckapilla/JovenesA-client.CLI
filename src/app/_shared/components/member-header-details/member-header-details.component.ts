@@ -1,12 +1,11 @@
 import { Location } from '@angular/common';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Select } from '@ngxs/store';
+import { Component, OnInit } from '@angular/core';
+import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
+import { SetPhotoPathname } from 'src/app/_store/member/member.action';
 import { MemberState } from 'src/app/_store/member/member.state';
 import { MemberDataService } from '../../data/member-data.service';
 import { MemberHeaderDTO } from '../../models/memberHeaderDTO';
-import { SessionService } from '../../services/session.service';
 
 @Component({
   selector: 'app-member-header-details',
@@ -24,20 +23,12 @@ export class MemberHeaderDetailsComponent implements OnInit {
   // lastNames: string;
 
   member: MemberHeaderDTO;
-  photoPathName: string | undefined;
   memberGUId: string;
-  @Output() onPhotoPathNameSet = new EventEmitter<string>();
   private subscription: Subscription;
 
   @Select(MemberState.getSelectedMemberGUId) currentGUId$: Observable<string>;
 
-  constructor(
-    public currRoute: ActivatedRoute,
-    private router: Router,
-    private session: SessionService,
-    public memberData: MemberDataService,
-    public location: Location
-  ) {
+  constructor(private store: Store, public memberData: MemberDataService, public location: Location) {
     console.log('hi from MemberHeaderDetails constructor');
 
     this.errorMessage = '';
@@ -74,17 +65,8 @@ export class MemberHeaderDetailsComponent implements OnInit {
       },
       () => {
         this.loadingState = 2;
-        this.photoPathName = this.member.photoUrl;
-        console.log('MemberHeaderDetails: emitting photo path: ' + this.photoPathName);
-        this.onPhotoPathNameSet.emit(this.photoPathName);
+        this.store.dispatch(new SetPhotoPathname(this.member.photoUrl));
       }
     );
   }
-
-  // public ngOnChanges(changes: SimpleChanges) {
-  //   if (changes.memberGUId) {
-  //     console.log('memberHeaderDetails changes has memberGUId:' + this.memberGUId);
-  //     this.fetchData();
-  //   }
-  // }
 }

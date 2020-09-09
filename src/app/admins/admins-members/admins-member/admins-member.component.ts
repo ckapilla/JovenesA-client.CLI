@@ -10,7 +10,7 @@ import { UrlService } from 'src/app/_shared/services/url.service';
 
 @Component({
   templateUrl: './admins-member.component.html',
-  styleUrls: [ './admins-member.component.css' ]
+  styleUrls: ['./admins-member.component.css']
 })
 export class AdminsMemberComponent implements OnInit {
   myForm: FormGroup;
@@ -28,7 +28,7 @@ export class AdminsMemberComponent implements OnInit {
   firstNames: string;
   lastNames: string;
   member: Member;
-  photoPathName: string;
+  photoPathname: string;
   webPrefix: string;
 
   constructor(
@@ -47,43 +47,43 @@ export class AdminsMemberComponent implements OnInit {
     this.roleStatuses = constants.memberStatuses;
 
     this.myForm = formBuilder.group({
-      firstNames: [ '', Validators.compose([ Validators.required, Validators.maxLength(30) ]) ],
-      lastNames: [ '', Validators.compose([ Validators.required, Validators.maxLength(30) ]) ],
-      email: [ '', Validators.compose([ Validators.required, Validators.maxLength(50) ]) ],
-      smA_Phone: [ '' ],
-      nonSMA_Phone: [ '' ],
+      firstNames: ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
+      lastNames: ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
+      email: ['', Validators.compose([Validators.required, Validators.maxLength(50)])],
+      smA_Phone: [''],
+      nonSMA_Phone: [''],
 
-      mentorStatusId: [ '' ],
-      sponsorStatusId: [ '' ],
-      adminStatusId: [ '' ],
-      employeeStatusId: [ '' ],
-      donorStatusId: [ '' ],
-      volunteerStatusId: [ '' ],
-      presidentStatusId: [ '' ],
-      boardStatusId: [ '' ],
+      mentorStatusId: [''],
+      sponsorStatusId: [''],
+      adminStatusId: [''],
+      employeeStatusId: [''],
+      donorStatusId: [''],
+      volunteerStatusId: [''],
+      presidentStatusId: [''],
+      boardStatusId: [''],
 
-      yearJoinedJA: [ '' ],
-      monthsinSma: [ '' ],
-      nonSma_CountryId: [ '' ],
-      bestWayToContactId: [ '' ],
-      countryOfResidenceId: [ '' ],
+      yearJoinedJA: [''],
+      monthsinSma: [''],
+      nonSma_CountryId: [''],
+      bestWayToContactId: [''],
+      countryOfResidenceId: [''],
 
-      englishSkillLevelId: [ '' ],
-      spanishSkillLevelId: [ '' ],
-      preferredLanguageId: [ '' ],
+      englishSkillLevelId: [''],
+      spanishSkillLevelId: [''],
+      preferredLanguageId: [''],
 
-      lastLoginDateTime: [ '' ],
-      numberOfLogins: [ '' ],
+      lastLoginDateTime: [''],
+      numberOfLogins: [''],
 
-      careerBackground: [ '' ],
-      otherRelevantExperience: [ '' ],
-      comments: [ '', Validators.maxLength(2000) ],
-      photoUrl: [ { value: '' }, Validators.maxLength(2000) ],
-      lastMentorMeeting: [ '' ],
+      careerBackground: [''],
+      otherRelevantExperience: [''],
+      comments: ['', Validators.maxLength(2000)],
+      photoUrl: [{ value: '' }, Validators.maxLength(2000)],
+      lastMentorMeeting: [''],
 
-      memberId: [ '' ],
-      memberGUId: [ '' ],
-      studentRecordGUId: [ '' ]
+      memberId: [''],
+      memberGUId: [''],
+      studentRecordGUId: ['']
     });
     this.myForm.disable();
 
@@ -120,12 +120,9 @@ export class AdminsMemberComponent implements OnInit {
     this.memberData.getMemberByGUId(guid).subscribe(
       (data) => {
         this.member = data;
-        this.photoPathName = this.webPrefix + '/assets/images/MemberPhotos';
-        this.photoPathName = this.photoPathName + '/' + this.member.photoUrl;
-        console.log('photoPathName is ' + this.photoPathName);
-        // this.photoPathName = '../../../../assets/images/MemberPhotos';
-        // this.photoPathName = this.photoPathName + '/' + 'N-a, N-a.jpg';
-        console.log('photoPathName is ' + this.photoPathName);
+        this.photoPathname = this.webPrefix + '/assets/images/MemberPhotos';
+        this.photoPathname = this.photoPathname + '/' + this.member.photoUrl;
+        console.log('photoPathname is ' + this.photoPathname);
       },
       (err) => console.error('Subscribe error: ' + err),
       () => {
@@ -230,7 +227,7 @@ export class AdminsMemberComponent implements OnInit {
   }
 
   backToMembersList() {
-    this.router.navigate([ '/admins/students' ]);
+    this.router.navigate(['/admins/students']);
   }
 
   setReadOnly() {

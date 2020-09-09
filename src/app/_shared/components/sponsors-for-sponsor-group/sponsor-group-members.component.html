@@ -23,7 +23,7 @@
           <div *ngIf="item.sponsorGroupMemberName">
             <span class="link" title="Delete"
                   (click)="deleteSponsorGroupMember(item.sponsorGroupId, item.sponsorGroupMemberId)">
-              X
+               <b>✖</b>
             </span>&nbsp; {{item.sponsorGroupMemberName}}
           </div>
           <div *ngIf="!item.sponsorGroupMemberName">

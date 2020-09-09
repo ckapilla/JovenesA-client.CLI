@@ -28,7 +28,7 @@ export class StudentNameService {
 @Component({
   selector: 'app-student-lookup',
   templateUrl: './student-lookup.html',
-  styles: [ '.form-control { width: 300px; display: inline; }' ]
+  styles: ['.form-control { width: 300px; display: inline; }']
 })
 export class StudentLookupComponent implements OnInit {
   studentMiniDTO: StudentMiniDTO;
@@ -113,7 +113,6 @@ export class StudentLookupComponent implements OnInit {
     console.log('studentLookup reset');
     this.currentGUId = '0000';
     this.store.dispatch(new SetSelectedStudentGUId(this.studentGUId));
-    this.currentGUId = '0000';
   }
 
   fetchData() {
@@ -156,7 +155,7 @@ export class StudentLookupComponent implements OnInit {
 
   gotoStudent() {
     if (this.currentGUId !== '0000') {
-      const link = [ 'admins/students/student', { guid: this.currentGUId } ];
+      const link = ['admins/students/student', { guid: this.currentGUId }];
       console.log('navigating to ' + link);
       this.router.navigate(link);
     }

@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
 import { StudentDataService } from 'src/app/_shared/data/student-data.service';
-import { GetStudents, SetSelectedStudentGUId } from './student.action';
+import { GetStudents, SetPhotoPathname, SetSelectedStudentGUId } from './student.action';
 import { StudentStateModel } from './student.model';
 
 @State<StudentStateModel>({
   name: 'student',
   defaults: {
     students: [],
-    selectedStudentGUId: '0000'
+    selectedStudentGUId: '0000',
+    photoPathname: ''
   }
 })
 @Injectable()
@@ -24,6 +25,11 @@ export class StudentState {
   @Selector()
   static getSelectedStudentGUId(state: StudentStateModel) {
     return state.selectedStudentGUId;
+  }
+
+  @Selector()
+  static getPhotoPathname(state: StudentStateModel) {
+    return state.photoPathname;
   }
 
   @Action(GetStudents)
@@ -46,6 +52,16 @@ export class StudentState {
     ctx.patchState({
       ...state,
       selectedStudentGUId
+    });
+  }
+
+  @Action(SetPhotoPathname)
+  setPhotoPathname(ctx: StateContext<StudentStateModel>, { payload }: SetPhotoPathname) {
+    const photoPathname = payload;
+    const state = ctx.getState();
+    ctx.patchState({
+      ...state,
+      photoPathname
     });
   }
 }

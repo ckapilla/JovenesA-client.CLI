@@ -9,7 +9,6 @@ import { StudentState } from 'src/app/_store/student/student.state';
   templateUrl: './student-header-confidential.component.html'
 })
 export class StudentHeaderConfidentialComponent implements OnInit {
-  photoPathName: string;
   private subscription: Subscription;
   public studentGUId: string;
 
@@ -30,9 +29,5 @@ export class StudentHeaderConfidentialComponent implements OnInit {
       this.studentGUId = message;
       console.log('************NGXS: header new StudentGUId received' + this.studentGUId);
     });
-  }
-  public onPhotoPathNameSet(photoPathName: string) {
-    this.photoPathName = photoPathName;
-    // console.log('parent studentHeader has onPhotoPathNameSet called with' + photoPathName);
   }
 }

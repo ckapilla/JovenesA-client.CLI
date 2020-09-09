@@ -8,7 +8,6 @@ import { StudentState } from 'src/app/_store/student/student.state';
   templateUrl: './student-header-quarterly.component.html'
 })
 export class StudentHeaderQuarterlyComponent implements OnInit {
-  photoPathName: string;
   private subscription: Subscription;
   public studentGUId: string;
 
@@ -25,9 +24,5 @@ export class StudentHeaderQuarterlyComponent implements OnInit {
       this.studentGUId = message;
       console.log('************NGXS: header new StudentGUId received' + this.studentGUId);
     });
-  }
-
-  public onPhotoPathNameSet(photoPathName: string) {
-    this.photoPathName = photoPathName;
   }
 }

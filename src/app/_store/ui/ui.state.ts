@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { SetSelectedYearPeriod, SetTestNamesVisibility } from './ui.action';
+import { SetQRComponentsEditable, SetSelectedYearPeriod, SetTestNamesVisibility } from './ui.action';
 import { UIStateModel } from './ui.model';
 
 @State<UIStateModel>({
   name: 'ui',
   defaults: {
     testNamesVisibility: false,
-    selectedYearPeriod: '2020-2'
+    selectedYearPeriod: '2020-2',
+    qrComponentsEditable: false
   }
 })
 @Injectable()
@@ -41,6 +42,21 @@ export class UIState {
     ctx.patchState({
       ...state,
       selectedYearPeriod
+    });
+  }
+
+  @Selector()
+  static getQRComponentsEditable(state: UIStateModel) {
+    return state.qrComponentsEditable;
+  }
+
+  @Action(SetQRComponentsEditable)
+  setQRComponentsEditable(ctx: StateContext<UIStateModel>, { payload }: SetQRComponentsEditable) {
+    const qrComponentsEditable = payload;
+    const state = ctx.getState();
+    ctx.patchState({
+      ...state,
+      qrComponentsEditable
     });
   }
 }

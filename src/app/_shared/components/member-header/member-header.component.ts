@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Select } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { MemberState } from 'src/app/_store/member/member.state';
 
@@ -9,15 +8,12 @@ import { MemberState } from 'src/app/_store/member/member.state';
   templateUrl: './member-header.component.html'
 })
 export class MemberHeaderComponent implements OnInit {
-  photoPathName: string;
   private subscription: Subscription;
   public memberGUId: string;
 
   @Select(MemberState.getSelectedMemberGUId) currentGUId$: Observable<string>;
 
-  constructor(
-    public router: Router // private selectedMember: SelectedMember
-  ) {
+  constructor(private store: Store) {
     console.log('hi from member-header constructor');
   }
 
@@ -31,10 +27,5 @@ export class MemberHeaderComponent implements OnInit {
       this.memberGUId = message;
       console.log('************NGXS: header new MemberGUId received' + this.memberGUId);
     });
-  }
-
-  public onPhotoPathNameSet(photoPathName: string) {
-    this.photoPathName = photoPathName;
-    // console.log('parent memberHeader has onPhotoPathNameSet called with' + photoPathName);
   }
 }

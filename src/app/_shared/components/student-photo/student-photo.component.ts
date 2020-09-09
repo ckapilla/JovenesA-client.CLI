@@ -1,24 +1,32 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component } from '@angular/core';
+import { Select } from '@ngxs/store';
+import { Observable, Subscription } from 'rxjs';
+import { StudentState } from 'src/app/_store/student/student.state';
+import { UrlService } from '../../services/url.service';
+
 @Component({
   selector: 'app-student-photo',
   templateUrl: './student-photo.component.html'
 })
-export class StudentPhotoComponent implements OnChanges {
-  @Input() photoPathName: string;
-  fullPhotoPathName: string;
+export class StudentPhotoComponent {
+  fullPhotoPathname: string;
+  photoPathname: string;
   clientUrl: string;
+  subscription: Subscription;
 
-  constructor() {
-    console.log('hi from student-header constructor');
+  @Select(StudentState.getPhotoPathname) photoPathname$: Observable<string>;
+
+  constructor(urlService: UrlService) {
+    console.log('hi from student-photo constructor');
+    this.clientUrl = urlService.getClientUrl();
+    this.subscribeForPhotoPathname();
   }
 
-  public ngOnChanges(changes: SimpleChanges) {
-    if (changes.photoPathName) {
-      if (this.photoPathName) {
-        this.fullPhotoPathName = this.clientUrl + '/assets/images/StudentPhotos/' + this.photoPathName;
-        // this.fullPhotoPathName = this.clientUrl + '/assets/images/MemberPhotos/N-a, N-a.jpg';
-        console.log('StudentPhoto: changes has fullPhotoPathName:' + this.fullPhotoPathName);
-      }
-    }
+  subscribeForPhotoPathname() {
+    this.subscription = this.photoPathname$.subscribe((message) => {
+      this.photoPathname = message;
+      console.log('************NGXS: photoPathname received' + this.photoPathname);
+      this.fullPhotoPathname = this.clientUrl + '/assets/images/StudentPhotos/' + this.photoPathname;
+    });
   }
 }
