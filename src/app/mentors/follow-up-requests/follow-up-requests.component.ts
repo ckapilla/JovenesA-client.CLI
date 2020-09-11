@@ -19,7 +19,7 @@ export class FollowUpRequestsComponent implements OnInit {
   followUpStatuses: SELECTITEM[];
   errorMessage: string;
   successMessage: string;
-  studentId: number;
+
   studentGUId: string;
   mentorId: number;
   studentName: string;
@@ -51,7 +51,7 @@ export class FollowUpRequestsComponent implements OnInit {
 
   fetchData() {
     this.isLoading = true;
-    console.log('in fetchData for Assistance with studentId' + this.studentGUId);
+    console.log('in fetchData for Assistance with studentGUId' + this.studentGUId);
     this.followUpData.getFollowUpRequestsForStudentByGUID(this.studentGUId).subscribe(
       (data) => {
         this.followUpRequests = data;

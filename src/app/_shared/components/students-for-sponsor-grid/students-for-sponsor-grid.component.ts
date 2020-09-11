@@ -5,7 +5,7 @@ import { SetSelectedStudentGUId } from 'src/app/_store/student/student.action';
 import { StudentState } from 'src/app/_store/student/student.state';
 import { constants } from '../../constants/constants';
 import { StudentDataService } from '../../data/student-data.service';
-import { StudentSponsorXRef } from '../../models/student-sponsor-xref';
+import { StudentSponsorXRef } from '../../models/student-for-sponsor';
 import { SessionService } from '../../services/session.service';
 
 @Component({
@@ -16,7 +16,6 @@ import { SessionService } from '../../services/session.service';
 export class StudentsForSponsorGridComponent implements OnInit {
   students: Array<StudentSponsorXRef>;
   emojis: Array<string> = [];
-  studentId: number;
   studentGUId: string;
   errorMessage = '';
 
@@ -47,7 +46,7 @@ export class StudentsForSponsorGridComponent implements OnInit {
   }
 
   selectFirstRow() {
-    console.log('First row Id is ' + this.students[0].studentId + ' ' + this.students[0].studentName); // + ' ' + this.students[0].studentLastNames );
+    console.log('First row Id is ' + this.students[0].studentGUId + ' ' + this.students[0].studentName); // + ' ' + this.students[0].studentLastNames );
     this.setRowClasses(this.students[0].studentGUId);
     this.selectStudent(this.students[0].studentGUId, 0);
   }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentDataService } from '../../data/student-data.service';
-import { StudentSponsorXRef } from '../../models/student-sponsor-xref';
+import { StudentSponsorXRef } from '../../models/student-for-sponsor';
 import { SessionService } from '../../services/session.service';
 
 @Component({
@@ -50,7 +50,7 @@ export class StudentsForSponsorComponent implements OnInit {
   gotoStudent(id: number, studentName: string) {
     console.log('setting studentName to ' + studentName);
     this.session.setStudentInContextName(studentName);
-    const link = [ 'admins/students/student', { id: id } ];
+    const link = ['admins/students/student', { id: id }];
 
     console.log('navigating to ' + link);
     this.router.navigate(link);

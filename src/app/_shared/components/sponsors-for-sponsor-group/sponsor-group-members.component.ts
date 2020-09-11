@@ -19,7 +19,6 @@ export class SponsorGroupMembersComponent implements OnInit, OnChanges {
 
   @Output() onSelectedSponsorName = new EventEmitter<string>();
   @Output() onSelectedSponsorId = new EventEmitter<number>();
-  // @Input() studentId: number;
   @Input() sponsorGroupId: number;
   @Input() newMemberNotification: string;
 

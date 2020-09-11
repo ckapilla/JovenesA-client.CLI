@@ -6,10 +6,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-students-navbar',
   templateUrl: './students-navbar.component.html',
-  styleUrls: [ './students-navbar.component.css' ]
+  styleUrls: ['./students-navbar.component.css']
 })
 export class StudentsNavbarComponent {
-  currStudentId: number;
   currStudentGUId: string;
 
   constructor() {}

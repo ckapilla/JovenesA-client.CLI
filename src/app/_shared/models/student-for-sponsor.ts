@@ -1,6 +1,6 @@
-export class StudentSponsorXRef {
+export class StudentForSponsor {
   constructor(
-    public studentId: number,
+    public studentGUId: string,
     public studentName: string,
     public studentStatusId: number,
     public studentStatus: string,
@@ -9,7 +9,6 @@ export class StudentSponsorXRef {
     public sponsorStatusId: number,
     public sponsorStatus: string,
     public sponsorGroupId: number | null,
-    public sponsorGroupName: string,
-    public studentGUId: string
-  ) { }
+    public sponsorGroupName: string
+  ) {}
 }

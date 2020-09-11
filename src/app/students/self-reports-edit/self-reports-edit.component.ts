@@ -8,7 +8,7 @@ import { SessionService } from '../../_shared/services/session.service';
 
 @Component({
   templateUrl: './self-reports-edit.component.html',
-  styleUrls: [ './self-reports-edit.component.css', '../../../assets/css/forms.css' ]
+  styleUrls: ['./self-reports-edit.component.css', '../../../assets/css/forms.css']
 })
 export class SelfReportsEditComponent implements OnInit {
   isLoading: boolean;
@@ -35,10 +35,10 @@ export class SelfReportsEditComponent implements OnInit {
     public session: SessionService
   ) {
     this.myForm = _fb.group({
-      lastContactYearSelector: [ '2020', Validators.required ],
-      narrative_English: [ '', { validators: [ Validators.required ], updateOn: 'blur' } ],
-      narrative_Spanish: [ '' ],
-      selfReportId: [ this.reportIdCtl ]
+      lastContactYearSelector: ['2020', Validators.required],
+      narrative_English: ['', { validators: [Validators.required], updateOn: 'blur' }],
+      narrative_Spanish: [''],
+      selfReportId: [this.reportIdCtl]
     });
 
     this.narrative_EnglishCtl = this.myForm.controls['narrative_English'];
@@ -48,12 +48,6 @@ export class SelfReportsEditComponent implements OnInit {
 
   ngOnInit() {
     this.selfReportId = this.currRoute.snapshot.params['selfReportId'];
-
-    // if (!this.studentId) {
-    //   this.studentId = this.session.getXXStudentId();
-    //   console.log('studentId from session:' + this.studentId);
-    // }
-
     this.isLoading = true;
     this.ssrData.getStudentSelfReport(this.selfReportId).subscribe(
       (data) => {
@@ -65,7 +59,6 @@ export class SelfReportsEditComponent implements OnInit {
         console.log(
           '### after retreiving, set form controls to retreived selfReport-- reportId to ' + this.selfReportId
         );
-        // mentorId and studentId do not have corresponding controls
         this.reportIdCtl.setValue(this.selfReportId);
         this.narrative_EnglishCtl.setValue(this.selfReport.narrative_English);
         this.narrative_SpanishCtl.setValue(this.selfReport.narrative_Spanish);
@@ -88,7 +81,6 @@ export class SelfReportsEditComponent implements OnInit {
     }
 
     console.log('###before submitting update model with form control values');
-    // mentorId and studentId do not have corresponding controls
 
     this.selfReport.narrative_English = this.narrative_EnglishCtl.value;
     this.selfReport.narrative_Spanish = this.narrative_SpanishCtl.value;

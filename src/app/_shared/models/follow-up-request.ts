@@ -1,7 +1,6 @@
 export class FollowUpRequest {
   constructor(
     public followUpRequestId?: number,
-    // public studentId?: number | null,
     public requestorId?: number | null,
     public requestorRoleId?: number | null,
     public description_English?: string,

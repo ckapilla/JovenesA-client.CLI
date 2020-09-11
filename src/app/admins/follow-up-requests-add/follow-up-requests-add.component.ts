@@ -68,7 +68,6 @@ export class FollowUpRequestsAddComponent implements OnInit {
     //                      [(ngModel)]="followUpRequest.description_English"
 
     this.followUpRequest = new FollowUpRequest();
-    // this.followUpRequest.studentId = 0;
 
     // SQL Server will adjust the time to UTC by adding TimezoneOffset
     // we want to store local time so we adjust for that.
@@ -180,11 +179,6 @@ export class FollowUpRequestsAddComponent implements OnInit {
     console.log('hasChanges net is ' + this.myForm.dirty || this.submitted);
     return this.myForm.dirty && !this.submitted;
   }
-
-  // public onSelectedStudentId(studentId: number) {
-  //   this.followUpRequest.studentId = studentId;
-  //   console.log('container form has studentId ' + studentId);
-  // }
 
   public onSelectedStudentGUId(studentGUId: string) {
     this.followUpRequest.studentGUId = studentGUId;

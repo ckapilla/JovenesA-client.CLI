@@ -11,13 +11,12 @@ import { TranslationService } from '../../_shared/services/translation.service';
 @Component({
   selector: 'app-follow-up-requests-add',
   templateUrl: './follow-up-requests-add.component.html',
-  styleUrls: [ './follow-up-requests-add.component.css' ]
+  styleUrls: ['./follow-up-requests-add.component.css']
 })
 export class FollowUpRequestsAddComponent implements OnInit {
   myForm: FormGroup;
   followUpRequest: FollowUpRequest = new FollowUpRequest();
   initialComments: string;
-  studentId: number;
   studentName: string;
   isLoading: boolean;
   submitted: boolean;
@@ -60,13 +59,13 @@ export class FollowUpRequestsAddComponent implements OnInit {
     ];
 
     this.myForm = _fb.group({
-      studentSelector: [ '' ],
-      requestorRoleSelector: [ '' ],
-      requestorSelector: [ '' ],
+      studentSelector: [''],
+      requestorRoleSelector: [''],
+      requestorSelector: [''],
       // targetDate: [''],
-      description_English: [ '' ],
+      description_English: [''],
       // description_Spanish: [''],
-      comments_English: [ '' ]
+      comments_English: ['']
       // comments_Spanish: [''],
     });
 

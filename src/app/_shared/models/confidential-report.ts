@@ -2,7 +2,6 @@ export class ConfidentialReport {
   constructor(
     public confidentialReportId?: number,
     public adminId?: number,
-    // public studentId?: number,
     public reportDateTime?: Date,
     public lastContactYear?: number,
     public lastContactMonth?: number,

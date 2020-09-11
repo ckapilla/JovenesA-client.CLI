@@ -99,7 +99,6 @@ export class MonthlyReports2EditComponent implements OnInit {
         console.log(
           '### after retreiving, set form controls to retreived mentorReport2-- reportId to ' + this.mentorReportId
         );
-        // mentorId, mentorGUId and studentId do not have corresponding controls
         this.reportIdCtl.setValue(this.mentorReportId);
         this.lastYearCtl.setValue(this.mentorReport2.lastContactYear);
         this.lastMonthCtl.setValue(this.mentorReport2.lastContactMonth);

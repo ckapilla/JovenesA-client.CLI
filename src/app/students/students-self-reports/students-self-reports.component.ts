@@ -34,16 +34,10 @@ export class StudentsSelfReportsComponent implements OnInit {
 
   ngOnInit() {
     console.log('sponsorLetters ngOnInit');
-    // this.studentId = this.currRoute.snapshot.params['studentId'];
-    // console.log('studentId from route: ' + this.studentId);
-    // if (!this.studentId) {
     this.studentId = this.session.getUserId();
     console.log('studentId from session:' + this.studentId);
     // }
 
-    // this.studentGUId = this.currRoute.snapshot.params['studentGUId'];
-    // console.log('studentGUId from route: ' + this.studentGUId);
-    // if (!this.studentGUId) {
     this.studentGUId = this.session.getUserGUId();
     console.log('studentGUId from session:' + this.studentGUId);
     // }

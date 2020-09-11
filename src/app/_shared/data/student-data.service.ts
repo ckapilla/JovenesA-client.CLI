@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { BaseDataService } from '../data/base-data.service';
 import { Student } from '../models/student';
-import { StudentSponsorXRef } from '../models/student-sponsor-xref';
+import { StudentSponsorXRef } from '../models/student-for-sponsor';
 import { StudentDTO } from '../models/studentDTO';
 import { StudentHeaderDTO } from '../models/studentHeaderDTO';
 import { StudentMiniDTO } from '../models/studentMiniDTO';

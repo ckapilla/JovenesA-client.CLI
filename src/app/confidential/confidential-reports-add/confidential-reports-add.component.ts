@@ -79,7 +79,6 @@ export class ConfidentialReportsAddComponent implements OnInit {
     console.log('monthlyReportsAdd ngOnInit');
 
     this.confidentialReport.adminId = this.currRoute.snapshot.params['adminId'];
-    // this.confidentialReport.studentId = 0; // this.currRoute.snapshot.params['studentId'];
     this.confidentialReport.studentGUId = this.currRoute.snapshot.params['studentGUId'];
     console.log('mentorId ' + this.confidentialReport.adminId);
     // console.log('studentId ' + this.confidentialReport.studentId);
@@ -137,7 +136,7 @@ export class ConfidentialReportsAddComponent implements OnInit {
     }
     this.isSubmitted = true; // need to set guard immediately to prevent dups
     console.log('###before submitting update model with form control values');
-    // mentorId and studentId and studentGUId do not have corresponding controls
+    // mentorId and studentGUId do not have corresponding controls
     this.confidentialReport.lastContactYear = this.lastYearCtl.value;
     this.confidentialReport.lastContactMonth = this.lastMonthCtl.value;
     this.confidentialReport.emoji = this.emojiCtl.value;

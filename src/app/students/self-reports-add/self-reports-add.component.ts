@@ -8,7 +8,7 @@ import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 
 @Component({
   templateUrl: './self-reports-add.component.html',
-  styleUrls: [ './self-reports-add.component.css', '../../../assets/css/forms.css' ]
+  styleUrls: ['./self-reports-add.component.css', '../../../assets/css/forms.css']
 })
 export class SelfReportsAddComponent implements OnInit {
   myForm: FormGroup;
@@ -32,10 +32,10 @@ export class SelfReportsAddComponent implements OnInit {
     this.periodMonths = constants.periods;
 
     this.myForm = _fb.group({
-      reportYear: [ '', Validators.required ],
-      reportPeriod: [ '', this.validateMonth ],
+      reportYear: ['', Validators.required],
+      reportPeriod: ['', this.validateMonth],
 
-      narrative_English: [ '', Validators.compose([ Validators.required, Validators.maxLength(4500) ]) ]
+      narrative_English: ['', Validators.compose([Validators.required, Validators.maxLength(4500)])]
     });
 
     // this.npm run startreportYear = this.myForm.controls['reportYear'];
@@ -68,11 +68,6 @@ export class SelfReportsAddComponent implements OnInit {
     this.selfReport.sponsorGroupId = this.currRoute.snapshot.params['sponsorId'];
     this.selfReport.studentId = this.currRoute.snapshot.params['studentId'];
     this.selfReport.studentGUId = this.currRoute.snapshot.params['studentGUId'];
-    // if (!this.selfReport.studentGUId || this.selfReport.studentGUId === '') {
-    //     console.log('assigning facke Guid for chris K');
-    //     this.selfReport.studentId = 321;
-    //     this.selfReport.studentGUId = 'c29f9ae6-7a89-4269-a6ab-cf1c76bcbaa9';
-    // }
 
     console.log('sponsorGroupId ' + this.selfReport.sponsorGroupId);
     console.log('studentId ' + this.selfReport.studentId);
@@ -115,7 +110,7 @@ export class SelfReportsAddComponent implements OnInit {
         console.log((this.successMessage = <any>student));
         // this.submitted = true;
         this.isLoading = false;
-        const target = '/students/self-reports/'; // + this.selfXXReport.studentId;
+        const target = '/students/self-reports/';
         console.log('after call to postStudentSelfReports; navigating to ' + target);
         this.router.navigateByUrl(target);
       },

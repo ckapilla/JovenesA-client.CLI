@@ -6,7 +6,7 @@ import { BaseDataService } from '../data/base-data.service';
 import { SponsorGroup } from '../models/sponsor-group';
 import { SponsorGroupMember } from '../models/sponsor-group-member';
 import { SponsorGroupMemberDTO } from '../models/sponsor-group-memberDTO';
-import { StudentSponsorXRef } from '../models/student-sponsor-xref';
+import { StudentSponsorXRef } from '../models/student-for-sponsor';
 import { UrlService } from '../services/url.service';
 
 @Injectable({ providedIn: 'root' })

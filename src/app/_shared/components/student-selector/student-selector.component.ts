@@ -9,7 +9,6 @@ export class StudentSelectorComponent implements OnInit {
   students: Array<StudentMiniDTO>;
   errorMessage = '';
   haveData: boolean;
-  // @Output() onSelectedStudentId = new EventEmitter<number>();
   @Output() onSelectedStudentGUId = new EventEmitter<string>();
 
   constructor(private studentData: StudentDataService) {}
@@ -35,7 +34,7 @@ export class StudentSelectorComponent implements OnInit {
   }
 
   public setSelectedStudent(studentGUId: string) {
-    console.log('selected studentId is set to ' + studentGUId);
+    console.log('selected studentGUId is set to ' + studentGUId);
     this.onSelectedStudentGUId.emit(studentGUId);
   }
 }
