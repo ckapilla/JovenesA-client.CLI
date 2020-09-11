@@ -4,7 +4,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { QuarterlyReportRPT } from 'src/app/_shared/models/quarterly-reportRPT';
 import { StudentState } from 'src/app/_store/student/student.state';
-import { SetSelectedYearPeriod } from 'src/app/_store/ui/ui.action';
+import { SetQRComponentsEditable, SetSelectedYearPeriod } from 'src/app/_store/ui/ui.action';
 import { UIState } from 'src/app/_store/ui/ui.state';
 import { constants } from '../../_shared/constants/constants';
 import { QuarterlyDataService } from '../../_shared/data/quarterly-data.service';
@@ -35,6 +35,7 @@ export class QuarterlyContainerComponent implements OnInit {
 
   ngOnInit() {
     console.log('QR containerInit');
+    this.setQRComponentsEditible(true);
     this.subscribeForStudentGUIds2();
     this.subscribeForSelectedYearPeriod();
   }
@@ -101,5 +102,9 @@ export class QuarterlyContainerComponent implements OnInit {
   setSelectedYearPeriod(yearPeriod: string) {
     this.store.dispatch(new SetSelectedYearPeriod(yearPeriod));
     this.fetchFilteredData();
+  }
+
+  setQRComponentsEditible(qrComponentsEditable: boolean) {
+    this.store.dispatch(new SetQRComponentsEditable(qrComponentsEditable));
   }
 }

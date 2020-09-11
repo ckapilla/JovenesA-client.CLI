@@ -58,13 +58,13 @@ export class SelfReportsComponent implements OnInit {
   ngOnInit() {
     this.qrComponentsEditable$.subscribe((flag) => {
       this.qrComponentsEditable = flag;
-    });
 
-    if (this.qrComponentsEditable) {
-      this.myForm.enable();
-    } else {
-      this.myForm.disable();
-    }
+      if (this.qrComponentsEditable) {
+        this.myForm.enable();
+      } else {
+        this.myForm.disable();
+      }
+    });
 
     // console.log('(((((((((((((((((SelfReports ngOnInit)))))))))))))');
     this.subscribeForStudentGUIds2();

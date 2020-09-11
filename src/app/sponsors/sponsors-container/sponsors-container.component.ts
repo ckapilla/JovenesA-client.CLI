@@ -3,7 +3,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { constants } from 'src/app/_shared/constants/constants';
 import { SELECTITEM } from 'src/app/_shared/interfaces/SELECTITEM';
-import { SetSelectedYearPeriod } from 'src/app/_store/ui/ui.action';
+import { SetQRComponentsEditable, SetSelectedYearPeriod } from 'src/app/_store/ui/ui.action';
 import { UIState } from 'src/app/_store/ui/ui.state';
 
 @Component({
@@ -22,6 +22,7 @@ export class SponsorsContainerComponent implements OnInit {
   constructor(private store: Store) {}
 
   ngOnInit() {
+    this.setQRComponentsEditible(false);
     this.subscribeForSelectedYearPeriod();
   }
 
@@ -34,5 +35,8 @@ export class SponsorsContainerComponent implements OnInit {
 
   setSelectedYearPeriod(yearPeriod: string) {
     this.store.dispatch(new SetSelectedYearPeriod(yearPeriod));
+  }
+  setQRComponentsEditible(qrComponentsEditable: boolean) {
+    this.store.dispatch(new SetQRComponentsEditable(qrComponentsEditable));
   }
 }
