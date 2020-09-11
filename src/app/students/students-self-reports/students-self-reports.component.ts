@@ -9,7 +9,7 @@ import { SessionService } from '../../_shared/services/session.service';
 
 @Component({
   templateUrl: './students-self-reports.component.html',
-  styleUrls: [ './students-self-reports.component.css' ]
+  styleUrls: ['./students-self-reports.component.css']
 })
 export class StudentsSelfReportsComponent implements OnInit {
   isLoading: boolean;
@@ -75,7 +75,7 @@ export class StudentsSelfReportsComponent implements OnInit {
 
   fetchSelfReports() {
     console.log('fetch reports with sponsorGroupId: 0 so only for this student');
-    this.studentSelfReportData.getStudentSelfReports(this.studentId, 0).subscribe(
+    this.studentSelfReportData.getStudentSelfReportsByGUId(this.studentGUId, 0).subscribe(
       (data) => {
         this.studentSelfReports = data;
       },
@@ -95,8 +95,7 @@ export class StudentsSelfReportsComponent implements OnInit {
   }
 
   studentSelfReportAdd() {
-    const target =
-			'students/self-reports-add/' + this.studentId + '/' + this.sponsorGroupId + '/' + this.studentGUId;
+    const target = 'students/self-reports-add/' + this.studentId + '/' + this.sponsorGroupId + '/' + this.studentGUId;
     console.log('in students-sponsor-letters: ready to navigate to' + target);
     this.router.navigateByUrl(target);
   }

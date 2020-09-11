@@ -41,7 +41,6 @@ export class StudentLookupComponent implements OnInit {
   private subscription: Subscription;
   @Input() showSearchButton: boolean;
 
-  // @Output() onSelectedStudentGUId = new EventEmitter<string>();
   @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
 
   constructor(
@@ -88,17 +87,7 @@ export class StudentLookupComponent implements OnInit {
     input.value = '';
     this.resetStudentData();
   }
-  // subscribeForStudentGUIds() {
-  //   // console.log('Name Lookup set up studentGUId subscription');
-  //   this.subscription = this.selectedStudent.subscribeForStudentGUIds().subscribe((message) => {
-  //     this.studentGUId = message;
-  //     console.log('Name Search new StudentGUId received' + this.studentGUId);
-  //     if (this.studentGUId && this.studentGUId !== '0000') {
-  //       this.currentGUId = this.studentGUId;
-  //       this.fetchData();
-  //     }
-  //   });
-  // }
+
   subscribeForStudentGUIds2() {
     this.subscription = this.currentGUId$.subscribe((message) => {
       this.studentGUId = message;
@@ -109,6 +98,7 @@ export class StudentLookupComponent implements OnInit {
       }
     });
   }
+
   resetStudentData() {
     console.log('studentLookup reset');
     this.currentGUId = '0000';

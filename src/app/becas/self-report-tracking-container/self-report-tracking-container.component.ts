@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Select, Store } from '@ngxs/store';
+import { Observable, Subscription } from 'rxjs';
+import { SetSelectedYearPeriod } from 'src/app/_store/ui/ui.action';
+import { UIState } from 'src/app/_store/ui/ui.state';
 import { constants } from '../../_shared/constants/constants';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 
@@ -8,56 +12,42 @@ import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
   templateUrl: './self-report-tracking-container.component.html'
 })
 export class SelfReportTrackingContainerComponent implements OnInit {
-  years: SELECTITEM[];
-  periods: SELECTITEM[];
-  activeQRPeriods: SELECTITEM[];
-  selectedYearPeriod: string;
+  selectedYearPeriod = '';
   studentGUId: string;
   studentGUIdReceived: boolean;
-  selectedYear: string;
-  selectedPeriod: string;
+  readonly activeQRPeriods: SELECTITEM[] = constants.activeQRperiods;
+  readonly reviewedStatuses: SELECTITEM[] = constants.reviewedQRStatuses;
+  subscription: Subscription;
 
-  constructor(
-    private route: ActivatedRoute
-  ) {
-    this.years = constants.years;
-    this.periods = constants.periods;
-    this.activeQRPeriods = constants.activeQRperiods;
+  @Select(UIState.getSelectedYearPeriod) selectedYearPeriod$: Observable<string>;
 
-    this.selectedYear = '2020'; // '' + today.getFullYear(); //
-    this.selectedPeriod = '2'; // + today.getPeriod() + 1;// '5';
-    this.selectedYearPeriod = constants.selectedYearPeriod;
+  constructor(private route: ActivatedRoute, private store: Store) {
     this.studentGUIdReceived = false;
   }
 
   ngOnInit() {
-    this.processRouteParams();
-
+    this.subscribeForSelectedYearPeriod();
   }
 
-  processRouteParams() {
-    console.log(' getting studentGUId from queryParams');
-
-    const studentGUIdQueryParam = this.route.snapshot.queryParams['studentGUId'];
-    if (studentGUIdQueryParam) {
-      console.log('container: have studentGUId from route ' + studentGUIdQueryParam);
-    }
+  subscribeForSelectedYearPeriod() {
+    this.subscription = this.selectedYearPeriod$.subscribe((message) => {
+      this.selectedYearPeriod = message;
+      console.log('************NGXS: SSR Tracking new selectedYearPeriod received' + this.selectedYearPeriod);
+      // this.fetchFilteredData();
+    });
   }
 
+  // processRouteParams() {
+  //   console.log(' getting studentGUId from queryParams');
 
-  // setSelectedYear(year: string) {
-  //   this.selectedYear = year;
+  //   const studentGUIdQueryParam = this.route.snapshot.queryParams['studentGUId'];
+  //   if (studentGUIdQueryParam) {
+  //     console.log('container: have studentGUId from route ' + studentGUIdQueryParam);
+  //   }
   // }
-  // setSelectedPeriod(period: string) {
-  //   this.selectedPeriod = period;
-  // }
+
   setSelectedYearPeriod(yearPeriod: string) {
-    this.selectedYearPeriod = yearPeriod;
-    this.selectedYear = yearPeriod.substr(0, 4);
-    this.selectedPeriod = yearPeriod.substr(5, 1);
+    this.store.dispatch(new SetSelectedYearPeriod(yearPeriod));
+    // this.fetchFilteredData();
   }
-  onStudentGUIdReceived(bSet: boolean) {
-    this.studentGUIdReceived = bSet;
-  }
-
 }

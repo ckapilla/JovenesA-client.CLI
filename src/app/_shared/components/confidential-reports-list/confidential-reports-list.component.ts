@@ -1,4 +1,3 @@
-
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { constants } from '../../constants/constants';
@@ -9,9 +8,7 @@ import { ConfidentialReportRPT } from '../../models/confidential-reportRPT';
   templateUrl: './confidential-reports-list.component.html'
 })
 export class ConfidentialReportsListComponent {
-
-  @Input()
-  confidentialReports: ConfidentialReportRPT[];
+  @Input() confidentialReports: ConfidentialReportRPT[];
   smileys: Array<string>;
   studentId: number;
 
@@ -27,5 +24,4 @@ export class ConfidentialReportsListComponent {
       this.router.navigateByUrl(target); // , //{mentorId: this.mentorId, studentId: this.studentId}]);
     }
   }
-
 }

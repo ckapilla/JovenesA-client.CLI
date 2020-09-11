@@ -16,16 +16,14 @@
       <ngb-tabset>
         <ngb-tab title="Reports Received">
           <ng-template ngbTabContent>
-            <app-self-report-tracking [selectedYear]="selectedYear"
-                                      [selectedPeriod]="selectedPeriod">
+            <app-self-report-tracking>
             </app-self-report-tracking>
           </ng-template>
         </ngb-tab>
 
         <ngb-tab title="Reports Needed">
           <ng-template ngbTabContent>
-            <app-self-report-missing [selectedYear]="selectedYear"
-                                     [selectedPeriod]="selectedPeriod">
+            <app-self-report-missing>
             </app-self-report-missing>
           </ng-template>
         </ngb-tab>

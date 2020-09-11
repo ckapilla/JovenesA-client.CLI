@@ -1,9 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { StudentDataService } from '../../data/student-data.service';
 import { StudentMiniDTO } from '../../models/studentMiniDTO';
-// import { map } from 'rxjs/operators';
 @Component({
-  // tslint:disable-next-line: component-selector
   selector: 'app-student-selector',
   templateUrl: './student-selector.component.html'
 })
@@ -11,8 +9,9 @@ export class StudentSelectorComponent implements OnInit {
   students: Array<StudentMiniDTO>;
   errorMessage = '';
   haveData: boolean;
-  @Output() onSelectedStudentId = new EventEmitter<number>();
+  // @Output() onSelectedStudentId = new EventEmitter<number>();
   @Output() onSelectedStudentGUId = new EventEmitter<string>();
+
   constructor(private studentData: StudentDataService) {}
   public ngOnInit() {
     this.haveData = false;
@@ -34,8 +33,9 @@ export class StudentSelectorComponent implements OnInit {
       }
     );
   }
-  public setSelectedStudent(studentId: string) {
-    console.log('selected studentId is set to ' + studentId);
-    this.onSelectedStudentId.emit(+studentId);
+
+  public setSelectedStudent(studentGUId: string) {
+    console.log('selected studentId is set to ' + studentGUId);
+    this.onSelectedStudentGUId.emit(studentGUId);
   }
 }

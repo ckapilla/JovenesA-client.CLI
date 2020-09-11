@@ -70,7 +70,7 @@ export class FollowUpRequestsComponent implements OnInit {
   followUpRequestAdd() {
     console.log('in follow-up-requests: FollowUpRequestAdd, ready to navigate');
     if (this.studentGUId !== null) {
-      const link = [ '/mentors/follow-up-requests-add', { mentorId: this.mentorId, studentGUId: this.studentGUId } ];
+      const link = ['/mentors/follow-up-requests-add', { mentorId: this.mentorId, studentGUId: this.studentGUId }];
       console.log('navigating to ' + JSON.stringify(link));
       this.router.navigate(link);
     }

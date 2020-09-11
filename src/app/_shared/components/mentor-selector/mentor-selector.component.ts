@@ -12,7 +12,6 @@ export class MentorSelectorComponent implements OnInit {
   errorMessage = '';
   haveData: boolean;
   requestorRoles: SELECTITEM[];
-  // @Output() onSelectedRoleId = new EventEmitter<number>();
   @Input() initialMemberGUId: string;
   @Output() onSelectedMemberGUId = new EventEmitter<string>();
   memberTypeLabel = 'Mentor';

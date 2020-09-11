@@ -26,11 +26,11 @@ export class StudentSelfReportDataService extends BaseDataService {
     return this.http.get<MentorReportsStatusCount[]>(url).pipe(catchError(this.handleError));
   }
 
-  public getStudentSelfReports(studentId: number, sponsorId: number): Observable<StudentSelfReport[]> {
-    const url = this.WebApiPrefix + 'student_self_reports/' + studentId + '/' + sponsorId;
-    console.log('sending AuthHttp get request for StudentSelfReports with ' + url);
-    return this.http.get<StudentSelfReport[]>(url).pipe(catchError(this.handleError));
-  }
+  // public getStudentSelfReports(studentId: number, sponsorId: number): Observable<StudentSelfReport[]> {
+  //   const url = this.WebApiPrefix + 'student_self_reports/' + studentId + '/' + sponsorId;
+  //   console.log('sending AuthHttp get request for StudentSelfReports with ' + url);
+  //   return this.http.get<StudentSelfReport[]>(url).pipe(catchError(this.handleError));
+  // }
 
   public getStudentSelfReportsByGUId(studentGUId: string, sponsorId: number): Observable<StudentSelfReport[]> {
     const url = this.WebApiPrefix + 'student_self_reports/' + studentGUId + '/' + sponsorId;
@@ -45,29 +45,31 @@ export class StudentSelfReportDataService extends BaseDataService {
   }
 
   public getStudentSelfReportsByPeriod(
-    year: string,
-    period: string,
+    yearPeriod: string,
     reviewedStatusId: string,
     studentGUId: string
   ): Observable<StudentSelfReport[]> {
+    const year = yearPeriod.substr(0, 4);
+    const period = yearPeriod.substr(5, 1);
     const url =
-			this.WebApiPrefix +
-			'student_self_reports/by_period' +
-			'?year=' +
-			year +
-			'&period=' +
-			period +
-			'&reviewedStatusId=' +
-			reviewedStatusId +
-			'&studentGUId=' +
-			studentGUId;
+      this.WebApiPrefix +
+      'student_self_reports/by_period' +
+      '?year=' +
+      year +
+      '&period=' +
+      period +
+      '&reviewedStatusId=' +
+      reviewedStatusId +
+      '&studentGUId=' +
+      studentGUId;
     console.log('sending AuthHttp get request for StudentSelfReportsByMonth with ' + url);
     return this.http.get<StudentSelfReport[]>(url).pipe(catchError(this.handleError));
   }
 
-  public getMissingStudentSelfReportsByPeriod(year: string, period: string): Observable<StudentMiniDTO[]> {
-    const url =
-			this.WebApiPrefix + 'student_self_reports/missing/by_period' + '?year=' + year + '&period=' + period;
+  public getMissingStudentSelfReportsByPeriod(yearPeriod: string): Observable<StudentMiniDTO[]> {
+    const year = yearPeriod.substr(0, 4);
+    const period = yearPeriod.substr(5, 1);
+    const url = this.WebApiPrefix + 'student_self_reports/missing/by_period' + '?year=' + year + '&period=' + period;
     console.log('sending AuthHttp get request for MissingStudentSelfReportsByMonth with ' + url);
     return this.http.get<StudentMiniDTO[]>(url).pipe(catchError(this.handleError));
   }

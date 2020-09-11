@@ -22,11 +22,11 @@ export class StudentDataService extends BaseDataService {
   ///  StudentsController
   /// ///////////////////////////////////////////////
 
-  public getStudent(studentId: number): Observable<Student> {
-    const url = this.WebApiPrefix + 'students/' + studentId;
-    console.log('sending AuthHttp get request for Student');
-    return this.http.get(url).pipe(catchError(this.handleError));
-  }
+  // public getStudent(studentId: number): Observable<Student> {
+  //   const url = this.WebApiPrefix + 'students/' + studentId;
+  //   console.log('sending AuthHttp get request for Student');
+  //   return this.http.get(url).pipe(catchError(this.handleError));
+  // }
 
   public getStudentViaGUID(studentGUId: string): Observable<Student> {
     const url = this.WebApiPrefix + 'students/' + studentGUId;
@@ -34,11 +34,11 @@ export class StudentDataService extends BaseDataService {
     return this.http.get(url).pipe(catchError(this.handleError));
   }
 
-  public getStudentDTO(studentId: number): Observable<StudentDTO> {
-    const url = this.WebApiPrefix + 'students/DTO/' + studentId;
-    console.log('sending AuthHttp get request for Students');
-    return this.http.get<StudentDTO>(url);
-  }
+  // public getStudentDTO(studentId: number): Observable<StudentDTO> {
+  //   const url = this.WebApiPrefix + 'students/DTO/' + studentId;
+  //   console.log('sending AuthHttp get request for Students');
+  //   return this.http.get<StudentDTO>(url);
+  // }
 
   public getStudentDTOViaGUID(studentGUId: string): Observable<StudentDTO> {
     const url = this.WebApiPrefix + 'students/DTO/' + studentGUId;

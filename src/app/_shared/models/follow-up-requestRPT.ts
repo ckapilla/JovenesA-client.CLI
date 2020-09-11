@@ -2,11 +2,10 @@ export class FollowUpRequestRPT {
   constructor(
     public followUpRequestId?: number,
     public latestFollowUpEventId?: number,
-    public studentId?: number | null,
+    public studentGUId?: string,
     public requestorId?: number | null,
     public assignedToId?: number | null,
     // public requestorRoleId?: number | null,
-    public targetDate?: Date | string | null,
     public description_English?: string,
     public description_Spanish?: string,
     public requestDateTime?: Date | string | null,
@@ -19,7 +18,6 @@ export class FollowUpRequestRPT {
     public assignedToRole?: string,
     public assignedTo?: string,
     public comments_English?: string,
-    public comments_Spanish?: string,
-    public studentGUId?: string
-  ) { }
+    public comments_Spanish?: string
+  ) {}
 }

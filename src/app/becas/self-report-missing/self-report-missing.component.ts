@@ -1,80 +1,59 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Select, Store } from '@ngxs/store';
+import { Observable, Subscription } from 'rxjs';
 import { StudentSelfReportDataService } from 'src/app/_shared/data/student-self-report-data.service';
 import { StudentMiniDTO } from 'src/app/_shared/models/studentMiniDTO';
+import { StudentState } from 'src/app/_store/student/student.state';
+import { SetSelectedYearPeriod } from 'src/app/_store/ui/ui.action';
+import { UIState } from 'src/app/_store/ui/ui.state';
 import { constants } from '../../_shared/constants/constants';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
-import { SessionService } from '../../_shared/services/session.service';
 
 @Component({
   selector: 'app-self-report-missing',
   templateUrl: 'self-report-missing.component.html',
-  styleUrls: [ 'self-report-missing.component.css' ]
+  styleUrls: ['self-report-missing.component.css']
 })
-export class SelfReportMissingComponent implements OnInit, OnChanges {
-  studentMini: StudentMiniDTO[];
-  isLoading: boolean;
-  smileys: Array<string>;
-  public errorMessage: string;
+export class SelfReportMissingComponent implements OnInit {
+  isLoading = false;
+  errorMessage: string;
   successMessage: string;
-  submitted: string;
-  studentReportStatuses: SELECTITEM[];
-  years: SELECTITEM[];
-  periods: SELECTITEM[];
-  activeQRPeriods: SELECTITEM[];
-  ssrReviewedStatuses: SELECTITEM[];
-  highlightStatuses: SELECTITEM[];
-  @Input() selectedYear: string;
-  @Input() selectedPeriod: string;
-  selectedYearPeriod: string;
-  selectedSRReviewedStatus: string;
-  // selectedHighlightStatus: string;
-  displayOriginalFields = true;
-  x: any;
-  studentName: string;
+  selectedYearPeriod = '';
+  readonly activeQRPeriods: SELECTITEM[] = constants.activeQRperiods;
+  readonly reviewedStatuses: SELECTITEM[] = constants.reviewedQRStatuses;
+  subscription: Subscription;
+  studentMinis: StudentMiniDTO[];
+
+  @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
+  @Select(UIState.getSelectedYearPeriod) selectedYearPeriod$: Observable<string>;
 
   constructor(
     public router: Router,
-    public session: SessionService,
     public ssrData: StudentSelfReportDataService,
-    private route: ActivatedRoute
-  ) {
-    this.years = constants.years;
-    this.periods = constants.periods;
-    this.activeQRPeriods = constants.activeQRperiods;
-
-    this.selectedYear = '2020'; // '' + today.getFullYear(); //
-    this.selectedPeriod = '2'; // + today.getPeriod() + 1;// '5';
-    this.selectedYearPeriod = constants.selectedYearPeriod;
-    this.ssrReviewedStatuses = constants.reviewedStatuses;
-
-    this.selectedSRReviewedStatus = '0'; // this.ssrReviewedStatuses[0].value;
-    // this.selectedHighlightStatus = this.highlightStatuses[0].value;
-
-    this.smileys = constants.smileys;
-  }
+    private route: ActivatedRoute,
+    private store: Store
+  ) {}
 
   ngOnInit() {
-    console.log('onInit');
-    this.processRouteParams();
+    this.subscribeForSelectedYearPeriod();
   }
 
-  processRouteParams() {
-    console.log('SelfReportMissing setting filters form queryParams');
-
-    // if (period > 0) {
-    this.fetchFilteredData();
-    // }
+  subscribeForSelectedYearPeriod() {
+    this.subscription = this.selectedYearPeriod$.subscribe((message) => {
+      this.selectedYearPeriod = message;
+      console.log('************NGXS: SSR Tracking new selectedYearPeriod received' + this.selectedYearPeriod);
+    });
   }
 
   fetchFilteredData() {
     this.isLoading = true;
     console.log('in fetchData for StudentReportsByPeriod');
-    this.ssrData.getMissingStudentSelfReportsByPeriod(this.selectedYear, this.selectedPeriod).subscribe(
+    this.ssrData.getMissingStudentSelfReportsByPeriod(this.selectedYearPeriod).subscribe(
       (data) => {
-        this.studentMini = data;
         console.log('studentReportByPeriod has');
-        console.log(this.studentMini[0]);
+        console.log(this.studentMinis[0]);
+        this.studentMinis = data;
       },
       (err) => console.error('Subscribe error: ' + err),
       () => {
@@ -102,19 +81,15 @@ export class SelfReportMissingComponent implements OnInit, OnChanges {
   }
 
   gotoStudent(guid: string, studentName: string) {
-    console.log('setting studentName to ' + studentName);
-    this.session.setStudentInContextName(studentName);
-
-    const link = [ 'admins/students/student', { guid: guid } ];
+    console.log(studentName);
+    const link = ['admins/students/student', { guid: guid }];
 
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }
 
-  public ngOnChanges(changes: SimpleChanges) {
-    if (changes.selectedYear || changes.selectedPeriod) {
-      console.log(changes);
-      this.fetchFilteredData();
-    }
+  setSelectedYearPeriod(yearPeriod: string) {
+    this.store.dispatch(new SetSelectedYearPeriod(yearPeriod));
+    // this.fetchFilteredData();
   }
 }

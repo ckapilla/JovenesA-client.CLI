@@ -11,7 +11,7 @@ import { TranslationService } from '../../_shared/services/translation.service';
 @Component({
   selector: 'app-follow-up-requests-add',
   templateUrl: './follow-up-requests-add.component.html',
-  styleUrls: [ './follow-up-requests-add.component.css' ]
+  styleUrls: ['./follow-up-requests-add.component.css']
 })
 export class FollowUpRequestsAddComponent implements OnInit {
   myForm: FormGroup;
@@ -57,18 +57,18 @@ export class FollowUpRequestsAddComponent implements OnInit {
     ];
 
     this.myForm = _fb.group({
-      studentSelector: [ '' ],
-      requestorRoleSelector: [ '' ],
-      requestorSelector: [ '' ],
-      targetDate: [ '' ],
-      description_English: [ '' ],
-      description_Spanish: [ '' ]
+      studentSelector: [''],
+      requestorRoleSelector: [''],
+      requestorSelector: [''],
+      targetDate: [''],
+      description_English: [''],
+      description_Spanish: ['']
     });
 
     //                      [(ngModel)]="followUpRequest.description_English"
 
     this.followUpRequest = new FollowUpRequest();
-    this.followUpRequest.studentId = 0;
+    // this.followUpRequest.studentId = 0;
 
     // SQL Server will adjust the time to UTC by adding TimezoneOffset
     // we want to store local time so we adjust for that.
@@ -105,6 +105,7 @@ export class FollowUpRequestsAddComponent implements OnInit {
       window.scrollTo(0, 0);
       return false;
     }
+    this.retrieveFormValues();
     this.followUpData.postFollowUpRequest(this.followUpRequest).subscribe(
       (response) => {
         console.log('followUp Request completed -- sending Initial Event with response');
@@ -168,7 +169,7 @@ export class FollowUpRequestsAddComponent implements OnInit {
       //               }
     };
 
-    this.router.navigate([ target ], navigationExtras);
+    this.router.navigate([target], navigationExtras);
   }
 
   public hasChanges() {
@@ -180,9 +181,14 @@ export class FollowUpRequestsAddComponent implements OnInit {
     return this.myForm.dirty && !this.submitted;
   }
 
-  public onSelectedStudentId(studentId: number) {
-    this.followUpRequest.studentId = studentId;
-    console.log('container form has studentId ' + studentId);
+  // public onSelectedStudentId(studentId: number) {
+  //   this.followUpRequest.studentId = studentId;
+  //   console.log('container form has studentId ' + studentId);
+  // }
+
+  public onSelectedStudentGUId(studentGUId: string) {
+    this.followUpRequest.studentGUId = studentGUId;
+    console.log('container form has studentGUId ' + studentGUId);
   }
 
   public onSelectedRoleId(roleId: number) {
@@ -193,11 +199,6 @@ export class FollowUpRequestsAddComponent implements OnInit {
   public onSelectedMemberId(memberId: number) {
     this.followUpRequest.requestorId = memberId;
     console.log('container form has reqeustorMemberId ' + memberId);
-  }
-
-  public onTargetDateSet(target_date: Date) {
-    this.followUpRequest.targetDate = target_date;
-    console.log('new TargetDate ' + target_date);
   }
 
   public translateFromSpanish(spanishText: string) {

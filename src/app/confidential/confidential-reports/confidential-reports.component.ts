@@ -44,12 +44,7 @@ export class ConfidentialReportsComponent implements OnInit {
     this.adminId = this.session.getUserId();
     console.log('mentorId ' + this.adminId);
 
-    // // may be undefined at this point:
-    // console.log('studentId ' + this.studentId);
-
     this.haveCurrentReport = false;
-
-    // console.log('(((((((((((((((((MR ngOnInit)))))))))))))');
     this.subscribeForStudentGUIds2();
   }
 
@@ -91,10 +86,7 @@ export class ConfidentialReportsComponent implements OnInit {
     console.log('in confidential-reports: monthlyReportAdd, ready to navigate');
     console.log(this.studentGUId);
     if (this.studentGUId !== null) {
-      const link = [
-        '/confidential/confidential-reports-add',
-        { adminId: this.adminId, studentGUId: this.studentGUId }
-      ];
+      const link = ['/confidential/confidential-reports-add', { adminId: this.adminId, studentGUId: this.studentGUId }];
       console.log('navigating to ' + JSON.stringify(link));
       this.router.navigate(link);
     }
