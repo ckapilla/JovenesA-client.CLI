@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StudentDataService } from '../../data/student-data.service';
+import { MentorDataService } from '../../data/mentor-data.service';
 import { StudentDTO } from '../../models/studentDTO';
 import { SessionService } from '../../services/session.service';
 
@@ -21,7 +21,7 @@ export class StudentsForMentorListComponent implements OnInit {
 
   constructor(
     public session: SessionService,
-    private studentData: StudentDataService,
+    private mentorData: MentorDataService,
     private router: Router,
     private currRoute: ActivatedRoute
   ) {
@@ -31,7 +31,7 @@ export class StudentsForMentorListComponent implements OnInit {
   public ngOnInit() {
     this.haveData = false;
     this.mentorGUId = this.currRoute.snapshot.params['guid'];
-    this.studentData.getStudentsForMentorByGUId(this.mentorGUId).subscribe(
+    this.mentorData.getStudentsForMentorByGUId(this.mentorGUId).subscribe(
       (data) => {
         this.students = data;
       },

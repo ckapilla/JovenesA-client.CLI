@@ -6,7 +6,7 @@ import { BaseDataService } from '../data/base-data.service';
 import { SponsorGroup } from '../models/sponsor-group';
 import { SponsorGroupMember } from '../models/sponsor-group-member';
 import { SponsorGroupMemberDTO } from '../models/sponsor-group-memberDTO';
-import { StudentSponsorXRef } from '../models/student-for-sponsor';
+import { StudentSponsorXRef } from '../models/student-sponsor-xref';
 import { UrlService } from '../services/url.service';
 
 @Injectable({ providedIn: 'root' })
@@ -36,16 +36,10 @@ export class SponsorGroupDataService extends BaseDataService {
     return this.http.get<SponsorGroup>(url).pipe(catchError(this.handleError));
   }
 
-  public getSponsorGroupMembersForStudent(studentId: number): Observable<StudentSponsorXRef[]> {
-    const url = this.WebApiPrefix + 'students/sponsor_group_members_for/' + studentId;
+  public getStudentsForSponsorByGUId(sponsorGUId: string): Observable<StudentSponsorXRef[]> {
+    const url = this.WebApiPrefix + 'sponsor_groups/students_for/' + sponsorGUId;
     console.log('sending AuthHttp get request ' + url);
     return this.http.get<StudentSponsorXRef[]>(url).pipe(catchError(this.handleError));
-  }
-
-  public getSponsorGroupForStudent(studentId: number): Observable<StudentSponsorXRef> {
-    const url = this.WebApiPrefix + 'students/sponsor_group_for/' + studentId;
-    console.log('sending AuthHttp get request ' + url);
-    return this.http.get<StudentSponsorXRef>(url).pipe(catchError(this.handleError));
   }
 
   public addNewSponsorGroup(sponsorGroup: SponsorGroup): Observable<SponsorGroup> {

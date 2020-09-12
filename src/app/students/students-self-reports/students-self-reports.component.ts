@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SponsorGroupDataService } from 'src/app/_shared/data/sponsor-group-data.service';
+import { StudentDataService } from 'src/app/_shared/data/student-data.service';
 import { StudentSelfReportDataService } from 'src/app/_shared/data/student-self-report-data.service';
 import { SponsorGroup } from 'src/app/_shared/models/sponsor-group';
 import { StudentSelfReport } from '../../_shared/models/student-self-report';
@@ -15,7 +15,7 @@ export class StudentsSelfReportsComponent implements OnInit {
   isLoading: boolean;
   errorMessage: string;
   studentId: number;
-  studentGUId: string;
+  studentRecordGUId: string;
   student: StudentDTO;
   studentSelfReports: Array<StudentSelfReport>;
   sponsorGroup: SponsorGroup;
@@ -25,7 +25,7 @@ export class StudentsSelfReportsComponent implements OnInit {
   constructor(
     public currRoute: ActivatedRoute,
     private router: Router,
-    public sponsorGroupData: SponsorGroupDataService,
+    public studentData: StudentDataService,
     public studentSelfReportData: StudentSelfReportDataService,
     public session: SessionService
   ) {
@@ -33,20 +33,14 @@ export class StudentsSelfReportsComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('sponsorLetters ngOnInit');
-    this.studentId = this.session.getUserId();
-    console.log('studentId from session:' + this.studentId);
-    // }
-
-    this.studentGUId = this.session.getUserGUId();
-    console.log('studentGUId from session:' + this.studentGUId);
-    // }
+    this.studentRecordGUId = this.session.getStudentRecordGUId();
+    console.log('studentRecordGUId from session:' + this.studentRecordGUId);
     this.fetchSponsorGroup();
     this.isLoading = true;
   }
 
   fetchSponsorGroup() {
-    this.sponsorGroupData.getSponsorGroupForStudent(this.studentId).subscribe(
+    this.studentData.getSponsorGroupForStudent(this.studentRecordGUId).subscribe(
       (data) => {
         this.sponsorGroup = data;
         console.log('getSponsorGroupForStudent');
@@ -69,7 +63,7 @@ export class StudentsSelfReportsComponent implements OnInit {
 
   fetchSelfReports() {
     console.log('fetch reports with sponsorGroupId: 0 so only for this student');
-    this.studentSelfReportData.getStudentSelfReportsByGUId(this.studentGUId, 0).subscribe(
+    this.studentSelfReportData.getStudentSelfReportsByGUId(this.studentRecordGUId, 0).subscribe(
       (data) => {
         this.studentSelfReports = data;
       },
@@ -89,7 +83,8 @@ export class StudentsSelfReportsComponent implements OnInit {
   }
 
   studentSelfReportAdd() {
-    const target = 'students/self-reports-add/' + this.studentId + '/' + this.sponsorGroupId + '/' + this.studentGUId;
+    const target =
+      'students/self-reports-add/' + this.studentId + '/' + this.sponsorGroupId + '/' + this.studentRecordGUId;
     console.log('in students-sponsor-letters: ready to navigate to' + target);
     this.router.navigateByUrl(target);
   }

@@ -4,7 +4,7 @@ import { Observable, Subscription } from 'rxjs';
 import { SetSelectedStudentGUId } from 'src/app/_store/student/student.action';
 import { StudentState } from 'src/app/_store/student/student.state';
 import { constants } from '../../constants/constants';
-import { StudentDataService } from '../../data/student-data.service';
+import { MentorDataService } from '../../data/mentor-data.service';
 import { StudentDTO } from '../../models/studentDTO';
 import { SessionService } from '../../services/session.service';
 
@@ -24,8 +24,7 @@ export class StudentsForMentorGridComponent implements OnInit {
   gridLoaded: boolean;
 
   @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
-
-  constructor(public session: SessionService, private studentData: StudentDataService, private store: Store) {
+  constructor(public session: SessionService, private mentorData: MentorDataService, private store: Store) {
     this.emojis = constants.emojis;
 
     console.log('in StudentsForMentorGridComponent constructor');
@@ -53,7 +52,7 @@ export class StudentsForMentorGridComponent implements OnInit {
 
   fetchData() {
     console.log('studentGrid calling getStudentsForMentor');
-    this.studentData.getStudentsForMentorByGUId(this.session.getUserGUId()).subscribe(
+    this.mentorData.getStudentsForMentorByGUId(this.session.getUserGUId()).subscribe(
       (data) => {
         this.students = data;
       },

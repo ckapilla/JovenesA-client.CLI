@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MemberDataService } from '../../data/member-data.service';
+import { StudentDataService } from '../../data/student-data.service';
 import { Member } from '../../models/member';
 import { SessionService } from '../../services/session.service';
 
@@ -12,12 +12,12 @@ export class MentorsForStudentListComponent implements OnInit {
   errorMessage = '';
   @Input() studentId: number;
 
-  constructor(public session: SessionService, private memberData: MemberDataService) {
+  constructor(public session: SessionService, private studentData: StudentDataService) {
     console.log('in MentorsForStudentComponent constructor with studentId=' + this.studentId);
   }
 
   public ngOnInit() {
-    this.memberData.getMentorsForStudent(this.studentId).subscribe(
+    this.studentData.getMentorsForStudent(this.studentId).subscribe(
       (data) => {
         this.mentors = data;
         console.log('getMentorsForStudent');

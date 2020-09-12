@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StudentDataService } from '../../data/student-data.service';
-import { StudentSponsorXRef } from '../../models/student-for-sponsor';
+import { SponsorGroupDataService } from '../../data/sponsor-group-data.service';
+import { StudentSponsorXRef } from '../../models/student-sponsor-xref';
 import { SessionService } from '../../services/session.service';
 
 @Component({
@@ -18,7 +18,7 @@ export class StudentsForSponsorComponent implements OnInit {
 
   constructor(
     public session: SessionService,
-    private studentData: StudentDataService,
+    private sponsorGroupData: SponsorGroupDataService,
     private router: Router,
     private currRoute: ActivatedRoute
   ) {
@@ -30,7 +30,7 @@ export class StudentsForSponsorComponent implements OnInit {
 
     const guid = this.currRoute.snapshot.params['guid'];
     console.log('++++++++++++++++++++have guid param' + guid);
-    this.studentData.getStudentsForSponsorByGUId(guid).subscribe(
+    this.sponsorGroupData.getStudentsForSponsorByGUId(guid).subscribe(
       (data) => {
         this.studentsForSponsor = data;
         console.log(this.studentsForSponsor);

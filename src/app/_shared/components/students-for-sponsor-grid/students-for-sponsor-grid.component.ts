@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 import { SetSelectedStudentGUId } from 'src/app/_store/student/student.action';
 import { StudentState } from 'src/app/_store/student/student.state';
 import { constants } from '../../constants/constants';
-import { StudentDataService } from '../../data/student-data.service';
-import { StudentSponsorXRef } from '../../models/student-for-sponsor';
+import { SponsorGroupDataService } from '../../data/sponsor-group-data.service';
+import { StudentSponsorXRef } from '../../models/student-sponsor-xref';
 import { SessionService } from '../../services/session.service';
 
 @Component({
@@ -21,14 +21,14 @@ export class StudentsForSponsorGridComponent implements OnInit {
 
   @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
 
-  constructor(public session: SessionService, private studentData: StudentDataService, private store: Store) {
+  constructor(public session: SessionService, private sponsorGroupData: SponsorGroupDataService, private store: Store) {
     this.emojis = constants.emojis;
 
     console.log('in StudentsForMentorGridComponent constructor');
   }
 
   public ngOnInit() {
-    this.studentData.getStudentsForSponsorByGUId(this.session.getUserGUId()).subscribe(
+    this.sponsorGroupData.getStudentsForSponsorByGUId(this.session.getUserGUId()).subscribe(
       (data) => {
         this.students = data;
       },

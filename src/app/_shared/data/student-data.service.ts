@@ -3,8 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { BaseDataService } from '../data/base-data.service';
+import { Member } from '../models/member';
 import { Student } from '../models/student';
-import { StudentSponsorXRef } from '../models/student-for-sponsor';
+import { StudentSponsorXRef } from '../models/student-sponsor-xref';
 import { StudentDTO } from '../models/studentDTO';
 import { StudentHeaderDTO } from '../models/studentHeaderDTO';
 import { StudentMiniDTO } from '../models/studentMiniDTO';
@@ -22,23 +23,11 @@ export class StudentDataService extends BaseDataService {
   ///  StudentsController
   /// ///////////////////////////////////////////////
 
-  // public getStudent(studentId: number): Observable<Student> {
-  //   const url = this.WebApiPrefix + 'students/' + studentId;
-  //   console.log('sending AuthHttp get request for Student');
-  //   return this.http.get(url).pipe(catchError(this.handleError));
-  // }
-
   public getStudentViaGUID(studentGUId: string): Observable<Student> {
     const url = this.WebApiPrefix + 'students/' + studentGUId;
     console.log('sending AuthHttp get request for Student by GUID');
     return this.http.get(url).pipe(catchError(this.handleError));
   }
-
-  // public getStudentDTO(studentId: number): Observable<StudentDTO> {
-  //   const url = this.WebApiPrefix + 'students/DTO/' + studentId;
-  //   console.log('sending AuthHttp get request for Students');
-  //   return this.http.get<StudentDTO>(url);
-  // }
 
   public getStudentDTOViaGUID(studentGUId: string): Observable<StudentDTO> {
     const url = this.WebApiPrefix + 'students/DTO/' + studentGUId;
@@ -76,28 +65,20 @@ export class StudentDataService extends BaseDataService {
     return this.http.get<StudentMiniDTO[]>(url).pipe(catchError(this.handleError));
   }
 
-  public getStudentsForMentorByGUId(mentorGUId: string): Observable<StudentDTO[]> {
-    const url = this.WebApiPrefix + 'students/for_mentor/' + mentorGUId;
-    console.log('sending AuthHttp get request for StudentsForMentor with url ' + url);
-    const xx = this.http.get<StudentDTO[]>(url).pipe(catchError(this.handleError));
-    console.log(xx);
-    return xx;
+  public getMentorsForStudent(studentId: number): Observable<Member[]> {
+    const url = this.WebApiPrefix + 'students/mentors_for/' + studentId;
+    console.log('sending AuthHttp get request ' + url);
+    return this.http.get<Member[]>(url).pipe(catchError(this.handleError));
   }
 
-  public getStudentsForSponsorByGUId(sponsorGUId: string): Observable<StudentSponsorXRef[]> {
-    const url = this.WebApiPrefix + 'students/for_sponsor/' + sponsorGUId;
+  public getSponsorGroupMembersForStudent(studentGUId: string): Observable<StudentSponsorXRef[]> {
+    const url = this.WebApiPrefix + 'students/sponsor_group_members_for/' + studentGUId;
     console.log('sending AuthHttp get request ' + url);
     return this.http.get<StudentSponsorXRef[]>(url).pipe(catchError(this.handleError));
   }
 
-  public getSponsorGroupMembersForStudent(studentId: number): Observable<StudentSponsorXRef[]> {
-    const url = this.WebApiPrefix + 'students/sponsor_group_members_for/' + studentId;
-    console.log('sending AuthHttp get request ' + url);
-    return this.http.get<StudentSponsorXRef[]>(url).pipe(catchError(this.handleError));
-  }
-
-  public getSponsorGroupForStudent(studentId: number): Observable<StudentSponsorXRef> {
-    const url = this.WebApiPrefix + 'students/sponsor_group_for/' + studentId;
+  public getSponsorGroupForStudent(studentGUId: string): Observable<StudentSponsorXRef> {
+    const url = this.WebApiPrefix + 'students/sponsor_group_for/' + studentGUId;
     console.log('sending AuthHttp get request ' + url);
     return this.http.get<StudentSponsorXRef>(url).pipe(catchError(this.handleError));
   }

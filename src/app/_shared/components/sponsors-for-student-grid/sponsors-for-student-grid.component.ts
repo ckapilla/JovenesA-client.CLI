@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
-import { SponsorGroupDataService } from '../../data/sponsor-group-data.service';
+import { Select } from '@ngxs/store';
+import { Observable, Subscription } from 'rxjs';
+import { StudentState } from 'src/app/_store/student/student.state';
+import { StudentDataService } from '../../data/student-data.service';
 import { SponsorGroupMemberDTO } from '../../models/sponsor-group-memberDTO';
 import { SessionService } from '../../services/session.service';
 
@@ -12,17 +15,19 @@ export class SponsorsForStudentGridComponent implements OnInit, OnChanges {
   sponsorName: string;
   // sponsorId: number;
   errorMessage = '';
+  studentGUId: string;
+  private subscription: Subscription;
+
   @Output() onSelectedSponsorName = new EventEmitter<string>();
   @Output() onSelectedSponsorId = new EventEmitter<number>();
-  @Input() studentId: number;
   @Input() sponsorId: number; // only used for change detection
 
-  constructor(public session: SessionService, private sponsorGroupData: SponsorGroupDataService) {
-    console.log('in ponsorsForStudentGridComponent constructor with studentId=' + this.studentId);
-  }
+  @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
+
+  constructor(public session: SessionService, private studentData: StudentDataService) {}
 
   public ngOnInit() {
-    this.sponsorGroupData.getSponsorGroupMembersForStudent(this.studentId).subscribe(
+    this.studentData.getSponsorGroupMembersForStudent(this.studentGUId).subscribe(
       (data) => {
         this.sponsors = data;
         console.log('getSponsorMembersForStudent');
@@ -35,21 +40,24 @@ export class SponsorsForStudentGridComponent implements OnInit, OnChanges {
           this.selectFirstRow();
         } else {
           this.errorMessage = 'No Assigned Sponsors.';
-          // this.onNoAssignedStudents.emit();
         }
       }
     );
+    this.subscribeForStudentGUIds2();
   }
 
-  public ngOnChanges() {
-    // console.log('child had new inpout');
-    // this.ngOnInit();
+  subscribeForStudentGUIds2() {
+    this.subscription = this.currentGUId$.subscribe((message) => {
+      this.studentGUId = message;
+      console.log('************NGXS: header details new StudentGUId received' + this.studentGUId);
+    });
   }
+  public ngOnChanges() {}
 
   selectFirstRow() {
     console.log(
       'First row Id is ' + this.sponsors[0].sponsorGroupMemberId + ' ' + this.sponsors[0].sponsorGroupMemberName
-    ); // + ' ' + this.sponsor.sponsorLastNames );
+    );
     this.setRowClasses(+this.sponsors[0].sponsorGroupMemberId);
     this.selectSponsor(+this.sponsors[0].sponsorGroupMemberId, 0);
   }
@@ -62,8 +70,6 @@ export class SponsorsForStudentGridComponent implements OnInit, OnChanges {
     this.onSelectedSponsorName.emit(sponsorName);
   }
   public setRowClasses(sponsorId: number) {
-    // console.log('setRowClasses -- row SponsorID is ' + sponsorId);
-    // console.log('session Assigned sponsor ID is ' + this.session.getAssignedSponsorId());
     const classes = {
       'table-success': sponsorId === this.sponsorId,
       'sponsor-row': true,

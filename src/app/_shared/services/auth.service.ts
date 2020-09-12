@@ -33,7 +33,10 @@ export class AuthService {
       // audience: `https://${AUTH_CONFIG.domain}/userinfo`,
       // scope: 'openid '
     })
-  ).pipe(shareReplay(1), catchError((err) => throwError(err)));
+  ).pipe(
+    shareReplay(1),
+    catchError((err) => throwError(err))
+  );
   // Define observables for SDK methods that return promises by default
   // For each Auth0 SDK method, first ensure the client instance is ready
   // concatMap: Using the client instance, call SDK method; SDK returns a promise
@@ -133,15 +136,15 @@ export class AuthService {
         targetRoute = cbRes.appState && cbRes.appState.target ? cbRes.appState.target : '/';
       }),
       concatMap(() =>
-      // Redirect callback complete; create stream
-      // returning user data and authentication status
+        // Redirect callback complete; create stream
+        // returning user data and authentication status
         combineLatest(this.getUser$(), this.isAuthenticated$)
       )
     );
 
     // Subscribe to authentication completion observable
     // Response will be an array of user and login status
-    authComplete$.subscribe(([ user, loggedIn ]) => {
+    authComplete$.subscribe(([user, loggedIn]) => {
       // Update subjects and loggedIn property
       this.userProfileSubject$.next(user);
       this.loggedIn = loggedIn;
@@ -157,7 +160,7 @@ export class AuthService {
       /// ////////////////// cjk
 
       // Redirect to target route after callback processing
-      this.router.navigate([ targetRoute ]);
+      this.router.navigate([targetRoute]);
     });
   }
 
@@ -174,7 +177,7 @@ export class AuthService {
     /// ///////// cjk
     localStorage.clear();
     // Go back to the becas-home route
-    this.router.navigate([ '/' ]);
+    this.router.navigate(['/']);
     // from prev code:
     this.session.setAdminStatus(undefined);
     this.session.setMentorStatus(undefined);
@@ -196,8 +199,9 @@ export class AuthService {
       this.session.setSponsorStatus(app_metadata['sponsorStatus']);
       console.log('isSponsor: ' + this.session.isSponsor());
 
-      this.session.setStudentGUId(app_metadata['studentRecordGUId']);
-      console.log('studentStatus: ' + this.session.isStudent());
+      this.session.setStudentRecordGUId(app_metadata['studentRecordGUId']);
+      console.log('isStudent: ' + this.session.isStudent());
+      console.log('studentRecordGUId: ' + this.session.getStudentRecordGUId());
 
       this.session.setUserGUId(userProfile['memberGUId']);
       // for testing abort: this.session.setUserGUId(null);
@@ -205,13 +209,6 @@ export class AuthService {
 
       this.session.setUserId(userProfile['user_id'].substr('auth0|'.length));
       console.log('userId: ' + this.session.userId);
-
-      // tslint:disable-next-line: triple-equals
-      if (this.session.getUserId() === 1216) {
-        // used to force student status for Chris Kapilla
-        this.session.setStudentGUId('c29f9ae6-7a89-4269-a6ab-cf1c76bcbaa9');
-        console.log('forced studentRecordGUId, so isStudent =  ' + this.session.isStudent());
-      }
 
       // this.email = (<any>userProfile)['email'];
       this.nickname = userProfile['nickname'];

@@ -1,4 +1,4 @@
-export class StudentForSponsor {
+export class StudentSponsorXRef {
   constructor(
     public studentGUId: string,
     public studentName: string,

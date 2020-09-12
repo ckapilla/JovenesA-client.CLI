@@ -37,12 +37,6 @@ export class MemberDataService extends BaseDataService {
     return this.http.get<MemberMiniDTO[]>(url).pipe(catchError(this.handleError));
   }
 
-  public getMentorsForStudent(studentId: number): Observable<Member[]> {
-    const url = this.WebApiPrefix + 'students/mentors_for/' + studentId;
-    console.log('sending AuthHttp get request ' + url);
-    return this.http.get<Member[]>(url).pipe(catchError(this.handleError));
-  }
-
   public getActiveSponsorMembers(): Observable<MemberMiniDTO[]> {
     const url = this.WebApiPrefix + 'members/names/by_role/Sponsor';
     console.log('sending AuthHttp get request ' + url);
@@ -129,23 +123,5 @@ export class MemberDataService extends BaseDataService {
         console.log('updateLastLogin success; no json expected ');
       }, catchError(this.handleError))
     );
-  }
-
-  public getMentor(mentorId: number): Observable<Member> {
-    const url = this.WebApiPrefix + 'mentors/' + mentorId;
-    console.log('sending AuthHttp get request for Mentor');
-    return this.http.get(url).pipe(catchError(this.handleError));
-  }
-
-  public updateMentor(mentor: Member): Observable<Member> {
-    const url = this.WebApiPrefix + 'mentors/' + mentor.memberId;
-
-    let body = JSON.stringify({ mentor });
-    // strip outer 'mentor' name
-    const x = JSON.parse(body);
-    body = JSON.stringify(x.mentor);
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    console.log('put mentor with url ' + url);
-    return this.http.put(url, body, { headers: headers });
   }
 }

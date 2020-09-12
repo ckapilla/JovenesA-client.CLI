@@ -6,7 +6,7 @@ export class SessionService {
   adminStatus: number;
   mentorStatus: number;
   sponsorStatus: number;
-  studentGUId: string;
+  studentRecordGUId: string;
 
   userId: number;
   userGUId: string;
@@ -49,17 +49,21 @@ export class SessionService {
     }
   }
 
-  public setStudentGUId(studentGUId: string): void {
-    this.studentGUId = studentGUId;
+  public setStudentRecordGUId(studentRecordGUId: string): void {
+    this.studentRecordGUId = studentRecordGUId;
+  }
+
+  public getStudentRecordGUId(): string {
+    return this.studentRecordGUId;
   }
 
   public isStudent(): boolean {
-    if (!this.studentGUId) {
+    if (!this.studentRecordGUId) {
       // console.log('Session: Is Not student -- have !studentGUId: ');
       return false;
     } else {
       // console.log('Session: have studentGUId: ' + this.studentGUId);
-      return this.studentGUId !== '0000';
+      return this.studentRecordGUId !== '0000';
     }
   }
 
