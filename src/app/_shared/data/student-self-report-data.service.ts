@@ -26,14 +26,8 @@ export class StudentSelfReportDataService extends BaseDataService {
     return this.http.get<MentorReportsStatusCount[]>(url).pipe(catchError(this.handleError));
   }
 
-  // public getStudentSelfReports(studentId: number, sponsorId: number): Observable<StudentSelfReport[]> {
-  //   const url = this.WebApiPrefix + 'student_self_reports/' + studentId + '/' + sponsorId;
-  //   console.log('sending AuthHttp get request for StudentSelfReports with ' + url);
-  //   return this.http.get<StudentSelfReport[]>(url).pipe(catchError(this.handleError));
-  // }
-
-  public getStudentSelfReportsByGUId(studentGUId: string, sponsorId: number): Observable<StudentSelfReport[]> {
-    const url = this.WebApiPrefix + 'student_self_reports/' + studentGUId + '/' + sponsorId;
+  public getStudentSelfReportsByGUId(studentGUId: string): Observable<StudentSelfReport[]> {
+    const url = this.WebApiPrefix + 'student_self_reports/' + studentGUId;
     console.log('sending AuthHttp get request for StudentSelfReports with ' + url);
     return this.http.get<StudentSelfReport[]>(url).pipe(catchError(this.handleError));
   }

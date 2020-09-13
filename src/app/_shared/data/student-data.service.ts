@@ -84,8 +84,8 @@ export class StudentDataService extends BaseDataService {
   }
 
   public updateStudent(student: Student): Observable<any> {
-    const url = this.WebApiPrefix + 'students/' + student.studentId;
-    let body = JSON.stringify({ student }); //
+    const url = this.WebApiPrefix + 'students';
+    let body = JSON.stringify({ student });
     // strip outer 'student' name
     const x = JSON.parse(body);
     body = JSON.stringify(x.student);

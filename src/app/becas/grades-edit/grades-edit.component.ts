@@ -17,7 +17,7 @@ import { SessionService } from '../../_shared/services/session.service';
 
 @Component({
   templateUrl: './grades-edit.component.html',
-  styleUrls: [ './grades-edit.component.css' ]
+  styleUrls: ['./grades-edit.component.css']
 })
 export class GradesEditComponent implements OnInit {
   myForm: FormGroup;
@@ -50,7 +50,7 @@ export class GradesEditComponent implements OnInit {
     this.studentName = session.getStudentInContextName();
 
     this.myForm = this._fb.group({
-      studentId: [ '' ],
+      studentGUId: ['0000'],
       gradeEntryRows: this._fb.array([])
     });
   }
@@ -66,11 +66,11 @@ export class GradesEditComponent implements OnInit {
       gradesDueDate: { value: '', disabled: true },
       gradesTurnedInDate: [
         { value: '' },
-        Validators.compose([ Validators.pattern(/^\d{4}\-\d{1,2}\-\d{1,2}$/), Validators.maxLength(10) ])
+        Validators.compose([Validators.pattern(/^\d{4}\-\d{1,2}\-\d{1,2}$/), Validators.maxLength(10)])
       ],
-      gradePointAvg: [ { value: '' }, Validators.pattern(/^\d{1,2}\.\d{1,1}$/) ],
-      gradesTurnedInException: [ '' ],
-      gradePointAvgException: [ '' ]
+      gradePointAvg: [{ value: '' }, Validators.pattern(/^\d{1,2}\.\d{1,1}$/)],
+      gradesTurnedInException: [''],
+      gradePointAvgException: ['']
     });
   }
 
@@ -123,7 +123,6 @@ export class GradesEditComponent implements OnInit {
           this.errorMessage = err;
         },
         () => {
-          // this.studentGradesData = this.studentGradesData.filter(s => s.studentId !== 275); // N/A
           this.studentGradesData.forEach((gradeEntryData) => {
             this.addGradeEntryRow(gradeEntryData);
           });
@@ -148,7 +147,7 @@ export class GradesEditComponent implements OnInit {
   gotoStudent(guid: string, studentName: string) {
     console.log('setting studentName to ' + studentName);
     this.session.setStudentInContextName(studentName);
-    const link = [ 'admins/students/student', { guid: guid } ];
+    const link = ['admins/students/student', { guid: guid }];
 
     console.log('navigating to ' + link);
     this.router.navigate(link);
@@ -243,7 +242,7 @@ export class GradesEditComponent implements OnInit {
       d = new Date();
     }
 
-    const strDate = [ d.getFullYear(), ('0' + (d.getMonth() + 1)).slice(-2), ('0' + d.getDate()).slice(-2) ].join('-');
+    const strDate = [d.getFullYear(), ('0' + (d.getMonth() + 1)).slice(-2), ('0' + d.getDate()).slice(-2)].join('-');
 
     const gradeEntryRow: FormGroup = this.gradeEntryRows().controls[i] as FormGroup;
 

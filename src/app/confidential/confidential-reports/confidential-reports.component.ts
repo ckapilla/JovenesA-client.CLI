@@ -16,7 +16,6 @@ export class ConfidentialReportsComponent implements OnInit {
   isLoading: boolean;
   errorMessage: string;
 
-  studentId: number;
   studentGUId: string;
   adminId: number;
   confidentialReportId: number;
@@ -96,7 +95,7 @@ export class ConfidentialReportsComponent implements OnInit {
     console.log('in confidential-reports: confidentialReportEdit, ready to navigate');
     if (this.studentGUId !== null) {
       const target = '/confidential/confidential-reports-edit/' + confidentialReportId;
-      this.router.navigateByUrl(target); // , //{mentorId: this.mentorId, studentId: this.studentId}]);
+      this.router.navigateByUrl(target);
     }
   }
 }

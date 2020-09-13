@@ -43,17 +43,18 @@ export class SelfReportMissingComponent implements OnInit {
     this.subscription = this.selectedYearPeriod$.subscribe((message) => {
       this.selectedYearPeriod = message;
       console.log('************NGXS: SSR Tracking new selectedYearPeriod received' + this.selectedYearPeriod);
+      this.fetchFilteredData();
     });
   }
 
   fetchFilteredData() {
     this.isLoading = true;
-    console.log('in fetchData for StudentReportsByPeriod');
+    console.log('in fetchData for missingStudentReportsByPeriod');
     this.ssrData.getMissingStudentSelfReportsByPeriod(this.selectedYearPeriod).subscribe(
       (data) => {
-        console.log('studentReportByPeriod has');
-        console.log(this.studentMinis[0]);
+        console.log('missing studentReportByPeriod has');
         this.studentMinis = data;
+        console.log(this.studentMinis);
       },
       (err) => console.error('Subscribe error: ' + err),
       () => {

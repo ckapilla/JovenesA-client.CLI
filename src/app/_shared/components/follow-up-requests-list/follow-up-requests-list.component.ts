@@ -21,7 +21,7 @@ export class FollowUpRequestsListComponent {
     console.log('in monthly-reports: monthlyReportEdit, ready to navigate');
     if (this.studentId !== null) {
       const target = '/mentors/monthly-reports-edit/' + mentorReportId;
-      this.router.navigateByUrl(target); // , //{mentorId: this.mentorId, studentId: this.studentId}]);
+      this.router.navigateByUrl(target);
     }
   }
   followUpRequestAdd() {
@@ -40,7 +40,7 @@ export class FollowUpRequestsListComponent {
     // this.session.setStudentInContextName(studentName);
 
     if (guid && guid.length > 0) {
-      const link = [ 'admins/students/student', { guid: guid } ];
+      const link = ['admins/students/student', { guid: guid }];
       console.log('navigating to ' + link);
       this.router.navigate(link);
     }

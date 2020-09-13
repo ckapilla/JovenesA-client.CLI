@@ -75,11 +75,6 @@ export class MonthlyReports2EditComponent implements OnInit {
   ngOnInit() {
     console.log('monthlyReportsEdit ngOnInit');
 
-    // this.mentorReport.mentorId = this.currRoute.snapshot.params['mentorId'];
-    // this.mentorReport.studentId = this.currRoute.snapshot.params['studentId'];
-    // console.log('mentorId ' + this.mentorReport.mentorId);
-    // console.log('studentId ' + this.mentorReport.studentId);
-
     // SQL Server will adjust the time to UTC by adding TimezoneOffset
     // we want to store local time so we adjust for that.
     const now = new Date();
@@ -152,7 +147,6 @@ export class MonthlyReports2EditComponent implements OnInit {
     }
 
     console.log('###before submitting update model with form control values');
-    // mentorId, mentorGUId and studentId do not have corresponding controls
     this.mentorReport2.lastContactYear = this.lastYearCtl.value;
     this.mentorReport2.lastContactMonth = this.lastMonthCtl.value;
     this.mentorReport2.emoji = this.emojiCtl.value;

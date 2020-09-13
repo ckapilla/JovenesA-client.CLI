@@ -72,12 +72,7 @@ export class SelfReportTrackingComponent implements OnInit {
   }
 
   fetchFilteredData() {
-    if (
-      this.studentGUId &&
-      this.studentGUId !== undefined &&
-      this.studentGUId !== '0000' &&
-      this.selectedYearPeriod !== ''
-    ) {
+    if (this.selectedYearPeriod !== '' && this.selectedYearPeriod !== undefined) {
       this.isLoading = true;
       console.log('in fetchData for StudentReportsByPeriod');
       this.ssrData

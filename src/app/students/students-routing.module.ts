@@ -11,7 +11,7 @@ const routes: Routes = [
     // path: 'students', // non lazy loading
     path: '', // lazy loading
     component: StudentsComponent,
-    canActivate: [ CanActivateViaStudentAuthGuard ],
+    canActivate: [CanActivateViaStudentAuthGuard],
     children: [
       {
         path: '',
@@ -19,14 +19,6 @@ const routes: Routes = [
         // shortcut to SelfReport /////
         component: StudentsSelfReportsComponent
       },
-      // {
-      //   path: 'becas-home',
-      //   component: StudentsHomeComponent
-      // },
-      // {
-      //   path: 'self-reports/:studentId',
-      //   component: StudentsSelfReportsComponent
-      // },
       {
         path: 'self-reports', // use session userId
         component: StudentsSelfReportsComponent
@@ -44,7 +36,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [ RouterModule.forChild(routes) ],
-  exports: [ RouterModule ]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
 export class StudentsRoutingModule {}

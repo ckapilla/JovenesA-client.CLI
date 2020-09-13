@@ -21,7 +21,7 @@ export class ConfidentialReportsListComponent {
     console.log('in monthly-reports2: monthlyReportEdit, ready to navigate');
     if (this.studentId !== null) {
       const target = '/confidential/monthly-reports-edit/' + mentorReportId;
-      this.router.navigateByUrl(target); // , //{mentorId: this.mentorId, studentId: this.studentId}]);
+      this.router.navigateByUrl(target);
     }
   }
 }

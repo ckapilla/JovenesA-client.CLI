@@ -15,7 +15,7 @@ import { SessionService } from '../../_shared/services/session.service';
 
 @Component({
   templateUrl: './grades-list.component.html',
-  styleUrls: [ './grades-list.component.css' ]
+  styleUrls: ['./grades-list.component.css']
 })
 export class GradesListComponent implements OnInit {
   studentDTO: StudentDTO;
@@ -72,7 +72,6 @@ export class GradesListComponent implements OnInit {
         this.errorMessage = err;
       },
       () => {
-        // this.gradesGivenEntryDTOs = this.gradesGivenEntryDTOs.filter(s => s.studentId !== 275); // N/A
         console.log(this.gradesGivenEntryDTOs[0]);
         console.log('data loaded now set timeout for scroll');
         setTimeout(() => {
@@ -126,7 +125,7 @@ export class GradesListComponent implements OnInit {
     this.session.setStudentInContextName(studentName);
     this.store.dispatch(new SetSelectedStudentGUId(studentGUId));
 
-    const link = [ 'becas/grades-edit' ]; // , { guid: guid }];
+    const link = ['becas/grades-edit']; // , { guid: guid }];
 
     console.log('navigating to ' + link);
     this.router.navigate(link);

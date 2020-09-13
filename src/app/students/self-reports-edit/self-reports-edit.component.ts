@@ -104,7 +104,7 @@ export class SelfReportsEditComponent implements OnInit {
   }
 
   onCancel() {
-    const target = '/students/self-reports/'; // + this.session.getXXStudentId(); // + '/' + this.studentId;
+    const target = '/students/self-reports/';
     console.log('navigating to ' + target);
     this.router.navigateByUrl(target);
   }

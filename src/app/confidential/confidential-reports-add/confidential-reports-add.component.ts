@@ -81,7 +81,6 @@ export class ConfidentialReportsAddComponent implements OnInit {
     this.confidentialReport.adminId = this.currRoute.snapshot.params['adminId'];
     this.confidentialReport.studentGUId = this.currRoute.snapshot.params['studentGUId'];
     console.log('mentorId ' + this.confidentialReport.adminId);
-    // console.log('studentId ' + this.confidentialReport.studentId);
     console.log('studentGUId ' + this.confidentialReport.studentGUId);
     // SQL Server will adjust the time to UTC by adding TimezoneOffset
     // we want to store local time so we adjust for that.

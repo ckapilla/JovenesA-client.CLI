@@ -46,7 +46,6 @@ export class SelfReportsAddComponent implements OnInit {
 
     this.selfReport = new StudentSelfReport();
     this.selfReport.sponsorGroupId = 0;
-    this.selfReport.studentId = 0;
     this.selfReport.reviewedStatusId = 2087;
     // SQL Server will adjust the time to UTC by adding TimezoneOffset
     // we want to store local time so we adjust for that.
@@ -66,11 +65,10 @@ export class SelfReportsAddComponent implements OnInit {
   ngOnInit() {
     console.log('selfReportsAdd ngOnInit');
     this.selfReport.sponsorGroupId = this.currRoute.snapshot.params['sponsorId'];
-    this.selfReport.studentId = this.currRoute.snapshot.params['studentId'];
     this.selfReport.studentGUId = this.currRoute.snapshot.params['studentGUId'];
 
     console.log('sponsorGroupId ' + this.selfReport.sponsorGroupId);
-    console.log('studentId ' + this.selfReport.studentId);
+    console.log('studentGUId ' + this.selfReport.studentGUId);
 
     this.myForm.valueChanges.subscribe(() => {
       this.errorMessage = '';
@@ -123,7 +121,7 @@ export class SelfReportsAddComponent implements OnInit {
   }
 
   onCancel() {
-    const target = '/student_self_reports/'; // + this.selfXXReport.studentId; // + '/' + this.studentId;
+    const target = '/student_self_reports/';
     console.log('navigating to ' + target);
     this.router.navigateByUrl(target);
   }
