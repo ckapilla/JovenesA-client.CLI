@@ -1,50 +1,58 @@
 <div class="card bg-primary">
-  <div class="card-header text-white" style="font-size:large">
-    <span>Student List</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="btn btn-secondary link "
-          (click)="gotoStudentSearch()">Student Search</span>
+  <div class="card-header text-white" style="font-size: large">
+    <span>Student List</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="btn btn-secondary link" (click)="gotoStudentSearch()">Student Search</span>
   </div>
 
   <div class="card-body bg-white">
-    <span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
-    <span *ngIf="successMessage" class="alert alert-success">{{successMessage}}</span>
+    <span *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</span>
+    <span *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</span>
 
     <div>
-
       <label for="ActiveStatusSelector">Active Status:</label>
-      <select name="ActiveStatusSelector" [(ngModel)]="selectedActiveStatus"
-              (change)="setSelectedActiveStatus($event.target.value)">
+      <select
+        name="ActiveStatusSelector"
+        [(ngModel)]="selectedActiveStatus"
+        (change)="setSelectedActiveStatus($event.target.value)"
+      >
         <option value="-1">--</option>
         <option value="1">All Active</option>
       </select>
 
-
       <label for="StatusSelector">Status:</label>
-      <select name="StatusSelector" [(ngModel)]="selectedStatus"
-              (change)="setSelectedStatus($event.target.value)"
-              [disabled]="selectedActiveStatus == '1'">
+      <select
+        name="StatusSelector"
+        [(ngModel)]="selectedStudentStatus"
+        (change)="setSelectedStudentStatus($event.target.value)"
+        [disabled]="selectedActiveStatus == '1'"
+      >
         <option value="-1">--</option>
-        <option *ngFor="let status of studentStatuses" [value]="status.value">{{status.label}}</option>
+        <option *ngFor="let status of studentStatuses" [value]="status.value">{{ status.label }}</option>
       </select>
 
       <label for="YearJoinedSelector">Year Joined JA:</label>
-      <select name="YearJoinedSelector" [(ngModel)]="selectedYearJoined"
-              (change)="setSelectedYearJoined($event.target.value)">
-        <option value="0">[All]</option>
-        <option *ngFor="let year of joinedYears" [value]="year.value">{{year.label}}</option>
+      <select
+        name="YearJoinedSelector"
+        [(ngModel)]="selectedYearJoined"
+        (change)="setSelectedYearJoined($event.target.value)"
+      >
+        <option value="0">--</option>
+        <option *ngFor="let year of joinedYears" [value]="year.value">{{ year.label }}</option>
       </select>
 
       <label for="GradYearSelector">Graduation Year:</label>
-      <select name="GradYearSelector" [(ngModel)]="selectedGradYear"
-              (change)="setSelectedGradYear($event.target.value)">
-        <option value="0">[All]</option>
-        <option *ngFor="let year of gradYears" [value]="year.value">{{year.label}}</option>
+      <select
+        name="GradYearSelector"
+        [(ngModel)]="selectedGradYear"
+        (change)="setSelectedGradYear($event.target.value)"
+      >
+        <option value="0">--</option>
+        <option *ngFor="let year of gradYears" [value]="year.value">{{ year.label }}</option>
       </select>
-
     </div>
     <div [ngSwitch]="isLoading">
       <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
-        <app-loading-container>
-        </app-loading-container>
+        <app-loading-container> </app-loading-container>
       </div>
       <div *ngSwitchCase="false">
         <table class="table-sm table-striped">
@@ -54,15 +62,25 @@
               <th></th>
               <th></th>
 
-              <th app-sortable-column="studentName" sort-direction="asc" (onSortColumn)="onSortColumn($event)">Student
+              <th app-sortable-column="studentName" sort-direction="asc" (onSortColumn)="onSortColumn($event)">
+                Student
               </th>
-              <th app-sortable-column="yearJoinedJa" (onSortColumn)="onSortColumn($event)">Year<br /> Joined</th>
-              <th app-sortable-column="joinedFrom" (onSortColumn)="onSortColumn($event)">Joined<br /> From</th>
+              <th app-sortable-column="yearJoinedJa" (onSortColumn)="onSortColumn($event)">
+                Year<br />
+                Joined
+              </th>
+              <th app-sortable-column="joinedFrom" (onSortColumn)="onSortColumn($event)">
+                Joined<br />
+                From
+              </th>
               <th app-sortable-column="educationalLevel" (onSortColumn)="onSortColumn($event)">Ed Level</th>
               <th app-sortable-column="pilotProgram" (onSortColumn)="onSortColumn($event)">Pilot</th>
               <th app-sortable-column="status" (onSortColumn)="onSortColumn($event)">Status</th>
 
-              <th app-sortable-column="gradYear" (onSortColumn)="onSortColumn($event)">Grad<br /> Year/Mo</th>
+              <th app-sortable-column="gradYear" (onSortColumn)="onSortColumn($event)">
+                Grad<br />
+                Year/Mo
+              </th>
               <!-- <th app-sortable-column="credentialYear" (onSortColumn)="onSortColumn($event)">Credential<br /> Year/Mo
               </th> -->
               <!-- <th app-sortable-column="gpaStatus" (onSortColumn)="onSortColumn($event)">GPA</th>
@@ -75,45 +93,41 @@
               <th app-sortable-column="universityAbbrev" (onSortColumn)="onSortColumn($event)">Univ</th>
               <th app-sortable-column="major" (onSortColumn)="onSortColumn($event)">Major</th>
               <!-- <th app-sortable-column="major" (onSortColumn)="onSortColumn($event)" >Major</th> -->
-
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let student of studentDTOs, let i = index">
+            <tr *ngFor="let student of studentDTOs; let i = index">
               <td>
-                {{ i+1 }}
+                {{ i + 1 }}
               </td>
               <td>
                 <img [src]="student.photoUrl" height="30" class="thumbnail" />
               </td>
-              <td (click)='gotoStudent(student.studentGUId, student.studentName)' class='link'>
+              <td (click)="gotoStudent(student.studentGUId, student.studentName)" class="link">
                 {{ student.studentName }}
               </td>
 
-              <td class='centered'>
-                {{ student.yearJoinedJa}}
+              <td class="centered">
+                {{ student.yearJoinedJa }}
               </td>
-              <td class='centered'>
-                {{ student.joinedFrom}}
+              <td class="centered">
+                {{ student.joinedFrom }}
               </td>
-              <td class='centered'>
-                {{ student.educationalLevel}}
+              <td class="centered">
+                {{ student.educationalLevel }}
               </td>
-              <td class='centered'>
-                {{ student.pilotProgram}}
+              <td class="centered">
+                {{ student.pilotProgram }}
               </td>
 
-              <td class='centered'>
+              <td class="centered">
                 {{ student.status }}
               </td>
 
-              <td class='centered'>
-                {{ student.gradYear}}/{{ student.gradMonth}}
-              </td>
+              <td class="centered">{{ student.gradYear }}/{{ student.gradMonth }}</td>
               <!-- <td class='centered'>
                 {{ student.credentialYear}}/{{ student.credentialMonth}}
               </td> -->
-
 
               <!-- <td style="text-align:center;white-space: nowrap">
                 <img src="/assets/images/{{student.gpaStatus}}.jpg" height="22">
@@ -121,7 +135,7 @@
               <td style="text-align:center;white-space: nowrap">
                 <img src="/assets/images/{{student.gradeRptStatus}}.jpg" height="22">
               </td> -->
-              <td (click)='gotoMentor(student.mentorGUId)' class='link'>
+              <td (click)="gotoMentor(student.mentorGUId)" class="link">
                 {{ student.mentorName }}
               </td>
               <!-- <td>
@@ -131,8 +145,8 @@
                 <img src="/assets/images/{{student.timelyMentorReportStatus}}.jpg" height="22">
               </td> -->
 
-              <td style="text-align:center;white-space: nowrap">
-                <img src="{{smileys[student.studentSnapshotStatus + 1]}}" width="24" />
+              <td style="text-align: center; white-space: nowrap">
+                <img src="{{ smileys[student.studentSnapshotStatus + 1] }}" width="24" />
               </td>
 
               <td>
@@ -142,9 +156,8 @@
                 {{ student.universityAbbrev }}
               </td>
               <td>
-                {{ student.major}}
+                {{ student.major }}
               </td>
-
             </tr>
           </tbody>
         </table>
@@ -152,5 +165,5 @@
     </div>
   </div>
 
-
   l
+</div>

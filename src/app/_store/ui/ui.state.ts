@@ -1,14 +1,27 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { SetQRComponentsEditable, SetSelectedYearPeriod, SetTestNamesVisibility } from './ui.action';
+import {
+  SetQRComponentsEditable,
+  SetSelectedActiveStatus,
+  SetSelectedGradYear,
+  SetSelectedStudentStatus,
+  SetSelectedYearJoined,
+  SetSelectedYearPeriod,
+  SetTestNamesVisibility
+} from './ui.action';
 import { UIStateModel } from './ui.model';
 
 @State<UIStateModel>({
   name: 'ui',
   defaults: {
     testNamesVisibility: false,
+    qrComponentsEditable: false,
     selectedYearPeriod: '2020-2',
-    qrComponentsEditable: false
+
+    selectedStudentStatus: '1005',
+    selectedActiveStatus: '-1',
+    selectedYearJoined: '0',
+    selectedGradYear: '0'
   }
 })
 @Injectable()
@@ -31,6 +44,21 @@ export class UIState {
   }
 
   @Selector()
+  static getQRComponentsEditable(state: UIStateModel) {
+    return state.qrComponentsEditable;
+  }
+
+  @Action(SetQRComponentsEditable)
+  setQRComponentsEditable(ctx: StateContext<UIStateModel>, { payload }: SetQRComponentsEditable) {
+    const qrComponentsEditable = payload;
+    const state = ctx.getState();
+    ctx.patchState({
+      ...state,
+      qrComponentsEditable
+    });
+  }
+
+  @Selector()
   static getSelectedYearPeriod(state: UIStateModel) {
     return state.selectedYearPeriod;
   }
@@ -46,17 +74,62 @@ export class UIState {
   }
 
   @Selector()
-  static getQRComponentsEditable(state: UIStateModel) {
-    return state.qrComponentsEditable;
+  static getSelectedYearJoined(state: UIStateModel) {
+    return state.selectedYearJoined;
   }
 
-  @Action(SetQRComponentsEditable)
-  setQRComponentsEditable(ctx: StateContext<UIStateModel>, { payload }: SetQRComponentsEditable) {
-    const qrComponentsEditable = payload;
+  @Action(SetSelectedYearJoined)
+  setSelectedYearJoined(ctx: StateContext<UIStateModel>, { payload }: SetSelectedYearJoined) {
+    const selectedYearJoined = payload;
     const state = ctx.getState();
     ctx.patchState({
       ...state,
-      qrComponentsEditable
+      selectedYearJoined
+    });
+  }
+
+  @Selector()
+  static getSelectedGradYear(state: UIStateModel) {
+    return state.selectedGradYear;
+  }
+
+  @Action(SetSelectedGradYear)
+  setSelectedGradYear(ctx: StateContext<UIStateModel>, { payload }: SetSelectedGradYear) {
+    const selectedGradYear = payload;
+    const state = ctx.getState();
+    ctx.patchState({
+      ...state,
+      selectedGradYear
+    });
+  }
+
+  @Selector()
+  static getSelectedStudentStatus(state: UIStateModel) {
+    return state.selectedStudentStatus;
+  }
+
+  @Action(SetSelectedStudentStatus)
+  setSelectedStudentStatus(ctx: StateContext<UIStateModel>, { payload }: SetSelectedStudentStatus) {
+    const selectedStudentStatus = payload;
+    const state = ctx.getState();
+    ctx.patchState({
+      ...state,
+      selectedStudentStatus
+    });
+  }
+
+  @Selector()
+  static getSelectedActiveStatus(state: UIStateModel) {
+    return state.selectedActiveStatus;
+  }
+
+  @Action(SetSelectedActiveStatus)
+  setSelectedActiveStatus(ctx: StateContext<UIStateModel>, { payload }: SetSelectedActiveStatus) {
+    const selectedActiveStatus = payload;
+    const state = ctx.getState();
+    ctx.patchState({
+      ...state,
+      selectedActiveStatus
     });
   }
 }

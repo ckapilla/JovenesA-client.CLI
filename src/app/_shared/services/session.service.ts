@@ -13,16 +13,10 @@ export class SessionService {
   inContextStudentName: string;
 
   inContextMemberType: SELECTITEM;
-  selectedYearJoined: string;
-  selectedGradYear: string;
-  selectedStudentStatus: string;
 
   constructor() {
     console.log('SessionService constructor');
     this.userId = 0;
-    this.selectedStudentStatus = '1005';
-    this.selectedYearJoined = '0';
-    this.selectedGradYear = '0';
   }
 
   public setAdminStatus(status: number): void {
@@ -109,29 +103,5 @@ export class SessionService {
 
   public getMemberType(): SELECTITEM {
     return this.inContextMemberType;
-  }
-
-  public setSelectedYearJoined(yearJoined: string) {
-    this.selectedYearJoined = yearJoined;
-  }
-
-  public getSelectedYearJoined(): string {
-    return this.selectedYearJoined;
-  }
-
-  public setSelectedStudentStatus(studentStatus: string) {
-    this.selectedStudentStatus = studentStatus;
-  }
-
-  public getSelectedStudentStatus(): string {
-    return this.selectedStudentStatus;
-  }
-
-  public setSelectedGradYear(gradYear: string) {
-    this.selectedGradYear = gradYear;
-  }
-
-  public getSelectedGradYear(): string {
-    return this.selectedGradYear;
   }
 }

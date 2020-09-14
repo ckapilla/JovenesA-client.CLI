@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Select } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { constants } from 'src/app/_shared/constants/constants';
 import { StudentDataService } from 'src/app/_shared/data/student-data.service';
@@ -9,16 +9,22 @@ import { SORTCRITERIA } from 'src/app/_shared/interfaces/SORTCRITERIA';
 import { StudentDTO } from 'src/app/_shared/models/studentDTO';
 import { ColumnSortService } from 'src/app/_shared/services/column-sort.service';
 import { SessionService } from 'src/app/_shared/services/session.service';
+import {
+  SetSelectedActiveStatus,
+  SetSelectedGradYear,
+  SetSelectedStudentStatus,
+  SetSelectedYearJoined
+} from 'src/app/_store/ui/ui.action';
 import { UIState } from 'src/app/_store/ui/ui.state';
 
 @Component({
   selector: 'app-admins-student-list',
   templateUrl: './admins-student-list.component.html',
-  styleUrls: [ './admins-student-list.component.css' ]
+  styleUrls: ['./admins-student-list.component.css']
 })
 export class AdminsStudentListComponent implements OnInit {
   selectedActiveStatus: string;
-  selectedStatus: string;
+  selectedStudentStatus: string;
   selectedYearJoined: string;
   selectedGradYear: string;
 
@@ -36,97 +42,134 @@ export class AdminsStudentListComponent implements OnInit {
   displayTestNames: boolean;
 
   @Select(UIState.getTestNamesVisibility) testNameVisibility$: Observable<boolean>;
+  @Select(UIState.getSelectedGradYear) selectedGradYear$: Observable<string>;
+  @Select(UIState.getSelectedYearJoined) selectedYearJoined$: Observable<string>;
+  @Select(UIState.getSelectedStudentStatus) selectedStudentStatus$: Observable<string>;
+  @Select(UIState.getSelectedActiveStatus) selectedActiveStatus$: Observable<string>;
 
   constructor(
     public studentData: StudentDataService,
     public router: Router,
-    // private route: ActivatedRoute,
+    public store: Store,
     private session: SessionService,
     private columnSorter: ColumnSortService
   ) {
-    console.log('Hi from student List Ctrl controller function');
-
-    this.selectedActiveStatus = '-1';
-    this.selectedStatus = this.session.getSelectedStudentStatus();
-    this.selectedYearJoined = this.session.getSelectedYearJoined();
-    this.selectedGradYear = this.session.getSelectedGradYear();
+    console.log('Hi from student List constructor function');
 
     this.isLoading = false;
+
+    this.testNameVisibility$.subscribe((flag) => {
+      this.displayTestNames = flag;
+      // this.fetchFilteredData();
+    });
+
+    this.selectedActiveStatus$.subscribe((status) => {
+      console.log('selectedActiveStatus set to ' + status);
+      this.selectedActiveStatus = status;
+    });
+
+    this.selectedStudentStatus$.subscribe((status) => {
+      console.log('selectedStudentStatus set to ' + status);
+      this.selectedStudentStatus = status;
+    });
+
+    this.selectedGradYear$.subscribe((year) => {
+      console.log('selectedGradYear set to ' + year);
+      this.selectedGradYear = year;
+    });
+
+    this.selectedYearJoined$.subscribe((year) => {
+      console.log('selectedYearJoined set to ' + year);
+      this.selectedYearJoined = year;
+    });
   }
 
   ngOnInit() {
     console.log('ngOnInit');
-    this.testNameVisibility$.subscribe((flag) => {
-      this.displayTestNames = flag;
-      this.fetchFilteredData();
-    });
-  }
-
-  setSelectedActiveStatus(activeStatus: string) {
-    console.log('selected activeStatus: ' + activeStatus);
-    this.selectedActiveStatus = activeStatus;
-    if (activeStatus === '1') {
-      this.selectedStatus = '-1';
-    } else {
-      this.selectedStatus = '1005'; // current
-    }
     this.fetchFilteredData();
   }
 
-  setSelectedStatus(status: string) {
-    console.log('selected status: ' + status);
-    this.selectedStatus = status;
-    this.session.setSelectedStudentStatus(status);
+  setSelectedActiveStatus(activeStatus: string) {
+    console.log('ORIG selected activeStatus: ' + this.selectedActiveStatus);
+    console.log('new selected activeStatus: ' + activeStatus);
+    this.selectedActiveStatus = activeStatus;
+    if (activeStatus === '1') {
+      this.selectedStudentStatus = '-1';
+    } else {
+      this.selectedStudentStatus = '1005'; // current
+    }
+    this.store.dispatch(new SetSelectedStudentStatus(this.selectedStudentStatus));
+    this.store.dispatch(new SetSelectedActiveStatus(activeStatus));
+    this.fetchFilteredData();
+  }
+
+  setSelectedStudentStatus(status: string) {
+    console.log('setting selectedStudent status: ' + status);
+    this.selectedStudentStatus = status;
+    this.store.dispatch(new SetSelectedStudentStatus(status));
     this.fetchFilteredData();
   }
 
   setSelectedGradYear(year: string) {
     console.log('setting SelectedGradYear: ' + year);
-    this.session.setSelectedGradYear(year);
     this.selectedGradYear = year;
+    this.store.dispatch(new SetSelectedGradYear(year));
     this.fetchFilteredData();
   }
+
   setSelectedYearJoined(year: string) {
     console.log('setting SelectedYearJoined: ' + year);
-    this.session.setSelectedYearJoined(year);
     this.selectedYearJoined = year;
+    this.store.dispatch(new SetSelectedYearJoined(year));
     this.fetchFilteredData();
   }
 
   fetchFilteredData() {
-    this.isLoading = true;
-    this.studentData
-      .getStudentDTOsByStatusAndYear(
-        this.selectedActiveStatus,
-        this.selectedStatus,
-        this.selectedYearJoined,
-        this.selectedGradYear
+    console.log('in fetchFilteredData');
+
+    if (
+      // eslint-disable-next-line no-constant-condition
+      !(
+        false
+        // this.selectedActiveStatus === '-1' &&
+        // this.selectedStudentStatus === '-1' &&
+        // this.selectedYearJoined === '0' &&
+        // this.selectedGradYear === '0'
       )
-      .subscribe(
-        (data) => {
-          this.studentDTOs = data
-            .filter((item) => {
-              if (this.displayTestNames) {
-                return item;
-              } else if (!this.displayTestNames && item.studentName !== '_Test, _Student') {
-                return item;
-              }
-            })
-            .map(this.getNumericStatus);
-        },
-        (err) => {
-          this.errorMessage = err;
-        },
-        () => {
-          // this.studentDTOs = this.studentDTOs.filter(s => s.studentId !== 275); // N/A
-          console.log(this.studentDTOs[0]);
-          console.log('data loaded now set timeout for scroll');
-          setTimeout(() => {
-            this.scrollIntoView();
-          }, 0);
-          this.isLoading = false;
-        }
-      );
+    ) {
+      this.isLoading = true;
+      this.studentData
+        .getStudentDTOsByStatusAndYear(
+          this.selectedActiveStatus,
+          this.selectedStudentStatus,
+          this.selectedYearJoined,
+          this.selectedGradYear
+        )
+        .subscribe(
+          (data) => {
+            this.studentDTOs = data
+              .filter((item) => {
+                if (this.displayTestNames) {
+                  return item;
+                } else if (!this.displayTestNames && item.studentName !== '_Test, _Student') {
+                  return item;
+                }
+              })
+              .map(this.getNumericStatus);
+          },
+          (err) => {
+            this.errorMessage = err;
+          },
+          () => {
+            console.log(this.studentDTOs[0]);
+            console.log('data loaded now set timeout for scroll');
+            setTimeout(() => {
+              this.scrollIntoView();
+            }, 0);
+            this.isLoading = false;
+          }
+        );
+    }
   }
 
   scrollIntoView() {
@@ -180,21 +223,21 @@ export class AdminsStudentListComponent implements OnInit {
     console.log('setting studentName to ' + studentName);
     this.session.setStudentInContextName(studentName);
 
-    const link = [ 'admins/students/student', { guid: guid } ];
+    const link = ['admins/students/student', { guid: guid }];
 
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }
 
   gotoMentor(guid: string) {
-    const link = [ 'admins/members/member', { guid: guid } ];
+    const link = ['admins/members/member', { guid: guid }];
 
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }
 
   gotoReport(id: number) {
-    const link = [ '/admins/students/mentorReports', id ];
+    const link = ['/admins/students/mentorReports', id];
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }
@@ -209,8 +252,4 @@ export class AdminsStudentListComponent implements OnInit {
     console.log('parent received sortColumnCLick event with ' + sortCriteria.sortColumn);
     return this.studentDTOs.sort((a, b) => this.columnSorter.compareValues(a, b, sortCriteria));
   }
-
-  // onSorted($event) {
-  //   console.log('sorted event received');
-  // }
 }

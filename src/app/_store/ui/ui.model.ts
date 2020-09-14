@@ -1,5 +1,10 @@
 export interface UIStateModel {
   testNamesVisibility: boolean;
-  selectedYearPeriod: string;
   qrComponentsEditable: boolean;
+
+  selectedStudentStatus: string;
+  selectedActiveStatus: string;
+  selectedYearPeriod: string;
+  selectedYearJoined: string;
+  selectedGradYear: string;
 }

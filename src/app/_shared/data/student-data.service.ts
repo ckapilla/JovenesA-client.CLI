@@ -43,12 +43,12 @@ export class StudentDataService extends BaseDataService {
 
   public getStudentDTOsByStatusAndYear(
     activeStatus: string,
-    statusId: string,
+    studentStatusId: string,
     yearJoinedJA: string,
     gradYear: string
   ): Observable<StudentDTO[]> {
     const url =
-      this.WebApiPrefix + 'students' + '/' + activeStatus + '/' + statusId + '/' + yearJoinedJA + '/' + gradYear;
+      this.WebApiPrefix + 'students' + '/' + activeStatus + '/' + studentStatusId + '/' + yearJoinedJA + '/' + gradYear;
     console.log('sending AuthHttp get request for Students with url ' + url);
     return this.http.get<StudentDTO[]>(url).pipe(catchError(this.handleError));
   }
