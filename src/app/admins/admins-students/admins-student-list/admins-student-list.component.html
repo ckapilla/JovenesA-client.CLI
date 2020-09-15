@@ -9,46 +9,46 @@
     <span *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</span>
 
     <div>
-      <label for="ActiveStatusSelector">Active Status:</label>
+      <label for="FilterModeSelector"></label>
       <select
-        name="ActiveStatusSelector"
-        [(ngModel)]="selectedActiveStatus"
-        (change)="setSelectedActiveStatus($event.target.value)"
+        name="FilterModeSelector"
+        [(ngModel)]="selectedFilterMode"
+        (change)="setSelectedFilterMode($event.target.value)"
       >
-        <option value="-1">--</option>
-        <option value="1">All Active</option>
+        <option value="998">All Active Students (Current, Recent Grad and Sabbatical)</option>
+        <option value="999">Choose Use Specific Filters</option>
       </select>
+      <span [hidden]="selectedFilterMode == '998'">
+        <label for="StatusSelector">Status:</label>
+        <select
+          name="StatusSelector"
+          [(ngModel)]="selectedStudentStatus"
+          (change)="setSelectedStudentStatus($event.target.value)"
+        >
+          <option value="0">All</option>
+          <option *ngFor="let status of studentStatuses" [value]="status.value">{{ status.label }}</option>
+        </select>
 
-      <label for="StatusSelector">Status:</label>
-      <select
-        name="StatusSelector"
-        [(ngModel)]="selectedStudentStatus"
-        (change)="setSelectedStudentStatus($event.target.value)"
-        [disabled]="selectedActiveStatus == '1'"
-      >
-        <option value="-1">--</option>
-        <option *ngFor="let status of studentStatuses" [value]="status.value">{{ status.label }}</option>
-      </select>
+        <label for="YearJoinedSelector">Year Joined JA:</label>
+        <select
+          name="YearJoinedSelector"
+          [(ngModel)]="selectedYearJoined"
+          (change)="setSelectedYearJoined($event.target.value)"
+        >
+          <option value="0">All</option>
+          <option *ngFor="let year of joinedYears" [value]="year.value">{{ year.label }}</option>
+        </select>
 
-      <label for="YearJoinedSelector">Year Joined JA:</label>
-      <select
-        name="YearJoinedSelector"
-        [(ngModel)]="selectedYearJoined"
-        (change)="setSelectedYearJoined($event.target.value)"
-      >
-        <option value="0">--</option>
-        <option *ngFor="let year of joinedYears" [value]="year.value">{{ year.label }}</option>
-      </select>
-
-      <label for="GradYearSelector">Graduation Year:</label>
-      <select
-        name="GradYearSelector"
-        [(ngModel)]="selectedGradYear"
-        (change)="setSelectedGradYear($event.target.value)"
-      >
-        <option value="0">--</option>
-        <option *ngFor="let year of gradYears" [value]="year.value">{{ year.label }}</option>
-      </select>
+        <label for="GradYearSelector">Graduation Year:</label>
+        <select
+          name="GradYearSelector"
+          [(ngModel)]="selectedGradYear"
+          (change)="setSelectedGradYear($event.target.value)"
+        >
+          <option value="0">All</option>
+          <option *ngFor="let year of gradYears" [value]="year.value">{{ year.label }}</option>
+        </select>
+      </span>
     </div>
     <div [ngSwitch]="isLoading">
       <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">

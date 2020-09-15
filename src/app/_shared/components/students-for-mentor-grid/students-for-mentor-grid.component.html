@@ -1,9 +1,8 @@
-<div *ngIf="errorMessage" class="alert alert-warning">{{errorMessage}}</div>
+<div *ngIf="errorMessage" class="alert alert-warning">{{ errorMessage }}</div>
 <div *ngIf="!errorMessage">
   <div [ngSwitch]="isLoading">
     <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
-      <app-loading-container>
-      </app-loading-container>
+      <app-loading-container> </app-loading-container>
     </div>
     <div *ngSwitchCase="false">
       <table class="table table-condensed">
@@ -14,12 +13,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of students, let i = index"
-              [ngClass]="setRowClasses(item.studentGUId, item.activeStatus)"
-              id="item.studentId"
-              (click)='selectStudent(item.studentGUId, i)'>
-            <td>{{item.studentName}}</td>
-            <td><img src='../../../{{emojis[item.studentSnapshotStatus + 1]}}' height='22'></td>
+          <tr
+            *ngFor="let item of students; let i = index"
+            [ngClass]="setRowClasses(item.studentGUId, item.activeStatus)"
+            id="item.studentId"
+            (click)="selectStudent(item.studentGUId, item.studentName, i)"
+          >
+            <td>{{ item.studentName }}</td>
+            <td><img src="../../../{{ emojis[item.studentSnapshotStatus + 1] }}" height="22" /></td>
           </tr>
         </tbody>
       </table>

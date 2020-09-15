@@ -12,7 +12,7 @@ import { SessionService } from 'src/app/_shared/services/session.service';
 import { UIState } from 'src/app/_store/ui/ui.state';
 @Component({
   templateUrl: './admins-member-list.component.html',
-  styleUrls: [ './admins-member-list.component.css' ]
+  styleUrls: ['./admins-member-list.component.css']
 })
 export class AdminsMemberListComponent implements OnInit {
   memberTypes: SELECTITEM[];
@@ -115,14 +115,14 @@ export class AdminsMemberListComponent implements OnInit {
       );
   }
   gotoMember(guid: string) {
-    const link = [ 'admins/members/member', { guid: guid } ];
+    const link = ['admins/members/member', { guid: guid }];
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }
   gotoStudent(guid: string, studentName: string) {
     console.log('setting studentName to ' + studentName);
-    this.session.setStudentInContextName(studentName);
-    const link = [ 'admins/students/student', { guid: guid } ];
+    // XXYYZZ this.session.setStudentInContextName(studentName);
+    const link = ['admins/students/student', { guid: guid }];
 
     console.log('navigating to ' + link);
     this.router.navigate(link);

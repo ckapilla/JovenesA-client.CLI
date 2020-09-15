@@ -49,7 +49,7 @@ export class StudentsForSponsorComponent implements OnInit {
   }
   gotoStudent(id: number, studentName: string) {
     console.log('setting studentName to ' + studentName);
-    this.session.setStudentInContextName(studentName);
+    // XXYYZZ this.session.setStudentInContextName(studentName);
     const link = ['admins/students/student', { id: id }];
 
     console.log('navigating to ' + link);

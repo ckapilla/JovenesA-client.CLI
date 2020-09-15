@@ -91,7 +91,7 @@ export class SelfReportsEditComponent implements OnInit {
         console.log((this.successMessage = <any>student));
         this.isSubmitted = true;
         this.isLoading = false;
-        const target = '/students/self-reports';
+        const target = '/students';
         console.log('after call to editMentorReport; navigating to ' + target);
         this.router.navigateByUrl(target);
       },
@@ -104,7 +104,7 @@ export class SelfReportsEditComponent implements OnInit {
   }
 
   onCancel() {
-    const target = '/students/self-reports/';
+    const target = '/students';
     console.log('navigating to ' + target);
     this.router.navigateByUrl(target);
   }

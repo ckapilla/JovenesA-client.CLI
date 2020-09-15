@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngxs/store';
 import { constants } from 'src/app/_shared/constants/constants';
 import { MentorReport2DataService } from 'src/app/_shared/data/mentor-report2-data.service';
 import { SELECTITEM } from 'src/app/_shared/interfaces/SELECTITEM';
 import { MentorReport2RPT } from 'src/app/_shared/models/mentor-report2';
-import { SessionService } from 'src/app/_shared/services/session.service';
+import { SetSelectedStudentIdentifiers } from 'src/app/_store/student/student.action';
 
 @Component({
   selector: 'app-mr-summary-tracking',
@@ -33,7 +34,8 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
 
   constructor(
     public router: Router,
-    public session: SessionService,
+
+    public store: Store,
     public mentorReport2Data: MentorReport2DataService,
     private route: ActivatedRoute
   ) {
@@ -160,18 +162,17 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
 
   gotoStudent(guid: string, studentName: string) {
     console.log('setting studentName to ' + studentName);
-    this.session.setStudentInContextName(studentName);
-
-    // const link = ['/admins/students/student/' + id];
     const link = ['admins/students/student', { guid: guid }];
 
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }
 
-  updateSummaryTracking(id: number, studentName: string) {
-    // const link = ['/admins/mentor-reports/reviewed-updates?id=' + id + '&reviewedStatus=' + 2087 + '&highlight=' + 2106];
-    this.session.setStudentInContextName(studentName);
+  updateSummaryTracking(id: number, studentGUId: string, studentName: string) {
+    // AABBCCDD
+    this.store.dispatch(new SetSelectedStudentIdentifiers({ studentGUId, studentName }));
+
+    console.log(studentName);
     const link: [string, { mentorReportId: number; reviewedStatus: string; highlight: string }] = [
       '/admins/mentor-reports/summary-updates',
       {

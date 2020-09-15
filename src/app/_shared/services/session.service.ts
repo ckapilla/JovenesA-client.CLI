@@ -89,13 +89,13 @@ export class SessionService {
     return this.userGUId;
   }
 
-  public setStudentInContextName(name: string): void {
-    this.inContextStudentName = name;
-  }
+  // public setStudentInContextName(name: string): void {
+  //   this.inContextStudentName = name;
+  // }
 
-  public getStudentInContextName(): string {
-    return this.inContextStudentName;
-  }
+  // public getStudentInContextName(): string {
+  //   return this.inContextStudentName;
+  // }
 
   public setMemberType(memberType: SELECTITEM): void {
     this.inContextMemberType = memberType;

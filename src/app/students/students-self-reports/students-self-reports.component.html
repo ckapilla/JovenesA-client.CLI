@@ -1,44 +1,41 @@
 <div *ngIf="errorMessage" class="alert alert-danger">
-  {{errorMessage}}</div>
+  {{ errorMessage }}
+</div>
 
 <div [ngSwitch]="isLoading">
   <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
-    <app-loading-container>
-    </app-loading-container>
+    <app-loading-container> </app-loading-container>
   </div>
   <div *ngSwitchCase="false">
     <div *ngIf="!errorMessage" class="card bg-primary">
-      <div class="card-header text-white" style="font-size:large">
+      <div class="card-header text-white" style="font-size: large">
         <span>Tus reportes anteriores</span>
         <span>
           <span>
-            <span class="btn btn-default active" (click)="studentSelfReportAdd()" style="margin-left:10px">
+            <span class="btn btn-default active" (click)="studentSelfReportAdd()" style="margin-left: 10px">
               Añadir Nuevo Reporte
             </span>
           </span>
         </span>
       </div>
       <div class="card-body bg-white">
-        <div class="row" style="border-bottom: 3px solid #ccc; margin-top: 2px;"
-             *ngFor="let i of studentSelfReports">
+        <div class="row" style="border-bottom: 3px solid #ccc; margin-top: 2px" *ngFor="let i of studentSelfReports">
           <div class="col-md-12">
             <div class="row">
-              <button *ngIf="isCurrentReportDate(i.reportDateTime)" class="btn default-btn btn-primary btn-sm"
-                      (click)="selfReportEdit(i.studentSelfReportId,i.studentName)">Editar</button>
+              <button
+                *ngIf="isCurrentReportDate(i.reportDateTime)"
+                class="btn default-btn btn-primary btn-sm"
+                (click)="selfReportEdit(i.studentSelfReportId, i.studentGUId, i.studentName)"
+              >
+                Editar
+              </button>
               &nbsp;
-              <span class="padded">
-                &nbsp;Fecha del Reporte: {{ i.reportDateTime | truncateDate }}
-              </span>
-              <span class="padded">
-                &nbsp;Período: {{ i.reportYear }} - {{ i.reportPeriod }}
-              </span>
+              <span class="padded"> &nbsp;Fecha del Reporte: {{ i.reportDateTime | truncateDate }} </span>
+              <span class="padded"> &nbsp;Período: {{ i.reportYear }} - {{ i.reportPeriod }} </span>
             </div>
             <div class="row">
-              <div class="padded">
-                &nbsp;Texto del Reporte:
-              </div>
-              <div [innerHTML]="i.narrative_Spanish | marked | unsafeHtml">
-              </div>
+              <div class="padded">&nbsp;Texto del Reporte:</div>
+              <div [innerHTML]="i.narrative_Spanish | marked | unsafeHtml"></div>
             </div>
           </div>
         </div>

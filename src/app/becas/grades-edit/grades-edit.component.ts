@@ -34,6 +34,7 @@ export class GradesEditComponent implements OnInit {
   studentName: string;
 
   @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
+  @Select(StudentState.getSelectedStudentName) currentName$: Observable<string>;
 
   constructor(
     public becaData: BecaDataService,
@@ -47,7 +48,6 @@ export class GradesEditComponent implements OnInit {
     console.log('Hi from gradesEdit Ctrl controller function');
 
     this.isLoading = false;
-    this.studentName = session.getStudentInContextName();
 
     this.myForm = this._fb.group({
       studentGUId: ['0000'],
@@ -100,12 +100,21 @@ export class GradesEditComponent implements OnInit {
   ngOnInit() {
     console.log('gradesEdit ngOnInit');
     this.subscribeForStudentGUIds2();
+    // AABBCCEE
+    this.subscribeForStudentNames();
+  }
+
+  subscribeForStudentNames() {
+    this.subscription = this.currentName$.subscribe((message) => {
+      this.studentName = message;
+      console.log('************NGXS: grades edit new StudentName received' + this.studentName);
+    });
   }
 
   subscribeForStudentGUIds2() {
     this.subscription = this.currentGUId$.subscribe((message) => {
       this.studentGUId = message;
-      console.log('************NGXS: header new StudentGUId received' + this.studentGUId);
+      console.log('************NGXS: grades edit new StudentGUId received' + this.studentGUId);
       if (this.studentGUId && this.studentGUId !== '0000') {
         this.fetchFilteredData();
       }
@@ -146,7 +155,7 @@ export class GradesEditComponent implements OnInit {
 
   gotoStudent(guid: string, studentName: string) {
     console.log('setting studentName to ' + studentName);
-    this.session.setStudentInContextName(studentName);
+    // XXYYZZ this.session.setStudentInContextName(studentName);
     const link = ['admins/students/student', { guid: guid }];
 
     console.log('navigating to ' + link);

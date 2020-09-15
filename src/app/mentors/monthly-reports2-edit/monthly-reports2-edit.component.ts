@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Select } from '@ngxs/store';
+import { Observable, Subscription } from 'rxjs';
 import { MentorReport2DataService } from 'src/app/_shared/data/mentor-report2-data.service';
+import { StudentState } from 'src/app/_store/student/student.state';
 import { constants } from '../../_shared/constants/constants';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 import { MentorReport2RPT } from '../../_shared/models/mentor-report2';
@@ -34,8 +37,11 @@ export class MonthlyReports2EditComponent implements OnInit {
   monthValidationMessage = '';
   emojiValidationMessage = '';
   narrativeValidationMessage = '';
+  subscription: Subscription;
   readonly contactYears: SELECTITEM[] = constants.years;
   readonly contactMonths: SELECTITEM[] = constants.months;
+
+  @Select(StudentState.getSelectedStudentName) currentName$: Observable<string>;
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -69,7 +75,6 @@ export class MonthlyReports2EditComponent implements OnInit {
     this.errorMessage = '';
     this.successMessage = '';
     this.isSubmitted = false;
-    this.studentName = this.session.getStudentInContextName();
   }
 
   ngOnInit() {
@@ -101,7 +106,6 @@ export class MonthlyReports2EditComponent implements OnInit {
         this.emojiCtl.setValue(0);
         this.narrative_EnglishCtl.setValue(this.mentorReport2.narrative_English);
         this.narrative_SpanishCtl.setValue(this.mentorReport2.narrative_Spanish);
-        this.studentName = this.session.getStudentInContextName();
       }
     );
 
@@ -115,8 +119,16 @@ export class MonthlyReports2EditComponent implements OnInit {
       // console.log('form change event');
       this.checkFormControlsAreValid(false);
     });
+    // AABBCCEE
+    this.subscribeForStudentNames();
   }
 
+  subscribeForStudentNames() {
+    this.subscription = this.currentName$.subscribe((message) => {
+      this.studentName = message;
+      console.log('************NGXS: mr edit new StudentName received' + this.studentName);
+    });
+  }
   checkFormControlsAreValid(bSubmitting: boolean): boolean {
     console.log('checking for valid form controls');
     let allCorrect = true;
@@ -201,22 +213,6 @@ export class MonthlyReports2EditComponent implements OnInit {
       return null;
     }
   }
-
-  // validateNarrativeFields(): ValidatorFn {
-  //   return (group: FormGroup): ValidationErrors => {
-  //     //   if (this.narrative_EnglishCtl.value.length || this.narrative_SpanishCtl.value.length) {
-  //     //     this.narrative_EnglishCtl.setErrors(null);
-  //     //     this.narrative_SpanishCtl.setErrors(null);
-  //     //     // console.log('OK: at least one narrative not empty');
-  //     //   } else {
-  //     //     this.narrative_EnglishCtl.setErrors({ bothEmpty: true });
-  //     //     this.narrative_SpanishCtl.setErrors({ bothEmpty: true });
-  //     //     // console.log('ERROR: both narratives empty');
-  //     //   }
-
-  //     return;
-  //   };
-  // }
 
   public hasChanges() {
     // if have changes then ask for confirmation

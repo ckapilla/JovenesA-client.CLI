@@ -38,9 +38,6 @@ export class SelfReportsAddComponent implements OnInit {
       narrative_English: ['', Validators.compose([Validators.required, Validators.maxLength(4500)])]
     });
 
-    // this.npm run startreportYear = this.myForm.controls['reportYear'];
-    // this.reportPeriod = this.myForm.controls['reportPeriod'];
-    // this.Narrative_English = this.myForm.controls['narrative_English'];
     this.myForm.controls.reportYear.disable();
     this.myForm.controls.reportPeriod.disable();
 
@@ -89,16 +86,6 @@ export class SelfReportsAddComponent implements OnInit {
       // let i = 0;
       this.errorMessage = '';
 
-      // if (!this.reportYear.valid || !this.reportPeriod.valid) {
-      //     this.errorMessage = this.errorMessage + 'Year and month must be selected from drop-downs. ';
-      //     ++i;
-      // }
-
-      // if (!this.narrative_English.valid) {
-      //     this.errorMessage = this.errorMessage + 'Report text box must be filled in . ';
-      //     ++i;
-      // }
-
       return false;
     }
     this.submitted = true; // need to set guard immediately to prevent dups
@@ -108,7 +95,7 @@ export class SelfReportsAddComponent implements OnInit {
         console.log((this.successMessage = <any>student));
         // this.submitted = true;
         this.isLoading = false;
-        const target = '/students/self-reports/';
+        const target = '/students';
         console.log('after call to postStudentSelfReports; navigating to ' + target);
         this.router.navigateByUrl(target);
       },
@@ -121,7 +108,7 @@ export class SelfReportsAddComponent implements OnInit {
   }
 
   onCancel() {
-    const target = '/student_self_reports/';
+    const target = '/students';
     console.log('navigating to ' + target);
     this.router.navigateByUrl(target);
   }

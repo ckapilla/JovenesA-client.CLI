@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Select } from '@ngxs/store';
+import { Observable, Subscription } from 'rxjs';
 import { FollowUpDataService } from 'src/app/_shared/data/follow-up-data.service';
 import { FollowUpEvent } from 'src/app/_shared/models/follow-up-event';
+import { StudentState } from 'src/app/_store/student/student.state';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 import { FollowUpRequest } from '../../_shared/models/follow-up-request';
 import { SessionService } from '../../_shared/services/session.service';
@@ -20,17 +23,14 @@ export class FollowUpRequestsAddComponent implements OnInit {
   studentName: string;
   isLoading: boolean;
   submitted: boolean;
-
   followUpStatusSelector: AbstractControl;
-
   errorMessage: string;
   successMessage: string;
   requestStatuses: SELECTITEM[];
   requestorRoles: SELECTITEM[];
+  subscription: Subscription;
 
-  // selectedFollowUpStatus: string;
-  // savedFollowUpStatusId: number;
-  // studentName: string;
+  @Select(StudentState.getSelectedStudentName) currentName$: Observable<string>;
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -73,7 +73,6 @@ export class FollowUpRequestsAddComponent implements OnInit {
     this.followUpRequest.requestorRoleId = 1010;
     this.followUpRequest.requestorId = this.session.getUserId();
     // session.setStudentInContextName('Harvey W');
-    this.studentName = session.getStudentInContextName();
     // SQL Server will adjust the time to UTC by adding TimezoneOffset
     // we want to store local time so we adjust for that.
     const now = new Date();
@@ -92,6 +91,15 @@ export class FollowUpRequestsAddComponent implements OnInit {
       this.successMessage = '';
       this.submitted = false;
       // console.log('form change event');
+    });
+    // AABBCCEE
+    this.subscribeForStudentNames();
+  }
+
+  subscribeForStudentNames() {
+    this.subscription = this.currentName$.subscribe((message) => {
+      this.studentName = message;
+      console.log('************NGXS: mr summary updates new StudentName received' + this.studentName);
     });
   }
 

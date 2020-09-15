@@ -10,7 +10,7 @@ import { StudentDTO } from 'src/app/_shared/models/studentDTO';
 import { ColumnSortService } from 'src/app/_shared/services/column-sort.service';
 import { SessionService } from 'src/app/_shared/services/session.service';
 import {
-  SetSelectedActiveStatus,
+  SetSelectedFilterMode,
   SetSelectedGradYear,
   SetSelectedStudentStatus,
   SetSelectedYearJoined
@@ -23,7 +23,7 @@ import { UIState } from 'src/app/_store/ui/ui.state';
   styleUrls: ['./admins-student-list.component.css']
 })
 export class AdminsStudentListComponent implements OnInit {
-  selectedActiveStatus: string;
+  selectedFilterMode: string;
   selectedStudentStatus: string;
   selectedYearJoined: string;
   selectedGradYear: string;
@@ -45,7 +45,7 @@ export class AdminsStudentListComponent implements OnInit {
   @Select(UIState.getSelectedGradYear) selectedGradYear$: Observable<string>;
   @Select(UIState.getSelectedYearJoined) selectedYearJoined$: Observable<string>;
   @Select(UIState.getSelectedStudentStatus) selectedStudentStatus$: Observable<string>;
-  @Select(UIState.getSelectedActiveStatus) selectedActiveStatus$: Observable<string>;
+  @Select(UIState.getSelectedFilterMode) selectedFilterMode$: Observable<string>;
 
   constructor(
     public studentData: StudentDataService,
@@ -63,9 +63,9 @@ export class AdminsStudentListComponent implements OnInit {
       // this.fetchFilteredData();
     });
 
-    this.selectedActiveStatus$.subscribe((status) => {
-      console.log('selectedActiveStatus set to ' + status);
-      this.selectedActiveStatus = status;
+    this.selectedFilterMode$.subscribe((status) => {
+      console.log('selectedFilterMode set to ' + status);
+      this.selectedFilterMode = status;
     });
 
     this.selectedStudentStatus$.subscribe((status) => {
@@ -89,17 +89,22 @@ export class AdminsStudentListComponent implements OnInit {
     this.fetchFilteredData();
   }
 
-  setSelectedActiveStatus(activeStatus: string) {
-    console.log('ORIG selected activeStatus: ' + this.selectedActiveStatus);
-    console.log('new selected activeStatus: ' + activeStatus);
-    this.selectedActiveStatus = activeStatus;
-    if (activeStatus === '1') {
-      this.selectedStudentStatus = '-1';
-    } else {
-      this.selectedStudentStatus = '1005'; // current
-    }
+  setSelectedFilterMode(filterMode: string) {
+    console.log('ORIG selected filterMode: ' + this.selectedFilterMode);
+    console.log('new selected filterMode: ' + filterMode);
+    this.selectedFilterMode = filterMode;
+    if (filterMode === '999') {
+      // use filterMode only
+      this.selectedStudentStatus = '1005';
+      this.selectedGradYear = '0';
+      this.selectedYearJoined = '0';
+    } // else {
+    //   this.selectedStudentStatus = '1005'; // current
+    // }
     this.store.dispatch(new SetSelectedStudentStatus(this.selectedStudentStatus));
-    this.store.dispatch(new SetSelectedActiveStatus(activeStatus));
+    this.store.dispatch(new SetSelectedFilterMode(filterMode));
+    this.store.dispatch(new SetSelectedGradYear(this.selectedGradYear));
+    this.store.dispatch(new SetSelectedYearJoined(this.selectedYearJoined));
     this.fetchFilteredData();
   }
 
@@ -125,13 +130,13 @@ export class AdminsStudentListComponent implements OnInit {
   }
 
   fetchFilteredData() {
-    console.log('in fetchFilteredData');
+    console.log('in fetchFilteredData with ' + this.selectedFilterMode);
 
     if (
       // eslint-disable-next-line no-constant-condition
       !(
         false
-        // this.selectedActiveStatus === '-1' &&
+        // this.selectedFilterMode === '-1' &&
         // this.selectedStudentStatus === '-1' &&
         // this.selectedYearJoined === '0' &&
         // this.selectedGradYear === '0'
@@ -140,7 +145,7 @@ export class AdminsStudentListComponent implements OnInit {
       this.isLoading = true;
       this.studentData
         .getStudentDTOsByStatusAndYear(
-          this.selectedActiveStatus,
+          this.selectedFilterMode,
           this.selectedStudentStatus,
           this.selectedYearJoined,
           this.selectedGradYear
@@ -221,7 +226,6 @@ export class AdminsStudentListComponent implements OnInit {
 
   gotoStudent(guid: string, studentName: string) {
     console.log('setting studentName to ' + studentName);
-    this.session.setStudentInContextName(studentName);
 
     const link = ['admins/students/student', { guid: guid }];
 

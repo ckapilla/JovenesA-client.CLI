@@ -33,7 +33,7 @@ export class StudentSelfReportDataService extends BaseDataService {
   }
 
   public getStudentSelfReport(selfReportId: number): Observable<StudentSelfReport> {
-    const url = this.WebApiPrefix + 'student_self_reports/' + selfReportId;
+    const url = this.WebApiPrefix + 'student_self_reports/' + selfReportId + '/0'; // '0' is dummy to avoid conflict with guid
     console.log('sending AuthHttp get request for StudentSelfReports with ' + url);
     return this.http.get<StudentSelfReport>(url).pipe(catchError(this.handleError));
   }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import {
   SetQRComponentsEditable,
-  SetSelectedActiveStatus,
+  SetSelectedFilterMode,
   SetSelectedGradYear,
   SetSelectedStudentStatus,
   SetSelectedYearJoined,
@@ -18,8 +18,8 @@ import { UIStateModel } from './ui.model';
     qrComponentsEditable: false,
     selectedYearPeriod: '2020-2',
 
-    selectedStudentStatus: '1005',
-    selectedActiveStatus: '-1',
+    selectedFilterMode: '998',
+    selectedStudentStatus: '0',
     selectedYearJoined: '0',
     selectedGradYear: '0'
   }
@@ -119,17 +119,17 @@ export class UIState {
   }
 
   @Selector()
-  static getSelectedActiveStatus(state: UIStateModel) {
-    return state.selectedActiveStatus;
+  static getSelectedFilterMode(state: UIStateModel) {
+    return state.selectedFilterMode;
   }
 
-  @Action(SetSelectedActiveStatus)
-  setSelectedActiveStatus(ctx: StateContext<UIStateModel>, { payload }: SetSelectedActiveStatus) {
-    const selectedActiveStatus = payload;
+  @Action(SetSelectedFilterMode)
+  setSelectedFilterMode(ctx: StateContext<UIStateModel>, { payload }: SetSelectedFilterMode) {
+    const selectedFilterMode = payload;
     const state = ctx.getState();
     ctx.patchState({
       ...state,
-      selectedActiveStatus
+      selectedFilterMode
     });
   }
 }

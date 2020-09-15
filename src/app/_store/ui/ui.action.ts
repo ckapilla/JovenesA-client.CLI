@@ -54,11 +54,11 @@ export class SetSelectedStudentStatus {
   constructor(public readonly payload: string) {}
 }
 ///
-export class GetSelectedActiveStatus {
-  static readonly type = '[UI] Get selectedActiveStatus';
+export class GetSelectedFilterMode {
+  static readonly type = '[UI] Get selectedFilterMode';
   constructor(public payload: UIStateModel) {}
 }
-export class SetSelectedActiveStatus {
-  static readonly type = '[UI] update selectedActiveStatus';
+export class SetSelectedFilterMode {
+  static readonly type = '[UI] update selectedFilterMode';
   constructor(public readonly payload: string) {}
 }

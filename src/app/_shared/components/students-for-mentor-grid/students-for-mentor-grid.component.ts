@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
-import { SetSelectedStudentGUId } from 'src/app/_store/student/student.action';
+import { SetSelectedStudentIdentifiers } from 'src/app/_store/student/student.action';
 import { StudentState } from 'src/app/_store/student/student.state';
 import { constants } from '../../constants/constants';
 import { MentorDataService } from '../../data/mentor-data.service';
@@ -18,6 +18,7 @@ export class StudentsForMentorGridComponent implements OnInit {
   emojis: Array<string> = [];
   studentId: number;
   studentGUId: string;
+  studentName: string;
   errorMessage = '';
   isLoading: boolean;
   private subscription: Subscription;
@@ -74,24 +75,27 @@ export class StudentsForMentorGridComponent implements OnInit {
     if (this.studentGUId === '0000') {
       console.log('no StudentGuid set, force selection of first row');
       this.studentGUId = this.students[0].studentGUId;
+      this.studentName = this.students[0].studentName;
     }
     // see if current student
     const idx = this.students.findIndex((x) => x.studentGUId === this.studentGUId);
     if (idx >= 0) {
       console.log('selecting specific row, studentGUId = ' + this.studentGUId);
-      this.selectStudent(this.studentGUId, idx);
+      this.selectStudent(this.studentGUId, this.studentName, idx);
     } else {
       // left over student from other process, so set to zero and call again recursively
       this.studentGUId = '0000';
+      this.studentName = '';
       this.selectInitialStudentAfterLoad();
     }
   }
 
-  public selectStudent(studentGUId: string, idx: number) {
+  public selectStudent(studentGUId: string, studentName: string, idx: number) {
     console.log('student selected studentGUId: ' + studentGUId + 'idx: ' + idx);
     this.studentGUId = studentGUId;
+    this.studentName = studentName;
     this.setRowClasses(this.students[idx].studentGUId, this.students[idx].activeStatus);
-    this.store.dispatch(new SetSelectedStudentGUId(this.studentGUId));
+    this.store.dispatch(new SetSelectedStudentIdentifiers({ studentGUId, studentName }));
   }
 
   // called from code (above) and from template

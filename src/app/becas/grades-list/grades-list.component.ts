@@ -4,7 +4,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { BecaDataService } from 'src/app/_shared/data/beca-data.service';
 import { GradesGivenEntryDTO } from 'src/app/_shared/models/grades-given-entryDTO';
-import { SetSelectedStudentGUId } from 'src/app/_store/student/student.action';
+import { SetSelectedStudentIdentifiers } from 'src/app/_store/student/student.action';
 import { UIState } from 'src/app/_store/ui/ui.state';
 import { constants } from '../../_shared/constants/constants';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
@@ -122,8 +122,8 @@ export class GradesListComponent implements OnInit {
 
   gotoStudent(studentGUId: string, studentName: string) {
     console.log('setting studentName to ' + studentName);
-    this.session.setStudentInContextName(studentName);
-    this.store.dispatch(new SetSelectedStudentGUId(studentGUId));
+    // XXYYZZ this.session.setStudentInContextName(studentName);
+    this.store.dispatch(new SetSelectedStudentIdentifiers({ studentGUId, studentName }));
 
     const link = ['becas/grades-edit']; // , { guid: guid }];
 

@@ -8,7 +8,7 @@ import { SessionService } from '../../_shared/services/session.service';
 
 @Component({
   templateUrl: 'confidential-reports-tracking.component.html',
-  styleUrls: [ 'confidential-reports-tracking.component.css' ]
+  styleUrls: ['confidential-reports-tracking.component.css']
 })
 export class ConfidentialReportsTrackingComponent implements OnInit {
   confidentialReports: ConfidentialReportRPT[];
@@ -119,46 +119,16 @@ export class ConfidentialReportsTrackingComponent implements OnInit {
     }
   }
 
-  // setSelectedMRReviewedStatus(status: string) {
-  //   this.selectedMRReviewedStatus = status;
-  //   this.fetchFilteredData();
-  // }
-
-  // setSelectedHighlightStatus(status: string) {
-  //   this.selectedHighlightStatus = status;
-  //   this.fetchFilteredData();
-  // }
-
-  // setSelectedYear(year: string) {
-  //   this.selectedYear = year;
-  //   this.fetchFilteredData();
-  // }
-  // setSelectedMonth(month: string) {
-  //   this.selectedMonth = month;
-  //   this.fetchFilteredData();
-  // }
-
   gotoStudent(guid: string, studentName: string) {
     console.log('setting studentName to ' + studentName);
-    this.session.setStudentInContextName(studentName);
+    // XXYYZZ this.session.setStudentInContextName(studentName);
 
     // const link = ['/admins/students/student/' + id];
-    const link = [ 'admins/students/student', { guid: guid } ];
+    const link = ['admins/students/student', { guid: guid }];
 
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }
-
-  // updateSummaryTracking(id: number, studentName: string) {
-  //   // const link = ['/admins/mentor-reports/reviewed-updates?id=' + id + '&reviewedStatus=' + 2087 + '&highlight=' + 2106];
-  //   this.session.setStudentInContextName(studentName);
-  //   const link: [string, { mentorReportId: number, reviewedStatus: string, highlight: string }]
-  //     = ['/admins/mentor-reports/summary-updates',
-  //       { mentorReportId: id, reviewedStatus: this.selectedMRReviewedStatus, highlight: this.selectedHighlightStatus }];
-
-  //   console.log('navigating to ' + link);
-  //   this.router.navigate(link);
-  // }
 
   getHighlightColor(highlightStatusId: number): string {
     if (highlightStatusId === 2106) {

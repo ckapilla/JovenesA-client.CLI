@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngxs/store';
 import { StudentDataService } from 'src/app/_shared/data/student-data.service';
 import { StudentSelfReportDataService } from 'src/app/_shared/data/student-self-report-data.service';
 import { SponsorGroup } from 'src/app/_shared/models/sponsor-group';
+import { SetSelectedStudentIdentifiers } from 'src/app/_store/student/student.action';
 import { StudentSelfReport } from '../../_shared/models/student-self-report';
 import { StudentDTO } from '../../_shared/models/studentDTO';
 import { SessionService } from '../../_shared/services/session.service';
@@ -27,7 +29,8 @@ export class StudentsSelfReportsComponent implements OnInit {
     private router: Router,
     public studentData: StudentDataService,
     public studentSelfReportData: StudentSelfReportDataService,
-    public session: SessionService
+    public session: SessionService,
+    public store: Store
   ) {
     console.log('ssr constructor');
   }
@@ -74,8 +77,11 @@ export class StudentsSelfReportsComponent implements OnInit {
     );
   }
 
-  selfReportEdit(id: number, studentName: string) {
-    this.session.setStudentInContextName(studentName);
+  selfReportEdit(id: number, studentGUId: string, studentName: string) {
+    // AABBCCDD
+    this.store.dispatch(new SetSelectedStudentIdentifiers({ studentGUId, studentName }));
+
+    console.log(studentName);
     const link = '/students/self-reports-edit/' + id;
     console.log('navigating to ' + link);
     this.router.navigateByUrl(link);

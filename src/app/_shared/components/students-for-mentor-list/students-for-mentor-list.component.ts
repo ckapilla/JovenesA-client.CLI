@@ -52,7 +52,7 @@ export class StudentsForMentorListComponent implements OnInit {
     // }, studentFirstNames: string) {
     // const studentName; // = studentLastNames + ', ' + studentFirstNames;
     console.log('setting studentName to ' + studentName);
-    this.session.setStudentInContextName(studentName);
+    // XXYYZZ this.session.setStudentInContextName(studentName);
     const link = 'admins/students/student;guid=' + GUId;
 
     console.log('navigating to ' + link);

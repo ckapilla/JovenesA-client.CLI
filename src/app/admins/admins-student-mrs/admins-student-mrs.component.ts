@@ -36,7 +36,8 @@ export class AdminsStudentMRsComponent implements OnInit {
     this.studentGUId = this.currRoute.snapshot.params['studentGUId'];
     this.studentName = this.currRoute.snapshot.params['studentName'];
     if (this.studentName === '') {
-      this.studentName = this.session.getStudentInContextName();
+      // AABBCC
+      // this.studentName = this.session.getStudentInContextName();
     }
     console.log('studentGUId  ' + this.studentGUId);
     this.isLoading = true;

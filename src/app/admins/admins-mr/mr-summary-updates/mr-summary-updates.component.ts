@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { Select } from '@ngxs/store';
+import { Observable, Subscription } from 'rxjs';
 import { constants } from 'src/app/_shared/constants/constants';
 import { MentorReport2DataService } from 'src/app/_shared/data/mentor-report2-data.service';
 import { SELECTITEM } from 'src/app/_shared/interfaces/SELECTITEM';
 import { MentorReport2RPT } from 'src/app/_shared/models/mentor-report2';
 import { SessionService } from 'src/app/_shared/services/session.service';
+import { StudentState } from 'src/app/_store/student/student.state';
 
 @Component({
   templateUrl: './mr-summary-updates.component.html',
-  styleUrls: [ '../../../../assets/css/forms.css' ]
+  styleUrls: ['../../../../assets/css/forms.css']
 })
 export class MentorReportSummaryUpdatesComponent implements OnInit {
   myForm: FormGroup;
@@ -44,6 +47,9 @@ export class MentorReportSummaryUpdatesComponent implements OnInit {
   savedReviewedStatusId: number;
   savedHighlightStatusId: number;
   studentName: string;
+  private subscription: Subscription;
+
+  @Select(StudentState.getSelectedStudentName) currentName$: Observable<string>;
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -56,12 +62,12 @@ export class MentorReportSummaryUpdatesComponent implements OnInit {
     this.highlightStatuses = constants.highlightStatuses;
 
     this.myForm = _fb.group({
-      inputSummary: [ '' ], // ,Validators.compose([Validators.required, Validators.maxLength(2000)])],
-      reviewedStatusSelector: [ '' ],
-      highlightStatusSelector: [ '' ],
-      inputEmoji: [ 666, { validators: [ Validators.required, this.validateEmojis ], updateOn: 'change' } ],
-      narrative_English: [ '', { validators: [ Validators.required ], updateOn: 'blur' } ],
-      narrative_Spanish: [ '' ]
+      inputSummary: [''], // ,Validators.compose([Validators.required, Validators.maxLength(2000)])],
+      reviewedStatusSelector: [''],
+      highlightStatusSelector: [''],
+      inputEmoji: [666, { validators: [Validators.required, this.validateEmojis], updateOn: 'change' }],
+      narrative_English: ['', { validators: [Validators.required], updateOn: 'blur' }],
+      narrative_Spanish: ['']
     });
 
     this.summary = this.myForm.controls['inputSummary'];
@@ -75,7 +81,6 @@ export class MentorReportSummaryUpdatesComponent implements OnInit {
     this.errorMessage = '';
     this.successMessage = '';
     this.submitted = false;
-    this.studentName = this.session.getStudentInContextName();
   }
 
   ngOnInit() {
@@ -114,6 +119,15 @@ export class MentorReportSummaryUpdatesComponent implements OnInit {
       this.successMessage = '';
       this.submitted = false;
       // console.log('form change event');
+    });
+    // AABBCCEE
+    this.subscribeForStudentNames();
+  }
+
+  subscribeForStudentNames() {
+    this.subscription = this.currentName$.subscribe((message) => {
+      this.studentName = message;
+      console.log('************NGXS: mr summary updates new StudentName received' + this.studentName);
     });
   }
 
@@ -220,7 +234,7 @@ export class MentorReportSummaryUpdatesComponent implements OnInit {
     };
     console.log('after Submit or Cancele navigating to ' + target);
     console.log('with queryParams ' + navigationExtras.queryParams);
-    this.router.navigate([ target ], navigationExtras);
+    this.router.navigate([target], navigationExtras);
   }
 
   validateEmojis(control: FormControl): { [error: string]: any } {
