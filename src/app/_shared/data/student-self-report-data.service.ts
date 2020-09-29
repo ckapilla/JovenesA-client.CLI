@@ -91,4 +91,10 @@ export class StudentSelfReportDataService extends BaseDataService {
     console.log('ready to putt ' + url + ' body: ' + body + ' options ' + headers);
     return this.http.put(url, body, { headers: headers });
   }
+
+  public deleteStudentSelfReport(studentSelfReportId: number): Observable<StudentSelfReport> {
+    const url = this.WebApiPrefix + 'student_self_reports/' + studentSelfReportId;
+    console.log('ready to delete studentSelfReport ' + url);
+    return this.http.delete(url);
+  }
 }

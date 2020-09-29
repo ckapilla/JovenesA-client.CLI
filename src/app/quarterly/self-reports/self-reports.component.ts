@@ -45,7 +45,6 @@ export class SelfReportsComponent implements OnInit {
     public quarterlyData: QuarterlyDataService
   ) {
     this.myForm = _fb.group({
-      // lastContactYearSelector: ['', Validators.required],
       narrative_English: ['', {}],
       narrative_Spanish: [''],
       quarterlyReportId: [this.reportIdCtl]

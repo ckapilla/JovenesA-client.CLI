@@ -181,7 +181,7 @@ export class MentorReportSummaryUpdatesComponent implements OnInit {
   onDelete() {
     console.log('delete with userID = ' + this.session.getUserId());
     // eslint-disable-next-line eqeqeq
-    if (this.session.getUserId() == 1216 || this.session.getUserId() == 2094) {
+    if (this.session.getUserId() == 1216 || this.session.getUserId() == 2094 || this.session.getUserId() == 2947) {
       const response = window.confirm(
         'Caution this action will permanently delete this mentor report! Proceed? ' + this.mentorReport2.mentorReportId
       );

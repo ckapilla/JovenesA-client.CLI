@@ -5,6 +5,7 @@ import { BecasComponent } from './becas.component';
 import { GradesEditComponent } from './grades-edit/grades-edit.component';
 import { GradesListComponent } from './grades-list/grades-list.component';
 import { SelfReportTrackingContainerComponent } from './self-report-tracking-container/self-report-tracking-container.component';
+import { SelfReportUpdatesComponent } from './self-report-updates.component.ts/self-report-updates.component';
 
 const gradesRoutes: Routes = [
   {
@@ -29,6 +30,10 @@ const gradesRoutes: Routes = [
       {
         path: 'self-reports/tracking',
         component: SelfReportTrackingContainerComponent
+      },
+      {
+        path: 'self-reports-updates',
+        component: SelfReportUpdatesComponent
       }
     ]
   }
@@ -38,4 +43,4 @@ const gradesRoutes: Routes = [
   imports: [RouterModule.forChild(gradesRoutes)],
   exports: [RouterModule]
 })
-export class BecasRoutingModule { }
+export class BecasRoutingModule {}

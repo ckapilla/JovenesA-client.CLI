@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentSelfReportDataService } from 'src/app/_shared/data/student-self-report-data.service';
 import { StudentSelfReport } from 'src/app/_shared/models/student-self-report';
@@ -32,8 +32,8 @@ export class SelfReportsAddComponent implements OnInit {
     this.periodMonths = constants.periods;
 
     this.myForm = _fb.group({
-      reportYear: ['', Validators.required],
-      reportPeriod: ['', this.validateMonth],
+      reportYear: [''],
+      reportPeriod: [''],
 
       narrative_English: ['', Validators.compose([Validators.required, Validators.maxLength(4500)])]
     });
@@ -51,7 +51,7 @@ export class SelfReportsAddComponent implements OnInit {
     console.log(this.selfReport.reportDateTime);
 
     this.selfReport.reportYear = 2020;
-    this.selfReport.reportPeriod = 2;
+    this.selfReport.reportPeriod = 3;
     this.selfReport.narrative_English = '';
 
     this.errorMessage = '';
@@ -111,13 +111,6 @@ export class SelfReportsAddComponent implements OnInit {
     const target = '/students';
     console.log('navigating to ' + target);
     this.router.navigateByUrl(target);
-  }
-
-  validateMonth(control: FormControl): { [error: string]: any } {
-    // console.log('month validator ' + control.value);
-    const rtnVal: any = '' + control.value === '0' ? { validateMonth: { valid: false } } : null;
-    console.log(rtnVal);
-    return rtnVal;
   }
 
   public hasChanges() {

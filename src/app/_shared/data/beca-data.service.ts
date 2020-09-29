@@ -39,7 +39,7 @@ export class BecaDataService {
     body = JSON.stringify(x.studentGradeEntry);
     console.log('in updateStudentGradeEntry');
     const returnedToken =
-    // eslint-disable-next-line max-len
+      // eslint-disable-next-line max-len
       'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlFVWTBOemxFTnpjMVJFUTJRMEZFTkVZNVJFSkVPVE5DUVVFMlJqYzRNRFJHTVRJd05qZ3hOQSJ9.eyJpc3MiOiJodHRwczovL2NrYXBpbGxhLmF1dGgwLmNvbS8iLCJzdWIiOiJVa3R5NEhhb0czc0UzeDJqWE1HMm1TOHo2dFM0R0JPUEBjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9Kb3ZlbmVzQWRlbGFudGVXZWJBUEkiLCJpYXQiOjE1MDc4NTEzNzAsImV4cCI6MTUwNzkzNzc3MCwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.U02NuYo1yguqjtV0gczSkC6UiiGV-QZEjE1k22UOGYI-SbjZQx9h1wkqa3PNiOIPlc3TLnBLW91c5Gz8apuIePnwugq2KApuupmhaS8eDLKFwRx5CZM0XPwYc6kHuxCkn3mk8Y_Siu8A0WpqAaVPhuUHv-szR0MABgBZ27B-KmeGJ-ub05bddwwS4ghpVu-OF7awelwZ74GJ-e7drhCHedwrsLp1bOgKUrzo9JUMs4tk4pmr7Sm4zX6HKqdQ7j53qys_A935m15aHwkNnnhNYWuul8LrbjDwvpTGdcQ55JxnR0logFL2XsYAFFeYykManb5EseXE7dsix_JrE82ICw';
     const headers = new HttpHeaders().set('Content-Type', 'application/json').set('authorization', returnedToken);
     console.log('ready to put ' + url + ' body: ' + body + ' options ' + headers);
@@ -51,7 +51,9 @@ export class BecaDataService {
     JSON.stringify(error);
     const errMsg = error.message
       ? error.message
-      : error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+      : error.status
+        ? `${error.status} - ${error.statusText}`
+        : 'Server error';
     console.log(errMsg.message);
     console.log(errMsg.statusText);
     console.error(errMsg); // log to console instead

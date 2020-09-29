@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { constants } from 'src/app/_shared/constants/constants';
 import { StudentSelfReportDataService } from 'src/app/_shared/data/student-self-report-data.service';
+import { SELECTITEM } from 'src/app/_shared/interfaces/SELECTITEM';
 import { StudentSelfReport } from '../../_shared/models/student-self-report';
 import { StudentDTO } from '../../_shared/models/studentDTO';
 import { SessionService } from '../../_shared/services/session.service';
@@ -26,6 +28,8 @@ export class SelfReportsEditComponent implements OnInit {
   narrative_EnglishCtl: AbstractControl;
   narrative_SpanishCtl: AbstractControl;
   reportIdCtl: AbstractControl;
+  periodYears: SELECTITEM[];
+  periodMonths: SELECTITEM[];
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -34,12 +38,19 @@ export class SelfReportsEditComponent implements OnInit {
     private _fb: FormBuilder,
     public session: SessionService
   ) {
+    this.periodYears = constants.periodYears;
+    this.periodMonths = constants.periods;
+
     this.myForm = _fb.group({
-      lastContactYearSelector: ['2020', Validators.required],
+      reportYear: [''],
+      reportPeriod: [''],
       narrative_English: ['', { validators: [Validators.required], updateOn: 'blur' }],
-      narrative_Spanish: [''],
+      narrative_Spanish: ['', { validators: [Validators.required], updateOn: 'blur' }],
       selfReportId: [this.reportIdCtl]
     });
+
+    this.myForm.controls.reportYear.disable();
+    this.myForm.controls.reportPeriod.disable();
 
     this.narrative_EnglishCtl = this.myForm.controls['narrative_English'];
     this.narrative_SpanishCtl = this.myForm.controls['narrative_Spanish'];

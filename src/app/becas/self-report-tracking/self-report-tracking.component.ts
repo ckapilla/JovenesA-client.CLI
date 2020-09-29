@@ -126,11 +126,17 @@ export class SelfReportTrackingComponent implements OnInit {
     this.router.navigate(link);
   }
 
-  gotoReportSummary(id: number, studentName: string) {
-    console.log('studentName need set to store' + studentName);
-    const link: [string, { studentReportId: number; summaryStatus: string }] = [
-      '/admins/self-reports/updates',
-      { studentReportId: id, summaryStatus: this.selectedSRReviewedStatus }
+  updateSelfReportTracking(id: number, studentGUId: string, studentName: string) {
+    // AABBCCDD
+    // this.store.dispatch(new SetSelectedStudentIdentifiers({ studentGUId, studentName }));
+
+    console.log(studentName);
+    console.log(id);
+    const link: [string, { studentSelfReportId: number }] = [
+      '/becas/self-reports-updates',
+      {
+        studentSelfReportId: id
+      }
     ];
 
     console.log('navigating to ' + link);

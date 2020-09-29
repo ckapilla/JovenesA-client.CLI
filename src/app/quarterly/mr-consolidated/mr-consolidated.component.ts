@@ -45,7 +45,6 @@ export class MrConsolidatedComponent implements OnInit {
     public quarterlyData: QuarterlyDataService
   ) {
     this.myForm = _fb.group({
-      // lastContactYearSelector: ['', Validators.required],
       narrative_English: ['', {}],
       narrative_Spanish: [''],
       mentorReportId: [this.reportIdCtl]

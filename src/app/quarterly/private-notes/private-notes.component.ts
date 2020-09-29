@@ -42,7 +42,6 @@ export class PrivateNotesComponent implements OnInit {
     public quarterlyData: QuarterlyDataService
   ) {
     this.myForm = _fb.group({
-      // lastContactYearSelector: ['', Validators.required],
       narrative: [''],
       quarterlyReportId: [this.reportIdCtl]
     });

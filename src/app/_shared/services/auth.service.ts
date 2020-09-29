@@ -4,6 +4,7 @@ import createAuth0Client from '@auth0/auth0-spa-js';
 import Auth0Client from '@auth0/auth0-spa-js/dist/typings/Auth0Client';
 import { BehaviorSubject, combineLatest, from, Observable, of, throwError } from 'rxjs';
 import { catchError, concatMap, shareReplay, tap } from 'rxjs/operators';
+import { TestNameDetectionService } from 'src/app/_shared/services/test-name-detection.service';
 import { MemberDataService } from '../data/member-data.service';
 import { AUTH_CONFIG } from './auth0-config';
 import { SessionService } from './session.service';
@@ -55,7 +56,8 @@ export class AuthService {
     public router: Router,
     public urlService: UrlService,
     public session: SessionService,
-    public memberData: MemberDataService
+    public memberData: MemberDataService,
+    private testNameDetectionService: TestNameDetectionService
   ) {
     //  if not authenticated, check to see if we have a saved profile
     if (session.getUserId() === 0) {
@@ -210,8 +212,8 @@ export class AuthService {
       this.session.setUserId(userProfile['user_id'].substr('auth0|'.length));
       console.log('userId: ' + this.session.userId);
 
-      // this.email = (<any>userProfile)['email'];
       this.nickname = userProfile['nickname'];
+      this.testNameDetectionService.checkForTestName(this.nickname);
     }
   }
 

@@ -82,11 +82,15 @@ const activeQRperiods = [
   { value: '2019-3', label: '2019 3:Jul-Set' },
   { value: '2019-4', label: '2019 4:Oct-Dic' },
   { value: '2020-1', label: '2020 1:Ene-Mar' },
-  { value: '2020-2', label: '2020 2:Abr-Jun' }
+  { value: '2020-2', label: '2020 2:Abr-Jun' },
+  { value: '2020-3', label: '2020 3:Jul-Set' }
 ];
 const selectedYearPeriod = '2020-2';
 
-const genders: SELECTITEM[] = [ { value: 'M', label: 'Male/Hombre' }, { value: 'F', label: 'Female/Mujer' } ];
+const genders: SELECTITEM[] = [
+  { value: 'M', label: 'Male/Hombre' },
+  { value: 'F', label: 'Female/Mujer' }
+];
 const smileys = [
   '/assets/images/needsAttention.jpg',
   '/assets/images/thumbsUp.jpg',
@@ -164,6 +168,9 @@ const highlightStatuses: SELECTITEM[] = [
   // { value: '2105', label: 'Problems' },
   // { value: '2106', label: 'GoodNews' },
 ];
+
+const academicYearTypes: SELECTITEM[] = [];
+
 const countryList: SELECTITEM[] = [];
 
 export const constants = {
@@ -189,5 +196,6 @@ export const constants = {
   memberTypes,
   followUpStatuses,
   highlightStatuses,
+  academicYearTypes,
   countryList
 };

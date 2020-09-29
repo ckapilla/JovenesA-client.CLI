@@ -32,7 +32,7 @@ import { UtilitiesComponent } from './utilities/utilities.component';
 // import { MentorReportsComponent } from './reports/mentor-reports/mentor-reports.component';
 
 @NgModule({
-  imports: [ AppSharedModule, AdminsRoutingModule, ReactiveFormsModule, FormsModule, NgbModule ],
+  imports: [AppSharedModule, AdminsRoutingModule, ReactiveFormsModule, FormsModule, NgbModule],
   declarations: [
     AdminsComponent,
     AdminsHomeComponent,
@@ -63,7 +63,7 @@ import { UtilitiesComponent } from './utilities/utilities.component';
     AdminsMemberSearchComponent,
     TestNamesVisibilityComponent
   ],
-  exports: [ AdminsStudentMRsComponent, SponsorGroupsComponent ],
-  entryComponents: [ ServerEnvironmentComponent, MentorReportsSubmittedComponent ]
+  exports: [AdminsStudentMRsComponent, SponsorGroupsComponent],
+  entryComponents: [ServerEnvironmentComponent, MentorReportsSubmittedComponent]
 })
 export class AdminsModule {}

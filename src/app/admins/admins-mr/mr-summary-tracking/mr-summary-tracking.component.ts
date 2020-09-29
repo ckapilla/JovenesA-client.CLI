@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { constants } from 'src/app/_shared/constants/constants';
@@ -12,7 +12,8 @@ import { SetSelectedStudentIdentifiers } from 'src/app/_store/student/student.ac
   templateUrl: 'mr-summary-tracking.component.html',
   styleUrls: ['mr-summary-tracking.component.css']
 })
-export class MentorReportsSummaryTrackingComponent implements OnInit {
+export class MentorReportsSummaryTrackingComponent {
+  // implements OnInit {
   mentorReportByMonth: MentorReport2RPT[];
   isLoading: boolean;
   smileys: Array<string>;
@@ -54,12 +55,14 @@ export class MentorReportsSummaryTrackingComponent implements OnInit {
     this.selectedHighlightStatus = this.highlightStatuses[0].value;
 
     this.smileys = constants.smileys;
-  }
-
-  ngOnInit() {
-    console.log('onInit');
+    console.log('before process route params');
     this.processRouteParams();
   }
+
+  // ngOnInit() {
+  //   console.log('onInit');
+  //   this.processRouteParams();
+  // }
 
   processRouteParams() {
     console.log('summaryTracking setting filters form queryParams');

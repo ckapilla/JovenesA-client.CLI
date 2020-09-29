@@ -10,14 +10,16 @@ interface CODEVALUE {
   codeSet: string;
   value: string;
   label: string;
+  sortOrder: number;
 }
 
 @Injectable({ providedIn: 'root' })
 export class CodeValuesService extends BaseDataService {
   private codeValuesUrl = this.WebApiPrefix + 'lookup/codeValues';
-  codeValues$: Observable<CODEVALUE[]> = this.http
-    .get<CODEVALUE[]>(this.codeValuesUrl)
-    .pipe(tap((data) => console.log('codeValues ', JSON.stringify(data[0]))), catchError(this.handleError));
+  codeValues$: Observable<CODEVALUE[]> = this.http.get<CODEVALUE[]>(this.codeValuesUrl).pipe(
+    tap((data) => console.log('codeValues ', JSON.stringify(data[0]))),
+    catchError(this.handleError)
+  );
 
   constructor(public http: HttpClient, public webApiPrefixService: UrlService) {
     super(http, webApiPrefixService);
@@ -45,14 +47,11 @@ export class CodeValuesService extends BaseDataService {
               constants.memberTypes.push(subset);
               break;
             case 'ReviewedStatus':
-              if (item.value < '2100') {
-                constants.reviewedStatuses.push(subset);
-                constants.reviewedQRStatuses.push(subset);
-              } else {
-                constants.reviewedQRStatuses.push(subset);
-              }
+              console.log('>>>>>ReviewedStatus ' + item.value);
+              constants.reviewedStatuses.push(subset);
               break;
-            case 'ReviewedQRStatus':
+            case 'QRReviewedStatus':
+              console.log('>>>>>QR + subset' + item.value);
               constants.reviewedQRStatuses.push(subset);
               break;
             case 'MemberStatus':
@@ -65,7 +64,7 @@ export class CodeValuesService extends BaseDataService {
               constants.highlightStatuses.push(subset);
               break;
             case 'AcademicYearType':
-              constants.highlightStatuses.push(subset);
+              constants.academicYearTypes.push(subset);
               break;
             case 'Country':
               constants.countryList.push(subset);

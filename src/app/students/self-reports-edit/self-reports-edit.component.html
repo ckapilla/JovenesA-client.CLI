@@ -1,88 +1,107 @@
 <div class="card bg-primary">
-  <div class="card-header text-white" style="font-size:large">
-    Mi Reporte
-  </div>
+  <div class="card-header text-white" style="font-size: large">Editar Mi Reporte</div>
   <div class="card-body bg-white">
-    <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
-    <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
+    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+    <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
     <form [formGroup]="myForm">
       <fieldset [disabled]="isSubmitted">
         <div class="form-group">
+          <label for="reportYear"> Año/Periodo de este reporte</label>
+          <select formControlName="reportYear" [(ngModel)]="selfReport.reportYear">
+            <option *ngFor="let year of periodYears" [value]="year.value">{{ year.label }}</option>
+          </select>
+
+          <select formControlName="reportPeriod" [(ngModel)]="selfReport.reportPeriod">
+            <option *ngFor="let month of periodMonths" [value]="month.value">{{ month.label }}</option>
+          </select>
           <div hidden class="controls">
             <label for="selfReportId">Id</label>
-            <textarea id="selfReportId"
-                      formControlName="selfReportId"
-                      type="text"
-                      class="form-control input-sm">
-                </textarea>
+            <textarea id="selfReportId" formControlName="selfReportId" type="text" class="form-control input-sm">
+            </textarea>
           </div>
           <pre style="font-size: 120%">
-            •	Actualización de su situación actual  personal, familiar, salud mental-emocional,
-            ¿Qué están haciendo para sobrellevar la situación?
 
-            •	¿Ha habido algún enfermo en la familia?.
+    1. ¿Cómo fue el fin del semestre?
 
-            •	Actualización de sus Universidades : ¿Seguiran en línea?, los que estaban en prácticas
-            ¿como concluyeron o cómo continuarán?.
+    2. ¿Has notado diferencias en la calidad/manera/forma de clases en línea
+    a partir de este nuevo periodo escolar, en comparación con el de  antes?   Danos ejemplos...
 
-            •	Los que están por salir ¿Cómo ven su futuro laboral?,
-            ¿cómo ha repercutido esta contingencia en su visión como profesionales?,
-            ¿qué opciones han empezado a revisar?.
+    3. ¿Te sientes más cómodo aprendiendo en línea que antes?
 
-            •	Durante el tiempo que llevan en cuarentena ¿como se han cuidado ustedes y su familia?.
+    4. Si estaba al punto de la graduación este año, ¿que de tus estudios se ha retrasado
+    por falta de práctica o clases a causa del Covid ? ¿Cómo ha quedado ahora tu plan académico?
+    ¿Hay materias que quedarán en pausa?, compártenos.
 
-            •	¿Cómo se han ido adaptando a esta "Nueva normalidad"? ,
-            ¿que pensamiento tienen acerca de ella, que se dicen para hacer frente a esta situación?.
+    5. Si tu Universidad al regresar a presencial, te dieran también la posibilidad de continuar
+    en línea, ¿qué opción tomarías?
 
-            •	Económicamente hablando, ¿sus escuelas han ofrecido algún tipo de apoyo
-            o descuento en colegiatura y reinscripciones?.
-        </pre>
+    6. A los foráneos ¿cómo quedaron  con sus alquileres?
+
+    EN CUANTO A TU MENTOR:
+    7. ¿has continuado en comunicación con tu mentor (a) desde que inició la pandemia
+    8. ¿Cada cuando tienes comunicación con tu mentor (a) ?
+    9. ¿Por qué medio se mantienen en contacto?
+    10. ¿Te sientes satisfecho / contento con la aportación que recibes de tu mentor (a)?
+
+    11. Danos un ejemplo de un éxito que has tenido desde el último reporte(Julio) hasta ahora
+
+        </pre
+          >
 
           <div class="controls">
             <label for="narrative_Spanish">Texto Español</label>
-            <textarea id="narrative_Spanish" #success
-                      formControlName="narrative_Spanish"
-                      type="text"
-
-                      class="form-control input-sm narrative" placeholder="">
-                </textarea>
-            <app-display-errors control="narrative_Spanish" class="red"
-                                [errors]="{'required': 'Se requiere una entrada, aun si es sólo N/A.',
-                'maxlength': 'La entrada no puede exceder 4000 caracteres del largo.'
-                      }"></app-display-errors>
+            <textarea
+              id="narrative_Spanish"
+              #success
+              formControlName="narrative_Spanish"
+              type="text"
+              class="form-control input-sm narrative"
+              placeholder=""
+            >
+            </textarea>
+            <app-display-errors
+              control="narrative_Spanish"
+              class="red"
+              [errors]="{
+                required: 'Se requiere una entrada, aun si es sólo N/A.',
+                maxlength: 'La entrada no puede exceder 4000 caracteres del largo.'
+              }"
+            ></app-display-errors>
           </div>
 
           <div class="controls">
             <label for="narrative_English">English Text</label>
-            <textarea id="narrative_English" #success
-                      formControlName="narrative_English"
-                      type="text"
-
-                      class="form-control inpu-sm narrative" placeholder="">
-              </textarea>
-            <app-display-errors control="narrative_English" class="red"
-                                [errors]="{'required': 'An entry is required, even if it is just N/A.',
-              'maxlength': 'Entry cannot exceed 4000 characters in length.'
-                    }"></app-display-errors>
+            <textarea
+              id="narrative_English"
+              #success
+              formControlName="narrative_English"
+              type="text"
+              class="form-control inpu-sm narrative"
+              placeholder=""
+            >
+            </textarea>
+            <app-display-errors
+              control="narrative_English"
+              class="red"
+              [errors]="{
+                required: 'An entry is required, even if it is just N/A.',
+                maxlength: 'Entry cannot exceed 4000 characters in length.'
+              }"
+            ></app-display-errors>
           </div>
 
           <div class="col-md-6 col-md-offset-1">
             <span>
-              <button class="btn btn-primary"
-                      style="width:90px;margin-right:10px"
-                      (click)="onSubmit()">
+              <button class="btn btn-primary" style="width: 90px; margin-right: 10px" (click)="onSubmit()">
                 Guardar
-              </button>
-            </span>&nbsp;
+              </button> </span
+            >&nbsp;
             <span>
-              <button type="button"
-                      class="btn btn-default"
-                      style="width:95px"
-                      (click)="onCancel()">
-                Cancelar
-              </button>
-              <div class="red" [hidden]="myForm.valid">Year, Month, Emoji and description must be
-                filled in before saving.<br />Año, mes, Emoji y descripción rellenarse antes de guardar.</div>
+              <button type="button" class="btn btn-default" style="width: 95px" (click)="onCancel()">Cancelar</button>
+              <div class="red" [hidden]="myForm.valid">
+                Year, Month, Emoji and description must be filled in before saving.<br />Año, mes, Emoji y descripción
+                rellenarse antes de guardar.
+              </div>
             </span>
           </div>
         </div>
