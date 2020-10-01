@@ -1,45 +1,54 @@
-<div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
-<div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
+<div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+<div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
 <form [formGroup]="myForm">
   <fieldset>
     <div class="form-group">
       <div hidden class="controls">
         <label for="quarterlyReportId">Id</label>
-        <textarea id="quarterlyReportId"
-                  formControlName="quarterlyReportId"
-                  type="text"
-                  class="form-control input-sm">
-                  </textarea>
+        <textarea id="quarterlyReportId" formControlName="quarterlyReportId" type="text" class="form-control input-sm">
+        </textarea>
       </div>
       <div class="controls">
         <label for="narrative">Text</label>
-        <textarea id="narrative" #success
-                  formControlName="narrative"
-                  type="text"
-
-                  class="form-control input-sm narrative" placeholder="">
-                  </textarea>
-        <app-display-errors control="narrative" class="red"
-                            [errors]="{'required': 'Se requiere una entrada, aun si es sólo N/A.',
-                  'maxlength': 'La entrada no puede exceder 4000 caracteres del largo.'
-                        }"></app-display-errors>
+        <textarea
+          id="narrative"
+          #success
+          data-cy="narrative"
+          formControlName="narrative"
+          type="text"
+          class="form-control input-sm narrative"
+          placeholder=""
+        >
+        </textarea>
+        <app-display-errors
+          control="narrative"
+          class="red"
+          [errors]="{
+            required: 'Se requiere una entrada, aun si es sólo N/A.',
+            maxlength: 'La entrada no puede exceder 4000 caracteres del largo.'
+          }"
+        ></app-display-errors>
       </div>
 
       <div class="col-md-6 col-md-offset-1">
         <span>
-          <button class="btn btn-primary"
-                  style="width:140px;margin-right:10px"
-                  [hidden]="!qrComponentsEditable"
-                  (click)="onSubmit()">
+          <button
+            class="btn btn-primary"
+            style="width: 140px; margin-right: 10px"
+            [hidden]="!qrComponentsEditable"
+            (click)="onSubmit()"
+          >
             Guardar/Save
-          </button>
-        </span>&nbsp;
+          </button> </span
+        >&nbsp;
         <span>
-          <button type="button"
-                  class="btn btn-default"
-                  style="width:95px"
-                  [hidden]="!qrComponentsEditable"
-                  (click)="onCancel()">
+          <button
+            type="button"
+            class="btn btn-default"
+            style="width: 95px"
+            [hidden]="!qrComponentsEditable"
+            (click)="onCancel()"
+          >
             Cancelar
           </button>
           <div class="red" [hidden]="myForm.valid || !qrComponentsEditable"></div>

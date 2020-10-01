@@ -1,30 +1,35 @@
 <div class="row">
   <div class="col-12">
-    <app-student-header-quarterly>
-    </app-student-header-quarterly>
+    <app-student-header-quarterly> </app-student-header-quarterly>
   </div>
 </div>
 <div *ngIf="studentGUIdReceived">
   <div class="col">
     <div class="card bg-primary">
       <div class="card-header text-white">
-        <span style="font-size:large">
-          Quarterly Reports
-        </span>
-        <span style="margin-left:5rem">
+        <span data-cy="qr-title" style="font-size: large"> Quarterly Reports </span>
+        <span style="margin-left: 5rem">
           Report Year-Period:
-          <select name="activePeriodSelector" [(ngModel)]="selectedYearPeriod"
-                  (change)="setSelectedYearPeriod($event.target.value)">
-            <option *ngFor="let yearPeriod of activeQRPeriods" [value]="yearPeriod.value">{{yearPeriod.label}}</option>
+          <select
+            data-cy="period-selector"
+            name="activePeriodSelector"
+            [(ngModel)]="selectedYearPeriod"
+            (change)="setSelectedYearPeriod($event.target.value)"
+          >
+            <option *ngFor="let yearPeriod of activeQRPeriods" [value]="yearPeriod.value">
+              {{ yearPeriod.label }}
+            </option>
           </select>
         </span>
 
-        <span style="margin-left:5rem">
+        <span style="margin-left: 5rem">
           Set Report Status:
-          <select name="StatusSelector" [(ngModel)]="selectedReviewedStatusID"
-                  (change)="setStatusForQR( $event.target.value)">
-            <option *ngFor="let status of reviewedStatuses" [value]="status.value">{{status.label}}
-            </option>
+          <select
+            name="StatusSelector"
+            [(ngModel)]="selectedReviewedStatusID"
+            (change)="setStatusForQR($event.target.value)"
+          >
+            <option *ngFor="let status of reviewedStatuses" [value]="status.value">{{ status.label }}</option>
           </select>
         </span>
       </div>
@@ -32,32 +37,27 @@
         <ngb-tabset>
           <ngb-tab title="Student Reports">
             <ng-template ngbTabContent>
-              <app-self-reports>
-              </app-self-reports>
+              <app-self-reports> </app-self-reports>
             </ng-template>
           </ngb-tab>
 
           <ngb-tab title="Mentor Reports">
             <ng-template ngbTabContent>
-              <app-mr-consolidated>
-              </app-mr-consolidated>
+              <app-mr-consolidated> </app-mr-consolidated>
             </ng-template>
           </ngb-tab>
 
-          <ngb-tab title="JA Comments">
+          <ngb-tab title="JA Comments" data-cy="ja-comments">
             <ng-template ngbTabContent>
-              <app-ja-comments>
-              </app-ja-comments>
+              <app-ja-comments> </app-ja-comments>
             </ng-template>
           </ngb-tab>
 
           <ngb-tab title="Private Notes">
             <ng-template ngbTabContent>
-              <app-private-notes>
-              </app-private-notes>
+              <app-private-notes> </app-private-notes>
             </ng-template>
           </ngb-tab>
-
         </ngb-tabset>
       </div>
     </div>
