@@ -18,7 +18,6 @@ export class FollowUpRequestsComponent implements OnInit {
   selectedFollowUpStatusId: string;
   errorMessage: string;
   successMessage: string;
-  studentName: string;
   displayCompleteHistory: true;
   showAddDetails: boolean;
 

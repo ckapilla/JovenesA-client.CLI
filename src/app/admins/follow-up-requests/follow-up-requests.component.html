@@ -1,42 +1,44 @@
-<span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
-<span *ngIf="successMessage" class="alert alert-success">{{successMessage}}</span>
+<span *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</span>
+<span *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</span>
 <div [ngSwitch]="isLoading">
   <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
-    <app-loading-container>
-    </app-loading-container>
+    <app-loading-container> </app-loading-container>
   </div>
   <div *ngSwitchCase="false">
     <div *ngIf="!errorMessage">
-      <div class="card-header bg-warning text-for-warning" style="font-size:large;">
+      <div class="card-header bg-warning text-for-warning" style="font-size: large">
         <span>Requests / Corrientes </span>
-        <span>{{studentName}}</span>
         <span>
           <span>
-            <span class="btn btn-default active" (click)="followUpRequestAdd()" style="margin-left:10px">
+            <span class="btn btn-default active" (click)="followUpRequestAdd()" style="margin-left: 10px">
               Add New FollowUpRequest
             </span>
           </span>
         </span>
-
       </div>
 
       <div>
         <label for="MRReviewedStatusSelector">Request Status:</label>
-        <select name="MRReviewedStatusSelector" [(ngModel)]="selectedFollowUpStatusId"
-                (change)="setSelectedFollowUpStatus($event.target.value)">
-          <option *ngFor="let status of followUpStatuses" [value]="status.value">{{status.label}}</option>
+        <select
+          name="MRReviewedStatusSelector"
+          [(ngModel)]="selectedFollowUpStatusId"
+          (change)="setSelectedFollowUpStatus($event.target.value)"
+        >
+          <option *ngFor="let status of followUpStatuses" [value]="status.value">{{ status.label }}</option>
         </select>
 
         <span class="checkboxes">
-          &nbsp;&nbsp;<input type="checkbox" [(ngModel)]="displayCompleteHistory">&nbsp;<span>Display Complete
-            History</span>
+          &nbsp;&nbsp;<input type="checkbox" [(ngModel)]="displayCompleteHistory" />&nbsp;<span
+            >Display Complete History</span
+          >
         </span>
       </div>
 
-      <app-follow-up-requests-list [followUpRequests]="followUpRequests"
-                                   [displayCompleteHistory]="displayCompleteHistory"
-                                   [showAddDetails]="showAddDetails"></app-follow-up-requests-list>
-
+      <app-follow-up-requests-list
+        [followUpRequests]="followUpRequests"
+        [displayCompleteHistory]="displayCompleteHistory"
+        [showAddDetails]="showAddDetails"
+      ></app-follow-up-requests-list>
     </div>
   </div>
 </div>
