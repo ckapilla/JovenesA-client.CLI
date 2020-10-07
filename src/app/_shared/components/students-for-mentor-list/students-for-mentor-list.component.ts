@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Select } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { UIState } from 'src/app/_store/ui/ui.state';
 import { MentorDataService } from '../../data/mentor-data.service';
 import { StudentDTO } from '../../models/studentDTO';
 import { SessionService } from '../../services/session.service';
@@ -18,6 +21,9 @@ export class StudentsForMentorListComponent implements OnInit {
   mentorGUId: string;
   mentorId: number;
   studentGUId: string;
+  displayTestNames: boolean;
+
+  @Select(UIState.getTestNamesVisibility) testNameVisibility$: Observable<boolean>;
 
   constructor(
     public session: SessionService,
@@ -33,7 +39,13 @@ export class StudentsForMentorListComponent implements OnInit {
     this.mentorGUId = this.currRoute.snapshot.params['guid'];
     this.mentorData.getStudentsForMentorByGUId(this.mentorGUId).subscribe(
       (data) => {
-        this.students = data;
+        this.students = this.students = data.filter((item) => {
+          if (this.displayTestNames) {
+            return item;
+          } else if (!this.displayTestNames && item['studentName'] !== '_Test, _Student') {
+            return item;
+          }
+        });
       },
       (err) => console.error('Subscribe error: ' + err),
       () => {

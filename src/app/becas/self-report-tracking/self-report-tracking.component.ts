@@ -33,9 +33,11 @@ export class SelfReportTrackingComponent implements OnInit {
   displayOriginalFields = true;
   studentName: string;
   subscription: Subscription;
+  displayTestNames: boolean;
 
   @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
   @Select(UIState.getSelectedYearPeriod) selectedYearPeriod$: Observable<string>;
+  @Select(UIState.getTestNamesVisibility) testNameVisibility$: Observable<boolean>;
 
   constructor(
     public router: Router,
@@ -83,7 +85,13 @@ export class SelfReportTrackingComponent implements OnInit {
         )
         .subscribe(
           (data) => {
-            this.studentReportsByPeriod = data;
+            this.studentReportsByPeriod = data.filter((item) => {
+              if (this.displayTestNames) {
+                return item;
+              } else if (!this.displayTestNames && item['studentName'] !== '_Test, _Student') {
+                return item;
+              }
+            });
             console.log('studentReportByPeriod has');
             console.log(this.studentReportsByPeriod[0]);
           },

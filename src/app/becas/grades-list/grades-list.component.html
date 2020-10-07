@@ -1,11 +1,11 @@
 <div class="card bg-primary">
-  <div class="card-header text-white" style="font-size:large">
+  <div class="card-header text-white" data-cy="status-this-month" style="font-size: large">
     <span>Grade Status for This Month</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   </div>
 
   <div class="card-body bg-white">
-    <span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
-    <span *ngIf="successMessage" class="alert alert-success">{{successMessage}}</span>
+    <span *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</span>
+    <span *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</span>
 
     <!-- <div>
 
@@ -26,8 +26,7 @@
     </div> -->
     <div [ngSwitch]="isLoading">
       <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
-        <app-loading-container>
-        </app-loading-container>
+        <app-loading-container> </app-loading-container>
       </div>
       <div *ngSwitchCase="false">
         <table class="table-sm table-striped">
@@ -35,7 +34,8 @@
             <tr>
               <!--<td>Id</td>-->
               <th></th>
-              <th app-sortable-column="studentName" sort-direction="asc" (onSortColumn)="onSortColumn($event)">Student
+              <th app-sortable-column="studentName" sort-direction="asc" (onSortColumn)="onSortColumn($event)">
+                Student
               </th>
               <th app-sortable-column="gradesTurnedInStatus" (onSortColumn)="onSortColumn($event)">Turned-In Status</th>
               <th app-sortable-column="gradePointAvgStatus" (onSortColumn)="onSortColumn($event)">GPA Status</th>
@@ -49,18 +49,18 @@
               <th app-sortable-column="gradesTurnedInDate" (onSortColumn)="onSortColumn($event)">Grades Turned In</th>
               <th app-sortable-column="gradePointAvg" (onSortColumn)="onSortColumn($event)">GPA</th>
               <th app-sortable-column="gradePointAvgException" (onSortColumn)="onSortColumn($event)">GPA Exception</th>
-              <th app-sortable-column="gradesTurnedInException" (onSortColumn)="onSortColumn($event)">Late Exception
+              <th app-sortable-column="gradesTurnedInException" (onSortColumn)="onSortColumn($event)">
+                Late Exception
               </th>
-
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let entry of gradesGivenEntryDTOs, let i = index">
+            <tr *ngFor="let entry of gradesGivenEntryDTOs; let i = index">
               <td>
-                {{ i+1 }}
+                {{ i + 1 }}
               </td>
 
-              <td (click)='gotoStudent(entry.studentGUId, entry.studentName)' class='link'>
+              <td (click)="gotoStudent(entry.studentGUId, entry.studentName)" class="link">
                 {{ entry.studentName }}
               </td>
               <td>
@@ -100,12 +100,11 @@
                 {{ entry.becaApproved }}
               </td>
               <td>
-                {{ entry.gradesTurnedInException | emptyStatus  }}
+                {{ entry.gradesTurnedInException | emptyStatus }}
               </td>
               <td>
                 {{ entry.gradePointAvgException | emptyStatus }}
               </td>
-
             </tr>
           </tbody>
         </table>
@@ -113,5 +112,5 @@
     </div>
   </div>
 
-
   l
+</div>

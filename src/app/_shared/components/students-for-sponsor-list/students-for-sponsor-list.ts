@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Select } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { UIState } from 'src/app/_store/ui/ui.state';
 import { SponsorGroupDataService } from '../../data/sponsor-group-data.service';
 import { StudentSponsorXRef } from '../../models/student-sponsor-xref';
 import { SessionService } from '../../services/session.service';
@@ -15,6 +18,9 @@ export class StudentsForSponsorComponent implements OnInit {
   studentId: number;
   errorMessage = '';
   haveData: boolean;
+  displayTestNames: boolean;
+
+  @Select(UIState.getTestNamesVisibility) testNameVisibility$: Observable<boolean>;
 
   constructor(
     public session: SessionService,
@@ -32,8 +38,13 @@ export class StudentsForSponsorComponent implements OnInit {
     console.log('++++++++++++++++++++have guid param' + guid);
     this.sponsorGroupData.getStudentsForSponsorByGUId(guid).subscribe(
       (data) => {
-        this.studentsForSponsor = data;
-        console.log(this.studentsForSponsor);
+        this.studentsForSponsor = data.filter((item) => {
+          if (this.displayTestNames) {
+            return item;
+          } else if (!this.displayTestNames && item['studentName'] !== '_Test, _Student') {
+            return item;
+          }
+        });
       },
       (err) => console.error('Subscribe error: ' + err),
       () => {

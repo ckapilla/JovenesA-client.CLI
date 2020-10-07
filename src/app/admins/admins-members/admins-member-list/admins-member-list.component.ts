@@ -10,6 +10,7 @@ import { MemberWithAnyRelatedStudent } from 'src/app/_shared/models/member-with-
 import { ColumnSortService } from 'src/app/_shared/services/column-sort.service';
 import { SessionService } from 'src/app/_shared/services/session.service';
 import { UIState } from 'src/app/_store/ui/ui.state';
+
 @Component({
   templateUrl: './admins-member-list.component.html',
   styleUrls: ['./admins-member-list.component.css']

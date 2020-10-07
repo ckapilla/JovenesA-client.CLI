@@ -3,6 +3,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { SetSelectedStudentIdentifiers } from 'src/app/_store/student/student.action';
 import { StudentState } from 'src/app/_store/student/student.state';
+import { UIState } from 'src/app/_store/ui/ui.state';
 import { constants } from '../../constants/constants';
 import { MentorDataService } from '../../data/mentor-data.service';
 import { StudentDTO } from '../../models/studentDTO';
@@ -23,12 +24,16 @@ export class StudentsForMentorGridComponent implements OnInit {
   isLoading: boolean;
   private subscription: Subscription;
   gridLoaded: boolean;
+  displayTestNames: boolean;
 
   @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
+  @Select(UIState.getTestNamesVisibility) testNameVisibility$: Observable<boolean>;
+
   constructor(public session: SessionService, private mentorData: MentorDataService, private store: Store) {
     this.emojis = constants.emojis;
-
-    console.log('in StudentsForMentorGridComponent constructor');
+    this.testNameVisibility$.subscribe((flag) => {
+      this.displayTestNames = flag;
+    });
   }
 
   public ngOnInit() {
@@ -55,7 +60,13 @@ export class StudentsForMentorGridComponent implements OnInit {
     console.log('studentGrid calling getStudentsForMentor');
     this.mentorData.getStudentsForMentorByGUId(this.session.getUserGUId()).subscribe(
       (data) => {
-        this.students = data;
+        this.students = data.filter((item) => {
+          if (this.displayTestNames) {
+            return item;
+          } else if (!this.displayTestNames && item['studentName'] !== '_Test, _Student') {
+            return item;
+          }
+        });
       },
       (err) => console.error('Subscribe error: ' + err),
       () => {

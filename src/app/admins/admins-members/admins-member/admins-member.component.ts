@@ -85,7 +85,7 @@ export class AdminsMemberComponent implements OnInit {
       memberGUId: [''],
       studentRecordGUId: ['']
     });
-    this.myForm.disable();
+    // this.myForm.disable();
 
     this.member = new Member();
 

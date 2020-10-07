@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Store } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
 import { constants } from 'src/app/_shared/constants/constants';
 import { MentorReport2DataService } from 'src/app/_shared/data/mentor-report2-data.service';
 import { SELECTITEM } from 'src/app/_shared/interfaces/SELECTITEM';
 import { MentorReport2RPT } from 'src/app/_shared/models/mentor-report2';
 import { SetSelectedStudentIdentifiers } from 'src/app/_store/student/student.action';
+import { UIState } from 'src/app/_store/ui/ui.state';
 
 @Component({
   selector: 'app-mr-summary-tracking',
@@ -32,6 +34,9 @@ export class MentorReportsSummaryTrackingComponent {
   displayOriginalFields = true;
   x: any;
   studentName: string;
+  displayTestNames: boolean;
+
+  @Select(UIState.getTestNamesVisibility) testNameVisibility$: Observable<boolean>;
 
   constructor(
     public router: Router,
@@ -57,6 +62,10 @@ export class MentorReportsSummaryTrackingComponent {
     this.smileys = constants.smileys;
     console.log('before process route params');
     this.processRouteParams();
+
+    this.testNameVisibility$.subscribe((flag) => {
+      this.displayTestNames = flag;
+    });
   }
 
   // ngOnInit() {
@@ -115,7 +124,13 @@ export class MentorReportsSummaryTrackingComponent {
       .getMentorReportsByMonth(this.selectedYear, this.selectedMonth, this.selectedMRReviewedStatus)
       .subscribe(
         (data) => {
-          this.mentorReportByMonth = data;
+          this.mentorReportByMonth = data.filter((item) => {
+            if (this.displayTestNames) {
+              return item;
+            } else if (!this.displayTestNames && item['studentName'] !== '_Test, _Student') {
+              return item;
+            }
+          });
           console.log('mentorReportByMonth has');
           console.log(this.mentorReportByMonth[0]);
         },
