@@ -344,14 +344,13 @@
           <div class="form-group">
             <button
               class="btn btn-primary"
-              *ngIf="bReadOnly"
               data-cy="btn-save"
               (click)="saveMyForm()"
               [disabled]="!myForm.valid"
             >
               Save
             </button>
-            <span class="red" [hidden]="myForm.valid || bReadOnly"
+            <span class="red" [hidden]="myForm.valid"
               >All required fields must be filled in before saving.</span
             >
           </div>

@@ -23,7 +23,7 @@ export class AdminsStudentComponent implements OnInit {
   data: Object;
   isLoading: boolean;
   submitted: boolean;
-  bReadOnly = true;
+  // bReadOnly = true;
 
   studentStatuses: SELECTITEM[];
   languageStatuses: SELECTITEM[];
