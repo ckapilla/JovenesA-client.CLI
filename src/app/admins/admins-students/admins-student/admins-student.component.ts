@@ -2,7 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EMPTY, Observable } from 'rxjs';
+import { BehaviorSubject, EMPTY, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { constants } from 'src/app/_shared/constants/constants';
 import { MiscDataService } from 'src/app/_shared/data/misc-data.service';
@@ -36,13 +36,15 @@ export class AdminsStudentComponent implements OnInit {
   genders: SELECTITEM[];
 
   // mentors: SELECTITEM[];
-  mentors$: Observable<SELECTITEM[]> = this.miscData.mentors$.pipe(
+  // mentors$: Observable<SELECTITEM[]> = this.miscData.mentors$.pipe(
+  mentors$: Observable<SELECTITEM[]> = this.miscData.getMentors$().pipe(
     catchError((err) => {
       this.errorMessage = err;
       console.log('CAUGHT ERROR IN Component ' + err);
       return EMPTY;
     })
   );
+  mentorSubject: BehaviorSubject<[SELECTITEM]>;
 
   // prepas: SELECTITEM[];
   prepas$: Observable<SELECTITEM[]> = this.miscData.prepas$.pipe(
@@ -395,6 +397,16 @@ export class AdminsStudentComponent implements OnInit {
 
     console.log('navigating to ' + link);
     this.router.navigate(link);
+  }
+
+  refreshMentors() {
+    this.mentors$ = this.miscData.getMentors$().pipe(
+      catchError((err) => {
+        this.errorMessage = err;
+        console.log('CAUGHT ERROR IN Component ' + err);
+        return EMPTY;
+      })
+    );
   }
 
   setReadOnly() {
