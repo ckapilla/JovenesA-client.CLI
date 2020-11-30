@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CanActivateViaStudentAuthGuard } from '../app.routing-guards';
+import { GradeEntryComponent } from './grade-entry/grade-entry.component';
 import { SelfReportsAddComponent } from './self-reports-add/self-reports-add.component';
 import { SelfReportsEditComponent } from './self-reports-edit/self-reports-edit.component';
 import { StudentsSelfReportsComponent } from './students-self-reports/students-self-reports.component';
@@ -20,7 +21,7 @@ const routes: Routes = [
         component: StudentsSelfReportsComponent
       },
       {
-        path: 'self-reports', // use session userId
+        path: 'self-reports',
         component: StudentsSelfReportsComponent
       },
       {
@@ -30,6 +31,10 @@ const routes: Routes = [
       {
         path: 'self-reports-edit/:selfReportId',
         component: SelfReportsEditComponent
+      },
+      {
+        path: 'grade-entry',
+        component: GradeEntryComponent
       }
     ]
   }
