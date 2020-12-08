@@ -43,8 +43,9 @@
                   <th>Grades Due</th>
                   <th>Grades Turned In</th>
                   <th>GPA</th>
-                  <th>Grades Turned In Exception</th>
-                  <th>GPA Exception</th>
+                  <th>Confirmed By</th>
+                  <th>Confirmed Date</th>
+                  <th>Exception</th>
                   <th></th>
                 </tr>
               </thead>
@@ -99,12 +100,19 @@
                       <input formControlName="gradePointAvg"
                              class="form-control form-control-sm" type="text" size="4" />
                     </td>
+
+                    <div *ngIf="admins$ | async as admins">
+                      <select id="adminId" formControlName="confirmedById" class="form-control form-control-sm"
+                        (change)="setConfirmedBy(i, $event.target.value)">
+                        <option *ngFor="let admin of admins" [value]="admin.value">{{ admin.label }}</option>
+                      </select>
+                    </div>
                     <td>
-                      <input formControlName="gradesTurnedInException"
-                             class="form-control form-control-sm" type="text" />
+                      <input formControlName="confirmedDate" placeholder="yyyy-mm-dd"
+                             class="form-control form-control-sm" type="text" size="8" />
                     </td>
                     <td>
-                      <input formControlName="gradePointAvgException"
+                      <input formControlName="exception"
                              class="form-control form-control-sm" type="text" />
                     </td>
                     <!-- <td>

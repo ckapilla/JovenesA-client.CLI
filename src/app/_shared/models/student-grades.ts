@@ -6,10 +6,8 @@ export class StudentGrades {
     public gradesDueDate: Date = new Date(),
     public gradesTurnedInDate: Date = new Date(),
     public gradePointAvg?: number,
-    public gradesTurnedInException: string = '',
-    public gradePointAvgException: string = '',
-    public GPAConfirmedById?: number,
-    public GPAConfirmedDate?: Date,
-    public GPAConfirmedState?: number
+    public exception: string = '',
+    public confirmedById?: number,
+    public confirmedDate?: Date
   ) {}
 }

@@ -67,8 +67,7 @@ export class GradeEntryComponent implements OnInit {
         Validators.compose([Validators.pattern(/^\d{4}\-\d{1,2}\-\d{1,2}$/), Validators.maxLength(10)])
       ],
       gradePointAvg: [{ value: '' }, Validators.pattern(/^\d{1,2}\.\d{1,1}$/)],
-      gradesTurnedInException: [''],
-      gradePointAvgException: ['']
+      confirmedDate: { value: '', disabled: true }
     });
   }
 
@@ -80,9 +79,12 @@ export class GradeEntryComponent implements OnInit {
       gradesDueDate: new TruncateDatePipe().transform('' + entryData.gradesDueDate),
       gradesTurnedInDate: new Date().toISOString().slice(0, 10),
       gradePointAvg: this.toFixedValue(entryData.gradePointAvg),
-      gradesTurnedInException: entryData.gradesTurnedInException,
-      gradePointAvgException: entryData.gradePointAvgException
+      confirmedDate: new TruncateDatePipe().transform('' + entryData.confirmedDate)
     });
+    if (gradeEntryRow.get('confirmedDate').value > '') {
+      gradeEntryRow.get('gradePointAvg').disable();
+    }
+
     gradeEntryRow.markAsPristine();
     return gradeEntryRow;
   }
@@ -107,28 +109,33 @@ export class GradeEntryComponent implements OnInit {
     // // AABBCCEE
     // this.subscribeForStudentNames();
   }
+  // if want to have all empty ones, not just latest:
+  // filter_dates(event) {
+  //   const dt1 = new Date(event.gradesGivenDate);
+  //   const dt2020 = new Date('2020-01-02');
+  //   return !event.gradesTurnedInDate && dt1 > dt2020;
+  // }
 
   fetchFilteredData() {
     if (this.studentGUId && this.studentGUId !== undefined && this.studentGUId !== '0000') {
       this.isLoading = true;
-      this.becaData
-        .getStudentGrades(this.studentGUId)
-
-        .subscribe(
-          (becaData) => {
-            this.studentGradesData = becaData.slice(0, 1);
-          },
-          (err) => {
-            console.log('XXE1');
-            this.errorMessage = err;
-          },
-          () => {
-            this.studentGradesData.forEach((gradeEntryData) => {
-              this.addGradeEntryRow(gradeEntryData);
-            });
-            this.isLoading = false;
-          }
-        );
+      this.becaData.getStudentGrades(this.studentGUId).subscribe(
+        (dataArray) => {
+          // if want to have all empty ones, not just latest:
+          // this.studentGradesData = dataArray.filter(this.filter_dates);
+          this.studentGradesData = dataArray.slice(0, 1);
+        },
+        (err) => {
+          console.log('XXE1');
+          this.errorMessage = err;
+        },
+        () => {
+          this.studentGradesData.forEach((gradeEntryData) => {
+            this.addGradeEntryRow(gradeEntryData);
+          });
+          this.isLoading = false;
+        }
+      );
     }
   }
 
@@ -229,7 +236,6 @@ export class GradeEntryComponent implements OnInit {
     }
 
     const strDate = [d.getFullYear(), ('0' + (d.getMonth() + 1)).slice(-2), ('0' + d.getDate()).slice(-2)].join('-');
-
     const gradeEntryRow: FormGroup = this.gradeEntryRows().controls[i] as FormGroup;
 
     gradeEntryRow.patchValue({

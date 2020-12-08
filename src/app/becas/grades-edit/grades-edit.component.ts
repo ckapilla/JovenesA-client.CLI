@@ -3,8 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Select } from '@ngxs/store';
-import { Observable, Subscription } from 'rxjs';
+import { EMPTY, Observable, Subscription } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { BecaDataService } from 'src/app/_shared/data/beca-data.service';
+import { MiscDataService } from 'src/app/_shared/data/misc-data.service';
 import { GradesGivenEntryDTO } from 'src/app/_shared/models/grades-given-entryDTO';
 import { StudentGrades } from 'src/app/_shared/models/student-grades';
 import { TruncateDatePipe } from 'src/app/_shared/pipes/truncate-date-pipe';
@@ -33,13 +35,21 @@ export class GradesEditComponent implements OnInit {
   private subscription: Subscription;
   studentName: string;
 
+  admins$: Observable<SELECTITEM[]> = this.miscData.getAdmins$().pipe(
+    catchError((err) => {
+      this.errorMessage = err;
+      console.log('CAUGHT ERROR IN Component ' + err);
+      return EMPTY;
+    })
+  );
+
   @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
   @Select(StudentState.getSelectedStudentName) currentName$: Observable<string>;
 
   constructor(
     public becaData: BecaDataService,
     public router: Router,
-    // private route: ActivatedRoute,
+    private miscData: MiscDataService,
     private session: SessionService,
     private columnSorter: ColumnSortService,
     private _fb: FormBuilder,
@@ -69,8 +79,9 @@ export class GradesEditComponent implements OnInit {
         Validators.compose([Validators.pattern(/^\d{4}\-\d{1,2}\-\d{1,2}$/), Validators.maxLength(10)])
       ],
       gradePointAvg: [{ value: '' }, Validators.pattern(/^\d{1,2}\.\d{1,1}$/)],
-      gradesTurnedInException: [''],
-      gradePointAvgException: ['']
+      exception: [''],
+      confirmedDate: { value: '', disabled: true },
+      confirmedById: ['']
     });
   }
 
@@ -82,8 +93,9 @@ export class GradesEditComponent implements OnInit {
       gradesDueDate: new TruncateDatePipe().transform('' + entryData.gradesDueDate),
       gradesTurnedInDate: new TruncateDatePipe().transform('' + entryData.gradesTurnedInDate),
       gradePointAvg: this.toFixedValue(entryData.gradePointAvg),
-      gradesTurnedInException: entryData.gradesTurnedInException,
-      gradePointAvgException: entryData.gradePointAvgException
+      exception: entryData.exception,
+      confirmedById: entryData.confirmedById,
+      confirmedDate: new TruncateDatePipe().transform('' + entryData.confirmedDate)
     });
     gradeEntryRow.markAsPristine();
     return gradeEntryRow;
@@ -196,6 +208,7 @@ export class GradesEditComponent implements OnInit {
     this.errorMessage = '';
     console.log('row dirty value is ' + this.gradeEntryRows().controls[i].dirty);
     if (this.gradeEntryRows().controls[i].dirty) {
+      this.gradeEntryRows().controls[i].get('confirmedDate').enable();
       this.retrieveFormValuesForRow(i);
       this.becaData.updateStudentGrades(this.studentGradesData[i]).subscribe(
         (gradeRowData) => {
@@ -209,6 +222,7 @@ export class GradesEditComponent implements OnInit {
           // this fails for some reason, and isn't needed because the update won't change any of these values
           // this.updateGradeEntryRow(currRowFormGroup, gradeRowData);
           currRowFormGroup.markAsPristine();
+          this.gradeEntryRows().controls[i].get('confirmedDate').disable();
           // this.successMessage = 'Changes were saved successfully.';
           this.isLoading = false;
           window.scrollTo(0, 0);
@@ -250,13 +264,24 @@ export class GradesEditComponent implements OnInit {
     } else {
       d = new Date();
     }
-
     const strDate = [d.getFullYear(), ('0' + (d.getMonth() + 1)).slice(-2), ('0' + d.getDate()).slice(-2)].join('-');
 
     const gradeEntryRow: FormGroup = this.gradeEntryRows().controls[i] as FormGroup;
-
     gradeEntryRow.patchValue({
       gradesTurnedInDate: strDate
+    });
+    gradeEntryRow.markAsDirty();
+  }
+
+  setConfirmedBy(i: number, adminId: number): void {
+    console.log('setConfirmedBy with adminId = ' + adminId);
+    const d = new Date();
+    const strDate = [d.getFullYear(), ('0' + (d.getMonth() + 1)).slice(-2), ('0' + d.getDate()).slice(-2)].join('-');
+    console.log(strDate);
+    const gradeEntryRow: FormGroup = this.gradeEntryRows().controls[i] as FormGroup;
+    gradeEntryRow.patchValue({
+      confirmedById: adminId,
+      confirmedDate: strDate
     });
     gradeEntryRow.markAsDirty();
   }

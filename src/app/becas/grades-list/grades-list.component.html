@@ -48,10 +48,7 @@
               <th app-sortable-column="gradesDueDate" (onSortColumn)="onSortColumn($event)">Grades Due</th>
               <th app-sortable-column="gradesTurnedInDate" (onSortColumn)="onSortColumn($event)">Grades Turned In</th>
               <th app-sortable-column="gradePointAvg" (onSortColumn)="onSortColumn($event)">GPA</th>
-              <th app-sortable-column="gradePointAvgException" (onSortColumn)="onSortColumn($event)">GPA Exception</th>
-              <th app-sortable-column="gradesTurnedInException" (onSortColumn)="onSortColumn($event)">
-                Late Exception
-              </th>
+              <th app-sortable-column="exception" (onSortColumn)="onSortColumn($event)">Exception</th>
             </tr>
           </thead>
           <tbody>
@@ -100,10 +97,7 @@
                 {{ entry.becaApproved }}
               </td>
               <td>
-                {{ entry.gradesTurnedInException | emptyStatus }}
-              </td>
-              <td>
-                {{ entry.gradePointAvgException | emptyStatus }}
+                {{ entry.exception | emptyStatus }}
               </td>
             </tr>
           </tbody>

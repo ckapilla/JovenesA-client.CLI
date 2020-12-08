@@ -6,6 +6,7 @@ import { SelfReportsAddComponent } from './self-reports-add/self-reports-add.com
 import { SelfReportsEditComponent } from './self-reports-edit/self-reports-edit.component';
 import { StudentsHomeComponent } from './students-home/students-home.component';
 import { StudentsNavbarComponent } from './students-navbar/students-navbar.component';
+import { StudentProfileComponent } from './students-profile/students-profile.component';
 import { StudentsRoutingModule } from './students-routing.module';
 import { StudentsSelfReportsComponent } from './students-self-reports/students-self-reports.component';
 import { StudentsComponent } from './students.component';
@@ -16,6 +17,7 @@ import { StudentsComponent } from './students.component';
     StudentsComponent,
     StudentsNavbarComponent,
     StudentsHomeComponent,
+    StudentProfileComponent,
     StudentsSelfReportsComponent,
     SelfReportsEditComponent,
     SelfReportsAddComponent,

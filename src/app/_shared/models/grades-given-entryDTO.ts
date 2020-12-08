@@ -12,8 +12,7 @@ export class GradesGivenEntryDTO {
     public gradesTurnedInDate?: Date,
     public gradePointAvg?: number,
     public becaApproved?: number,
-    public gradesTurnedInException?: string,
-    public gradePointAvgException?: string,
+    public exception?: string,
     public gradesTurnedInStatus?: string,
     public gradePointAvgStatus?: string
   ) {}

@@ -6,17 +6,19 @@ import { SELECTITEM } from '../interfaces/SELECTITEM';
 
 @Injectable({ providedIn: 'root' })
 export class MiscDataService extends BaseDataService {
-  // WebApiPrefix: string;
   private mentorsUrl = this.WebApiPrefix + 'lookup/mentors';
-  // mentors$: Observable<SELECTITEM[]> = this.http.get<SELECTITEM[]>(this.mentorsUrl).pipe(
-  //   tap((data) => console.log('mentorNames ', JSON.stringify(data[0]))),
-  //   shareReplay(1),
-  //   catchError(this.handleError)
-  // );
-
   getMentors$(): Observable<SELECTITEM[]> {
     return this.http.get<SELECTITEM[]>(this.mentorsUrl).pipe(
       tap((data) => console.log('mentorNames ', JSON.stringify(data[0]))),
+      shareReplay(1),
+      catchError(this.handleError)
+    );
+  }
+
+  private adminsUrl = this.WebApiPrefix + 'lookup/admins';
+  getAdmins$(): Observable<SELECTITEM[]> {
+    return this.http.get<SELECTITEM[]>(this.adminsUrl).pipe(
+      tap((data) => console.log('adminNames ', JSON.stringify(data[0]))),
       shareReplay(1),
       catchError(this.handleError)
     );
