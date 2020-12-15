@@ -6,6 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsModule } from '@ngxs/store';
+import { NgxFileDropModule } from 'ngx-file-drop';
 import { environment } from 'src/environments/environment';
 import { HeaderbarComponent } from './app-navbar/headerbar.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -27,15 +28,16 @@ export function appInit(codeValuesService: CodeValuesService) {
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'always' }),
     HttpClientModule,
     AppRoutingModule,
-    NgxsModule.forRoot([ StudentState, MemberState, UIState ], { developmentMode: !environment.production }),
+    NgxFileDropModule,
+    NgxsModule.forRoot([StudentState, MemberState, UIState], { developmentMode: !environment.production }),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot(),
     AppSharedModule.forRoot()
   ],
 
-  declarations: [ AppComponent, HeaderbarComponent ],
+  declarations: [AppComponent, HeaderbarComponent],
 
-  exports: [ ReactiveFormsModule, HttpClientModule, AppRoutingModule ],
+  exports: [ReactiveFormsModule, HttpClientModule, AppRoutingModule],
   providers: [
     {
       provide: APP_BASE_HREF,
@@ -44,11 +46,11 @@ export function appInit(codeValuesService: CodeValuesService) {
     {
       provide: APP_INITIALIZER,
       useFactory: appInit,
-      deps: [ CodeValuesService ],
+      deps: [CodeValuesService],
       multi: true // required because it reference ApplicationStatusService which is multi and "can't mix"
     },
     Location
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

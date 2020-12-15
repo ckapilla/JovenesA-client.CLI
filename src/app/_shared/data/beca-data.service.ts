@@ -39,10 +39,6 @@ export class BecaDataService {
     const x = JSON.parse(body);
     body = JSON.stringify(x.studentGradeEntry);
     console.log('in updateStudentGradeEntry');
-    console.log(studentGradeEntry);
-    console.log(body);
-    console.log(x);
-    console.log(body);
 
     const returnedToken =
       // eslint-disable-next-line max-len
@@ -50,6 +46,21 @@ export class BecaDataService {
     const headers = new HttpHeaders().set('Content-Type', 'application/json').set('authorization', returnedToken);
     console.log('ready to put ' + url + ' body: ' + body + ' options ' + headers);
     return this.http.put(url, body, { headers: headers });
+  }
+
+  public uploadStudentGradesReport(frmData: FormData, studentGUId): Observable<any> {
+    const url = this.WebApiPrefix + 'becas/' + 'student-grades-report' + '?studentGUId=' + studentGUId;
+    // const headers = new HttpHeaders().set(
+    //   'Content-Type',
+    //   'multipart/form-data; boundary=----WebKitFormBoundary0BPm0koKA'
+    // );
+    if (frmData) {
+      const file: any = frmData.get('file');
+      console.log('ready to post ' + url + ' filename: ' + file.name); // + ' options ' + headers);
+      // console.log('with frmData.fileName = ' + frmData.get('fileName'));
+      // console.log('with frmData.studentGUID = ' + frmData.get('studentGUID'));
+      return this.http.post(url, frmData);
+    }
   }
 
   private handleError(error: any) {

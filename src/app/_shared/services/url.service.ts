@@ -6,7 +6,6 @@ export class UrlService {
   clientUrl: string;
 
   constructor() {
-
     console.log('urlService constructor has ' + window.location.hostname);
     const hostName = window.location.hostname.toLocaleLowerCase();
 
@@ -17,16 +16,17 @@ export class UrlService {
       this.webApiPrefix = 'https://JAWebAPI-dev.jovenesadelante.org/api/';
       this.clientUrl = 'https://privada-dev.jovenesadelante.org';
     } else if (hostName === 'localhost') {
-
       //
       // check ipconfig to verify IPv4 address for current router gateway (usually Wi-Fi)
       //
       // this.webApiPrefix = 'http://192.168.1.100:1100/api/'; // Local Production
-      // this.webApiPrefix = 'http://192.168.0.15:1099/api/'; // megacable Local  Development
-      this.webApiPrefix = 'https://JAWebAPI-dev.jovenesadelante.org/api/';
+      this.webApiPrefix = 'http://192.168.0.16:1099/api/'; // megacable Local  Development
+      // this.webApiPrefix = 'https://JAWebAPI-dev.jovenesadelante.org/api/';
+      // all local for Carlos' machine
+      // this.webApiPrefix = 'http://localhost:1099/api/';
       // this.webApiPrefix = 'https://JAWebAPI.jovenesadelante.org/api/';  // Production
       // all local for Carlos' machine
-      this.webApiPrefix = 'http://localhost:1099/api/';
+      // this.webApiPrefix = 'http://localhost:1099/api/';
       this.clientUrl = 'http://localhost:3000';
     }
 
@@ -44,5 +44,4 @@ export class UrlService {
   public getClientCallbackUrl(): string {
     return this.clientUrl + '/callback';
   }
-
 }

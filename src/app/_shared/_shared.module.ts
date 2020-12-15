@@ -3,9 +3,11 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxFileDropModule } from 'ngx-file-drop';
 import { CallbackComponent } from './components/callback.component';
 import { ConfidentialReportsListComponent } from './components/confidential-reports-list/confidential-reports-list.component';
 import { DisplayErrorsComponent } from './components/display-errors.component';
+import { FileUploaderComponent } from './components/file-uploader/file-uploader.component';
 import { FollowUpEventsComponent } from './components/follow-up-events/follow-up-events.component';
 import { FollowUpRequestsListComponent } from './components/follow-up-requests-list/follow-up-requests-list.component';
 import { LoadingContainerComponent } from './components/loading-container.component';
@@ -43,21 +45,12 @@ import { MarkedPipe } from './pipes/marked-pipe';
 import { TruncateDatePipe } from './pipes/truncate-date-pipe';
 import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
 
-
-
-
 /**
  * Do not specify provider's for modules that might be imported by a lazy loaded module.
  */
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule,
-    ReactiveFormsModule,
-    FormsModule,
-    NgbModule
-  ],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule, NgbModule, NgxFileDropModule],
   declarations: [
     DisplayErrorsComponent,
     LoadingContainerComponent,
@@ -98,7 +91,8 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     MemberHeaderDetailsComponent,
     StudentHeaderComponent,
     StudentPhotoComponent,
-    EmptyStatusPipe
+    EmptyStatusPipe,
+    FileUploaderComponent
   ],
   exports: [
     CommonModule,
@@ -142,11 +136,10 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     ConfidentialReportsListComponent,
     MemberPhotoComponent,
     StudentPhotoComponent,
-    EmptyStatusPipe
+    EmptyStatusPipe,
+    FileUploaderComponent
   ]
 })
-
-
 export class AppSharedModule {
   static forRoot(): ModuleWithProviders<AppSharedModule> {
     return {

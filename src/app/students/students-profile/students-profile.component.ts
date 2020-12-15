@@ -37,8 +37,8 @@ export class StudentProfileComponent implements OnInit {
       firstNames: ['', Validators.required],
       lastNames: ['', Validators.required],
       email: ['', Validators.required],
-      smA_Phone: ['', Validators.required],
-      //englishSkillLevelId: ['', Validators.required]
+      smA_Phone: ['', Validators.required]
+      // englishSkillLevelId: ['', Validators.required]
     });
     this.student = new Member();
 
@@ -80,8 +80,8 @@ export class StudentProfileComponent implements OnInit {
       firstNames: student.firstNames,
       lastNames: student.lastNames,
       email: student.email,
-      smA_Phone: student.smA_Phone//,
-      //englishSkillLevelId: student.englishSkillLevelId
+      smA_Phone: student.smA_Phone // ,
+      // englishSkillLevelId: student.englishSkillLevelId
     });
   }
 

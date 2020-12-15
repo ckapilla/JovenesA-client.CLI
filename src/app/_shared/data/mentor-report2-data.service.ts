@@ -50,7 +50,7 @@ export class MentorReport2DataService extends BaseDataService {
     const x = JSON.parse(body);
     body = JSON.stringify(x.mentorReport);
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    // console.log('ready to post ' + url + ' body: ' + body + ' options ' + headers);
+    console.log('ready to post ' + url + ' body: ' + body + ' options ' + headers);
     return this.http.post(url, body, { headers: headers });
   }
 
@@ -67,16 +67,16 @@ export class MentorReport2DataService extends BaseDataService {
     studentGUId: string
   ): Observable<MentorReport2RPT[]> {
     const url =
-			this.WebApiPrefix +
-			'mentor_reports/by_period' +
-			'?year=' +
-			year +
-			'&period=' +
-			period +
-			'&reviewedStatusId=' +
-			reviewedStatusId +
-			'&studentGUId=' +
-			studentGUId;
+      this.WebApiPrefix +
+      'mentor_reports/by_period' +
+      '?year=' +
+      year +
+      '&period=' +
+      period +
+      '&reviewedStatusId=' +
+      reviewedStatusId +
+      '&studentGUId=' +
+      studentGUId;
     console.log('sending AuthHttp get request for MentorReportsByPeriod with ' + url);
     return this.http.get<MentorReport2RPT[]>(url).pipe(catchError(this.handleError));
   }
@@ -87,14 +87,14 @@ export class MentorReport2DataService extends BaseDataService {
     reviewedStatusId: string
   ): Observable<MentorReport2RPT[]> {
     const url =
-			this.WebApiPrefix +
-			'mentor_reports2/by_month' +
-			'?year=' +
-			year +
-			'&month=' +
-			month +
-			'&reviewedStatusId=' +
-			reviewedStatusId;
+      this.WebApiPrefix +
+      'mentor_reports2/by_month' +
+      '?year=' +
+      year +
+      '&month=' +
+      month +
+      '&reviewedStatusId=' +
+      reviewedStatusId;
     console.log('sending AuthHttp get request for MentorReportsByMonth with ' + url);
     return this.http.get<MentorReport2RPT[]>(url).pipe(catchError(this.handleError));
   }
