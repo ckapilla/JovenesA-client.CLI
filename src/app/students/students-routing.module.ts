@@ -6,6 +6,8 @@ import { SelfReportsAddComponent } from './self-reports-add/self-reports-add.com
 import { SelfReportsEditComponent } from './self-reports-edit/self-reports-edit.component';
 import { StudentsSelfReportsComponent } from './students-self-reports/students-self-reports.component';
 import { StudentsComponent } from './students.component';
+import { StudentProfileComponent } from './students-profile/students-profile.component';
+
 
 const routes: Routes = [
   {
@@ -35,6 +37,10 @@ const routes: Routes = [
       {
         path: 'grade-entry',
         component: GradeEntryComponent
+      },
+      {
+        path: 'students-profile',
+        component: StudentProfileComponent
       }
     ]
   }

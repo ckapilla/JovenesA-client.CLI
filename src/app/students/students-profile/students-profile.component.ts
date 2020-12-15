@@ -21,7 +21,8 @@ export class StudentProfileComponent implements OnInit {
   successMessage: string;
   firstNames: string;
   lastNames: string;
-  mentor: Member;
+  email: string;
+  student: Member;
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -35,12 +36,11 @@ export class StudentProfileComponent implements OnInit {
     this.myForm = formBuilder.group({
       firstNames: ['', Validators.required],
       lastNames: ['', Validators.required],
+      email: ['', Validators.required],
       smA_Phone: ['', Validators.required],
-      monthsinSma: ['', Validators.required],
-      spanishSkillLevelId: ['', Validators.required],
-      englishSkillLevelId: ['', Validators.required]
+      //englishSkillLevelId: ['', Validators.required]
     });
-    this.mentor = new Member();
+    this.student = new Member();
 
     this.errorMessage = '';
     this.successMessage = '';
@@ -60,43 +60,42 @@ export class StudentProfileComponent implements OnInit {
   fetchData() {
     // const id = this.currRoute.snapshot.params['id'];
     const guid = this.session.getUserGUId();
-    console.log('calling data service with mentorGUId: ' + guid);
+    console.log('calling data service with studentGUId: ' + guid);
     this.isLoading = true;
     this.memberData.getMemberByGUId(guid).subscribe(
       (data) => {
-        this.mentor = data;
+        this.student = data;
       },
       (err) => console.error('Subscribe error: ' + err),
       () => {
         console.log('done loading');
-        this.setFormValues(this.mentor);
+        this.setFormValues(this.student);
         this.isLoading = false;
       }
     );
   }
 
-  setFormValues(mentor: Member) {
+  setFormValues(student: Member) {
     this.myForm.setValue({
-      firstNames: mentor.firstNames,
-      lastNames: mentor.lastNames,
-      smA_Phone: mentor.smA_Phone,
-      monthsinSma: mentor.monthsinSma,
-      spanishSkillLevelId: mentor.spanishSkillLevelId,
-      englishSkillLevelId: mentor.englishSkillLevelId
+      firstNames: student.firstNames,
+      lastNames: student.lastNames,
+      email: student.email,
+      smA_Phone: student.smA_Phone//,
+      //englishSkillLevelId: student.englishSkillLevelId
     });
   }
 
   retrieveFormValues(): void {
     console.log('retrieveFormValues ' + JSON.stringify(this.myForm.value));
     // use spread operator to merge changes:
-    this.mentor = { ...this.mentor, ...this.myForm.value };
+    this.student = { ...this.student, ...this.myForm.value };
   }
 
   saveMyForm(): boolean {
     console.log('saving ');
     this.isLoading = true;
     this.retrieveFormValues();
-    this.memberData.updateMember(this.mentor).subscribe(
+    this.memberData.updateMember(this.student).subscribe(
       () => {
         this.successMessage = 'Changes were saved successfully.';
         this.submitted = true;

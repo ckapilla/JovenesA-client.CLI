@@ -25,7 +25,7 @@
         "@ng-bootstrap/ng-bootstrap": "^6.1.0",
         "@ngxs/devtools-plugin": "^3.6.2",
         "@ngxs/logger-plugin": "^3.6.2",
-        "@ngxs/store": "^3.6.2",
+        "@ngxs/store": "^3.7.1",
         "auth0-js": "^9.13.4",
         "core-js": "^3.6.5",
         "marked": "^1.1.0",
