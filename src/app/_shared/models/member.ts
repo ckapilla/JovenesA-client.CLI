@@ -1,5 +1,4 @@
 export class Member {
-
   constructor(
     public memberId?: number,
     public lastNames?: string,
@@ -46,7 +45,11 @@ export class Member {
 
     public studentRecordGUId?: string,
     public memberGUId?: string,
-    public lastMentorMeeting?: Date
+    public lastMentorMeeting?: Date,
+    public NickName?: string,
 
-  ) { }
+    public ColoniaID?: number,
+    public CellPhone?: string,
+    public Colonia?: string
+  ) {}
 }

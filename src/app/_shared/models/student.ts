@@ -1,19 +1,19 @@
 export class Student {
   constructor(
     public studentId?: number,
-    public lastNames?: string,
-    public firstNames?: string,
-    public nickName?: string, // NickName
+    // // public lastNames?: string,
+    // // public firstNames?: string,
+    // // public nickName?: string, // NickName
     // [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
     // public FullName // FullName
     public curp?: string, // CURP
     public rfc?: string, // RFC
     public bankAccount?: string, // BankAccount
     public gender?: string, // Gender
-    public cellPhone?: string, // CellPhone
-    public homePhone?: string, // HomePhone
-    public otherPhone?: string, // OtherPhone
-    public email?: string, // Email
+    // // public cellPhone?: string, // CellPhone
+    // // public homePhone?: string, // HomePhone
+    // // public otherPhone?: string, // OtherPhone
+    // // public email?: string, // Email
     public memberRecordGUId?: string,
     public englishLevel?: string, // EnglishLevel
     public sponsor?: string, // Sponsor
@@ -25,8 +25,8 @@ export class Student {
     public gradMonth?: string, // GradMonth
     public gradYear?: string, // GradYear
     public dob?: Date, // DOB
-    public addresss?: string, // Addresss
-    public colonia?: string, // Colonia
+    // // public addresss?: string, // Addresss
+    // // public colonia?: string, // Colonia
     public initialInterview?: string, // InitialInterview
     public sponsorGroupId?: string,
     public statusId?: number, // StatusID

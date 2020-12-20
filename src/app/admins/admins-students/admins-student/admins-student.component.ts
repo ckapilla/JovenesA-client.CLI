@@ -263,9 +263,9 @@ export class AdminsStudentComponent implements OnInit {
       // lastNames: student.lastNames,
       // email: student.email,
       gender: student.gender,
-      cellPhone: student.cellPhone,
-      homePhone: student.homePhone,
-      nickName: student.nickName,
+      // cellPhone: student.cellPhone,
+      // homePhone: student.homePhone,
+      // nickName: student.nickName,
       photoUrl: student.photoUrl,
       educationalLevelId: student.educationalLevelId,
       emergencyContactPhone: student.emergencyContactPhone,
@@ -353,7 +353,7 @@ export class AdminsStudentComponent implements OnInit {
         mentorId: this.studentDTO.mentorId,
         mentorGUId: this.studentDTO.mentorGUId,
         studentGUId: this.studentDTO.studentGUId,
-        studentName: this.student.firstNames + ' ' + this.student.lastNames
+        studentName: this.studentDTO.studentName
       }
     ]);
   }
