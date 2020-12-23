@@ -10,9 +10,9 @@ import { MentorReportsContainerComponent } from './admins-mr/mr-container/mr-con
 import { MentorReportsSummaryTrackingComponent } from './admins-mr/mr-summary-tracking/mr-summary-tracking.component';
 import { MentorReportSummaryUpdatesComponent } from './admins-mr/mr-summary-updates/mr-summary-updates.component';
 import { AdminsStudentMRsComponent } from './admins-student-mrs/admins-student-mrs.component';
+import { AdminsStudentContainerComponent } from './admins-students/admins-student-container/admins-student-container.component';
 import { AdminsStudentListComponent } from './admins-students/admins-student-list/admins-student-list.component';
 import { AdminsStudentSearchComponent } from './admins-students/admins-student-search/admins-student-search.component';
-import { AdminsStudentComponent } from './admins-students/admins-student/admins-student.component';
 import { AdminsComponent } from './admins.component';
 import { FollowUpEventsAddComponent } from './follow-up-events-add/follow-up-events-add.component';
 import { FollowUpRequestsAddComponent } from './follow-up-requests-add/follow-up-requests-add.component';
@@ -30,7 +30,7 @@ const adminRoutes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        component: AdminsMemberSearchComponent// AdminsHomeComponent
+        component: AdminsStudentSearchComponent// AdminsHomeComponent
       },
       // {
       //   path: 'becas-home',
@@ -73,8 +73,8 @@ const adminRoutes: Routes = [
         component: AdminsStudentListComponent
       },
       {
-        path: 'students/student', // :guid',
-        component: AdminsStudentComponent
+        path: 'students/student-container', // :guid',
+        component: AdminsStudentContainerComponent
       },
 
 

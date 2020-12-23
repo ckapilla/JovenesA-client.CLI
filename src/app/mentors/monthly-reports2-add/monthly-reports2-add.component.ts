@@ -91,7 +91,7 @@ export class MonthlyReports2AddComponent implements OnInit {
     this.mentorReport2.studentGUId = this.currRoute.snapshot.params['studentGUId'];
     this.studentName = this.currRoute.snapshot.params['studentName'];
     console.log('mentorGUId ' + this.mentorReport2.mentorGUId);
-    console.log('studentId ' + this.mentorReport2.studentId);
+    // console.log('studentId ' + this.mentorReport2.studentId);
     console.log('studentGUId ' + this.mentorReport2.studentGUId);
 
     if (this.mentorReport2.mentorGUId === 'undefined' || this.mentorReport2.mentorGUId === 'null') {

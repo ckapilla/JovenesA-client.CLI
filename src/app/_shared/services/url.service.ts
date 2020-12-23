@@ -21,10 +21,10 @@ export class UrlService {
       //
       // this.webApiPrefix = 'http://192.168.0.16:1100/api/'; // Local Production
       // this.webApiPrefix = 'http://192.168.0.16:1099/api/'; // Local  Development
-      this.webApiPrefix = 'http://192.168.0.15:1099/api/'; // Local  Development
+      this.webApiPrefix = 'http://192.168.0.11:1099/api/'; // Local  Development
       // if above doesn't work, run ipconfig to see current IPv4 address
 
-      this.webApiPrefix = 'http://localhost:1099/api/'; // Local  Development
+      // this.webApiPrefix = 'http://localhost:1099/api/'; // Local  Development
 
       // this.webApiPrefix = 'https://JAWebAPI-dev.jovenesadelante.org/api/';
       this.clientUrl = 'http://localhost:3000';

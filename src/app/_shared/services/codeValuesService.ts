@@ -47,11 +47,9 @@ export class CodeValuesService extends BaseDataService {
               constants.memberTypes.push(subset);
               break;
             case 'ReviewedStatus':
-              console.log('>>>>>ReviewedStatus ' + item.value);
               constants.reviewedStatuses.push(subset);
               break;
             case 'QRReviewedStatus':
-              console.log('>>>>>QR + subset' + item.value);
               constants.reviewedQRStatuses.push(subset);
               break;
             case 'MemberStatus':

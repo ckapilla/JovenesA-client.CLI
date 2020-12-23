@@ -46,10 +46,10 @@ export class Member {
     public studentRecordGUId?: string,
     public memberGUId?: string,
     public lastMentorMeeting?: Date,
-    public NickName?: string,
+    public nickName?: string,
 
-    public ColoniaID?: number,
-    public CellPhone?: string,
-    public Colonia?: string
+    public coloniaID?: number,
+    public cellPhone?: string,
+    public colonia?: string
   ) {}
 }

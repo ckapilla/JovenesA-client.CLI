@@ -16,9 +16,12 @@ import { MentorReportSummaryUpdatesComponent } from './admins-mr/mr-summary-upda
 import { AdminsNavbarComponent } from './admins-navbar/admins-navbar.component';
 import { AdminsRoutingModule } from './admins-routing.module';
 import { AdminsStudentMRsComponent } from './admins-student-mrs/admins-student-mrs.component';
+import { AdminsStudentQRsComponent } from './admins-student-qrs/admins-student-qrs.component';
+import { AdminsStudentContainerComponent } from './admins-students/admins-student-container/admins-student-container.component';
 import { AdminsStudentListComponent } from './admins-students/admins-student-list/admins-student-list.component';
+import { AdminsStudentMemberDataComponent } from './admins-students/admins-student-member-profile/admins-student-member-profile.component';
+import { AdminsStudentComponent } from './admins-students/admins-student-profile/admins-student-student-profile.component';
 import { AdminsStudentSearchComponent } from './admins-students/admins-student-search/admins-student-search.component';
-import { AdminsStudentComponent } from './admins-students/admins-student/admins-student.component';
 import { AdminsComponent } from './admins.component';
 import { FollowUpEventsAddComponent } from './follow-up-events-add/follow-up-events-add.component';
 import { FollowUpRequestsAddComponent } from './follow-up-requests-add/follow-up-requests-add.component';
@@ -61,9 +64,12 @@ import { UtilitiesComponent } from './utilities/utilities.component';
     MentorReportsSubmittedComponent,
     AdminsStudentSearchComponent,
     AdminsMemberSearchComponent,
-    TestNamesVisibilityComponent
+    TestNamesVisibilityComponent,
+    AdminsStudentContainerComponent,
+    AdminsStudentMemberDataComponent,
+    AdminsStudentQRsComponent
   ],
-  exports: [AdminsStudentMRsComponent, SponsorGroupsComponent],
+  exports: [AdminsStudentMRsComponent, AdminsStudentQRsComponent, SponsorGroupsComponent],
   entryComponents: [ServerEnvironmentComponent, MentorReportsSubmittedComponent]
 })
 export class AdminsModule {}

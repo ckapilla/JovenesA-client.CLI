@@ -57,6 +57,7 @@ export class StudentLookupComponent implements OnInit {
   }
 
   onSelect(item) {
+    console.log('OnSelect New Student, dispatching new GUID')
     console.log(item.item.studentId);
     console.log(item.item.studentGUId);
     this.currentGUId = item.item.studentGUId;
@@ -145,7 +146,7 @@ export class StudentLookupComponent implements OnInit {
 
   gotoStudent() {
     if (this.currentGUId !== '0000') {
-      const link = ['admins/students/student', { guid: this.currentGUId }];
+      const link = ['admins/students/student-container', { guid: this.currentGUId }];
       console.log('navigating to ' + link);
       this.router.navigate(link);
     }

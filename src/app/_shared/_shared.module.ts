@@ -28,6 +28,7 @@ import { SponsorsForStudentGridComponent } from './components/sponsors-for-stude
 import { StudentGradesStatusComponent } from './components/student-grades-status.component';
 import { StudentHeaderDetailsComponent } from './components/student-header-details/student-header-details.component';
 import { StudentHeaderComponent } from './components/student-header/student-header.component';
+import { StudentHeader2Component } from './components/student-header2/student-header2.component';
 import { StudentLookupComponent } from './components/student-lookup/student-lookup';
 import { StudentMRStatusComponent } from './components/student-mr-status.component';
 import { StudentPhotoComponent } from './components/student-photo/student-photo.component';
@@ -90,9 +91,11 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     MemberHeaderComponent,
     MemberHeaderDetailsComponent,
     StudentHeaderComponent,
+    StudentHeader2Component,
     StudentPhotoComponent,
     EmptyStatusPipe,
-    FileUploaderComponent
+    FileUploaderComponent,
+    StudentHeader2Component
   ],
   exports: [
     CommonModule,
@@ -128,6 +131,7 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     StudentLookupComponent,
     StudentHeaderDetailsComponent,
     StudentHeaderComponent,
+    StudentHeader2Component,
     QrStatusSelectorComponent,
     PersonSharedComponent,
     MemberLookupComponent,
@@ -137,7 +141,8 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     MemberPhotoComponent,
     StudentPhotoComponent,
     EmptyStatusPipe,
-    FileUploaderComponent
+    FileUploaderComponent,
+    StudentHeader2Component
   ]
 })
 export class AppSharedModule {

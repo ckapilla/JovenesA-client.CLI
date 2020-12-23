@@ -62,6 +62,12 @@ export class MemberDataService extends BaseDataService {
     return this.http.get(url).pipe(catchError(this.handleError));
   }
 
+  public getMemberByStudentGUId(studentGUId: string): Observable<Member> {
+    const url = this.WebApiPrefix + 'members/student-guid/' + studentGUId;
+    console.log('sending AuthHttp get request for Member data using studentGUId ' + studentGUId);
+    return this.http.get(url).pipe(catchError(this.handleError));
+  }
+
   public getCommunicationsForMember(memberId: number): Observable<Communication[]> {
     const url = this.WebApiPrefix + 'members/communications/' + memberId;
     console.log('sending AuthHttp get request for Communications For Member with url', url);

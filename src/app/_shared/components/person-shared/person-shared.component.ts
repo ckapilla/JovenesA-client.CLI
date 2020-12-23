@@ -66,11 +66,10 @@ export class PersonSharedComponent implements OnInit {
     this.myForm.setValue({
       firstNames: member.firstNames,
       lastNames: member.lastNames,
-      email: member.email
-      // cellPhone: member.cellPhone,
-      // homePhone: member.homePhone,
-      // nickName: member.nickName,
-      // photoUrl: member.photoUrl,
+      email: member.email,
+      cellPhone: member.cellPhone,
+      nickName: member.nickName,
+      photoUrl: member.photoUrl,
     });
   }
 }

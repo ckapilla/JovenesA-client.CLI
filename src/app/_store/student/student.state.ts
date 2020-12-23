@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
 import { StudentDataService } from 'src/app/_shared/data/student-data.service';
-import { GetStudents, SetPhotoPathname, SetSelectedStudentGUId, SetSelectedStudentIdentifiers } from './student.action';
+import { GetStudents, SetPhotoPathname, SetSelectedStudentGUId, SetSelectedStudentIdentifiers, SetSelectedStudentMentorGUId } from './student.action';
 import { StudentStateModel } from './student.model';
 
 @State<StudentStateModel>({
@@ -11,7 +11,8 @@ import { StudentStateModel } from './student.model';
     students: [],
     selectedStudentGUId: '0000',
     selectedStudentName: '',
-    photoPathname: ''
+    photoPathname: '',
+    selectedStudentMentorGUId: ''
   }
 })
 @Injectable()
@@ -31,6 +32,11 @@ export class StudentState {
   @Selector()
   static getSelectedStudentName(state: StudentStateModel) {
     return state.selectedStudentName;
+  }
+
+  @Selector()
+  static getSelectedStudentMentorGUId(state: StudentStateModel) {
+    return state.selectedStudentMentorGUId;
   }
 
   @Selector()
@@ -60,6 +66,17 @@ export class StudentState {
       selectedStudentGUId
     });
   }
+
+  @Action(SetSelectedStudentMentorGUId)
+  setSelectedStudentMentorGUId(ctx: StateContext<StudentStateModel>, { payload }: SetSelectedStudentMentorGUId) {
+    const selectedStudentMentorGUId = payload;
+    const state = ctx.getState();
+    ctx.patchState({
+      ...state,
+      selectedStudentMentorGUId
+    });
+  }
+
 
   @Action(SetSelectedStudentIdentifiers)
   setSelectedStudentIdentifiers(ctx: StateContext<StudentStateModel>, { payload }: SetSelectedStudentIdentifiers) {

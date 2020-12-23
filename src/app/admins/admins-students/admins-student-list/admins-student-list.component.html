@@ -103,7 +103,7 @@
               <td>
                 <img [src]="student.photoUrl" height="30" class="thumbnail" />
               </td>
-              <td (click)="gotoStudent(student.studentGUId, student.studentName)" class="link">
+              <td (click)="gotoStudent(student.studentGUId, student.studentName, student.photoUrl, student.mentorGUId)" class="link">
                 {{ student.studentName }}
               </td>
 

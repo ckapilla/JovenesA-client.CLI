@@ -9,6 +9,7 @@ import { SORTCRITERIA } from 'src/app/_shared/interfaces/SORTCRITERIA';
 import { StudentDTO } from 'src/app/_shared/models/studentDTO';
 import { ColumnSortService } from 'src/app/_shared/services/column-sort.service';
 import { SessionService } from 'src/app/_shared/services/session.service';
+import { SetPhotoPathname, SetSelectedStudentGUId, SetSelectedStudentMentorGUId, SetSelectedStudentName } from 'src/app/_store/student/student.action';
 import {
   SetSelectedFilterMode,
   SetSelectedGradYear,
@@ -16,6 +17,8 @@ import {
   SetSelectedYearJoined
 } from 'src/app/_store/ui/ui.action';
 import { UIState } from 'src/app/_store/ui/ui.state';
+
+
 
 @Component({
   selector: 'app-admins-student-list',
@@ -224,10 +227,15 @@ export class AdminsStudentListComponent implements OnInit {
     return studentDTO;
   }
 
-  gotoStudent(guid: string, studentName: string) {
+  gotoStudent(guid: string, studentName: string,
+    photoUrl: string, mentorGUId: string) {
     console.log('setting studentName to ' + studentName);
 
-    const link = ['admins/students/student', { guid: guid }];
+    this.store.dispatch(new SetPhotoPathname(photoUrl));
+    this.store.dispatch(new SetSelectedStudentGUId(guid));
+    this.store.dispatch(new SetSelectedStudentName(studentName));
+    this.store.dispatch(new SetSelectedStudentMentorGUId(mentorGUId));
+    const link = ['admins/students/student-container', { guid: guid }];
 
     console.log('navigating to ' + link);
     this.router.navigate(link);

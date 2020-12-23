@@ -5,4 +5,5 @@ export interface StudentStateModel {
   selectedStudentGUId: string;
   selectedStudentName: string;
   photoPathname: string;
+  selectedStudentMentorGUId: string;
 }
