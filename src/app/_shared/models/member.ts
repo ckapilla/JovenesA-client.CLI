@@ -4,16 +4,17 @@ export class Member {
     public lastNames?: string,
     public firstNames?: string,
     public email?: string,
-    public smA_Phone?: string,
+
+    public sma_Phone?: string,
     public nonSMA_Phone?: string,
 
-    // public SmaAddress: string,
+    public sma_Address?: string,
+    public sma_postalCode?: string,
 
-    // public NonSmaAddress: string,
-    // public NonSmaCity: string,
-    // public NonSmaStateProvince: string,
-    // public NonSmaPostalCode: string,
-
+    public nonSMA_Address?: string,
+    public nonSMA_City?: string,
+    public nonSMA_StateProvince?: string,
+    public nonSMA_PostalCode?: string,
     public mentorStatusId?: number,
     public sponsorStatusId?: number,
     public adminStatusId?: number,

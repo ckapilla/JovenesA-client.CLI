@@ -35,7 +35,7 @@ export class MentorsProfileComponent implements OnInit {
     this.myForm = formBuilder.group({
       firstNames: [ '', Validators.required ],
       lastNames: [ '', Validators.required ],
-      smA_Phone: [ '', Validators.required ],
+      sma_Phone: [ '', Validators.required ],
       monthsinSma: [ '', Validators.required ],
       spanishSkillLevelId: [ '', Validators.required ],
       englishSkillLevelId: [ '', Validators.required ]
@@ -79,7 +79,7 @@ export class MentorsProfileComponent implements OnInit {
     this.myForm.setValue({
       firstNames: mentor.firstNames,
       lastNames: mentor.lastNames,
-      smA_Phone: mentor.smA_Phone,
+      sma_Phone: mentor.sma_Phone,
       monthsinSma: mentor.monthsinSma,
       spanishSkillLevelId: mentor.spanishSkillLevelId,
       englishSkillLevelId: mentor.englishSkillLevelId
