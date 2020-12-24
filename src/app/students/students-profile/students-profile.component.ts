@@ -75,12 +75,12 @@ export class StudentProfileComponent implements OnInit {
     );
   }
 
-  setFormValues(student: Member) {
+  setFormValues(student_member: Member) {
     this.myForm.setValue({
-      firstNames: student.firstNames,
-      lastNames: student.lastNames,
-      email: student.email,
-      sma_Phone: student.sma_Phone // ,
+      firstNames: student_member.firstNames,
+      lastNames: student_member.lastNames,
+      email: student_member.email,
+      sma_Phone: student_member.sma_Phone // ,
       // englishSkillLevelId: student.englishSkillLevelId
     });
   }
