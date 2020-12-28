@@ -45,12 +45,12 @@
                 'minlength': 'El correo electrónico del estudiante no puede ser menor de 7 caracteres de longitud.'
       }"></app-display-errors>
 
-      <label for="sma_Phone">Número de Teléfono</label>
-      <input id="sma_Phone"
-            formControlName="sma_Phone"
+      <label for="smA_Phone">Número de Teléfono</label>
+      <input id="smA_Phone"
+            formControlName="smA_Phone"
             type="text" class="form-control form-control-sm" placeholder="Número de teléfono: ###-###-####"
             required maxlength="13" minlength="7" />
-      <app-display-errors control="sma_Phone" class="red"
+      <app-display-errors control="smA_Phone" class="red"
                           [errors]="{
                 'required': 'Se requiere el número de teléfono.',
                 'minlength': 'El número de teléfono debe tener al menos 7 caracteres de longitud.',

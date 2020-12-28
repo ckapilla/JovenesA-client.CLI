@@ -5,7 +5,7 @@ export class Member {
     public firstNames?: string,
     public email?: string,
 
-    public sma_Phone?: string,
+    public smA_Phone?: string,
     public nonSMA_Phone?: string,
 
     public sma_Address?: string,

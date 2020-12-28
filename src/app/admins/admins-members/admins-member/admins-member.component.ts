@@ -50,7 +50,7 @@ export class AdminsMemberComponent implements OnInit {
       firstNames: ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
       lastNames: ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
       email: ['', Validators.compose([Validators.required, Validators.maxLength(50)])],
-      sma_Phone: [''],
+      smA_Phone: [''],
       nonSMA_Phone: [''],
 
       mentorStatusId: [''],
@@ -150,7 +150,7 @@ export class AdminsMemberComponent implements OnInit {
       firstNames: member.firstNames,
       lastNames: member.lastNames,
       email: member.email,
-      sma_Phone: member.sma_Phone,
+      smA_Phone: member.smA_Phone,
       nonSMA_Phone: member.nonSMA_Phone,
       // gender: member.gender,
 

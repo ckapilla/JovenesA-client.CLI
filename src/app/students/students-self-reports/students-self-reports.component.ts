@@ -94,7 +94,7 @@ export class StudentsSelfReportsComponent implements OnInit {
     this.router.navigateByUrl(target);
   }
   isCurrentReportDate(rptDate: string) {
-    console.log(rptDate.substr(0, 7));
-    return rptDate.substr(0, 7) >= '2020-06';
+    // console.log(rptDate.substr(0, 7));
+    return rptDate.substr(0, 7) >= '2020-09';
   }
 }
