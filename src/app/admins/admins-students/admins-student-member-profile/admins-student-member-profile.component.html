@@ -115,7 +115,88 @@
                 <option *ngFor="let status of languageStatuses" [value]="status.value">{{ status.label }}</option>
               </select>
 
+              
+
             </div>
+
+            <label><mark style="color:#05579E; background-color:powderblue;">Address where the student lives in San Miguel</mark></label>
+      <br> 
+
+      <label for="smA_Address">Dirección</label>
+      <input id="smA_Address"
+            formControlName="smA_Address"
+            type="text" class="form-control form-control-sm" placeholder="Dirección y número"
+            required maxlength="50" minlength="3" />
+      <app-display-errors control="smA_Address" class="red"
+                          [errors]="{
+                'required': 'Se requiere la dirección.',
+                'minlength': 'La dirección debe tener al menos 3 caracteres de longitud.',
+                'maxlength': 'La dirección no puede exceder de 50 caracteres de longitud.'
+      }"></app-display-errors>
+
+      <label for="colonia">Colonia/Comunidad</label>
+      <input id="colonia"
+            formControlName="colonia"
+            type="text" class="form-control form-control-sm" placeholder="Colonia"
+            required maxlength="50" minlength="3" />
+            
+      <app-display-errors control="colonia" class="red"
+                          [errors]="{
+                'required': 'Se requiere la colonia.',
+                'minlength': 'La colonia debe tener al menos 3 caracteres de longitud.',
+                'maxlength': 'La colonia no puede exceder de 50 caracteres de longitud.'
+      }"></app-display-errors>
+      <br>
+      <label><mark style="color:#05579E; background-color:powderblue;">Address where the student lives in the place where is studying</mark></label>
+      <br>
+
+      <label for="nonSMA_Address">Dirección</label>
+      <input id="nonSMA_Address"
+            formControlName="nonSMA_Address"
+            type="text" class="form-control form-control-sm" placeholder="Dirección y número"
+            required maxlength="50" minlength="3" />
+      <app-display-errors control="nonSMA_Address" class="red"
+                          [errors]="{
+                'required': 'Se requiere la dirección.',
+                'minlength': 'La dirección debe tener al menos 3 caracteres de longitud.',
+                'maxlength': 'La dirección no puede exceder de 50 caracteres de longitud.'
+      }"></app-display-errors>
+
+      <label for="nonSMA_City">Ciudad</label>
+      <input id="nonSMA_City"
+            formControlName="nonSMA_City"
+            type="text" class="form-control form-control-sm" placeholder="Ciudad donde estudia"
+            required maxlength="50" minlength="3" />
+      <app-display-errors control="nonSMA_City" class="red"
+                          [errors]="{
+                'required': 'Se requiere la ciudad.',
+                'minlength': 'La ciudad debe tener al menos 3 caracteres de longitud.',
+                'maxlength': 'La ciudad no puede exceder de 50 caracteres de longitud.'
+      }"></app-display-errors>
+
+      <label for="nonSMA_StateProvince">Estado</label>
+      <input id="nonSMA_StateProvince"
+            formControlName="nonSMA_StateProvince"
+            type="text" class="form-control form-control-sm" placeholder="Estado donde estudia"
+            required maxlength="50" minlength="3" />
+      <app-display-errors control="nonSMA_StateProvince" class="red"
+                          [errors]="{
+                'required': 'Se requiere el estado.',
+                'minlength': 'El estado debe tener al menos 3 caracteres de longitud.',
+                'maxlength': 'El estado no puede exceder de 50 caracteres de longitud.'
+      }"></app-display-errors>
+
+      <label for="nonSMA_PostalCode">Código Postal</label>
+      <input id="nonSMA_PostalCode"
+            formControlName="nonSMA_PostalCode"
+            type="text" class="form-control form-control-sm" placeholder="Código Postal"
+            required maxlength="7" minlength="3" />
+      <app-display-errors control="nonSMA_PostalCode" class="red"
+                          [errors]="{
+                'required': 'Se requiere el código postal.',
+                'minlength': 'El código postal debe tener al menos 3 caracteres de longitud.',
+                'maxlength': 'El código postal no puede exceder de 7 caracteres de longitud.'
+      }"></app-display-errors>
           </div>
 
         </div>

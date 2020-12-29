@@ -64,7 +64,7 @@ export class AdminsMemberComponent implements OnInit {
 
       yearJoinedJA: [''],
       monthsinSma: [''],
-      nonSma_CountryId: [''],
+      nonSMA_CountryId: [''],
       bestWayToContactId: [''],
       countryOfResidenceId: [''],
 
@@ -165,7 +165,7 @@ export class AdminsMemberComponent implements OnInit {
 
       yearJoinedJA: member.yearJoinedJa,
       monthsinSma: member.monthsinSma,
-      nonSma_CountryId: member.nonSma_CountryId,
+      nonSMA_CountryId: member.nonSMA_CountryId,
       bestWayToContactId: member.bestWayToContactId,
       countryOfResidenceId: member.countryOfResidenceId,
 

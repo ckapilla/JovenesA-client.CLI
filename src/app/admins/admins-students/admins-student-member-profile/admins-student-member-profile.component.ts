@@ -67,7 +67,13 @@ export class AdminsStudentMemberDataComponent implements OnInit {
       nickName: [{ value: '' }, Validators.maxLength(20)],
       photoUrl: [{ value: '' }, Validators.maxLength(255)],
 
-      englishSkillLevelId: [{ value: '' }]
+      englishSkillLevelId: [{ value: '' }],
+      smA_Address: ['', Validators.required],
+      colonia: ['', Validators.required],
+      nonSMA_Address: ['', Validators.required],
+      nonSMA_City: ['', Validators.required],
+      nonSMA_StateProvince: ['', Validators.required],
+      nonSMA_PostalCode: ['', Validators.required]
     });
     this.myForm.disable();
     console.log(this.myForm.controls);
@@ -128,7 +134,13 @@ export class AdminsStudentMemberDataComponent implements OnInit {
       cellPhone: member.cellPhone,
       nickName: '', // member.nickName,
       photoUrl: '', // member.photoUrl,
-      englishSkillLevelId: member.englishSkillLevelId
+      englishSkillLevelId: member.englishSkillLevelId,
+      smA_Address: member.smA_Address,
+      colonia: member.colonia,
+      nonSMA_Address: member.nonSMA_Address,
+      nonSMA_City: member.nonSMA_City,
+      nonSMA_StateProvince: member.nonSMA_City,
+      nonSMA_PostalCode: member.nonSMA_PostalCode
     });
   }
 

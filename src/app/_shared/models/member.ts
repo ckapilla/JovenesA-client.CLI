@@ -8,8 +8,8 @@ export class Member {
     public smA_Phone?: string,
     public nonSMA_Phone?: string,
 
-    public sma_Address?: string,
-    public sma_postalCode?: string,
+    public smA_Address?: string,
+    public smA_postalCode?: string,
 
     public nonSMA_Address?: string,
     public nonSMA_City?: string,
@@ -26,7 +26,7 @@ export class Member {
 
     public yearJoinedJa?: number,
     public monthsinSma?: string,
-    public nonSma_CountryId?: number,
+    public nonSMA_CountryId?: number,
     public bestWayToContactId?: number,
     public countryOfResidenceId?: number,
 

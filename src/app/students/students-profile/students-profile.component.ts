@@ -37,7 +37,14 @@ export class StudentProfileComponent implements OnInit {
       firstNames: ['', Validators.required],
       lastNames: ['', Validators.required],
       email: ['', Validators.required],
-      smA_Phone: ['', Validators.required]
+      cellPhone: ['', Validators.required],
+      smA_Address: ['', Validators.required],
+      colonia: ['', Validators.required],
+      //smA_postalCode: ['', Validators.required],
+      nonSMA_Address: ['', Validators.required],
+      nonSMA_City: ['', Validators.required],
+      nonSMA_StateProvince: ['', Validators.required],
+      nonSMA_PostalCode: ['', Validators.required]
       // englishSkillLevelId: ['', Validators.required]
     });
     this.student = new Member();
@@ -64,6 +71,7 @@ export class StudentProfileComponent implements OnInit {
     this.isLoading = true;
     this.memberData.getMemberByGUId(guid).subscribe(
       (data) => {
+        console.log(JSON.stringify(data));
         this.student = data;
       },
       (err) => console.error('Subscribe error: ' + err),
@@ -80,7 +88,14 @@ export class StudentProfileComponent implements OnInit {
       firstNames: student_member.firstNames,
       lastNames: student_member.lastNames,
       email: student_member.email,
-      smA_Phone: student_member.smA_Phone // ,
+      cellPhone: student_member.cellPhone,
+      smA_Address: student_member.smA_Address,
+      colonia: student_member.colonia,
+      //smA_postalCode: student_member.smA_postalCode,
+      nonSMA_Address: student_member.nonSMA_Address,
+      nonSMA_City: student_member.nonSMA_City,
+      nonSMA_StateProvince: student_member.nonSMA_City,
+      nonSMA_PostalCode: student_member.nonSMA_PostalCode
       // englishSkillLevelId: student.englishSkillLevelId
     });
   }
