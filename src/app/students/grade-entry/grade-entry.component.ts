@@ -187,7 +187,7 @@ export class GradeEntryComponent implements OnInit {
           console.log(JSON.stringify(gradeRowData));
           // need timeout to avoid "Expression has changed error"
           window.setTimeout(() => {
-            this.successMessage = 'Changes were saved successfully.';
+            this.successMessage = 'Los cambios se guardaron con éxito.';
           }, 0);
           const currRowFormGroup = this.gradeEntryRows().controls[i] as FormGroup;
           // this fails for some reason, and isn't needed because the update won't change any of these values
@@ -199,10 +199,10 @@ export class GradeEntryComponent implements OnInit {
           window.setTimeout(() => {
             // console.log('clearing success message');
             this.successMessage = '';
-          }, 3000);
+          }, 1500);
         },
         () => {
-          this.errorMessage = 'Please check Date Format, must be YYYY-MM-DD';
+          this.errorMessage = 'Por favor, compruebe el formato de la fecha. Debe ser AAAA-MM-DD';
           this.isLoading = false;
         }
       );

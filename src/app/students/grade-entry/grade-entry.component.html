@@ -16,12 +16,13 @@
         </div>
         <div *ngSwitchCase="false">
           <form [formGroup]="myForm">
-            <p>
-              <button [disabled]="myForm.pristine"
-                      type="submit"
-                      class="btn btn-primary"
-                      (click)="saveAllChangedEntries()">Save</button>
-            </p>
+            
+
+            <h6 style="color:black;"><b>Paso 1: </b>Ingresa tu promedio en la casilla correspondiente y da clic en Guardar. </h6>
+            <br>
+            <h6 style="color:black;">Una vez que el equipo de Jovenes Adelante lo revise, aparecerá la fecha en que se confirmó.</h6>
+            <br>
+
             <table class="table-sm table-striped">
               <thead>
                 <tr>
@@ -34,7 +35,7 @@
                   <!-- <th app-sortable-column="year" (onSortColumn)="onSortColumn($event)">Year</th> -->
                   <!-- <th app-sortable-column="periodNumber" (onSortColumn)="onSortColumn($event)">Period</th> -->
                   <th>Fin de Periodo</th>
-                  <th>Calificaciones vencidas</th>
+                  <th>Fecha Límite</th>
                   <th>Fecha de Hoy</th>
                   <th>Promedio</th>
                   <th>Fecha Confirmado</th>
@@ -106,12 +107,26 @@
 
                     </td>
                   </ng-container>
+                  <p style="text-align: right;">
+                    <button [disabled]="myForm.pristine"
+                        type="submit"
+                        class="btn btn-primary"
+                        (click)="saveAllChangedEntries()">Guardar</button>
+              </p>
                 </tr>
+                
               </tbody>
-            </table>
+            </table>            
           </form>
 
           <div>
+            <hr color="#0f5faf">
+            <h6 style="color:black;"><b>Paso 2: </b>Sube tu reporte de calificaciones en el recuadro</h6>
+            <br>
+            <h6 style="color:black;">En el siguiente apartado podrás subir la captura de tu informe de calificaciones. Asegúrate de que tu archivo sea en formato <mark style="color:#05579E; background-color:powderblue;"> PNG</mark>.</h6>
+            <h6 style="color:black;">Si tu archivo no termina con la extensión PNG, puedes convertirlo en línea dando clic <a href="https://imagen.online-convert.com/es/convertir-a-png" target="_blank">aquí</a>. Es una página que te brindamos para que puedas convertirlo al formato requerido.</h6>
+            <h6 style="color:black;">Al arrastrar o seleccionar tu archivo, este se cargará y su nombre se mostrará debajo del recuadro. Hecho esto, tu archivo estará cargado y listo para revisión.</h6>
+            <br>
             <app-file-uploader></app-file-uploader>
           </div>
 
