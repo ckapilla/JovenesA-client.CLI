@@ -199,7 +199,7 @@ export class GradeEntryComponent implements OnInit {
           window.setTimeout(() => {
             // console.log('clearing success message');
             this.successMessage = '';
-          }, 1500);
+          }, 15000);
         },
         () => {
           this.errorMessage = 'Por favor, compruebe el formato de la fecha. Debe ser AAAA-MM-DD';
