@@ -32,6 +32,7 @@ export class GradeEntryComponent implements OnInit {
   studentGUId: string;
   private subscription: Subscription;
   studentName: string;
+  confirmedDateB: boolean;
 
   @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
   @Select(StudentState.getSelectedStudentName) currentName$: Observable<string>;
@@ -83,6 +84,7 @@ export class GradeEntryComponent implements OnInit {
     });
     if (gradeEntryRow.get('confirmedDate').value > '') {
       gradeEntryRow.get('gradePointAvg').disable();
+      this.confirmedDateB=true;
     }
 
     gradeEntryRow.markAsPristine();

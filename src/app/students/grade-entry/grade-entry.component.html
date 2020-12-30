@@ -42,9 +42,10 @@
                   <th></th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody >
 
-                <tr formArrayName="gradeEntryRows"
+                <tr style="background-color:white;"
+                    formArrayName="gradeEntryRows"
                     *ngFor="let entry of studentGradesData, let i = index">
                   <ng-container [formGroupName]="i">
                     <!-- <td>
@@ -112,11 +113,14 @@
                         type="submit"
                         class="btn btn-primary"
                         (click)="saveAllChangedEntries()">Guardar</button>
-              </p>
+                  </p>
                 </tr>
                 
               </tbody>
-            </table>            
+            </table>   
+            <div *ngIf="confirmedDateB">
+               <span class="red">La calificación ha sido revisada y registrada. Cualquier cambio, favor de comunicarse a <a href="mailto:m.olvera@jovenesadelante.org">m.olvera@jovenesadelante.org</a></span>
+            </div>         
           </form>
 
           <div>
