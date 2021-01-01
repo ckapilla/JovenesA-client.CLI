@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { URL_CONFIG } from './url-config';
 
 @Injectable({ providedIn: 'root' })
 export class UrlService {
@@ -10,23 +11,17 @@ export class UrlService {
     const hostName = window.location.hostname.toLocaleLowerCase();
 
     if (hostName === 'privada.jovenesadelante.org') {
-      this.webApiPrefix = 'https://JAWebAPI.jovenesadelante.org/api/';
-      this.clientUrl = 'https://privada.jovenesadelante.org';
+      this.webApiPrefix =  URL_CONFIG.ProdWebAPIService; // 'https://JAWebAPI.jovenesadelante.org/api/';
+      this.clientUrl = 'https:' + hostName; // privada.jovenesadelante.org';
     } else if (hostName === 'privada-dev.jovenesadelante.org') {
-      this.webApiPrefix = 'https://JAWebAPI-dev.jovenesadelante.org/api/';
-      this.clientUrl = 'https://privada-dev.jovenesadelante.org';
+      this.webApiPrefix =  URL_CONFIG.DevWebAPIService; // 'https://JAWebAPI-dev.jovenesadelante.org/api/';
+      this.clientUrl = 'https:' + hostName; // privada-dev.jovenesadelante.org';
     } else if (hostName === 'localhost') {
-      //
-      // check ipconfig to verify IPv4 address for current router gateway (usually Wi-Fi)
-      //
-      // this.webApiPrefix = 'http://192.168.0.16:1100/api/'; // Local Production
-      this.webApiPrefix = 'http://192.168.2.33:1099/api/'; // Local  Development
+      this.webApiPrefix = URL_CONFIG.localDevWebAPIService; // Local  Development
       // if above doesn't work, run ipconfig to see current IPv4 address
-
-      // this.webApiPrefix = 'https://JAWebAPI-dev.jovenesadelante.org/api/'; // remote dev
-
-      // this.webApiPrefix = 'https://JAWebAPI.jovenesadelante.org/api/'; // remote prod
-
+      // may want to try these at times:
+      // this.webApiPrefix = URL_CONFIG.DevWebAPIService; // remote dev
+      // this.webApiPrefix = URL_CONFIG.ProdWebAPIService; // remote prod
       this.clientUrl = 'http://localhost:3000';
     }
 

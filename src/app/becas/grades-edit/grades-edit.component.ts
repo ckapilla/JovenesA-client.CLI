@@ -273,16 +273,27 @@ export class GradesEditComponent implements OnInit {
     gradeEntryRow.markAsDirty();
   }
 
-  setConfirmedBy(i: number, adminId: number): void {
+  setConfirmedBy(i: number, adminId?: any): void {
     console.log('setConfirmedBy with adminId = ' + adminId);
-    const d = new Date();
-    const strDate = [d.getFullYear(), ('0' + (d.getMonth() + 1)).slice(-2), ('0' + d.getDate()).slice(-2)].join('-');
-    console.log(strDate);
     const gradeEntryRow: FormGroup = this.gradeEntryRows().controls[i] as FormGroup;
-    gradeEntryRow.patchValue({
-      confirmedById: adminId,
-      confirmedDate: strDate
-    });
+    if (adminId === null || adminId === 'null') {
+
+      gradeEntryRow.patchValue({
+        confirmedById: null,
+        confirmedDate: null
+      });
+    } else {
+      const d = new Date();
+      const strDate = [d.getFullYear(), ('0' + (d.getMonth() + 1)).slice(-2), ('0' + d.getDate()).slice(-2)].join('-');
+      console.log(strDate);
+      gradeEntryRow.patchValue({
+        confirmedById: adminId,
+        confirmedDate: strDate
+      });
+
+    }
+
+
     gradeEntryRow.markAsDirty();
   }
 

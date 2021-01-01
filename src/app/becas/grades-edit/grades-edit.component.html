@@ -104,6 +104,7 @@
                     <div *ngIf="admins$ | async as admins">
                       <select id="adminId" formControlName="confirmedById" class="form-control form-control-sm"
                         (change)="setConfirmedBy(i, $event.target.value)">
+                        <option [value]= null>[Not Confirmed]</option>
                         <option *ngFor="let admin of admins" [value]="admin.value">{{ admin.label }}</option>
                       </select>
                     </div>
