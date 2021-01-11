@@ -16,7 +16,7 @@
         </div>
         <div *ngSwitchCase="false">
           <form [formGroup]="myForm">
-            
+
 
             <h6 style="color:black;"><b>Paso 1: </b>Ingresa tu promedio en la casilla correspondiente y da clic en Guardar. </h6>
             <br>
@@ -115,12 +115,12 @@
                         (click)="saveAllChangedEntries()">Guardar</button>
                   </p>
                 </tr>
-                
+
               </tbody>
-            </table>   
+            </table>
             <div *ngIf="confirmedDateB">
                <span class="red">La calificación ha sido revisada y registrada. Cualquier cambio, favor de comunicarse a <a href="mailto:m.olvera@jovenesadelante.org">m.olvera@jovenesadelante.org</a></span>
-            </div>         
+            </div>
           </form>
 
           <div>
@@ -131,7 +131,7 @@
             <h6 style="color:black;">Si tu archivo no termina con la extensión PNG, puedes convertirlo en línea dando clic <a href="https://imagen.online-convert.com/es/convertir-a-png" target="_blank">aquí</a>. Es una página que te brindamos para que puedas convertirlo al formato requerido.</h6>
             <h6 style="color:black;">Al arrastrar o seleccionar tu archivo, este se cargará y su nombre se mostrará debajo del recuadro. Hecho esto, tu archivo estará cargado y listo para revisión.</h6>
             <br>
-            <app-file-uploader></app-file-uploader>
+            <app-file-uploader [studentGradeId]=studentGradesData[0].studentGradeId  ></app-file-uploader>
           </div>
 
 

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FileSystemFileEntry, NgxFileDropEntry } from 'ngx-file-drop';
 import { BecaDataService } from '../../data/beca-data.service';
 import { SessionService } from '../../services/session.service';
@@ -15,6 +15,7 @@ export class FileUploaderComponent {
   WebApiPrefix: string;
   errorMessage: string;
   successMessage: string;
+  @Input() studentGradeId: number;
 
   constructor(
     private http: HttpClient,
@@ -22,7 +23,7 @@ export class FileUploaderComponent {
     private session: SessionService,
     private becaData: BecaDataService
   ) {
-    // console.log('data service constructor');
+    console.log('file uploader constructor with studentGradeId= ' + this.studentGradeId);
     this.WebApiPrefix = webApiPrefixService.getWebApiPrefix();
   }
 
@@ -41,14 +42,14 @@ export class FileUploaderComponent {
           const frmData = new FormData();
           frmData.append('file', file);
           // frmData.append('studentGUID', this.session.getStudentRecordGUId());
-          this.becaData.uploadStudentGradesReport(frmData, this.session.getStudentRecordGUId()).subscribe(
+          this.becaData.uploadStudentGradesReport(frmData, this.session.getStudentRecordGUId(), this.studentGradeId).subscribe(
             // this.becaData.uploadStudentGradesReport(frmData).subscribe(
             () => {
               this.successMessage = 'Changes were saved successfully.';
               window.scrollTo(0, 0);
               window.setTimeout(() => {
                 this.successMessage = '';
-              }, 3000);
+              }, 15000);
             },
             (error) => {
               this.errorMessage = error;
@@ -58,6 +59,7 @@ export class FileUploaderComponent {
       }
     }
   }
+
 
   public fileOver(event) {
     console.log(event);
