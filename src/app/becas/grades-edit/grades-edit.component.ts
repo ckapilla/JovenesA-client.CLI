@@ -16,6 +16,7 @@ import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 import { StudentDTO } from '../../_shared/models/studentDTO';
 import { ColumnSortService } from '../../_shared/services/column-sort.service';
 import { SessionService } from '../../_shared/services/session.service';
+import { UrlService } from '../../_shared/services/url.service';
 
 @Component({
   templateUrl: './grades-edit.component.html',
@@ -34,6 +35,8 @@ export class GradesEditComponent implements OnInit {
   studentGUId: string;
   private subscription: Subscription;
   studentName: string;
+  staticUrlPrefix: string;
+  public periodStart: string;
 
   admins$: Observable<SELECTITEM[]> = this.miscData.getAdmins$().pipe(
     catchError((err) => {
@@ -53,9 +56,13 @@ export class GradesEditComponent implements OnInit {
     private session: SessionService,
     private columnSorter: ColumnSortService,
     private _fb: FormBuilder,
-    public location: Location
+    public location: Location,
+    public url: UrlService
   ) {
     console.log('Hi from gradesEdit Ctrl controller function');
+
+    this.staticUrlPrefix = url.getStaticFilePrefix();
+    this.periodStart = '2020-12';  // ///////////////////////////////////////////// TEMP TEMP TEMP
 
     this.isLoading = false;
 
@@ -296,6 +303,12 @@ export class GradesEditComponent implements OnInit {
 
     gradeEntryRow.markAsDirty();
   }
+
+  imageLoaded(dateLoaded: any){
+    console.log('dateLoaded [' + dateLoaded + ']');
+    return dateLoaded !== 'null';
+  }
+
 
   toFixedValue(num: number | null) {
     if (num === null || num === undefined) {

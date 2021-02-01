@@ -41,8 +41,9 @@
                   <!-- <th app-sortable-column="periodNumber" (onSortColumn)="onSortColumn($event)">Period</th> -->
                   <th>Period End</th>
                   <th>Grades Due</th>
-                  <th>Grades Turned In</th>
+                  <th>Turned In</th>
                   <th>GPA</th>
+                  <th>Link</th>
                   <th>Confirmed By</th>
                   <th>Confirmed Date</th>
                   <th>Exception</th>
@@ -100,7 +101,12 @@
                       <input formControlName="gradePointAvg"
                              class="form-control form-control-sm" type="text" size="4" />
                     </td>
-
+                    <td class="link">
+                      <div [hidden]="!entry!.imageSubmittedDate">
+                        <a href= "{{staticUrlPrefix}}StudentGradesReports/{{periodStart}}/{{entry.studentGUId | uppercase }}.png"
+                        target="_blank">View Report</a>
+                    </div>
+                    </td>
                     <div *ngIf="admins$ | async as admins">
                       <select id="adminId" formControlName="confirmedById" class="form-control form-control-sm"
                         (change)="setConfirmedBy(i, $event.target.value)">

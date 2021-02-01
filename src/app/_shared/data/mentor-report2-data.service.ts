@@ -26,8 +26,15 @@ export class MentorReport2DataService extends BaseDataService {
     return this.http.get(url).pipe(catchError(this.handleError));
   }
 
-  public getMentorReport2RPTsViaGUID(mentorGUId: string, studentGUId: string): Observable<MentorReport2RPT[]> {
-    const url = this.WebApiPrefix + 'mentor_reports2/' + mentorGUId + '/' + studentGUId;
+  public getMentorReport2RPTsViaGUID(studentGUId: string, mentorGUId: string): Observable<MentorReport2RPT[]> {
+    let url = '';
+
+    if (mentorGUId != null) {
+      url = this.WebApiPrefix + 'mentor_reports2/' + studentGUId + '/' + mentorGUId;
+    } else {
+      url = this.WebApiPrefix + 'mentor_reports2/' + studentGUId;
+    }
+
     console.log('sending AuthHttp get request for MentorReports2 with ' + url);
     return this.http.get<MentorReport2RPT[]>(url).pipe(catchError(this.handleError));
   }

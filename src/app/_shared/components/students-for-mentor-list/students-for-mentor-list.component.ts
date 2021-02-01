@@ -60,12 +60,8 @@ export class StudentsForMentorListComponent implements OnInit {
       }
     );
   }
-  gotoStudent(GUId: number, studentName: string) {
-    // }, studentFirstNames: string) {
-    // const studentName; // = studentLastNames + ', ' + studentFirstNames;
-    console.log('setting studentName to ' + studentName);
-    // XXYYZZ this.session.setStudentInContextName(studentName);
-    const link = 'admins/students/student;guid=' + GUId;
+  gotoStudent(GUId: number) {
+    const link = 'admins/students/student-container;guid=' + GUId;
 
     console.log('navigating to ' + link);
     this.router.navigateByUrl(link);

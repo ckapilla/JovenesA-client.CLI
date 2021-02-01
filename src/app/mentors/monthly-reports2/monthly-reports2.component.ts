@@ -67,7 +67,7 @@ export class MonthlyReports2Component implements OnInit {
     this.isLoading = true;
     this.isLoading = true;
     this.haveCurrentReport = false;
-    this.mentorReport2Data.getMentorReport2RPTsViaGUID(this.mentorGUId, this.studentGUId).subscribe(
+    this.mentorReport2Data.getMentorReport2RPTsViaGUID(this.studentGUId, this.mentorGUId).subscribe(
       (data) => {
         this.mentorReports2 = data;
       },

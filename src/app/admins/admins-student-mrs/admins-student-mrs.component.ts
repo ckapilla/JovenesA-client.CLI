@@ -39,40 +39,32 @@ export class AdminsStudentMRsComponent implements OnInit {
 
   ngOnInit() {
     console.log('admins MRs ngOnInit');
-    //  not here this.mentorId = this.currRoute.snapshot.params['mentorId'];
 
-    // this.mentorId = this.currRoute.snapshot.params['mentorId'];
-    // console.log('mentorId ' + this.mentorId);
-
-    // this.mentorGUId = this.currRoute.snapshot.params['mentorGUId'];
-    // this.studentGUId = this.currRoute.snapshot.params['studentGUId'];
-    // this.studentName = this.currRoute.snapshot.params['studentName'];
-    this.subscribeForStudentGUIds2();
-    this.subscribeForStudentNames();
-    this.subscribeForStudentMentorGUId();
+    this.subscribeForStudentGUId(); // now calls
+    this.subscribeForStudentName();
+    // now nested below instead -- is there a better way? this.subscribeForStudentMentorGUId();
   }
 
-  subscribeForStudentGUIds2() {
+  subscribeForStudentGUId() {
     this.subscription = this.currentStudentGUId$.subscribe((message) => {
       this.studentGUId = message;
       console.log('************NGXS: admins-student-mrs new StudentGUId received' + this.studentGUId);
+      this.subscribeForStudentMentorGUId();
     });
-    if (this.studentGUId && this.studentGUId !== '0000' && this.studentGUId && this.studentGUId !== '0000') {
-      this.fetchFilteredData();
-    }
+
   }
 
   subscribeForStudentMentorGUId() {
     this.subscription = this.currentStudentMentorGUId$.subscribe((message) => {
       this.mentorGUId = message;
-      console.log('************NGXS: admins-student-mrs new StudentGUId received' + this.studentGUId);
+      console.log('************NGXS: admins-student-mrs new StudentMentorGUId received' + this.mentorGUId);
+      if (this.studentGUId && this.studentGUId !== '0000') {
+        this.fetchFilteredData();
+      }
     });
-    if (this.studentGUId && this.studentGUId !== '0000' && this.studentGUId && this.studentGUId !== '0000') {
-      this.fetchFilteredData();
-    }
   }
 
-  subscribeForStudentNames() {
+  subscribeForStudentName() {
     this.subscription = this.currentStudentName$.subscribe((message) => {
       this.studentName = message;
       console.log('************NGXS: admins-student-mrs new StudentName received' + this.studentName);
@@ -80,9 +72,9 @@ export class AdminsStudentMRsComponent implements OnInit {
   }
 
   fetchFilteredData() {
-    console.log('fetching data for studentGUId  ' + this.studentGUId);
+    console.log('fetching data for mentorGUId ' + this.mentorGUId + ' and studentGUId  ' + this.studentGUId);
     this.isLoading = true;
-    this.mentorReportData.getMentorReport2RPTsViaGUID(this.mentorGUId, this.studentGUId).subscribe(
+    this.mentorReportData.getMentorReport2RPTsViaGUID(this.studentGUId, this.mentorGUId).subscribe(
       (data) => {
         this.mentorReports2 = data;
       },

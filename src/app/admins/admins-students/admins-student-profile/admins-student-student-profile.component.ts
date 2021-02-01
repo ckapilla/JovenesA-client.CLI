@@ -236,7 +236,7 @@ export class AdminsStudentComponent implements OnInit {
       () => {
         console.log('getStudent is done now set timeout for scroll');
         this.setFormValues(this.student);
-        console.log('#######student: mentorGUId ' + this.student.mentorGUId);
+        console.log('#######student: dispatching mentorGUId ' + this.student.mentorGUId);
         this.store.dispatch(new SetPhotoPathname(this.student.photoUrl));
         this.store.dispatch(new SetSelectedStudentGUId(this.student.studentGUId));
         // this.store.dispatch(new SetSelectedStudentName(this.student.studentName));
