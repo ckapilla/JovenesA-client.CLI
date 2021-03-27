@@ -19,7 +19,7 @@ export class ColumnSortService {
 
   compareValues(a: any, b: any, sortCriteria: SORTCRITERIA) {
     // if 'Cannot read property 'localeCompare' of null' exception check validity of source in column header def
-    // alternatively the parameter a or b may be null; try using 0 in place of nulls
+    // alternatively the parameter a or b may be null; try using '' or 0 in place of nulls
     if (sortCriteria.sortDirection === 'asc') {
       // console.log(a);
       // console.log(b);

@@ -50,8 +50,8 @@ export class SelfReportsAddComponent implements OnInit {
     this.selfReport.reportDateTime = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
     console.log(this.selfReport.reportDateTime);
 
-    this.selfReport.reportYear = 2020;
-    this.selfReport.reportPeriod = 4;
+    this.selfReport.reportYear = 2021;
+    this.selfReport.reportPeriod = 1;
     this.selfReport.narrative_English = '';
 
     this.errorMessage = '';

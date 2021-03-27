@@ -104,19 +104,8 @@ export class GradeEntryComponent implements OnInit {
     this.studentGUId = this.session.getStudentRecordGUId();
     console.log('gradeEntry ngOnInit, studentGUID = ' + this.studentGUId);
     this.fetchFilteredData();
-    console.log('XX4');
-
-    // if use this method  don't fetchFilterdData here
-    // this.subscribeForStudentGUIds2();
-    // // AABBCCEE
-    // this.subscribeForStudentNames();
   }
-  // if want to have all empty ones, not just latest:
-  // filter_dates(event) {
-  //   const dt1 = new Date(event.gradesGivenDate);
-  //   const dt2020 = new Date('2020-01-02');
-  //   return !event.gradesTurnedInDate && dt1 > dt2020;
-  // }
+
 
   fetchFilteredData() {
     if (this.studentGUId && this.studentGUId !== undefined && this.studentGUId !== '0000') {

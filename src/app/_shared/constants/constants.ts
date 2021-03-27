@@ -86,9 +86,10 @@ const activeQRperiods = [
   { value: '2020-1', label: '2020 1:Ene-Mar' },
   { value: '2020-2', label: '2020 2:Abr-Jun' },
   { value: '2020-3', label: '2020 3:Jul-Set' },
-  { value: '2020-4', label: '2020 4:Oct-Dic' }
+  { value: '2020-4', label: '2020 4:Oct-Dic' },
+  { value: '2020-1', label: '2021 1:Ene-Mar' },
 ];
-const selectedYearPeriod = '2020-2';
+// moved to UIState const selectedYearPeriod = '2021-1';
 
 const genders: SELECTITEM[] = [
   { value: 'M', label: 'Male/Hombre' },
@@ -185,7 +186,7 @@ export const constants = {
   periods,
   periodYears,
   activeQRperiods,
-  selectedYearPeriod,
+  // selectedYearPeriod,
   genders,
   smileys,
   emojis,

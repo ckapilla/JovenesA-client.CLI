@@ -53,7 +53,6 @@ export class SortableColumnComponent implements OnInit, OnDestroy {
     // subscribe to sort changes so we can react when other columns are sorted
     this.columnSortedSubscription = this.columnSortService.columnSorted$.subscribe((event) => {
       // reset this column's sort direction to hide the sort icons
-      console.log('have column sort subscribption event');
       if (this.columnName !== event.sortColumn) {
         this.sortDirection = '';
       }

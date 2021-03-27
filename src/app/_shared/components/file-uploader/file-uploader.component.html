@@ -4,7 +4,8 @@
 
 <div class="center">
   <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)"
-  (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
+  (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)"
+  accept=".png">
       <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
         Arrastre un archivo .PNG  del informe de calificaciones aquí. (O busque y seleccione el archivo.)
         <button style='margin-left: 2rem;' type="button" (click)="openFileSelector()">Examinar archivos</button>

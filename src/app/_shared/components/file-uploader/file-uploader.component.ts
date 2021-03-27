@@ -37,24 +37,30 @@ export class FileUploaderComponent {
         fileEntry.file((file: File) => {
           console.log('fileEntry relativePath: ' + currFile.relativePath);
           console.log('filEntry.name: ', file.name);
+          const ext = file.name.substr(file.name.length - 4, 4);
+          console.log('extension = ' + ext);
           console.log('filEntry.size: ', file.size);
 
-          const frmData = new FormData();
-          frmData.append('file', file);
-          // frmData.append('studentGUID', this.session.getStudentRecordGUId());
-          this.becaData.uploadStudentGradesReport(frmData, this.session.getStudentRecordGUId(), this.studentGradeId).subscribe(
-            // this.becaData.uploadStudentGradesReport(frmData).subscribe(
-            () => {
-              this.successMessage = 'Changes were saved successfully.';
-              window.scrollTo(0, 0);
-              window.setTimeout(() => {
-                this.successMessage = '';
-              }, 15000);
-            },
-            (error) => {
-              this.errorMessage = error;
-            }
-          );
+          if (ext.toLocaleLowerCase() !== '.png') {
+            window.alert('El archivo para cargar debe estar en el formato de .png');
+          } else {
+            const frmData = new FormData();
+            frmData.append('file', file);
+            // frmData.append('studentGUID', this.session.getStudentRecordGUId());
+            this.becaData.uploadStudentGradesReport(frmData, this.session.getStudentRecordGUId(), this.studentGradeId).subscribe(
+              // this.becaData.uploadStudentGradesReport(frmData).subscribe(
+              () => {
+                this.successMessage = 'Changes were saved successfully.';
+                window.scrollTo(0, 0);
+                window.setTimeout(() => {
+                  this.successMessage = '';
+                }, 15000);
+              },
+              (error) => {
+                this.errorMessage = error;
+              }
+            );
+          }
         });
       }
     }

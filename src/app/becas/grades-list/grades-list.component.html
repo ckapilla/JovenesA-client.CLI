@@ -33,31 +33,35 @@
           <thead>
             <tr>
               <!--<td>Id</td>-->
-              <th></th>
+              <!-- <th></th> -->
               <th app-sortable-column="studentName" sort-direction="asc" (onSortColumn)="onSortColumn($event)">
                 Student
               </th>
-              <th app-sortable-column="gradesTurnedInStatus" (onSortColumn)="onSortColumn($event)">Turned-In Status</th>
-              <th app-sortable-column="gradePointAvgStatus" (onSortColumn)="onSortColumn($event)">GPA Status</th>
-              <th app-sortable-column="univ" (onSortColumn)="onSortColumn($event)">Univ</th>
+              <th app-sortable-column="gradesTurnedInStatus" (onSortColumn)="onSortColumn($event)">Turned-In<br />Status</th>
+              <th app-sortable-column="gradePointAvgStatus" (onSortColumn)="onSortColumn($event)">GPA<br />Status</th>
+              <!-- <th app-sortable-column="univ" (onSortColumn)="onSortColumn($event)">Univ</th> -->
               <!-- <th app-sortable-column="academicYear" (onSortColumn)="onSortColumn($event)">YearType</th> -->
               <th app-sortable-column="gradeMonths" (onSortColumn)="onSortColumn($event)">Grade Months</th>
               <!-- <th app-sortable-column="year" (onSortColumn)="onSortColumn($event)">Year</th> -->
               <!-- <th app-sortable-column="periodNumber" (onSortColumn)="onSortColumn($event)">Period</th> -->
-              <th app-sortable-column="gradesGivenDate" (onSortColumn)="onSortColumn($event)">Given By</th>
-              <th app-sortable-column="gradesDueDate" (onSortColumn)="onSortColumn($event)">Due</th>
-              <th app-sortable-column="gradesTurnedInDate" (onSortColumn)="onSortColumn($event)">Turned In</th>
+              <th app-sortable-column="gradesGivenDate" (onSortColumn)="onSortColumn($event)">Given By<br />Date</th>
+              <th app-sortable-column="gradesDueDate" (onSortColumn)="onSortColumn($event)">Grades Due<br />Date</th>
+              <th app-sortable-column="gradesTurnedInDate" (onSortColumn)="onSortColumn($event)">Entered <br />Date</th>
+              <th app-sortable-column="imageSubmittedDate" (onSortColumn)="onSortColumn($event)">Uploaded <br />Date</th>
+              <th>View<br />Image</th>
               <th app-sortable-column="gradePointAvg" (onSortColumn)="onSortColumn($event)">GPA</th>
-              <th app-sortable-column="exception" (onSortColumn)="onSortColumn($event)">Exception</th>
+              <th>Review</th>
+              <!-- <th app-sortable-column="exception" (onSortColumn)="onSortColumn($event)">Exception</th> -->
+              <th app-sortable-column="confirmedDate" (onSortColumn)="onSortColumn($event)">Confirmed <br />Date</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let entry of gradesGivenEntryDTOs; let i = index">
-              <td>
+              <!-- <td>
                 {{ i + 1 }}
-              </td>
+              </td> -->
 
-              <td (click)="gotoStudent(entry.studentGUId, entry.studentName)" class="link">
+              <td (click)="gotoStudent(entry.studentGUId)" class="link">
                 {{ entry.studentName }}
               </td>
               <td>
@@ -66,9 +70,9 @@
               <td>
                 {{ entry.gradePointAvgStatus }}
               </td>
-              <td>
+              <!-- <td>
                 {{ entry.univ }}
-              </td>
+              </td> -->
               <!-- <td>
                 {{  entry.academicYear }}
               </td> -->
@@ -91,17 +95,35 @@
                 {{ entry.gradesTurnedInDate | truncateDate }}
               </td>
               <td>
+                {{ entry.imageSubmittedDate | truncateDate }}
+              </td>
+              <td class="link">
+                <div [hidden]="isViewLinkHidden(entry!.imageSubmittedDate)">
+                  <a href= "{{staticUrlPrefix}}StudentGradesReports/{{periodStart}}/{{entry.studentGUId | uppercase }}.png"
+                  target="_blank">View Report</a>
+              </div>
+              </td>
+
+
+
+              <td>
                 {{ entry.gradePointAvg }}
               </td>
-              <td>
-                {{ entry.exception | emptyStatus }}
+
+              <td (click)="confirmGPA(entry.studentGUId, entry.studentName)" class="link">
+                Review
               </td>
+
+              <td>
+                {{ entry.confirmedDate | truncateDate }}
+              </td>
+              <!-- <td>
+                {{ entry.exception | emptyStatus }}
+              </td> -->
             </tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
-
-  l
 </div>

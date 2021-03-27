@@ -4,6 +4,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { BecaDataService } from 'src/app/_shared/data/beca-data.service';
 import { GradesGivenEntryDTO } from 'src/app/_shared/models/grades-given-entryDTO';
+import { UrlService } from 'src/app/_shared/services/url.service';
 import { SetSelectedStudentIdentifiers } from 'src/app/_store/student/student.action';
 import { UIState } from 'src/app/_store/ui/ui.state';
 import { constants } from '../../_shared/constants/constants';
@@ -14,8 +15,7 @@ import { ColumnSortService } from '../../_shared/services/column-sort.service';
 import { SessionService } from '../../_shared/services/session.service';
 
 @Component({
-  templateUrl: './grades-list.component.html',
-  styleUrls: ['./grades-list.component.css']
+  templateUrl: './grades-list.component.html'
 })
 export class GradesListComponent implements OnInit {
   studentDTO: StudentDTO;
@@ -30,6 +30,10 @@ export class GradesListComponent implements OnInit {
   selectedMonth: string;
   displayTestNames: boolean;
 
+  staticUrlPrefix: string;
+  periodStart: string;
+
+
   @Select(UIState.getTestNamesVisibility) testNameVisibility$: Observable<boolean>;
 
   constructor(
@@ -37,13 +41,17 @@ export class GradesListComponent implements OnInit {
     public router: Router,
     private store: Store,
     private session: SessionService,
-    private columnSorter: ColumnSortService
+    private columnSorter: ColumnSortService,
+    private url: UrlService
   ) {
+    this.staticUrlPrefix = url.getStaticFilePrefix();
+    this.periodStart = '2020-12';  // ///////////////////////////////////////////// TEMP TEMP TEMP
+
     this.years = constants.years;
     this.months = constants.months;
 
     this.selectedYear = '2020'; // '' + today.getFullYear(); //
-    this.selectedMonth = '4'; //  + today.getMonth() + 1;// '5';
+    this.selectedMonth = '12'; //  + today.getMonth() + 1;// '5';
 
     this.isLoading = false;
   }
@@ -89,28 +97,6 @@ export class GradesListComponent implements OnInit {
     }
   }
 
-  getNumericStatus(studentDTO: StudentDTO): StudentDTO {
-    studentDTO.numericGradeRptStatus = 0;
-    if (studentDTO.gradeRptStatus === 'red') {
-      studentDTO.numericGradeRptStatus = 1;
-    } else if (studentDTO.gradeRptStatus === 'yellow') {
-      studentDTO.numericGradeRptStatus = 2;
-    } else if (studentDTO.gradeRptStatus === 'green') {
-      studentDTO.numericGradeRptStatus = 3;
-    }
-
-    studentDTO.numericGPAStatus = 0;
-    if (studentDTO.gpaStatus === 'red') {
-      studentDTO.numericGPAStatus = 1;
-    } else if (studentDTO.gpaStatus === 'yellow') {
-      studentDTO.numericGPAStatus = 2;
-    } else if (studentDTO.gpaStatus === 'green') {
-      studentDTO.numericGPAStatus = 3;
-    }
-
-    return studentDTO;
-  }
-
   setSelectedYear(year: string) {
     this.selectedYear = year;
     this.fetchFilteredData();
@@ -120,15 +106,22 @@ export class GradesListComponent implements OnInit {
     this.fetchFilteredData();
   }
 
-  gotoStudent(studentGUId: string, studentName: string) {
-    console.log('setting studentName to ' + studentName);
-    // XXYYZZ this.session.setStudentInContextName(studentName);
+  confirmGPA(studentGUId: string, studentName: string) {
     this.store.dispatch(new SetSelectedStudentIdentifiers({ studentGUId, studentName }));
-
     const link = ['becas/grades-edit']; // , { guid: guid }];
 
     console.log('navigating to ' + link);
     this.router.navigate(link);
+  }
+
+  gotoStudent(studentGUId: string) {
+    const link = ['admins/students/student-container', { guid: studentGUId }];
+    console.log('navigating to ' + link);
+    this.router.navigate(link);
+  }
+
+  isViewLinkHidden(imageSubmittedDate: any) {
+    return (imageSubmittedDate === '1900-01-01T00:00:00');
   }
 
   public onSortColumn(sortCriteria: SORTCRITERIA) {
