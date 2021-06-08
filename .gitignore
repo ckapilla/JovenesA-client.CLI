@@ -1,4 +1,8 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
+dockerfile
+.dockerignore
+nginx.conf
+
 src/assets/css/bootstrap.min_ORIG.css
 src/assets/css/bootstrap_ORIG.css
 src/assets/images/StudentPhotos

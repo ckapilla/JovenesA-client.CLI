@@ -62,7 +62,7 @@ export class GradesEditComponent implements OnInit {
     console.log('Hi from gradesEdit Ctrl controller function');
 
     this.staticUrlPrefix = url.getStaticFilePrefix();
-    this.periodStart = '2020-12';  // ///////////////////////////////////////////// TEMP TEMP TEMP
+    this.periodStart = '2021-4';  // ///////////////////////////////////////////// TEMP TEMP TEMP
 
     this.isLoading = false;
 

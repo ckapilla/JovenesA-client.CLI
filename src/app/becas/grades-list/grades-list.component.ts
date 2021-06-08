@@ -45,13 +45,13 @@ export class GradesListComponent implements OnInit {
     private url: UrlService
   ) {
     this.staticUrlPrefix = url.getStaticFilePrefix();
-    this.periodStart = '2020-12';  // ///////////////////////////////////////////// TEMP TEMP TEMP
+    this.periodStart = '2021-4';  // ///////////////////////////////////////////// TEMP TEMP TEMP
 
     this.years = constants.years;
     this.months = constants.months;
 
-    this.selectedYear = '2020'; // '' + today.getFullYear(); //
-    this.selectedMonth = '12'; //  + today.getMonth() + 1;// '5';
+    this.selectedYear = '2021'; // '' + today.getFullYear(); //
+    this.selectedMonth = '4'; //  + today.getMonth() + 1;// '5';
 
     this.isLoading = false;
   }
@@ -97,14 +97,14 @@ export class GradesListComponent implements OnInit {
     }
   }
 
-  setSelectedYear(year: string) {
-    this.selectedYear = year;
-    this.fetchFilteredData();
-  }
-  setSelectedMonth(month: string) {
-    this.selectedMonth = month;
-    this.fetchFilteredData();
-  }
+  // setSelectedYear(year: string) {
+  //   this.selectedYear = year;
+  //   this.fetchFilteredData();
+  // }
+  // setSelectedMonth(month: string) {
+  //   this.selectedMonth = month;
+  //   this.fetchFilteredData();
+  // }
 
   confirmGPA(studentGUId: string, studentName: string) {
     this.store.dispatch(new SetSelectedStudentIdentifiers({ studentGUId, studentName }));

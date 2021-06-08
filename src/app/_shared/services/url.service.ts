@@ -15,11 +15,11 @@ export class UrlService {
     if (hostName === 'privada.jovenesadelante.org') {
       this.webApiPrefix =  URL_CONFIG.ProdUrlPrefix + 'api/'; // 'https://JAWebAPI.jovenesadelante.org/api/';
       this.staticFilePrefix =  URL_CONFIG.ProdUrlPrefix + 'static/';
-      this.clientUrl = 'https:' + hostName; // privada.jovenesadelante.org';
+      this.clientUrl = 'https://' + hostName; // privada.jovenesadelante.org';
     } else if (hostName === 'privada-dev.jovenesadelante.org') {
       this.webApiPrefix =  URL_CONFIG.DevUrlPrefix + 'api/';
       this.staticFilePrefix =  URL_CONFIG.DevUrlPrefix + 'static/';
-      this.clientUrl = 'https:' + hostName; // privada-dev.jovenesadelante.org';
+      this.clientUrl = 'https://' + hostName; // privada-dev.jovenesadelante.org';
     } else if (hostName === 'localhost') {
       this.webApiPrefix = URL_CONFIG.localDevUrlPrefix + 'api/'; // Local  Development
       this.staticFilePrefix = URL_CONFIG.localDevUrlPrefix + 'static/';

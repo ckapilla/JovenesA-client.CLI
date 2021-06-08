@@ -74,6 +74,7 @@
                   [(ngModel)]="qr.highlightStatusId"
                   (change)="setHighlightStatusForQR(i, $event.target.value)"
                 >
+                  <option  value="0"> </option>
                   <option *ngFor="let status of highlightStatuses" [value]="status.value">{{status.label}}</option>
                 </select>
               </td>
