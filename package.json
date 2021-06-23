@@ -29,7 +29,7 @@
         "auth0-js": "^9.13.4",
         "core-js": "^3.6.5",
         "marked": "^2.0.0",
-        "postcss": "^7.0.31",
+        "postcss": "^7.0.36",
         "rxjs": "^6.5.4",
         "tslib": "^2.0.0",
         "typescript-eslint": "0.0.1-alpha.0",
