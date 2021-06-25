@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { isNumber } from 'util';
 import { SORTCRITERIA } from '../interfaces/SORTCRITERIA';
 
 @Injectable({ providedIn: 'root' })
@@ -15,7 +14,9 @@ export class ColumnSortService {
   columnSorted(event: SORTCRITERIA) {
     this.columnSortedSource.next(event);
   }
-
+  isNumber(x: any): boolean {
+    return !isNaN(+x);
+  }
 
   compareValues(a: any, b: any, sortCriteria: SORTCRITERIA) {
     // if 'Cannot read property 'localeCompare' of null' exception check validity of source in column header def
@@ -24,7 +25,7 @@ export class ColumnSortService {
       // console.log(a);
       // console.log(b);
       // console.log('asc ' + a[sortCriteria.sortColumn] + ' ' + b[sortCriteria.sortColumn]);
-      if (isNumber(a[sortCriteria.sortColumn])) {
+      if (this.isNumber(a[sortCriteria.sortColumn])) {
         if (a[sortCriteria.sortColumn] === b[sortCriteria.sortColumn]) {
           return 0;
         } else {
@@ -35,7 +36,7 @@ export class ColumnSortService {
 
     } else {
       // console.log('desc ' + a[sortCriteria.sortColumn] + ' ' + b[sortCriteria.sortColumn]);
-      if (isNumber(a[sortCriteria.sortColumn])) {
+      if (this.isNumber(a[sortCriteria.sortColumn])) {
         if (a[sortCriteria.sortColumn] === b[sortCriteria.sortColumn]) {
           return 0;
         } else {

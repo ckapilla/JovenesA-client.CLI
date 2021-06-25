@@ -228,6 +228,7 @@ export class AdminsStudentComponent implements OnInit {
         this.photoPathname = this.webPrefix + '/assets/images/StudentPhotos/' + this.student.yearJoinedJa;
         this.photoPathname = this.photoPathname + '/' + this.student.photoUrl;
         console.log('photoPathname is ' + this.photoPathname);
+        console.log('after fetch');
         console.log(this.student);
         this.emojiPathname = this.smileys[this.studentDTO.studentSnapshotStatus + 1];
         console.log('emoji is ' + this.emojiPathname);
@@ -301,15 +302,23 @@ export class AdminsStudentComponent implements OnInit {
   }
 
   retrieveFormValues(): void {
-    console.log('retrieveFormValues ' + JSON.stringify(this.myForm.value));
+    console.log('retrieveFormValues has form values:' + JSON.stringify(this.myForm.value));
     // use spread operator to merge changes:
+
+    console.log('student before retrieve FormValues merge');
+    console.log(this.student);
+
     this.student = { ...this.student, ...this.myForm.value };
+    console.log('student after retrieve FormValues merge');
+    console.log(this.student);
   }
 
   saveMyForm(): boolean {
     console.log('saving admin student ');
     this.isLoading = true;
     this.retrieveFormValues();
+    console.log('save');
+    console.log(this.student);
     this.studentData.updateStudent(this.student).subscribe(
       () => {
         // console.log('subscribe result in updateStudent');
@@ -358,18 +367,6 @@ export class AdminsStudentComponent implements OnInit {
       }
     ]);
   }
-
-  // createProxyMentorReport() {
-  //   // const guid = this.currRoute.snapshot.params['guid'];
-  //   // this.router.navigate(['/admins/mr-proxy-add/' + this.studentGUIdParam + '/' + this.student.firstNames + ' ' + this.student.lastNames]);
-
-  //   console.log('#######studentDTO: mentorGUId ' + this.studentDTO.mentorGUId);
-  //   console.log('#######studentDTO: mentorId ' + this.studentDTO.mentorId);
-  //   const link = ['/mentors/monthly-reports-add', { mentorId: this.studentDTO.mentorId, mentorGUId: this.studentDTO.mentorGUId, studentGUId: this.studentDTO.studentGUId }];
-  //   console.log('navigating to ' + JSON.stringify(link));
-  //   this.router.navigate(link);
-
-  // }
 
   public hasChanges() {
     // if have changes then ask for confirmation
