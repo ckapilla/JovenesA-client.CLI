@@ -51,7 +51,7 @@ export class SelfReportsAddComponent implements OnInit {
     console.log(this.selfReport.reportDateTime);
 
     this.selfReport.reportYear = 2021;
-    this.selfReport.reportPeriod = 1;
+    this.selfReport.reportPeriod = 2;
     this.selfReport.narrative_English = '';
 
     this.errorMessage = '';
