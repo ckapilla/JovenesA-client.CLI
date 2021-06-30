@@ -276,7 +276,7 @@ export class PersonSharedComponent implements OnInit {
       // addresss: student.addresss,
       // colonia: student.colonia,
       major: student.major,
-      englishSkillLevelId: student.englishSkillLevelId,
+      //englishSkillLevelId: student.englishSkillLevelId,
       statusId: student.statusId,
       yearJoinedJa: student.yearJoinedJa,
       joinedFromId: student.joinedFromId,
