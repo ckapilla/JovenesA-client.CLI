@@ -139,7 +139,7 @@ export class AdminsStudentComponent implements OnInit {
       emergencyContactPhone: [{ value: '' }, Validators.compose([Validators.minLength(7), Validators.maxLength(13)])],
       emergencyContactName: [{ value: '' }],
       major: [{ value: '' }],
-      englishSkillLevelId: [{ value: '' }],
+      // englishSkillLevelId: [{ value: '' }],
       statusId: [{ value: '' }],
       yearJoinedJa: [{ value: '' }],
       joinedFromId: [{ value: '' }],
@@ -235,6 +235,10 @@ export class AdminsStudentComponent implements OnInit {
       },
       (err) => console.error('Subscribe error: ' + err),
       () => {
+
+        console.log('student data loaded');
+        console.log(JSON.stringify(this.student));
+
         console.log('getStudent is done now set timeout for scroll');
         this.setFormValues(this.student);
         console.log('#######student: dispatching mentorGUId ' + this.student.mentorGUId);
@@ -273,7 +277,7 @@ export class AdminsStudentComponent implements OnInit {
       emergencyContactPhone: student.emergencyContactPhone,
       emergencyContactName: student.emergencyContactName,
       major: student.major,
-      englishSkillLevelId: student.englishSkillLevelId,
+      // englishSkillLevelId: student.englishSkillLevelId,
       statusId: student.statusId,
       yearJoinedJa: student.yearJoinedJa,
       joinedFromId: student.joinedFromId,
@@ -302,14 +306,15 @@ export class AdminsStudentComponent implements OnInit {
   }
 
   retrieveFormValues(): void {
-    console.log('retrieveFormValues has form values:' + JSON.stringify(this.myForm.value));
+    console.log('retrieveFormValues on enter has form values:');
+    console.log( JSON.stringify(this.myForm.value));
     // use spread operator to merge changes:
 
     console.log('student before retrieve FormValues merge');
     console.log(this.student);
 
-    this.student = { ...this.student, ...this.myForm.value };
-    console.log('student after retrieve FormValues merge');
+    // skipping this.student = { ...this.student, ...this.myForm.value };
+    console.log('SKIPPED student after retrieve FormValues merge');
     console.log(this.student);
   }
 
