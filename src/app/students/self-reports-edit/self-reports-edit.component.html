@@ -6,13 +6,13 @@
     <form [formGroup]="myForm">
       <fieldset [disabled]="isSubmitted">
         <div class="form-group">
-          <label for="reportYear"> Año/Periodo de este reporte</label>
-          <select formControlName="reportYear" [(ngModel)]="selfReport.reportYear">
-            <option *ngFor="let year of periodYears" [value]="year.value">{{ year.label }}</option>
-          </select>
-
-          <select formControlName="reportPeriod" [(ngModel)]="selfReport.reportPeriod">
-            <option *ngFor="let month of periodMonths" [value]="month.value">{{ month.label }}</option>
+          Año/Periodo de este reporte
+          <select
+            name="activePeriodSelector"
+            data-cy="period-selector"
+            (change)="setSelectedYearPeriod($event.target.value)"
+          >
+            <option *ngFor="let yearPeriod of activeQRPeriods" [value]="yearPeriod.value">{{ yearPeriod.label }}</option>
           </select>
           <div hidden class="controls">
             <label for="selfReportId">Id</label>

@@ -95,6 +95,6 @@ export class StudentsSelfReportsComponent implements OnInit {
   }
   isCurrentReportDate(rptDate: string) {
     console.log(rptDate.substr(0, 7));
-    return rptDate.substr(0, 7) >= '2021-4';
+    return rptDate.substr(0, 7) >= '2021-07';
   }
 }

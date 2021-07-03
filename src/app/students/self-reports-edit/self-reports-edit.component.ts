@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { constants } from 'src/app/_shared/constants/constants';
+import { Select, Store } from '@ngxs/store';
+import { Observable, Subscription } from 'rxjs';
 import { StudentSelfReportDataService } from 'src/app/_shared/data/student-self-report-data.service';
-import { SELECTITEM } from 'src/app/_shared/interfaces/SELECTITEM';
-import { StudentSelfReport } from '../../_shared/models/student-self-report';
-import { StudentDTO } from '../../_shared/models/studentDTO';
-import { SessionService } from '../../_shared/services/session.service';
+import { StudentSelfReport } from 'src/app/_shared/models/student-self-report';
+import { SetSelectedYearPeriod } from 'src/app/_store/ui/ui.action';
+import { UIState } from 'src/app/_store/ui/ui.state';
+import { constants } from '../../_shared/constants/constants';
+import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 
 @Component({
   templateUrl: './self-reports-edit.component.html',
@@ -18,7 +20,6 @@ export class SelfReportsEditComponent implements OnInit {
   errorMessage: string;
   successMessage: string;
   studentId: number;
-  student: StudentDTO;
   studentSelfReports: Array<StudentSelfReport>;
   sponsorGroupName: string;
   sponsorGroupId: number;
@@ -30,20 +31,26 @@ export class SelfReportsEditComponent implements OnInit {
   reportIdCtl: AbstractControl;
   periodYears: SELECTITEM[];
   periodMonths: SELECTITEM[];
+  readonly activeQRPeriods: SELECTITEM[] = constants.activeQRperiods;
+  readonly reviewedStatuses: SELECTITEM[] = constants.reviewedQRStatuses;
+  selectedYearPeriod = '';
+  subscription: Subscription;
+
+  @Select(UIState.getSelectedYearPeriod) selectedYearPeriod$: Observable<string>;
+
 
   constructor(
     public currRoute: ActivatedRoute,
     private router: Router,
     public ssrData: StudentSelfReportDataService,
     private _fb: FormBuilder,
-    public session: SessionService
+    private store: Store
   ) {
-    this.periodYears = constants.periodYears;
-    this.periodMonths = constants.periods;
+
 
     this.myForm = _fb.group({
-      reportYear: [''],
-      reportPeriod: [''],
+      reportYear: ['2021'],
+      reportPeriod: ['2'],
       narrative_English: ['', { validators: [Validators.required], updateOn: 'blur' }],
       narrative_Spanish: ['', { validators: [Validators.required], updateOn: 'blur' }],
       selfReportId: [this.reportIdCtl]
@@ -118,5 +125,10 @@ export class SelfReportsEditComponent implements OnInit {
     const target = '/students';
     console.log('navigating to ' + target);
     this.router.navigateByUrl(target);
+  }
+
+  setSelectedYearPeriod(yearPeriod: string) {
+    this.store.dispatch(new SetSelectedYearPeriod(yearPeriod));
+    // this.fetchFilteredData();
   }
 }

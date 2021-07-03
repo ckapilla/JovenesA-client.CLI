@@ -52,13 +52,13 @@ const years: SELECTITEM[] = [
   { value: '2020', label: '2020' },
   { value: '2021', label: '2021' }
 ];
-const periodYears = [
-  // {value: '2016', label: '2016'},
-  // {value: '2017', label: '2017'} // ,
-  { value: '2019', label: '2019' },
-  { value: '2020', label: '2020' },
-  { value: '2021', label: '2021' }
-];
+// const periodYears = [
+//   // {value: '2016', label: '2016'},
+//   // {value: '2017', label: '2017'} // ,
+//   { value: '2019', label: '2019' },
+//   { value: '2020', label: '2020' },
+//   { value: '2021', label: '2021' }
+// ];
 
 const months: SELECTITEM[] = [
   { value: '1', label: 'Jan/Ene' },
@@ -89,6 +89,7 @@ const activeQRperiods = [
   { value: '2020-4', label: '2020 4:Oct-Dic' },
   { value: '2021-1', label: '2021 1:Ene-Mar' },
   { value: '2021-2', label: '2021 2:Abr-Jun' },
+  { value: '2021-3', label: '2021 3:Jul-Set' },
 ];
 // moved to UIState const selectedYearPeriod = '2021-1';
 
@@ -185,7 +186,7 @@ export const constants = {
   years,
   months,
   periods,
-  periodYears,
+  // periodYears,
   activeQRperiods,
   // selectedYearPeriod,
   genders,

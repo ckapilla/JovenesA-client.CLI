@@ -16,7 +16,8 @@ import { UIStateModel } from './ui.model';
   defaults: {
     testNamesVisibility: false,
     qrComponentsEditable: false,
-    selectedYearPeriod: '2021-2',
+    selectedQRPeriod: '2021-3',
+    selectedGradePeriod: '2021-07',
 
     selectedFilterMode: '998',
     selectedStudentStatus: '0',

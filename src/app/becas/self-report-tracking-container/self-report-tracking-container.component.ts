@@ -12,11 +12,11 @@ import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
   templateUrl: './self-report-tracking-container.component.html'
 })
 export class SelfReportTrackingContainerComponent implements OnInit {
-  selectedYearPeriod = '';
   studentGUId: string;
   studentGUIdReceived: boolean;
   readonly activeQRPeriods: SELECTITEM[] = constants.activeQRperiods;
   readonly reviewedStatuses: SELECTITEM[] = constants.reviewedQRStatuses;
+  selectedYearPeriod = '';
   subscription: Subscription;
 
   @Select(UIState.getSelectedYearPeriod) selectedYearPeriod$: Observable<string>;
