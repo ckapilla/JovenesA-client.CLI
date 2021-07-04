@@ -5,7 +5,7 @@ export interface UIStateModel {
   selectedFilterMode: string;
   selectedStudentStatus: string;
   selectedQRPeriod: string;
-  selectedGradePeriod: string;
+  selectedGradesGivenDate: string;
   selectedYearJoined: string;
   selectedGradYear: string;
 }

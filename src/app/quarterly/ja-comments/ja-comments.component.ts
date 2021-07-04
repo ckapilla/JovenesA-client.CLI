@@ -28,11 +28,11 @@ export class JaCommentsComponent implements OnInit {
   reportIdCtl: AbstractControl;
   studentGUId: string;
   qrComponentsEditable: boolean;
-  selectedYearPeriod = '';
+  selectedQRPeriod = '';
   private subscription: Subscription;
 
   @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
-  @Select(UIState.getSelectedYearPeriod) selectedYearPeriod$: Observable<string>;
+  @Select(UIState.getselectedQRPeriod) selectedQRPeriod$: Observable<string>;
   @Select(UIState.getQRComponentsEditable) qrComponentsEditable$: Observable<boolean>;
 
   constructor(
@@ -67,7 +67,7 @@ export class JaCommentsComponent implements OnInit {
 
     // console.log('(((((((((((((((((JA ngOnInit)))))))))))))');
     this.subscribeForStudentGUIds2();
-    this.subscribeForSelectedYearPeriod();
+    this.subscribeForselectedQRPeriod();
   }
 
   subscribeForStudentGUIds2() {
@@ -78,10 +78,10 @@ export class JaCommentsComponent implements OnInit {
     });
   }
 
-  subscribeForSelectedYearPeriod() {
-    this.subscription = this.selectedYearPeriod$.subscribe((message) => {
-      this.selectedYearPeriod = message;
-      console.log('************NGXS: jaComments new selectedYearPeriod received' + this.selectedYearPeriod);
+  subscribeForselectedQRPeriod() {
+    this.subscription = this.selectedQRPeriod$.subscribe((message) => {
+      this.selectedQRPeriod = message;
+      console.log('************NGXS: jaComments new selectedQRPeriod received' + this.selectedQRPeriod);
       this.fetchFilteredData();
     });
   }
@@ -91,11 +91,11 @@ export class JaCommentsComponent implements OnInit {
       this.studentGUId &&
       this.studentGUId !== undefined &&
       this.studentGUId !== '0000' &&
-      this.selectedYearPeriod !== ''
+      this.selectedQRPeriod !== ''
     ) {
       this.isLoading = true;
       this.quarterlyData
-        .getPartialQuarterlyReportByPeriod('JA', this.studentGUId, this.selectedYearPeriod, '0')
+        .getPartialQuarterlyReportByPeriod('JA', this.studentGUId, this.selectedQRPeriod, '0')
         .subscribe(
           (data) => {
             this.jaComment = data;

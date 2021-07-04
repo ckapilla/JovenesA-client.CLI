@@ -5,7 +5,7 @@ import { Observable, Subscription } from 'rxjs';
 import { StudentSelfReportDataService } from 'src/app/_shared/data/student-self-report-data.service';
 import { StudentMiniDTO } from 'src/app/_shared/models/studentMiniDTO';
 import { StudentState } from 'src/app/_store/student/student.state';
-import { SetSelectedYearPeriod } from 'src/app/_store/ui/ui.action';
+import { SetselectedQRPeriod } from 'src/app/_store/ui/ui.action';
 import { UIState } from 'src/app/_store/ui/ui.state';
 import { constants } from '../../_shared/constants/constants';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
@@ -19,14 +19,14 @@ export class SelfReportMissingComponent implements OnInit {
   isLoading = false;
   errorMessage: string;
   successMessage: string;
-  selectedYearPeriod = '';
+  selectedQRPeriod = '';
   readonly activeQRPeriods: SELECTITEM[] = constants.activeQRperiods;
   readonly reviewedStatuses: SELECTITEM[] = constants.reviewedQRStatuses;
   subscription: Subscription;
   studentMinis: StudentMiniDTO[];
 
   @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
-  @Select(UIState.getSelectedYearPeriod) selectedYearPeriod$: Observable<string>;
+  @Select(UIState.getselectedQRPeriod) selectedQRPeriod$: Observable<string>;
 
   constructor(
     public router: Router,
@@ -36,13 +36,13 @@ export class SelfReportMissingComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.subscribeForSelectedYearPeriod();
+    this.subscribeForselectedQRPeriod();
   }
 
-  subscribeForSelectedYearPeriod() {
-    this.subscription = this.selectedYearPeriod$.subscribe((message) => {
-      this.selectedYearPeriod = message;
-      console.log('************NGXS: SSR Tracking new selectedYearPeriod received' + this.selectedYearPeriod);
+  subscribeForselectedQRPeriod() {
+    this.subscription = this.selectedQRPeriod$.subscribe((message) => {
+      this.selectedQRPeriod = message;
+      console.log('************NGXS: SSR Tracking new selectedQRPeriod received' + this.selectedQRPeriod);
       this.fetchFilteredData();
     });
   }
@@ -50,7 +50,7 @@ export class SelfReportMissingComponent implements OnInit {
   fetchFilteredData() {
     this.isLoading = true;
     console.log('in fetchData for missingStudentReportsByPeriod');
-    this.ssrData.getMissingStudentSelfReportsByPeriod(this.selectedYearPeriod).subscribe(
+    this.ssrData.getMissingStudentSelfReportsByPeriod(this.selectedQRPeriod).subscribe(
       (data) => {
         console.log('missing studentReportByPeriod has');
         this.studentMinis = data;
@@ -89,8 +89,8 @@ export class SelfReportMissingComponent implements OnInit {
     this.router.navigate(link);
   }
 
-  setSelectedYearPeriod(yearPeriod: string) {
-    this.store.dispatch(new SetSelectedYearPeriod(yearPeriod));
+  setselectedQRPeriod(yearPeriod: string) {
+    this.store.dispatch(new SetselectedQRPeriod(yearPeriod));
     // this.fetchFilteredData();
   }
 }

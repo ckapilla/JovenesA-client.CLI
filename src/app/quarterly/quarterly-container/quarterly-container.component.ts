@@ -4,7 +4,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { QuarterlyReportRPT } from 'src/app/_shared/models/quarterly-reportRPT';
 import { StudentState } from 'src/app/_store/student/student.state';
-import { SetQRComponentsEditable, SetSelectedYearPeriod } from 'src/app/_store/ui/ui.action';
+import { SetQRComponentsEditable, SetselectedQRPeriod } from 'src/app/_store/ui/ui.action';
 import { UIState } from 'src/app/_store/ui/ui.state';
 import { constants } from '../../_shared/constants/constants';
 import { QuarterlyDataService } from '../../_shared/data/quarterly-data.service';
@@ -18,7 +18,7 @@ export class QuarterlyContainerComponent implements OnInit {
   isLoading = false;
   errorMessage: string;
   successMessage: string;
-  selectedYearPeriod = '';
+  selectedQRPeriod = '';
   studentGUId: string;
   studentGUIdReceived: boolean;
   readonly activeQRPeriods: SELECTITEM[] = constants.activeQRperiods;
@@ -29,7 +29,7 @@ export class QuarterlyContainerComponent implements OnInit {
   private subscription: Subscription;
 
   @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
-  @Select(UIState.getSelectedYearPeriod) selectedYearPeriod$: Observable<string>;
+  @Select(UIState.getselectedQRPeriod) selectedQRPeriod$: Observable<string>;
 
   constructor(private route: ActivatedRoute, public quarterlyData: QuarterlyDataService, public store: Store) {}
 
@@ -37,7 +37,7 @@ export class QuarterlyContainerComponent implements OnInit {
     console.log('QR containerInit');
     this.setQRComponentsEditible(true);
     this.subscribeForStudentGUIds2();
-    this.subscribeForSelectedYearPeriod();
+    this.subscribeForselectedQRPeriod();
   }
 
   subscribeForStudentGUIds2() {
@@ -51,10 +51,10 @@ export class QuarterlyContainerComponent implements OnInit {
     });
   }
 
-  subscribeForSelectedYearPeriod() {
-    this.subscription = this.selectedYearPeriod$.subscribe((message) => {
-      this.selectedYearPeriod = message;
-      console.log('************NGXS: SR new selectedYearPeriod received' + this.selectedYearPeriod);
+  subscribeForselectedQRPeriod() {
+    this.subscription = this.selectedQRPeriod$.subscribe((message) => {
+      this.selectedQRPeriod = message;
+      console.log('************NGXS: SR new selectedQRPeriod received' + this.selectedQRPeriod);
       this.fetchFilteredData();
     });
   }
@@ -64,10 +64,10 @@ export class QuarterlyContainerComponent implements OnInit {
       this.studentGUId &&
       this.studentGUId !== undefined &&
       this.studentGUId !== '0000' &&
-      this.selectedYearPeriod !== ''
+      this.selectedQRPeriod !== ''
     ) {
       this.isLoading = true;
-      this.quarterlyData.getQRMiniForStudentPeriod(this.studentGUId, this.selectedYearPeriod).subscribe(
+      this.quarterlyData.getQRMiniForStudentPeriod(this.studentGUId, this.selectedQRPeriod).subscribe(
         (data) => {
           this.qrMini = data;
           this.selectedReviewedStatusID = '' + this.qrMini.reviewedStatusId;
@@ -99,8 +99,8 @@ export class QuarterlyContainerComponent implements OnInit {
     );
   }
 
-  setSelectedYearPeriod(yearPeriod: string) {
-    this.store.dispatch(new SetSelectedYearPeriod(yearPeriod));
+  setselectedQRPeriod(yearPeriod: string) {
+    this.store.dispatch(new SetselectedQRPeriod(yearPeriod));
     this.fetchFilteredData();
   }
 

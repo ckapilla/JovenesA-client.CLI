@@ -29,11 +29,11 @@ export class MrConsolidatedComponent implements OnInit {
   reportIdCtl: AbstractControl;
   studentGUId: string;
   qrComponentsEditable: boolean;
-  selectedYearPeriod = '';
+  selectedQRPeriod = '';
   private subscription: Subscription;
 
   @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
-  @Select(UIState.getSelectedYearPeriod) selectedYearPeriod$: Observable<string>;
+  @Select(UIState.getselectedQRPeriod) selectedQRPeriod$: Observable<string>;
   @Select(UIState.getQRComponentsEditable) qrComponentsEditable$: Observable<boolean>;
 
   constructor(
@@ -68,7 +68,7 @@ export class MrConsolidatedComponent implements OnInit {
 
     // console.log('(((((((((((((((((MR ngOnInit)))))))))))))');
     this.subscribeForStudentGUIds2();
-    this.subscribeForSelectedYearPeriod();
+    this.subscribeForselectedQRPeriod();
   }
 
   subscribeForStudentGUIds2() {
@@ -81,10 +81,10 @@ export class MrConsolidatedComponent implements OnInit {
     });
   }
 
-  subscribeForSelectedYearPeriod() {
-    this.subscription = this.selectedYearPeriod$.subscribe((message) => {
-      this.selectedYearPeriod = message;
-      console.log('************NGXS: MR new selectedYearPeriod received' + this.selectedYearPeriod);
+  subscribeForselectedQRPeriod() {
+    this.subscription = this.selectedQRPeriod$.subscribe((message) => {
+      this.selectedQRPeriod = message;
+      console.log('************NGXS: MR new selectedQRPeriod received' + this.selectedQRPeriod);
       this.fetchFilteredData();
     });
   }
@@ -94,11 +94,11 @@ export class MrConsolidatedComponent implements OnInit {
       this.studentGUId &&
       this.studentGUId !== undefined &&
       this.studentGUId !== '0000' &&
-      this.selectedYearPeriod !== ''
+      this.selectedQRPeriod !== ''
     ) {
       this.isLoading = true;
       this.quarterlyData
-        .getPartialQuarterlyReportByPeriod('MR', this.studentGUId, this.selectedYearPeriod, '0')
+        .getPartialQuarterlyReportByPeriod('MR', this.studentGUId, this.selectedQRPeriod, '0')
         .subscribe(
           (data) => {
             this.mentorReport = data;

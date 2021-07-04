@@ -3,11 +3,8 @@ import { Action, Selector, State, StateContext } from '@ngxs/store';
 import {
   SetQRComponentsEditable,
   SetSelectedFilterMode,
-  SetSelectedGradYear,
-  SetSelectedStudentStatus,
-  SetSelectedYearJoined,
-  SetSelectedYearPeriod,
-  SetTestNamesVisibility
+  SetSelectedGradYear, SetselectedQRPeriod, SetSelectedStudentStatus,
+  SetSelectedYearJoined, SetTestNamesVisibility
 } from './ui.action';
 import { UIStateModel } from './ui.model';
 
@@ -16,8 +13,8 @@ import { UIStateModel } from './ui.model';
   defaults: {
     testNamesVisibility: false,
     qrComponentsEditable: false,
-    selectedQRPeriod: '2021-3',
-    selectedGradePeriod: '2021-07',
+    selectedQRPeriod: '2021-2',
+    selectedGradesGivenDate: '2021-07-02',
 
     selectedFilterMode: '998',
     selectedStudentStatus: '0',
@@ -60,17 +57,17 @@ export class UIState {
   }
 
   @Selector()
-  static getSelectedYearPeriod(state: UIStateModel) {
-    return state.selectedYearPeriod;
+  static getselectedQRPeriod(state: UIStateModel) {
+    return state.selectedQRPeriod;
   }
 
-  @Action(SetSelectedYearPeriod)
-  setSelectedYearPeriod(ctx: StateContext<UIStateModel>, { payload }: SetSelectedYearPeriod) {
-    const selectedYearPeriod = payload;
+  @Action(SetselectedQRPeriod)
+  setselectedQRPeriod(ctx: StateContext<UIStateModel>, { payload }: SetselectedQRPeriod) {
+    const selectedQRPeriod = payload;
     const state = ctx.getState();
     ctx.patchState({
       ...state,
-      selectedYearPeriod
+      selectedQRPeriod
     });
   }
 

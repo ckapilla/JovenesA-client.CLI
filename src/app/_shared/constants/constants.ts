@@ -89,9 +89,7 @@ const activeQRperiods = [
   { value: '2020-4', label: '2020 4:Oct-Dic' },
   { value: '2021-1', label: '2021 1:Ene-Mar' },
   { value: '2021-2', label: '2021 2:Abr-Jun' },
-  { value: '2021-3', label: '2021 3:Jul-Set' },
 ];
-// moved to UIState const selectedYearPeriod = '2021-1';
 
 const genders: SELECTITEM[] = [
   { value: 'M', label: 'Male/Hombre' },
@@ -188,7 +186,7 @@ export const constants = {
   periods,
   // periodYears,
   activeQRperiods,
-  // selectedYearPeriod,
+  // selectedQRPeriod,
   genders,
   smileys,
   emojis,

@@ -5,7 +5,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { StudentSelfReportDataService } from 'src/app/_shared/data/student-self-report-data.service';
 import { StudentSelfReport } from 'src/app/_shared/models/student-self-report';
-import { SetSelectedYearPeriod } from 'src/app/_store/ui/ui.action';
+import { SetselectedQRPeriod } from 'src/app/_store/ui/ui.action';
 import { UIState } from 'src/app/_store/ui/ui.state';
 import { constants } from '../../_shared/constants/constants';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
@@ -33,10 +33,10 @@ export class SelfReportsEditComponent implements OnInit {
   periodMonths: SELECTITEM[];
   readonly activeQRPeriods: SELECTITEM[] = constants.activeQRperiods;
   readonly reviewedStatuses: SELECTITEM[] = constants.reviewedQRStatuses;
-  selectedYearPeriod = '';
+  selectedQRPeriod = '';
   subscription: Subscription;
 
-  @Select(UIState.getSelectedYearPeriod) selectedYearPeriod$: Observable<string>;
+  @Select(UIState.getselectedQRPeriod) selectedQRPeriod$: Observable<string>;
 
 
   constructor(
@@ -49,15 +49,12 @@ export class SelfReportsEditComponent implements OnInit {
 
 
     this.myForm = _fb.group({
-      reportYear: ['2021'],
-      reportPeriod: ['2'],
+      // reportYear: ['2021'],
+      // reportPeriod: ['2'],
       narrative_English: ['', { validators: [Validators.required], updateOn: 'blur' }],
       narrative_Spanish: ['', { validators: [Validators.required], updateOn: 'blur' }],
       selfReportId: [this.reportIdCtl]
     });
-
-    this.myForm.controls.reportYear.disable();
-    this.myForm.controls.reportPeriod.disable();
 
     this.narrative_EnglishCtl = this.myForm.controls['narrative_English'];
     this.narrative_SpanishCtl = this.myForm.controls['narrative_Spanish'];
@@ -127,8 +124,8 @@ export class SelfReportsEditComponent implements OnInit {
     this.router.navigateByUrl(target);
   }
 
-  setSelectedYearPeriod(yearPeriod: string) {
-    this.store.dispatch(new SetSelectedYearPeriod(yearPeriod));
+  setselectedQRPeriod(yearPeriod: string) {
+    this.store.dispatch(new SetselectedQRPeriod(yearPeriod));
     // this.fetchFilteredData();
   }
 }

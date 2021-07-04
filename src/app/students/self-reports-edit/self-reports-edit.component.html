@@ -10,7 +10,8 @@
           <select
             name="activePeriodSelector"
             data-cy="period-selector"
-            (change)="setSelectedYearPeriod($event.target.value)"
+            [(ngModel)]="selectedQRPeriod" [ngModelOptions]="{standalone: true}"
+            (change)="setselectedQRPeriod($event.target.value)"
           >
             <option *ngFor="let yearPeriod of activeQRPeriods" [value]="yearPeriod.value">{{ yearPeriod.label }}</option>
           </select>

@@ -34,6 +34,7 @@
             <tr>
               <!--<td>Id</td>-->
               <!-- <th></th> -->
+              <th>Review</th>
               <th app-sortable-column="studentName" sort-direction="asc" (onSortColumn)="onSortColumn($event)">
                 Student
               </th>
@@ -50,7 +51,7 @@
               <th app-sortable-column="imageSubmittedDate" (onSortColumn)="onSortColumn($event)">Uploaded <br />Date</th>
               <th>View<br />Image</th>
               <th app-sortable-column="gradePointAvg" (onSortColumn)="onSortColumn($event)">GPA</th>
-              <th>Review</th>
+
               <!-- <th app-sortable-column="exception" (onSortColumn)="onSortColumn($event)">Exception</th> -->
               <th app-sortable-column="confirmedDate" (onSortColumn)="onSortColumn($event)">Confirmed <br />Date</th>
             </tr>
@@ -60,6 +61,9 @@
               <!-- <td>
                 {{ i + 1 }}
               </td> -->
+              <td (click)="confirmGPA(entry.studentGUId, entry.studentName)" class="link">
+                Review
+              </td>
 
               <td (click)="gotoStudent(entry.studentGUId)" class="link">
                 {{ entry.studentName }}
@@ -110,9 +114,7 @@
                 {{ entry.gradePointAvg }}
               </td>
 
-              <td (click)="confirmGPA(entry.studentGUId, entry.studentName)" class="link">
-                Review
-              </td>
+
 
               <td>
                 {{ entry.confirmedDate | truncateDate }}

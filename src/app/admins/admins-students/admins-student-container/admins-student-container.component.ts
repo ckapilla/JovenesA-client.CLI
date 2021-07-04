@@ -10,7 +10,7 @@ import { SELECTITEM } from 'src/app/_shared/interfaces/SELECTITEM';
   templateUrl: '../admins-student-container/admins-student-container.component.html'
 })
 export class AdminsStudentContainerComponent implements OnInit {
-  selectedYearPeriod = '';
+  selectedQRPeriod = '';
   studentGUId: string;
   studentGUIdReceived: boolean;
   readonly activeQRPeriods: SELECTITEM[] = constants.activeQRperiods;

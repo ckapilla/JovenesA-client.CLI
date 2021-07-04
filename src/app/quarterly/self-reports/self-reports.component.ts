@@ -29,11 +29,11 @@ export class SelfReportsComponent implements OnInit {
   reportIdCtl: AbstractControl;
   studentGUId: string;
   qrComponentsEditable: boolean;
-  selectedYearPeriod = '';
+  selectedQRPeriod = '';
   private subscription: Subscription;
 
   @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
-  @Select(UIState.getSelectedYearPeriod) selectedYearPeriod$: Observable<string>;
+  @Select(UIState.getselectedQRPeriod) selectedQRPeriod$: Observable<string>;
   @Select(UIState.getQRComponentsEditable) qrComponentsEditable$: Observable<boolean>;
 
   constructor(
@@ -67,7 +67,7 @@ export class SelfReportsComponent implements OnInit {
 
     // console.log('(((((((((((((((((SelfReports ngOnInit)))))))))))))');
     this.subscribeForStudentGUIds2();
-    this.subscribeForSelectedYearPeriod();
+    this.subscribeForselectedQRPeriod();
   }
 
   subscribeForStudentGUIds2() {
@@ -80,10 +80,10 @@ export class SelfReportsComponent implements OnInit {
     });
   }
 
-  subscribeForSelectedYearPeriod() {
-    this.subscription = this.selectedYearPeriod$.subscribe((message) => {
-      this.selectedYearPeriod = message;
-      console.log('************NGXS: SR new selectedYearPeriod received' + this.selectedYearPeriod);
+  subscribeForselectedQRPeriod() {
+    this.subscription = this.selectedQRPeriod$.subscribe((message) => {
+      this.selectedQRPeriod = message;
+      console.log('************NGXS: SR new selectedQRPeriod received' + this.selectedQRPeriod);
       this.fetchFilteredData();
     });
   }
@@ -93,11 +93,11 @@ export class SelfReportsComponent implements OnInit {
       this.studentGUId &&
       this.studentGUId !== undefined &&
       this.studentGUId !== '0000' &&
-      this.selectedYearPeriod !== ''
+      this.selectedQRPeriod !== ''
     ) {
       this.isLoading = true;
       this.quarterlyData
-        .getPartialQuarterlyReportByPeriod('SR', this.studentGUId, this.selectedYearPeriod, '0')
+        .getPartialQuarterlyReportByPeriod('SR', this.studentGUId, this.selectedQRPeriod, '0')
         .subscribe(
           (data) => {
             this.studentSelfReport = data;

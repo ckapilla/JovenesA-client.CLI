@@ -5,7 +5,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { StudentSelfReportDataService } from 'src/app/_shared/data/student-self-report-data.service';
 import { StudentSelfReport } from 'src/app/_shared/models/student-self-report';
-import { SetSelectedYearPeriod } from 'src/app/_store/ui/ui.action';
+import { SetselectedQRPeriod } from 'src/app/_store/ui/ui.action';
 import { UIState } from 'src/app/_store/ui/ui.state';
 import { constants } from '../../_shared/constants/constants';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
@@ -26,10 +26,10 @@ export class SelfReportsAddComponent implements OnInit {
   successMessage: string;
   readonly activeQRPeriods: SELECTITEM[] = constants.activeQRperiods;
   readonly reviewedStatuses: SELECTITEM[] = constants.reviewedQRStatuses;
-  selectedYearPeriod = '';
+  selectedQRPeriod = '';
   subscription: Subscription;
 
-  @Select(UIState.getSelectedYearPeriod) selectedYearPeriod$: Observable<string>;
+  @Select(UIState.getselectedQRPeriod) selectedQRPeriod$: Observable<string>;
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -41,14 +41,9 @@ export class SelfReportsAddComponent implements OnInit {
     console.log('Hi from SelfReportsAddComponent');
 
     this.myForm = _fb.group({
-      reportYear: ['2021'],
-      reportPeriod: ['2'],
 
       narrative_English: ['', Validators.compose([Validators.required, Validators.maxLength(4500)])]
     });
-
-    this.myForm.controls.reportYear.disable();
-    this.myForm.controls.reportPeriod.disable();
 
     this.selfReport = new StudentSelfReport();
     this.selfReport.sponsorGroupId = 0;
@@ -71,7 +66,7 @@ export class SelfReportsAddComponent implements OnInit {
   ngOnInit() {
     console.log('selfReportsAdd ngOnInit');
 
-    this.subscribeForSelectedYearPeriod();
+    this.subscribeForselectedQRPeriod();
 
     this.selfReport.sponsorGroupId = this.currRoute.snapshot.params['sponsorId'];
     this.selfReport.studentGUId = this.currRoute.snapshot.params['studentGUId'];
@@ -88,10 +83,10 @@ export class SelfReportsAddComponent implements OnInit {
   }
 
 
-  subscribeForSelectedYearPeriod() {
-    this.subscription = this.selectedYearPeriod$.subscribe((message) => {
-      this.selectedYearPeriod = message;
-      console.log('************NGXS: SSR Tracking new selectedYearPeriod received' + this.selectedYearPeriod);
+  subscribeForselectedQRPeriod() {
+    this.subscription = this.selectedQRPeriod$.subscribe((message) => {
+      this.selectedQRPeriod = message;
+      console.log('************NGXS: SSR Tracking new selectedQRPeriod received' + this.selectedQRPeriod);
       // this.fetchFilteredData();
     });
   }
@@ -142,9 +137,8 @@ export class SelfReportsAddComponent implements OnInit {
     console.log('hasChanges net is ' + this.myForm.dirty || this.submitted);
     return this.myForm.dirty && !this.submitted;
   }
-  setSelectedYearPeriod(yearPeriod: string) {
-    this.store.dispatch(new SetSelectedYearPeriod(yearPeriod));
-    // this.fetchFilteredData();
+  setselectedQRPeriod(yearPeriod: string) {
+    this.store.dispatch(new SetselectedQRPeriod(yearPeriod));
   }
 
 }

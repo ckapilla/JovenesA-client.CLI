@@ -22,10 +22,10 @@ export class QrStatusSelectorComponent implements OnInit {
   readonly reviewedStatuses: SELECTITEM[] = constants.reviewedQRStatuses;
   studentGUId: string; // 'model' for this component
   private subscription: Subscription;
-  selectedYearPeriod: '' | string;
+  selectedQRPeriod: '' | string;
 
   @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
-  @Select(UIState.getSelectedYearPeriod) selectedYearPeriod$: Observable<string>;
+  @Select(UIState.getselectedQRPeriod) selectedQRPeriod$: Observable<string>;
 
   constructor(
     public quarterlyData: QuarterlyDataService,
@@ -36,7 +36,7 @@ export class QrStatusSelectorComponent implements OnInit {
   ngOnInit() {
     this.qrMini = new QuarterlyReportRPT();
     this.subscribeForStudentGUIds2();
-    this.subscribeForSelectedYearPeriod();
+    this.subscribeForselectedQRPeriod();
   }
 
   subscribeForStudentGUIds2() {
@@ -48,10 +48,10 @@ export class QrStatusSelectorComponent implements OnInit {
       }
     });
   }
-  subscribeForSelectedYearPeriod() {
-    this.subscription = this.selectedYearPeriod$.subscribe((message) => {
-      this.selectedYearPeriod = message;
-      console.log('************NGXS: statusSelector new selectedYearPeriod received' + this.selectedYearPeriod);
+  subscribeForselectedQRPeriod() {
+    this.subscription = this.selectedQRPeriod$.subscribe((message) => {
+      this.selectedQRPeriod = message;
+      console.log('************NGXS: statusSelector new selectedQRPeriod received' + this.selectedQRPeriod);
       this.fetchData();
     });
   }
@@ -61,10 +61,10 @@ export class QrStatusSelectorComponent implements OnInit {
       this.studentGUId &&
       this.studentGUId !== undefined &&
       this.studentGUId !== '0000' &&
-      this.selectedYearPeriod !== ''
+      this.selectedQRPeriod !== ''
     ) {
       this.isLoading = true;
-      this.quarterlyData.getQRMiniForStudentPeriod(this.studentGUId, this.selectedYearPeriod).subscribe(
+      this.quarterlyData.getQRMiniForStudentPeriod(this.studentGUId, this.selectedQRPeriod).subscribe(
         (data) => {
           this.qrMini = data;
         },

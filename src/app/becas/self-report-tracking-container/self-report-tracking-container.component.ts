@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
-import { SetSelectedYearPeriod } from 'src/app/_store/ui/ui.action';
+import { SetselectedQRPeriod } from 'src/app/_store/ui/ui.action';
 import { UIState } from 'src/app/_store/ui/ui.state';
 import { constants } from '../../_shared/constants/constants';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
@@ -16,23 +16,23 @@ export class SelfReportTrackingContainerComponent implements OnInit {
   studentGUIdReceived: boolean;
   readonly activeQRPeriods: SELECTITEM[] = constants.activeQRperiods;
   readonly reviewedStatuses: SELECTITEM[] = constants.reviewedQRStatuses;
-  selectedYearPeriod = '';
+  selectedQRPeriod = '';
   subscription: Subscription;
 
-  @Select(UIState.getSelectedYearPeriod) selectedYearPeriod$: Observable<string>;
+  @Select(UIState.getselectedQRPeriod) selectedQRPeriod$: Observable<string>;
 
   constructor(private route: ActivatedRoute, private store: Store) {
     this.studentGUIdReceived = false;
   }
 
   ngOnInit() {
-    this.subscribeForSelectedYearPeriod();
+    this.subscribeForselectedQRPeriod();
   }
 
-  subscribeForSelectedYearPeriod() {
-    this.subscription = this.selectedYearPeriod$.subscribe((message) => {
-      this.selectedYearPeriod = message;
-      console.log('************NGXS: SSR Tracking new selectedYearPeriod received' + this.selectedYearPeriod);
+  subscribeForselectedQRPeriod() {
+    this.subscription = this.selectedQRPeriod$.subscribe((message) => {
+      this.selectedQRPeriod = message;
+      console.log('************NGXS: SSR Tracking new selectedQRPeriod received' + this.selectedQRPeriod);
       // this.fetchFilteredData();
     });
   }
@@ -46,8 +46,8 @@ export class SelfReportTrackingContainerComponent implements OnInit {
   //   }
   // }
 
-  setSelectedYearPeriod(yearPeriod: string) {
-    this.store.dispatch(new SetSelectedYearPeriod(yearPeriod));
+  setselectedQRPeriod(yearPeriod: string) {
+    this.store.dispatch(new SetselectedQRPeriod(yearPeriod));
     // this.fetchFilteredData();
   }
 }

@@ -4,7 +4,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { ColumnSortService } from 'src/app/_shared/services/column-sort.service';
 import { SetSelectedStudentGUId } from 'src/app/_store/student/student.action';
-import { SetSelectedYearPeriod } from 'src/app/_store/ui/ui.action';
+import { SetselectedQRPeriod } from 'src/app/_store/ui/ui.action';
 import { UIState } from 'src/app/_store/ui/ui.state';
 import { constants } from '../../_shared/constants/constants';
 import { QuarterlyDataService } from '../../_shared/data/quarterly-data.service';
@@ -26,12 +26,12 @@ export class QuarterlyListComponent implements OnInit {
   readonly activeQRPeriods: SELECTITEM[] = constants.activeQRperiods;
   qrMinis: QuarterlyReportRPT[];
   qrMini: QuarterlyReportRPT;
-  selectedYearPeriod = '';
+  selectedQRPeriod = '';
   displayTestNames: boolean;
   private subscription: Subscription;
 
   @Select(UIState.getTestNamesVisibility) testNameVisibility$: Observable<boolean>;
-  @Select(UIState.getSelectedYearPeriod) selectedYearPeriod$: Observable<string>;
+  @Select(UIState.getselectedQRPeriod) selectedQRPeriod$: Observable<string>;
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -49,13 +49,13 @@ export class QuarterlyListComponent implements OnInit {
     this.testNameVisibility$.subscribe((flag) => {
       this.displayTestNames = flag;
     });
-    this.subscribeForSelectedYearPeriod();
+    this.subscribeForselectedQRPeriod();
   }
 
-  subscribeForSelectedYearPeriod() {
-    this.subscription = this.selectedYearPeriod$.subscribe((message) => {
-      this.selectedYearPeriod = message;
-      console.log('************NGXS: SR new selectedYearPeriod received' + this.selectedYearPeriod);
+  subscribeForselectedQRPeriod() {
+    this.subscription = this.selectedQRPeriod$.subscribe((message) => {
+      this.selectedQRPeriod = message;
+      console.log('************NGXS: SR new selectedQRPeriod received' + this.selectedQRPeriod);
       this.fetchFilteredData();
     });
   }
@@ -67,8 +67,8 @@ export class QuarterlyListComponent implements OnInit {
     }
   }
 
-  setSelectedYearPeriod(yearPeriod: string) {
-    this.store.dispatch(new SetSelectedYearPeriod(yearPeriod));
+  setselectedQRPeriod(yearPeriod: string) {
+    this.store.dispatch(new SetselectedQRPeriod(yearPeriod));
   }
 
   gotoStudent(studentGUId: string) {
@@ -89,7 +89,7 @@ export class QuarterlyListComponent implements OnInit {
   fetchFilteredData() {
     this.isLoading = true;
     console.log('quarterly-list data fetch ');
-    this.quarterlyData.getQRMinisForPeriod(this.selectedYearPeriod, 0).subscribe(
+    this.quarterlyData.getQRMinisForPeriod(this.selectedQRPeriod, 0).subscribe(
       (data) => {
         this.qrMinis = data.filter((item) => {
           if (this.displayTestNames) {

@@ -36,7 +36,6 @@ export class GradesEditComponent implements OnInit {
   private subscription: Subscription;
   studentName: string;
   staticUrlPrefix: string;
-  public periodStart: string;
 
   admins$: Observable<SELECTITEM[]> = this.miscData.getAdmins$().pipe(
     catchError((err) => {
@@ -62,7 +61,6 @@ export class GradesEditComponent implements OnInit {
     console.log('Hi from gradesEdit Ctrl controller function');
 
     this.staticUrlPrefix = url.getStaticFilePrefix();
-    this.periodStart = '2021-4';  // ///////////////////////////////////////////// TEMP TEMP TEMP
 
     this.isLoading = false;
 

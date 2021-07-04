@@ -45,13 +45,13 @@ export class GradesListComponent implements OnInit {
     private url: UrlService
   ) {
     this.staticUrlPrefix = url.getStaticFilePrefix();
-    this.periodStart = '2021-4';  // ///////////////////////////////////////////// TEMP TEMP TEMP
+    // this.periodStart = '2021-07';
 
     this.years = constants.years;
     this.months = constants.months;
 
-    this.selectedYear = '2021'; // '' + today.getFullYear(); //
-    this.selectedMonth = '4'; //  + today.getMonth() + 1;// '5';
+    // this.selectedYear = '2021'; // '' + today.getFullYear(); //
+    // this.selectedMonth = '07'; //  + today.getMonth() + 1;// '5';
 
     this.isLoading = false;
   }

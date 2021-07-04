@@ -4,7 +4,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { StudentSelfReportDataService } from 'src/app/_shared/data/student-self-report-data.service';
 import { StudentState } from 'src/app/_store/student/student.state';
-import { SetSelectedYearPeriod } from 'src/app/_store/ui/ui.action';
+import { SetselectedQRPeriod } from 'src/app/_store/ui/ui.action';
 import { UIState } from 'src/app/_store/ui/ui.state';
 import { constants } from '../../_shared/constants/constants';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
@@ -27,7 +27,7 @@ export class SelfReportTrackingComponent implements OnInit {
   studentReportStatuses: SELECTITEM[];
   highlightStatuses: SELECTITEM[];
 
-  selectedYearPeriod: string;
+  selectedQRPeriod: string;
   studentGUId: string;
   selectedSRReviewedStatus: string;
   displayOriginalFields = true;
@@ -36,7 +36,7 @@ export class SelfReportTrackingComponent implements OnInit {
   displayTestNames: boolean;
 
   @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
-  @Select(UIState.getSelectedYearPeriod) selectedYearPeriod$: Observable<string>;
+  @Select(UIState.getselectedQRPeriod) selectedQRPeriod$: Observable<string>;
   @Select(UIState.getTestNamesVisibility) testNameVisibility$: Observable<boolean>;
 
   constructor(
@@ -52,7 +52,7 @@ export class SelfReportTrackingComponent implements OnInit {
   ngOnInit() {
     console.log('ssr trackingonInit');
     this.subscribeForStudentGUIds2();
-    this.subscribeForSelectedYearPeriod();
+    this.subscribeForselectedQRPeriod();
   }
 
   subscribeForStudentGUIds2() {
@@ -65,21 +65,21 @@ export class SelfReportTrackingComponent implements OnInit {
     });
   }
 
-  subscribeForSelectedYearPeriod() {
-    this.subscription = this.selectedYearPeriod$.subscribe((message) => {
-      this.selectedYearPeriod = message;
-      console.log('************NGXS: SR new selectedYearPeriod received' + this.selectedYearPeriod);
+  subscribeForselectedQRPeriod() {
+    this.subscription = this.selectedQRPeriod$.subscribe((message) => {
+      this.selectedQRPeriod = message;
+      console.log('************NGXS: SR new selectedQRPeriod received' + this.selectedQRPeriod);
       this.fetchFilteredData();
     });
   }
 
   fetchFilteredData() {
-    if (this.selectedYearPeriod !== '' && this.selectedYearPeriod !== undefined) {
+    if (this.selectedQRPeriod !== '' && this.selectedQRPeriod !== undefined) {
       this.isLoading = true;
       console.log('in fetchData for StudentReportsByPeriod');
       this.ssrData
         .getStudentSelfReportsByPeriod(
-          this.selectedYearPeriod,
+          this.selectedQRPeriod,
           '0', // this.selectedSRReviewedStatus,
           null
         )
@@ -121,8 +121,8 @@ export class SelfReportTrackingComponent implements OnInit {
     }
   }
 
-  setSelectedYearPeriod(yearPeriod: string) {
-    this.store.dispatch(new SetSelectedYearPeriod(yearPeriod));
+  setselectedQRPeriod(yearPeriod: string) {
+    this.store.dispatch(new SetselectedQRPeriod(yearPeriod));
     this.fetchFilteredData();
   }
 
