@@ -177,9 +177,6 @@ export class AdminsStudentComponent implements OnInit {
     });
     this.myForm.disable();
     console.log(this.myForm.controls);
-    // this.myForm.controls.probationStartDate.valueChanges.subscribe(() => {
-    //   console.log(this.myForm.controls.probationStartDate.errors); // {pattern: {requiredPattern: '^[a-zA-Z ]*$', actualValue: '1'}}
-    // });
 
     this.student = new Student();
 

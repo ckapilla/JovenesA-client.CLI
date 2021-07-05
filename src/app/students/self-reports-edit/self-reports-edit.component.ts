@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { StudentSelfReportDataService } from 'src/app/_shared/data/student-self-report-data.service';
 import { StudentSelfReport } from 'src/app/_shared/models/student-self-report';
-import { SetselectedQRPeriod } from 'src/app/_store/ui/ui.action';
 import { UIState } from 'src/app/_store/ui/ui.state';
 import { constants } from '../../_shared/constants/constants';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
@@ -26,9 +25,6 @@ export class SelfReportsEditComponent implements OnInit {
   selfReport: StudentSelfReport;
   selfReportId: number;
   myForm: FormGroup;
-  narrative_EnglishCtl: AbstractControl;
-  narrative_SpanishCtl: AbstractControl;
-  reportIdCtl: AbstractControl;
   periodYears: SELECTITEM[];
   periodMonths: SELECTITEM[];
   readonly activeQRPeriods: SELECTITEM[] = constants.activeQRperiods;
@@ -48,17 +44,16 @@ export class SelfReportsEditComponent implements OnInit {
   ) {
 
 
+    this.subscribeForselectedQRPeriod();
+
     this.myForm = _fb.group({
-      // reportYear: ['2021'],
-      // reportPeriod: ['2'],
+      currentQRPeriod: this.selectedQRPeriod,
       narrative_English: ['', { validators: [Validators.required], updateOn: 'blur' }],
       narrative_Spanish: ['', { validators: [Validators.required], updateOn: 'blur' }],
-      selfReportId: [this.reportIdCtl]
+      selfReportId: ''
     });
 
-    this.narrative_EnglishCtl = this.myForm.controls['narrative_English'];
-    this.narrative_SpanishCtl = this.myForm.controls['narrative_Spanish'];
-    this.reportIdCtl = this.myForm.controls['selfReportId'];
+    this.myForm.controls.currentQRPeriod.disable();
   }
 
   ngOnInit() {
@@ -74,11 +69,18 @@ export class SelfReportsEditComponent implements OnInit {
         console.log(
           '### after retreiving, set form controls to retreived selfReport-- reportId to ' + this.selfReportId
         );
-        this.reportIdCtl.setValue(this.selfReportId);
-        this.narrative_EnglishCtl.setValue(this.selfReport.narrative_English);
-        this.narrative_SpanishCtl.setValue(this.selfReport.narrative_Spanish);
+        this.myForm.controls.selfReportId.setValue(this.selfReportId);
+        this.myForm.controls.narrative_English.setValue(this.selfReport.narrative_English);
+        this.myForm.controls.narrative_Spanish.setValue(this.selfReport.narrative_Spanish);
       }
     );
+  }
+
+  subscribeForselectedQRPeriod() {
+    this.subscription = this.selectedQRPeriod$.subscribe((message) => {
+      this.selectedQRPeriod = message;
+      console.log('************NGXS: SSR Tracking new selectedQRPeriod received' + this.selectedQRPeriod);
+    });
   }
 
   onSubmit() {
@@ -88,7 +90,7 @@ export class SelfReportsEditComponent implements OnInit {
     if (this.myForm.invalid) {
       this.errorMessage = '';
 
-      if (!this.narrative_EnglishCtl.valid) {
+      if (!this.myForm.controls.narrative_English.valid) {
         this.errorMessage = this.errorMessage + 'Description must be filled in. Descripcione debe rellenarse';
       }
       window.scrollTo(0, 0);
@@ -97,9 +99,8 @@ export class SelfReportsEditComponent implements OnInit {
 
     console.log('###before submitting update model with form control values');
 
-    this.selfReport.narrative_English = this.narrative_EnglishCtl.value;
-    this.selfReport.narrative_Spanish = this.narrative_SpanishCtl.value;
-    // this.selfReport.reviewedStatusId = 2086; // already is needs setup or wouldn't be here
+    this.selfReport.narrative_English = this.myForm.controls.narrative_English.value;
+    this.selfReport.narrative_Spanish = this.myForm.controls.narrative_Spanish.value;
 
     this.ssrData.putStudentSelfReport(this.selfReport).subscribe(
       (student) => {
@@ -124,8 +125,4 @@ export class SelfReportsEditComponent implements OnInit {
     this.router.navigateByUrl(target);
   }
 
-  setselectedQRPeriod(yearPeriod: string) {
-    this.store.dispatch(new SetselectedQRPeriod(yearPeriod));
-    // this.fetchFilteredData();
-  }
 }

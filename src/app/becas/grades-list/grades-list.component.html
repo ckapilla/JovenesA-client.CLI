@@ -7,23 +7,6 @@
     <span *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</span>
     <span *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</span>
 
-    <!-- <div>
-
-      <label for="yearSelector">&nbsp;As Of Year/Month:</label>
-      <select name="yearSelector"
-              [(ngModel)]="selectedYear"
-              (change)="setSelectedYear($event.target.value)"
-              disabled=true>
-        <option *ngFor="let year of years" [value]="year.value">{{year.label}}</option>
-      </select>
-      <select name="monthSelector"
-              [(ngModel)]="selectedMonth"
-              (change)="setSelectedMonth($event.target.value)"
-              disabled=true>
-        <option value="0">[Select]</option>
-        <option *ngFor="let month of months" [value]="month.value">{{month.label}}</option>
-      </select>
-    </div> -->
     <div [ngSwitch]="isLoading">
       <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
         <app-loading-container> </app-loading-container>

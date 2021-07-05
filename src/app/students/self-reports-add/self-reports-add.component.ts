@@ -40,11 +40,14 @@ export class SelfReportsAddComponent implements OnInit {
   ) {
     console.log('Hi from SelfReportsAddComponent');
 
-    this.myForm = _fb.group({
+    this.subscribeForselectedQRPeriod();
+    console.log('after subscribeForSelectedQRPeriod');
 
+    this.myForm = _fb.group({
+      currentQRPeriod: this.selectedQRPeriod,
       narrative_English: ['', Validators.compose([Validators.required, Validators.maxLength(4500)])]
     });
-
+    this.myForm.controls.currentQRPeriod.disable();
     this.selfReport = new StudentSelfReport();
     this.selfReport.sponsorGroupId = 0;
     this.selfReport.reviewedStatusId = 2087;
@@ -54,8 +57,10 @@ export class SelfReportsAddComponent implements OnInit {
     this.selfReport.reportDateTime = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
     console.log(this.selfReport.reportDateTime);
 
-    this.selfReport.reportYear = 2021;
-    this.selfReport.reportPeriod = 2;
+
+    this.selfReport.reportYear = +this.selectedQRPeriod.substr(0, 4);
+    this.selfReport.reportPeriod = +this.selectedQRPeriod.substr(5, 1);
+    console.log('year: ' + this.selfReport.reportYear + ' period: ' + this.selfReport.reportPeriod);
     this.selfReport.narrative_English = '';
 
     this.errorMessage = '';
@@ -65,8 +70,6 @@ export class SelfReportsAddComponent implements OnInit {
 
   ngOnInit() {
     console.log('selfReportsAdd ngOnInit');
-
-    this.subscribeForselectedQRPeriod();
 
     this.selfReport.sponsorGroupId = this.currRoute.snapshot.params['sponsorId'];
     this.selfReport.studentGUId = this.currRoute.snapshot.params['studentGUId'];
@@ -80,6 +83,7 @@ export class SelfReportsAddComponent implements OnInit {
       this.submitted = false;
       // console.log('form change event');
     });
+    console.log('xx');
   }
 
 
@@ -87,7 +91,6 @@ export class SelfReportsAddComponent implements OnInit {
     this.subscription = this.selectedQRPeriod$.subscribe((message) => {
       this.selectedQRPeriod = message;
       console.log('************NGXS: SSR Tracking new selectedQRPeriod received' + this.selectedQRPeriod);
-      // this.fetchFilteredData();
     });
   }
 
@@ -106,6 +109,8 @@ export class SelfReportsAddComponent implements OnInit {
     }
     this.submitted = true; // need to set guard immediately to prevent dups
 
+    this.selfReport.narrative_English = this.myForm.controls.narrative_English.value;
+
     this.ssrData.postStudentSelfReport(this.selfReport).subscribe(
       (student) => {
         console.log((this.successMessage = <any>student));
@@ -122,6 +127,7 @@ export class SelfReportsAddComponent implements OnInit {
     );
     return false;
   }
+
 
   onCancel() {
     const target = '/students';

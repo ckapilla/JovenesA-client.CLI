@@ -10,10 +10,9 @@
           <div class="controls">
             Año/Periodo de este reporte
             <select
-              name="activePeriodSelector"
+              formControlName="currentQRPeriod"
               data-cy="period-selector"
-              [(ngModel)]="selectedQRPeriod" [ngModelOptions]="{standalone: true}"
-              (change)="setselectedQRPeriod($event.target.value)"
+              (change)="setselectedQRPeriod($event.target.value )"
             >
               <option *ngFor="let yearPeriod of activeQRPeriods" [value]="yearPeriod.value">{{ yearPeriod.label }}</option>
             </select>
@@ -40,7 +39,6 @@
           #success
           formControlName="narrative_English"
           #narrative_English
-          [(ngModel)]="selfReport.narrative_English"
           type="text"
           class="form-control input-sm narrative"
           placeholder=""
