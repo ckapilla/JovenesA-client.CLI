@@ -80,7 +80,7 @@ const periods: SELECTITEM[] = [
   { value: '3', label: '3:Jul-Set' },
   { value: '4', label: '4:Oct-Dic' }
 ];
-const activeQRperiods = [
+const activeQRperiods: SELECTITEM[] = [
   { value: '2019-3', label: '2019 3:Jul-Set' },
   { value: '2019-4', label: '2019 4:Oct-Dic' },
   { value: '2020-1', label: '2020 1:Ene-Mar' },
