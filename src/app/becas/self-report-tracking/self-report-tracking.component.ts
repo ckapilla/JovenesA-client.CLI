@@ -22,7 +22,7 @@ export class SelfReportTrackingComponent implements OnInit {
   public errorMessage: string;
   successMessage: string;
   submitted: string;
-  readonly activeQRPeriods = constants.activeQRperiods;
+  readonly qrPeriods = constants.qrPeriods;
   readonly ssrReviewedStatuses = constants.reviewedStatuses;
   studentReportStatuses: SELECTITEM[];
   highlightStatuses: SELECTITEM[];

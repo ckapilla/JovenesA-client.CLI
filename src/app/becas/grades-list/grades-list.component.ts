@@ -47,7 +47,7 @@ export class GradesListComponent implements OnInit {
     this.staticUrlPrefix = url.getStaticFilePrefix();
     // this.periodStart = '2021-07';
 
-    this.years = constants.years;
+    this.years = constants.contactYears;
     this.months = constants.months;
 
     // this.selectedYear = '2021'; // '' + today.getFullYear(); //

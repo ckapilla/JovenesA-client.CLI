@@ -1,6 +1,7 @@
 import { SELECTITEM } from '../interfaces/SELECTITEM';
 
 const joinedYears: SELECTITEM[] = [
+  { value: '2021', label: '2021' },
   { value: '2020', label: '2020' },
   { value: '2019', label: '2019' },
   { value: '2018', label: '2018' },
@@ -22,6 +23,7 @@ const joinedYears: SELECTITEM[] = [
   { value: '2002', label: '2002' }
 ];
 const gradYears: SELECTITEM[] = [
+  { value: '2026', label: '2026' },
   { value: '2025', label: '2025' },
   { value: '2024', label: '2024' },
   { value: '2023', label: '2023' },
@@ -45,20 +47,13 @@ const gradYears: SELECTITEM[] = [
   { value: '2005', label: '2005' },
   { value: '2004', label: '2004' }
 ];
-const years: SELECTITEM[] = [
+const contactYears: SELECTITEM[] = [
   { value: '2017', label: '2017' },
   { value: '2018', label: '2018' },
   { value: '2019', label: '2019' },
   { value: '2020', label: '2020' },
   { value: '2021', label: '2021' }
 ];
-// const periodYears = [
-//   // {value: '2016', label: '2016'},
-//   // {value: '2017', label: '2017'} // ,
-//   { value: '2019', label: '2019' },
-//   { value: '2020', label: '2020' },
-//   { value: '2021', label: '2021' }
-// ];
 
 const months: SELECTITEM[] = [
   { value: '1', label: 'Jan/Ene' },
@@ -80,16 +75,17 @@ const periods: SELECTITEM[] = [
   { value: '3', label: '3:Jul-Set' },
   { value: '4', label: '4:Oct-Dic' }
 ];
-const activeQRperiods: SELECTITEM[] = [
-  { value: '2019-3', label: '2019 3:Jul-Set' },
-  { value: '2019-4', label: '2019 4:Oct-Dic' },
-  { value: '2020-1', label: '2020 1:Ene-Mar' },
-  { value: '2020-2', label: '2020 2:Abr-Jun' },
-  { value: '2020-3', label: '2020 3:Jul-Set' },
-  { value: '2020-4', label: '2020 4:Oct-Dic' },
-  { value: '2021-1', label: '2021 1:Ene-Mar' },
-  { value: '2021-2', label: '2021 2:Abr-Jun' },
-];
+// const qrPeriods: SELECTITEM[] = [
+//   { value: '2019-3', label: '2019 3:Jul-Set' },
+//   { value: '2019-4', label: '2019 4:Oct-Dic' },
+//   { value: '2020-1', label: '2020 1:Ene-Mar' },
+//   { value: '2020-2', label: '2020 2:Abr-Jun' },
+//   { value: '2020-3', label: '2020 3:Jul-Set' },
+//   { value: '2020-4', label: '2020 4:Oct-Dic' },
+//   { value: '2021-1', label: '2021 1:Ene-Mar' },
+//   { value: '2021-2', label: '2021 2:Abr-Jun' },
+// ];
+const qrPeriods: SELECTITEM[] = [];
 
 const genders: SELECTITEM[] = [
   { value: 'M', label: 'Male/Hombre' },
@@ -181,11 +177,11 @@ export const constants = {
   joinedYears,
   // non-db
   gradYears,
-  years,
+  contactYears: contactYears,
   months,
   periods,
   // periodYears,
-  activeQRperiods,
+  qrPeriods,
   // selectedQRPeriod,
   genders,
   smileys,

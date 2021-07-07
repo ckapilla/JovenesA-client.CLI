@@ -23,7 +23,7 @@ export class QuarterlyListComponent implements OnInit {
   successMessage: string;
   readonly reviewedStatuses: SELECTITEM[] = constants.reviewedQRStatuses;
   readonly highlightStatuses: SELECTITEM[] = constants.highlightStatuses;
-  readonly activeQRPeriods: SELECTITEM[] = constants.activeQRperiods;
+  readonly qrPeriods: SELECTITEM[] = constants.qrPeriods;
   qrMinis: QuarterlyReportRPT[];
   qrMini: QuarterlyReportRPT;
   selectedQRPeriod = '';

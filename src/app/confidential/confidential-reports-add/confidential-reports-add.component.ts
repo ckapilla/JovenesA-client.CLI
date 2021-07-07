@@ -35,7 +35,7 @@ export class ConfidentialReportsAddComponent implements OnInit {
   emojiValidationMessage = '';
   narrativeValidationMessage = '';
 
-  readonly contactYears: SELECTITEM[] = constants.years;
+  readonly contactYears: SELECTITEM[] = constants.contactYears;
   readonly contactMonths: SELECTITEM[] = constants.months;
 
   // private validationMessages = {

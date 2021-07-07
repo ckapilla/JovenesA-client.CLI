@@ -46,7 +46,7 @@ export class MentorReportsSummaryTrackingComponent {
     private route: ActivatedRoute
   ) {
     console.log('mr-summary-tracking constructor');
-    this.years = constants.years;
+    this.years = constants.contactYears;
     this.months = constants.months;
 
     this.mrReviewedStatuses = constants.reviewedStatuses;

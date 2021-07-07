@@ -14,7 +14,7 @@ import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 export class SelfReportTrackingContainerComponent implements OnInit {
   studentGUId: string;
   studentGUIdReceived: boolean;
-  readonly activeQRPeriods: SELECTITEM[] = constants.activeQRperiods;
+  readonly qrPeriods: SELECTITEM[] = constants.qrPeriods;
   readonly reviewedStatuses: SELECTITEM[] = constants.reviewedQRStatuses;
   selectedQRPeriod = '';
   subscription: Subscription;

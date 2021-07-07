@@ -13,7 +13,7 @@ export class AdminsStudentContainerComponent implements OnInit {
   selectedQRPeriod = '';
   studentGUId: string;
   studentGUIdReceived: boolean;
-  readonly activeQRPeriods: SELECTITEM[] = constants.activeQRperiods;
+  readonly qrPeriods: SELECTITEM[] = constants.qrPeriods;
   readonly reviewedStatuses: SELECTITEM[] = constants.reviewedQRStatuses;
   subscription: Subscription;
 

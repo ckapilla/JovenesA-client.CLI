@@ -21,7 +21,7 @@ export class QuarterlyContainerComponent implements OnInit {
   selectedQRPeriod = '';
   studentGUId: string;
   studentGUIdReceived: boolean;
-  readonly activeQRPeriods: SELECTITEM[] = constants.activeQRperiods;
+  readonly qrPeriods: SELECTITEM[] = constants.qrPeriods;
   readonly reviewedStatuses: SELECTITEM[] = constants.reviewedQRStatuses;
   quarterlyReportGUId: string;
   selectedReviewedStatusID: string;

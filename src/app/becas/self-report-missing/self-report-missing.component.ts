@@ -20,7 +20,7 @@ export class SelfReportMissingComponent implements OnInit {
   errorMessage: string;
   successMessage: string;
   selectedQRPeriod = '';
-  readonly activeQRPeriods: SELECTITEM[] = constants.activeQRperiods;
+  readonly qrPeriods: SELECTITEM[] = constants.qrPeriods;
   readonly reviewedStatuses: SELECTITEM[] = constants.reviewedQRStatuses;
   subscription: Subscription;
   studentMinis: StudentMiniDTO[];

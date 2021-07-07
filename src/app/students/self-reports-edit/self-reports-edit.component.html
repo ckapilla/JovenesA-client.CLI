@@ -11,7 +11,7 @@
             formControlName="currentQRPeriod"
             data-cy="period-selector"
           >
-            <option *ngFor="let yearPeriod of activeQRPeriods" [value]="yearPeriod.value">{{ yearPeriod.label }}</option>
+            <option *ngFor="let yearPeriod of qrPeriods" [value]="yearPeriod.value">{{ yearPeriod.label }}</option>
           </select>
           <div hidden class="controls">
             <label for="selfReportId">Id</label>

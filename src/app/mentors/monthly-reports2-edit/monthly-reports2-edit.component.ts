@@ -38,7 +38,7 @@ export class MonthlyReports2EditComponent implements OnInit {
   emojiValidationMessage = '';
   narrativeValidationMessage = '';
   subscription: Subscription;
-  readonly contactYears: SELECTITEM[] = constants.years;
+  readonly contactYears: SELECTITEM[] = constants.contactYears;
   readonly contactMonths: SELECTITEM[] = constants.months;
 
   @Select(StudentState.getSelectedStudentName) currentName$: Observable<string>;

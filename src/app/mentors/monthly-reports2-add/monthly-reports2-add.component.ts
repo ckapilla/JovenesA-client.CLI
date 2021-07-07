@@ -38,7 +38,7 @@ export class MonthlyReports2AddComponent implements OnInit {
   byProxy: string;
   returnTarget: string;
 
-  readonly contactYears: SELECTITEM[] = constants.years;
+  readonly contactYears: SELECTITEM[] = constants.contactYears;
   readonly contactMonths: SELECTITEM[] = constants.months;
 
   // private validationMessages = {

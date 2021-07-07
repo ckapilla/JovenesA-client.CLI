@@ -27,7 +27,7 @@ export class SelfReportsEditComponent implements OnInit {
   myForm: FormGroup;
   periodYears: SELECTITEM[];
   periodMonths: SELECTITEM[];
-  readonly activeQRPeriods: SELECTITEM[] = constants.activeQRperiods;
+  readonly qrPeriods: SELECTITEM[] = constants.qrPeriods;
   readonly reviewedStatuses: SELECTITEM[] = constants.reviewedQRStatuses;
   selectedQRPeriod = '';
   subscription: Subscription;

@@ -11,7 +11,7 @@ import { UIState } from 'src/app/_store/ui/ui.state';
 })
 export class SponsorsContainerComponent implements OnInit {
   isLoading = false;
-  readonly activeQRPeriods: SELECTITEM[] = constants.activeQRperiods;
+  readonly qrPeriods: SELECTITEM[] = constants.qrPeriods;
   studentGUId: string;
   studentGUIdReceived: boolean;
   selectedQRPeriod: string;

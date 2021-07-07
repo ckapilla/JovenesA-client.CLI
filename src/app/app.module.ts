@@ -11,15 +11,15 @@ import { environment } from 'src/environments/environment';
 import { HeaderbarComponent } from './app-navbar/headerbar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CodeValuesService } from './_shared/services/codeValuesService';
+import { ConstantsService } from './_shared/services/constantsService';
 // every module that has a routing component no longer needs to be imported here
 import { AppSharedModule } from './_shared/_shared.module';
 import { MemberState } from './_store/member/member.state';
 import { StudentState } from './_store/student/student.state';
 import { UIState } from './_store/ui/ui.state';
 
-export function appInit(codeValuesService: CodeValuesService) {
-  return () => codeValuesService.buildArrays();
+export function appInit(constantsService: ConstantsService) {
+  return () => constantsService.buildArrays();
 }
 
 @NgModule({
@@ -46,7 +46,7 @@ export function appInit(codeValuesService: CodeValuesService) {
     {
       provide: APP_INITIALIZER,
       useFactory: appInit,
-      deps: [CodeValuesService],
+      deps: [ConstantsService],
       multi: true // required because it reference ApplicationStatusService which is multi and "can't mix"
     },
     Location

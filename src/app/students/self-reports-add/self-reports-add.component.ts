@@ -24,7 +24,7 @@ export class SelfReportsAddComponent implements OnInit {
   periodMonths: SELECTITEM[];
   errorMessage: string;
   successMessage: string;
-  readonly activeQRPeriods: SELECTITEM[] = constants.activeQRperiods;
+  readonly qrPeriods: SELECTITEM[] = constants.qrPeriods;
   readonly reviewedStatuses: SELECTITEM[] = constants.reviewedQRStatuses;
   selectedQRPeriod = '';
   subscription: Subscription;

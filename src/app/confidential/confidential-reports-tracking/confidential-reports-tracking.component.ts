@@ -36,7 +36,7 @@ export class ConfidentialReportsTrackingComponent implements OnInit {
     public confidntialReportData: ConfidentialDataService,
     private route: ActivatedRoute
   ) {
-    this.years = constants.years;
+    this.years = constants.contactYears;
     this.months = constants.months;
     this.smileys = constants.smileys;
   }

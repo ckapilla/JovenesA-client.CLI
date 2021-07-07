@@ -8,7 +8,7 @@
         Report Year-Period:
         <select name="activePeriodSelector" [(ngModel)]="selectedQRPeriod"
                 (change)="setselectedQRPeriod($event.target.value)">>
-          <option *ngFor="let yearPeriod of activeQRPeriods" [value]="yearPeriod.value">{{yearPeriod.label}}</option>
+          <option *ngFor="let yearPeriod of qrPeriods" [value]="yearPeriod.value">{{yearPeriod.label}}</option>
         </select>
       </span>
     </div>
