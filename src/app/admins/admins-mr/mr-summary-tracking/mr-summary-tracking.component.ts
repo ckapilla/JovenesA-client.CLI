@@ -53,7 +53,7 @@ export class MentorReportsSummaryTrackingComponent {
 
     this.highlightStatuses = constants.highlightStatuses;
 
-    this.selectedYear = '2021'; // '' + today.getFullYear(); //
+    this.selectedYear = '' + constants.currentContactYear; // '' + today.getFullYear(); //
     this.selectedMonth = '0'; // + today.getMonth() + 1;// '5';
 
     this.selectedMRReviewedStatus = '0'; // this.mrReviewedStatuses[0].value;

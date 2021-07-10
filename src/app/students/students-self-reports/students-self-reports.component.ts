@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
+import { constants } from 'src/app/_shared/constants/constants';
 import { StudentDataService } from 'src/app/_shared/data/student-data.service';
 import { StudentSelfReportDataService } from 'src/app/_shared/data/student-self-report-data.service';
 import { SponsorGroup } from 'src/app/_shared/models/sponsor-group';
@@ -90,11 +91,10 @@ export class StudentsSelfReportsComponent implements OnInit {
   studentSelfReportAdd() {
     const target =
       'students/self-reports-add/' + this.studentId + '/' + this.sponsorGroupId + '/' + this.studentRecordGUId;
-    console.log('in students-sponsor-letters: ready to navigate to' + target);
+    console.log('in SSR: ready to navigate to' + target);
     this.router.navigateByUrl(target);
   }
   isCurrentReportDate(rptDate: string) {
-    // console.log(rptDate.substr(0, 7));
-    return rptDate.substr(0, 7) >= '2021-07';
+    return rptDate.substr(0, 7) >= constants.currentGradePeriodStartDate.substr(0, 7); // 'yyyy-MM';
   }
 }

@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { catchError, tap, toArray } from 'rxjs/operators';
+import { SetselectedQRPeriod } from 'src/app/_store/ui/ui.action';
 import { constants } from '../constants/constants';
 import { BaseDataService } from '../data/base-data.service';
 import { SELECTITEM } from '../interfaces/SELECTITEM';
@@ -31,16 +33,13 @@ export class ConstantsService extends BaseDataService {
     catchError(this.handleError)
   );
 
-  constructor(public http: HttpClient, public webApiPrefixService: UrlService) {
+  constructor(public http: HttpClient, public webApiPrefixService: UrlService, public store: Store) {
     super(http, webApiPrefixService);
+    console.log('hello from constantsService constructor');
   }
 
   public buildArrays() {
     this.buildCodeValueArrays();
-    this.buildDateArrays();
-  }
-
-  public buildDateArrays() {
     this.generateQRPeriods();
   }
 
@@ -51,25 +50,32 @@ export class ConstantsService extends BaseDataService {
     const thisQtr = Math.floor(thisMonth/3);
     let elem: C_SELECTITEM =  { value: '', label: '' };
     const NUMQTRS = 4;
+    const initYear = 2019;
+    const initQtr = 3;
     let maxQtrs = NUMQTRS;
 
-    const periodStrings: string[] = ['', '1:Ene-Mar', '2:Abr-Jun', '3:Jul-Set', '4:Oct-Dic' ];
+    console.log('============================');
+    const periodStrings: string[] = ['1:Ene-Mar', '2:Abr-Jun', '3:Jul-Set', '4:Oct-Dic' ];
 
-    let year = 2019;
-    let qtr = 3;
+    let year = initYear;
+    let qtr = initQtr;
     while (year <= thisYear) {
       maxQtrs = (year === thisYear) ? thisQtr : NUMQTRS;
       while (qtr <= maxQtrs) {
-        elem = new C_SELECTITEM(year + '-' + qtr, year + '-' + periodStrings[qtr]);
+        elem = new C_SELECTITEM(year + '-' + qtr, year + '-' + periodStrings[qtr - 1]);
         constants.qrPeriods.push(elem);
         qtr++;
       }
       qtr = 1;
       year++;
     }
+    this.setselectedQRPeriod(thisYear + '-' + thisQtr);
     console.log(constants.qrPeriods);
   }
 
+  setselectedQRPeriod(yearPeriod: string) {
+    this.store.dispatch(new SetselectedQRPeriod(yearPeriod));
+  }
   public buildCodeValueArrays() {
     this.codeValues$.pipe(toArray()).subscribe(
       (data) => {

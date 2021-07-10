@@ -57,7 +57,7 @@ export class MonthlyReports2AddComponent implements OnInit {
     console.log('Hi from MonthlyReportsAddComponent');
 
     this.myForm = _fb.group({
-      lastContactYearSelector: ['2021'], // Validators.required],
+      lastContactYearSelector: ['' + constants.currentContactYear], // Validators.required],
       lastContactMonthSelector: ['0', { validators: [this.validateMonth] }],
       // use bogus integer value so change detection works:
       inputEmoji: [666, { validators: [Validators.required, this.validateEmojis] }],
@@ -106,7 +106,7 @@ export class MonthlyReports2AddComponent implements OnInit {
       this.mentorReport2.reportDateTime = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
       console.log('reportDateTime = ' + this.mentorReport2.reportDateTime);
       // this.mentorReport.lastContactYear = (Number)(this.contactYears[this.contactYears.length - 1].value);
-      this.mentorReport2.lastContactYear = 2021;
+      this.mentorReport2.lastContactYear =  constants.currentContactYear;
       this.mentorReport2.lastContactMonth = 0;
 
       this.myForm.valueChanges.subscribe((value: any) => {

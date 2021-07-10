@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { constants } from '../../_shared/constants/constants';
 import {
   SetQRComponentsEditable,
   SetSelectedFilterMode,
@@ -13,8 +14,8 @@ import { UIStateModel } from './ui.model';
   defaults: {
     testNamesVisibility: false,
     qrComponentsEditable: false,
-    selectedQRPeriod: '2021-2',
-    selectedGradesGivenDate: '2021-07-02',
+    selectedQRPeriod: '', // initialize ConstantsService.generateQRPeriods
+    selectedGradesGivenDate: constants.currentGradePeriodStartDate,
 
     selectedFilterMode: '998',
     selectedStudentStatus: '0',

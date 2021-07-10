@@ -38,7 +38,8 @@
               'maxlength': 'Entry cannot exceed 4000 characters in length.'
                     }"></app-display-errors>
       </div>
-
+      <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+      <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
       <div class="col-md-6 col-md-offset-1">
         <span>
           <button class="btn btn-primary"

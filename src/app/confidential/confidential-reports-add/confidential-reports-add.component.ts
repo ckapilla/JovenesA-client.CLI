@@ -53,7 +53,7 @@ export class ConfidentialReportsAddComponent implements OnInit {
     console.log('Hi from MonthlyReportsAddComponent');
 
     this.myForm = _fb.group({
-      lastContactYearSelector: ['2021'], // Validators.required],
+      lastContactYearSelector: [constants.currentContactYear], // Validators.required],
       lastContactMonthSelector: ['0', { validators: [this.validateMonth] }],
       // use bogus integer value so change detection works:
       inputEmoji: [666, { validators: [Validators.required, this.validateEmojis] }],
@@ -87,8 +87,7 @@ export class ConfidentialReportsAddComponent implements OnInit {
     const now = new Date();
     this.confidentialReport.reportDateTime = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
     console.log('reportDateTime = ' + this.confidentialReport.reportDateTime);
-    // this. confidentialReport.lastContactYear = (Number)(this.contactYears[this.contactYears.length - 1].value);
-    this.confidentialReport.lastContactYear = 2021;
+    this.confidentialReport.lastContactYear = constants.currentContactYear;
     this.confidentialReport.lastContactMonth = 0;
 
     this.myForm.valueChanges.subscribe((value: any) => {

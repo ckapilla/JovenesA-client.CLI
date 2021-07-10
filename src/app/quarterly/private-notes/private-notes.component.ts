@@ -130,7 +130,9 @@ export class PrivateNotesComponent implements OnInit {
         this.successMessage = 'Saved successfully / Guardar con exito';
         window.setTimeout(() => {
           this.successMessage = '';
-        }, 5000);
+          // const target = '/quarterly';
+          // this.router.navigateByUrl(target);
+        }, 1500);
         this.isSubmitted = true;
         this.isLoading = false;
       },

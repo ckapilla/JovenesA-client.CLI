@@ -39,9 +39,7 @@ export class SelfReportsAddComponent implements OnInit {
     private store: Store
   ) {
     console.log('Hi from SelfReportsAddComponent');
-
     this.subscribeForselectedQRPeriod();
-    console.log('after subscribeForSelectedQRPeriod');
 
     this.myForm = _fb.group({
       currentQRPeriod: this.selectedQRPeriod,
@@ -90,7 +88,7 @@ export class SelfReportsAddComponent implements OnInit {
   subscribeForselectedQRPeriod() {
     this.subscription = this.selectedQRPeriod$.subscribe((message) => {
       this.selectedQRPeriod = message;
-      console.log('************NGXS: SSR Tracking new selectedQRPeriod received' + this.selectedQRPeriod);
+      console.log('************NGXS: SSR Add new selectedQRPeriod received' + this.selectedQRPeriod);
     });
   }
 
@@ -143,6 +141,7 @@ export class SelfReportsAddComponent implements OnInit {
     console.log('hasChanges net is ' + this.myForm.dirty || this.submitted);
     return this.myForm.dirty && !this.submitted;
   }
+
   setselectedQRPeriod(yearPeriod: string) {
     this.store.dispatch(new SetselectedQRPeriod(yearPeriod));
   }

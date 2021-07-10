@@ -54,6 +54,8 @@ const contactYears: SELECTITEM[] = [
   { value: '2020', label: '2020' },
   { value: '2021', label: '2021' }
 ];
+const currentContactYear  = 2021;
+
 
 const months: SELECTITEM[] = [
   { value: '1', label: 'Jan/Ene' },
@@ -69,12 +71,12 @@ const months: SELECTITEM[] = [
   { value: '11', label: 'Nov/Nov' },
   { value: '12', label: 'Dec/Dic' }
 ];
-const periods: SELECTITEM[] = [
-  { value: '1', label: '1:Ene-Mar' },
-  { value: '2', label: '2:Abr-Jun' },
-  { value: '3', label: '3:Jul-Set' },
-  { value: '4', label: '4:Oct-Dic' }
-];
+// const periods: SELECTITEM[] = [
+//   { value: '1', label: '1:Ene-Mar' },
+//   { value: '2', label: '2:Abr-Jun' },
+//   { value: '3', label: '3:Jul-Set' },
+//   { value: '4', label: '4:Oct-Dic' }
+// ];
 // const qrPeriods: SELECTITEM[] = [
 //   { value: '2019-3', label: '2019 3:Jul-Set' },
 //   { value: '2019-4', label: '2019 4:Oct-Dic' },
@@ -86,6 +88,8 @@ const periods: SELECTITEM[] = [
 //   { value: '2021-2', label: '2021 2:Abr-Jun' },
 // ];
 const qrPeriods: SELECTITEM[] = [];
+
+const currentGradePeriodStartDate = '2021-07-01';
 
 const genders: SELECTITEM[] = [
   { value: 'M', label: 'Male/Hombre' },
@@ -177,12 +181,12 @@ export const constants = {
   joinedYears,
   // non-db
   gradYears,
-  contactYears: contactYears,
+  contactYears,
+  currentContactYear,
   months,
-  periods,
-  // periodYears,
   qrPeriods,
-  // selectedQRPeriod,
+  currentGradePeriodStartDate,
+
   genders,
   smileys,
   emojis,
