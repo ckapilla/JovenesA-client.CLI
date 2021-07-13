@@ -41,7 +41,62 @@ export class ConstantsService extends BaseDataService {
   public buildArrays() {
     this.buildCodeValueArrays();
     this.generateQRPeriods();
+    this.generateJoinedYears();
+    this.generateGradYears();
+    this.generateContactYears();
   }
+
+  public generateJoinedYears() {
+    const now = new Date();
+    const thisYear  = now.getFullYear();
+    let elem: C_SELECTITEM =  { value: '', label: '' };
+
+    const initYear = 2002;
+    const finalYear = thisYear;
+
+    let year = finalYear;
+    while (year >= initYear) {
+      elem = new C_SELECTITEM('' +year, '' + year );
+      constants.joinedYears.push(elem);
+      year--;
+    }
+    console.log(constants.joinedYears);
+  }
+
+  public generateGradYears() {
+    const now = new Date();
+    const thisYear  = now.getFullYear();
+    let elem: C_SELECTITEM =  { value: '', label: '' };
+
+    const initYear = 2004;
+    const finalYear = thisYear + 5;
+
+    let year = finalYear;
+    while (year >= initYear) {
+      elem = new C_SELECTITEM('' +year, '' + year );
+      constants.gradYears.push(elem);
+      year--;
+    }
+    console.log(constants.gradYears);
+  }
+
+
+  public generateContactYears() {
+    const now = new Date();
+    const thisYear  = now.getFullYear();
+    let elem: C_SELECTITEM =  { value: '', label: '' };
+
+    const initYear = 2017;
+
+    let year = initYear;
+    while (year <= thisYear) {
+      elem = new C_SELECTITEM('' +year, '' + year );
+      constants.contactYears.push(elem);
+      year++;
+    }
+    console.log(constants.contactYears);
+  }
+
 
   public generateQRPeriods() {
     const now = new Date();
