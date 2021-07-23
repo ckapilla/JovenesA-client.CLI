@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { BehaviorSubject, EMPTY, Observable } from 'rxjs';
@@ -310,9 +310,20 @@ export class AdminsStudentComponent implements OnInit {
     console.log('student before retrieve FormValues merge');
     console.log(this.student);
 
-    // skipping this.student = { ...this.student, ...this.myForm.value };
-    console.log('SKIPPED student after retrieve FormValues merge');
+    this.setNullDates (this.myForm.controls.mentorAssignedDate);
+    this.setNullDates (this.myForm.controls.mentoringEndDate);
+    this.setNullDates (this.myForm.controls.probationStartDate);
+    this.setNullDates (this.myForm.controls.probationEndDate);
+
+    this.student = { ...this.student, ...this.myForm.value };
+    console.log('student after retrieve FormValues merge');
     console.log(this.student);
+  }
+
+  setNullDates(control: AbstractControl): void {
+    if ((control.value as string)?.trim() === '') {
+      control.setValue(null);
+    }
   }
 
   saveMyForm(): boolean {

@@ -106,6 +106,7 @@ export class MemberDataService extends BaseDataService {
     body = JSON.stringify(x.member);
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     console.log('post new member with url ' + url);
+    console.log('post new member with body ' + body);
     return this.http.post(url, body, { headers: headers });
   }
 

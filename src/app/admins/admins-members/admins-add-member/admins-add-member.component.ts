@@ -32,7 +32,7 @@ export class AdminsAddMemberComponent implements OnInit {
 
   public bInvalidSubmitState = false;
 
-  public statusGroupError = 'statusGroupError';
+  // public statusGroupError = 'statusGroupError';
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -55,39 +55,39 @@ export class AdminsAddMemberComponent implements OnInit {
           email: ['', Validators.compose([Validators.required, Validators.email, Validators.maxLength(50)])]
         },
         { validator: this.setAllTextFields }
-      ),
-      statusGroup: _fb.group(
-        {
-          mentorStatusId: [''],
-          sponsorStatusId: [''],
-          adminStatusId: [''],
-          employeeStatusId: [''],
-          donorStatusId: [''],
-          volunteerStatusId: [''],
-          presidentStatusId: [''],
-          boardStatusId: ['']
-        },
-        { validator: this.setAtLeastOneStatus }
       )
+      // statusGroup: _fb.group(
+      //   {
+      //     mentorStatusId: [''],
+      //     sponsorStatusId: [''],
+      //     adminStatusId: [''],
+      //     employeeStatusId: [''],
+      //     donorStatusId: [''],
+      //     volunteerStatusId: [''],
+      //     presidentStatusId: [''],
+      //     boardStatusId: ['']
+      //   },
+      //   { validator: this.setAtLeastOneStatus }
+      // )
     });
 
-    this.myForm.controls.statusGroup.setValidators(this.setAtLeastOneStatus);
+    // this.myForm.controls.statusGroup.setValidators(this.setAtLeastOneStatus);
 
-    this.myForm.controls.statusGroup.updateValueAndValidity();
+    // this.myForm.controls.statusGroup.updateValueAndValidity();
     this.member = new Member();
 
     this.member.firstNames = '';
     this.member.lastNames = '';
     this.member.email = '';
-    this.member.mentorStatusId = 0;
-    this.member.mentorStatusId = 0;
-    this.member.sponsorStatusId = 0;
-    this.member.adminStatusId = 0;
-    this.member.employeeStatusId = 0;
-    this.member.donorStatusId = 0;
-    this.member.volunteerStatusId = 0;
-    this.member.presidentStatusId = 0;
-    this.member.boardMemberStatusId = 0;
+    // this.member.mentorStatusId = 0;
+    // this.member.mentorStatusId = 0;
+    // this.member.sponsorStatusId = 0;
+    // this.member.adminStatusId = 0;
+    // this.member.employeeStatusId = 0;
+    // this.member.donorStatusId = 0;
+    // this.member.volunteerStatusId = 0;
+    // this.member.presidentStatusId = 0;
+    // this.member.boardMemberStatusId = 0;
 
     this.errorMessage = '';
     this.successMessage = '';
@@ -106,16 +106,16 @@ export class AdminsAddMemberComponent implements OnInit {
       // memberId: 0,
       firstNames: member.firstNames,
       lastNames: member.lastNames,
-      email: member.email,
+      email: member.email // ,
 
-      mentorStatusId: member.mentorStatusId,
-      sponsorStatusId: member.sponsorStatusId,
-      adminStatusId: member.adminStatusId,
-      employeeStatusId: member.employeeStatusId,
-      donorStatusId: member.donorStatusId,
-      volunteerStatusId: member.volunteerStatusId,
-      presidentStatusId: member.presidentStatusId,
-      boardStatusId: member.boardMemberStatusId
+      // mentorStatusId: member.mentorStatusId,
+      // sponsorStatusId: member.sponsorStatusId,
+      // adminStatusId: member.adminStatusId,
+      // employeeStatusId: member.employeeStatusId,
+      // donorStatusId: member.donorStatusId,
+      // volunteerStatusId: member.volunteerStatusId,
+      // presidentStatusId: member.presidentStatusId,
+      // boardStatusId: member.boardMemberStatusId
     });
   }
 
@@ -126,7 +126,7 @@ export class AdminsAddMemberComponent implements OnInit {
       ...this.member,
       ...this.myForm.value,
       ...this.myForm.controls.textGroup.value,
-      ...this.myForm.controls.statusGroup.value
+      // ...this.myForm.controls.statusGroup.value
     };
   }
 
@@ -182,7 +182,11 @@ export class AdminsAddMemberComponent implements OnInit {
   }
 
   setAllTextFields(fg: FormGroup) {
-    console.log('must set all text fields');
+    console.log('check if set all text fields');
+    console.log('>' + fg.controls.firstNames.value + '<');
+    console.log('>' + fg.controls.lastNames.value + '<');
+    console.log('>' + fg.controls.email.value + '<');
+
     if (fg.controls.firstNames.value === '' || fg.controls.lastNames.value === '' || fg.controls.email.value === '') {
       console.log(' set -- setting error allText');
 
