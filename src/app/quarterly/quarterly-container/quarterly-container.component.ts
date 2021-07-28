@@ -4,7 +4,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { QuarterlyReportRPT } from 'src/app/_shared/models/quarterly-reportRPT';
 import { StudentState } from 'src/app/_store/student/student.state';
-import { SetQRComponentsEditable, SetselectedQRPeriod } from 'src/app/_store/ui/ui.action';
+import { SetQRComponentsEditable, SetSelectedQRPeriod } from 'src/app/_store/ui/ui.action';
 import { UIState } from 'src/app/_store/ui/ui.state';
 import { constants } from '../../_shared/constants/constants';
 import { QuarterlyDataService } from '../../_shared/data/quarterly-data.service';
@@ -29,7 +29,7 @@ export class QuarterlyContainerComponent implements OnInit {
   private subscription: Subscription;
 
   @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
-  @Select(UIState.getselectedQRPeriod) selectedQRPeriod$: Observable<string>;
+  @Select(UIState.getSelectedQRPeriod) selectedQRPeriod$: Observable<string>;
 
   constructor(private route: ActivatedRoute, public quarterlyData: QuarterlyDataService, public store: Store) {}
 
@@ -99,8 +99,8 @@ export class QuarterlyContainerComponent implements OnInit {
     );
   }
 
-  setselectedQRPeriod(yearPeriod: string) {
-    this.store.dispatch(new SetselectedQRPeriod(yearPeriod));
+  setSelectedQRPeriod(yearPeriod: string) {
+    this.store.dispatch(new SetSelectedQRPeriod(yearPeriod));
     this.fetchFilteredData();
   }
 

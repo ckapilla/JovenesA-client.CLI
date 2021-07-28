@@ -25,6 +25,12 @@ export class BecaDataService {
     return this.http.get<GradesGivenEntryDTO[]>(url).pipe(catchError(this.handleError));
   }
 
+  public getGradesListForPeriod(gradesPeriodId: number): Observable<GradesGivenEntryDTO[]> {
+    const url = this.WebApiPrefix + 'becas/' + 'grades-list/period/' + gradesPeriodId;
+    console.log('sending AuthHttp get request for GradesList wiht url ' + url);
+    return this.http.get<GradesGivenEntryDTO[]>(url).pipe(catchError(this.handleError));
+  }
+
   public getStudentGrades(studentGUId: string): Observable<StudentGrades[]> {
     const url = this.WebApiPrefix + 'becas/' + 'student-grades/' + studentGUId;
     console.log('sending AuthHttp get request for StudentGrades');
@@ -64,7 +70,7 @@ export class BecaDataService {
   }
 
   private handleError(error: any) {
-    console.log('quarterly-data handlError');
+    console.log('beca-data handlError');
     JSON.stringify(error);
     const errMsg = error.message
       ? error.message

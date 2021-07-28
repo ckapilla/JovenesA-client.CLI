@@ -33,7 +33,7 @@ export class MrConsolidatedComponent implements OnInit {
   private subscription: Subscription;
 
   @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
-  @Select(UIState.getselectedQRPeriod) selectedQRPeriod$: Observable<string>;
+  @Select(UIState.getSelectedQRPeriod) selectedQRPeriod$: Observable<string>;
   @Select(UIState.getQRComponentsEditable) qrComponentsEditable$: Observable<boolean>;
 
   constructor(

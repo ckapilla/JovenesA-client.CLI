@@ -4,7 +4,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { StudentSelfReportDataService } from 'src/app/_shared/data/student-self-report-data.service';
 import { StudentState } from 'src/app/_store/student/student.state';
-import { SetselectedQRPeriod } from 'src/app/_store/ui/ui.action';
+import { SetSelectedQRPeriod } from 'src/app/_store/ui/ui.action';
 import { UIState } from 'src/app/_store/ui/ui.state';
 import { constants } from '../../_shared/constants/constants';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
@@ -36,7 +36,7 @@ export class SelfReportTrackingComponent implements OnInit {
   displayTestNames: boolean;
 
   @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
-  @Select(UIState.getselectedQRPeriod) selectedQRPeriod$: Observable<string>;
+  @Select(UIState.getSelectedQRPeriod) selectedQRPeriod$: Observable<string>;
   @Select(UIState.getTestNamesVisibility) testNameVisibility$: Observable<boolean>;
 
   constructor(
@@ -121,8 +121,8 @@ export class SelfReportTrackingComponent implements OnInit {
     }
   }
 
-  setselectedQRPeriod(yearPeriod: string) {
-    this.store.dispatch(new SetselectedQRPeriod(yearPeriod));
+  setSelectedQRPeriod(yearPeriod: string) {
+    this.store.dispatch(new SetSelectedQRPeriod(yearPeriod));
     this.fetchFilteredData();
   }
 

@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { constants } from '../../_shared/constants/constants';
 import {
   SetQRComponentsEditable,
-  SetSelectedFilterMode,
-  SetSelectedGradYear, SetselectedQRPeriod, SetSelectedStudentStatus,
+  SetSelectedFilterMode, SetSelectedGradesPeriod, SetSelectedGradYear, SetSelectedQRPeriod, SetSelectedStudentStatus,
   SetSelectedYearJoined, SetTestNamesVisibility
 } from './ui.action';
 import { UIStateModel } from './ui.model';
@@ -15,7 +13,7 @@ import { UIStateModel } from './ui.model';
     testNamesVisibility: false,
     qrComponentsEditable: false,
     selectedQRPeriod: '', // initialize ConstantsService.generateQRPeriods
-    selectedGradesGivenDate: constants.currentGradePeriodStartDate,
+    selectedGradesPeriod: '104', // { value: '104', label: '2021-07-01 : 2021-11-30' }
 
     selectedFilterMode: '998',
     selectedStudentStatus: '0',
@@ -58,17 +56,32 @@ export class UIState {
   }
 
   @Selector()
-  static getselectedQRPeriod(state: UIStateModel) {
+  static getSelectedQRPeriod(state: UIStateModel) {
     return state.selectedQRPeriod;
   }
 
-  @Action(SetselectedQRPeriod)
-  setselectedQRPeriod(ctx: StateContext<UIStateModel>, { payload }: SetselectedQRPeriod) {
+  @Action(SetSelectedQRPeriod)
+  setSelectedQRPeriod(ctx: StateContext<UIStateModel>, { payload }: SetSelectedQRPeriod) {
     const selectedQRPeriod = payload;
     const state = ctx.getState();
     ctx.patchState({
       ...state,
       selectedQRPeriod
+    });
+  }
+
+  @Selector()
+  static getSelectedGradesPeriod(state: UIStateModel) {
+    return state.selectedGradesPeriod;
+  }
+
+  @Action(SetSelectedGradesPeriod)
+  setSelectedGradesPeriod(ctx: StateContext<UIStateModel>, { payload }: SetSelectedGradesPeriod) {
+    const selectedGradesPeriod = payload;
+    const state = ctx.getState();
+    ctx.patchState({
+      ...state,
+      selectedGradesPeriod
     });
   }
 

@@ -5,7 +5,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { StudentSelfReportDataService } from 'src/app/_shared/data/student-self-report-data.service';
 import { StudentSelfReport } from 'src/app/_shared/models/student-self-report';
-import { SetselectedQRPeriod } from 'src/app/_store/ui/ui.action';
+import { SetSelectedQRPeriod } from 'src/app/_store/ui/ui.action';
 import { UIState } from 'src/app/_store/ui/ui.state';
 import { constants } from '../../_shared/constants/constants';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
@@ -29,7 +29,7 @@ export class SelfReportsAddComponent implements OnInit {
   selectedQRPeriod = '';
   subscription: Subscription;
 
-  @Select(UIState.getselectedQRPeriod) selectedQRPeriod$: Observable<string>;
+  @Select(UIState.getSelectedQRPeriod) selectedQRPeriod$: Observable<string>;
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -142,8 +142,8 @@ export class SelfReportsAddComponent implements OnInit {
     return this.myForm.dirty && !this.submitted;
   }
 
-  setselectedQRPeriod(yearPeriod: string) {
-    this.store.dispatch(new SetselectedQRPeriod(yearPeriod));
+  setSelectedQRPeriod(yearPeriod: string) {
+    this.store.dispatch(new SetSelectedQRPeriod(yearPeriod));
   }
 
 }

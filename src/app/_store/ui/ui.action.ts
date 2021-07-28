@@ -18,12 +18,21 @@ export class SetQRComponentsEditable {
   constructor(public readonly payload: boolean) {}
 }
 ///
-export class GetselectedQRPeriod {
+export class GetSelectedQRPeriod {
   static readonly type = '[UI] Get selectedQRPeriod';
   constructor(public payload: UIStateModel) {}
 }
-export class SetselectedQRPeriod {
+export class SetSelectedQRPeriod {
   static readonly type = '[UI] update selectedQRPeriod';
+  constructor(public readonly payload: string) {}
+}
+///
+export class GetSelectedGradesPeriod {
+  static readonly type = '[UI] Get selectedGradesPeriod';
+  constructor(public payload: UIStateModel) {}
+}
+export class SetSelectedGradesPeriod {
+  static readonly type = '[UI] update selectedGradesPeriod';
   constructor(public readonly payload: string) {}
 }
 ///

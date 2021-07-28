@@ -1,8 +1,19 @@
 <div class="card bg-primary">
-  <div class="card-header text-white" data-cy="status-this-month" style="font-size: large">
-    <span>Grade Status for This Month</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <div class="card-header text-white"
+    data-cy="grades-period">
+    <span style="font-size: large"> Grade Report Statuses</span>
+    <span style="margin-left: 10rem">
+      Grades Processing Period:
+      <select
+        name="activePeriodSelector"
+        data-cy="period-selector"
+        [(ngModel)]="selectedGradesPeriod"
+        (change)="setSelectedGradesPeriod($event.target.value)"
+      >
+        <option *ngFor="let gradesPeriod of gradesPeriods" [value]="gradesPeriod.value">{{gradesPeriod.label}}</option>
+      </select>
+    </span>
   </div>
-
   <div class="card-body bg-white">
     <span *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</span>
     <span *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</span>
@@ -15,9 +26,10 @@
         <table class="table-sm table-striped">
           <thead>
             <tr>
-              <!--<td>Id</td>-->
+              <!-- <td>Id</td> -->
+              <th></th>
               <!-- <th></th> -->
-              <th>Review</th>
+              <th>Profile</th>
               <th app-sortable-column="studentName" sort-direction="asc" (onSortColumn)="onSortColumn($event)">
                 Student
               </th>
@@ -41,14 +53,14 @@
           </thead>
           <tbody>
             <tr *ngFor="let entry of gradesGivenEntryDTOs; let i = index">
-              <!-- <td>
+              <td>
                 {{ i + 1 }}
-              </td> -->
-              <td (click)="confirmGPA(entry.studentGUId, entry.studentName)" class="link">
-                Review
               </td>
-
               <td (click)="gotoStudent(entry.studentGUId)" class="link">
+
+                Profile
+              </td>
+              <td (click)="confirmGPA(entry.studentGUId, entry.studentName)" class="link">
                 {{ entry.studentName }}
               </td>
               <td>

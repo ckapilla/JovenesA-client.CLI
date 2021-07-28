@@ -12,7 +12,7 @@
             <select
               formControlName="currentQRPeriod"
               data-cy="period-selector"
-              (change)="setselectedQRPeriod($event.target.value )"
+              (change)="setSelectedQRPeriod($event.target.value )"
             >
               <option *ngFor="let qrPeriod of qrPeriods" [value]="qrPeriod.value">{{ qrPeriod.label }}</option>
             </select>

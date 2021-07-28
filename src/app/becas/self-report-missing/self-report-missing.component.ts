@@ -5,7 +5,7 @@ import { Observable, Subscription } from 'rxjs';
 import { StudentSelfReportDataService } from 'src/app/_shared/data/student-self-report-data.service';
 import { StudentMiniDTO } from 'src/app/_shared/models/studentMiniDTO';
 import { StudentState } from 'src/app/_store/student/student.state';
-import { SetselectedQRPeriod } from 'src/app/_store/ui/ui.action';
+import { SetSelectedQRPeriod } from 'src/app/_store/ui/ui.action';
 import { UIState } from 'src/app/_store/ui/ui.state';
 import { constants } from '../../_shared/constants/constants';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
@@ -26,7 +26,7 @@ export class SelfReportMissingComponent implements OnInit {
   studentMinis: StudentMiniDTO[];
 
   @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
-  @Select(UIState.getselectedQRPeriod) selectedQRPeriod$: Observable<string>;
+  @Select(UIState.getSelectedQRPeriod) selectedQRPeriod$: Observable<string>;
 
   constructor(
     public router: Router,
@@ -89,8 +89,8 @@ export class SelfReportMissingComponent implements OnInit {
     this.router.navigate(link);
   }
 
-  setselectedQRPeriod(yearPeriod: string) {
-    this.store.dispatch(new SetselectedQRPeriod(yearPeriod));
+  setSelectedQRPeriod(yearPeriod: string) {
+    this.store.dispatch(new SetSelectedQRPeriod(yearPeriod));
     // this.fetchFilteredData();
   }
 }

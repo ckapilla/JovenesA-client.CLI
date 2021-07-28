@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { catchError, tap, toArray } from 'rxjs/operators';
-import { SetselectedQRPeriod } from 'src/app/_store/ui/ui.action';
+import { SetSelectedGradesPeriod, SetSelectedQRPeriod } from 'src/app/_store/ui/ui.action';
 import { constants } from '../constants/constants';
 import { BaseDataService } from '../data/base-data.service';
 import { SELECTITEM } from '../interfaces/SELECTITEM';
@@ -124,13 +124,34 @@ export class ConstantsService extends BaseDataService {
       qtr = 1;
       year++;
     }
-    this.setselectedQRPeriod(thisYear + '-' + thisQtr);
+    this.setSelectedQRPeriod(thisYear + '-' + thisQtr);
     console.log(constants.qrPeriods);
   }
 
-  setselectedQRPeriod(yearPeriod: string) {
-    this.store.dispatch(new SetselectedQRPeriod(yearPeriod));
+  setSelectedQRPeriod(yearPeriod: string) {
+    this.store.dispatch(new SetSelectedQRPeriod(yearPeriod));
   }
+
+  // public generateGradesPeriods() {
+  //   const now = new Date();
+  //   let elem: C_SELECTITEM =  { value: '', label: '' };
+
+  //   const initStartDate = '2020-12-01';
+
+  //   let startDate = initStartDate;
+  //   while (year <= thisYear) {
+  //     elem = new C_SELECTITEM('' +year, '' + year );
+  //     constants.contactYears.push(elem);
+  //     year++;
+  //   }
+  //   console.log(constants.contactYears);
+  // }
+
+  setSelectedGradesPeriod(gradesPeriod: string) {
+    this.store.dispatch(new SetSelectedGradesPeriod(gradesPeriod));
+  }
+
+
   public buildCodeValueArrays() {
     this.codeValues$.pipe(toArray()).subscribe(
       (data) => {

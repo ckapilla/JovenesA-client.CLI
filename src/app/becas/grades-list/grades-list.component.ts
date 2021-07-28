@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { BecaDataService } from 'src/app/_shared/data/beca-data.service';
 import { GradesGivenEntryDTO } from 'src/app/_shared/models/grades-given-entryDTO';
 import { UrlService } from 'src/app/_shared/services/url.service';
 import { SetSelectedStudentIdentifiers } from 'src/app/_store/student/student.action';
+import { SetSelectedGradesPeriod } from 'src/app/_store/ui/ui.action';
 import { UIState } from 'src/app/_store/ui/ui.state';
 import { constants } from '../../_shared/constants/constants';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
@@ -26,15 +27,17 @@ export class GradesListComponent implements OnInit {
   sortCriteria: SORTCRITERIA;
   years: SELECTITEM[];
   months: SELECTITEM[];
+  gradesPeriods: SELECTITEM[];
   selectedYear: string;
   selectedMonth: string;
   displayTestNames: boolean;
-
+  selectedGradesPeriod = '';
   staticUrlPrefix: string;
   periodStart: string;
-
+  private subscription: Subscription;
 
   @Select(UIState.getTestNamesVisibility) testNameVisibility$: Observable<boolean>;
+  @Select(UIState.getSelectedGradesPeriod) selectedGradesPeriod$: Observable<string>;
 
   constructor(
     public becaData: BecaDataService,
@@ -48,21 +51,38 @@ export class GradesListComponent implements OnInit {
 
     this.years = constants.contactYears;
     this.months = constants.months;
+    this.gradesPeriods = constants.gradesPeriods;
 
     this.isLoading = false;
   }
 
+  // ngOnInit() {
+  //   console.log('ngOnInit');
+  //   this.testNameVisibility$.subscribe((flag) => {
+  //     this.displayTestNames = flag;
+  //     this.fetchFilteredData();
+  //   });
+  // }
+
   ngOnInit() {
-    console.log('ngOnInit');
     this.testNameVisibility$.subscribe((flag) => {
       this.displayTestNames = flag;
+    });
+    this.subscribeForselectedGradesPeriod();
+  }
+
+  subscribeForselectedGradesPeriod() {
+    this.subscription = this.selectedGradesPeriod$.subscribe((message) => {
+      this.selectedGradesPeriod = message;
+      console.log('************NGXS: GradesList new selectedGradesPeriod received' + this.selectedGradesPeriod);
       this.fetchFilteredData();
     });
   }
 
+
   fetchFilteredData() {
     this.isLoading = true;
-    this.becaData.getGradesListEntryDTOs().subscribe(
+    this.becaData.getGradesListForPeriod(+this.selectedGradesPeriod).subscribe(
       (data) => {
         this.gradesGivenEntryDTOs = data.filter((item) => {
           if (this.displayTestNames) {
@@ -101,6 +121,10 @@ export class GradesListComponent implements OnInit {
   //   this.selectedMonth = month;
   //   this.fetchFilteredData();
   // }
+
+  setSelectedGradesPeriod(gradesPeriod: string) {
+    this.store.dispatch(new SetSelectedGradesPeriod(gradesPeriod));
+  }
 
   confirmGPA(studentGUId: string, studentName: string) {
     this.store.dispatch(new SetSelectedStudentIdentifiers({ studentGUId, studentName }));

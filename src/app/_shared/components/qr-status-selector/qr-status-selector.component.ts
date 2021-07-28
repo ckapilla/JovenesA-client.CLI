@@ -25,7 +25,7 @@ export class QrStatusSelectorComponent implements OnInit {
   selectedQRPeriod: '' | string;
 
   @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
-  @Select(UIState.getselectedQRPeriod) selectedQRPeriod$: Observable<string>;
+  @Select(UIState.getSelectedQRPeriod) selectedQRPeriod$: Observable<string>;
 
   constructor(
     public quarterlyData: QuarterlyDataService,

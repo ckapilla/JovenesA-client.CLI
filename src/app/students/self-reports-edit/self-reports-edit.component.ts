@@ -32,7 +32,7 @@ export class SelfReportsEditComponent implements OnInit {
   selectedQRPeriod = '';
   subscription: Subscription;
 
-  @Select(UIState.getselectedQRPeriod) selectedQRPeriod$: Observable<string>;
+  @Select(UIState.getSelectedQRPeriod) selectedQRPeriod$: Observable<string>;
 
 
   constructor(

@@ -89,7 +89,24 @@ const months: SELECTITEM[] = [
 // ];
 const qrPeriods: SELECTITEM[] = [];
 
-const currentGradePeriodStartDate = '2021-07-01';
+const gradesPeriods: SELECTITEM[] = [
+  { value: '101', label: '2020-12-01 (Cuatrimestre)' },
+  { value: '102', label: '2020-12-01 (Semestre)' },
+  { value: '103', label: '2021-04-01 (Cuatrimestre)' },
+  { value: '104', label: '2021-07-01 (Semester)' },
+  { value: '105', label: '2021-08-01 (Cuatrimestre)' }// ,
+  // { value: '106', label: '2021-12-01 : 2022-03-31' },
+  // { value: '107', label: '2021-12-01 : 2022-06-30' },
+
+
+  // { value: '101', label: '2020-12-01 : 2021-03-31' },
+  // { value: '102', label: '2020-12-01 : 2021-06-30' },
+  // { value: '103', label: '2021-04-01 : 2021-07-31' },
+  // { value: '104', label: '2021-07-01 : 2021-11-30' },
+  // { value: '105', label: '2021-08-01 : 2021-11-30' }// ,
+  // // { value: '106', label: '2021-12-01 : 2022-03-31' },
+  // // { value: '107', label: '2021-12-01 : 2022-06-30' },
+];
 
 const genders: SELECTITEM[] = [
   { value: 'M', label: 'Male/Hombre' },
@@ -185,7 +202,7 @@ export const constants = {
   currentContactYear,
   months,
   qrPeriods,
-  currentGradePeriodStartDate,
+  gradesPeriods,
 
   genders,
   smileys,
