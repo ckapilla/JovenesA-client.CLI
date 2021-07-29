@@ -16,6 +16,7 @@ export class FileUploaderComponent {
   errorMessage: string;
   successMessage: string;
   @Input() studentGradeId: number;
+  gradeProcessingPeriodId = 666;
 
   constructor(
     private http: HttpClient,
@@ -47,7 +48,7 @@ export class FileUploaderComponent {
             const frmData = new FormData();
             frmData.append('file', file);
             // frmData.append('studentGUID', this.session.getStudentRecordGUId());
-            this.becaData.uploadStudentGradesReport(frmData, this.session.getStudentRecordGUId(), this.studentGradeId).subscribe(
+            this.becaData.uploadStudentGradesReport(frmData, this.session.getStudentRecordGUId(), this.studentGradeId, this.gradeProcessingPeriodId ).subscribe(
               // this.becaData.uploadStudentGradesReport(frmData).subscribe(
               () => {
                 this.successMessage = 'Changes were saved successfully.';

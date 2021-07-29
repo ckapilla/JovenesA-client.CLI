@@ -147,6 +147,11 @@ export class ConstantsService extends BaseDataService {
   //   console.log(constants.contactYears);
   // }
 
+  getCurrentGradePeriod(yearTypeId: number) {
+    const now = new Date();
+    constants.gradesPeriods.find(period => period.startDate >=('' +  now) && period.yearTypeId === yearTypeId);
+  }
+
   setSelectedGradesPeriod(gradesPeriod: string) {
     this.store.dispatch(new SetSelectedGradesPeriod(gradesPeriod));
   }

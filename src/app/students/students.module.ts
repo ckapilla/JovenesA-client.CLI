@@ -1,7 +1,7 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AppSharedModule } from '../_shared/_shared.module';
 import { GradeEntryComponent } from './grade-entry/grade-entry.component';
-import { GradeTrackingComponent } from './grade-tracking/grade-tracking.component';
 import { SelfReportsAddComponent } from './self-reports-add/self-reports-add.component';
 import { SelfReportsEditComponent } from './self-reports-edit/self-reports-edit.component';
 import { StudentsHomeComponent } from './students-home/students-home.component';
@@ -12,7 +12,7 @@ import { StudentsSelfReportsComponent } from './students-self-reports/students-s
 import { StudentsComponent } from './students.component';
 
 @NgModule({
-  imports: [AppSharedModule, StudentsRoutingModule],
+  imports: [AppSharedModule, CommonModule, StudentsRoutingModule],
   declarations: [
     StudentsComponent,
     StudentsNavbarComponent,
@@ -21,7 +21,6 @@ import { StudentsComponent } from './students.component';
     StudentsSelfReportsComponent,
     SelfReportsEditComponent,
     SelfReportsAddComponent,
-    GradeTrackingComponent,
     GradeEntryComponent
   ]
 })

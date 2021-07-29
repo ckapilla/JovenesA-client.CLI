@@ -54,8 +54,8 @@ export class BecaDataService {
     return this.http.put(url, body, { headers: headers });
   }
 
-  public uploadStudentGradesReport(frmData: FormData, studentGUId, studentGradeId): Observable<any> {
-    const url = this.WebApiPrefix + 'becas/' + 'student-grades-report' + '?studentGUId=' + studentGUId + '&studentGradeId='+ studentGradeId ;
+  public uploadStudentGradesReport(frmData: FormData, studentGUId: string, studentGradeId: number, gradesProcessingPeriodId: number): Observable<any> {
+    const url = this.WebApiPrefix + 'becas/' + 'student-grades-report' + '?studentGUId=' + studentGUId + '&studentGradeId='+ studentGradeId  + '&gradesProcessingPeriodId='+ gradesProcessingPeriodId;
     // const headers = new HttpHeaders().set(
     //   'Content-Type',
     //   'multipart/form-data; boundary=----WebKitFormBoundary0BPm0koKA'

@@ -1,5 +1,5 @@
+import { GRADESPERIOD } from '../interfaces/GRADESPERIOD';
 import { SELECTITEM } from '../interfaces/SELECTITEM';
-
 const joinedYears: SELECTITEM[] = [
 //   { value: '2021', label: '2021' },
 //   { value: '2020', label: '2020' },
@@ -89,24 +89,33 @@ const months: SELECTITEM[] = [
 // ];
 const qrPeriods: SELECTITEM[] = [];
 
-const gradesPeriods: SELECTITEM[] = [
-  { value: '101', label: '2020-12-01 (Cuatrimestre)' },
-  { value: '102', label: '2020-12-01 (Semestre)' },
-  { value: '103', label: '2021-04-01 (Cuatrimestre)' },
-  { value: '104', label: '2021-07-01 (Semester)' },
-  { value: '105', label: '2021-08-01 (Cuatrimestre)' }// ,
-  // { value: '106', label: '2021-12-01 : 2022-03-31' },
-  // { value: '107', label: '2021-12-01 : 2022-06-30' },
+// const gradesPeriods: SELECTITEM[] = [
+//   { value: '101', label: '2020-12-01 (Cuatrimestre)' },
+//   { value: '102', label: '2020-12-01 (Semestre)' },
+//   { value: '103', label: '2021-04-01 (Cuatrimestre)' },
+//   { value: '104', label: '2021-07-01 (Semester)' },
+//   { value: '105', label: '2021-08-01 (Cuatrimestre)' }// ,
+//   // { value: '106', label: '2021-12-01 : 2022-03-31' },
+//   // { value: '107', label: '2021-12-01 : 2022-06-30' },
 
 
-  // { value: '101', label: '2020-12-01 : 2021-03-31' },
-  // { value: '102', label: '2020-12-01 : 2021-06-30' },
-  // { value: '103', label: '2021-04-01 : 2021-07-31' },
-  // { value: '104', label: '2021-07-01 : 2021-11-30' },
-  // { value: '105', label: '2021-08-01 : 2021-11-30' }// ,
-  // // { value: '106', label: '2021-12-01 : 2022-03-31' },
-  // // { value: '107', label: '2021-12-01 : 2022-06-30' },
+//   // { value: '101', label: '2020-12-01 : 2021-03-31' },
+//   // { value: '102', label: '2020-12-01 : 2021-06-30' },
+//   // { value: '103', label: '2021-04-01 : 2021-07-31' },
+//   // { value: '104', label: '2021-07-01 : 2021-11-30' },
+//   // { value: '105', label: '2021-08-01 : 2021-11-30' }// ,
+//   // // { value: '106', label: '2021-12-01 : 2022-03-31' },
+//   // // { value: '107', label: '2021-12-01 : 2022-06-30' },
+// ];
+
+const gradesPeriods: GRADESPERIOD[] = [
+  { id: '101', descriptor: '2020-12-01 (Cuatrimestre)', startDate:'2020-12-01', endDate:'2021-03-31', yearTypeId: 2032 },
+  { id: '102', descriptor: '2020-12-01 (Semestre)', startDate:'2020-12-01' ,endDate:'2021-06-30', yearTypeId: 2031 },
+  { id: '103', descriptor: '2021-04-01 (Cuatrimestre)', startDate:'2021-04-01', endDate:'2021-07-31', yearTypeId: 2032 },
+  { id: '104', descriptor: '2021-07-01 (Semester)', startDate:'2021-07-01', endDate:'2021-11-30', yearTypeId: 2031  },
+  { id: '105', descriptor: '2021-08-01 (Cuatrimestre)', startDate:'2021-08-01', endDate:'2021-11-30', yearTypeId: 2032}
 ];
+
 
 const genders: SELECTITEM[] = [
   { value: 'M', label: 'Male/Hombre' },

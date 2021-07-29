@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { BecaDataService } from 'src/app/_shared/data/beca-data.service';
+import { GRADESPERIOD } from 'src/app/_shared/interfaces/GRADESPERIOD';
 import { GradesGivenEntryDTO } from 'src/app/_shared/models/grades-given-entryDTO';
 import { UrlService } from 'src/app/_shared/services/url.service';
 import { SetSelectedStudentIdentifiers } from 'src/app/_store/student/student.action';
@@ -27,7 +28,7 @@ export class GradesListComponent implements OnInit {
   sortCriteria: SORTCRITERIA;
   years: SELECTITEM[];
   months: SELECTITEM[];
-  gradesPeriods: SELECTITEM[];
+  gradesPeriods: GRADESPERIOD[];
   selectedYear: string;
   selectedMonth: string;
   displayTestNames: boolean;

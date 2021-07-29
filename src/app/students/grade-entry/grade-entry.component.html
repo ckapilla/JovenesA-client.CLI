@@ -33,7 +33,7 @@
                 <th app-sortable-column="univ" (onSortColumn)="onSortColumn($event)">Univ</th> -->
                   <!-- <th app-sortable-column="academicYear" (onSortColumn)="onSortColumn($event)">YearType</th> -->
                   <!-- <th app-sortable-column="year" (onSortColumn)="onSortColumn($event)">Year</th> -->
-                  <!-- <th app-sortable-column="periodNumber" (onSortColumn)="onSortColumn($event)">Period</th> -->
+                  <th>Id</th>
                   <th>Fin de Periodo</th>
                   <th>Fecha Límite</th>
                   <th>Fecha de Hoy</th>
@@ -74,9 +74,10 @@
                     <!-- <td>
                 {{ entry.year }}
               </td> -->
-                    <!-- <td>
-                {{ entry.periodNumber }}
-              </td> -->
+                    <td>
+                      <input formControlName="gradesProcessingPeriodId"
+                             class="form-control form-control-sm" type="text" size="8" />
+                    </td>
                     <td>
                       <input formControlName="gradesGivenDate"
                              class="form-control form-control-sm" type="text" size="8" />
