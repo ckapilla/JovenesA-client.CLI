@@ -27,8 +27,8 @@
   </span>
 </div>
 <div class="row">
-  <span [hidden]="currentGUId=='0000'" style="margin-top: .4rem;margin-left: 1rem;" (click)="gotoStudent()"
-        class="link">Student Summary: {{ studentName }}
+  <span [hidden]="currentGUId=='0000'" style="margin-top: .4rem;margin-left: 1rem;" (click)="gotoStudent( studentName )"
+        class="link">Student Profile: {{ studentName }}
   </span>
   <br />
   <span [hidden]="currentGUId=='0000'" style="margin-left:1rem;margin-top: .2rem;">

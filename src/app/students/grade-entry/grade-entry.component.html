@@ -33,7 +33,7 @@
                 <th app-sortable-column="univ" (onSortColumn)="onSortColumn($event)">Univ</th> -->
                   <!-- <th app-sortable-column="academicYear" (onSortColumn)="onSortColumn($event)">YearType</th> -->
                   <!-- <th app-sortable-column="year" (onSortColumn)="onSortColumn($event)">Year</th> -->
-                  <th>Id</th>
+                  <th># de Periodo</th>
                   <th>Fin de Periodo</th>
                   <th>Fecha Límite</th>
                   <th>Fecha de Hoy</th>
@@ -132,7 +132,7 @@
             <h6 style="color:black;">Si tu archivo no termina con la extensión PNG, puedes convertirlo en línea dando clic <a href="https://imagen.online-convert.com/es/convertir-a-png" target="_blank">aquí</a>. Es una página que te brindamos para que puedas convertirlo al formato requerido.</h6>
             <h6 style="color:black;">Al arrastrar o seleccionar tu archivo, este se cargará y su nombre se mostrará debajo del recuadro. Hecho esto, tu archivo estará cargado y listo para revisión.</h6>
             <br>
-            <app-file-uploader [studentGradeId]=studentGradesData[0].studentGradeId  ></app-file-uploader>
+            <app-file-uploader [studentGradeId]=studentGradesData[0].studentGradeId [gradesProcessingPeriodId]=studentGradesData[0].gradesProcessingPeriodId  ></app-file-uploader>
           </div>
 
 

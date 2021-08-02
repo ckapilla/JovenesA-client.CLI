@@ -2,8 +2,8 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Store } from '@ngxs/store';
-import { BehaviorSubject, EMPTY, Observable } from 'rxjs';
+import { Select, Store } from '@ngxs/store';
+import { BehaviorSubject, EMPTY, Observable, Subscription } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { constants } from 'src/app/_shared/constants/constants';
 import { MiscDataService } from 'src/app/_shared/data/misc-data.service';
@@ -14,6 +14,7 @@ import { StudentDTO } from 'src/app/_shared/models/studentDTO';
 import { TruncateDatePipe } from 'src/app/_shared/pipes/truncate-date-pipe';
 import { UrlService } from 'src/app/_shared/services/url.service';
 import { SetPhotoPathname, SetSelectedStudentGUId, SetSelectedStudentMentorGUId } from 'src/app/_store/student/student.action';
+import { StudentState } from 'src/app/_store/student/student.state';
 
 @Component({
   selector: 'app-admins-student-student-profile',
@@ -98,6 +99,10 @@ export class AdminsStudentComponent implements OnInit {
   readonly smileys: string[] = constants.smileys;
   showEditLink = false;
   webPrefix: string;
+  private subscription: Subscription;
+  studentName: string;
+
+  @Select(StudentState.getSelectedStudentName) currentName$: Observable<string>;
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -186,10 +191,19 @@ export class AdminsStudentComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('admins Student ngOnInit');
+    console.log('%admins Student ngOnInit');
     this.studentGUIdParam = this.currRoute.snapshot.params['guid'];
     console.log('student student-profile with studentGUIdParam: ' + this.studentGUIdParam);
     this.fetchStudentDTOData();
+    this.subscribeForStudentNames();
+  }
+
+  subscribeForStudentNames() {
+    this.subscription = this.currentName$.subscribe((message) => {
+      console.log('subscribeForStudentName received with message [' + message + ']');
+      this.studentName = message;
+      console.log('************NGXS: student profile new StudentName received' + this.studentName);
+    });
   }
 
   // need to get data from associated member record first

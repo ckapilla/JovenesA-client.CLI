@@ -77,6 +77,7 @@ export class GradesEditComponent implements OnInit {
   createEmptyGradeEntryRow(): FormGroup {
     console.log('CreateEmptyGradeEntry create empty row to be populated');
     return this._fb.group({
+      gradesProcessingPeriodId: { value: '', disabled: true },
       gradesGivenDate: { value: '', disabled: true },
       gradesDueDate: { value: '', disabled: true },
       gradesTurnedInDate: [
@@ -86,7 +87,7 @@ export class GradesEditComponent implements OnInit {
       gradePointAvg: [{ value: '' }, Validators.pattern(/^\d{1,2}\.\d{1,1}$/)],
       exception: [''],
       confirmedDate: { value: '', disabled: true },
-      confirmedById: ['']
+      confirmedById: [{ value: '' }, Validators.required],
     });
   }
 
@@ -94,6 +95,7 @@ export class GradesEditComponent implements OnInit {
     console.log('updateGradeEntryRow update existing row with actual data');
     console.log(JSON.stringify(entryData));
     gradeEntryRow.patchValue({
+      gradesProcessingPeriodId: entryData.gradesProcessingPeriodId,
       gradesGivenDate: new TruncateDatePipe().transform('' + entryData.gradesGivenDate),
       gradesDueDate: new TruncateDatePipe().transform('' + entryData.gradesDueDate),
       gradesTurnedInDate: new TruncateDatePipe().transform('' + entryData.gradesTurnedInDate),
@@ -237,7 +239,7 @@ export class GradesEditComponent implements OnInit {
           }, 3000);
         },
         () => {
-          this.errorMessage = 'Please check Date Format, must be YYYY-MM-DD';
+          this.errorMessage = 'Confirmed By must be selected. Also Turned-in Date be filled in';
           this.isLoading = false;
         }
       );

@@ -5,7 +5,7 @@ import { Observable, Subscription } from 'rxjs';
 import { StudentState } from 'src/app/_store/student/student.state';
 
 @Component({
-  selector: 'app-student2-header',
+  selector: 'app-student-header2',
   templateUrl: './student-header2.component.html'
 })
 export class StudentHeader2Component implements OnInit {

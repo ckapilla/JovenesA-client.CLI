@@ -9,7 +9,7 @@ import { SORTCRITERIA } from 'src/app/_shared/interfaces/SORTCRITERIA';
 import { StudentDTO } from 'src/app/_shared/models/studentDTO';
 import { ColumnSortService } from 'src/app/_shared/services/column-sort.service';
 import { SessionService } from 'src/app/_shared/services/session.service';
-import { SetPhotoPathname, SetSelectedStudentGUId, SetSelectedStudentMentorGUId, SetSelectedStudentName } from 'src/app/_store/student/student.action';
+import { SetPhotoPathname, SetSelectedStudentIdentifiers, SetSelectedStudentMentorGUId } from 'src/app/_store/student/student.action';
 import {
   SetSelectedFilterMode,
   SetSelectedGradYear,
@@ -229,12 +229,14 @@ export class AdminsStudentListComponent implements OnInit {
 
   gotoStudent(guid: string, studentName: string,
     photoUrl: string, mentorGUId: string) {
-    console.log('setting studentName to ' + studentName);
 
     this.store.dispatch(new SetPhotoPathname(photoUrl));
-    this.store.dispatch(new SetSelectedStudentGUId(guid));
-    this.store.dispatch(new SetSelectedStudentName(studentName));
+    // this.store.dispatch(new SetSelectedStudentGUId(guid));
+    // this.store.dispatch(new SetSelectedStudentName(studentName));
     this.store.dispatch(new SetSelectedStudentMentorGUId(mentorGUId));
+    const studentGUId = guid;
+    this.store.dispatch(new SetSelectedStudentIdentifiers({ studentGUId, studentName }));
+
     const link = ['admins/students/student-container', { guid: guid }];
 
     console.log('navigating to ' + link);

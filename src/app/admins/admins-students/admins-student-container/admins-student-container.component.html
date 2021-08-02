@@ -15,13 +15,19 @@
 
       <div class="row">
         <ngb-tabset>
+          <ngb-tab title="Student Summary">
+            <ng-template ngbTabContent>
+              <app-student-header> </app-student-header>
+            </ng-template>
+          </ngb-tab>
+
           <ngb-tab title="Student Profile">
             <ng-template ngbTabContent>
               <app-admins-student-student-profile> </app-admins-student-student-profile>
             </ng-template>
           </ngb-tab>
 
-          <ngb-tab title="Member Profile">
+          <ngb-tab title="Student-as-Member Profile">
             <ng-template ngbTabContent>
               <app-admins-student-member-profile> </app-admins-student-member-profile>
             </ng-template>

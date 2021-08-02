@@ -43,6 +43,7 @@ import { AlphaLanguagePipe } from './pipes/alpha-language-pipe';
 import { AlphaMonthPipe } from './pipes/alpha-month-pipe';
 import { EmptyStatusPipe } from './pipes/empty-status-pipe';
 import { MarkedPipe } from './pipes/marked-pipe';
+import { TrimGuidPipe } from './pipes/trim-guid-pipe';
 import { TruncateDatePipe } from './pipes/truncate-date-pipe';
 import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
 
@@ -80,6 +81,7 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     AlphaMonthPipe,
     AlphaLanguagePipe,
     TruncateDatePipe,
+    TrimGuidPipe,
     UnsafeHtmlPipe,
     MarkedPipe,
     StudentLookupComponent,
@@ -126,6 +128,7 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     AlphaMonthPipe,
     AlphaLanguagePipe,
     TruncateDatePipe,
+    TrimGuidPipe,
     UnsafeHtmlPipe,
     MarkedPipe,
     StudentLookupComponent,

@@ -3,10 +3,12 @@ import { Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { Observable, of, Subscription } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
-import { SetSelectedStudentGUId } from 'src/app/_store/student/student.action';
+import { SetSelectedStudentGUId, SetSelectedStudentIdentifiers } from 'src/app/_store/student/student.action';
 import { StudentState } from 'src/app/_store/student/student.state';
 import { StudentDataService } from '../../data/student-data.service';
 import { StudentMiniDTO } from '../../models/studentMiniDTO';
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -57,7 +59,7 @@ export class StudentLookupComponent implements OnInit {
   }
 
   onSelect(item) {
-    console.log('OnSelect New Student, dispatching new GUID')
+    console.log('OnSelect New Student, dispatching new GUID');
     console.log(item.item.studentId);
     console.log(item.item.studentGUId);
     this.currentGUId = item.item.studentGUId;
@@ -144,8 +146,11 @@ export class StudentLookupComponent implements OnInit {
     this.router.navigateByUrl(link);
   }
 
-  gotoStudent() {
+  gotoStudent( studentName: string) {
     if (this.currentGUId !== '0000') {
+      const studentGUId = this.currentGUId;
+      this.store.dispatch(new SetSelectedStudentIdentifiers({ studentGUId, studentName }));
+
       const link = ['admins/students/student-container', { guid: this.currentGUId }];
       console.log('navigating to ' + link);
       this.router.navigate(link);

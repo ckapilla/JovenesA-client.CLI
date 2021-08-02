@@ -2,12 +2,15 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Select, Store } from '@ngxs/store';
+import { Observable, Subscription } from 'rxjs';
 import { constants } from 'src/app/_shared/constants/constants';
 import { MemberDataService } from 'src/app/_shared/data/member-data.service';
 import { MiscDataService } from 'src/app/_shared/data/misc-data.service';
 import { SELECTITEM } from 'src/app/_shared/interfaces/SELECTITEM';
 import { Member } from 'src/app/_shared/models/member';
 import { UrlService } from 'src/app/_shared/services/url.service';
+import { StudentState } from 'src/app/_store/student/student.state';
 
 @Component({
   selector: 'app-admins-student-member-profile',
@@ -43,7 +46,10 @@ export class AdminsStudentMemberDataComponent implements OnInit {
   emojiPathname: string;
   showEditLink = false;
   webPrefix: string;
+  private subscription: Subscription;
+  studentName: string;
 
+  @Select(StudentState.getSelectedStudentName) currentName$: Observable<string>;
   constructor(
     public currRoute: ActivatedRoute,
     private router: Router,
@@ -51,7 +57,8 @@ export class AdminsStudentMemberDataComponent implements OnInit {
     public memberData: MemberDataService,
     public miscData: MiscDataService,
     public formBuilder: FormBuilder,
-    public location: Location
+    public location: Location,
+    public store: Store
   ) {
     console.log('hi from AdminsStudent constructor');
     this.webPrefix = urlService.getClientUrl();
@@ -91,6 +98,15 @@ export class AdminsStudentMemberDataComponent implements OnInit {
     this.studentGUIdParam = this.currRoute.snapshot.params['guid'];
     console.log('student student-data with studentGUIdParam: ' + this.studentGUIdParam);
     this.fetchMemberData();
+    this.subscribeForStudentNames();
+  }
+
+  subscribeForStudentNames() {
+    this.subscription = this.currentName$.subscribe((message) => {
+      console.log('subscribeForStudentName received with message [' + message + ']');
+      this.studentName = message;
+      console.log('************NGXS: student-as-member profile new StudentName received' + this.studentName);
+    });
   }
 
   fetchMemberData() {

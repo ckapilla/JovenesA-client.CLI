@@ -11,23 +11,23 @@ export class GetStudents {
 }
 
 export class SetSelectedStudentIdentifiers {
-  static readonly type = '[Student Selection] update studentIdentifiers';
+  static readonly type = '[Student Selection] update selectedStudentIdentifiers';
   // constructor(public readonly {guid, name}: { guid: string, name: string} ) {}
   constructor(public readonly payload: StudentIdentifiers) {}
 }
 
 export class SetSelectedStudentGUId {
-  static readonly type = '[Student Selection] update studentGUId';
+  static readonly type = '[Student Selection] update selectedStudentGUId';
   constructor(public readonly payload: string) {}
 }
 
 export class SetSelectedStudentMentorGUId {
-  static readonly type = '[Student Selection] update studentMentorGUId';
+  static readonly type = '[Student Selection] update selectedStudentMentorGUId';
   constructor(public readonly payload: string) {}
 }
 
 export class SetSelectedStudentName {
-  static readonly type = '[Student Selection] update studentName';
+  static readonly type = '[Student Selection] update selectedStudentName';
   constructor(public readonly payload: string) {}
 }
 
