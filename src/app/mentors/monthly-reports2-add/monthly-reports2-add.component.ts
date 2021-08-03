@@ -2,7 +2,10 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Select, Store } from '@ngxs/store';
+import { Observable, Subscription } from 'rxjs';
 import { MentorReport2DataService } from 'src/app/_shared/data/mentor-report2-data.service';
+import { StudentState } from 'src/app/_store/student/student.state';
 import { constants } from '../../_shared/constants/constants';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 import { MentorReport2RPT } from '../../_shared/models/mentor-report2';
@@ -37,14 +40,11 @@ export class MonthlyReports2AddComponent implements OnInit {
   narrativeValidationMessage = '';
   byProxy: string;
   returnTarget: string;
-
   readonly contactYears: SELECTITEM[] = constants.contactYears;
   readonly contactMonths: SELECTITEM[] = constants.months;
+  private subscription: Subscription;
 
-  // private validationMessages = {
-  //     required: 'All required fields must be given a value',
-  //     monthValidator: 'Please select a month'
-  // };
+  @Select(StudentState.getSelectedStudentName) currentName$: Observable<string>;
 
   constructor(
     public location: Location,
@@ -52,7 +52,8 @@ export class MonthlyReports2AddComponent implements OnInit {
     private router: Router,
     public mentorReportData: MentorReport2DataService,
     public _fb: FormBuilder,
-    private session: SessionService
+    private session: SessionService,
+    public store: Store
   ) {
     console.log('Hi from MonthlyReportsAddComponent');
 
@@ -89,7 +90,7 @@ export class MonthlyReports2AddComponent implements OnInit {
     this.mentorReport2.mentorGUId = this.currRoute.snapshot.params['mentorGUId'];
     this.mentorReport2.studentId = 0; // this.currRoute.snapshot.params['studentId'];
     this.mentorReport2.studentGUId = this.currRoute.snapshot.params['studentGUId'];
-    this.studentName = this.currRoute.snapshot.params['studentName'];
+    // this.studentName = this.currRoute.snapshot.params['studentName'];
     console.log('mentorGUId ' + this.mentorReport2.mentorGUId);
     // console.log('studentId ' + this.mentorReport2.studentId);
     console.log('studentGUId ' + this.mentorReport2.studentGUId);
@@ -119,7 +120,17 @@ export class MonthlyReports2AddComponent implements OnInit {
         this.checkFormControlsAreValid(false);
       });
     }
+    this.subscribeForStudentNames();
   }
+
+  subscribeForStudentNames() {
+    this.subscription = this.currentName$.subscribe((message) => {
+      console.log('subscribeForStudentName received with message [' + message + ']');
+      this.studentName = message;
+      console.log('************NGXS: mrAdd new StudentName received' + this.studentName);
+    });
+  }
+
   checkFormControlsAreValid(bSubmitting: boolean): boolean {
     console.log('checking for valid form controls');
     let allCorrect = true;

@@ -28,6 +28,7 @@ export class MonthlyReports2Component implements OnInit {
   private subscription: Subscription;
 
   @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
+  @Select(StudentState.getSelectedStudentName) currentName$: Observable<string>;
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -48,6 +49,7 @@ export class MonthlyReports2Component implements OnInit {
 
     this.haveCurrentReport = false;
     this.subscribeForStudentGUIds2();
+    this.subscribeForStudentNames();
   }
 
   subscribeForStudentGUIds2() {
@@ -61,6 +63,15 @@ export class MonthlyReports2Component implements OnInit {
       }
     });
   }
+
+  subscribeForStudentNames() {
+    this.subscription = this.currentName$.subscribe((message) => {
+      console.log('subscribeForStudentName received with message [' + message + ']');
+      this.studentName = message;
+      console.log('************NGXS: mrAdd new StudentName received' + this.studentName);
+    });
+  }
+
 
   fetchData() {
     console.log('mr fetchData');
@@ -99,8 +110,9 @@ export class MonthlyReports2Component implements OnInit {
           {
             mentorId: this.mentorId,
             mentorGUId: this.mentorGUId,
-            studentGUId: this.studentGUId,
-            studentName: this.mentorReports2[0]?.studentName
+            studentGUId: this.studentGUId// ,
+            // studentName: this.mentorReports2[0]?.studentName
+            // studentName: this.studentName
           }
         ];
         console.log('navigating to ' + JSON.stringify(link));
