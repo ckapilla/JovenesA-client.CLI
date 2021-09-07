@@ -29,6 +29,7 @@ import { StudentGradesStatusComponent } from './components/student-grades-status
 import { StudentHeaderDetailsComponent } from './components/student-header-details/student-header-details.component';
 import { StudentHeaderComponent } from './components/student-header/student-header.component';
 import { StudentHeader2Component } from './components/student-header2/student-header2.component';
+import { StudentHistoryComponent } from './components/student-history/student-history.component';
 import { StudentLookupComponent } from './components/student-lookup/student-lookup';
 import { StudentMRStatusComponent } from './components/student-mr-status.component';
 import { StudentPhotoComponent } from './components/student-photo/student-photo.component';
@@ -94,6 +95,7 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     MemberHeaderDetailsComponent,
     StudentHeaderComponent,
     StudentHeader2Component,
+    StudentHistoryComponent,
     StudentPhotoComponent,
     EmptyStatusPipe,
     FileUploaderComponent,
@@ -134,6 +136,7 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     StudentLookupComponent,
     StudentHeaderDetailsComponent,
     StudentHeaderComponent,
+    StudentHistoryComponent,
     StudentHeader2Component,
     QrStatusSelectorComponent,
     PersonSharedComponent,

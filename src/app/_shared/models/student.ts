@@ -41,7 +41,7 @@ export class Student {
     // public academicYearTypeId?: number, // AcademicYearTypeID
     // public gradeMonthsId?: number, // GradeMonthsID
     public joinedFromId?: number, // JoinedFromID
-    // public studentStory?: string, // StudentStory
+    public studentHistory_Es?: string, // StudentStory
     public gradMonthNum?: number, // GradMonth
     public studentGUId?: string,
     public mentorGUId?: string,
@@ -54,7 +54,8 @@ export class Student {
     // [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
     // public activeStatus?: number,
     // public pilotProxyId?: number,
-    public educationalLevelId?: number
+    public educationalLevelId?: number,
+    public studentHistory_En?: string
 
   ) {}
 }

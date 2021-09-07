@@ -3,7 +3,7 @@
     data-cy="grades-period">
     <span style="font-size: large"> Grade Report Statuses</span>
     <span style="margin-left: 10rem">
-      Grades Processing Period:
+      Initial Grades Due Date:
       <select
         name="activePeriodSelector"
         data-cy="period-selector"
@@ -37,11 +37,11 @@
               <th app-sortable-column="gradePointAvgStatus" (onSortColumn)="onSortColumn($event)">GPA<br />Status</th>
               <!-- <th app-sortable-column="univ" (onSortColumn)="onSortColumn($event)">Univ</th> -->
               <!-- <th app-sortable-column="academicYear" (onSortColumn)="onSortColumn($event)">YearType</th> -->
-              <th app-sortable-column="gradeMonths" (onSortColumn)="onSortColumn($event)">Grade Months</th>
+              <!-- <th app-sortable-column="gradeMonths" (onSortColumn)="onSortColumn($event)">Grade Months</th> -->
               <!-- <th app-sortable-column="year" (onSortColumn)="onSortColumn($event)">Year</th> -->
               <!-- <th app-sortable-column="periodNumber" (onSortColumn)="onSortColumn($event)">Period</th> -->
-              <th app-sortable-column="gradesGivenDate" (onSortColumn)="onSortColumn($event)">Given By<br />Date</th>
-              <th app-sortable-column="gradesDueDate" (onSortColumn)="onSortColumn($event)">Grades Due<br />Date</th>
+              <!-- <th app-sortable-column="gradesGivenDate" (onSortColumn)="onSortColumn($event)">Given By<br />Date</th> -->
+              <th app-sortable-column="gradesDueDate" (onSortColumn)="onSortColumn($event)">Final Grades<br />Due Date</th>
               <th app-sortable-column="gradesTurnedInDate" (onSortColumn)="onSortColumn($event)">Entered <br />Date</th>
               <th app-sortable-column="imageSubmittedDate" (onSortColumn)="onSortColumn($event)">Uploaded <br />Date</th>
               <th>View<br />Image</th>
@@ -75,18 +75,18 @@
               <!-- <td>
                 {{  entry.academicYear }}
               </td> -->
-              <td>
+              <!-- <td>
                 {{ entry.gradeMonths }}
-              </td>
+              </td> -->
               <!-- <td>
                 {{ entry.year }}
               </td> -->
               <!-- <td>
                 {{ entry.periodNumber }}
               </td> -->
-              <td>
+              <!-- <td>
                 {{ entry.gradesGivenDate | truncateDate }}
-              </td>
+              </td> -->
               <td>
                 {{ entry.gradesDueDate | truncateDate }}
               </td>

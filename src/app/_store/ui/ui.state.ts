@@ -13,7 +13,7 @@ import { UIStateModel } from './ui.model';
     testNamesVisibility: false,
     qrComponentsEditable: false,
     selectedQRPeriod: '', // initialize ConstantsService.generateQRPeriods
-    selectedGradesPeriod: '104', // { value: '104', label: '2021-07-01 : 2021-11-30' }
+    selectedGradesPeriod: '105', // { value: '104', label: '2021-07-01 : 2021-11-30' }
 
     selectedFilterMode: '998',
     selectedStudentStatus: '0',

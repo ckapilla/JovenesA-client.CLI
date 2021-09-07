@@ -109,11 +109,11 @@ const qrPeriods: SELECTITEM[] = [];
 // ];
 
 const gradesPeriods: GRADESPERIOD[] = [
-  { id: '101', descriptor: '2020-12-01 (Cuatrimestre)', startDate:'2020-12-01', endDate:'2021-03-31', yearTypeId: 2032 },
-  { id: '102', descriptor: '2020-12-01 (Semestre)', startDate:'2020-12-01' ,endDate:'2021-06-30', yearTypeId: 2031 },
-  { id: '103', descriptor: '2021-04-01 (Cuatrimestre)', startDate:'2021-04-01', endDate:'2021-07-31', yearTypeId: 2032 },
-  { id: '104', descriptor: '2021-07-01 (Semestre)', startDate:'2021-07-01', endDate:'2021-11-30', yearTypeId: 2031  },
-  { id: '105', descriptor: '2021-08-01 (Cuatrimestre)', startDate:'2021-08-01', endDate:'2021-11-30', yearTypeId: 2032}
+  { id: '101', descriptor: '2021-01-01 (Cuatrimestre)', startDate:'2020-12-01', entryDate:'2021-01-01',  endDate:'2021-03-31', yearTypeId: 2032 },
+  { id: '102', descriptor: '2021-01-01 (Semestre)', startDate:'2020-12-01', entryDate:'2021-01-01' ,endDate:'2021-06-30', yearTypeId: 2031 },
+  { id: '103', descriptor: '2021-05-01 (Cuatrimestre)', startDate:'2021-04-01', entryDate:'2021-05-01',endDate:'2021-07-31', yearTypeId: 2032 },
+  { id: '104', descriptor: '2021-08-01 (Semestre)', startDate:'2021-07-01', entryDate:'2021-08-01', endDate:'2021-11-30', yearTypeId: 2031  },
+  { id: '105', descriptor: '2021-09-01 (Cuatrimestre)', startDate:'2021-08-01', entryDate:'2021-09-01', endDate:'2021-11-30', yearTypeId: 2032}
 ];
 
 

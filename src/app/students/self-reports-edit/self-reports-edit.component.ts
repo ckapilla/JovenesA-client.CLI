@@ -84,7 +84,7 @@ export class SelfReportsEditComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('Hi from mentor Report2 Submit');
+    console.log('Hi fromself reports Submit');
     // console.log(this.mentorReport);
 
     if (this.myForm.invalid) {

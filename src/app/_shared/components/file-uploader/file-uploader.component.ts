@@ -51,11 +51,11 @@ export class FileUploaderComponent {
             this.becaData.uploadStudentGradesReport(frmData, this.session.getStudentRecordGUId(), this.studentGradeId, this.gradesProcessingPeriodId ).subscribe(
               // this.becaData.uploadStudentGradesReport(frmData).subscribe(
               () => {
-                this.successMessage = 'Changes were saved successfully.';
-                window.scrollTo(0, 0);
-                window.setTimeout(() => {
-                  this.successMessage = '';
-                }, 15000);
+                this.successMessage = 'El archivo [' + file.name + '] se cargó correctamente';
+                // window.scrollTo(0, 0);
+                // window.setTimeout(() => {
+                //   this.successMessage = '';
+                // }, 15000);
               },
               (error) => {
                 this.errorMessage = error;

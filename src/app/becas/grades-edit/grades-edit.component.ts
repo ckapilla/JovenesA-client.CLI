@@ -78,7 +78,7 @@ export class GradesEditComponent implements OnInit {
     console.log('CreateEmptyGradeEntry create empty row to be populated');
     return this._fb.group({
       gradesProcessingPeriodId: { value: '', disabled: true },
-      gradesGivenDate: { value: '', disabled: true },
+      // gradesGivenDate: { value: '', disabled: true },
       gradesDueDate: { value: '', disabled: true },
       gradesTurnedInDate: [
         { value: '' },
@@ -96,7 +96,7 @@ export class GradesEditComponent implements OnInit {
     console.log(JSON.stringify(entryData));
     gradeEntryRow.patchValue({
       gradesProcessingPeriodId: entryData.gradesProcessingPeriodId,
-      gradesGivenDate: new TruncateDatePipe().transform('' + entryData.gradesGivenDate),
+      // gradesGivenDate: new TruncateDatePipe().transform('' + entryData.gradesGivenDate),
       gradesDueDate: new TruncateDatePipe().transform('' + entryData.gradesDueDate),
       gradesTurnedInDate: new TruncateDatePipe().transform('' + entryData.gradesTurnedInDate),
       gradePointAvg: this.toFixedValue(entryData.gradePointAvg),
