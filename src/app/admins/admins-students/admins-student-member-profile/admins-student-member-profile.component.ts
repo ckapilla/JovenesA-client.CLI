@@ -148,7 +148,7 @@ export class AdminsStudentMemberDataComponent implements OnInit {
       lastNames: member.lastNames,
       email: member.email,
       cellPhone: member.cellPhone,
-      nickName: '', // member.nickName,
+      nickName: member.nickName,
       photoUrl: '', // member.photoUrl,
       englishSkillLevelId: member.englishSkillLevelId,
       smA_Address: member.smA_Address,

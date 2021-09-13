@@ -89,7 +89,8 @@ export class StudentDataService extends BaseDataService {
     // strip outer 'student' name
     const x = JSON.parse(body);
     body = JSON.stringify(x.student);
-    // console.log('in updateStudent');
+    console.log('($*#)($*)#$*)#$*))*(*');
+    console.log(body);
 
     const headers = new HttpHeaders().set('Content-Type', 'application/json'); // .set('authorization', returnedToken);
     console.log('ready to put ' + url + ' body: ' + body + ' options ' + headers);
