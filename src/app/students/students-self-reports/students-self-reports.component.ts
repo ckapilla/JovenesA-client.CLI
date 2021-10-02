@@ -94,8 +94,7 @@ export class StudentsSelfReportsComponent implements OnInit {
     this.router.navigateByUrl(target);
   }
   isCurrentReportDate(rptDate: string) {
-    // temp temp temp
-    return false;
-    // return rptDate.substr(0, 7) >= constants.currentGradePeriodStartDate.substr(0, 7); // 'yyyy-MM';
+    return (rptDate > '2021-10-01' && rptDate < '2021-10-11');
+    // return rptDate.substr(0, 7) >= ; // 'yyyy-MM';
   }
 }

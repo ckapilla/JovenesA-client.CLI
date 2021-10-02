@@ -100,31 +100,44 @@ export class ConstantsService extends BaseDataService {
 
   public generateQRPeriods() {
     const now = new Date();
+    console.log(now);
     const thisYear  = now.getFullYear();
-    const thisMonth = now.getMonth();
-    const thisQtr = Math.floor(thisMonth/3);
+    const thisMonth = now.getMonth() + 1; // since we don't want zero based here
+    const thisDate = now.getDate() + 1; // not zero based
+    const qtrs = [0,4,4,4,1,1,1,2,2,2,3,3,3];
+    let targetQtr = qtrs[thisMonth];
+    console.log('this month: ' + thisMonth);
+    console.log('targetQtr: '  + targetQtr);
+
+
     let elem: C_SELECTITEM =  { value: '', label: '' };
     const NUMQTRS = 4;
     const initYear = 2019;
     const initQtr = 3;
     let maxQtrs = NUMQTRS;
+    if (thisMonth % 3 === 0) { // if last days of quarter bump  treat as if it is next quarter
+      console.log('last month of quarter');
+      targetQtr = (thisDate >= 22) ? targetQtr + 1 : targetQtr;
+      console.log('targetQtr adj: '  + targetQtr);
+    }
 
     console.log('============================');
-    const periodStrings: string[] = ['1:Ene-Mar', '2:Abr-Jun', '3:Jul-Set', '4:Oct-Dic' ];
+    const periodStrings: string[] = ['0: XXnot usedXX', '1:Ene-Mar', '2:Abr-Jun', '3:Jul-Set', '4:Oct-Dic' ];
 
     let year = initYear;
     let qtr = initQtr;
     while (year <= thisYear) {
-      maxQtrs = (year === thisYear) ? thisQtr : NUMQTRS;
+      maxQtrs = (year === thisYear) ? targetQtr : NUMQTRS;
       while (qtr <= maxQtrs) {
-        elem = new C_SELECTITEM(year + '-' + qtr, year + '-' + periodStrings[qtr - 1]);
+        elem = new C_SELECTITEM(year + '-' + qtr, year + '-' + periodStrings[qtr]);
         constants.qrPeriods.push(elem);
+        console.log(elem);
         qtr++;
       }
       qtr = 1;
       year++;
     }
-    this.setSelectedQRPeriod(thisYear + '-' + thisQtr);
+    this.setSelectedQRPeriod(thisYear + '-' + targetQtr);
     console.log(constants.qrPeriods);
   }
 
