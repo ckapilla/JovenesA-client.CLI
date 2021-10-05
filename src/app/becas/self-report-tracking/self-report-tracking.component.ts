@@ -88,7 +88,7 @@ export class SelfReportTrackingComponent implements OnInit {
             this.studentReportsByPeriod = data.filter((item) => {
               if (this.displayTestNames) {
                 return item;
-              } else if (!this.displayTestNames && item['studentName'] !== '_Test, _Student') {
+              } else if (!this.displayTestNames && item.studentName.substr(0,5) !== '_Test, _Student') {
                 return item;
               }
             });
