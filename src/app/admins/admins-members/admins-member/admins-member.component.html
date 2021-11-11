@@ -124,25 +124,25 @@
               <div class="col-6" style="padding: 0 2px 0 4px">
                 <label for="mentorStatusId">Mentor Status:</label>
                 <select formControlName="mentorStatusId" class="form-control form-control-sm">
-                  <option [value]=""></option>
+                  <option [ngValue]="null"></option>
                   <option *ngFor="let status of roleStatuses" [value]="status.value">{{ status.label }}</option>
                 </select>
 
                 <label for="adminStatusId">Admin Status:</label>
                 <select formControlName="adminStatusId" class="form-control form-control-sm">
-                  <option [value]=""></option>
+                  <option [ngValue]="null"></option>
                   <option *ngFor="let status of roleStatuses" [value]="status.value">{{ status.label }}</option>
                 </select>
 
                 <label for="volunteerStatusId">Volunteer Status:</label>
                 <select formControlName="volunteerStatusId" class="form-control form-control-sm">
-                  <option [value]=""></option>
+                  <option [ngValue]="null"></option>
                   <option *ngFor="let status of roleStatuses" [value]="status.value">{{ status.label }}</option>
                 </select>
 
                 <label for="presidentStatusId">President Status:</label>
                 <select formControlName="presidentStatusId" class="form-control form-control-sm">
-                  <option [value]=""></option>
+                  <option [ngValue]="null"></option>
                   <option *ngFor="let status of roleStatuses" [value]="status.value">{{ status.label }}</option>
                 </select>
               </div>
@@ -150,25 +150,25 @@
               <div class="col-6" style="padding: 0 2px 0 4px">
                 <label for="sponsorStatusId">Sponsor Status:</label>
                 <select formControlName="sponsorStatusId" class="form-control form-control-sm">
-                  <option [value]=""></option>
+                  <option [ngValue]="null"></option>
                   <option *ngFor="let status of roleStatuses" [value]="status.value">{{ status.label }}</option>
                 </select>
 
                 <label for="donorStatusId">Donor Status:</label>
                 <select formControlName="donorStatusId" class="form-control form-control-sm">
-                  <option [value]=""></option>
+                  <option [ngValue]="null"></option>
                   <option *ngFor="let status of roleStatuses" [value]="status.value">{{ status.label }}</option>
                 </select>
 
                 <label for="employeeStatusId">Employee Status:</label>
                 <select formControlName="employeeStatusId" class="form-control form-control-sm">
-                  <option [value]=""></option>
+                  <option [ngValue]="null"></option>
                   <option *ngFor="let status of roleStatuses" [value]="status.value">{{ status.label }}</option>
                 </select>
 
-                <label for="boardStatusId">Board Status:</label>
-                <select formControlName="boardStatusId" class="form-control form-control-sm">
-                  <option [value]=""></option>
+                <label for="boardMemberStatusId">Board Status:</label>
+                <select formControlName="boardMemberStatusId" class="form-control form-control-sm">
+                  <option [ngValue]="null"></option>
                   <option *ngFor="let status of roleStatuses" [value]="status.value">{{ status.label }}</option>
                 </select>
               </div>

@@ -60,7 +60,7 @@ export class AdminsMemberComponent implements OnInit {
       donorStatusId: [''],
       volunteerStatusId: [''],
       presidentStatusId: [''],
-      boardStatusId: [''],
+      boardMemberStatusId: [''],
 
       yearJoinedJA: [''],
       monthsinSma: [''],
@@ -161,7 +161,7 @@ export class AdminsMemberComponent implements OnInit {
       donorStatusId: member.donorStatusId,
       volunteerStatusId: member.volunteerStatusId,
       presidentStatusId: member.presidentStatusId,
-      boardStatusId: member.boardMemberStatusId,
+      boardMemberStatusId: member.boardMemberStatusId,
 
       yearJoinedJA: member.yearJoinedJa,
       monthsinSma: member.monthsinSma,
@@ -215,11 +215,15 @@ export class AdminsMemberComponent implements OnInit {
         }, 10000);
       },
       (error) => {
+        // need timeout to avoid "Expression has changed error"
         window.setTimeout(() => {
-          // console.log('clearing success message');
           this.errorMessage = error.message;
+        }, 0);
+        window.setTimeout(() => {
+          // console.log('clearing error message');
+          this.errorMessage = '';
           this.isLoading = false;
-        }, 8000);
+        }, 5000);
       }
     );
     // prevent default action of reload

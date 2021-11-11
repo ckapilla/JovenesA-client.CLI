@@ -46,7 +46,7 @@ export class StudentState {
 
   @Action(GetStudents)
   getStudents({ getState, setState }: StateContext<StudentStateModel>) {
-    return this.studentDataService.getCurrentStudentMiniDTOs('*').pipe(
+    return this.studentDataService.getCurrentStudentMiniDTOs('*', true).pipe(
       tap((result) => {
         const state = getState();
         setState({

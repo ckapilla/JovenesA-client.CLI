@@ -59,8 +59,17 @@ export class StudentDataService extends BaseDataService {
     return this.http.get<StudentMiniDTO>(url).pipe(catchError(this.handleError));
   }
 
-  public getCurrentStudentMiniDTOs(searchStr: string): Observable<StudentMiniDTO[]> {
-    const url = this.WebApiPrefix + 'students/names/' + (searchStr > '' ? searchStr : '-') + '/' + 1005;
+  public getCurrentStudentMiniDTOs(searchStr: string, getActiveOnly: boolean): Observable<StudentMiniDTO[]> {
+    console.log('in get DTOs with '  + getActiveOnly );
+
+    let url: string;
+    if (getActiveOnly) {
+      url = this.WebApiPrefix + 'students/names/' + (searchStr > '' ? searchStr : '-') + '/' + 1;
+    } else {
+      url = this.WebApiPrefix + 'students/names/' + (searchStr > '' ? searchStr : '-') + '/' + 0;
+    }
+
+
     console.log('sending AuthHttp get request for StudentMini with url ' + url);
     return this.http.get<StudentMiniDTO[]>(url).pipe(catchError(this.handleError));
   }

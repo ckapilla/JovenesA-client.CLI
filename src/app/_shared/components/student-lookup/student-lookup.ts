@@ -14,13 +14,17 @@ import { StudentMiniDTO } from '../../models/studentMiniDTO';
 })
 export class StudentNameService {
   constructor(private studentData: StudentDataService) {}
+  searchActiveOnly=true;
+  setSearchActiveOnly(searchActiveOnly: boolean) {
+    this.searchActiveOnly = searchActiveOnly;
+  }
 
   search(searchStr: string) {
     if (searchStr === '') {
       return of([]);
     }
-    // console.log('in search about to call getStudentMiniDTOs');
-    return this.studentData.getCurrentStudentMiniDTOs(searchStr).pipe(
+    console.log('in search about to call getStudentMiniDTOs');
+    return this.studentData.getCurrentStudentMiniDTOs(searchStr, this.searchActiveOnly).pipe(
       // catchError(this.handleError),
       tap((x) => console.log(x))
     );
@@ -40,6 +44,7 @@ export class StudentLookupComponent implements OnInit {
   studentName: string;
   email: string;
   studentGUId: string;
+  public searchActiveOnly = true;
   private subscription: Subscription;
   @Input() showSearchButton: boolean;
 
@@ -156,4 +161,10 @@ export class StudentLookupComponent implements OnInit {
       this.router.navigate(link);
     }
   }
+  toggleSearchActiveOnly(event) {
+    this.searchActiveOnly = event.target.checked; //  !this.searchActiveOnly;
+    console.log('calling dataservice with ' + this.searchActiveOnly);
+    this._service.setSearchActiveOnly(this.searchActiveOnly);
+  }
+
 }

@@ -14,7 +14,7 @@ export class StudentSelectorComponent implements OnInit {
   constructor(private studentData: StudentDataService) {}
   public ngOnInit() {
     this.haveData = false;
-    this.studentData.getCurrentStudentMiniDTOs('').subscribe(
+    this.studentData.getCurrentStudentMiniDTOs('', true).subscribe(
       (data) => {
         this.students = data;
       },
