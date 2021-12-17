@@ -15,8 +15,8 @@
         [(ngModel)]="selectedFilterMode"
         (change)="setSelectedFilterMode($event.target.value)"
       >
-        <option value="998">All Active Students (Current, Recent Grad and Sabbatical)</option>
-        <option value="999">Choose Use Specific Filters</option>
+        <option value="998">All Active Students (Current, Practicum and Sabbatical)</option>
+        <option value="999">Choose Specific Filters</option>
       </select>
       <span [hidden]="selectedFilterMode == '998'">
         <label for="StatusSelector">Status:</label>
