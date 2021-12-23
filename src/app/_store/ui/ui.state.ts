@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import {
   SetQRComponentsEditable,
-  SetSelectedFilterMode, SetSelectedGradesPeriod, SetSelectedGradYear, SetSelectedQRPeriod, SetSelectedStudentStatus,
+  SetSelectedFilterMode, SetSelectedGadesProcessingPeriod, SetSelectedGradYear, SetSelectedQRPeriod, SetSelectedStudentStatus,
   SetSelectedYearJoined, SetTestNamesVisibility
 } from './ui.action';
 import { UIStateModel } from './ui.model';
@@ -13,7 +13,7 @@ import { UIStateModel } from './ui.model';
     testNamesVisibility: false,
     qrComponentsEditable: false,
     selectedQRPeriod: '', // initialize ConstantsService.generateQRPeriods
-    selectedGradesPeriod: '105', // { value: '104', label: '2021-07-01 : 2021-11-30' }
+    selectedGadesProcessingPeriod: '106', // { value: '104', label: '2021-07-01 : 2021-11-30' }
 
     selectedFilterMode: '998',
     selectedStudentStatus: '0',
@@ -71,17 +71,17 @@ export class UIState {
   }
 
   @Selector()
-  static getSelectedGradesPeriod(state: UIStateModel) {
-    return state.selectedGradesPeriod;
+  static getSelectedGadesProcessingPeriod(state: UIStateModel) {
+    return state.selectedGadesProcessingPeriod;
   }
 
-  @Action(SetSelectedGradesPeriod)
-  setSelectedGradesPeriod(ctx: StateContext<UIStateModel>, { payload }: SetSelectedGradesPeriod) {
-    const selectedGradesPeriod = payload;
+  @Action(SetSelectedGadesProcessingPeriod)
+  setSelectedGadesProcessingPeriod(ctx: StateContext<UIStateModel>, { payload }: SetSelectedGadesProcessingPeriod) {
+    const selectedGadesProcessingPeriod = payload;
     const state = ctx.getState();
     ctx.patchState({
       ...state,
-      selectedGradesPeriod
+      selectedGadesProcessingPeriod
     });
   }
 

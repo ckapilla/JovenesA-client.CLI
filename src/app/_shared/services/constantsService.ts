@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { catchError, tap, toArray } from 'rxjs/operators';
-import { SetSelectedGradesPeriod, SetSelectedQRPeriod } from 'src/app/_store/ui/ui.action';
+import { SetSelectedGadesProcessingPeriod, SetSelectedQRPeriod } from 'src/app/_store/ui/ui.action';
 import { constants } from '../constants/constants';
 import { BaseDataService } from '../data/base-data.service';
 import { SELECTITEM } from '../interfaces/SELECTITEM';
@@ -145,7 +145,7 @@ export class ConstantsService extends BaseDataService {
     this.store.dispatch(new SetSelectedQRPeriod(yearPeriod));
   }
 
-  // public generateGradesPeriods() {
+  // public generateGadesProcessingPeriods() {
   //   const now = new Date();
   //   let elem: C_SELECTITEM =  { value: '', label: '' };
 
@@ -162,11 +162,11 @@ export class ConstantsService extends BaseDataService {
 
   getCurrentGradePeriod(yearTypeId: number) {
     const now = new Date();
-    constants.gradesPeriods.find(period => period.startDate >=('' +  now) && period.yearTypeId === yearTypeId);
+    constants.gradesProcessingPeriods.find(period => period.studentReportingStartDate >=('' +  now) && period.yearTypeId === yearTypeId);
   }
 
-  setSelectedGradesPeriod(gradesPeriod: string) {
-    this.store.dispatch(new SetSelectedGradesPeriod(gradesPeriod));
+  setSelectedGadesProcessingPeriod(gradesProcessingPeriod: string) {
+    this.store.dispatch(new SetSelectedGadesProcessingPeriod(gradesProcessingPeriod));
   }
 
 

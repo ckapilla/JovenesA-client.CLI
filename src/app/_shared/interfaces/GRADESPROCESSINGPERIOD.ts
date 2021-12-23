@@ -1,8 +1,9 @@
-export interface GRADESPERIOD {
+export interface GRADESPROCESSINGPERIOD {
   id: string;
   descriptor: string;
-  startDate: string;
+  studentReportingStartDate: string;
   // entryDate: string;
   endDate: string;
   yearTypeId: number;
+  isCurrent: boolean;
 }

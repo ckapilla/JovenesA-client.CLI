@@ -40,7 +40,7 @@ export class FollowUpRequestsListComponent {
     // this.session.setStudentInContextName(studentName);
 
     if (guid && guid.length > 0) {
-      const link = ['admins/students/student', { guid: guid }];
+      const link = ['admins/students/student-container', { guid: guid }];
       console.log('navigating to ' + link);
       this.router.navigate(link);
     }

@@ -3,14 +3,14 @@
     data-cy="grades-period">
     <span style="font-size: large"> Grade Report Statuses</span>
     <span style="margin-left: 10rem">
-      Initial Grades Due Date:
+      Grades Processing Period Start Date:
       <select
         name="activePeriodSelector"
         data-cy="period-selector"
-        [(ngModel)]="selectedGradesPeriod"
-        (change)="setSelectedGradesPeriod($event.target.value)"
+        [(ngModel)]="selectedGadesProcessingPeriod"
+        (change)="setSelectedGadesProcessingPeriod($event.target.value)"
       >
-        <option *ngFor="let gradesPeriod of gradesPeriods" [value]="gradesPeriod.id">{{gradesPeriod.descriptor}}</option>
+        <option *ngFor="let gradesProcessingPeriod of gradesProcessingPeriods" [value]="gradesProcessingPeriod.id">{{gradesProcessingPeriod.descriptor}}</option>
       </select>
     </span>
   </div>

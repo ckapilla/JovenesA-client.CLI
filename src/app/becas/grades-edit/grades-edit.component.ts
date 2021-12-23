@@ -175,7 +175,7 @@ export class GradesEditComponent implements OnInit {
   gotoStudent(guid: string, studentName: string) {
     console.log('setting studentName to ' + studentName);
     // XXYYZZ this.session.setStudentInContextName(studentName);
-    const link = ['admins/students/student', { guid: guid }];
+    const link = ['admins/students/student-container', { guid: guid }];
 
     console.log('navigating to ' + link);
     this.router.navigate(link);

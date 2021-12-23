@@ -124,7 +124,7 @@ export class ConfidentialReportsTrackingComponent implements OnInit {
     // XXYYZZ this.session.setStudentInContextName(studentName);
 
     // const link = ['/admins/students/student/' + id];
-    const link = ['admins/students/student', { guid: guid }];
+    const link = ['admins/students/student-container', { guid: guid }];
 
     console.log('navigating to ' + link);
     this.router.navigate(link);

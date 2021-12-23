@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { BecaDataService } from 'src/app/_shared/data/beca-data.service';
-import { GRADESPERIOD } from 'src/app/_shared/interfaces/GRADESPERIOD';
+import { GRADESPROCESSINGPERIOD } from 'src/app/_shared/interfaces/GRADESPROCESSINGPERIOD';
 import { GradesGivenEntryDTO } from 'src/app/_shared/models/grades-given-entryDTO';
 import { UrlService } from 'src/app/_shared/services/url.service';
 import { SetSelectedStudentIdentifiers } from 'src/app/_store/student/student.action';
-import { SetSelectedGradesPeriod } from 'src/app/_store/ui/ui.action';
+import { SetSelectedGadesProcessingPeriod } from 'src/app/_store/ui/ui.action';
 import { UIState } from 'src/app/_store/ui/ui.state';
 import { constants } from '../../_shared/constants/constants';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
@@ -28,17 +28,17 @@ export class GradesListComponent implements OnInit {
   sortCriteria: SORTCRITERIA;
   years: SELECTITEM[];
   months: SELECTITEM[];
-  gradesPeriods: GRADESPERIOD[];
+  gradesProcessingPeriods: GRADESPROCESSINGPERIOD[];
   selectedYear: string;
   selectedMonth: string;
   displayTestNames: boolean;
-  selectedGradesPeriod = '';
+  selectedGadesProcessingPeriod = '';
   staticUrlPrefix: string;
   periodStart: string;
   private subscription: Subscription;
 
   @Select(UIState.getTestNamesVisibility) testNameVisibility$: Observable<boolean>;
-  @Select(UIState.getSelectedGradesPeriod) selectedGradesPeriod$: Observable<string>;
+  @Select(UIState.getSelectedGadesProcessingPeriod) selectedGadesProcessingPeriod$: Observable<string>;
 
   constructor(
     public becaData: BecaDataService,
@@ -52,7 +52,7 @@ export class GradesListComponent implements OnInit {
 
     this.years = constants.contactYears;
     this.months = constants.months;
-    this.gradesPeriods = constants.gradesPeriods;
+    this.gradesProcessingPeriods = constants.gradesProcessingPeriods;
 
     this.isLoading = false;
   }
@@ -69,13 +69,13 @@ export class GradesListComponent implements OnInit {
     this.testNameVisibility$.subscribe((flag) => {
       this.displayTestNames = flag;
     });
-    this.subscribeForselectedGradesPeriod();
+    this.subscribeForselectedGadesProcessingPeriod();
   }
 
-  subscribeForselectedGradesPeriod() {
-    this.subscription = this.selectedGradesPeriod$.subscribe((message) => {
-      this.selectedGradesPeriod = message;
-      console.log('************NGXS: GradesList new selectedGradesPeriod received' + this.selectedGradesPeriod);
+  subscribeForselectedGadesProcessingPeriod() {
+    this.subscription = this.selectedGadesProcessingPeriod$.subscribe((message) => {
+      this.selectedGadesProcessingPeriod = message;
+      console.log('************NGXS: GradesList new selectedGadesProcessingPeriod received' + this.selectedGadesProcessingPeriod);
       this.fetchFilteredData();
     });
   }
@@ -83,12 +83,13 @@ export class GradesListComponent implements OnInit {
 
   fetchFilteredData() {
     this.isLoading = true;
-    this.becaData.getGradesListForPeriod(+this.selectedGradesPeriod).subscribe(
+    console.log('displayTestNames: ' + this.displayTestNames);
+    this.becaData.getGradesListForPeriod(+this.selectedGadesProcessingPeriod).subscribe(
       (data) => {
         this.gradesGivenEntryDTOs = data.filter((item) => {
           if (this.displayTestNames) {
             return item;
-          } else if (!this.displayTestNames && item.studentName.substr(0,5) !== '_Test, _Student') {
+          } else if (!this.displayTestNames && item.studentName.substr(0,5) !== '_Test') {
             return item;
           }
         });
@@ -123,8 +124,8 @@ export class GradesListComponent implements OnInit {
   //   this.fetchFilteredData();
   // }
 
-  setSelectedGradesPeriod(gradesPeriod: string) {
-    this.store.dispatch(new SetSelectedGradesPeriod(gradesPeriod));
+  setSelectedGadesProcessingPeriod(gradesProcessingPeriod: string) {
+    this.store.dispatch(new SetSelectedGadesProcessingPeriod(gradesProcessingPeriod));
   }
 
   confirmGPA(studentGUId: string, studentName: string) {

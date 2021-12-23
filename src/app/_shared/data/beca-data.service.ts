@@ -25,8 +25,8 @@ export class BecaDataService {
     return this.http.get<GradesGivenEntryDTO[]>(url).pipe(catchError(this.handleError));
   }
 
-  public getGradesListForPeriod(gradesPeriodId: number): Observable<GradesGivenEntryDTO[]> {
-    const url = this.WebApiPrefix + 'becas/' + 'grades-list/period/' + gradesPeriodId;
+  public getGradesListForPeriod(gradesProcessingPeriodId: number): Observable<GradesGivenEntryDTO[]> {
+    const url = this.WebApiPrefix + 'becas/' + 'grades-list/period/' + gradesProcessingPeriodId;
     console.log('sending AuthHttp get request for GradesList wiht url ' + url);
     return this.http.get<GradesGivenEntryDTO[]>(url).pipe(catchError(this.handleError));
   }
