@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Store } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
+import { Observable, Subscription } from 'rxjs';
 import { StudentDataService } from 'src/app/_shared/data/student-data.service';
 import { StudentSelfReportDataService } from 'src/app/_shared/data/student-self-report-data.service';
 import { SponsorGroup } from 'src/app/_shared/models/sponsor-group';
 import { SetSelectedStudentIdentifiers } from 'src/app/_store/student/student.action';
+import { UIState } from 'src/app/_store/ui/ui.state';
 import { StudentSelfReport } from '../../_shared/models/student-self-report';
 import { StudentDTO } from '../../_shared/models/studentDTO';
 import { SessionService } from '../../_shared/services/session.service';
+
 
 @Component({
   templateUrl: './students-self-reports.component.html',
@@ -23,6 +26,14 @@ export class StudentsSelfReportsComponent implements OnInit {
   sponsorGroup: SponsorGroup;
   sponsorGroupName: string;
   sponsorGroupId: number | undefined;
+  selectedQRPeriod = '';
+  subscription: Subscription;
+  // ssrEditDateRange = '';
+  ssrEditDateStart = '';
+  ssrEditDateStop = '';
+
+  @Select(UIState.getSSREditDateRange) ssrEditDateRange$: Observable<string>;
+  // @Select(UIState.getCurrentSSRPeriodEditStop) currentSSRPeriodEditStop$: Observable<string>;
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -33,6 +44,20 @@ export class StudentsSelfReportsComponent implements OnInit {
     public store: Store
   ) {
     console.log('ssr constructor');
+    this.subscribeForSSREditDates();
+  }
+
+  subscribeForSSREditDates() {
+    this.subscription = this.ssrEditDateRange$.subscribe((message) => {
+      // this.ssrEditDateRange = message;
+      console.log(message);
+      this.ssrEditDateStart = message.substring(0,10);
+      console.log(this.ssrEditDateStart);
+      this.ssrEditDateStop = message.substring(11);
+      console.log(this.ssrEditDateStop);
+
+      console.log('************NGXS: SSR EditDateRange received' + this.ssrEditDateStart + '|' + this.ssrEditDateStop);
+    });
   }
 
   ngOnInit() {
@@ -93,8 +118,8 @@ export class StudentsSelfReportsComponent implements OnInit {
     console.log('in SSR: ready to navigate to' + target);
     this.router.navigateByUrl(target);
   }
+
   isCurrentReportDate(rptDate: string) {
-    return (rptDate > '2021-10-01' && rptDate < '2021-10-11');
-    // return rptDate.substr(0, 7) >= ; // 'yyyy-MM';
+    return (rptDate >= this.ssrEditDateStart  && rptDate <= this.ssrEditDateStop);
   }
 }

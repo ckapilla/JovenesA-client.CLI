@@ -12,13 +12,15 @@ import { UIStateModel } from './ui.model';
   defaults: {
     testNamesVisibility: false,
     qrComponentsEditable: false,
+
     selectedQRPeriod: '', // initialize ConstantsService.generateQRPeriods
     selectedGadesProcessingPeriod: '106', // { value: '104', label: '2021-07-01 : 2021-11-30' }
 
     selectedFilterMode: '998',
     selectedStudentStatus: '0',
     selectedYearJoined: '0',
-    selectedGradYear: '0'
+    selectedGradYear: '0',
+    ssrEditDateRange: '2021-12-26|2022-01-07'
   }
 })
 @Injectable()
@@ -56,7 +58,12 @@ export class UIState {
   }
 
   @Selector()
-  static getSelectedQRPeriod(state: UIStateModel) {
+  static getSSREditDateRange(state: UIStateModel) {
+    return state.ssrEditDateRange;
+  }
+
+  @Selector()
+  static getSelectedQRPeriod(state: UIStateModel): string {
     return state.selectedQRPeriod;
   }
 
