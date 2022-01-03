@@ -101,9 +101,12 @@ export class ConstantsService extends BaseDataService {
   public generateQRPeriods() {
     const now = new Date();
     console.log(now);
-    const thisYear  = now.getFullYear();
+    let thisYear  = now.getFullYear();
     const thisMonth = now.getMonth() + 1; // since we don't want zero based here
     const thisDate = now.getDate() + 1; // not zero based
+    if (thisMonth <=3) {
+      thisYear--;
+    }
     const qtrs = [0,4,4,4,1,1,1,2,2,2,3,3,3];
     let targetQtr = qtrs[thisMonth];
     console.log('this month: ' + thisMonth);
