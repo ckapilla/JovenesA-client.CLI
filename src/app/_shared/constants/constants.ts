@@ -54,7 +54,7 @@ const contactYears: SELECTITEM[] = [
   // { value: '2020', label: '2020' },
   // { value: '2021', label: '2021' }
 ];
-const currentContactYear  = 2021;
+const currentContactYear  = 2022;
 
 
 const months: SELECTITEM[] = [
