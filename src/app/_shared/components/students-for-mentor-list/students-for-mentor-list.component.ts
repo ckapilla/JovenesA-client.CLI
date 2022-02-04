@@ -35,9 +35,10 @@ export class StudentsForMentorListComponent implements OnInit {
   }
 
   public ngOnInit() {
+    const bActiveOnly = false;
     this.haveData = false;
     this.mentorGUId = this.currRoute.snapshot.params['guid'];
-    this.mentorData.getStudentsForMentorByGUId(this.mentorGUId).subscribe(
+    this.mentorData.getStudentsForMentorByGUId(this.mentorGUId, bActiveOnly).subscribe(
       (data) => {
         this.students = this.students = data.filter((item) => {
           if (this.displayTestNames) {

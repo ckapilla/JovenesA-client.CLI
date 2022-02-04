@@ -58,7 +58,8 @@ export class StudentsForMentorGridComponent implements OnInit {
 
   fetchData() {
     console.log('studentGrid calling getStudentsForMentor');
-    this.mentorData.getStudentsForMentorByGUId(this.session.getUserGUId()).subscribe(
+    const bActiveOnly = true;
+    this.mentorData.getStudentsForMentorByGUId(this.session.getUserGUId(), bActiveOnly).subscribe(
       (data) => {
         this.students = data.filter((item) => {
           if (this.displayTestNames) {

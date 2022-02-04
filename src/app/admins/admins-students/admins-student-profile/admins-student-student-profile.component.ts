@@ -1,4 +1,4 @@
-import { Location } from '@angular/common';
+import { formatDate, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -380,6 +380,10 @@ export class AdminsStudentComponent implements OnInit {
 
   backToStudentsList() {
     this.router.navigate(['/admins/students']);
+  }
+  setMentorStartDate(){
+    const formattedDt = formatDate(new Date(), 'yyyy-MM-dd', 'en_US');
+    this.myForm.controls.mentorAssignedDate.setValue(formattedDt);
   }
 
   mentorReportsReview() {

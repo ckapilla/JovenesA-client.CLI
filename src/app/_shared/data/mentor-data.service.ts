@@ -20,8 +20,8 @@ export class MentorDataService extends BaseDataService {
   //   return this.http.get(url).pipe(catchError(this.handleError));
   // }
 
-  public getStudentsForMentorByGUId(mentorGUId: string): Observable<StudentDTO[]> {
-    const url = this.WebApiPrefix + 'mentors/students_for/' + mentorGUId;
+  public getStudentsForMentorByGUId(mentorGUId: string, bActiveOnly: boolean): Observable<StudentDTO[]> {
+    const url = this.WebApiPrefix + 'mentors/students_for/' + mentorGUId + '/' + bActiveOnly;
     console.log('sending AuthHttp get request for StudentsForMentor with url ' + url);
     const xx = this.http.get<StudentDTO[]>(url).pipe(catchError(this.handleError));
     console.log(xx);

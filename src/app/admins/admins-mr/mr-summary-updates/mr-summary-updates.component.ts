@@ -181,7 +181,7 @@ export class MentorReportSummaryUpdatesComponent implements OnInit {
   onDelete() {
     console.log('delete with userID = ' + this.session.getUserId());
     // eslint-disable-next-line eqeqeq
-    if (this.session.getUserId() == 1216 || this.session.getUserId() == 2094 || this.session.getUserId() == 2947) {
+    if (this.session.getUserId() == 1216 || this.session.getUserId() == 2094 || this.session.getUserId() == 2947 || this.session.getUserId() == 2433 ) {
       const response = window.confirm(
         'Caution this action will permanently delete this mentor report! Proceed? ' + this.mentorReport2.mentorReportId
       );
@@ -199,7 +199,7 @@ export class MentorReportSummaryUpdatesComponent implements OnInit {
       }
     } else {
       alert(
-        'This function is only available for Nora or Chris. Please ask one of them if you need to delete a report.'
+        'This function is only available for Nora, Toño and Chris. Please ask one of them if you need to delete a report.'
       );
     }
     return false;
