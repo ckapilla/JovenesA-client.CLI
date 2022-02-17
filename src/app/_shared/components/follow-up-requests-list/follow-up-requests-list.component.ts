@@ -8,8 +8,9 @@ import { FollowUpRequestRPT } from '../../models/follow-up-requestRPT';
 })
 export class FollowUpRequestsListComponent {
   @Input() followUpRequests: FollowUpRequestRPT[];
-  @Input() displayCompleteHistory: boolean;
+  // @Input() displayCompleteHistory: boolean;
   @Input() showAddDetails: boolean;
+  displayCompleteHistory = false;
 
   studentId: number;
 
@@ -30,7 +31,7 @@ export class FollowUpRequestsListComponent {
     this.router.navigateByUrl(target);
   }
   viewAddDetails(requestId: number) {
-    const link = '/admins/follow-up-events-add/' + requestId;
+    const link = '/admins/follow-up-request-details/' + requestId;
     console.log('navigating to ' + link);
     this.router.navigateByUrl(link);
   }

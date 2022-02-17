@@ -24,6 +24,7 @@ import { AdminsStudentComponent } from './admins-students/admins-student-profile
 import { AdminsStudentSearchComponent } from './admins-students/admins-student-search/admins-student-search.component';
 import { AdminsComponent } from './admins.component';
 import { FollowUpEventsAddComponent } from './follow-up-events-add/follow-up-events-add.component';
+import { FollowUpRequestDetailsComponent } from './follow-up-request-details/follow-up-request-details.component';
 import { FollowUpRequestsAddComponent } from './follow-up-requests-add/follow-up-requests-add.component';
 import { FollowUpRequestsComponent } from './follow-up-requests/follow-up-requests.component';
 import { SponsorGroupComponent } from './sponsor-group/sponsor-group.component';
@@ -54,6 +55,7 @@ import { UtilitiesComponent } from './utilities/utilities.component';
     StudentReportsStatusCountsComponent,
     AdminsNavbarComponent,
     FollowUpRequestsComponent,
+    FollowUpRequestDetailsComponent,
     FollowUpRequestsAddComponent,
     FollowUpEventsAddComponent,
     // SelfReportsUpdatesComponent,

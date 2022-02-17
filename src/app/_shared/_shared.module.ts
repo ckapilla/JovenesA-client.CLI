@@ -19,6 +19,7 @@ import { MemberSelectorComponent } from './components/member-selector/member-sel
 import { MentorReports2ListComponent } from './components/mentor-reports2-list/mentor-reports2-list.component';
 import { MentorSelectorComponent } from './components/mentor-selector/mentor-selector.component';
 import { MentorsForStudentListComponent } from './components/mentors-for-student-list/mentors-for-student-list.component';
+import { NgbdModalContentComponent } from './components/modal-content/modal-content';
 import { PersonSharedComponent } from './components/person-shared/person-shared.component';
 import { QrStatusSelectorComponent } from './components/qr-status-selector/qr-status-selector.component';
 import { SortableColumnComponent } from './components/sortable-column.component';
@@ -93,6 +94,7 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     MemberLookupComponent,
     MemberHeaderComponent,
     MemberHeaderDetailsComponent,
+    NgbdModalContentComponent,
     StudentHeaderComponent,
     StudentHeader2Component,
     StudentHistoryComponent,

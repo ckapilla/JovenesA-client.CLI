@@ -15,6 +15,9 @@
           &nbsp;Student: [
           <span class="link" (click)='gotoStudent(request.studentGUId)' class='link'>
             {{ request.studentName }}
+            <button class="btn btn-lg btn-outline-primary"
+            (click)="open()">More...
+            </button>
           </span>
           ]
         </span>
@@ -29,6 +32,8 @@
           &nbsp;Assigned To:
           [ {{ request.assignedTo }} ]
         </span>
+
+
         <!-- <span class="padded">
           &nbsp;Target Date:
           [ {{ request.targetDate | truncateDate }} ]
@@ -36,7 +41,7 @@
         <span class="padded" [hidden]="!showAddDetails">
           <span class="btn btn-primary" (click)="viewAddDetails(request.followUpRequestId)"
                 style="margin-left:10px">
-            Details
+            View / Add Details
           </span>
         </span>
       </div>
@@ -51,7 +56,6 @@
           {{ request.description_Spanish }}
         </div>
       </div>
-      <!--
       <div class="row" [hidden]=displayCompleteHistory>
         <div class="padded">
           &nbsp;Latest Comments / Últimos Comentarios:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -71,7 +75,6 @@
         <app-follow-up-events [followUpRequestId]="request.followUpRequestId">
         </app-follow-up-events>
       </div>
-    -->
     </div>
   </div>
 </div>

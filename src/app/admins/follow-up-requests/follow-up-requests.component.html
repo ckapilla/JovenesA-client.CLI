@@ -32,18 +32,22 @@
           <option *ngFor="let status of followUpStatuses" [value]="status.value">{{ status.label }}</option>
         </select>
 
-        <span class="checkboxes">
+        <!-- <span class="checkboxes">
           &nbsp;&nbsp;<input type="checkbox" [(ngModel)]="displayCompleteHistory" />&nbsp;<span
             >Display Complete History</span
           >
-        </span>
+        </span> -->
       </div>
-
       <app-follow-up-requests-list
+        [followUpRequests]="followUpRequests"
+        [showAddDetails]="showAddDetails"
+      ></app-follow-up-requests-list>
+
+      <!-- <app-follow-up-requests-list
         [followUpRequests]="followUpRequests"
         [displayCompleteHistory]="displayCompleteHistory"
         [showAddDetails]="showAddDetails"
-      ></app-follow-up-requests-list>
+      ></app-follow-up-requests-list> -->
     </div>
   </div>
 </div>
