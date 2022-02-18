@@ -47,6 +47,7 @@ export class Student {
     public mentorGUId?: string,
     public mentorAssignedDate?: Date,
     public mentoringEndDate?: Date,
+    public mentoringComment?: string,
     public credentialYear?: number,
     public credentialMonthNum?: number,
     public probationStartDate?: Date,

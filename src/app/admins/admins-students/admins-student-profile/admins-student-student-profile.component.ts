@@ -172,7 +172,10 @@ export class AdminsStudentComponent implements OnInit {
         { value: '' },
         Validators.compose([Validators.pattern(/^\d{4}\-\d{1,2}\-\d{1,2}$/), Validators.maxLength(10)])
       ],
-
+      mentoringComment: [
+        { value: '' },
+        Validators.maxLength(50)
+      ],
       curp: [{ value: '' }],
       rfc: [{ value: '' }],
       bankAccount: [{ value: '' }],
@@ -303,7 +306,7 @@ export class AdminsStudentComponent implements OnInit {
       probationEndDate: new TruncateDatePipe().transform('' + student.probationEndDate),
       mentorAssignedDate: new TruncateDatePipe().transform('' + student.mentorAssignedDate),
       mentoringEndDate: new TruncateDatePipe().transform('' + student.mentoringEndDate),
-
+      mentoringComment: student.mentoringComment,
       curp: student.curp,
       rfc: student.rfc,
       bankAccount: student.bankAccount,

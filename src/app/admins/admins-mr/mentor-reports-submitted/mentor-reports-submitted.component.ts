@@ -63,9 +63,24 @@ https://plnkr.co/edit/DITVzCSqHHB1uNrTxFit?p=info
   //   console.log('sorted event received');
   // }
 
-  gotoMember(guid: string) {
-    const link = [ '/admins/members/member/' + guid ];
+  gotoMember(memberGUId: string) {
+    const link = [ '/admins/members/member/', { guid: memberGUId } ];
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }
+
+  gotoStudent(studentGUId: string) {
+
+    // this.store.dispatch(new SetPhotoPathname(photoUrl));
+    // this.store.dispatch(new SetSelectedStudentGUId(guid));
+    // this.store.dispatch(new SetSelectedStudentName(studentName));
+    // this.store.dispatch(new SetSelectedStudentMentorGUId(mentorGUId));
+    // this.store.dispatch(new SetSelectedStudentIdentifiers({ studentGUId, studentName }));
+
+    const link = ['admins/students/student-container', { guid: studentGUId }];
+    console.log('navigating to ' + link);
+    this.router.navigate(link);
+  }
+
+
 }
