@@ -29,7 +29,7 @@
           <option *ngFor="let status of studentStatuses" [value]="status.value">{{ status.label }}</option>
         </select>
 
-        <label for="YearJoinedSelector">Year Joined JA:</label>
+        <label for="YearJoinedSelector">First Student Year:</label>
         <select
           name="YearJoinedSelector"
           [(ngModel)]="selectedYearJoined"

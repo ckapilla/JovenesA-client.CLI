@@ -22,6 +22,8 @@
               <th app-sortable-column="submittedCount" sort-direction="asc" (onSortColumn)="onSortColumn($event)">Total
                 Submitted</th>
               <th app-sortable-column="latestDate" (onSortColumn)="onSortColumn($event)">Latest Month</th>
+              <th (onSortColumn)="onSortColumn($event)">Comment</th>
+
             </tr>
           </thead>
           <tbody>
@@ -32,7 +34,7 @@
               <td *ngIf="!row.mentorGUId" class="report-row">
                 {{ row.mentorName }}
               </td>
-              <td class="report-row">
+              <td class="report-row" (click)='gotoStudent(row.studentGUId)' class="report-row link">
                 {{ row.studentName }}
               </td>
               <td class="report-row">
@@ -43,6 +45,9 @@
               </td>
               <td class="report-row">
                 {{ row.latestDate | truncateDate }}
+              </td>
+              <td class="report-row">
+                {{ row.mentoringComment }}
               </td>
             </tr>
           </tbody>

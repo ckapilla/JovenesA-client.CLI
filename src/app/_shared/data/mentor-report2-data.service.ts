@@ -29,7 +29,7 @@ export class MentorReport2DataService extends BaseDataService {
   public getMentorReport2RPTsViaGUID(studentGUId: string, mentorGUId: string): Observable<MentorReport2RPT[]> {
     let url = '';
 
-    if (mentorGUId != null) {
+    if (mentorGUId != null && mentorGUId > '') {
       url = this.WebApiPrefix + 'mentor_reports2/' + studentGUId + '/' + mentorGUId;
     } else {
       url = this.WebApiPrefix + 'mentor_reports2/' + studentGUId;

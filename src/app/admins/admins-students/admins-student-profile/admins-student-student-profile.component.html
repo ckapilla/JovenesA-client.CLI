@@ -29,8 +29,13 @@
                       (click)="setReadOnly()"
                       style="margin: 0 0 0 4px"
                     />
-                    Editable</label
+                    Edit</label
                   >
+                  &nbsp;&nbsp;
+                  <button class="btn btn-primary" data-cy="btn-save" (click)="saveMyForm()" [disabled]="!myForm.valid">
+                    Save
+                  </button>
+
                 </div>
                 <!-- <div [hidden]="!showEditLink" (click)="gotoMemberRecord()" class="link">
               (Edit name or email for Member)
@@ -291,6 +296,18 @@
                   </span>
                 </div>
 
+                <label for="mentoringComment">Mentoring Comment: </label>
+                <div>
+                  <input
+                  id="mentoringComment"
+                  formControlName="mentoringComment"
+                  type="text"
+                  class="form-control form-control-sm"
+                  placeholder=""
+                  />
+                </div>
+
+
                 <app-student-grades-status
                   [gpaStatus]="studentDTO.gpaStatus"
                   [gradeRptStatus]="studentDTO.gradeRptStatus"
@@ -303,10 +320,10 @@
                 >
                 </app-student-mr-status>
               </div>
-            </div>
-            <div class="row">
+              </div>
+              <div class="row">
               <div class="form-group">
-                <button class="btn btn-primary" data-cy="btn-save" (click)="saveMyForm()" [disabled]="!myForm.valid">
+                <button class="btn btn-primary" (click)="saveMyForm()" [disabled]="!myForm.valid">
                   Save
                 </button>
                 <span class="red" [hidden]="myForm.valid">All required fields must be filled in before saving.</span>
