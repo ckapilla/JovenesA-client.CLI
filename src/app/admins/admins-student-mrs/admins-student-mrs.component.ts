@@ -72,9 +72,9 @@ export class AdminsStudentMRsComponent implements OnInit {
   }
 
   fetchFilteredData() {
-    console.log('fetching data for mentorGUId ' + this.mentorGUId + ' and studentGUId  ' + this.studentGUId);
+    console.log('fetching data for mentorGUId ' + null+ ' and studentGUId  ' + this.studentGUId);
     this.isLoading = true;
-    this.mentorReportData.getMentorReport2RPTsViaGUID(this.studentGUId, this.mentorGUId).subscribe(
+    this.mentorReportData.getMentorReport2RPTsViaGUID(this.studentGUId, null).subscribe(
       (data) => {
         this.mentorReports2 = data;
       },
