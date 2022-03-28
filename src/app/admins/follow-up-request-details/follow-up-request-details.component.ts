@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FollowUpDataService } from 'src/app/_shared/data/follow-up-data.service';
 import { FollowUpRequestRPT } from '../../_shared/models/follow-up-requestRPT';
 
 
@@ -14,7 +15,9 @@ export class FollowUpRequestDetailsComponent implements OnInit {
 
   studentId: number;
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+    public followUpData: FollowUpDataService
+  ) {
     console.log('FollowUpRequestDetailsComponent constructor');
   }
 
@@ -26,7 +29,7 @@ export class FollowUpRequestDetailsComponent implements OnInit {
   fetchFilteredData() {
     // this.isLoading = true;
     console.log('in fetchFilteredData for FollowUpRequests');
-    this.followUpData.getFollowUpRequests(666).subscribe(
+    this.followUpData.getFollowUpRequests('666').subscribe(
       (data) => {
         this.followUpRequests = data;
       },

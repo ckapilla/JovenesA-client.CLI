@@ -104,9 +104,10 @@ export class ConstantsService extends BaseDataService {
     let thisYear  = now.getFullYear();
     const thisMonth = now.getMonth() + 1; // since we don't want zero based here
     const thisDate = now.getDate() + 1; // not zero based
-    if (thisMonth <=3) {
+    if (thisMonth <=2 || thisMonth  === 3 && thisDate <= 22) {
       thisYear--;
     }
+    console.log('thisMonth ' + thisMonth);
     const qtrs = [0,4,4,4,1,1,1,2,2,2,3,3,3];
     let targetQtr = qtrs[thisMonth];
     console.log('this month: ' + thisMonth);
@@ -120,7 +121,7 @@ export class ConstantsService extends BaseDataService {
     let maxQtrs = NUMQTRS;
     if (thisMonth % 3 === 0) { // if last days of quarter bump  treat as if it is next quarter
       console.log('last month of quarter');
-      targetQtr = (thisDate >= 22) ? targetQtr + 1 : targetQtr;
+      targetQtr = (thisDate >= 22) ?  qtrs[thisMonth + 1] : targetQtr;
       console.log('targetQtr adj: '  + targetQtr);
     }
 

@@ -13,8 +13,8 @@ import { UrlService } from '../../services/url.service';
 export class FileUploaderComponent {
   public files: NgxFileDropEntry[] = [];
   WebApiPrefix: string;
-  errorMessage: string;
-  successMessage: string;
+  errorMessage= '';
+  successMessage = '';
   @Input() studentGradeId: number;
   @Input() gradesProcessingPeriodId: number;
 
@@ -29,6 +29,8 @@ export class FileUploaderComponent {
   }
 
   public dropped(files: NgxFileDropEntry[]) {
+    this.errorMessage= '';
+    this.successMessage = '';
     this.files = files;
     for (const currFile of files) {
       if (currFile.fileEntry.isFile) {
@@ -40,10 +42,15 @@ export class FileUploaderComponent {
           console.log('filEntry.name: ', file.name);
           const ext = file.name.substr(file.name.length - 4, 4);
           console.log('extension = ' + ext);
+          console.log(ext.toLocaleLowerCase() !== '.png');
           console.log('filEntry.size: ', file.size);
-
+          let localError = '';
           if (ext.toLocaleLowerCase() !== '.png') {
-            window.alert('El archivo para cargar debe estar en el formato de .png');
+            localError = 'El archivo [' + file.name + '] no estár en el formato de .png .';
+            this.errorMessage = localError;
+          } else if (file.size > 204800) {
+            localError = 'El archivo [' + file.name + '] tiene mas 200 kb de tamaño.';
+            this.errorMessage = localError;
           } else {
             const frmData = new FormData();
             frmData.append('file', file);
