@@ -125,7 +125,8 @@ const gradesProcessingPeriods: GRADESPROCESSINGPERIOD[] = [
   { id: '104', descriptor: '2021-08-01 (Semestre)', studentReportingStartDate:'2021-07-20', endDate:'2021-11-30', yearTypeId: 2031, isCurrent: false  },
   { id: '105', descriptor: '2021-09-01 (Cuatrimestre)', studentReportingStartDate:'2021-08-20', endDate:'2021-11-30', yearTypeId: 2032, isCurrent: false},
   { id: '106', descriptor: '2022-01-01 (Cuatrimestre)', studentReportingStartDate:'2021-12-20', endDate:'2022-03-31', yearTypeId: 2032, isCurrent: true },
-  { id: '107', descriptor: '2022-01-01 (Semestre)', studentReportingStartDate:'2021-12-20', endDate:'2022-06-30', yearTypeId: 2031, isCurrent: false}
+  { id: '107', descriptor: '2022-01-01 (Semestre)', studentReportingStartDate:'2021-12-20', endDate:'2022-06-30', yearTypeId: 2031, isCurrent: false},
+  { id: '108', descriptor: '2022-05-01 (Cuatrimestre)', studentReportingStartDate:'2022-04-20', endDate:'2022-07-31', yearTypeId: 2032, isCurrent: false },
 ];
 
 const genders: SELECTITEM[] = [
