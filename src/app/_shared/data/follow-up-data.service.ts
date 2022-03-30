@@ -48,6 +48,13 @@ export class FollowUpDataService extends BaseDataService {
     return this.http.get<FollowUpRequestRPT[]>(url).pipe(catchError(this.handleError));
   }
 
+  public getFollowUpRequestRPT(requestId: string): Observable<FollowUpRequestRPT> {
+    let url = this.WebApiPrefix + 'follow_up_requests';
+    // url = `${url}?requestId=${requestId}`;
+    url = `${url}/${requestId}`;
+    console.log('sending AuthHttp get request with ' + url);
+    return this.http.get<FollowUpRequestRPT>(url).pipe(catchError(this.handleError));
+  }
   public postFollowUpRequest(followUpRequest: FollowUpRequest): Observable<any> {
     const url = this.WebApiPrefix + 'follow_up_requests';
     console.log('in postFollowUpRequest with url ' + url);

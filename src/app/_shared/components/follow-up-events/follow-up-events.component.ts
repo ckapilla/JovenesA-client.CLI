@@ -21,15 +21,18 @@ export class FollowUpEventsComponent implements OnInit {
   displayEventDetails: false;
   @Input() followUpRequestId: number;
 
-  constructor(public followUpData: FollowUpDataService, public router: Router, public session: SessionService) {}
+  constructor(public followUpData: FollowUpDataService, public router: Router, public session: SessionService) {
+    console.log('constructor for FollowUpEventsComponent has this.followUpRequestId ' + this.followUpRequestId);
+  }
 
   ngOnInit() {
+
     this.fetchData();
   }
 
   fetchData() {
     this.isLoading = true;
-    console.log('in fetchData for FollowUpEvents with RequestId ' + this.followUpRequestId);
+    console.log('in fetchData for FollowUpEvents with followUpRequestId ' + this.followUpRequestId);
     this.followUpData.getFollowUpEvents(this.followUpRequestId).subscribe(
       (data) => {
         this.followUpEvents = data;

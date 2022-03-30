@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FollowUpDataService } from 'src/app/_shared/data/follow-up-data.service';
 import { FollowUpRequestRPT } from '../../_shared/models/follow-up-requestRPT';
 
@@ -9,46 +9,44 @@ import { FollowUpRequestRPT } from '../../_shared/models/follow-up-requestRPT';
   templateUrl: './follow-up-request-details.component.html'
 })
 export class FollowUpRequestDetailsComponent implements OnInit {
-  @Input() followUpRequests: FollowUpRequestRPT[];
-  @Input() displayCompleteHistory: boolean;
-  @Input() showAddDetails: boolean;
-
+  // @Input() followUpRequest: FollowUpRequestRPT;
+  // @Input() displayCompleteHistory: boolean;
+  // @Input() showAddDetails: boolean;
+  request = new FollowUpRequestRPT();
   studentId: number;
+  followUpRequestId: string;
 
   constructor(private router: Router,
+    public currRoute: ActivatedRoute,
     public followUpData: FollowUpDataService
   ) {
     console.log('FollowUpRequestDetailsComponent constructor');
   }
 
   ngOnInit() {
-    console.log('calling fetchFilterdData with ' + 666);
-    this.fetchFilteredData();
+    this.followUpRequestId = this.currRoute.snapshot.params['requestId'];
+    console.log('calling fetchFilterdData with ' + this.followUpRequestId);
+    this.fetchFilteredData(this.followUpRequestId);
   }
 
-  fetchFilteredData() {
+  fetchFilteredData(requestId: string) {
     // this.isLoading = true;
     console.log('in fetchFilteredData for FollowUpRequests');
-    this.followUpData.getFollowUpRequests('666').subscribe(
+    this.followUpData.getFollowUpRequestRPT(requestId).subscribe(
       (data) => {
-        this.followUpRequests = data;
+        // this.followUpRequest = data;
+        this.request = data;
       },
       (err) => console.error('Subscribe error: ' + err),
       () => {
         console.log('done >>');
-        console.log(this.followUpRequests);
+        console.log(this.request);
         console.log('<<');
         // this.isLoading = false;
       }
     );
   }
-  monthlyReportEdit(mentorReportId: number) {
-    console.log('in monthly-reports: monthlyReportEdit, ready to navigate');
-    if (this.studentId !== null) {
-      const target = '/mentors/monthly-reports-edit/' + mentorReportId;
-      this.router.navigateByUrl(target);
-    }
-  }
+
   // followUpRequestAdd() {
   //   console.log('in follow-up-requests: FollowUpRequestAdd, ready to navigate');
   //   const target = '/admins/follow-up-requests-add';
@@ -59,10 +57,13 @@ export class FollowUpRequestDetailsComponent implements OnInit {
     console.log('navigating to ' + link);
     this.router.navigateByUrl(link);
   }
+  navigateBack() {
+    const link = '/admins/follow-up-requests';
+    console.log('navigating to ' + link);
+    this.router.navigateByUrl(link);
+  }
 
   gotoStudent(guid: string) {
-    // console.log('setting studentName to ' + studentName);
-    // this.session.setStudentInContextName(studentName);
 
     if (guid && guid.length > 0) {
       const link = ['admins/students/student-container', { guid: guid }];

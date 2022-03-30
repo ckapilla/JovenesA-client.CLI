@@ -28,6 +28,7 @@ export class FollowUpEventsAddComponent implements OnInit {
   selectedFollowUpStatus: string;
   savedFollowUpStatusId: number;
   studentName: string;
+  currentRequestId: string;
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -36,6 +37,8 @@ export class FollowUpEventsAddComponent implements OnInit {
     private _fb: FormBuilder,
     private session: SessionService
   ) {
+
+    this.currentRequestId = this.currRoute.snapshot.params['requestId'];
     this.followUpEvent = new FollowUpEvent();
     // SQL Server will adjust the time to UTC by adding TimezoneOffset
     // we want to store local time so we adjust for that.
@@ -103,7 +106,7 @@ export class FollowUpEventsAddComponent implements OnInit {
       () => {
         this.submitted = true;
         this.isLoading = false;
-        const target = '/admins/follow-up-requests';
+        const target = '/admins/follow-up-request-details/' + this.currRoute.snapshot.params['requestId'] ;
         console.log('after call to addFollowUpEvent; navigating to ' + target);
         this.router.navigateByUrl(target);
       }
@@ -115,7 +118,7 @@ export class FollowUpEventsAddComponent implements OnInit {
   }
 
   navigateBackInContext() {
-    const target = '/admins/follow-up-requests';
+    const target = '/admins/follow-up-request-details/' + this.currRoute.snapshot.params['requestId'];
     console.log('after Submit or Cancel navigating to ' + target);
 
     const navigationExtras: NavigationExtras = {
