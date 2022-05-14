@@ -37,7 +37,7 @@ export class StudentsForSponsorGridComponent implements OnInit {
         this.students = data.filter((item) => {
           if (this.displayTestNames) {
             return item;
-          } else if (!this.displayTestNames && item.studentName.substr(0,5) !== '_Test, _Student') {
+          } else if (!this.displayTestNames && item.studentName.substring(0,5) !== '_Test') {
             return item;
           }
         });

@@ -13,9 +13,12 @@ export class MemberSelectorComponent implements OnInit {
   haveData: boolean;
   haveMemberType: boolean;
   requestorRoles: SELECTITEM[];
+  selectedRoles: SELECTITEM[];
   @Output() onSelectedRoleId = new EventEmitter<number>();
   @Output() onSelectedMemberId = new EventEmitter<number>();
   @Input() memberTypeLabel: string;
+  @Input() roleId: string;
+
 
   constructor(private memberData: MemberDataService) {
     this.requestorRoles = [
@@ -29,18 +32,27 @@ export class MemberSelectorComponent implements OnInit {
       { value: '2069', label: 'Student' }
     ];
   }
+
+
   public ngOnInit() {
     this.haveData = false;
     this.haveMemberType = false;
+    // this.setSelectedRole(this.roleId);
   }
 
-  public setSelectedRole(roleId: string) {
-    console.log('selectedRole is set to ' + roleId);
+  public setSelectedRole(roleId2: string) {
+    console.log('selectedRole is set to ' + roleId2);
     this.haveMemberType = true;
-    const selectedValue = this.requestorRoles.filter((x) => x.value === roleId).map((row) => row.label);
-    console.log('selectedValue is ' + selectedValue[0]);
-    this.fetchMembers(selectedValue[0]);
-    this.onSelectedRoleId.emit(+roleId);
+    console.log(this.requestorRoles);
+    // console.log(this.selectedRoles2);
+    // this.roleId = '2068';
+    // roleId2 = '2068';
+    this.selectedRoles = this.requestorRoles.filter((r) => r.value === roleId2 ); // .map((row) => row.label);
+    // const x = this.selectedRoles.map((row) => row.label);
+    // console.log(x);
+    console.log('selectedRoles[0] value,label is '  + this.selectedRoles[0].value, this.selectedRoles[0].label);
+    this.fetchMembers(this.selectedRoles[0].label);
+    this.onSelectedRoleId.emit(+roleId2);
   }
 
   public fetchMembers(role: string) {

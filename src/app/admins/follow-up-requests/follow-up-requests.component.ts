@@ -23,7 +23,7 @@ export class FollowUpRequestsComponent implements OnInit {
 
   constructor(public followUpData: FollowUpDataService, public router: Router, public session: SessionService) {
     this.followUpStatuses = constants.followUpStatuses;
-    this.selectedFollowUpStatusId = constants.followUpStatuses[1].value;
+    this.selectedFollowUpStatusId = constants.followUpStatuses[0].value;
     this.showAddDetails = this.selectedFollowUpStatusId === '2092'; // Assigned
   }
 
@@ -55,7 +55,7 @@ export class FollowUpRequestsComponent implements OnInit {
   }
   setSelectedFollowUpStatus(status: string) {
     this.selectedFollowUpStatusId = status;
-    this.showAddDetails = this.selectedFollowUpStatusId === '2092'; // Assigned
+    // need to be able to show this.showAddDetails = this.selectedFollowUpStatusId === '2092'; // Assigned
     this.fetchFilteredData();
   }
 }

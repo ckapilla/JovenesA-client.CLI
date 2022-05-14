@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { constants } from 'src/app/_shared/constants/constants';
 import { FollowUpDataService } from 'src/app/_shared/data/follow-up-data.service';
@@ -47,8 +47,8 @@ export class FollowUpEventsAddComponent implements OnInit {
     this.followUpStatuses = constants.followUpStatuses;
     this.followUpEvent.followUpRequestId = this.currRoute.snapshot.params['requestId'];
     this.followUpEvent.enteredById = this.session.userId;
-    this.followUpEvent.assignedToId = 2433; // everything starts with Antonio
-    this.followUpEvent.assignedToRoleId = 2068; // everything starts with Admin
+    // this.followUpEvent.assignedToId = 2433;
+    this.followUpEvent.assignedToRoleId = 2068; // default
     this.followUpEvent.comments_English = '';
     this.followUpEvent.comments_Spanish = '';
 
@@ -57,10 +57,10 @@ export class FollowUpEventsAddComponent implements OnInit {
 
   ngOnInit() {
     this.myForm = this._fb.group({
-      requestStatusId: [ this.followUpEvent.requestStatusId ],
-      assignedToSelector: [ this.followUpEvent.assignedToRoleId ],
-      assignedToRoleSelector: [ this.followUpEvent.assignedToId ],
-      comments_English: [ this.followUpEvent.comments_English ],
+      requestStatusId: [ '' , Validators.required ],
+      assignedToSelector: [ this.followUpEvent.assignedToRoleId, Validators.required ],
+      assignedToRoleSelector: [ this.followUpEvent.assignedToId, Validators.required ],
+      comments_English: [ this.followUpEvent.comments_English, Validators.required ],
       comments_Spanish: [ this.followUpEvent.comments_Spanish ]
     });
 
@@ -79,6 +79,8 @@ export class FollowUpEventsAddComponent implements OnInit {
     });
   }
 
+
+
   retrieveFormValues(): void {
     console.log('retrieveFormValues ' + JSON.stringify(this.myForm.value));
     // use spread operator to merge changes:
@@ -89,6 +91,7 @@ export class FollowUpEventsAddComponent implements OnInit {
     console.log('Hi followUpEvents Submit with event object ');
     console.log(this.followUpEvent);
     this.retrieveFormValues();
+    console.log('%#%#%#%#For validity: ' + this.myForm.valid);
     if (this.myForm.invalid) {
       this.errorMessage = '';
       window.scrollTo(0, 0);
@@ -140,11 +143,13 @@ export class FollowUpEventsAddComponent implements OnInit {
   }
 
   public onSelectedRoleId(roleId: number) {
+    this.myForm.controls.assignedToRoleSelector.setValue(roleId);
     this.followUpEvent.assignedToRoleId = roleId;
     console.log('container form has assignedToRoleId ' + roleId);
   }
 
   public onSelectedMemberId(memberId: number) {
+    this.myForm.controls.assignedToSelector.setValue(memberId);
     this.followUpEvent.assignedToId = memberId;
     console.log('container form has AssignedToId ' + memberId);
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { constants } from 'src/app/_shared/constants/constants';
@@ -17,6 +17,7 @@ export class StudentSelfReportContainerComponent implements OnInit {
   studentGUIdReceived: boolean;
   selectedQRPeriod: string;
   private subscription: Subscription;
+  @Input() showOnlyIfStatusIsSent: string;
 
   @Select(UIState.getSelectedQRPeriod) selectedQRPeriod$: Observable<string>;
 
@@ -29,7 +30,7 @@ export class StudentSelfReportContainerComponent implements OnInit {
   subscribeForselectedQRPeriod() {
     this.subscription = this.selectedQRPeriod$.subscribe((message) => {
       this.selectedQRPeriod = message;
-      console.log('************NGXS: SR new selectedQRPeriod received' + this.selectedQRPeriod);
+      console.log('************NGXS: SR new selectedQRPeriod received ' + this.selectedQRPeriod);
     });
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FollowUpDataService } from 'src/app/_shared/data/follow-up-data.service';
 import { FollowUpRequestRPT } from '../../_shared/models/follow-up-requestRPT';
@@ -12,6 +12,7 @@ export class FollowUpRequestDetailsComponent implements OnInit {
   // @Input() followUpRequest: FollowUpRequestRPT;
   // @Input() displayCompleteHistory: boolean;
   // @Input() showAddDetails: boolean;
+  @Input() showAddDetails: boolean;
   request = new FollowUpRequestRPT();
   studentId: number;
   followUpRequestId: string;

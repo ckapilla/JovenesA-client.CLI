@@ -89,7 +89,7 @@ export class GradesListComponent implements OnInit {
         this.gradesGivenEntryDTOs = data.filter((item) => {
           if (this.displayTestNames) {
             return item;
-          } else if (!this.displayTestNames && item.studentName.substr(0,5) !== '_Test') {
+          } else if (!this.displayTestNames && item.studentName.substring(0,5) !== '_Test') {
             return item;
           }
         });

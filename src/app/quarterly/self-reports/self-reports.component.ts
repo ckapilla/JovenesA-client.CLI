@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Select } from '@ngxs/store';
@@ -31,6 +31,7 @@ export class SelfReportsComponent implements OnInit {
   qrComponentsEditable: boolean;
   selectedQRPeriod = '';
   private subscription: Subscription;
+  @Input() showOnlyIfStatusIsSent: string;
 
   @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
   @Select(UIState.getSelectedQRPeriod) selectedQRPeriod$: Observable<string>;
@@ -53,6 +54,7 @@ export class SelfReportsComponent implements OnInit {
     this.narrative_EnglishCtl = this.myForm.controls['narrative_English'];
     this.narrative_SpanishCtl = this.myForm.controls['narrative_Spanish'];
     this.reportIdCtl = this.myForm.controls['quarterlyReportId'];
+    this.showOnlyIfStatusIsSent =  'true';
   }
   ngOnInit() {
     this.qrComponentsEditable$.subscribe((flag) => {
@@ -73,7 +75,7 @@ export class SelfReportsComponent implements OnInit {
   subscribeForStudentGUIds2() {
     this.subscription = this.currentGUId$.subscribe((message) => {
       this.studentGUId = message;
-      console.log('************NGXS: SR new StudentGUId received' + this.studentGUId);
+      console.log('************NGXS: SR new StudentGUId received2 ' + this.studentGUId);
       if (this.studentGUId && this.studentGUId !== '0000') {
         this.fetchFilteredData();
       }
@@ -83,12 +85,14 @@ export class SelfReportsComponent implements OnInit {
   subscribeForselectedQRPeriod() {
     this.subscription = this.selectedQRPeriod$.subscribe((message) => {
       this.selectedQRPeriod = message;
-      console.log('************NGXS: SR new selectedQRPeriod received' + this.selectedQRPeriod);
+      console.log('************NGXS: SR new selectedQRPeriod received ' + this.selectedQRPeriod);
       this.fetchFilteredData();
+      console.log('after call to fetchFilteredData');
     });
   }
 
   fetchFilteredData() {
+    console.log('in fetchFilteredData for SSR');
     if (
       this.studentGUId &&
       this.studentGUId !== undefined &&
@@ -96,8 +100,14 @@ export class SelfReportsComponent implements OnInit {
       this.selectedQRPeriod !== ''
     ) {
       this.isLoading = true;
+      console.log('showOnlyIfStatusIsSent is ' + this.showOnlyIfStatusIsSent);
+
+      const statusFilter = this.showOnlyIfStatusIsSent === 'true' ? '2158' : '0';
+      console.log('statusFilter ' + statusFilter);
       this.quarterlyData
-        .getPartialQuarterlyReportByPeriod('SR', this.studentGUId, this.selectedQRPeriod, '0')
+        .getPartialQuarterlyReportByPeriod('SR', this.studentGUId,
+          this.selectedQRPeriod,
+          statusFilter)
         .subscribe(
           (data) => {
             this.studentSelfReport = data;
