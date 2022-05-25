@@ -1,12 +1,45 @@
 <!-- <div class="card bg-primary">
   <div class="card-body bg-white"> -->
 
-<div class="row">
-<app-server-environment>
-</app-server-environment>
-</div>
-
-<div class="row">
-<app-test-names-visibility>
-</app-test-names-visibility>
-</div>
+  <div class="row ">
+    <h3>
+      Test Accounts
+    </h3>
+  </div>
+  <div class="row">
+    <table class="table-sm table-striped">
+      <thead>
+        <td><b>LastName, FirstName</b></td>
+        <td><b>Email/Username</b></td>
+        <td><b>Password</b></td>
+      </thead>
+      <tr>
+        <td>_Test, _Admin</td>
+        <td>admin@test.test</td>
+        <td>_TestEmail2</td>
+      </tr>
+      <tr>
+        <td>_Test, _Mentor</td>
+        <td>mentor@test.test</td>
+        <td>_TestEmail2</td>
+      </tr>
+      <tr>
+        <td>_Test, _Student_Semestre</td>
+        <td>student@test.test</td>
+        <td>_TestEmail2</td>
+      </tr>
+      <tr>
+        <td>_Test, _Student_Cuatrimestre</td>
+        <td>student@test.test</td>
+        <td>_TestEmail2</td>
+      </tr>
+    </table>
+  </div>
+  <hr/>
+  <div class="row">
+    <app-test-names-visibility> </app-test-names-visibility>
+  </div>
+<hr/>
+  <div class="row">
+    <app-server-environment> </app-server-environment>
+  </div>
