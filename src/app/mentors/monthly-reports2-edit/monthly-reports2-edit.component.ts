@@ -53,8 +53,8 @@ export class MonthlyReports2EditComponent implements OnInit {
     console.log('Hi from MonthlyReports2EditComponent');
 
     this.myForm = _fb.group({
-      lastContactYearSelector: ['' + constants.currentContactYear], // Validators.required],
-      lastContactMonthSelector: ['0', { validators: [this.validateMonth] }],
+      lastContactYearSelector: { value: '' + constants.currentContactYear, disabled: true },
+      lastContactMonthSelector: { value: '' + constants.currentContactMonth, disabled: true },
       // use bogus integer value so change detection works:
       inputEmoji: [666, { validators: [Validators.required, this.validateEmojis] }],
       narrative_English: ['', Validators.required],
@@ -79,7 +79,7 @@ export class MonthlyReports2EditComponent implements OnInit {
 
   ngOnInit() {
     console.log('monthlyReportsEdit ngOnInit');
-
+    this.subscribeForStudentNames();
     // SQL Server will adjust the time to UTC by adding TimezoneOffset
     // we want to store local time so we adjust for that.
     const now = new Date();
@@ -110,17 +110,14 @@ export class MonthlyReports2EditComponent implements OnInit {
     );
 
     console.log('after init form values');
-    this.myForm.valueChanges.subscribe((value: any) => {
-      console.log('valueChanges fired for form with values');
-      console.log(JSON.stringify(value));
+    this.myForm.valueChanges.subscribe(() => {
       this.errorMessage = '';
       this.successMessage = '';
       this.isSubmitted = false;
       // console.log('form change event');
       this.checkFormControlsAreValid(false);
     });
-    // AABBCCEE
-    this.subscribeForStudentNames();
+
   }
 
   subscribeForStudentNames() {
@@ -130,7 +127,7 @@ export class MonthlyReports2EditComponent implements OnInit {
     });
   }
   checkFormControlsAreValid(bSubmitting: boolean): boolean {
-    console.log('checking for valid form controls');
+    // console.log('checking for valid form controls');
     let allCorrect = true;
     this.errorMessage = '';
     this.monthValidationMessage = '';
@@ -207,7 +204,6 @@ export class MonthlyReports2EditComponent implements OnInit {
   validateEmojis(control: FormControl): IValidationType {
     // console.log('emoji validator ' + control.value);
     if (control.value === 666) {
-      console.log('validate emoji failed');
       return { validateEmojis: true };
     } else {
       return null;

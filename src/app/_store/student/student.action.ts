@@ -26,10 +26,10 @@ export class SetSelectedStudentMentorGUId {
   constructor(public readonly payload: string) {}
 }
 
-export class SetSelectedStudentName {
-  static readonly type = '[Student Selection] update selectedStudentName';
-  constructor(public readonly payload: string) {}
-}
+// export class SetSelectedStudentName {
+//   static readonly type = '[Student Selection] update selectedStudentName';
+//   constructor(public readonly payload: string) {}
+// }
 
 export class SetPhotoPathname {
   static readonly type = '[Student Header] update photoPathname';

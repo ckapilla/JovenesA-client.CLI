@@ -10,11 +10,19 @@
     <div *ngIf="!errorMessage" class="card bg-primary">
       <div class="card-header text-white" style="font-size:large">
         <span>Past Reports / Informes Anteriores -- </span>
+        <input
+        id="ckHaveCurrent"
+        [(ngModel)] = "haveCurrentReport"
+       type="checkbox"
+        name="toggleHaveCurrent"
+        style="visibility: hidden"
+      />
         <span>
-          <span>
-            <span class="btn btn-default active" (click)="monthlyReportAdd()" style="margin: 4px 0 0 10px">
-              Add New Report /Añadir un Nuevo Informe
-            </span>
+          <span *ngIf="!haveCurrentReport">
+            <span class="btn btn-default active" (click)="monthlyReportENAdd()" style="margin: 4px 0 0 10px">
+              Add New Report</span>
+            <span class="btn btn-default active" (click)="monthlyReportESAdd()" style="margin: 4px 0 0 10px">
+              Añadir un Nuevo Informe</span>
           </span>
         </span>
       </div>

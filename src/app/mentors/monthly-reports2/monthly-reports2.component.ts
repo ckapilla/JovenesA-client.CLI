@@ -50,6 +50,8 @@ export class MonthlyReports2Component implements OnInit {
     this.haveCurrentReport = false;
     this.subscribeForStudentGUIds2();
     this.subscribeForStudentNames();
+    // console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$initial setting of haveCurrentReport');
+    // this.haveCurrentReport = true;
   }
 
   subscribeForStudentGUIds2() {
@@ -89,15 +91,16 @@ export class MonthlyReports2Component implements OnInit {
         for (const x of this.mentorReports2) {
           if (x.reviewedStatusId === 2087) {
             // Needs_Review
-            // console.log('current report found; disable add function');
-            // this.haveCurrentReport = true;
+            console.log('current report found; disable add function');
+            this.haveCurrentReport = true;
+
           }
         }
       }
     );
   }
 
-  monthlyReportAdd() {
+  monthlyReportENAdd() {
     if (this.haveCurrentReport) {
       alert(
         'There is already a report filed for this month. Please use the edit button to edit it. / Ya hay un informe presentado para este mes. Por favor, utilice el botón Editar para editarlo. '
@@ -106,13 +109,33 @@ export class MonthlyReports2Component implements OnInit {
       console.log('in monthly-reports: monthlyReportAdd, ready to navigate');
       if (this.studentGUId !== null) {
         const link = [
-          '/mentors/monthly-reports-add',
+          '/mentors/monthly-reports-EN-add',
           {
             mentorId: this.mentorId,
             mentorGUId: this.mentorGUId,
-            studentGUId: this.studentGUId// ,
-            // studentName: this.mentorReports2[0]?.studentName
-            // studentName: this.studentName
+            studentGUId: this.studentGUId
+          }
+        ];
+        console.log('navigating to ' + JSON.stringify(link));
+        this.router.navigate(link);
+      }
+    }
+  }
+
+  monthlyReportESAdd() {
+    if (this.haveCurrentReport) {
+      alert(
+        'There is already a report filed for this month. Please use the edit button to edit it. / Ya hay un informe presentado para este mes. Por favor, utilice el botón Editar para editarlo. '
+      );
+    } else {
+      console.log('in monthly-reports: monthlyReportAdd, ready to navigate');
+      if (this.studentGUId !== null) {
+        const link = [
+          '/mentors/monthly-reports-ES-add',
+          {
+            mentorId: this.mentorId,
+            mentorGUId: this.mentorGUId,
+            studentGUId: this.studentGUId
           }
         ];
         console.log('navigating to ' + JSON.stringify(link));
@@ -128,4 +151,8 @@ export class MonthlyReports2Component implements OnInit {
       this.router.navigateByUrl(target);
     }
   }
+  DoIt() {
+    this.haveCurrentReport = !this.haveCurrentReport;
+  }
+
 }

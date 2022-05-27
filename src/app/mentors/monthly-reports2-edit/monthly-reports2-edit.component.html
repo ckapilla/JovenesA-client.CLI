@@ -1,6 +1,6 @@
 <div class="card bg-primary">
   <div class="card-header text-white" style="font-size:large">
-    Monthly Report for {{ studentName  }}
+    Monthly Report for / Informe Mensual para {{ studentName  }}
   </div>
   <div class="card-body bg-white">
     <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
@@ -10,8 +10,7 @@
 
         <div class="form-group">
           <div class="controls">
-            <label for="lastContactYearSelector"> Year/Month you Last Communicated with Student<br />Año/Mes la última
-              vez que se comunicó con el estudiante&nbsp;</label>
+            <label for="lastContactYearSelector"> Report Year/Month <br />Año/Mes del Informe&nbsp;</label>
             <select formControlName="lastContactYearSelector">
               <option *ngFor="let year of contactYears" [value]="year.value">{{year.label}}</option>
             </select>
@@ -28,8 +27,7 @@
         <div class="form-group">
 
           <div class="controls">
-            <span> Student Emoji: (How are things going overall with the student?)<br />Emoji de Estudiante: (cómo van
-              las cosas en general con el estudiante?)</span>>
+            <span> Student Emoji:<br />Emoji de Estudiante:</span>>
             <label>&nbsp;&nbsp;&nbsp;&nbsp;
               <input type="radio" id="inputEmoji" formControlName="inputEmoji"
                      [checked]="emojiCtl.value==1" value=1>

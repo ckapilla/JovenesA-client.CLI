@@ -3,7 +3,8 @@ import { ActivatedRouteSnapshot, CanActivate, CanDeactivate, Router, RouterState
 import { MentorReportSummaryUpdatesComponent } from './admins/admins-mr/mr-summary-updates/mr-summary-updates.component';
 import { AdminsStudentComponent } from './admins/admins-students/admins-student-profile/admins-student-student-profile.component';
 import { GradesEditComponent } from './becas/grades-edit/grades-edit.component';
-import { MonthlyReports2AddComponent } from './mentors/monthly-reports2-add/monthly-reports2-add.component';
+import { MonthlyReports2ENAddComponent } from './mentors/monthly-reports2-EN-add/monthly-reports2-EN-add.component';
+import { MonthlyReports2ESAddComponent } from './mentors/monthly-reports2-ES-add/monthly-reports2-ES-add.component';
 import { AuthService } from './_shared/services/auth.service';
 import { SessionService } from './_shared/services/session.service';
 
@@ -104,8 +105,8 @@ export class CanActivateViaStudentAuthGuard implements CanActivate {
 }
 
 @Injectable({ providedIn: 'root' })
-export class ConfirmDeactivateMonthlyReportAddGuard implements CanDeactivate<MonthlyReports2AddComponent> {
-  canDeactivate(component: MonthlyReports2AddComponent): boolean {
+export class ConfirmDeactivateMonthlyReportAddGuard implements CanDeactivate<MonthlyReports2ESAddComponent> {
+  canDeactivate(component: MonthlyReports2ESAddComponent): boolean {
     if (component.hasChanges()) {
       console.log('CanDeactivate');
       // tslint:disable-next-line:max-line-length
@@ -116,6 +117,21 @@ export class ConfirmDeactivateMonthlyReportAddGuard implements CanDeactivate<Mon
     return true;
   }
 }
+@Injectable({ providedIn: 'root' })
+export class ConfirmDeactivateMonthlyReportENAddGuard implements CanDeactivate<MonthlyReports2ENAddComponent> {
+  canDeactivate(component: MonthlyReports2ENAddComponent): boolean {
+    if (component.hasChanges()) {
+      console.log('CanDeactivate');
+      // tslint:disable-next-line:max-line-length
+      return window.confirm(
+        'You have unsaved changes. Click OK to leave the page without saving.\nTiene cambios no guardados. Haga clic OK para salir de la página sin guardar'
+      );
+    }
+    return true;
+  }
+}
+
+
 @Injectable({ providedIn: 'root' })
 export class ConfirmDeactivateMRSummaryUpdatesGuard implements CanDeactivate<MentorReportSummaryUpdatesComponent> {
   canDeactivate(component: MentorReportSummaryUpdatesComponent): boolean {

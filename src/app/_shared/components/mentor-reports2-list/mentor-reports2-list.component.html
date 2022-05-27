@@ -6,13 +6,12 @@
       <div class="row">
 
         <span class="padded">
-          &nbsp;Report Date:
-          {{ i.reportDateTime | truncateDate }}
+          &nbsp;Report Month:
+          {{ i.lastContactMonth | alphaMonth}}-{{ i.lastContactYear }}
         </span>
         <span class="padded">
-          &nbsp;Last Contact Month:
-
-          {{ i.lastContactMonth | alphaMonth}}-{{ i.lastContactYear }}
+          &nbsp;Report Date:
+          {{ i.reportDateTime | truncateDate }}
         </span>
         <span class="padded">
           &nbsp;Emoji:

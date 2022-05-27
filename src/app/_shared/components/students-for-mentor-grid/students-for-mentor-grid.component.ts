@@ -84,22 +84,17 @@ export class StudentsForMentorGridComponent implements OnInit {
   }
 
   selectInitialStudentAfterLoad() {
-    if (this.studentGUId === '0000') {
-      console.log('no StudentGuid set, force selection of first row');
-      this.studentGUId = this.students[0].studentGUId;
-      this.studentName = this.students[0].studentName;
-    }
     // see if current student
-    const idx = this.students.findIndex((x) => x.studentGUId === this.studentGUId);
-    if (idx >= 0) {
-      console.log('selecting specific row, studentGUId = ' + this.studentGUId);
-      this.selectStudent(this.studentGUId, this.studentName, idx);
-    } else {
-      // left over student from other process, so set to zero and call again recursively
-      this.studentGUId = '0000';
-      this.studentName = '';
-      this.selectInitialStudentAfterLoad();
+    let idx = this.students.findIndex((x) => x.studentGUId === this.studentGUId);
+    console.log('INITITAL STUDENT has idx' + idx);
+    if (idx === -1) {
+      // if not found set to first one in grid
+      idx = 0;
     }
+    console.log('selecting specific row, studentGUId = ' + this.studentGUId);
+    this.studentGUId = this.students[idx].studentGUId;
+    this.studentName = this.students[idx].studentName;
+    this.selectStudent(this.studentGUId, this.studentName, idx);
   }
 
   public selectStudent(studentGUId: string, studentName: string, idx: number) {
