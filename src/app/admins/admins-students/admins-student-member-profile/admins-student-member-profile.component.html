@@ -38,7 +38,9 @@
 
             <label for="firstNames">First Name(s)</label>
             <input id="firstNames" formControlName="firstNames"
-                   class="form-control form-control-sm" type="text" placeholder="First Name" />
+                   class="form-control form-control-sm" type="text" placeholder="First Name"
+                   required
+                   maxlength="30"/>
             <app-display-errors control="firstNames" class="red" [errors]="{
             'required': 'First name is required',
             'maxlength': 'Student First name cannot exceed 30 characters in length.'
@@ -46,7 +48,9 @@
 
             <label for="lastNames">Last Name(s)</label>
             <input id="lastNames" formControlName="lastNames" type="text"
-                   class="form-control form-control-sm" placeholder="Last Name" />
+                   class="form-control form-control-sm" placeholder="Last Name"
+                   required
+                   maxlength="30"/>
             <app-display-errors control="lastNames" class="red" [errors]="{
             'required': 'Last name is required',
             'maxlength': 'Student Last name cannot exceed 30 characters in length.'
@@ -55,7 +59,10 @@
 
             <label for="email">Email</label>
             <input id="email" formControlName="email" type="text"
-                   class="form-control form-control-sm" placeholder="Email Name" />
+                   class="form-control form-control-sm"
+                   placeholder="Email Name"
+                   required
+                   maxlength="50"/>
             <app-display-errors control="email" class="red" [errors]="{
             'required': 'Email is required',
             'maxlength': 'Email cannot exceed 50 characters in length.'
@@ -69,7 +76,7 @@
                 type="text"
                 class="form-control form-control-sm"
                 placeholder="Nickname"
-              />
+                maxlength="20"/>
               <app-display-errors
                 control="nickName"
                 class="red"
@@ -85,7 +92,7 @@
                 type="text"
                 class="form-control form-control-sm"
                 placeholder="Photo Filename"
-              />
+                maxlength="255"/>
               <app-display-errors
                 control="photoUrl"
                 class="red"
@@ -101,12 +108,11 @@
                 type="text"
                 class="form-control form-control-sm"
                 placeholder="Cell Phone Number: ###-###-####"
-              />
+                maxlength="13"/>
               <app-display-errors
                 control="cellPhone"
                 class="red"
                 [errors]="{
-                  minlength: 'Cell Phone must be at least 7 characters in length.',
                   maxlength: 'Cell Phone cannot exceed 13 characters in length.'
                 }"
               ></app-display-errors>
@@ -127,11 +133,9 @@
       <input id="smA_Address"
             formControlName="smA_Address"
             type="text" class="form-control form-control-sm" placeholder="Dirección y número"
-            required maxlength="50" minlength="3" />
+            maxlength="50" />
       <app-display-errors control="smA_Address" class="red"
                           [errors]="{
-                'required': 'Se requiere la dirección.',
-                'minlength': 'La dirección debe tener al menos 3 caracteres de longitud.',
                 'maxlength': 'La dirección no puede exceder de 50 caracteres de longitud.'
       }"></app-display-errors>
 
@@ -139,12 +143,10 @@
       <input id="colonia"
             formControlName="colonia"
             type="text" class="form-control form-control-sm" placeholder="Colonia"
-            required maxlength="50" minlength="3" />
+            maxlength="50"/>
 
       <app-display-errors control="colonia" class="red"
                           [errors]="{
-                'required': 'Se requiere la colonia.',
-                'minlength': 'La colonia debe tener al menos 3 caracteres de longitud.',
                 'maxlength': 'La colonia no puede exceder de 50 caracteres de longitud.'
       }"></app-display-errors>
       <br>
@@ -155,11 +157,9 @@
       <input id="nonSMA_Address"
             formControlName="nonSMA_Address"
             type="text" class="form-control form-control-sm" placeholder="Dirección y número"
-            required maxlength="50" minlength="3" />
+            maxlength="50" />
       <app-display-errors control="nonSMA_Address" class="red"
                           [errors]="{
-                'required': 'Se requiere la dirección.',
-                'minlength': 'La dirección debe tener al menos 3 caracteres de longitud.',
                 'maxlength': 'La dirección no puede exceder de 50 caracteres de longitud.'
       }"></app-display-errors>
 
@@ -167,23 +167,19 @@
       <input id="nonSMA_City"
             formControlName="nonSMA_City"
             type="text" class="form-control form-control-sm" placeholder="Ciudad donde estudia"
-            required maxlength="50" minlength="3" />
+            maxlength="50" />
       <app-display-errors control="nonSMA_City" class="red"
                           [errors]="{
-                'required': 'Se requiere la ciudad.',
-                'minlength': 'La ciudad debe tener al menos 3 caracteres de longitud.',
-                'maxlength': 'La ciudad no puede exceder de 50 caracteres de longitud.'
+                   'maxlength': 'La ciudad no puede exceder de 50 caracteres de longitud.'
       }"></app-display-errors>
 
       <label for="nonSMA_StateProvince">Estado</label>
       <input id="nonSMA_StateProvince"
             formControlName="nonSMA_StateProvince"
             type="text" class="form-control form-control-sm" placeholder="Estado donde estudia"
-            required maxlength="50" minlength="3" />
+            maxlength="50" />
       <app-display-errors control="nonSMA_StateProvince" class="red"
                           [errors]="{
-                'required': 'Se requiere el estado.',
-                'minlength': 'El estado debe tener al menos 3 caracteres de longitud.',
                 'maxlength': 'El estado no puede exceder de 50 caracteres de longitud.'
       }"></app-display-errors>
 
@@ -191,12 +187,10 @@
       <input id="nonSMA_PostalCode"
             formControlName="nonSMA_PostalCode"
             type="text" class="form-control form-control-sm" placeholder="Código Postal"
-            required maxlength="7" minlength="3" />
+            maxlength="7" />
       <app-display-errors control="nonSMA_PostalCode" class="red"
                           [errors]="{
-                'required': 'Se requiere el código postal.',
-                'minlength': 'El código postal debe tener al menos 3 caracteres de longitud.',
-                'maxlength': 'El código postal no puede exceder de 7 caracteres de longitud.'
+                 'maxlength': 'El código postal no puede exceder de 7 caracteres de longitud.'
       }"></app-display-errors>
           </div>
 

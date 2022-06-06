@@ -70,17 +70,17 @@ export class AdminsStudentMemberDataComponent implements OnInit {
         Validators.compose([Validators.required, Validators.maxLength(30)])],
       lastNames: [{ value: '' }, Validators.compose([Validators.required, Validators.maxLength(30)])],
       email: [{ value: '' }, Validators.compose([Validators.required, Validators.email, Validators.maxLength(50)])],
-      cellPhone: [{ value: '' }, Validators.compose([Validators.minLength(7), Validators.maxLength(13)])],
+      cellPhone: [{ value: '' }, Validators.compose([Validators.maxLength(13)])],
       nickName: [{ value: '' }, Validators.maxLength(20)],
       photoUrl: [{ value: '' }, Validators.maxLength(255)],
 
       englishSkillLevelId: [{ value: '' }],
-      smA_Address: ['', Validators.required],
-      colonia: ['', Validators.required],
-      nonSMA_Address: ['', Validators.required],
-      nonSMA_City: ['', Validators.required],
-      nonSMA_StateProvince: ['', Validators.required],
-      nonSMA_PostalCode: ['', Validators.required]
+      smA_Address: [''],
+      colonia: [''],
+      nonSMA_Address: [''],
+      nonSMA_City: [''],
+      nonSMA_StateProvince: [''],
+      nonSMA_PostalCode: ['']
     });
     this.myForm.disable();
     console.log(this.myForm.controls);
