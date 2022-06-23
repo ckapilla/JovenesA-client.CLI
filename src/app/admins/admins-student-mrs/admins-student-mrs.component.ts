@@ -90,9 +90,9 @@ export class AdminsStudentMRsComponent implements OnInit {
     console.log('#######studentDTO: mentorGUId ' + this.mentorGUId);
     // console.log('#######studentDTO: mentorId ' + this.mentorId);
     const link = [
-      '/mentors/monthly-reports-add',
+      '/mentors/monthly-reports-EN-add',
       {
-        // mentorId: this.mentorId,
+        mentorId: 666, // not used
         mentorGUId: this.mentorGUId,
         studentGUId: this.studentGUId
       }
