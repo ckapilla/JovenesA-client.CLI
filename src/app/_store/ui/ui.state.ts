@@ -21,7 +21,8 @@ import { UIStateModel } from './ui.model';
     selectedYearJoined: '0',
     selectedGradYear: '0',
     // ssrEditDateRange: '2021-12-26|2022-01-07'
-    ssrEditDateRange: '2022-03-24|2022-06-07'
+    // ssrEditDateRange: '2022-03-24|2022-06-07'
+    ssrEditDateRange: '2022-06-24|2022-07-07'
   }
 })
 @Injectable()

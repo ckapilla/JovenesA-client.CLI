@@ -54,8 +54,26 @@ const contactYears: SELECTITEM[] = [
   // { value: '2020', label: '2020' },
   // { value: '2021', label: '2021' }
 ];
-const currentContactYear  = 2022;
-const currentContactMonth = 6;
+
+const now = new Date();
+let thisYear  = now.getFullYear();
+let thisMonth  = now.getMonth() + 1; // don't want zero based here
+const thisDate  = now.getDate();
+if (thisDate <= 2) {
+  console.log('adjusting month');
+  if (thisMonth === 1) {
+    thisMonth = 12;
+    console.log('adjusting Year');
+    thisYear--;
+  } else {
+    thisMonth--;
+  }
+}
+console.log('DateAdjustment has :', thisYear, thisMonth);
+
+
+const currentContactYear  = thisYear;
+const currentContactMonth = thisMonth;
 
 const months: SELECTITEM[] = [
   { value: '1', label: 'Jan/Ene' },
