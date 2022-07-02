@@ -1,0 +1,101 @@
+<div class="card bg-primary">
+  <div class="card-header text-white" style="font-size:large">
+    Informe Mensual para {{ studentName }}
+  </div>
+  <div class="card-body bg-white">
+    <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+    <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+      <fieldset [disabled]="isSubmitted">
+
+        <div class="form-group">
+          <div class="controls">
+            <label for="lastContactYearSelector">Año/Mes del informe: &nbsp; </label>
+            <select formControlName="lastContactYearSelector">
+              <option *ngFor="let year of contactYears" [value]="year.value">{{year.label}}</option>
+            </select>
+            <span *ngIf="!lastYearCtl.valid &amp;&amp; lastYearCtl.touched" class="red">Seleccione Año</span>
+
+            <select formControlName="lastContactMonthSelector">
+              <option [value]="0">Seleccione Mes</option>
+              <option *ngFor="let month of contactMonths" [value]="month.value">{{month.label}}</option>
+            </select>
+            <span [ngClass]="{ 'red': monthValidationMessage }">{{ monthValidationMessage }}</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+
+          <div class="controls">
+            <span><b> Emoji de Estudiante:</b> (cómo van las cosas en general con el estudiante?)</span>
+            <label>&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="radio" id="inputEmoji" formControlName="inputEmoji"
+                     [checked]="emojiCtl.value==1" value=1>
+              <img src="/assets/images/celebrate.jpg" width="32px" />
+              Celebrar
+            </label>
+            <label>&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="radio" id="inputEmoji" formControlName="inputEmoji"
+                     [checked]="emojiCtl.value==0" value=0>
+              <img src="/assets/images/thumbsUp.jpg" width="30px" />
+              Bien
+            </label>
+            <label>&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="radio" id="inputEmoji" formControlName="inputEmoji"
+                     [checked]="emojiCtl.value==-1" value=-1>
+              <img src="/assets/images/needsAttention.jpg" width="30px" />
+              Problemas
+              <span *ngIf="emojiCtl.hasError('required')" class="red">Please select an emoji.</span>
+            </label>
+          </div>
+
+
+        </div>
+        <div hidden class="controls">
+          <label for="mentorReportId">Id</label>
+          <textarea id="mentorReportId" formControlName="mentorReportId" type="text" class="form-control input-sm">
+          </textarea>
+        </div>
+
+        <div class="controls">
+          <label for="narrative_English">Describa el desarrollo y los desafíos de su estudiante en estas tres áreas:</label>
+          <br />&nbsp;1. Académico
+          <br />&nbsp;2. Personal
+          <br />&nbsp;3. Financiero
+          <textarea id="narrative_English" #success formControlName="narrative_English" type="text"
+                    class="form-control input-sm" placeholder="">
+          </textarea>
+          <app-display-errors control="narrative_English" class="red" [errors]="{'required': 'Se requiere una entrada, aun si es sólo N/A.',
+          'maxlength': 'La entrada no puede exceder 4000 caracteres del largo.'
+                }"></app-display-errors>
+        </div>
+
+        <div class="col-md-6 col-md-offset-1">
+          <span>
+            <button type="submit"
+                    class="btn btn-primary"
+                    style="width:80px;margin-right:10px"
+                    (click)="onSubmit()">
+              Guardar
+            </button>
+          </span>&nbsp;
+          <span>
+            <button type="button" class="btn btn-default" style="width:75px" (click)="onCancel()">
+              Cancelar
+            </button>
+            <div class="red" [hidden]="myForm.valid">Emoji y descripción rellenarse antes de guardar.</div>
+          </span>
+        </div>
+      </fieldset>
+    </form>
+    <!-- <p>Form value</p>
+    <pre><code>{{myForm.value | json}}</code></pre>
+
+
+    <p>Form status</p>
+    <pre><code>"{{myForm.status}}"</code></pre>
+
+    <p>Submitted?</p>
+      {{isSubmitted ? 'Yes' : 'No'}} -->
+  </div>
+</div>
