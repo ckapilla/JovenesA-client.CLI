@@ -24,10 +24,6 @@
          [hidden]=!isStudentWithValidToken()>Estudiantes</a>
     </li>
     <li class="nav-item">
-      <a [routerLinkActive]="['active']" [routerLink]="['confidential']"
-         [hidden]=!isAdminWithValidToken()>Confidential</a>
-    </li>
-    <li class="nav-item">
       <a [routerLinkActive]="['active']" [routerLink]="['becas']"
          [hidden]=!isAdminWithValidToken()>Becas</a>
     </li>

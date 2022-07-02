@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxFileDropModule } from 'ngx-file-drop';
 import { CallbackComponent } from './components/callback.component';
-import { ConfidentialReportsListComponent } from './components/confidential-reports-list/confidential-reports-list.component';
 import { DisplayErrorsComponent } from './components/display-errors.component';
 import { FileUploaderComponent } from './components/file-uploader/file-uploader.component';
 import { FollowUpEventsComponent } from './components/follow-up-events/follow-up-events.component';
@@ -65,7 +64,6 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     StudentSelectorComponent,
     FollowUpEventsComponent,
     FollowUpRequestsListComponent,
-    ConfidentialReportsListComponent,
     MemberSelectorComponent,
     MentorSelectorComponent,
     MentorReports2ListComponent,
@@ -142,7 +140,6 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     MemberLookupComponent,
     MemberHeaderComponent,
     MemberHeaderDetailsComponent,
-    ConfidentialReportsListComponent,
     MemberPhotoComponent,
     StudentPhotoComponent,
     EmptyStatusPipe,

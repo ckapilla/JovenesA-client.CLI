@@ -41,10 +41,6 @@ const appRoutes: Routes = [
     loadChildren: () => import('./quarterly/quarterly.module').then(m => m.QuarterlyModule)
   },
   {
-    path: 'confidential',
-    loadChildren: () => import('./confidential/confidential.module').then(m => m.ConfidentialModule)
-  },
-  {
     path: 'becas',
     loadChildren: () => import('./becas/becas.module').then(m => m.BecasModule)
   },
