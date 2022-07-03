@@ -25,6 +25,9 @@ rollup.sh
 # dependencies
 /node_modules
 
+# weback and babel
+.angular
+
 # IDEs and editors
 /.idea
 .project
