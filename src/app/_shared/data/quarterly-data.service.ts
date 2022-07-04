@@ -37,7 +37,7 @@ export class QuarterlyDataService {
     const year = yearPeriod.substr(0, 4);
     const period = yearPeriod.substr(5, 1);
     const url = this.WebApiPrefix + 'quarterly/single/' + studentGUId + '/' + year + '/' + period;
-    console.log('sending AuthHttp get request for QRMiniForStudentPeriod with url' + url);
+    console.log('sending AuthHttp get request for QRMiniForStudentPeriod with url ' + url);
     return this.http.get<QuarterlyReportRPT>(url).pipe(catchError(this.handleError));
   }
 
@@ -45,7 +45,7 @@ export class QuarterlyDataService {
     const year = yearPeriod.substr(0, 4);
     const period = yearPeriod.substr(5, 1);
     const url = this.WebApiPrefix + 'quarterly/' + year + '/' + period + '/' + reviewedStatusId;
-    console.log('sending AuthHttp get request for QRMinisForPeriod');
+    console.log('sending AuthHttp get request for QRMinisForPeriod with url ' + url);
     return this.http.get<QuarterlyReportRPT[]>(url).pipe(catchError(this.handleError));
   }
 

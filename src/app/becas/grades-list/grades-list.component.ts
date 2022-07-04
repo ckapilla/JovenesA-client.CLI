@@ -57,14 +57,6 @@ export class GradesListComponent implements OnInit {
     this.isLoading = false;
   }
 
-  // ngOnInit() {
-  //   console.log('ngOnInit');
-  //   this.testNameVisibility$.subscribe((flag) => {
-  //     this.displayTestNames = flag;
-  //     this.fetchFilteredData();
-  //   });
-  // }
-
   ngOnInit() {
     this.testNameVisibility$.subscribe((flag) => {
       this.displayTestNames = flag;

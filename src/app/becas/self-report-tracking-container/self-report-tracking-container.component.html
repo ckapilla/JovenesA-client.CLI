@@ -4,30 +4,31 @@
       <span style="font-size: large"> Quarterly Reports </span>
       <span style="margin-left: 10rem">
         Report Year-Period:
-        <select
-          name="activePeriodSelector"
-          data-cy="period-selector"
-          [(ngModel)]="selectedQRPeriod"
-          (change)="setSelectedQRPeriod($event.target.value)"
-        >
+        <select name="activePeriodSelector" data-cy="period-selector" [(ngModel)]="selectedQRPeriod"
+          (change)="setSelectedQRPeriod($event.target.value)">
           <option *ngFor="let yearPeriod of qrPeriods" [value]="yearPeriod.value">{{ yearPeriod.label }}</option>
         </select>
       </span>
     </div>
     <div class="card-body bg-white">
-      <ngb-tabset>
-        <ngb-tab title="Reports Received">
-          <ng-template ngbTabContent>
-            <app-self-report-tracking> </app-self-report-tracking>
+      <nav ngbNav #nav1="ngbNav" class="nav-tabs">
+        <ng-container ngbNavItem>
+          <a ngbNavLink>Reports Received</a>
+          <ng-template ngbNavContent>
+            <app-self-report-tracking>
+            </app-self-report-tracking>
           </ng-template>
-        </ngb-tab>
+        </ng-container>
 
-        <ngb-tab title="Reports Needed">
-          <ng-template ngbTabContent>
-            <app-self-report-missing> </app-self-report-missing>
+        <ng-container ngbNavItem>
+          <a ngbNavLink>Reports Needed</a>
+          <ng-template ngbNavContent>
+            <app-self-report-missing>
+            </app-self-report-missing>
           </ng-template>
-        </ngb-tab>
-      </ngb-tabset>
+        </ng-container>
+      </nav>
+      <div [ngbNavOutlet]="nav1" class="mt-2"></div>
     </div>
   </div>
 </div>

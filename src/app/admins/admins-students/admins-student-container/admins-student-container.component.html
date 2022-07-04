@@ -1,60 +1,55 @@
 <div class="col">
+  <div class="row">
 
-  <!-- <div class="row">
-    <div class="col-12">
-      <app-student-header>
-      </app-student-header>
-    </div>
-  </div> -->
+    <nav ngbNav #nav1="ngbNav" class="nav-tabs">
+      <ng-container ngbNavItem>
+        <a ngbNavLink>Student Profile</a>
+        <ng-template ngbNavContent>
+          <app-admins-student-student-profile>
+          </app-admins-student-student-profile>
+        </ng-template>
+      </ng-container>
 
+      <ng-container ngbNavItem>
+        <a ngbNavLink>Student Summary</a>
+        <ng-template ngbNavContent>
+          <app-student-header>
+          </app-student-header>
+        </ng-template>
+      </ng-container>
 
-  <!-- <div class="card bg-primary">
-    <div class="card-body bg-white"> -->
+      <ng-container ngbNavItem>
+        <a ngbNavLink>Member Data</a>
+        <ng-template ngbNavContent>
+          <app-admins-student-member-profile>
+          </app-admins-student-member-profile>
+        </ng-template>
+      </ng-container>
 
+      <ng-container ngbNavItem>
+        <a ngbNavLink>History</a>
+        <ng-template ngbNavContent>
+          <app-student-history>
+          </app-student-history>
+        </ng-template>
+      </ng-container>
 
+      <ng-container ngbNavItem>
+        <a ngbNavLink>Mentor Reports</a>
+        <ng-template ngbNavContent>
+          <app-admins-student-mrs>
+          </app-admins-student-mrs>
+        </ng-template>
+      </ng-container>
 
-      <div class="row">
-
-
-        <ngb-tabset>
-
-          <ngb-tab title="Student Profile">
-            <ng-template ngbTabContent>
-              <app-admins-student-student-profile> </app-admins-student-student-profile>
-            </ng-template>
-          </ngb-tab>
-
-          <ngb-tab title="Student Summary">
-            <ng-template ngbTabContent>
-              <app-student-header> </app-student-header>
-            </ng-template>
-          </ngb-tab>
-
-          <ngb-tab title="Member Data">
-            <ng-template ngbTabContent>
-              <app-admins-student-member-profile> </app-admins-student-member-profile>
-            </ng-template>
-          </ngb-tab>
-
-          <ngb-tab title="History">
-            <ng-template ngbTabContent>
-              <app-student-history> </app-student-history>
-            </ng-template>
-          </ngb-tab>
-
-          <ngb-tab title="Mentor Reports">
-            <ng-template ngbTabContent>
-              <app-admins-student-mrs> </app-admins-student-mrs>
-            </ng-template>
-          </ngb-tab>
-
-          <ngb-tab title="Quarterly Reports">
-            <ng-template ngbTabContent>
-              <app-admins-student-qrs> </app-admins-student-qrs>
-            </ng-template>
-          </ngb-tab>
-        </ngb-tabset>
-      </div>
-    </div>
-  <!-- </div>
-</div> -->
+      <ng-container ngbNavItem>
+        <a ngbNavLink>Quarterly Reports</a>
+        <ng-template ngbNavContent>
+          <app-admins-student-qrs>
+          </app-admins-student-qrs>
+        </ng-template>
+      </ng-container>
+    </nav>
+    <div [ngbNavOutlet]="nav1" class="mt-2"></div>
+  </div>
+</div>

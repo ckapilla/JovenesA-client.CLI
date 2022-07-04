@@ -20,9 +20,9 @@ export class StudentHeaderQuarterlyComponent implements OnInit {
   }
 
   subscribeForStudentGUIds2() {
-    this.subscription = this.currentGUId$.subscribe((message) => {
-      this.studentGUId = message;
-      console.log('************NGXS: header new StudentGUId received' + this.studentGUId);
-    });
+    // this.subscription = this.currentGUId$.subscribe((message) => {
+    //   this.studentGUId = message;
+    //   console.log('************NGXS: student-header new StudentGUId received' + this.studentGUId);
+    // });
   }
 }

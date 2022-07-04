@@ -47,11 +47,9 @@ export class MonthlyReports2Component implements OnInit {
     this.mentorGUId = this.session.getUserGUId();
     console.log('mentorGUId ' + this.mentorGUId);
 
-    this.haveCurrentReport = false;
+    this.haveCurrentReport = false; // conditionally set to true after fetch
     this.subscribeForStudentGUIds2();
     this.subscribeForStudentNames();
-    // console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$initial setting of haveCurrentReport');
-    // this.haveCurrentReport = true;
   }
 
   subscribeForStudentGUIds2() {
@@ -89,9 +87,9 @@ export class MonthlyReports2Component implements OnInit {
         console.log('done: ');
         this.isLoading = false;
         for (const x of this.mentorReports2) {
-          if (x.reviewedStatusId === 2087) {
-            // Needs_Review
-            console.log('current report found; disable add function');
+          console.log('reviewedStatusId: ' + x.reviewedStatusId);
+          if (x.reviewedStatusId === 2087) {  // Needs_Review, not finalized
+            console.log(' report w/ NeedsReview status found; disable add function');
             this.haveCurrentReport = true;
 
           }

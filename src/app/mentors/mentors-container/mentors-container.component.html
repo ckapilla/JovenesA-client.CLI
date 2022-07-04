@@ -6,30 +6,23 @@
 </div>
 <div class="row">
   <div class="col">
-    <ngb-tabset>
-
-      <ngb-tab title="Monthly Mentor Reports">
-        <ng-template ngbTabContent>
+    <nav ngbNav #nav1="ngbNav" class="nav-tabs">
+      <ng-container ngbNavItem>
+        <a ngbNavLink>Monthly Mentor Reports</a>
+        <ng-template ngbNavContent>
           <app-mentor-reports>
           </app-mentor-reports>
         </ng-template>
-      </ngb-tab>
+      </ng-container>
 
-      <ngb-tab title="Quarterly Student Reports">
-        <ng-template ngbTabContent>
+      <ng-container ngbNavItem>
+        <a ngbNavLink>Quarterly Student Reports</a>
+        <ng-template ngbNavContent>
           <student-self-report-container showOnlyIfStatusIsSent="true">
           </student-self-report-container>
         </ng-template>
-      </ngb-tab>
-
-      <!-- <ngb-tab title="Assistence/Asistencia">
-        <ng-template ngbTabContent>
-          <app-follow-up-requests>
-          </app-follow-up-requests>
-        </ng-template>
-      </ngb-tab> -->
-
-
-    </ngb-tabset>
+      </ng-container>
+    </nav>
+    <div [ngbNavOutlet]="nav1" class="mt-2"></div>
   </div>
 </div>

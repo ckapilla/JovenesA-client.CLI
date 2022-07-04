@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
@@ -14,7 +14,8 @@ import { UIState } from 'src/app/_store/ui/ui.state';
   templateUrl: 'mr-summary-tracking.component.html',
   styleUrls: ['mr-summary-tracking.component.css']
 })
-export class MentorReportsSummaryTrackingComponent {
+export class MentorReportsSummaryTrackingComponent implements OnInit
+{
   // implements OnInit {
   mentorReportByMonth: MentorReport2RPT[];
   isLoading: boolean;
@@ -63,15 +64,14 @@ export class MentorReportsSummaryTrackingComponent {
     console.log('before process route params');
     this.processRouteParams();
 
+
+  }
+
+  ngOnInit(): void {
     this.testNameVisibility$.subscribe((flag) => {
       this.displayTestNames = flag;
     });
   }
-
-  // ngOnInit() {
-  //   console.log('onInit');
-  //   this.processRouteParams();
-  // }
 
   processRouteParams() {
     console.log('summaryTracking setting filters form queryParams');

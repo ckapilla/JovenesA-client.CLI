@@ -31,13 +31,16 @@ export class StudentsForMentorListComponent implements OnInit {
     private router: Router,
     private currRoute: ActivatedRoute
   ) {
-    console.log('in MentoredStudentComponent constructor XXXXXXXXXXXXXXXXXXXXX');
+    console.log('in MentoredStudentComponent constructor');
   }
 
   public ngOnInit() {
     const bActiveOnly = false;
     this.haveData = false;
     this.mentorGUId = this.currRoute.snapshot.params['guid'];
+    this.testNameVisibility$.subscribe((flag) => {
+      this.displayTestNames = flag;
+    });
     this.mentorData.getStudentsForMentorByGUId(this.mentorGUId, bActiveOnly).subscribe(
       (data) => {
         this.students = this.students = data.filter((item) => {

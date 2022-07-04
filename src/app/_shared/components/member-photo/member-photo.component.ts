@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { MemberState } from 'src/app/_store/member/member.state';
@@ -8,7 +8,7 @@ import { UrlService } from '../../services/url.service';
   selector: 'app-member-photo',
   templateUrl: './member-photo.component.html'
 })
-export class MemberPhotoComponent {
+export class MemberPhotoComponent implements OnInit {
   fullPhotoPathname: string;
   photoPathname: string;
   clientUrl: string;
@@ -18,6 +18,9 @@ export class MemberPhotoComponent {
 
   constructor(urlService: UrlService) {
     this.clientUrl = urlService.getClientUrl();
+  }
+
+  ngOnInit() {
     this.subscribeForPhotoPathname();
   }
 

@@ -60,7 +60,10 @@ export class AdminsStudentListComponent implements OnInit {
     console.log('Hi from student List constructor function');
 
     this.isLoading = false;
+  }
 
+  ngOnInit() {
+    console.log('ngOnInit');
     this.testNameVisibility$.subscribe((flag) => {
       this.displayTestNames = flag;
       // this.fetchFilteredData();
@@ -85,10 +88,6 @@ export class AdminsStudentListComponent implements OnInit {
       console.log('selectedYearJoined set to ' + year);
       this.selectedYearJoined = year;
     });
-  }
-
-  ngOnInit() {
-    console.log('ngOnInit');
     this.fetchFilteredData();
   }
 

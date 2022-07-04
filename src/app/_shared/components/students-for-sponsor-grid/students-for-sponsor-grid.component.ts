@@ -26,12 +26,12 @@ export class StudentsForSponsorGridComponent implements OnInit {
 
   constructor(public session: SessionService, private sponsorGroupData: SponsorGroupDataService, private store: Store) {
     this.emojis = constants.emojis;
-    this.testNameVisibility$.subscribe((flag) => {
-      this.displayTestNames = flag;
-    });
   }
 
   public ngOnInit() {
+    this.testNameVisibility$.subscribe((flag) => {
+      this.displayTestNames = flag;
+    });
     this.sponsorGroupData.getStudentsForSponsorByGUId(this.session.getUserGUId()).subscribe(
       (data) => {
         this.students = data.filter((item) => {

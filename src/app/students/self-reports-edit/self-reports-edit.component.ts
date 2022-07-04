@@ -44,8 +44,6 @@ export class SelfReportsEditComponent implements OnInit {
   ) {
 
 
-    this.subscribeForselectedQRPeriod();
-
     this.myForm = _fb.group({
       currentQRPeriod: this.selectedQRPeriod,
       narrative_English: ['', { validators: [Validators.required], updateOn: 'blur' }],
@@ -74,6 +72,7 @@ export class SelfReportsEditComponent implements OnInit {
         this.myForm.controls.narrative_Spanish.setValue(this.selfReport.narrative_Spanish);
       }
     );
+    this.subscribeForselectedQRPeriod();
   }
 
   subscribeForselectedQRPeriod() {

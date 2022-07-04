@@ -3,4 +3,7 @@
 # https://github.com/browserslist/browserslist#queries
 last 2 versions
 Firefox ESR
-not IE 11 # Angular supports IE 11 only as an opt-in. To opt-in, remove the 'not' prefix on this line.
+not IE 10
+not IE 11
+not ie_mob 10
+not ie_mob 11

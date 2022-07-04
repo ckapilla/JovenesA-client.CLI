@@ -1,20 +1,22 @@
 <div class="row">
   <div class="col">
-    <ngb-tabset>
-
-      <ngb-tab title="Mentor Report Review">
-        <ng-template ngbTabContent>
+    <nav ngbNav #nav1="ngbNav" class="nav-tabs">
+      <ng-container ngbNavItem>
+        <a ngbNavLink>Mentor Report Review</a>
+        <ng-template ngbNavContent>
           <app-mr-summary-tracking>
           </app-mr-summary-tracking>
         </ng-template>
-      </ngb-tab>
+      </ng-container>
 
-      <ngb-tab title="Submitted Count">
-        <ng-template ngbTabContent>
-          <app-mr-submitted-count></app-mr-submitted-count>
+      <ng-container ngbNavItem>
+        <a  ngbNavLink>Submitted Count</a>
+        <ng-template ngbNavContent>
+          <app-mr-submitted-count>
+          </app-mr-submitted-count>
         </ng-template>
-      </ngb-tab>
-
-    </ngb-tabset>
+      </ng-container>
+    </nav>
+    <div [ngbNavOutlet]="nav1" class="mt-2"></div>
   </div>
 </div>

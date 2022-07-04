@@ -33,7 +33,9 @@ export class StudentsForSponsorComponent implements OnInit {
 
   public ngOnInit() {
     this.haveData = false;
-
+    this.testNameVisibility$.subscribe((flag) => {
+      this.displayTestNames = flag;
+    });
     const guid = this.currRoute.snapshot.params['guid'];
     console.log('++++++++++++++++++++have guid param' + guid);
     this.sponsorGroupData.getStudentsForSponsorByGUId(guid).subscribe(

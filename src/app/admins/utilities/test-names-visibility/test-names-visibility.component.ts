@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { SetTestNamesVisibility } from 'src/app/_store/ui/ui.action';
@@ -8,13 +8,17 @@ import { UIState } from 'src/app/_store/ui/ui.state';
   selector: 'app-test-names-visibility',
   templateUrl: './test-names-visibility.component.html'
 })
-export class TestNamesVisibilityComponent {
+export class TestNamesVisibilityComponent implements OnInit {
   displayTestNames: boolean;
   strVisibility = 'Not Visible';
 
   @Select(UIState.getTestNamesVisibility) currentState$: Observable<boolean>;
 
   constructor(private store: Store) {
+
+  }
+
+  ngOnInit(): void {
     this.currentState$.subscribe((flag) => {
       this.displayTestNames = flag;
     });

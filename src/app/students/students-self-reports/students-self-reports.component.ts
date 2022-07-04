@@ -44,7 +44,6 @@ export class StudentsSelfReportsComponent implements OnInit {
     public store: Store
   ) {
     console.log('ssr constructor');
-    this.subscribeForSSREditDates();
   }
 
   subscribeForSSREditDates() {
@@ -65,6 +64,7 @@ export class StudentsSelfReportsComponent implements OnInit {
     console.log('studentRecordGUId from session:' + this.studentRecordGUId);
     this.fetchSponsorGroup();
     this.isLoading = true;
+    this.subscribeForSSREditDates();
   }
 
   fetchSponsorGroup() {

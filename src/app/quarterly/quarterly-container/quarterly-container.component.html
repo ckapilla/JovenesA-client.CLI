@@ -3,63 +3,76 @@
     <app-student-header-quarterly> </app-student-header-quarterly>
   </div>
 </div>
+
 <div *ngIf="studentGUIdReceived">
-  <div class="col">
-    <div class="card bg-primary">
-      <div class="card-header text-white">
-        <span data-cy="qr-title" style="font-size: large"> Quarterly Reports </span>
-        <span style="margin-left: 3rem">
-          Report Year-Period:
-          <select
-            data-cy="period-selector"
-            name="activePeriodSelector"
-            [(ngModel)]="selectedQRPeriod"
-            (change)="setSelectedQRPeriod($event.target.value)"
-          >
-            <option *ngFor="let yearPeriod of qrPeriods" [value]="yearPeriod.value">
-              {{ yearPeriod.label }}
-            </option>
-          </select>
-        </span>
+  <div class="row">
+    <div class="col">
+      <div class="card bg-primary">
+        <div class="card-header text-white">
+          <span data-cy="qr-title" style="font-size: large"> Quarterly Reports </span>
+          <span style="margin-left: 3rem">
+            Report Year-Period:
+            <select
+              data-cy="period-selector"
+              name="activePeriodSelector"
+              [(ngModel)]="selectedQRPeriod"
+              (change)="setSelectedQRPeriod($event.target.value)"
+            >
+              <option *ngFor="let yearPeriod of qrPeriods" [value]="yearPeriod.value">
+                {{ yearPeriod.label }}
+              </option>
+            </select>
+          </span>
 
-        <span style="margin-left: 3rem">
-          Set Report Status:
-          <select
-            name="StatusSelector"
-            [(ngModel)]="selectedReviewedStatusID"
-            (change)="setStatusForQR($event.target.value)"
-          >
-            <option *ngFor="let status of reviewedStatuses" [value]="status.value">{{ status.label }}</option>
-          </select>
-        </span>
-      </div>
-      <div class="card-body bg-white">
-        <ngb-tabset>
-          <ngb-tab title="Student Reports">
-            <ng-template ngbTabContent>
-              <app-self-reports showOnlyIfStatusIsSent="false"> </app-self-reports>
-            </ng-template>
-          </ngb-tab>
-
-          <ngb-tab title="Mentor Reports">
-            <ng-template ngbTabContent>
-              <app-mr-consolidated> </app-mr-consolidated>
-            </ng-template>
-          </ngb-tab>
-
-          <ngb-tab title="JA Comments" id="ja-comments">
-            <ng-template ngbTabContent>
-              <app-ja-comments> </app-ja-comments>
-            </ng-template>
-          </ngb-tab>
-
-          <ngb-tab title="Private Notes">
-            <ng-template ngbTabContent>
-              <app-private-notes> </app-private-notes>
-            </ng-template>
-          </ngb-tab>
-        </ngb-tabset>
+          <span style="margin-left: 3rem">
+            Set Report Status:
+            <select
+              name="StatusSelector"
+              [(ngModel)]="selectedReviewedStatusID"
+              (change)="setStatusForQR($event.target.value)"
+            >
+              <option *ngFor="let status of reviewedStatuses" [value]="status.value">{{ status.label }}</option>
+            </select>
+          </span>
+        </div>
       </div>
     </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="card bg-white">
+        <nav ngbNav #nav1="ngbNav" class="nav-tabs">
+
+          <ng-container ngbNavItem>
+            <a ngbNavLink>Student Reports</a>
+            <ng-template ngbNavContent>
+              <app-self-reports showOnlyIfStatusIsSent="false"> </app-self-reports>
+            </ng-template>
+          </ng-container>
+
+           <ng-container ngbNavItem>
+            <a ngbNavLink>Mentor Reports</a>
+            <ng-template ngbNavContent>
+              <app-mr-consolidated> </app-mr-consolidated>
+            </ng-template>
+          </ng-container>
+
+          <ng-container ngbNavItem>
+            <a ngbNavLink>JA Comments</a>
+            <ng-template ngbNavContent>
+              <app-ja-comments> </app-ja-comments>
+            </ng-template>
+          </ng-container>
+
+          <ng-container ngbNavItem>
+            <a ngbNavLink>Private Notes</a>
+            <ng-template ngbNavContent>
+              <app-private-notes> </app-private-notes>
+            </ng-template>
+          </ng-container>
+
+        </nav>
+        <div [ngbNavOutlet]="nav1" class="mt-2"></div>
+      </div>
   </div>
 </div>

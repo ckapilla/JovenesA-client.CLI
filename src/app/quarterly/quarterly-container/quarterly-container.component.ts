@@ -54,7 +54,7 @@ export class QuarterlyContainerComponent implements OnInit {
   subscribeForselectedQRPeriod() {
     this.subscription = this.selectedQRPeriod$.subscribe((message) => {
       this.selectedQRPeriod = message;
-      console.log('************NGXS: SR new selectedQRPeriod received' + this.selectedQRPeriod);
+      console.log('************NGXS: quarterlyContainer new selectedQRPeriod received' + this.selectedQRPeriod);
       this.fetchFilteredData();
     });
   }

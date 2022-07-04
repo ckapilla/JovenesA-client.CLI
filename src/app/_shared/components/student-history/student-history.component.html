@@ -1,8 +1,8 @@
 <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
 <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
 
-<div [ngSwitch]="isLoading">
-  <div *ngSwitchCase="0" class="text-center col-md-12"></div>
+<!-- <div [ngSwitch]="isLoading">-->
+  <div class="text-center col-md-12"></div>
 
   <div [formGroup]="myForm">
     <div>
@@ -13,6 +13,7 @@
         type="text"
         #StudentHistory_Es
         class="form-control input-sm narrative"
+        rows="10" cols="60"
       ></textarea>
       <span class="form-text text-muted"
         ><code>{{ StudentHistory_Es.value.length }}</code> of <code>4500</code> characters</span
@@ -35,7 +36,7 @@
       >
     </div>
   </div>
-</div>
+<!-- </div> -->
 
 <div class="col-md-6 col-md-offset-1">
   <span> <button class="btn btn-primary" style="width: 90px; margin: 10px" (click)="onSubmit()">Guardar</button> </span

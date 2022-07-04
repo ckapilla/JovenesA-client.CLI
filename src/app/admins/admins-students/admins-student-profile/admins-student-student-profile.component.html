@@ -35,7 +35,6 @@
                   <button class="btn btn-primary" data-cy="btn-save" (click)="saveMyForm()" [disabled]="!myForm.valid">
                     Save
                   </button>
-
                 </div>
                 <!-- <div [hidden]="!showEditLink" (click)="gotoMemberRecord()" class="link">
               (Edit name or email for Member)
@@ -282,7 +281,12 @@
 
                 <label for="mentorGUId">Mentor: </label>
                 <div *ngIf="mentors$ | async as mentors">
-                  <select id="mentorGUId" formControlName="mentorGUId" (change)="setMentorStartDate()" class="form-control input-sm">
+                  <select
+                    id="mentorGUId"
+                    formControlName="mentorGUId"
+                    (change)="setMentorStartDate()"
+                    class="form-control input-sm"
+                  >
                     <option *ngFor="let mentor of mentors" [value]="mentor.value">{{ mentor.label }}</option>
                   </select>
                   <span class="btn btn-primary btn-sm" data-cy="goto-mentor" (click)="gotoMentor(student.mentorGUId)"
@@ -297,14 +301,13 @@
                 <label for="mentoringComment">Mentoring Comment: </label>
                 <div>
                   <input
-                  id="mentoringComment"
-                  formControlName="mentoringComment"
-                  type="text"
-                  class="form-control form-control-sm"
-                  placeholder=""
+                    id="mentoringComment"
+                    formControlName="mentoringComment"
+                    type="text"
+                    class="form-control form-control-sm"
+                    placeholder=""
                   />
                 </div>
-
 
                 <app-student-grades-status
                   [gpaStatus]="studentDTO.gpaStatus"
@@ -318,12 +321,10 @@
                 >
                 </app-student-mr-status>
               </div>
-              </div>
-              <div class="row">
+            </div>
+            <div class="row">
               <div class="form-group">
-                <button class="btn btn-primary" (click)="saveMyForm()" [disabled]="!myForm.valid">
-                  Save
-                </button>
+                <button class="btn btn-primary" (click)="saveMyForm()" [disabled]="!myForm.valid">Save</button>
                 <span class="red" [hidden]="myForm.valid">All required fields must be filled in before saving.</span>
               </div>
             </div>
