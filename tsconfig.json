@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "experimentalDecorators": true,
     "incremental": true,
     "baseUrl": "./",
     "importHelpers": true,
@@ -9,7 +10,6 @@
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
-    "experimentalDecorators": true,
     // "strictNullChecks": true,
     "plugins": [
       {

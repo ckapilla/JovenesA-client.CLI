@@ -14,7 +14,7 @@ import { UIStateModel } from './ui.model';
     qrComponentsEditable: false,
 
     selectedQRPeriod: '', // initialize ConstantsService.generateQRPeriods
-    selectedGadesProcessingPeriod: '108', // { value: '104', label: '2021-07-01 : 2021-11-30' }
+    selectedGadesProcessingPeriod: '107', // { value: '104', label: '2021-07-01 : 2021-11-30' }
 
     selectedFilterMode: '998',
     selectedStudentStatus: '0',

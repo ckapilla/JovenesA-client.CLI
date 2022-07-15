@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col">
+    <nav ngbNav #nav1="ngbNav" class="nav-tabs">
+      <ng-container ngbNavItem>
+        <a ngbNavLink>Student Self Report Review</a>
+        <ng-template ngbNavContent>
+          <app-ssr-summary-tracking>
+          </app-ssr-summary-tracking>
+        </ng-template>
+      </ng-container>
+
+      <ng-container ngbNavItem>
+        <a  ngbNavLink>Submitted Count</a>
+        <ng-template ngbNavContent>
+          <app-ssr-status-count>
+          </app-ssr-status-count>
+        </ng-template>
+      </ng-container>
+    </nav>
+    <div [ngbNavOutlet]="nav1" class="mt-2"></div>
+  </div>
+</div>

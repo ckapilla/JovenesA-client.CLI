@@ -15,6 +15,11 @@ import { MentorReportsSummaryTrackingComponent } from './admins-mr/mr-summary-tr
 import { MentorReportSummaryUpdatesComponent } from './admins-mr/mr-summary-updates/mr-summary-updates.component';
 import { AdminsNavbarComponent } from './admins-navbar/admins-navbar.component';
 import { AdminsRoutingModule } from './admins-routing.module';
+import { StudentSelfReportsContainerComponent } from './admins-ssr/ssr-container/ssr-container.component';
+import { StudentSelfReportsStatusCountsComponent } from './admins-ssr/ssr-status-counts/ssr-status-counts.component';
+import { StudentSelfReportsSummaryTrackingComponent } from './admins-ssr/ssr-summary-tracking/ssr-summary-tracking.component';
+import { StudentSelfReportsSummaryUpdatesComponent } from './admins-ssr/ssr-summary-updates/ssr-summary-updates.component';
+
 import { AdminsStudentMRsComponent } from './admins-student-mrs/admins-student-mrs.component';
 import { AdminsStudentQRsComponent } from './admins-student-qrs/admins-student-qrs.component';
 import { AdminsStudentContainerComponent } from './admins-students/admins-student-container/admins-student-container.component';
@@ -53,6 +58,10 @@ import { UtilitiesComponent } from './utilities/utilities.component';
     ServerEnvironmentComponent,
     // MentorReportFollowUpUpdatesComponent,
     StudentReportsStatusCountsComponent,
+    StudentSelfReportsContainerComponent,
+    StudentSelfReportsSummaryTrackingComponent,
+    StudentSelfReportsStatusCountsComponent,
+    StudentSelfReportsSummaryUpdatesComponent,
     AdminsNavbarComponent,
     FollowUpRequestsComponent,
     FollowUpRequestDetailsComponent,
