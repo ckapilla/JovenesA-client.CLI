@@ -11,11 +11,12 @@
       <div class="card-header text-white" style="font-size: large">
         <span>Tus reportes anteriores</span>
         <span>
-          <span>
+          <span *ngIf="inReportProcessingPeriod; else elseBlock">
             <span class="btn btn-default active" (click)="studentSelfReportAdd()" style="margin-left: 10px">
               Añadir Nuevo Reporte
             </span>
           </span>
+          <ng-template #elseBlock><div> (El próximo período para presentar tu reporte trimestral comenzará cerca de finales de septiembre.)</div> </ng-template>
         </span>
       </div>
       <div class="card-body bg-white">

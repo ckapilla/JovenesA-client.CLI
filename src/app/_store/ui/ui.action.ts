@@ -27,12 +27,12 @@ export class SetSelectedQRPeriod {
   constructor(public readonly payload: string) {}
 }
 ///
-export class GetSelectedGadesProcessingPeriod {
-  static readonly type = '[UI] Get selectedGadesProcessingPeriod';
+export class GetselectedGradesProcessingPeriodID {
+  static readonly type = '[UI] Get selectedGradesProcessingPeriodID';
   constructor(public payload: UIStateModel) {}
 }
-export class SetSelectedGadesProcessingPeriod {
-  static readonly type = '[UI] update selectedGadesProcessingPeriod';
+export class SetselectedGradesProcessingPeriodID {
+  static readonly type = '[UI] update selectedGradesProcessingPeriodID';
   constructor(public readonly payload: string) {}
 }
 ///

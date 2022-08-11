@@ -7,7 +7,7 @@ import { GRADESPROCESSINGPERIOD } from 'src/app/_shared/interfaces/GRADESPROCESS
 import { GradesGivenEntryDTO } from 'src/app/_shared/models/grades-given-entryDTO';
 import { UrlService } from 'src/app/_shared/services/url.service';
 import { SetSelectedStudentIdentifiers } from 'src/app/_store/student/student.action';
-import { SetSelectedGadesProcessingPeriod } from 'src/app/_store/ui/ui.action';
+import { SetselectedGradesProcessingPeriodID } from 'src/app/_store/ui/ui.action';
 import { UIState } from 'src/app/_store/ui/ui.state';
 import { constants } from '../../_shared/constants/constants';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
@@ -32,13 +32,13 @@ export class GradesListComponent implements OnInit {
   selectedYear: string;
   selectedMonth: string;
   displayTestNames: boolean;
-  selectedGadesProcessingPeriod = '';
+  selectedGradesProcessingPeriodID = '';
   staticUrlPrefix: string;
   periodStart: string;
   private subscription: Subscription;
 
   @Select(UIState.getTestNamesVisibility) testNameVisibility$: Observable<boolean>;
-  @Select(UIState.getSelectedGadesProcessingPeriod) selectedGadesProcessingPeriod$: Observable<string>;
+  @Select(UIState.getselectedGradesProcessingPeriodID) selectedGradesProcessingPeriodID$: Observable<string>;
 
   constructor(
     public becaData: BecaDataService,
@@ -61,13 +61,13 @@ export class GradesListComponent implements OnInit {
     this.testNameVisibility$.subscribe((flag) => {
       this.displayTestNames = flag;
     });
-    this.subscribeForselectedGadesProcessingPeriod();
+    this.subscribeForselectedGradesProcessingPeriodID();
   }
 
-  subscribeForselectedGadesProcessingPeriod() {
-    this.subscription = this.selectedGadesProcessingPeriod$.subscribe((message) => {
-      this.selectedGadesProcessingPeriod = message;
-      console.log('************NGXS: GradesList new selectedGadesProcessingPeriod received' + this.selectedGadesProcessingPeriod);
+  subscribeForselectedGradesProcessingPeriodID() {
+    this.subscription = this.selectedGradesProcessingPeriodID$.subscribe((message) => {
+      this.selectedGradesProcessingPeriodID = message;
+      console.log('************NGXS: GradesList new selectedGradesProcessingPeriodID received' + this.selectedGradesProcessingPeriodID);
       this.fetchFilteredData();
     });
   }
@@ -76,7 +76,7 @@ export class GradesListComponent implements OnInit {
   fetchFilteredData() {
     this.isLoading = true;
     console.log('displayTestNames: ' + this.displayTestNames);
-    this.becaData.getGradesListForPeriod(+this.selectedGadesProcessingPeriod).subscribe(
+    this.becaData.getGradesListForPeriod(+this.selectedGradesProcessingPeriodID).subscribe(
       (data) => {
         this.gradesGivenEntryDTOs = data.filter((item) => {
           if (this.displayTestNames) {
@@ -116,8 +116,8 @@ export class GradesListComponent implements OnInit {
   //   this.fetchFilteredData();
   // }
 
-  setSelectedGadesProcessingPeriod(gradesProcessingPeriod: string) {
-    this.store.dispatch(new SetSelectedGadesProcessingPeriod(gradesProcessingPeriod));
+  setselectedGradesProcessingPeriodID(gradesProcessingPeriod: string) {
+    this.store.dispatch(new SetselectedGradesProcessingPeriodID(gradesProcessingPeriod));
   }
 
   confirmGPA(studentGUId: string, studentName: string) {

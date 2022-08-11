@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { catchError, tap, toArray } from 'rxjs/operators';
-import { SetSelectedGadesProcessingPeriod, SetSelectedQRPeriod } from 'src/app/_store/ui/ui.action';
+import { SetselectedGradesProcessingPeriodID, SetSelectedQRPeriod } from 'src/app/_store/ui/ui.action';
 import { constants } from '../constants/constants';
 import { BaseDataService } from '../data/base-data.service';
 import { SELECTITEM } from '../interfaces/SELECTITEM';
@@ -149,7 +149,7 @@ export class ConstantsService extends BaseDataService {
     this.store.dispatch(new SetSelectedQRPeriod(yearPeriod));
   }
 
-  // public generateGadesProcessingPeriods() {
+  // public generateGradesProcessingPeriods() {
   //   const now = new Date();
   //   let elem: C_SELECTITEM =  { value: '', label: '' };
 
@@ -169,8 +169,8 @@ export class ConstantsService extends BaseDataService {
     constants.gradesProcessingPeriods.find(period => period.studentReportingStartDate >=('' +  now) && period.yearTypeId === yearTypeId);
   }
 
-  setSelectedGadesProcessingPeriod(gradesProcessingPeriod: string) {
-    this.store.dispatch(new SetSelectedGadesProcessingPeriod(gradesProcessingPeriod));
+  setselectedGradesProcessingPeriodID(gradesProcessingPeriod: string) {
+    this.store.dispatch(new SetselectedGradesProcessingPeriodID(gradesProcessingPeriod));
   }
 
 

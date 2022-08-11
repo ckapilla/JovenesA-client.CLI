@@ -5,7 +5,7 @@ export class StudentGrades {
     public year: number, // temp holdover
     public periodNumber: number, // temp holdover
     public gradesProcessingPeriodId: number,
-    public gradesGivenDate: Date = new Date(),
+    public initialGradesEntryDate: Date = new Date(),
     public gradesGivenYear?: number,
     public gradesGivenMonth?: number,
     public gradesDueDate: Date = new Date(),

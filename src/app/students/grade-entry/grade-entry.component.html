@@ -1,6 +1,8 @@
 <div class="card bg-primary">
   <div class="card-header text-white" style="font-size:large">
-    <span>Ingresa su Promedio para este periodo</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span *ngIf="inGradesProcessingPeriod; else elseBlock">Ingresa tu Promedio para este periodo
+    </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <ng-template #elseBlock><div> (El próximo período para ingresar tu promedio empezar mas tarde.)</div> </ng-template>
   </div>
 
   <div class="card-body bg-white">
@@ -8,7 +10,7 @@
     <span *ngIf="successMessage" class="alert alert-success">{{successMessage}}</span>
 
     <div>
-
+      <div *ngIf="inGradesProcessingPeriod">
       <div [ngSwitch]="isLoading">
         <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
           <app-loading-container>
@@ -34,8 +36,8 @@
                   <!-- <th app-sortable-column="academicYear" (onSortColumn)="onSortColumn($event)">YearType</th> -->
                   <!-- <th app-sortable-column="year" (onSortColumn)="onSortColumn($event)">Year</th> -->
                   <th># de Periodo</th>
-                  <th>Fin de Periodo</th>
-                  <th>Fecha Límite</th>
+                  <th>Fecha Inicial<br /> de Entrada</th>
+                  <th>Fecha de Entrega</th>
                   <th>Fecha de Hoy</th>
                   <th>Promedio</th>
                   <th>Fecha Confirmado</th>
@@ -79,7 +81,7 @@
                              class="form-control form-control-sm" type="text" size="8" />
                     </td>
                     <td>
-                      <input formControlName="gradesGivenDate"
+                      <input formControlName="initialGradesEntryDate"
                              class="form-control form-control-sm" type="text" size="8" />
                     </td>
                     <td>
@@ -141,3 +143,4 @@
           <br />Touched: {{ myForm.touched }}
           <br />Valid: {{ myForm.valid }} -->
         </div>
+      </div>

@@ -8,7 +8,7 @@ export class GradesGivenEntryDTO {
     // public year?: number, // temp holdover
     // public periodNumber?: number, // temp holdover
     public gradesProcessingPeriodId?: number,
-    public gradesGivenDate?: Date,
+    public initialGradesEntryDate?: Date,
     public gradesGivenYear?: number,
     public gradesGivenMonth?: number,
     public gradesDueDate?: Date,

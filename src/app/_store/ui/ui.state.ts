@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import {
   SetQRComponentsEditable,
-  SetSelectedFilterMode, SetSelectedGadesProcessingPeriod, SetSelectedGradYear, SetSelectedQRPeriod, SetSelectedStudentStatus,
+  SetSelectedFilterMode, SetselectedGradesProcessingPeriodID, SetSelectedGradYear, SetSelectedQRPeriod, SetSelectedStudentStatus,
   SetSelectedYearJoined, SetTestNamesVisibility
 } from './ui.action';
 import { UIStateModel } from './ui.model';
@@ -14,7 +14,7 @@ import { UIStateModel } from './ui.model';
     qrComponentsEditable: false,
 
     selectedQRPeriod: '', // initialize ConstantsService.generateQRPeriods
-    selectedGadesProcessingPeriod: '108', // { value: '104', label: '2021-07-01 : 2021-11-30' }
+    selectedGradesProcessingPeriodID: '109', // { value: '104', label: '2021-07-01 : 2021-11-30' }
 
     selectedFilterMode: '998',
     selectedStudentStatus: '0',
@@ -22,7 +22,7 @@ import { UIStateModel } from './ui.model';
     selectedGradYear: '0',
     // ssrEditDateRange: '2021-12-26|2022-01-07'
     // ssrEditDateRange: '2022-03-24|2022-06-07'
-    ssrEditDateRange: '2022-06-24|2022-07-07'
+    ssrEditDateRange: '2022-07-28|2022-08-15'
   }
 })
 @Injectable()
@@ -80,17 +80,17 @@ export class UIState {
   }
 
   @Selector()
-  static getSelectedGadesProcessingPeriod(state: UIStateModel) {
-    return state.selectedGadesProcessingPeriod;
+  static getselectedGradesProcessingPeriodID(state: UIStateModel) {
+    return state.selectedGradesProcessingPeriodID;
   }
 
-  @Action(SetSelectedGadesProcessingPeriod)
-  setSelectedGadesProcessingPeriod(ctx: StateContext<UIStateModel>, { payload }: SetSelectedGadesProcessingPeriod) {
-    const selectedGadesProcessingPeriod = payload;
+  @Action(SetselectedGradesProcessingPeriodID)
+  setselectedGradesProcessingPeriodID(ctx: StateContext<UIStateModel>, { payload }: SetselectedGradesProcessingPeriodID) {
+    const selectedGradesProcessingPeriodID = payload;
     const state = ctx.getState();
     ctx.patchState({
       ...state,
-      selectedGadesProcessingPeriod
+      selectedGradesProcessingPeriodID
     });
   }
 

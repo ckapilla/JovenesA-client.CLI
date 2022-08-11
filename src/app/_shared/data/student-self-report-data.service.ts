@@ -53,9 +53,9 @@ export class StudentSelfReportDataService extends BaseDataService {
       '&period=' +
       period +
       '&reviewedStatusId=' +
-      reviewedStatusId +
-      '&studentGUId=' +
-      studentGUId;
+      reviewedStatusId // +
+      // '&studentGUId=' +
+      // studentGUId;
     console.log('sending AuthHttp get request for StudentSelfReportsByMonth with ' + url);
     return this.http.get<StudentSelfReport[]>(url).pipe(catchError(this.handleError));
   }

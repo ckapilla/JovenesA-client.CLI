@@ -7,8 +7,8 @@
       <select
         name="activePeriodSelector"
         data-cy="period-selector"
-        [(ngModel)]="selectedGadesProcessingPeriod"
-        (change)="setSelectedGadesProcessingPeriod($event.target.value)"
+        [(ngModel)]="selectedGradesProcessingPeriodID"
+        (change)="setselectedGradesProcessingPeriodID($event.target.value)"
       >
         <option *ngFor="let gradesProcessingPeriod of gradesProcessingPeriods" [value]="gradesProcessingPeriod.id">{{gradesProcessingPeriod.descriptor}}</option>
       </select>

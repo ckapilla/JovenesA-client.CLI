@@ -41,6 +41,9 @@ export class StudentDTO {
     public probationStartDate?: Date,
     public probationEndDate?: Date,
     public pilotProgram?: string,
-    public educationalLevel?: string
+    public educationalLevel?: string,
+    public currentGradesProcessingPeriodID?: number,
+    public entryStartDate?: Date,
+    public gradeEntryActiveStatus?: number
   ) {}
 }

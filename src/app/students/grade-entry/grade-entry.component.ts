@@ -33,6 +33,7 @@ export class GradeEntryComponent implements OnInit {
   private subscription: Subscription;
   studentName: string;
   confirmedDateB: boolean;
+  inGradesProcessingPeriod: boolean;
 
   @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
   @Select(StudentState.getSelectedStudentName) currentName$: Observable<string>;
@@ -47,7 +48,7 @@ export class GradeEntryComponent implements OnInit {
     public location: Location
   ) {
     this.isLoading = false;
-
+    this.inGradesProcessingPeriod = true;
     this.myForm = this._fb.group({
       studentGUId: ['0000'],
       gradeEntryRows: this._fb.array([])
@@ -62,7 +63,7 @@ export class GradeEntryComponent implements OnInit {
     console.log('CreateEmptyGradeEntry create empty row to be populated');
     return this._fb.group({
       gradesProcessingPeriodId: { value: '', disabled: true },
-      gradesGivenDate: { value: '', disabled: true },
+      initialGradesEntryDate: { value: '', disabled: true },
       gradesDueDate: { value: '', disabled: true },
       gradesTurnedInDate: [
         { value: '', disabled: true },
@@ -78,7 +79,7 @@ export class GradeEntryComponent implements OnInit {
     console.log(JSON.stringify(entryData));
     gradeEntryRow.patchValue({
       gradesProcessingPeriodId: entryData.gradesProcessingPeriodId,
-      gradesGivenDate: new TruncateDatePipe().transform('' + entryData.gradesGivenDate),
+      initialGradesEntryDate: new TruncateDatePipe().transform('' + entryData.initialGradesEntryDate),
       gradesDueDate: new TruncateDatePipe().transform('' + entryData.gradesDueDate),
       gradesTurnedInDate: new Date().toISOString().slice(0, 10),
       gradePointAvg: this.toFixedValue(entryData.gradePointAvg),
