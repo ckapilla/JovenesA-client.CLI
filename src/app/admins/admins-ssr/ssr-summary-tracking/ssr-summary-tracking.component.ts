@@ -1,56 +1,46 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
-import { StudentSelfReportDataService } from 'src/app/_shared/data/student-self-report-data.service';
-import { StudentState } from 'src/app/_store/student/student.state';
-import { SetSelectedQRPeriod } from 'src/app/_store/ui/ui.action';
-import { UIState } from 'src/app/_store/ui/ui.state';
-import { constants } from '../../../_shared/constants/constants';
+import { constants } from 'src/app/_shared/constants/constants';
+import { SetSelectedStudentIdentifiers } from 'src/app/_store/student/student.action';
+import { StudentSelfReportDataService } from '../../../_shared/data/student-self-report-data.service';
 import { SELECTITEM } from '../../../_shared/interfaces/SELECTITEM';
 import { StudentSelfReport } from '../../../_shared/models/student-self-report';
-
+import { UIState } from '../../../_store/ui/ui.state';
 
 @Component({
   selector: 'app-ssr-summary-tracking',
   templateUrl: 'ssr-summary-tracking.component.html',
   styleUrls: ['ssr-summary-tracking.component.css']
 })
-export class StudentSelfReportsSummaryTrackingComponent implements OnInit
+export class StudentSelfReportsTrackingComponent implements OnInit
 {
-  myForm: FormGroup;
-  studentReportsByPeriod: StudentSelfReport;
+  // implements OnInit {
+  studentReportsByPeriod: StudentSelfReport[];
   isLoading: boolean;
   smileys: Array<string>;
   public errorMessage: string;
   successMessage: string;
-  narrative_EnglishCtl: AbstractControl;
-  narrative_SpanishCtl: AbstractControl;
-  lastYear: AbstractControl;
-  lastMonth: AbstractControl;
-  success: AbstractControl;
-  summary: AbstractControl;
-  reviewedStatus: AbstractControl;
-  selfReportId: number;
-
-
-
   submitted: string;
-  readonly qrPeriods = constants.qrPeriods;
-  readonly ssrReviewedStatuses = constants.reviewedStatuses;
-  studentReportStatuses: SELECTITEM[];
+  mentorReportStatuses: SELECTITEM[];
+  years: SELECTITEM[];
+  months: SELECTITEM[];
+  ssrReviewedStatuses: SELECTITEM[];
   highlightStatuses: SELECTITEM[];
-
-  selectedQRPeriod: string;
-  studentGUId: string;
-  selectedSRReviewedStatus: string;
+  selectedSSRYear: string;
+  selectedSSRPeriod: string;
+  selectedSSRReviewedStatus: string;
+  readonly qrPeriods: SELECTITEM[] = constants.qrPeriods;
+  readonly reviewedStatuses: SELECTITEM[] = constants.reviewedQRStatuses;
+  selectedQRPeriod = '';
+  selectedHighlightStatus: string;
   displayOriginalFields = true;
+  x: any;
   studentName: string;
-  subscription: Subscription;
   displayTestNames: boolean;
+  subscription: Subscription;
 
-  @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
   @Select(UIState.getSelectedQRPeriod) selectedQRPeriod$: Observable<string>;
   @Select(UIState.getTestNamesVisibility) testNameVisibility$: Observable<boolean>;
 
@@ -58,84 +48,121 @@ export class StudentSelfReportsSummaryTrackingComponent implements OnInit
     public router: Router,
     private store: Store,
     public ssrData: StudentSelfReportDataService,
-    private _fb: FormBuilder,
     private route: ActivatedRoute
   ) {
-    this.selectedSRReviewedStatus = '0'; // this.ssrReviewedStatuses[0].value;
+    console.log('ssr-summary-tracking constructor');
+    this.years = constants.contactYears;
+    this.months = constants.months;
 
-    this.myForm = _fb.group({
-      inputSummary: [''], // ,Validators.compose([Validators.required, Validators.maxLength(2000)])],
-      reviewedStatusSelector: [''],
-      highlightStatusSelector: [''],
-      narrative_English: ['', { validators: [Validators.required], updateOn: 'blur' }],
-      narrative_Spanish: ['']
-    });
+    this.ssrReviewedStatuses = constants.reviewedStatuses;
 
-    this.summary = this.myForm.controls['inputSummary'];
-    this.reviewedStatus = this.myForm.controls['reviewedStatusSelector'];
-    this.narrative_EnglishCtl = this.myForm.controls['narrative_English'];
-    this.narrative_SpanishCtl = this.myForm.controls['narrative_Spanish'];
-    this.studentReportsByPeriod = new StudentSelfReport();
+    this.highlightStatuses = constants.highlightStatuses;
+
+    this.selectedSSRYear = '' + constants.currentContactYear; // '' + today.getFullYear(); //
+    this.selectedSSRPeriod = '0'; // + today.getMonth() + 1;// '5';
+
+    this.selectedSSRReviewedStatus = '0'; // this.mrReviewedStatuses[0].value;
+    this.selectedHighlightStatus = this.highlightStatuses[0].value;
+
+    this.smileys = constants.smileys;
+    console.log('before process route params');
+    this.processRouteParams();
+
 
   }
 
-  ngOnInit() {
-    console.log('ssr trackingonInit');
-    this.fetchFilteredData();
-    this.subscribeForStudentGUIds2();
+  ngOnInit(): void {
+    this.testNameVisibility$.subscribe((flag) => {
+      this.displayTestNames = flag;
+    });
     this.subscribeForselectedQRPeriod();
-  }
-
-  subscribeForStudentGUIds2() {
-    this.subscription = this.currentGUId$.subscribe((message) => {
-      this.studentGUId = message;
-      console.log('************NGXS: quarterlyContainer new StudentGUId received' + this.studentGUId);
-      if (this.studentGUId && this.studentGUId !== '0000') {
-        this.fetchFilteredData();
-      }
-    });
   }
 
   subscribeForselectedQRPeriod() {
     this.subscription = this.selectedQRPeriod$.subscribe((message) => {
       this.selectedQRPeriod = message;
-      console.log('************NGXS: SR new selectedQRPeriod received' + this.selectedQRPeriod);
-      this.fetchFilteredData();
+      console.log('************NGXS: SSR Tracking new selectedQRPeriod received' + this.selectedQRPeriod);
+      // this.fetchFilteredData();
     });
   }
 
-  fetchFilteredData() {
-    if (this.selectedQRPeriod !== '' && this.selectedQRPeriod !== undefined) {
-      this.isLoading = true;
-      console.log('in fetchData for StudentReportsByPeriod');
-      this.ssrData
-        .getStudentSelfReportsByPeriod(
-          this.selectedQRPeriod,
-          '0', // this.selectedSRReviewedStatus,
-          null
-        )
-        .subscribe(
-          (data) => {
-            this.studentReportsByPeriod = data.filter((item) => {
-              if (this.displayTestNames) {
-                return item;
-              } else if (!this.displayTestNames && item.studentName.substring(0,5) !== '_Test') {
-                return item;
-              }
-            });
-            console.log('studentReportByPeriod has');
-            console.log(this.studentReportsByPeriod[0]);
-          },
-          (err) => console.error('Subscribe error: ' + err),
-          () => {
-            console.log('data loaded now set timeout for scroll');
-            setTimeout(() => {
-              this.scrollIntoView();
-            }, 0);
-            this.isLoading = false;
-          }
-        );
+
+  processRouteParams() {
+    console.log('summaryTracking setting filters form queryParams');
+
+    const year = this.route.snapshot.queryParams['year'];
+    console.log('year param = ' + year);
+    if (year !== undefined) {
+      this.selectedSSRYear = year;
     }
+
+    let period = this.route.snapshot.queryParams['period'];
+    console.log('period param = ' + period);
+    if (period !== undefined) {
+      this.selectedSSRPeriod = period;
+    } else {
+      // const x: Date;
+      const x: Date = new Date();
+      console.log(x);
+      const y = this.addDays(x, -2);
+      console.log(y);
+      period = '' + (y.getMonth() + 1);
+      this.selectedSSRPeriod = period;
+    }
+
+    const reviewedStatus = this.route.snapshot.queryParams['reviewedStatus'];
+    console.log('reviewed param = ' + reviewedStatus);
+    if (reviewedStatus !== undefined) {
+      this.selectedSSRReviewedStatus = reviewedStatus;
+    } else {
+      this.selectedSSRReviewedStatus = '0';
+    }
+
+    const highlight = this.route.snapshot.queryParams['highlight'];
+    console.log('highlight param = ' + highlight);
+    if (highlight !== undefined) {
+      this.selectedHighlightStatus = highlight;
+    } else {
+      this.selectedHighlightStatus = '0';
+    }
+
+    if (period !== undefined && period > 0) {
+      this.fetchFilteredData();
+    }
+  }
+
+  fetchFilteredData() {
+    this.isLoading = true;
+    console.log('in fetchData for MentorReportsByMonth');
+    this.ssrData
+      // .getStudentSelfReportsByPeriod(this.selectedSSRYear, this.selectedSSRPeriod, this.selectedSSRReviewedStatus)
+      .getStudentSelfReportsByPeriod(// '2022-2', this.selectedSSRReviewedStatus, '10dbe12d-6b18-4766-b607-ffb07ceb230b')
+
+      '2022-2', // this.selectedQRPeriod,
+      '0', // this.selectedSRReviewedStatus,
+      null
+      )
+      .subscribe(
+        (data) => {
+          this.studentReportsByPeriod = data.filter((item) => {
+            if (this.displayTestNames) {
+              return item;
+            } else if (!this.displayTestNames && item.studentName.substring(0,5) !== '_Test') {
+              return item;
+            }
+          });
+          console.log('mentorReportByMonth has');
+          console.log(this.studentReportsByPeriod[0]);
+        },
+        (err) => console.error('Subscribe error: ' + err),
+        () => {
+          console.log('data loaded now set timeout for scroll');
+          setTimeout(() => {
+            this.scrollIntoView();
+          }, 0);
+          this.isLoading = false;
+        }
+      );
   }
 
   scrollIntoView() {
@@ -152,8 +179,22 @@ export class StudentSelfReportsSummaryTrackingComponent implements OnInit
     }
   }
 
-  setSelectedQRPeriod(yearPeriod: string) {
-    this.store.dispatch(new SetSelectedQRPeriod(yearPeriod));
+  setSelectedMRReviewedStatus(status: string) {
+    this.selectedSSRReviewedStatus = status;
+    this.fetchFilteredData();
+  }
+
+  setSelectedHighlightStatus(status: string) {
+    this.selectedHighlightStatus = status;
+    this.fetchFilteredData();
+  }
+
+  setSelectedYear(year: string) {
+    this.selectedSSRPeriod = year;
+    this.fetchFilteredData();
+  }
+  setSelectedPeriod(period: string) {
+    this.selectedSSRPeriod= period;
     this.fetchFilteredData();
   }
 
@@ -165,9 +206,9 @@ export class StudentSelfReportsSummaryTrackingComponent implements OnInit
     this.router.navigate(link);
   }
 
-  updateSelfReportTracking(id: number, studentGUId: string, studentName: string) {
+  updateSSRTracking(id: number, studentGUId: string, studentName: string) {
     // AABBCCDD
-    // this.store.dispatch(new SetSelectedStudentIdentifiers({ studentGUId, studentName }));
+    this.store.dispatch(new SetSelectedStudentIdentifiers({ studentGUId, studentName }));
 
     console.log(studentName);
     console.log(id);
@@ -182,6 +223,11 @@ export class StudentSelfReportsSummaryTrackingComponent implements OnInit
     this.router.navigate(link);
   }
 
+  translationNeeded(lang1: number, lang2: number): string {
+    console.log(lang1, lang2);
+    return lang1 === lang2 ? '' : 'Translation Needed';
+  }
+
   getHighlightColor(highlightStatusId: number): string {
     if (highlightStatusId === 2106) {
       // console.log('returning ' + 'green-row');
@@ -192,4 +238,15 @@ export class StudentSelfReportsSummaryTrackingComponent implements OnInit
       return '';
     }
   }
+  addDays(date, days) {
+    const result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+  }
+  setSelectedQRPeriod(yearPeriod: string) {
+    alert('skipping store update');
+    // this.store.dispatch(new SetSelectedQRPeriod(yearPeriod));
+    // this.fetchFilteredData();
+  }
+
 }

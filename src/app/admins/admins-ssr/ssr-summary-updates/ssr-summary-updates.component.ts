@@ -4,6 +4,7 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { Select } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { StudentSelfReportDataService } from 'src/app/_shared/data/student-self-report-data.service';
+import { SELECTITEM } from 'src/app/_shared/interfaces/SELECTITEM';
 import { StudentSelfReport } from 'src/app/_shared/models/student-self-report';
 import { SessionService } from 'src/app/_shared/services/session.service';
 import { StudentState } from 'src/app/_store/student/student.state';
@@ -26,7 +27,13 @@ export class StudentSelfReportsSummaryUpdatesComponent implements OnInit {
 
   studentName: string;
   private subscription: Subscription;
-
+  followUpStatuses: SELECTITEM[];
+  selectedYear: string;
+  selectedMonth: string;
+  selectedReviewedStatus: string;
+  selectedFollowUpStatus: string;
+  savedReviewedStatusId: number;
+  savedHighlightStatusId: number;
   @Select(StudentState.getSelectedStudentName) currentName$: Observable<string>;
 
   constructor(
@@ -86,7 +93,34 @@ export class StudentSelfReportsSummaryUpdatesComponent implements OnInit {
       console.log('************NGXS: ssr updates new StudentName received' + this.studentName);
     });
   }
+  onSubmit() {
+    console.log('Hi from mentor ReportReview Submit');
+    // console.log(this.mentorReport);
 
+    if (this.myForm.invalid) {
+      this.errorMessage = '';
+
+      window.scrollTo(0, 0);
+      return false;
+    }
+
+    this.selfReport.narrative_English = this.narrative_EnglishCtl.value;
+    this.selfReport.narrative_Spanish = this.narrative_SpanishCtl.value;
+
+    this.selfReportData.postStudentSelfReport(this.selfReport).subscribe(
+      (student) => {
+        console.log((this.successMessage = <any>student));
+        this.submitted = true;
+        this.isLoading = false;
+        this.navigateBackInContext();
+      },
+      (error) => {
+        this.errorMessage = error;
+        this.isLoading = false;
+      }
+    );
+    return false;
+  }
   onCancel() {
     this.navigateBackInContext();
   }

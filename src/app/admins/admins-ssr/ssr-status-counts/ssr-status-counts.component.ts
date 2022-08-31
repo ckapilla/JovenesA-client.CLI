@@ -11,6 +11,7 @@ export class StudentSelfReportsStatusCountsComponent implements OnChanges {
   @Input() month: string;
   statusCounts: StudentReportsStatusCount[];
   errorMessage: string;
+  period: string;
 
   constructor(private ssrData: StudentSelfReportDataService) {}
 
@@ -33,7 +34,7 @@ export class StudentSelfReportsStatusCountsComponent implements OnChanges {
     console.log(this.year);
     console.log(this.month);
     if (+this.month > 0) {
-      this.ssrData.getStudentSelfReportsStatusCounts(this.year, this.month).subscribe(  // mentorReportsData.getMentorReportsStatusCounts(this.year, this.month).subscribe(
+      this.ssrData.getStudentSelfReportsStatusCounts('2022', '2').subscribe(  // mentorReportsData.getMentorReportsStatusCounts(this.year, this.month).subscribe(
         (data) => {
           this.statusCounts = data;
           console.log('getStatusCounts returns: ');

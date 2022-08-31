@@ -9,7 +9,7 @@ import { AdminsMemberComponent } from './admins-members/admins-member/admins-mem
 import { MentorReportsContainerComponent } from './admins-mr/mr-container/mr-container.component';
 import { MentorReportsSummaryTrackingComponent } from './admins-mr/mr-summary-tracking/mr-summary-tracking.component';
 import { StudentSelfReportsContainerComponent } from './admins-ssr/ssr-container/ssr-container.component';
-import { StudentSelfReportsSummaryTrackingComponent } from './admins-ssr/ssr-summary-tracking/ssr-summary-tracking.component';
+import { StudentSelfReportsTrackingComponent } from './admins-ssr/ssr-summary-tracking/ssr-summary-tracking.component';
 import { StudentSelfReportsSummaryUpdatesComponent } from './admins-ssr/ssr-summary-updates/ssr-summary-updates.component';
 import { AdminsStudentMRsComponent } from './admins-student-mrs/admins-student-mrs.component';
 import { AdminsStudentContainerComponent } from './admins-students/admins-student-container/admins-student-container.component';
@@ -108,7 +108,7 @@ const adminRoutes: Routes = [
 
       {
         path: 'student-reports/summary-tracking', // using query param /:id/:year/:month/:summaryStatus/:highlight',
-        component: StudentSelfReportsSummaryTrackingComponent
+        component: StudentSelfReportsTrackingComponent
       },
 
       {

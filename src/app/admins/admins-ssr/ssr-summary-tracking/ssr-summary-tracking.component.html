@@ -1,7 +1,22 @@
+<div class="card-header bg-primary text-white">
+  <span style="font-size: large"> Quarterly Reports </span>
+  <span style="margin-left: 10rem">
+    Report Year-Period:
+    <select name="activePeriodSelector" data-cy="period-selector" [(ngModel)]="selectedQRPeriod"
+      (change)="setSelectedQRPeriod($event.target.value)">
+      <option *ngFor="let yearPeriod of qrPeriods" [value]="yearPeriod.value">{{ yearPeriod.label }}</option>
+    </select>
+  </span>
+</div>
+
+
 <div class="card-body bg-white">
   <span *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</span>
   <span *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</span>
   <div>
+
+    <!-- <app-ssr-status-counts [year]="selectedQRPeriod" [period]="selectedQRPeriod"> </app-ssr-status-counts> -->
+
     <div class="controls"></div>
   </div>
 
@@ -19,7 +34,7 @@
           <div class="row mx-auto" id="{{ 'id' + ssr.studentSelfReportId }}">
             <button
               class="btn default-btn btn-primary btn-sm"
-              (click)="updateSelfReportTracking(ssr.studentSelfReportId, ssr.studentGUId, ssr.studentName)"
+              (click)="updateSSRTracking(ssr.studentSelfReportId, ssr.studentGUId, ssr.studentName)"
             >
               Review
             </button>
