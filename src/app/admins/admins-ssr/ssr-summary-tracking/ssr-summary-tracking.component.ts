@@ -28,12 +28,10 @@ export class StudentSelfReportsTrackingComponent implements OnInit
   months: SELECTITEM[];
   ssrReviewedStatuses: SELECTITEM[];
   highlightStatuses: SELECTITEM[];
-  selectedSSRYear: string;
-  selectedSSRPeriod: string;
+  selectedQRPeriod: string;
   selectedSSRReviewedStatus: string;
   readonly qrPeriods: SELECTITEM[] = constants.qrPeriods;
   readonly reviewedStatuses: SELECTITEM[] = constants.reviewedQRStatuses;
-  selectedQRPeriod = '';
   selectedHighlightStatus: string;
   displayOriginalFields = true;
   x: any;
@@ -58,8 +56,7 @@ export class StudentSelfReportsTrackingComponent implements OnInit
 
     this.highlightStatuses = constants.highlightStatuses;
 
-    this.selectedSSRYear = '' + constants.currentContactYear; // '' + today.getFullYear(); //
-    this.selectedSSRPeriod = '0'; // + today.getMonth() + 1;// '5';
+    this.selectedQRPeriod = '0'; // + today.getMonth() + 1;// '5';
 
     this.selectedSSRReviewedStatus = '0'; // this.mrReviewedStatuses[0].value;
     this.selectedHighlightStatus = this.highlightStatuses[0].value;
@@ -67,7 +64,6 @@ export class StudentSelfReportsTrackingComponent implements OnInit
     this.smileys = constants.smileys;
     console.log('before process route params');
     this.processRouteParams();
-
 
   }
 
@@ -90,16 +86,16 @@ export class StudentSelfReportsTrackingComponent implements OnInit
   processRouteParams() {
     console.log('summaryTracking setting filters form queryParams');
 
-    const year = this.route.snapshot.queryParams['year'];
-    console.log('year param = ' + year);
-    if (year !== undefined) {
-      this.selectedSSRYear = year;
-    }
+    // const year = this.route.snapshot.queryParams['year'];
+    // console.log('year param = ' + year);
+    // if (year !== undefined) {
+    //   this.selectedSSRYear = year;
+    // }
 
     let period = this.route.snapshot.queryParams['period'];
     console.log('period param = ' + period);
     if (period !== undefined) {
-      this.selectedSSRPeriod = period;
+      this.selectedQRPeriod = period;
     } else {
       // const x: Date;
       const x: Date = new Date();
@@ -107,7 +103,7 @@ export class StudentSelfReportsTrackingComponent implements OnInit
       const y = this.addDays(x, -2);
       console.log(y);
       period = '' + (y.getMonth() + 1);
-      this.selectedSSRPeriod = period;
+      this.selectedQRPeriod = period;
     }
 
     const reviewedStatus = this.route.snapshot.queryParams['reviewedStatus'];
@@ -190,11 +186,11 @@ export class StudentSelfReportsTrackingComponent implements OnInit
   }
 
   setSelectedYear(year: string) {
-    this.selectedSSRPeriod = year;
+    this.selectedQRPeriod = year;
     this.fetchFilteredData();
   }
   setSelectedPeriod(period: string) {
-    this.selectedSSRPeriod= period;
+    this.selectedQRPeriod= period;
     this.fetchFilteredData();
   }
 

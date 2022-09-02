@@ -1,5 +1,5 @@
 <div class="card-header bg-primary text-white">
-  <span style="font-size: large"> Quarterly Reports </span>
+  <span style="font-size: large"> Student Self Reports </span>
   <span style="margin-left: 10rem">
     Report Year-Period:
     <select name="activePeriodSelector" data-cy="period-selector" [(ngModel)]="selectedQRPeriod"
@@ -15,7 +15,7 @@
   <span *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</span>
   <div>
 
-    <!-- <app-ssr-status-counts [year]="selectedQRPeriod" [period]="selectedQRPeriod"> </app-ssr-status-counts> -->
+    <app-ssr-status-counts [year]="selectedQRPeriod" [period]="selectedQRPeriod"> </app-ssr-status-counts>
 
     <div class="controls"></div>
   </div>

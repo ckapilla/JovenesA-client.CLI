@@ -2,20 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
+import { constants } from 'src/app/_shared/constants/constants';
 import { StudentSelfReportDataService } from 'src/app/_shared/data/student-self-report-data.service';
+import { SELECTITEM } from 'src/app/_shared/interfaces/SELECTITEM';
 import { StudentMiniDTO } from 'src/app/_shared/models/studentMiniDTO';
 import { StudentState } from 'src/app/_store/student/student.state';
 import { SetSelectedQRPeriod } from 'src/app/_store/ui/ui.action';
 import { UIState } from 'src/app/_store/ui/ui.state';
-import { constants } from '../../_shared/constants/constants';
-import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 
 @Component({
-  selector: 'app-self-report-missing',
-  templateUrl: 'self-report-missing.component.html',
-  styleUrls: ['self-report-missing.component.css']
+  selector: 'app-ssr-missing',
+  templateUrl: 'ssr-missing.component.html',
+  styleUrls: ['ssr-missing.component.css']
 })
-export class SelfReportMissingComponent implements OnInit {
+export class SSRMissingComponent implements OnInit {
   isLoading = false;
   errorMessage: string;
   successMessage: string;

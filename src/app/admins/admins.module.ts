@@ -16,7 +16,8 @@ import { MentorReportSummaryUpdatesComponent } from './admins-mr/mr-summary-upda
 import { AdminsNavbarComponent } from './admins-navbar/admins-navbar.component';
 import { AdminsRoutingModule } from './admins-routing.module';
 import { StudentSelfReportsContainerComponent } from './admins-ssr/ssr-container/ssr-container.component';
-import { StudentSelfReportsStatusCountsComponent } from './admins-ssr/ssr-status-counts/ssr-status-counts.component';
+import { SSRMissingComponent } from './admins-ssr/ssr-missing/ssr-missing.component';
+import { SSRStatusCountsComponent } from './admins-ssr/ssr-status-counts/ssr-status-counts.component';
 import { StudentSelfReportsTrackingComponent } from './admins-ssr/ssr-summary-tracking/ssr-summary-tracking.component';
 import { StudentSelfReportsSummaryUpdatesComponent } from './admins-ssr/ssr-summary-updates/ssr-summary-updates.component';
 
@@ -60,7 +61,8 @@ import { UtilitiesComponent } from './utilities/utilities.component';
     // StudentReportsStatusCountsComponent,
     StudentSelfReportsContainerComponent,
     StudentSelfReportsTrackingComponent,
-    StudentSelfReportsStatusCountsComponent,
+    SSRMissingComponent,
+    SSRStatusCountsComponent,
     StudentSelfReportsSummaryUpdatesComponent,
     AdminsNavbarComponent,
     FollowUpRequestsComponent,

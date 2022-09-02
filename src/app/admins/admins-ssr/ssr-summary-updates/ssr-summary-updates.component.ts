@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { Select } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
+import { constants } from 'src/app/_shared/constants/constants';
 import { StudentSelfReportDataService } from 'src/app/_shared/data/student-self-report-data.service';
 import { SELECTITEM } from 'src/app/_shared/interfaces/SELECTITEM';
 import { StudentSelfReport } from 'src/app/_shared/models/student-self-report';
@@ -23,17 +24,18 @@ export class StudentSelfReportsSummaryUpdatesComponent implements OnInit {
   narrative_EnglishCtl: AbstractControl;
   narrative_SpanishCtl: AbstractControl;
   reviewedStatus: AbstractControl;
-  highlightStatus: AbstractControl;
 
   studentName: string;
-  private subscription: Subscription;
+
+  reviewedStatuses: SELECTITEM[];
   followUpStatuses: SELECTITEM[];
   selectedYear: string;
   selectedMonth: string;
   selectedReviewedStatus: string;
   selectedFollowUpStatus: string;
   savedReviewedStatusId: number;
-  savedHighlightStatusId: number;
+  private subscription: Subscription;
+
   @Select(StudentState.getSelectedStudentName) currentName$: Observable<string>;
 
   constructor(
@@ -43,10 +45,13 @@ export class StudentSelfReportsSummaryUpdatesComponent implements OnInit {
     private _fb: FormBuilder,
     public session: SessionService
   ) {
+    this.reviewedStatuses = constants.reviewedStatuses;
     this.myForm = _fb.group({
       narrative_English: ['', { validators: [Validators.required], updateOn: 'blur' }],
       narrative_Spanish: ['']
     });
+
+
 
     this.narrative_EnglishCtl = this.myForm.controls['narrative_English'];
     this.narrative_SpanishCtl = this.myForm.controls['narrative_Spanish'];
@@ -107,7 +112,7 @@ export class StudentSelfReportsSummaryUpdatesComponent implements OnInit {
     this.selfReport.narrative_English = this.narrative_EnglishCtl.value;
     this.selfReport.narrative_Spanish = this.narrative_SpanishCtl.value;
 
-    this.selfReportData.postStudentSelfReport(this.selfReport).subscribe(
+    this.selfReportData.putStudentSelfReport(this.selfReport).subscribe(
       (student) => {
         console.log((this.successMessage = <any>student));
         this.submitted = true;
@@ -121,6 +126,7 @@ export class StudentSelfReportsSummaryUpdatesComponent implements OnInit {
     );
     return false;
   }
+
   onCancel() {
     this.navigateBackInContext();
   }

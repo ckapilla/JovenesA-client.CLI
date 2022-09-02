@@ -6,12 +6,11 @@ import { StudentReportsStatusCount } from 'src/app/_shared/models/student-report
   selector: 'app-ssr-status-counts',
   templateUrl: './ssr-status-counts.component.html'
 })
-export class StudentSelfReportsStatusCountsComponent implements OnChanges {
+export class SSRStatusCountsComponent implements OnChanges {
   @Input() year: string;
-  @Input() month: string;
+  @Input() period: string;
   statusCounts: StudentReportsStatusCount[];
   errorMessage: string;
-  period: string;
 
   constructor(private ssrData: StudentSelfReportDataService) {}
 
@@ -32,9 +31,9 @@ export class StudentSelfReportsStatusCountsComponent implements OnChanges {
     // ];
     console.log('ngOnChanges has fired, calling data service with ');
     console.log(this.year);
-    console.log(this.month);
-    if (+this.month > 0) {
-      this.ssrData.getStudentSelfReportsStatusCounts('2022', '2').subscribe(  // mentorReportsData.getMentorReportsStatusCounts(this.year, this.month).subscribe(
+    console.log(this.period);
+    if (+this.period > 0) {
+      this.ssrData.getStudentSelfReportsStatusCounts(this.year, this.period).subscribe(  // mentorReportsData.getMentorReportsStatusCounts(this.year, this.month).subscribe(
         (data) => {
           this.statusCounts = data;
           console.log('getStatusCounts returns: ');

@@ -8,10 +8,10 @@ import { BecasRoutingModule } from './becas-routing.module';
 import { BecasComponent } from './becas.component';
 import { GradesEditComponent } from './grades-edit/grades-edit.component';
 import { GradesListComponent } from './grades-list/grades-list.component';
-import { SelfReportMissingComponent } from './self-report-missing/self-report-missing.component';
-import { SelfReportTrackingContainerComponent } from './self-report-tracking-container/self-report-tracking-container.component';
-import { SelfReportTrackingComponent } from './self-report-tracking/self-report-tracking.component';
-import { SelfReportUpdatesComponent } from './self-report-updates.component.ts/self-report-updates.component';
+// import { SelfReportMissingComponent } from './self-report-missing/self-report-missing.component';
+// import { SelfReportTrackingContainerComponent } from './self-report-tracking-container/self-report-tracking-container.component';
+// import { SelfReportTrackingComponent } from './self-report-tracking/self-report-tracking.component';
+// import { SelfReportUpdatesComponent } from './self-report-updates.component.ts/self-report-updates.component';
 
 @NgModule({
   declarations: [
@@ -19,10 +19,10 @@ import { SelfReportUpdatesComponent } from './self-report-updates.component.ts/s
     BecasComponent,
     GradesListComponent,
     GradesEditComponent,
-    SelfReportTrackingComponent,
-    SelfReportMissingComponent,
-    SelfReportTrackingContainerComponent,
-    SelfReportUpdatesComponent,
+    // SelfReportTrackingComponent,
+    // SelfReportMissingComponent,
+    // SelfReportTrackingContainerComponent,
+    // SelfReportUpdatesComponent,
     BecasHomeComponent
   ],
   imports: [CommonModule, AppSharedModule, BecasRoutingModule, NgbModule]
