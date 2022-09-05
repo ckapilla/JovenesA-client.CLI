@@ -107,6 +107,7 @@ export class MentorReportSummaryUpdatesComponent implements OnInit {
         console.log('done with data MentorReport>>');
         console.log(this.mentorReport2);
         console.log('<<');
+        this.reviewedStatus.setValue(this.mentorReport2.reviewedStatusId);
         this.emojiCtl.setValue(this.mentorReport2.emoji);
         this.narrative_EnglishCtl.setValue(this.mentorReport2.narrative_English);
         this.narrative_SpanishCtl.setValue(this.mentorReport2.narrative_Spanish);

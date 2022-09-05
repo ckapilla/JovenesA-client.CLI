@@ -78,6 +78,7 @@ export class StudentSelfReportsSummaryUpdatesComponent implements OnInit {
         console.log('done with data SStudentSelfReport>>');
         console.log(this.selfReport);
         console.log('<<');
+        this.reviewedStatus.setValue(this.selfReport.reviewedStatusId);
         this.narrative_EnglishCtl.setValue(this.selfReport.narrative_English);
         this.narrative_SpanishCtl.setValue(this.selfReport.narrative_Spanish);
         this.isLoading = false;
