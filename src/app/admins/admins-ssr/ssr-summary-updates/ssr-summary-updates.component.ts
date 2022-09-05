@@ -1,17 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { Select } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
+import { constants } from 'src/app/_shared/constants/constants';
 import { StudentSelfReportDataService } from 'src/app/_shared/data/student-self-report-data.service';
+import { SELECTITEM } from 'src/app/_shared/interfaces/SELECTITEM';
 import { StudentSelfReport } from 'src/app/_shared/models/student-self-report';
 import { SessionService } from 'src/app/_shared/services/session.service';
 import { StudentState } from 'src/app/_store/student/student.state';
 
 @Component({
-  templateUrl: './self-report-updates.component.html'
+  templateUrl: './ssr-summary-updates.component.html'
 })
-export class SelfReportUpdatesComponent implements OnInit {
+export class StudentSelfReportsSummaryUpdatesComponent implements OnInit {
   myForm: FormGroup;
   selfReport: StudentSelfReport;
   isLoading: boolean;
@@ -22,9 +24,16 @@ export class SelfReportUpdatesComponent implements OnInit {
   narrative_EnglishCtl: AbstractControl;
   narrative_SpanishCtl: AbstractControl;
   reviewedStatus: AbstractControl;
-  highlightStatus: AbstractControl;
 
   studentName: string;
+
+  reviewedStatuses: SELECTITEM[];
+  followUpStatuses: SELECTITEM[];
+  selectedYear: string;
+  selectedMonth: string;
+  selectedReviewedStatus: string;
+  selectedFollowUpStatus: string;
+  savedReviewedStatusId: number;
   private subscription: Subscription;
 
   @Select(StudentState.getSelectedStudentName) currentName$: Observable<string>;
@@ -36,11 +45,16 @@ export class SelfReportUpdatesComponent implements OnInit {
     private _fb: FormBuilder,
     public session: SessionService
   ) {
+    console.log('StudentSelfReportsSummaryUpdates constructor')
+
+    this.reviewedStatuses = constants.reviewedStatuses;
     this.myForm = _fb.group({
+      reviewedStatusSelector: [''],
       narrative_English: ['', { validators: [Validators.required], updateOn: 'blur' }],
       narrative_Spanish: ['']
     });
 
+    this.reviewedStatus = this.myForm.controls['reviewedStatusSelector'];
     this.narrative_EnglishCtl = this.myForm.controls['narrative_English'];
     this.narrative_SpanishCtl = this.myForm.controls['narrative_Spanish'];
 
@@ -83,8 +97,36 @@ export class SelfReportUpdatesComponent implements OnInit {
   subscribeForStudentNames() {
     this.subscription = this.currentName$.subscribe((message) => {
       this.studentName = message;
-      console.log('************NGXS: mr ssr updates new StudentName received' + this.studentName);
+      console.log('************NGXS: ssr updates new StudentName received' + this.studentName);
     });
+  }
+  onSubmit() {
+    console.log('Hi from ssr ReportReview Submit');
+    console.log(this.selfReport);
+
+    if (this.myForm.invalid) {
+      this.errorMessage = '';
+
+      window.scrollTo(0, 0);
+      return false;
+    }
+    this.selfReport.reviewedStatusId = this.reviewedStatus.value;
+    this.selfReport.narrative_English = this.narrative_EnglishCtl.value;
+    this.selfReport.narrative_Spanish = this.narrative_SpanishCtl.value;
+
+    this.selfReportData.putStudentSelfReport(this.selfReport).subscribe(
+      (student) => {
+        console.log((this.successMessage = <any>student));
+        this.submitted = true;
+        this.isLoading = false;
+        this.navigateBackInContext();
+      },
+      (error) => {
+        this.errorMessage = error;
+        this.isLoading = false;
+      }
+    );
+    return false;
   }
 
   onCancel() {
@@ -96,7 +138,7 @@ export class SelfReportUpdatesComponent implements OnInit {
     // eslint-disable-next-line eqeqeq
     if (this.session.getUserId() == 1216 || this.session.getUserId() == 2094 || this.session.getUserId() == 2947 || this.session.getUserId() == 2433 ) {
       const response = window.confirm(
-        'Caution this action will permanently delete this mentor report! Proceed? ' +
+        'Caution this action will permanently delete this student report! Proceed? ' +
           this.selfReport.studentSelfReportId
       );
       if (response === true) {
@@ -120,7 +162,7 @@ export class SelfReportUpdatesComponent implements OnInit {
   }
 
   navigateBackInContext() {
-    const target = '/becas/self-reports/tracking';
+    const target = '/admins/student-reports/summary-tracking';
     console.log('after Submit or Cancel navigating to ' + target);
     const reportDate = new Date(this.selfReport.reportDateTime);
 
@@ -147,12 +189,6 @@ export class SelfReportUpdatesComponent implements OnInit {
     this.router.navigate([target], navigationExtras);
   }
 
-  validateEmojis(control: FormControl): { [error: string]: any } {
-    // console.log('emoji validator ' + control.value);
-    const rtnVal: any = control.value === 666 ? { validateEmojis: { valid: false } } : null;
-    console.log(rtnVal);
-    return rtnVal;
-  }
   public hasChanges() {
     // if have changes then ask for confirmation
     // ask if form is dirty and has not just been submitted

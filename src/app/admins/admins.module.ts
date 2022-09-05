@@ -15,6 +15,12 @@ import { MentorReportsSummaryTrackingComponent } from './admins-mr/mr-summary-tr
 import { MentorReportSummaryUpdatesComponent } from './admins-mr/mr-summary-updates/mr-summary-updates.component';
 import { AdminsNavbarComponent } from './admins-navbar/admins-navbar.component';
 import { AdminsRoutingModule } from './admins-routing.module';
+import { StudentSelfReportsContainerComponent } from './admins-ssr/ssr-container/ssr-container.component';
+import { SSRMissingComponent } from './admins-ssr/ssr-missing/ssr-missing.component';
+import { SSRStatusCountsComponent } from './admins-ssr/ssr-status-counts/ssr-status-counts.component';
+import { StudentSelfReportsTrackingComponent } from './admins-ssr/ssr-summary-tracking/ssr-summary-tracking.component';
+import { StudentSelfReportsSummaryUpdatesComponent } from './admins-ssr/ssr-summary-updates/ssr-summary-updates.component';
+
 import { AdminsStudentMRsComponent } from './admins-student-mrs/admins-student-mrs.component';
 import { AdminsStudentQRsComponent } from './admins-student-qrs/admins-student-qrs.component';
 import { AdminsStudentContainerComponent } from './admins-students/admins-student-container/admins-student-container.component';
@@ -29,7 +35,7 @@ import { FollowUpRequestsAddComponent } from './follow-up-requests-add/follow-up
 import { FollowUpRequestsComponent } from './follow-up-requests/follow-up-requests.component';
 import { SponsorGroupComponent } from './sponsor-group/sponsor-group.component';
 import { SponsorGroupsComponent } from './sponsor-groups/sponsor-groups.component';
-import { StudentReportsStatusCountsComponent } from './ssr-status-counts/ssr-status-counts.component';
+// import { StudentReportsStatusCountsComponent } from './ssr-status-countsXXX/ssr-status-counts.component';
 import { ServerEnvironmentComponent } from './utilities/server-environment/server-environment.component';
 import { TestNamesVisibilityComponent } from './utilities/test-names-visibility/test-names-visibility.component';
 import { UtilitiesComponent } from './utilities/utilities.component';
@@ -52,7 +58,12 @@ import { UtilitiesComponent } from './utilities/utilities.component';
     MentorReportSummaryUpdatesComponent,
     ServerEnvironmentComponent,
     // MentorReportFollowUpUpdatesComponent,
-    StudentReportsStatusCountsComponent,
+    // StudentReportsStatusCountsComponent,
+    StudentSelfReportsContainerComponent,
+    StudentSelfReportsTrackingComponent,
+    SSRMissingComponent,
+    SSRStatusCountsComponent,
+    StudentSelfReportsSummaryUpdatesComponent,
     AdminsNavbarComponent,
     FollowUpRequestsComponent,
     FollowUpRequestDetailsComponent,

@@ -9,6 +9,9 @@ import { AdminsMemberComponent } from './admins-members/admins-member/admins-mem
 import { MentorReportsContainerComponent } from './admins-mr/mr-container/mr-container.component';
 import { MentorReportsSummaryTrackingComponent } from './admins-mr/mr-summary-tracking/mr-summary-tracking.component';
 import { MentorReportSummaryUpdatesComponent } from './admins-mr/mr-summary-updates/mr-summary-updates.component';
+import { StudentSelfReportsContainerComponent } from './admins-ssr/ssr-container/ssr-container.component';
+import { StudentSelfReportsTrackingComponent } from './admins-ssr/ssr-summary-tracking/ssr-summary-tracking.component';
+import { StudentSelfReportsSummaryUpdatesComponent } from './admins-ssr/ssr-summary-updates/ssr-summary-updates.component';
 import { AdminsStudentMRsComponent } from './admins-student-mrs/admins-student-mrs.component';
 import { AdminsStudentContainerComponent } from './admins-students/admins-student-container/admins-student-container.component';
 import { AdminsStudentListComponent } from './admins-students/admins-student-list/admins-student-list.component';
@@ -103,6 +106,29 @@ const adminRoutes: Routes = [
         component: MentorReportSummaryUpdatesComponent,
         canDeactivate: [ConfirmDeactivateMRSummaryUpdatesGuard]
       },
+
+      {
+        path: 'student-reports/summary-updates', // /:mentorReportId',
+        component: StudentSelfReportsSummaryUpdatesComponent,
+        canDeactivate: [ConfirmDeactivateMRSummaryUpdatesGuard]
+      },
+
+      {
+        path: 'student-reports/summary-tracking', // using query param /:id/:year/:month/:summaryStatus/:highlight',
+        component: StudentSelfReportsTrackingComponent
+      },
+
+      {
+        path: 'student-reports/ssr-container',
+        component: StudentSelfReportsContainerComponent
+      },
+
+      {
+        path: 'student-reports/summary-updates', // /:mentorReportId',
+        component: StudentSelfReportsSummaryUpdatesComponent,
+        canDeactivate: [ConfirmDeactivateMRSummaryUpdatesGuard]
+      },
+
       {
         path: 'follow-up-requests',
         component: FollowUpRequestsComponent

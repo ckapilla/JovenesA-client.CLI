@@ -60,7 +60,7 @@ export class MentorReportSummaryUpdatesComponent implements OnInit {
   ) {
     this.reviewedStatuses = constants.reviewedStatuses;
     this.highlightStatuses = constants.highlightStatuses;
-
+    console.log('mr-summary-updates constructor');
     this.myForm = _fb.group({
       inputSummary: [''], // ,Validators.compose([Validators.required, Validators.maxLength(2000)])],
       reviewedStatusSelector: [''],
@@ -69,7 +69,7 @@ export class MentorReportSummaryUpdatesComponent implements OnInit {
       narrative_English: ['', { validators: [Validators.required], updateOn: 'blur' }],
       narrative_Spanish: ['']
     });
-
+    console.log('mr-summary-updates constructor 2');
     this.summary = this.myForm.controls['inputSummary'];
     this.reviewedStatus = this.myForm.controls['reviewedStatusSelector'];
     this.highlightStatus = this.myForm.controls['highlightStatusSelector'];

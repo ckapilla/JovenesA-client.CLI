@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { MentorReportsStatusCount } from '../models/mentor-reports-status-count';
+import { StudentReportsStatusCount } from '../models/student-reports-status-count';
 import { StudentSelfReport } from '../models/student-self-report';
 import { StudentMiniDTO } from '../models/studentMiniDTO';
 import { UrlService } from '../services/url.service';
@@ -20,10 +21,12 @@ export class StudentSelfReportDataService extends BaseDataService {
   ///  StudentSelfReportsController
   /// ///////////////////////////////////////////////
 
-  public getStudentSelfReportsStatusCounts(year: string, period: string): Observable<MentorReportsStatusCount[]> {
+  public getStudentSelfReportsStatusCounts( yearPeriod: string): Observable<MentorReportsStatusCount[]> {
+    const year = yearPeriod.substr(0, 4);
+    const period = yearPeriod.substr(5, 1);
     const url = this.WebApiPrefix + 'student_self_reports/status_counts' + '?year=' + year + '&period=' + period;
     console.log('sending AuthHttp get request for MentorReportsStatusCounts with ' + url);
-    return this.http.get<MentorReportsStatusCount[]>(url).pipe(catchError(this.handleError));
+    return this.http.get<StudentReportsStatusCount[]>(url).pipe(catchError(this.handleError));
   }
 
   public getStudentSelfReportsByGUId(studentGUId: string): Observable<StudentSelfReport[]> {

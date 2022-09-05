@@ -217,7 +217,7 @@ export class AdminsStudentComponent implements OnInit {
         this.studentDTO = data;
         console.log('#######studentDTO: MemberRecordGUId ' + this.studentDTO.memberRecordGUId);
         console.log('#######studentDTO: mentorGUId ' + this.studentDTO.mentorGUId);
-        console.log('#######studentDTO: mentorId ' + this.studentDTO.mentorId);
+        console.log('#######studentDTO: studentName ' + this.studentDTO.studentName);
         this.studentDTO = this.getNumericStatus(this.studentDTO);
       },
       (err) => {
