@@ -7,33 +7,17 @@ import { StudentReportsStatusCount } from 'src/app/_shared/models/student-report
   templateUrl: './ssr-status-counts.component.html'
 })
 export class SSRStatusCountsComponent implements OnChanges {
-  @Input() year: string;
-  @Input() period: string;
+  @Input() yearPeriod: string;
   statusCounts: StudentReportsStatusCount[];
   errorMessage: string;
 
   constructor(private ssrData: StudentSelfReportDataService) {}
 
   public ngOnChanges() {
-    // this.statusCounts = [{
-    //   reportYear: 2017,
-    //   reportMonth: 10,
-    //   sponsorSummaryStatusId: 2087,
-    //   sponsorSummaryStatus: 'NeedsReview',
-    //   statusCount: 44
-    // }, {
-    //     reportYear: 2017,
-    //     reportMonth: 10,
-    //     sponsorSummaryStatusId: 2088,
-    //     sponsorSummaryStatus: 'ReadyToSend',
-    //     statusCount: 7
-    //   }
-    // ];
     console.log('ngOnChanges has fired, calling data service with ');
-    console.log(this.year);
-    console.log(this.period);
-    if (+this.period > 0) {
-      this.ssrData.getStudentSelfReportsStatusCounts(this.year, this.period).subscribe(  // mentorReportsData.getMentorReportsStatusCounts(this.year, this.month).subscribe(
+    console.log(this.yearPeriod);
+    if (this.yearPeriod > '') {
+      this.ssrData.getStudentSelfReportsStatusCounts( this.yearPeriod).subscribe(  // mentorReportsData.getMentorReportsStatusCounts(this.year, this.month).subscribe(
         (data) => {
           this.statusCounts = data;
           console.log('getStatusCounts returns: ');

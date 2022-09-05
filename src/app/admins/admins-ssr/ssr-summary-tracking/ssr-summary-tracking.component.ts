@@ -4,6 +4,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { constants } from 'src/app/_shared/constants/constants';
 import { SetSelectedStudentIdentifiers } from 'src/app/_store/student/student.action';
+import { SetSelectedQRPeriod } from 'src/app/_store/ui/ui.action';
 import { StudentSelfReportDataService } from '../../../_shared/data/student-self-report-data.service';
 import { SELECTITEM } from '../../../_shared/interfaces/SELECTITEM';
 import { StudentSelfReport } from '../../../_shared/models/student-self-report';
@@ -19,20 +20,16 @@ export class StudentSelfReportsTrackingComponent implements OnInit
   // implements OnInit {
   studentReportsByPeriod: StudentSelfReport[];
   isLoading: boolean;
-  smileys: Array<string>;
   public errorMessage: string;
   successMessage: string;
   submitted: string;
   mentorReportStatuses: SELECTITEM[];
   years: SELECTITEM[];
-  months: SELECTITEM[];
   ssrReviewedStatuses: SELECTITEM[];
-  highlightStatuses: SELECTITEM[];
   selectedQRPeriod: string;
   selectedSSRReviewedStatus: string;
   readonly qrPeriods: SELECTITEM[] = constants.qrPeriods;
   readonly reviewedStatuses: SELECTITEM[] = constants.reviewedQRStatuses;
-  selectedHighlightStatus: string;
   displayOriginalFields = true;
   x: any;
   studentName: string;
@@ -50,20 +47,12 @@ export class StudentSelfReportsTrackingComponent implements OnInit
   ) {
     console.log('ssr-summary-tracking constructor');
     this.years = constants.contactYears;
-    this.months = constants.months;
 
     this.ssrReviewedStatuses = constants.reviewedStatuses;
-
-    this.highlightStatuses = constants.highlightStatuses;
 
     this.selectedQRPeriod = '0'; // + today.getMonth() + 1;// '5';
 
     this.selectedSSRReviewedStatus = '0'; // this.mrReviewedStatuses[0].value;
-    this.selectedHighlightStatus = this.highlightStatuses[0].value;
-
-    this.smileys = constants.smileys;
-    console.log('before process route params');
-    this.processRouteParams();
 
   }
 
@@ -78,65 +67,20 @@ export class StudentSelfReportsTrackingComponent implements OnInit
     this.subscription = this.selectedQRPeriod$.subscribe((message) => {
       this.selectedQRPeriod = message;
       console.log('************NGXS: SSR Tracking new selectedQRPeriod received' + this.selectedQRPeriod);
-      // this.fetchFilteredData();
+      if (this.selectedQRPeriod!== undefined && this.selectedQRPeriod> '0') {
+        this.fetchFilteredData();
+      }
     });
-  }
-
-
-  processRouteParams() {
-    console.log('summaryTracking setting filters form queryParams');
-
-    // const year = this.route.snapshot.queryParams['year'];
-    // console.log('year param = ' + year);
-    // if (year !== undefined) {
-    //   this.selectedSSRYear = year;
-    // }
-
-    let period = this.route.snapshot.queryParams['period'];
-    console.log('period param = ' + period);
-    if (period !== undefined) {
-      this.selectedQRPeriod = period;
-    } else {
-      // const x: Date;
-      const x: Date = new Date();
-      console.log(x);
-      const y = this.addDays(x, -2);
-      console.log(y);
-      period = '' + (y.getMonth() + 1);
-      this.selectedQRPeriod = period;
-    }
-
-    const reviewedStatus = this.route.snapshot.queryParams['reviewedStatus'];
-    console.log('reviewed param = ' + reviewedStatus);
-    if (reviewedStatus !== undefined) {
-      this.selectedSSRReviewedStatus = reviewedStatus;
-    } else {
-      this.selectedSSRReviewedStatus = '0';
-    }
-
-    const highlight = this.route.snapshot.queryParams['highlight'];
-    console.log('highlight param = ' + highlight);
-    if (highlight !== undefined) {
-      this.selectedHighlightStatus = highlight;
-    } else {
-      this.selectedHighlightStatus = '0';
-    }
-
-    if (period !== undefined && period > 0) {
-      this.fetchFilteredData();
-    }
   }
 
   fetchFilteredData() {
     this.isLoading = true;
-    console.log('in fetchData for MentorReportsByMonth');
+    console.log('in fetchData for StudentSelfReportsByPeriod with selectedQRPeriod ' + this.selectedQRPeriod);
     this.ssrData
-      // .getStudentSelfReportsByPeriod(this.selectedSSRYear, this.selectedSSRPeriod, this.selectedSSRReviewedStatus)
-      .getStudentSelfReportsByPeriod(// '2022-2', this.selectedSSRReviewedStatus, '10dbe12d-6b18-4766-b607-ffb07ceb230b')
-
-      '2022-2', // this.selectedQRPeriod,
-      '0', // this.selectedSRReviewedStatus,
-      null
+      .getStudentSelfReportsByPeriod(
+        this.selectedQRPeriod,
+        this.selectedSSRReviewedStatus,
+        null
       )
       .subscribe(
         (data) => {
@@ -147,7 +91,7 @@ export class StudentSelfReportsTrackingComponent implements OnInit
               return item;
             }
           });
-          console.log('mentorReportByMonth has');
+          console.log('StudentSelfReportByMonth has');
           console.log(this.studentReportsByPeriod[0]);
         },
         (err) => console.error('Subscribe error: ' + err),
@@ -175,22 +119,8 @@ export class StudentSelfReportsTrackingComponent implements OnInit
     }
   }
 
-  setSelectedMRReviewedStatus(status: string) {
-    this.selectedSSRReviewedStatus = status;
-    this.fetchFilteredData();
-  }
-
-  setSelectedHighlightStatus(status: string) {
-    this.selectedHighlightStatus = status;
-    this.fetchFilteredData();
-  }
-
-  setSelectedYear(year: string) {
-    this.selectedQRPeriod = year;
-    this.fetchFilteredData();
-  }
-  setSelectedPeriod(period: string) {
-    this.selectedQRPeriod= period;
+  setSelectedYearPeriod(yearPeriod: string) {
+    this.selectedQRPeriod = yearPeriod;
     this.fetchFilteredData();
   }
 
@@ -203,7 +133,6 @@ export class StudentSelfReportsTrackingComponent implements OnInit
   }
 
   updateSSRTracking(id: number, studentGUId: string, studentName: string) {
-    // AABBCCDD
     this.store.dispatch(new SetSelectedStudentIdentifiers({ studentGUId, studentName }));
 
     console.log(studentName);
@@ -224,25 +153,9 @@ export class StudentSelfReportsTrackingComponent implements OnInit
     return lang1 === lang2 ? '' : 'Translation Needed';
   }
 
-  getHighlightColor(highlightStatusId: number): string {
-    if (highlightStatusId === 2106) {
-      // console.log('returning ' + 'green-row');
-      return 'green-row';
-    } else if (highlightStatusId === 2105) {
-      return 'red-row';
-    } else {
-      return '';
-    }
-  }
-  addDays(date, days) {
-    const result = new Date(date);
-    result.setDate(result.getDate() + days);
-    return result;
-  }
   setSelectedQRPeriod(yearPeriod: string) {
-    alert('skipping store update');
-    // this.store.dispatch(new SetSelectedQRPeriod(yearPeriod));
-    // this.fetchFilteredData();
+    this.store.dispatch(new SetSelectedQRPeriod(yearPeriod));
+    this.fetchFilteredData();
   }
 
 }

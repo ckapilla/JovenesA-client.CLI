@@ -8,6 +8,7 @@ import { AdminsMemberSearchComponent } from './admins-members/admins-member-sear
 import { AdminsMemberComponent } from './admins-members/admins-member/admins-member.component';
 import { MentorReportsContainerComponent } from './admins-mr/mr-container/mr-container.component';
 import { MentorReportsSummaryTrackingComponent } from './admins-mr/mr-summary-tracking/mr-summary-tracking.component';
+import { MentorReportSummaryUpdatesComponent } from './admins-mr/mr-summary-updates/mr-summary-updates.component';
 import { StudentSelfReportsContainerComponent } from './admins-ssr/ssr-container/ssr-container.component';
 import { StudentSelfReportsTrackingComponent } from './admins-ssr/ssr-summary-tracking/ssr-summary-tracking.component';
 import { StudentSelfReportsSummaryUpdatesComponent } from './admins-ssr/ssr-summary-updates/ssr-summary-updates.component';
@@ -101,6 +102,12 @@ const adminRoutes: Routes = [
       },
 
       {
+        path: 'mentor-reports/summary-updates', // /:mentorReportId',
+        component: MentorReportSummaryUpdatesComponent,
+        canDeactivate: [ConfirmDeactivateMRSummaryUpdatesGuard]
+      },
+
+      {
         path: 'student-reports/summary-updates', // /:mentorReportId',
         component: StudentSelfReportsSummaryUpdatesComponent,
         canDeactivate: [ConfirmDeactivateMRSummaryUpdatesGuard]
@@ -121,7 +128,6 @@ const adminRoutes: Routes = [
         component: StudentSelfReportsSummaryUpdatesComponent,
         canDeactivate: [ConfirmDeactivateMRSummaryUpdatesGuard]
       },
-
 
       {
         path: 'follow-up-requests',
