@@ -34,12 +34,12 @@ export class FollowUpRequestsComponent implements OnInit {
 
   fetchFilteredData() {
     this.isLoading = true;
-    console.log('in fetchFilteredData for FollowUpRequests');
+    console.log('in fetchFilteredData for FollowUpRequests with ' + this.selectedFollowUpStatusId);
     this.followUpData.getFollowUpRequests(this.selectedFollowUpStatusId).subscribe(
       (data) => {
         this.followUpRequests = data;
       },
-      (err) => console.error('Subscribe error: ' + err),
+      (err) => console.error('FollowUpReqs: data error: ' + err),
       () => {
         console.log('done >>');
         console.log(this.followUpRequests);

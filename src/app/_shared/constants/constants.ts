@@ -194,8 +194,8 @@ const schoolTypes: SELECTITEM[] = [
 ];
 
 const followUpStatuses: SELECTITEM[] = [
-  // { value: '2092', label: 'Assigned' },
-  // { value: '2104', label: 'Closed' },
+  { value: '2092', label: 'Assigned' },
+  { value: '2104', label: 'Closed' },
 ];
 const highlightStatuses: SELECTITEM[] = [
   // { value: '0', label: '' },
