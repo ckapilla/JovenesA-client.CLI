@@ -8,7 +8,7 @@
         <th>Request Status</th>
         <th>Student</th>
         <th>Requested By</th>
-        <th>Assigned To</th>
+        <!-- <th>Assigned To</th> -->
       </tr>
     </thead>
     <tbody>
@@ -18,7 +18,7 @@
             {{ 'id' + request.followUpRequestId }}
           </td> -->
           <td>
-            {{ request.requestDateTime | truncateDate }}
+            {{ request.createDateTime | truncateDate }}
           </td>
           <td>
             {{ request.requestStatus }}
@@ -27,19 +27,22 @@
             {{ request.studentName }}
           </td>
           <td>
-            {{ request.requestorName }} ({{ request.requestorRole }})
+            {{ request.requesterName }}
           </td>
           <td>
-            {{ request.assignedTo }}
+            <!-- {{ request.assignedTo }}
+          </td> -->
+          <td>
+            {{ request.subject_English }}
           </td>
           <td>
             <div class="row" style="border-bottom: 2px solid #ccc; margin-top: 1px">
               <div class="padded"></div>
               <div class="col-md-10">
-                {{ request.description_English }}
+                {{ request.updateHistory_English }}
               </div>
               <div class="col-md-10">
-                {{ request.description_Spanish }}
+                {{ request.updateHistory_Spanish }}
               </div>
             </div>
           </td>

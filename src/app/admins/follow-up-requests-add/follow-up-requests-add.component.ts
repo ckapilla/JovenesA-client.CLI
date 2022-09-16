@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { FollowUpDataService } from 'src/app/_shared/data/follow-up-data.service';
-import { FollowUpEvent } from 'src/app/_shared/models/follow-up-event';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 import { FollowUpRequest } from '../../_shared/models/follow-up-request';
 import { SessionService } from '../../_shared/services/session.service';
@@ -24,7 +23,6 @@ export class FollowUpRequestsAddComponent implements OnInit {
   errorMessage: string;
   successMessage: string;
   requestStatuses: SELECTITEM[];
-  requestorRoles: SELECTITEM[];
 
   // selectedFollowUpStatus: string;
   // savedFollowUpStatusId: number;
@@ -45,24 +43,13 @@ export class FollowUpRequestsAddComponent implements OnInit {
       { value: '2104', label: 'Closed' }
     ];
 
-    this.requestorRoles = [
-      { value: '0', label: '[None]' },
-      { value: '1008', label: 'Volunteer' },
-      { value: '1009', label: 'Sponsor' },
-      { value: '1010', label: 'Mentor' },
-      { value: '1013', label: 'Donor' },
-      { value: '1007', label: 'Board Member' },
-      { value: '2068', label: 'Admin' }
-      // { value: '2069', label: 'Student' }
-    ];
-
     this.myForm = _fb.group({
       studentSelector: [''],
-      requestorRoleSelector: [''],
-      requestorSelector: [''],
-      targetDate: [''],
-      description_English: [''],
-      description_Spanish: ['']
+      requesterSelector: [''],
+      subject_English: [''],
+      subject_Spanish: [''],
+      updateHistory_English: [''],
+      updateHistory_Spanish: ['']
     });
 
     //                      [(ngModel)]="followUpRequest.description_English"
@@ -72,8 +59,8 @@ export class FollowUpRequestsAddComponent implements OnInit {
     // SQL Server will adjust the time to UTC by adding TimezoneOffset
     // we want to store local time so we adjust for that.
     const now = new Date();
-    this.followUpRequest.requestDateTime = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
-    console.log('reportDateTime = ' + this.followUpRequest.requestDateTime);
+    this.followUpRequest.createDateTime = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
+    console.log('reportDateTime = ' + this.followUpRequest.createDateTime);
 
     this.errorMessage = '';
     this.successMessage = '';
@@ -125,37 +112,36 @@ export class FollowUpRequestsAddComponent implements OnInit {
   }
 
   submitInitialEvent(request: FollowUpRequest) {
-    console.log('in submitInitialEvent with FollowUpRequest');
-    console.log(request);
-    const initialEvent: FollowUpEvent = new FollowUpEvent();
-    initialEvent.followUpRequestId = request.followUpRequestId;
-    initialEvent.eventDateTime = request.requestDateTime;
-    initialEvent.enteredById = this.session.getUserId();
-    initialEvent.requestStatusId = 2092; // assigned
-    initialEvent.assignedToId = 2433; // everything starts with Antonio
-    initialEvent.assignedToRoleId = 2068; // everything starts with Admin
-    initialEvent.comments_English = 'Initial request received';
-    initialEvent.comments_Spanish = 'Solicitud inicial recibida';
-    console.log('ready to submit intitial event with');
-    console.log(initialEvent);
+    // console.log('in submitInitialEvent with FollowUpRequest');
+    // console.log(request);
+    // const initialEvent: FollowUpEvent = new FollowUpEvent();
+    // initialEvent.followUpRequestId = request.followUpRequestId;
+    // initialEvent.eventDateTime = request.createDateTime;
+    // initialEvent.enteredById = this.session.getUserId();
+    // initialEvent.requestStatusId = 2092; // assigned
+    // initialEvent.assignedToId = 2433; // everything starts with Antonio
+    // initialEvent.comments_English = 'Initial request received';
+    // initialEvent.comments_Spanish = 'Solicitud inicial recibida';
+    // console.log('ready to submit intitial event with');
+    // console.log(initialEvent);
 
-    this.followUpData.postFollowUpEvent(initialEvent).subscribe(
-      (response) => {
-        console.log('have response to followUpRequest post with response ');
-        console.log(response);
-      },
-      (error) => {
-        this.errorMessage = error;
-        this.isLoading = false;
-      },
-      () => {
-        this.submitted = true;
-        this.isLoading = false;
-        const target = '/admins/follow-up-requests';
-        console.log('after call to addFollowUpEvent; navigating to ' + target);
-        this.router.navigateByUrl(target);
-      }
-    );
+    // this.followUpData.postFollowUpEvent(initialEvent).subscribe(
+    //   (response) => {
+    //     console.log('have response to followUpRequest post with response ');
+    //     console.log(response);
+    //   },
+    //   (error) => {
+    //     this.errorMessage = error;
+    //     this.isLoading = false;
+    //   },
+    //   () => {
+    //     this.submitted = true;
+    //     this.isLoading = false;
+    //     const target = '/admins/follow-up-requests';
+    //     console.log('after call to addFollowUpEvent; navigating to ' + target);
+    //     this.router.navigateByUrl(target);
+    //   }
+    // );
   }
 
   navigateBackInContext() {
@@ -185,13 +171,8 @@ export class FollowUpRequestsAddComponent implements OnInit {
     console.log('container form has studentGUId ' + studentGUId);
   }
 
-  public onSelectedRoleId(roleId: number) {
-    this.followUpRequest.requestorRoleId = roleId;
-    console.log('container form has reqeustorRoleId ' + roleId);
-  }
-
   public onSelectedMemberId(memberId: number) {
-    this.followUpRequest.requestorId = memberId;
+    this.followUpRequest.requesterId = memberId;
     console.log('container form has reqeustorMemberId ' + memberId);
   }
 

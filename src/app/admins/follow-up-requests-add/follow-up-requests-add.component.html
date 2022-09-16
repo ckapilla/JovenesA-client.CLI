@@ -18,18 +18,26 @@
 
           <div class="controls">
             <app-member-selector
-                                 [memberTypeLabel]="'Requestor'"
-                                 (onSelectedRoleId)="onSelectedRoleId($event)"
+                                 [memberTypeLabel]="'Requester'"
+                                 [roleId] =  "2068"
                                  (onSelectedMemberId)="onSelectedMemberId($event)">
             </app-member-selector>
           </div>
 
           <div class="controls">
-            <label>Brief Description (English or Spanish)</label>
-            <input #success formControlName="description_English"
+            <label>Subject (English or Spanish)</label>
+            <input #success formControlName="subject_English"
                    type="text"
                    class="form-control input-sm"
                    placeholder="Brief Description of Request" />
+          </div>
+
+          <div class="controls">
+            <label>Detailed Description (English or Spanish)</label>
+            <input #success formControlName="updateHistory_English"
+                   type="text"
+                   class="form-control input-sm"
+                   placeholder="Detailed Description of Request" />
           </div>
 
         </div>

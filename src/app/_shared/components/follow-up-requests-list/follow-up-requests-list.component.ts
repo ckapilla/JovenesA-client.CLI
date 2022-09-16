@@ -1,13 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { FollowUpRequestRPT } from '../../models/follow-up-requestRPT';
+import { FollowUpRequestDTO } from '../../models/follow-up-requestDTO';
 
 @Component({
   selector: 'app-follow-up-requests-list',
   templateUrl: './follow-up-requests-list.component.html'
 })
 export class FollowUpRequestsListComponent {
-  @Input() followUpRequests: FollowUpRequestRPT[];
+  @Input() followUpRequests: FollowUpRequestDTO[];
   // @Input() displayCompleteHistory: boolean;
   @Input() showAddDetails: boolean;
   displayCompleteHistory = false;

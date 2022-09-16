@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FollowUpDataService } from 'src/app/_shared/data/follow-up-data.service';
 import { constants } from '../../_shared/constants/constants';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
-import { FollowUpRequestRPT } from '../../_shared/models/follow-up-requestRPT';
+import { FollowUpRequestDTO } from '../../_shared/models/follow-up-requestDTO';
 import { SessionService } from '../../_shared/services/session.service';
 @Component({
   selector: 'app-follow-up-requests',
@@ -11,7 +11,7 @@ import { SessionService } from '../../_shared/services/session.service';
   templateUrl: 'follow-up-requests.component.html'
 })
 export class FollowUpRequestsComponent implements OnInit {
-  followUpRequests: FollowUpRequestRPT[];
+  followUpRequests: FollowUpRequestDTO[];
   isLoading: boolean;
   smileys: Array<string>;
   followUpStatuses: SELECTITEM[];

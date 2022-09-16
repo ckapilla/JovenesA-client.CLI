@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CanActivateViaMentorAuthGuard, ConfirmDeactivateMonthlyReportAddGuard } from '../app.routing-guards';
-import { FollowUpRequestsAddComponent } from './follow-up-requests-add/follow-up-requests-add.component';
-import { FollowUpRequestsComponent } from './follow-up-requests/follow-up-requests.component';
 import { ForumComponent } from './forum/forum.component';
 import { MentorsContainerComponent } from './mentors-container/mentors-container.component';
 import { MentorsProfileComponent } from './mentors-profile/mentors-profile.component';
@@ -54,15 +52,15 @@ const mentorRoutes: Routes = [
         component: MonthlyReports2EditComponent,
         canDeactivate: [ConfirmDeactivateMonthlyReportAddGuard]
       },
-      {
-        path: 'follow-up-requests-add',
-        component: FollowUpRequestsAddComponent,
-        canDeactivate: [ConfirmDeactivateMonthlyReportAddGuard]
-      },
-      {
-        path: 'follow-up-requests',
-        component: FollowUpRequestsComponent
-      },
+      // {
+      //   path: 'follow-up-requests-add',
+      //   component: FollowUpRequestsAddComponent,
+      //   canDeactivate: [ConfirmDeactivateMonthlyReportAddGuard]
+      // },
+      // {
+      //   path: 'follow-up-requests',
+      //   component: FollowUpRequestsComponent
+      // },
       {
         path: 'forum',
         component: ForumComponent
