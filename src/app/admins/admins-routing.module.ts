@@ -17,6 +17,7 @@ import { AdminsStudentListComponent } from './admins-students/admins-student-lis
 import { AdminsStudentSearchComponent } from './admins-students/admins-student-search/admins-student-search.component';
 import { AdminsComponent } from './admins.component';
 import { FollowUpRequestsAddComponent } from './follow-up-requests-add/follow-up-requests-add.component';
+import { FollowUpRequestsEditComponent } from './follow-up-requests-edit/follow-up-requests-edit.component';
 import { FollowUpRequestsComponent } from './follow-up-requests/follow-up-requests.component';
 import { SponsorGroupComponent } from './sponsor-group/sponsor-group.component';
 import { SponsorGroupsComponent } from './sponsor-groups/sponsor-groups.component';
@@ -127,33 +128,17 @@ const adminRoutes: Routes = [
       },
 
       {
-        path: 'follow-up-requests',
+        path: 'follow-up/requests',
         component: FollowUpRequestsComponent
       },
-      // {
-      //   path: 'follow-up-request-details/:requestId',
-      //   component: FollowUpRequestDetailsComponent
-      // },
-      // {
-      //   path: 'self-reports/tracking/:id/:year/:period/:summaryStatus/:highlight',
-      //   component: SelfReportTrackingComponent
-      // },
-      // {
-      //   path: 'self-reports/updates',
-      //   component: SelfReportsUpdatesComponent
-      // },
-      // {
-      //   path: 'follow-up-events',
-      //   component: FollowUpEventsComponent
-      // },
       {
-        path: 'follow-up-requests-add',
+        path: 'follow-up/request-add',
         component: FollowUpRequestsAddComponent
       },
-      // {
-      //   path: 'follow-up-events-add/:requestId',
-      //   component: FollowUpEventsAddComponent
-      // },
+      {
+        path: 'follow-up/request-edit', // use ?x=  /:requestId',
+        component: FollowUpRequestsEditComponent
+      },
       // {
       //   path: 'reports',
       //   component: ReportsComponent

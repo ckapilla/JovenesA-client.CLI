@@ -5,6 +5,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { StudentSelfReportDataService } from 'src/app/_shared/data/student-self-report-data.service';
 import { StudentSelfReport } from 'src/app/_shared/models/student-self-report';
+import { SetSelectedQRPeriod } from 'src/app/_store/ui/ui.action';
 import { UIState } from 'src/app/_store/ui/ui.state';
 import { constants } from '../../_shared/constants/constants';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
@@ -14,17 +15,18 @@ import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
   styleUrls: ['./self-reports-edit.component.css', '../../../assets/css/forms.css']
 })
 export class SelfReportsEditComponent implements OnInit {
+  myForm: FormGroup;
+  submitted: boolean;
   isLoading: boolean;
-  isSubmitted: boolean;
   errorMessage: string;
   successMessage: string;
+
   studentId: number;
-  studentSelfReports: Array<StudentSelfReport>;
   sponsorGroupName: string;
   sponsorGroupId: number;
   selfReport: StudentSelfReport;
   selfReportId: number;
-  myForm: FormGroup;
+
   periodYears: SELECTITEM[];
   periodMonths: SELECTITEM[];
   readonly qrPeriods: SELECTITEM[] = constants.qrPeriods;
@@ -45,17 +47,17 @@ export class SelfReportsEditComponent implements OnInit {
 
 
     this.myForm = _fb.group({
-      currentQRPeriod: this.selectedQRPeriod,
       narrative_English: ['', { validators: [Validators.required], updateOn: 'blur' }],
       narrative_Spanish: ['', { validators: [Validators.required], updateOn: 'blur' }],
       selfReportId: ''
     });
 
-    this.myForm.controls.currentQRPeriod.disable();
   }
 
   ngOnInit() {
     this.selfReportId = this.currRoute.snapshot.params['selfReportId'];
+    console.log('ssr edit has selfReportId ' + this.selfReportId);
+
     this.isLoading = true;
     this.ssrData.getStudentSelfReport(this.selfReportId).subscribe(
       (data) => {
@@ -104,7 +106,7 @@ export class SelfReportsEditComponent implements OnInit {
     this.ssrData.putStudentSelfReport(this.selfReport).subscribe(
       (student) => {
         console.log((this.successMessage = <any>student));
-        this.isSubmitted = true;
+        this.submitted = true;
         this.isLoading = false;
         const target = '/students';
         console.log('after call to editMentorReport; navigating to ' + target);
@@ -123,5 +125,16 @@ export class SelfReportsEditComponent implements OnInit {
     console.log('navigating to ' + target);
     this.router.navigateByUrl(target);
   }
+  public hasChanges() {
+    // if have changes then ask for confirmation
+    // ask if form is dirty and has not just been submitted
+    console.log('hasChanges has submitted ' + this.submitted);
+    console.log('hasChanges has form dirty ' + this.myForm.dirty);
+    console.log('hasChanges net is ' + this.myForm.dirty || this.submitted);
+    return this.myForm.dirty && !this.submitted;
+  }
 
+  setSelectedQRPeriod(yearPeriod: string) {
+    this.store.dispatch(new SetSelectedQRPeriod(yearPeriod));
+  }
 }

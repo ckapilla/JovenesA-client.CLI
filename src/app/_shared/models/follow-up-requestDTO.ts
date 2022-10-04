@@ -3,6 +3,7 @@ export class FollowUpRequestDTO {
     public followUpRequestId: number,
     public requesterId: number | null,
     public requestStatusId?: number | null,
+    public assignedToId?: number | null,
     public latestUpdaterId?: number | null,
     public subject_English?: string,
     public subject_Spanish?: string,
@@ -15,6 +16,7 @@ export class FollowUpRequestDTO {
     public studentName?: string,
     public requesterName?: string,
     public requesterEmail?: string,
-    public updaterName?: string
+    public updaterName?: string,
+    public assignedToName?: string
   ) {}
 }

@@ -21,26 +21,26 @@ export class FollowUpDataService extends BaseDataService {
   ///  FollowUpController
   /// ///////////////////////////////////////////////
 
-  public getFollowUpRequestsForStudent(studentId?: number): Observable<FollowUpRequestDTO[]> {
+  public getFollowUpRequestForStudent(studentId?: number): Observable<FollowUpRequestDTO> {
     let url = this.WebApiPrefix + 'follow_up_requests';
     if (studentId) {
       url = url + '?studentId=' + studentId;
     }
     console.log('sending AuthHttp get request with ' + url);
-    return this.http.get<FollowUpRequestDTO[]>(url).pipe(catchError(this.handleError));
+    return this.http.get<FollowUpRequestDTO>(url).pipe(catchError(this.handleError));
   }
 
-  public getFollowUpRequestsForStudentByGUID(studentGUId?: string): Observable<FollowUpRequestDTO[]> {
+  public getFollowUpRequestByRequest(requestId?: string): Observable<FollowUpRequest> {
     let url = this.WebApiPrefix + 'follow_up_requests';
-    if (studentGUId) {
-      url = url + '?studentGUId=' + studentGUId;
+    if (requestId) {
+      url = url + '?requestId=' + requestId;
     }
     console.log('sending AuthHttp get request with ' + url);
-    return this.http.get<FollowUpRequestDTO[]>(url).pipe(catchError(this.handleError));
+    return this.http.get<FollowUpRequest>(url).pipe(catchError(this.handleError));
   }
 
-  public getFollowUpRequests(statusId: string): Observable<FollowUpRequestDTO[]> {
-    let url = this.WebApiPrefix + 'follow_up_requests';
+  public getFollowUpRequestDTOByStatus(statusId: string): Observable<FollowUpRequestDTO[]> {
+    let url = this.WebApiPrefix + 'follow_up_requests/dto';
     if (statusId) {
       url = url + '?statusId=' + statusId;
     }
@@ -48,13 +48,13 @@ export class FollowUpDataService extends BaseDataService {
     return this.http.get<FollowUpRequestDTO[]>(url).pipe(catchError(this.handleError));
   }
 
-  public getFollowUpRequestRPT(requestId: string): Observable<FollowUpRequestDTO> {
-    let url = this.WebApiPrefix + 'follow_up_requests';
-    // url = `${url}?requestId=${requestId}`;
-    url = `${url}/${requestId}`;
-    console.log('sending AuthHttp get request with ' + url);
-    return this.http.get<FollowUpRequestDTO>(url).pipe(catchError(this.handleError));
-  }
+  // public getFollowUpRequestRPT(requestId: string): Observable<FollowUpRequestDTO> {
+  //   let url = this.WebApiPrefix + 'follow_up_requests';
+  //   // url = `${url}?requestId=${requestId}`;
+  //   url = `${url}/${requestId}`;
+  //   console.log('sending AuthHttp get request with ' + url);
+  //   return this.http.get<FollowUpRequestDTO>(url).pipe(catchError(this.handleError));
+  // }
   public postFollowUpRequest(followUpRequest: FollowUpRequest): Observable<any> {
     const url = this.WebApiPrefix + 'follow_up_requests';
     console.log('in postFollowUpRequest with url ' + url);
@@ -65,6 +65,17 @@ export class FollowUpDataService extends BaseDataService {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     console.log('ready to post ' + url + ' body: ' + body + ' options ' + headers);
     return this.http.post(url, body, { headers: headers });
+  }
+  public updateFollowUpRequest(followUpRequest: FollowUpRequest): Observable<any> {
+    const url = this.WebApiPrefix + 'follow_up_requests';
+    console.log('in putFollowUpRequest with url ' + url);
+    let body = JSON.stringify({ followUpRequest });
+    // strip outer key name
+    const x = JSON.parse(body);
+    body = JSON.stringify(x.followUpRequest);
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    console.log('ready to put ' + url + ' body: ' + body + ' options ' + headers);
+    return this.http.put(url, body, { headers: headers });
   }
 
   // public getFollowUpEvents(followUpRequestId: number): Observable<FollowUpEventRPT[]> {

@@ -1,54 +1,67 @@
 <div class="card-body bg-white">
-  <div class="row"></div>
+  <div class="row">
   <table class="table-sm table-striped">
     <thead>
       <tr>
         <!-- <th>ID</th> -->
-        <th>Request Date</th>
-        <th>Request Status</th>
+        <th></th>
+        <th>Status</th>
         <th>Student</th>
+        <th>Subject</th>
         <th>Requested By</th>
-        <!-- <th>Assigned To</th> -->
+        <th>Last Updater</th>
+        <th>Assigned To</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let request of followUpRequests; let i = index">
-
-          <!-- <td>
-            {{ 'id' + request.followUpRequestId }}
-          </td> -->
-          <td>
-            {{ request.createDateTime | truncateDate }}
-          </td>
-          <td>
-            {{ request.requestStatus }}
-          </td>
-          <td>
-            {{ request.studentName }}
-          </td>
-          <td>
-            {{ request.requesterName }}
-          </td>
-          <td>
-            <!-- {{ request.assignedTo }}
-          </td> -->
-          <td>
-            {{ request.subject_English }}
-          </td>
-          <td>
-            <div class="row" style="border-bottom: 2px solid #ccc; margin-top: 1px">
-              <div class="padded"></div>
-              <div class="col-md-10">
-                {{ request.updateHistory_English }}
-              </div>
-              <div class="col-md-10">
-                {{ request.updateHistory_Spanish }}
-              </div>
-            </div>
-          </td>
+      <tr *ngFor="let request of followUpRequests; let i = index" (click)="setSelectedRow(i)">
+        <td>
+          <span
+            class="btn btn-primary"
+            (click)="editFollowUpRequest(request.followUpRequestId)"
+            style="margin-left: 10px"
+          >
+          Edit
+            <!--  {{ 'id' + request.followUpRequestId }} -->
+          </span>
+        </td>
+        <td>
+          {{ request.requestStatus }}
+        </td>
+        <td>
+          {{ request.studentName }}
+        </td>
+        <td>
+          {{ request.subject_English }}
+        </td>
+        <td>
+          {{ request.requesterName }} <br />
+          {{ request.createDateTime | truncateDate }}
+        </td>
+        <td>
+          {{ request.updaterName }} <br />
+          {{ request.lastUpdateDateTime | truncateDate }}
+        </td>
+        <td>
+          {{ request.assignedToName }}
+        </td>
       </tr>
     </tbody>
   </table>
+  <table>
 
+  <tbody>
+      <tr style="width:100%"*ngFor="let request2 of followUpRequests; let j = index">
 
+            <td style="width:50%">
+             English Text: {{ request2.subject_English }}
+            </td>
+            <td style="width:50%">
+             Texto Españól {{ request2.updateHistoryText_Spanish }}
+            </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 </div>

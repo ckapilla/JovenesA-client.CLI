@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-header bg-warning text-for-warning" style="font-size:large">
-    Add New FollowUp Request
+    Edit FollowUp Request
   </div>
   <div class="card-body bg-white">
     <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
@@ -12,17 +12,40 @@
         <div class="form-group">
           <div class="controls">
             <app-student-selector
+                                  [currentStudentGUId]="currentStudentGUId"
                                   (onSelectedStudentGUId)="onSelectedStudentGUId($event)">
             </app-student-selector>
           </div>
 
           <div class="controls">
             <app-member-selector
-                                 [memberTypeLabel]="'Assigned To'"
+                                 [memberTypeLabel]="'Requester'"
                                  [roleId] =  "2068"
-                                 (onSelectedMemberId)="onSelectedAssignedToId($event)">
+                                 (onSelectedMemberId)="onSelectedMemberId($event)">
             </app-member-selector>
           </div>
+
+          <div class="controls">
+            <label for="reviewedStatusSelector">Request Status:</label>
+            <select formControlName="reviewedStatusSelector" class="form-control input-sm"
+            (change) = onSelectedRequestStatus($event.target.value)
+            >
+            <option value="2092">Open</option>
+            <option value="2104">Closed</option>
+
+              <!-- <option *ngFor="let status of requestStatuses" [value]="status.value">{{ status.label }}</option> -->
+            </select>
+          </div>
+
+          <!-- <select
+          id="adminId"
+          formControlName="confirmedById"
+          class="form-control form-control-sm"
+          (change)="setConfirmedBy(i, $event.target.value)"
+        >
+          <option [value]="null">[Not Confirmed]</option>
+          <option *ngFor="let admin of admins" [value]="admin.value">{{ admin.label }}</option>
+        </select> -->
 
           <div class="controls">
             <label>Subject (English or Spanish)</label>

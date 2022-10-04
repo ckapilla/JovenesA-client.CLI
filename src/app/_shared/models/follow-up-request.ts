@@ -3,6 +3,7 @@ export class FollowUpRequest {
     public followUpRequestId?: number,
     public requesterId?: number | null,
     public requestStatusId?: number | null,
+    public assignedToId?: number | null,
     public latestUpdaterId?: number | null,
     public subject_English?: string,
     public subject_Spanish?: string,

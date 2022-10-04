@@ -16,26 +16,31 @@ export class FollowUpRequestsComponent implements OnInit {
   smileys: Array<string>;
   followUpStatuses: SELECTITEM[];
   selectedFollowUpStatusId: string;
+  selectedActiveStatusId: string;
   errorMessage: string;
   successMessage: string;
   displayCompleteHistory: true;
   showAddDetails: boolean;
 
   constructor(public followUpData: FollowUpDataService, public router: Router, public session: SessionService) {
+    // this.followUpStatuses = constants.followUpStatuses;
     this.followUpStatuses = constants.followUpStatuses;
-    this.selectedFollowUpStatusId = constants.followUpStatuses[0].value;
-    this.showAddDetails = this.selectedFollowUpStatusId === '2092'; // Assigned
+    // this.selectedFollowUpStatusId = constants.followUpStatuses[0].value;
+    this.selectedActiveStatusId = constants.followUpStatuses[0].value;
+    // this.showAddDetails = this.selectedFollowUpStatusId === '2092'; // Assigned
   }
 
   ngOnInit() {
-    console.log('calling fetchFilterdData with ' + this.selectedFollowUpStatusId);
+    // this.selectedActiveStatusId  = '2092';
+    console.log('calling fetchFilterdData with ' + this.selectedActiveStatusId);
     this.fetchFilteredData();
   }
 
   fetchFilteredData() {
     this.isLoading = true;
     console.log('in fetchFilteredData for FollowUpRequests with ' + this.selectedFollowUpStatusId);
-    this.followUpData.getFollowUpRequests(this.selectedFollowUpStatusId).subscribe(
+    // this.followUpData.getFollowUpRequestsByStatus(this.selectedFollowUpStatusId).subscribe(
+      this.followUpData.getFollowUpRequestDTOByStatus(this.selectedActiveStatusId).subscribe(
       (data) => {
         this.followUpRequests = data;
       },
@@ -48,14 +53,22 @@ export class FollowUpRequestsComponent implements OnInit {
       }
     );
   }
+
   followUpRequestAdd() {
-    console.log('in follow-up-requests: FollowUpRequestAdd, ready to navigate');
-    const target = '/admins/follow-up-requests-add';
-    this.router.navigateByUrl(target);
+    const link = ['/admins/follow-up/request-add'];
+    console.log('FollowUpRequestAdd, navigate to ' + link[0]);
+    this.router.navigate(link);
   }
   setSelectedFollowUpStatus(status: string) {
     this.selectedFollowUpStatusId = status;
-    // need to be able to show this.showAddDetails = this.selectedFollowUpStatusId === '2092'; // Assigned
     this.fetchFilteredData();
   }
+  setActiveStatus(status: string) {
+    console.log('setting ActiveStatus ' + status);
+    this.selectedActiveStatusId = status;
+    this.fetchFilteredData();
+  }
+
+
+
 }

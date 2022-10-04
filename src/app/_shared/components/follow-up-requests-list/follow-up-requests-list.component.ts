@@ -13,6 +13,9 @@ export class FollowUpRequestsListComponent {
   displayCompleteHistory = false;
 
   studentId: number;
+  currentHistoryText_EN: string;
+  currentHistoryText_ES: string;
+  hideData = true;
 
   constructor(private router: Router) {
     console.log('FollowUpRequestsListComponent constructor');
@@ -20,21 +23,27 @@ export class FollowUpRequestsListComponent {
 
   followUpRequestAdd() {
     console.log('in follow-up-requests: FollowUpRequestAdd, ready to navigate');
-    const target = '/admins/follow-up-requests-add';
-    this.router.navigateByUrl(target);
+    const link = ['/admins/follow-up/requests-add'];
+    this.router.navigate(link);
   }
-  viewAddDetails(requestId: number) {
-    const link = '/admins/follow-up-request-details/' + requestId;
+
+  editFollowUpRequest(requestId: number) {
+    console.log('edit has index ' + requestId)
+    const link: [string, { requestId: number; }] = [
+      '/admins/follow-up/request-edit', { requestId: requestId }]
+    this.router.navigate(link);
     console.log('navigating to ' + link);
-    this.router.navigateByUrl(link);
+
+
   }
 
-
+  setSelectedRow(i: number) {
+    this.currentHistoryText_EN = this.followUpRequests[i].updateHistory_English;
+    this.currentHistoryText_ES = this.followUpRequests[i].updateHistory_Spanish;
+    this.hideData = false;
+  }
 
   gotoStudent(guid: string) {
-    // console.log('setting studentName to ' + studentName);
-    // this.session.setStudentInContextName(studentName);
-
     if (guid && guid.length > 0) {
       const link = ['admins/students/student-container', { guid: guid }];
       console.log('navigating to ' + link);

@@ -3,32 +3,34 @@
   <div class="card-body bg-white" style="min-width: 46em">
     <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
     <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+    <div class="form-group">
 
     <form [formGroup]="myForm">
-      <fieldset [disabled]="submitted">
-        <div class="form-group">
-          <div class="controls">
-            Año/Periodo de este reporte
-            <select
-              formControlName="currentQRPeriod"
-              data-cy="period-selector"
-              (change)="setSelectedQRPeriod($event.target.value )"
-            >
-              <option *ngFor="let qrPeriod of qrPeriods" [value]="qrPeriod.value">{{ qrPeriod.label }}</option>
-            </select>
-          </div>
-        </div>
+      <fieldset>
+
         <pre style="font-size: 120%">
 
-      1.¿Cuál es tu dinámica actual diaria? ( trabajas,haces prácticas,
-      horarios de escuela, algún pasatiempo, clases extras, proyectos extras, etc)
-      2.¿Cuál de estas actividades tienen mayor prioridad para ti?
-      3.¿Qué fue lo más complicado de afrontar o sobrellevar en este
-      periodo de abril a junio?
-      4.¿Cómo te has sentido con el nivel académico de tu universidad?
-      ¿Hay cosas que en tu opinión deben mejorar y cuales?
-      5.En el tiempo que llevas en la universidad ¿sientes que se ha reforzado
-      tu gusto y/o vocación por tu carrera o has sentido dudas?
+          a.	En términos generales, ¿Qué tan satisfecho/a estás con quién eres ahora? y ¿por qué?
+          b.	¿Qué actividad escolar, profesional y personal te cuesta más trabajo ponerte a hacer?
+          c.	¿En cuales sientes más interés y por qué?
+          d.	¿Has identificado actividades donde requieras de apoyo,  ya sea profesional o personal?,
+              ¿cuéntanos cuáles?
+          e.	¿Qué habilidades sientes que te hace falta trabajar más?:
+              (puedes elegir las que sean necesarias)
+          •	Negociación,
+          •	Resolución de conflictos
+          •	Comunicación
+          •	Autoestima/Autoconcepto
+          •	Toma de decisiones
+          •	Trabajo en equipo
+          •	Liderazgo
+          •	Educación financiera
+
+          Responde a consciencia lo siguiente:
+          Pensando en tus actividades diarias(académicas, de trabajo y personales) ¿consideras que sería
+          posible para ti destinar un sábado o 2 al més (4 hrs c/u) a trabajar en un taller las habilidades
+          seleccionadas en la pregunta anterior?
+          Argumenta tu respuesta:
           </pre>
         <textarea
           id="narrative_English"
