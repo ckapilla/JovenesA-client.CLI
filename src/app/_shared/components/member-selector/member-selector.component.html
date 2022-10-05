@@ -7,7 +7,9 @@
 
 <label for="requesterSelector">{{ memberTypeLabel }}: </label>
 <select id="MemberSelector" [disabled]="!haveMemberType" class="form-control input-sm"
-        (change)="setSelectedMember($event.target.value)">
+        (change)="setSelectedMember($event.target.value)"
+        [ngModel] = currMemberId
+        >
         <option [value]="null">Select Member</option>
         <option *ngFor="let member of members" [value]="member.memberId">{{member.memberName}}</option>
 </select>

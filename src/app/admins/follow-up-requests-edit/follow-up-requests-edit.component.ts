@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BehaviorSubject, EMPTY, Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { FollowUpDataService } from 'src/app/_shared/data/follow-up-data.service';
+import { MiscDataService } from 'src/app/_shared/data/misc-data.service';
 import { constants } from '../../_shared/constants/constants';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 import { FollowUpRequest } from '../../_shared/models/follow-up-request';
@@ -10,8 +13,7 @@ import { TranslationService } from '../../_shared/services/translation.service';
 
 @Component({
   selector: 'app-follow-up-requests-edit',
-  templateUrl: './follow-up-requests-edit.component.html',
-  styleUrls: ['./follow-up-requests-edit.component.css']
+  templateUrl: './follow-up-requests-edit.component.html'
 })
 export class FollowUpRequestsEditComponent implements OnInit {
   myForm: FormGroup;
@@ -19,24 +21,31 @@ export class FollowUpRequestsEditComponent implements OnInit {
   isLoading: boolean;
   submitted: boolean;
 
-  requestId: number;
-  childRequesterId: number;
-  childRequestStatusId: number;
-
-
   errorMessage: string;
   successMessage: string;
   requestStatuses: SELECTITEM[];
-  currentStudentGUId: string;
+  saveStudentGUId: string;
+  saveRequesterId: number;
 
   // selectedFollowUpStatus: string;
   // savedFollowUpStatusId: number;
   // studentName: string;
 
+  admins$: Observable<SELECTITEM[]> = this.miscData.getAdmins$().pipe(
+      catchError((err) => {
+      this.errorMessage = err;
+      console.log('CAUGHT ERROR IN Component ' + err);
+      return EMPTY;
+    })
+  );
+  adminsubject: BehaviorSubject<[SELECTITEM]>;
+
+
   constructor(
     public currRoute: ActivatedRoute,
     private router: Router,
     public followUpData: FollowUpDataService,
+    public miscData: MiscDataService,
     private _fb: FormBuilder,
     private session: SessionService,
     private xlator: TranslationService
@@ -46,9 +55,8 @@ export class FollowUpRequestsEditComponent implements OnInit {
     console.log(this.requestStatuses);
 
     this.myForm = _fb.group({
-      studentSelector: [''],
-      requesterSelector: [''],
-      reviewedStatusSelector: [''],
+      requestStatusId: [''],
+      assignedToId: [''],
       subject_English: [''],
       subject_Spanish: [''],
       updateHistory_English: [''],
@@ -75,6 +83,8 @@ export class FollowUpRequestsEditComponent implements OnInit {
   ngOnInit() {
       const followUpRequestId = this.currRoute.snapshot.params['requestId'];
 
+  // admins: SELECTITEM[];
+
       this.isLoading = true;
       console.log('in fetchFilteredData for FollowUpRequests with ' + followUpRequestId);
       this.followUpData.getFollowUpRequestByRequest(followUpRequestId).subscribe(
@@ -85,16 +95,17 @@ export class FollowUpRequestsEditComponent implements OnInit {
       () => {
         console.log('done with data followUpRequest, have data: ');
         console.log(this.followUpRequest);
-        this.requestId = this.followUpRequest.followUpRequestId;
-        this.currentStudentGUId = this.followUpRequest.studentGUId ;
-        this.myForm.controls.studentSelector.setValue(this.followUpRequest.studentGUId);
-        this.myForm.controls.requesterSelector.setValue(this.followUpRequest.requesterId);
-        this.myForm.controls.reviewedStatusSelector.setValue(this.followUpRequest.requestStatusId);
+        // this.currFollowUpRequestId = this.followUpRequest.followUpRequestId;  // won't change, just for completenes
+        // this.currRequesterId = this.followUpRequest.followUpRequestId; // won't change, just for completeness
+        this.myForm.controls.assignedToId.setValue(this.followUpRequest.assignedToId);
+        this.myForm.controls.requestStatusId.setValue(this.followUpRequest.requestStatusId);
         this.myForm.controls.subject_English.setValue(this.followUpRequest.subject_English);
         this.myForm.controls.subject_Spanish.setValue(this.followUpRequest.subject_Spanish);
         this.myForm.controls.updateHistory_English.setValue(this.followUpRequest.updateHistory_English);
         this.myForm.controls.updateHistory_Spanish.setValue(this.followUpRequest.updateHistory_Spanish);
 
+        this.saveRequesterId = this.followUpRequest.requesterId;
+        this.saveStudentGUId = this.followUpRequest.studentGUId; // won't change, just for completeness
 
         this.isLoading = false;
       }
@@ -113,17 +124,19 @@ export class FollowUpRequestsEditComponent implements OnInit {
     // use spread operator to merge changes:
     // this.followUpRequest = { ...this.followUpRequest, ...this.myForm.value };
 
-    this.followUpRequest.requesterId = this.childRequesterId;
-    this.followUpRequest.requestStatusId = this.childRequestStatusId;
-    this.followUpRequest.latestUpdaterId = 1451;
+    // this.followUpRequest.followUpRequestId = // does not change
+
+    this.followUpRequest.assignedToId = this.myForm.controls.assignedToId.value;
+    this.followUpRequest.requestStatusId = this.myForm.controls.requestStatusId.value;
+    this.followUpRequest.latestUpdaterId = this.session.getUserId();
     this.followUpRequest.subject_English = this.myForm.controls.subject_English.value;
     this.followUpRequest.subject_Spanish = this.myForm.controls.subject_Spanish.value;
     this.followUpRequest.updateHistory_English = this.myForm.controls.updateHistory_English.value;
     this.followUpRequest.updateHistory_Spanish = this.myForm.controls.updateHistory_Spanish.value;
-    this.followUpRequest.lastUpdateDateTime = new Date();
-    this.followUpRequest.createDateTime = new Date();
 
-    this.followUpRequest.studentGUId =  this.currentStudentGUId;// set by store message
+    // this.followUpRequest.createDateTime = new Date();  // does not change
+    this.followUpRequest.lastUpdateDateTime = new Date();
+    this.followUpRequest.studentGUId =  this.saveStudentGUId; // does not change
   }
 
   onSubmit() {
@@ -132,7 +145,7 @@ export class FollowUpRequestsEditComponent implements OnInit {
     if (this.myForm.invalid) {
       this.errorMessage = '';
       window.scrollTo(0, 0);
-      return false;
+      // return false;
     }
     this.retrieveFormValues();
     this.followUpData.updateFollowUpRequest(this.followUpRequest).subscribe(
@@ -144,7 +157,9 @@ export class FollowUpRequestsEditComponent implements OnInit {
         this.errorMessage = error;
         this.isLoading = false;
       },
-      () => {}
+      () => {
+        this.navigateBackInContext();
+      }
     );
     return false;
   }
@@ -175,18 +190,12 @@ export class FollowUpRequestsEditComponent implements OnInit {
     return this.myForm.dirty && !this.submitted;
   }
 
-  public onSelectedStudentGUId(studentGUId: string) {
-    this.followUpRequest.studentGUId = studentGUId;
-    console.log('container form has studentGUId ' + studentGUId);
-  }
-
-  public onSelectedMemberId(memberId: number) {
-    this.childRequesterId = memberId;
-    // this.followUpRequest.requesterId = memberId;
-    console.log('container form has reqeustorMemberId ' + memberId);
+  public onSelectedAssignedToId(memberId: number) {
+    this.followUpRequest.assignedToId = memberId;
+    console.log('AssignedTo MemberId set to ' + memberId);
   }
   public onSelectedRequestStatus(statusId: number) {
-    this.childRequestStatusId = statusId;
+    this.followUpRequest.requestStatusId = statusId;
     console.log('requestStatus set to  ' + statusId);
   }
 

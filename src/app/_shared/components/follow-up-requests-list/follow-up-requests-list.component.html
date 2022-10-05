@@ -1,6 +1,6 @@
 <div class="card-body bg-white">
   <div class="row">
-  <table class="table-sm table-striped">
+  <table class="table-sm">
     <thead>
       <tr>
         <!-- <th>ID</th> -->
@@ -8,19 +8,19 @@
         <th>Status</th>
         <th>Student</th>
         <th>Subject</th>
-        <th>Requested By</th>
-        <th>Last Updater</th>
         <th>Assigned To</th>
-        <th></th>
+        <th>Requested By</th>
+        <th>Updated By</th>
+        <th>Details</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let request of followUpRequests; let i = index" (click)="setSelectedRow(i)">
+      <tr *ngFor="let request of followUpRequests; let i = index" [ngClass]="{'table-info':request.followUpRequestId==currentRequestId}">
         <td>
           <span
             class="btn btn-primary"
             (click)="editFollowUpRequest(request.followUpRequestId)"
-            style="margin-left: 10px"
+            style="margin-left: 5px"
           >
           Edit
             <!--  {{ 'id' + request.followUpRequestId }} -->
@@ -33,7 +33,11 @@
           {{ request.studentName }}
         </td>
         <td>
-          {{ request.subject_English }}
+          {{ request.subject_English }}<br />
+          {{ request.subject_Spanish }}
+        </td>
+        <td>
+          {{ request.assignedToName }}
         </td>
         <td>
           {{ request.requesterName }} <br />
@@ -44,21 +48,39 @@
           {{ request.lastUpdateDateTime | truncateDate }}
         </td>
         <td>
-          {{ request.assignedToName }}
+          <span *ngIf="request.followUpRequestId==currentRequestId"
+            class="link"
+            (click)="clearSelectedRow()"
+            style="margin-left: 1px"
+           >
+           Hide&lt;&lt;
+          </span>
+          <span *ngIf="request.followUpRequestId!=currentRequestId"
+           class="link"
+           (click)="setSelectedRow(request.followUpRequestId)"
+           style="margin-left: 1px"
+          >
+           Show>>
+          </span>
         </td>
       </tr>
     </tbody>
   </table>
   <table>
 
-  <tbody>
-      <tr style="width:100%"*ngFor="let request2 of followUpRequests; let j = index">
+  <tbody *ngIf="currentRequestId">
+     <tr><td><b>Details for Selected Row:</b></td></tr>
+      <tr class="table-info" style="width:100%;margin-top: 3px;"*ngFor="let request2 of followUpRequests; let j = index">
 
-            <td style="width:50%">
-             English Text: {{ request2.subject_English }}
+            <td style="width:50%" *ngIf="request2.followUpRequestId==currentRequestId">
+              <div>
+             English Text:<br /> {{ request2.updateHistory_English }}
+            </div>
             </td>
-            <td style="width:50%">
-             Texto Españól {{ request2.updateHistoryText_Spanish }}
+            <td style="width:50%" *ngIf="request2.followUpRequestId==currentRequestId">
+              <div>
+             Texto Español:<br /> {{ request2.updateHistory_Spanish }}
+             </div>
             </td>
       </tr>
     </tbody>

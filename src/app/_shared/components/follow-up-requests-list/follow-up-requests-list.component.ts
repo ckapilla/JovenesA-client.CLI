@@ -15,7 +15,7 @@ export class FollowUpRequestsListComponent {
   studentId: number;
   currentHistoryText_EN: string;
   currentHistoryText_ES: string;
-  hideData = true;
+  currentRequestId =0;
 
   constructor(private router: Router) {
     console.log('FollowUpRequestsListComponent constructor');
@@ -37,10 +37,14 @@ export class FollowUpRequestsListComponent {
 
   }
 
-  setSelectedRow(i: number) {
-    this.currentHistoryText_EN = this.followUpRequests[i].updateHistory_English;
-    this.currentHistoryText_ES = this.followUpRequests[i].updateHistory_Spanish;
-    this.hideData = false;
+  setSelectedRow(idx : number) {
+    console.log('set selected idx: ' + idx );
+    this.currentRequestId = idx;
+  }
+
+  clearSelectedRow() {
+    console.log('clear selected idx');
+    this.currentRequestId = 0;
   }
 
   gotoStudent(guid: string) {
@@ -50,4 +54,5 @@ export class FollowUpRequestsListComponent {
       this.router.navigate(link);
     }
   }
+
 }

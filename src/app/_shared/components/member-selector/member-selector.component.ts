@@ -18,7 +18,9 @@ export class MemberSelectorComponent implements OnInit {
   @Output() onSelectedMemberId = new EventEmitter<number>();
   @Input() memberTypeLabel: string;
   @Input() roleId: string;
-
+  @Input() currMemberId : number;
+  requesterMembers: MemberMiniDTO[];
+  selectedMembers: MemberMiniDTO[];
 
 
   constructor(private memberData: MemberDataService) {
@@ -45,9 +47,7 @@ export class MemberSelectorComponent implements OnInit {
     console.log('selectedRole is set to ' + roleId2);
     this.haveMemberType = true;
     console.log(this.requesterRoles);
-    // console.log(this.selectedRoles2);
-    // this.roleId = '2068';
-    // roleId2 = '2068';
+
     this.selectedRoles = this.requesterRoles.filter((r) => r.value == roleId2 );
     // console.log(this.selectedRoles);
     const x = this.selectedRoles.map((row) => row.label);
@@ -68,8 +68,10 @@ export class MemberSelectorComponent implements OnInit {
       () => {
         console.log('member-selector loaded ' + this.members.length + ' rows');
         if (this.members.length > 0) {
+
+          this.selectedMembers = this.members.filter((m) => m.memberId == this.currMemberId );
+          const x = this.selectedMembers.map((row) => row.memberName);
           console.log(this.members[0].memberName);
-          this.haveData = true;
         } else {
           //
         }
