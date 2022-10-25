@@ -16,15 +16,17 @@ import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 })
 export class SelfReportsAddComponent implements OnInit {
   myForm: FormGroup;
-  selfReport: StudentSelfReport;
+
   isLoading: boolean;
   submitted: boolean;
+  errorMessage: string;
+  successMessage: string;
+
+  selfReport: StudentSelfReport;
 
   periodYears: SELECTITEM[];
   periodMonths: SELECTITEM[];
-  errorMessage: string;
-  successMessage: string;
-  readonly qrPeriods: SELECTITEM[] = constants.qrPeriods;
+  qrPeriods: SELECTITEM[];
   readonly reviewedStatuses: SELECTITEM[] = constants.reviewedQRStatuses;
   selectedQRPeriod = '';
   subscription: Subscription;
@@ -40,12 +42,13 @@ export class SelfReportsAddComponent implements OnInit {
   ) {
     console.log('Hi from SelfReportsAddComponent');
     this.subscribeForselectedQRPeriod();
+    this.qrPeriods = constants.qrPeriods;
+
 
     this.myForm = _fb.group({
-      currentQRPeriod: this.selectedQRPeriod,
       narrative_English: ['', Validators.compose([Validators.required, Validators.maxLength(4500)])]
     });
-    this.myForm.controls.currentQRPeriod.disable();
+    // this.myForm.controls.currentQRPeriod.disable();
     this.selfReport = new StudentSelfReport();
     this.selfReport.sponsorGroupId = 0;
     this.selfReport.reviewedStatusId = 2087;
@@ -54,12 +57,6 @@ export class SelfReportsAddComponent implements OnInit {
     const now = new Date();
     this.selfReport.reportDateTime = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
     console.log(this.selfReport.reportDateTime);
-
-
-    this.selfReport.reportYear = +this.selectedQRPeriod.substr(0, 4);
-    this.selfReport.reportPeriod = +this.selectedQRPeriod.substr(5, 1);
-    console.log('year: ' + this.selfReport.reportYear + ' period: ' + this.selfReport.reportPeriod);
-    this.selfReport.narrative_English = '';
 
     this.errorMessage = '';
     this.successMessage = '';
@@ -75,6 +72,11 @@ export class SelfReportsAddComponent implements OnInit {
     console.log('sponsorGroupId ' + this.selfReport.sponsorGroupId);
     console.log('studentGUId ' + this.selfReport.studentGUId);
 
+    this.selfReport.reportYear = +this.selectedQRPeriod.substr(0, 4);
+    this.selfReport.reportPeriod = +this.selectedQRPeriod.substr(5, 1);
+    console.log('year: ' + this.selfReport.reportYear + ' period: ' + this.selfReport.reportPeriod);
+    this.selfReport.narrative_English = '';
+
     this.myForm.valueChanges.subscribe(() => {
       this.errorMessage = '';
       this.successMessage = '';
@@ -86,9 +88,10 @@ export class SelfReportsAddComponent implements OnInit {
 
 
   subscribeForselectedQRPeriod() {
+    console.log('subscribing for selectedQRPeriod$');
     this.subscription = this.selectedQRPeriod$.subscribe((message) => {
       this.selectedQRPeriod = message;
-      console.log('************NGXS: SSR Add new selectedQRPeriod received' + this.selectedQRPeriod);
+      console.log('************NGXS: SSR Add new selectedQRPeriod received ' + this.selectedQRPeriod);
     });
   }
 

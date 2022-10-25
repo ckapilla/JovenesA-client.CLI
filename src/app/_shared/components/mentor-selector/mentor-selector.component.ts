@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MemberDataService } from '../../data/member-data.service';
-import { SELECTITEM } from '../../interfaces/SELECTITEM';
 import { MemberMiniDTO } from '../../models/memberMiniDTO';
 
 @Component({
@@ -11,7 +10,6 @@ export class MentorSelectorComponent implements OnInit {
   members: Array<MemberMiniDTO>;
   errorMessage = '';
   haveData: boolean;
-  requestorRoles: SELECTITEM[];
   @Input() initialMemberGUId: string;
   @Output() onSelectedMemberGUId = new EventEmitter<string>();
   memberTypeLabel = 'Mentor';

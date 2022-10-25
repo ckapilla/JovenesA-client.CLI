@@ -31,7 +31,7 @@ export class StudentsSelfReportsComponent implements OnInit {
   // ssrEditDateRange = '';
   ssrEditDateStart = '';
   ssrEditDateStop = '';
-  inReportProcessingPeriod = false;
+  inReportProcessingPeriod = false; // default off for safety
 
   @Select(UIState.getSSREditDateRange) ssrEditDateRange$: Observable<string>;
   // @Select(UIState.getCurrentSSRPeriodEditStop) currentSSRPeriodEditStop$: Observable<string>;
@@ -45,7 +45,7 @@ export class StudentsSelfReportsComponent implements OnInit {
     public store: Store
   ) {
     console.log('ssr constructor');
-    this.inReportProcessingPeriod = false;
+    this.inReportProcessingPeriod = true;
   }
 
   subscribeForSSREditDates() {

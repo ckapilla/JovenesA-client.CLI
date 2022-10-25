@@ -3,8 +3,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StudentHeaderMentorsComponent } from '../mentors/student-header-mentors/student-header-mentors.component';
 import { QuarterlyModule } from '../quarterly/quarterly.module';
 import { AppSharedModule } from '../_shared/_shared.module';
-import { FollowUpRequestsAddComponent } from './follow-up-requests-add/follow-up-requests-add.component';
-import { FollowUpRequestsComponent } from './follow-up-requests/follow-up-requests.component';
+// import { FollowUpRequestsAddComponent } from './follow-up-requests-add/follow-up-requests-add.component';
+// import { FollowUpRequestsComponent } from './follow-up-requests/follow-up-requests.component';
 import { ForumComponent } from './forum/forum.component';
 import { MentorsContainerComponent } from './mentors-container/mentors-container.component';
 import { MentorsNavbarComponent } from './mentors-navbar/mentors-navbar.component';
@@ -35,8 +35,8 @@ import { StudentSelfReportContainerComponent } from './student-self-report-conta
     MonthlyReports2ESAddComponent,
     MonthlyReports2ENAddComponent,
     MonthlyReports2EditComponent,
-    FollowUpRequestsAddComponent,
-    FollowUpRequestsComponent,
+    // FollowUpRequestsAddComponent,
+    // FollowUpRequestsComponent,
     ForumComponent,
     StudentHeaderMentorsComponent,
     StudentSelfReportContainerComponent

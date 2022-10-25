@@ -100,14 +100,24 @@ export class ConstantsService extends BaseDataService {
 
   public generateQRPeriods() {
     const now = new Date();
+    console.log('%%%%%%%%%%GENERATE QR PERIODS%%%%%%');
     console.log(now);
     let thisYear  = now.getFullYear();
-    const thisMonth = now.getMonth() + 1; // since we don't want zero based here
+    let thisMonth = now.getMonth() + 1; // since we don't want zero based here
     const thisDate = now.getDate(); // not zero based
     if (thisMonth <=2 || (thisMonth  === 3 && thisDate <= 25)) {
       thisYear--;
     }
-    console.log('thisMonth ' + thisMonth);
+    if (
+      (thisMonth  === 3 && thisDate >= 27)
+      || (thisMonth  === 6 && thisDate >= 27)
+      || (thisMonth  === 9 && thisDate >= 27)
+      || (thisMonth  === 12 && thisDate >= 27)
+    ) {
+      thisMonth++;
+    }
+    console.log('adjustedthisMonth ' + thisMonth);
+    ////////////////J,F,M,A,M,J,J,A,S,O,N,D
     const qtrs = [0,4,4,4,1,1,1,2,2,2,3,3,3];
     let targetQtr = qtrs[thisMonth];
     console.log('this month: ' + thisMonth);
@@ -141,6 +151,7 @@ export class ConstantsService extends BaseDataService {
       qtr = 1;
       year++;
     }
+    console.log('settingSelectedQRPeriod to ' + thisYear + ' ' + targetQtr);
     this.setSelectedQRPeriod(thisYear + '-' + targetQtr);
     console.log(constants.qrPeriods);
   }

@@ -12,6 +12,7 @@
         <span>Tus reportes anteriores</span>
         <span>
           <span *ngIf="inReportProcessingPeriod; else elseBlock">
+           <span *ngIf="inReportProcessingPeriod"></span>
             <span class="btn btn-default active" (click)="studentSelfReportAdd()" style="margin-left: 10px">
               Añadir Nuevo Reporte
             </span>
@@ -36,7 +37,7 @@
             </div>
             <div class="row">
               <div class="padded">&nbsp;Texto del Reporte:</div>
-              <div [innerHTML]="i.narrative_Spanish | marked | unsafeHtml"></div>
+              <div [innerHTML]="i.narrative_Spanish | unsafeHtml"></div>
             </div>
           </div>
         </div>

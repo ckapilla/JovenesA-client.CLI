@@ -1,7 +1,7 @@
-export class FollowUpRequest {
+export class FollowUpRequestDTO {
   constructor(
-    public followUpRequestId?: number,
-    public requesterId?: number | null,
+    public followUpRequestId: number,
+    public requesterId: number | null,
     public requestStatusId?: number | null,
     public assignedToId?: number | null,
     public latestUpdaterId?: number | null,
@@ -11,6 +11,12 @@ export class FollowUpRequest {
     public updateHistory_Spanish?: string,
     public createDateTime?: Date | string | null,
     public lastUpdateDateTime?: Date | string | null,
-    public studentGUId?: string
+    public studentGUId?: string,
+    public requestStatus?: string,
+    public studentName?: string,
+    public requesterName?: string,
+    public requesterEmail?: string,
+    public updaterName?: string,
+    public assignedToName?: string
   ) {}
 }

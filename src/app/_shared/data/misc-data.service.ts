@@ -18,7 +18,7 @@ export class MiscDataService extends BaseDataService {
   private adminsUrl = this.WebApiPrefix + 'lookup/admins';
   getAdmins$(): Observable<SELECTITEM[]> {
     return this.http.get<SELECTITEM[]>(this.adminsUrl).pipe(
-      tap((data) => console.log('adminNames ', JSON.stringify(data[0]))),
+      tap((data) => console.log('first 2 adminNames ', JSON.stringify(data[0]), JSON.stringify(data[1]))),
       shareReplay(1),
       catchError(this.handleError)
     );

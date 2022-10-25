@@ -1,80 +1,89 @@
 <div class="card-body bg-white">
-  <div class="row" style="border-bottom: 4px solid #aaa; margin-top: 2px;"
-       *ngFor="let request of followUpRequests, let i = index">
-    <div class="col-md-12">
-      <div class="row" id='{{"id" + request.followUpRequestId}}'>
-        <span class="padded">
-          &nbsp;Request Date:
-          [ {{ request.requestDateTime | truncateDate }} ]
-        </span>
-        <span class="padded">
-          &nbsp;Request Status:
-          [{{ request.requestStatus }}]
-        </span>
-        <span class="padded">
-          &nbsp;Student: [
-          <span class="link" (click)='gotoStudent(request.studentGUId)' class='link'>
-            {{ request.studentName }}
+  <div class="row">
+  <table class="table-sm">
+    <thead>
+      <tr>
+        <!-- <th>ID</th> -->
+        <th></th>
+        <th>Status</th>
+        <th>Student</th>
+        <th>Subject</th>
+        <th>Assigned To</th>
+        <th>Requested By</th>
+        <th>Updated By</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let request of followUpRequests; let i = index" [ngClass]="{'table-info':request.followUpRequestId==currentRequestId}">
+        <td>
+          <span
+            class="btn btn-primary"
+            (click)="editFollowUpRequest(request.followUpRequestId)"
+            style="margin-left: 5px"
+          >
+          Edit
+            <!--  {{ 'id' + request.followUpRequestId }} -->
           </span>
-          ]
-        </span>
-      </div>
-
-      <div class="row">
-        <span class="padded">
-          &nbsp; Requested By:
-          [ {{ request.requestorName }} ({{ request.requestorRole }}) ]
-        </span>
-        <span class="padded">
-          &nbsp;Assigned To:
-          [ {{ request.assignedTo }} ]
-        </span>
-        <!-- <span class="padded">
-          &nbsp;Target Date:
-          [ {{ request.targetDate | truncateDate }} ]
-        </span> -->
-        <span class="padded" [hidden]="!showAddDetails">
-          <span class="btn btn-primary" (click)="viewAddDetails(request.followUpRequestId)"
-                style="margin-left:10px">
-            Details
+        </td>
+        <td>
+          {{ request.requestStatus }}
+        </td>
+        <td>
+          {{ request.studentName }}
+        </td>
+        <td>
+          {{ request.subject_English }}<br />
+          {{ request.subject_Spanish }}
+        </td>
+        <td>
+          {{ request.assignedToName }}
+        </td>
+        <td>
+          {{ request.requesterName }} <br />
+          {{ request.createDateTime | truncateDate }}
+        </td>
+        <td>
+          {{ request.updaterName }} <br />
+          {{ request.lastUpdateDateTime | truncateDate }}
+        </td>
+        <td>
+          <span *ngIf="request.followUpRequestId==currentRequestId"
+            class="link"
+            (click)="clearSelectedRow()"
+            style="margin-left: 1px"
+           >
+           Hide&lt;&lt;
           </span>
-        </span>
-      </div>
-      <div class="row" style="border-bottom: 2px solid #ccc; margin-top: 1px;">
-        <div class="padded">
-          &nbsp;Description / Descripción:
-        </div>
-        <div class="col-md-10">
-          {{ request.description_English }}
-        </div>
-        <div class="col-md-10">
-          {{ request.description_Spanish }}
-        </div>
-      </div>
-      <!--
-      <div class="row" [hidden]=displayCompleteHistory>
-        <div class="padded">
-          &nbsp;Latest Comments / Últimos Comentarios:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Update Date: [{{request.eventDateTime | truncateDate }}]
-        </div>
-        <div class="col-md-10" style="border-bottom: 1px solid #ccc;">
-          {{ request.comments_English }}
-        </div>
-        <div class="col-md-10">
-          {{ request.comments_Spanish }}
-        </div>
-      </div>
-      -->
-      <div [hidden]=!displayCompleteHistory>
-        <div class="padded">
-          &nbsp;Comment History / Historial de comentarios:
-        </div>
-        <app-follow-up-events
-           [followUpRequestId]="request.followUpRequestId"
-        >
-        </app-follow-up-events>
-      </div>
+          <span *ngIf="request.followUpRequestId!=currentRequestId"
+           class="link"
+           (click)="setSelectedRow(request.followUpRequestId)"
+           style="margin-left: 1px"
+          >
+           Show>>
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <table>
 
-    </div>
-  </div>
+  <tbody *ngIf="currentRequestId">
+     <tr><td><b>Details for Selected Row:</b></td></tr>
+      <tr class="table-info" style="width:100%;margin-top: 3px;"*ngFor="let request2 of followUpRequests; let j = index">
+
+            <td style="width:50%" *ngIf="request2.followUpRequestId==currentRequestId">
+              <div>
+             English Text:<br /> {{ request2.updateHistory_English }}
+            </div>
+            </td>
+            <td style="width:50%" *ngIf="request2.followUpRequestId==currentRequestId">
+              <div>
+             Texto Español:<br /> {{ request2.updateHistory_Spanish }}
+             </div>
+            </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 </div>

@@ -11,44 +11,47 @@ export class MemberSelectorComponent implements OnInit {
   members: Array<MemberMiniDTO>;
   errorMessage = '';
   haveData: boolean;
-  haveMemberType: boolean;
-  requestorRoles: SELECTITEM[];
+  haveMemberType = false;
+  requesterRoles: SELECTITEM[];
   selectedRoles: SELECTITEM[];
   @Output() onSelectedRoleId = new EventEmitter<number>();
   @Output() onSelectedMemberId = new EventEmitter<number>();
   @Input() memberTypeLabel: string;
   @Input() roleId: string;
+  @Input() currMemberId : number;
+  requesterMembers: MemberMiniDTO[];
+  selectedMembers: MemberMiniDTO[];
 
 
   constructor(private memberData: MemberDataService) {
-    this.requestorRoles = [
-      { value: '0', label: '[None]' },
-      { value: '1008', label: 'Volunteer' },
-      { value: '1009', label: 'Sponsor' },
-      { value: '1010', label: 'Mentor' },
-      { value: '1013', label: 'Donor' },
-      { value: '1007', label: 'Board Member' },
+    this.requesterRoles = [
+      // { value: '0', label: '[None]' },
+      // { value: '1008', label: 'Volunteer' },
+      // { value: '1009', label: 'Sponsor' },
+      // { value: '1010', label: 'Mentor' },
+      // { value: '1013', label: 'Donor' },
+      // { value: '1007', label: 'Board Member' },
       { value: '2068', label: 'Admin' },
-      { value: '2069', label: 'Student' }
+      // { value: '2069', label: 'Student' }
     ];
   }
 
 
   public ngOnInit() {
     this.haveData = false;
-    this.haveMemberType = false;
-    // this.setSelectedRole(this.roleId);
+    this.haveMemberType = true;
+    this.setSelectedRole(this.roleId);
   }
 
   public setSelectedRole(roleId2: string) {
     console.log('selectedRole is set to ' + roleId2);
     this.haveMemberType = true;
-    console.log(this.requestorRoles);
-    // console.log(this.selectedRoles2);
-    // this.roleId = '2068';
-    // roleId2 = '2068';
-    this.selectedRoles = this.requestorRoles.filter((r) => r.value === roleId2 ); // .map((row) => row.label);
-    // const x = this.selectedRoles.map((row) => row.label);
+    console.log(this.requesterRoles);
+
+    this.selectedRoles = this.requesterRoles.filter((r) => r.value == roleId2 );
+    // console.log(this.selectedRoles);
+    const x = this.selectedRoles.map((row) => row.label);
+    // console.log(this.selectedRoles);
     // console.log(x);
     console.log('selectedRoles[0] value,label is '  + this.selectedRoles[0].value, this.selectedRoles[0].label);
     this.fetchMembers(this.selectedRoles[0].label);
@@ -65,8 +68,10 @@ export class MemberSelectorComponent implements OnInit {
       () => {
         console.log('member-selector loaded ' + this.members.length + ' rows');
         if (this.members.length > 0) {
+
+          this.selectedMembers = this.members.filter((m) => m.memberId == this.currMemberId );
+          const x = this.selectedMembers.map((row) => row.memberName);
           console.log(this.members[0].memberName);
-          this.haveData = true;
         } else {
           //
         }

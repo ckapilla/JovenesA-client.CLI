@@ -38,8 +38,6 @@ export class AdminsStudentComponent implements OnInit {
   credentialMonths: SELECTITEM[];
   genders: SELECTITEM[];
 
-  // mentors: SELECTITEM[];
-  // mentors$: Observable<SELECTITEM[]> = this.miscData.mentors$.pipe(
   mentors$: Observable<SELECTITEM[]> = this.miscData.getMentors$().pipe(
     catchError((err) => {
       this.errorMessage = err;

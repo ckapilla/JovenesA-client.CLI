@@ -1,6 +1,8 @@
 <div class="controls">
   <label for="StudentSelector">Student:</label>
-  <select name="StudentSelector" (change)="setSelectedStudent($event.target.value)" class="form-control input-sm">
+  <select name="StudentSelector" (change)="setSelectedStudent($event.target.value)"
+  [(ngModel)] = "currentStudentGUId"
+  class="form-control input-sm">
     <option [value]="null">Select Student</option>
     <option *ngFor="let student of students" [value]="student.studentGUId">{{student.studentName}}</option>
   </select>

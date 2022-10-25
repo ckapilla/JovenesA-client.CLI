@@ -23,8 +23,8 @@ import { UIStateModel } from './ui.model';
     selectedGradYear: '0',
     // ssrEditDateRange: '2021-12-26|2022-01-07'
     // ssrEditDateRange: '2022-03-24|2022-06-07'
-    ssrEditDateRange: '2022-07-28|2022-08-15'
-    // ssrEditDateRange: '2022-08-28|2022-09-15'
+    // ssrEditDateRange: '2022-07-28|2022-08-15'
+    ssrEditDateRange: '2022-09-28|2022-10-07'
   }
 })
 @Injectable()

@@ -256,9 +256,9 @@ export class AdminsStudentListComponent implements OnInit {
   }
 
   gotoStudentSearch() {
-    const link = '/admins/students';
+    const link = ['/admins/students'];
     console.log('navigating to ' + link);
-    this.router.navigateByUrl(link);
+    this.router.navigate(link);
   }
 
   public onSortColumn(sortCriteria: SORTCRITERIA) {

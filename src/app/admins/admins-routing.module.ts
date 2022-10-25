@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CanActivateViaAdminAuthGuard, ConfirmDeactivateMRSummaryUpdatesGuard, ConfirmDeactivateStudentProfileUpdatesGuard } from '../app.routing-guards';
-import { FollowUpEventsComponent } from '../_shared/components/follow-up-events/follow-up-events.component';
 import { AdminsAddMemberComponent } from './admins-members/admins-add-member/admins-add-member.component';
 import { AdminsMemberListComponent } from './admins-members/admins-member-list/admins-member-list.component';
 import { AdminsMemberSearchComponent } from './admins-members/admins-member-search/admins-member-search.component';
@@ -17,9 +16,8 @@ import { AdminsStudentContainerComponent } from './admins-students/admins-studen
 import { AdminsStudentListComponent } from './admins-students/admins-student-list/admins-student-list.component';
 import { AdminsStudentSearchComponent } from './admins-students/admins-student-search/admins-student-search.component';
 import { AdminsComponent } from './admins.component';
-import { FollowUpEventsAddComponent } from './follow-up-events-add/follow-up-events-add.component';
-import { FollowUpRequestDetailsComponent } from './follow-up-request-details/follow-up-request-details.component';
 import { FollowUpRequestsAddComponent } from './follow-up-requests-add/follow-up-requests-add.component';
+import { FollowUpRequestsEditComponent } from './follow-up-requests-edit/follow-up-requests-edit.component';
 import { FollowUpRequestsComponent } from './follow-up-requests/follow-up-requests.component';
 import { SponsorGroupComponent } from './sponsor-group/sponsor-group.component';
 import { SponsorGroupsComponent } from './sponsor-groups/sponsor-groups.component';
@@ -130,32 +128,16 @@ const adminRoutes: Routes = [
       },
 
       {
-        path: 'follow-up-requests',
+        path: 'follow-up/requests',
         component: FollowUpRequestsComponent
       },
       {
-        path: 'follow-up-request-details/:requestId',
-        component: FollowUpRequestDetailsComponent
-      },
-      // {
-      //   path: 'self-reports/tracking/:id/:year/:period/:summaryStatus/:highlight',
-      //   component: SelfReportTrackingComponent
-      // },
-      // {
-      //   path: 'self-reports/updates',
-      //   component: SelfReportsUpdatesComponent
-      // },
-      {
-        path: 'follow-up-events',
-        component: FollowUpEventsComponent
-      },
-      {
-        path: 'follow-up-requests-add',
+        path: 'follow-up/request-add',
         component: FollowUpRequestsAddComponent
       },
       {
-        path: 'follow-up-events-add/:requestId',
-        component: FollowUpEventsAddComponent
+        path: 'follow-up/request-edit', // use ?x=  /:requestId',
+        component: FollowUpRequestsEditComponent
       },
       // {
       //   path: 'reports',

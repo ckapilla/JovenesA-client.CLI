@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { StudentDataService } from '../../data/student-data.service';
 import { StudentMiniDTO } from '../../models/studentMiniDTO';
 @Component({
@@ -10,9 +10,12 @@ export class StudentSelectorComponent implements OnInit {
   errorMessage = '';
   haveData: boolean;
   @Output() onSelectedStudentGUId = new EventEmitter<string>();
+  @Input() currentStudentGUId: string;
 
   constructor(private studentData: StudentDataService) {}
   public ngOnInit() {
+
+    console.log('student selector has input ' + this.currentStudentGUId);
     this.haveData = false;
     this.studentData.getCurrentStudentMiniDTOs('', true).subscribe(
       (data) => {
@@ -26,6 +29,7 @@ export class StudentSelectorComponent implements OnInit {
         if (this.students.length > 0) {
           console.log(this.students[0].studentName);
           this.haveData = true;
+
         } else {
           //
         }
