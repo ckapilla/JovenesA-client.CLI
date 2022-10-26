@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Select } from '@ngxs/store';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { QuarterlyDataService } from 'src/app/_shared/data/quarterly-data.service';
 import { QuarterlyReportRPT } from 'src/app/_shared/models/quarterly-reportRPT';
 import { StudentState } from 'src/app/_store/student/student.state';
@@ -24,8 +23,8 @@ export class QrStatusSelectorComponent implements OnInit {
   private subscription: Subscription;
   selectedQRPeriod: '' | string;
 
-  @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
-  @Select(UIState.getSelectedQRPeriod) selectedQRPeriod$: Observable<string>;
+   currentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
+   selectedQRPeriod$ = this.store.select<string>(UIState.getSelectedQRPeriod);
 
   constructor(
     public quarterlyData: QuarterlyDataService,

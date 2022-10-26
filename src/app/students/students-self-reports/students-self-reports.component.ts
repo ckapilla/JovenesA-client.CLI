@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Select, Store } from '@ngxs/store';
-import { Observable, Subscription } from 'rxjs';
+import { Store } from '@ngxs/store';
+import { Subscription } from 'rxjs';
 import { StudentDataService } from 'src/app/_shared/data/student-data.service';
 import { StudentSelfReportDataService } from 'src/app/_shared/data/student-self-report-data.service';
 import { SponsorGroup } from 'src/app/_shared/models/sponsor-group';
@@ -33,8 +33,8 @@ export class StudentsSelfReportsComponent implements OnInit {
   ssrEditDateStop = '';
   inReportProcessingPeriod = false; // default off for safety
 
-  @Select(UIState.getSSREditDateRange) ssrEditDateRange$: Observable<string>;
-  // @Select(UIState.getCurrentSSRPeriodEditStop) currentSSRPeriodEditStop$: Observable<string>;
+   ssrEditDateRange$ = this.store.select<string>(UIState.getSSREditDateRange);
+  //  currentSSRPeriodEditStop$ = this.store.select<string>(UIState.getCurrentSSRPeriodEditStop);
 
   constructor(
     public currRoute: ActivatedRoute,

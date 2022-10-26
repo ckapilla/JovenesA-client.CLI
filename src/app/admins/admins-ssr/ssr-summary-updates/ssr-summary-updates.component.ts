@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
-import { Select } from '@ngxs/store';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { constants } from 'src/app/_shared/constants/constants';
 import { StudentSelfReportDataService } from 'src/app/_shared/data/student-self-report-data.service';
 import { SELECTITEM } from 'src/app/_shared/interfaces/SELECTITEM';
@@ -36,7 +35,7 @@ export class StudentSelfReportsSummaryUpdatesComponent implements OnInit {
   savedReviewedStatusId: number;
   private subscription: Subscription;
 
-  @Select(StudentState.getSelectedStudentName) currentName$: Observable<string>;
+   currentName$ = this.store.select<string>(StudentState.getSelectedStudentName);
 
   constructor(
     public currRoute: ActivatedRoute,

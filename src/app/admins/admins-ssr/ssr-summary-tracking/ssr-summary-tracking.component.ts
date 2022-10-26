@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Select, Store } from '@ngxs/store';
-import { Observable, Subscription } from 'rxjs';
+import { Store } from '@ngxs/store';
+import { Subscription } from 'rxjs';
 import { constants } from 'src/app/_shared/constants/constants';
 import { SetSelectedStudentIdentifiers } from 'src/app/_store/student/student.action';
 import { SetSelectedQRPeriod } from 'src/app/_store/ui/ui.action';
@@ -36,8 +36,8 @@ export class StudentSelfReportsTrackingComponent implements OnInit
   displayTestNames: boolean;
   subscription: Subscription;
 
-  @Select(UIState.getSelectedQRPeriod) selectedQRPeriod$: Observable<string>;
-  @Select(UIState.getTestNamesVisibility) testNameVisibility$: Observable<boolean>;
+   selectedQRPeriod$ = this.store.select<string>(UIState.getSelectedQRPeriod);
+   testNameVisibility$ = this.store.select<boolean>(UIState.getTestNamesVisibility);
 
   constructor(
     public router: Router,

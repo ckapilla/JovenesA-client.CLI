@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Select } from '@ngxs/store';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { MemberState } from 'src/app/_store/member/member.state';
 import { UrlService } from '../../services/url.service';
 
@@ -14,7 +13,7 @@ export class MemberPhotoComponent implements OnInit {
   clientUrl: string;
   subscription: Subscription;
 
-  @Select(MemberState.getPhotoPathname) photoPathname$: Observable<string>;
+   photoPathname$ = this.store.select<string>(MemberState.getPhotoPathname);
 
   constructor(urlService: UrlService) {
     this.clientUrl = urlService.getClientUrl();

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Select } from '@ngxs/store';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { StudentDataService } from 'src/app/_shared/data/student-data.service';
 import { Student } from 'src/app/_shared/models/student';
 import { StudentState } from 'src/app/_store/student/student.state';
@@ -21,7 +20,7 @@ export class StudentHistoryComponent implements OnInit {
   successMessage: string;
   isSubmitted: boolean;
 
-  @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
+   currentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
 
   constructor(
     public formBuilder: FormBuilder,

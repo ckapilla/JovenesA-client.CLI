@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Select } from '@ngxs/store';
-import { Observable } from 'rxjs';
 import { UIState } from 'src/app/_store/ui/ui.state';
 import { MentorDataService } from '../../data/mentor-data.service';
 import { StudentDTO } from '../../models/studentDTO';
@@ -23,7 +21,7 @@ export class StudentsForMentorListComponent implements OnInit {
   studentGUId: string;
   displayTestNames: boolean;
 
-  @Select(UIState.getTestNamesVisibility) testNameVisibility$: Observable<boolean>;
+   testNameVisibility$ = this.store.select<boolean>(UIState.getTestNamesVisibility);
 
   constructor(
     public session: SessionService,

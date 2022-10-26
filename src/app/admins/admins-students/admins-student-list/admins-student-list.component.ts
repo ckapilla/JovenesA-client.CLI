@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Store } from '@ngxs/store';
 import { constants } from 'src/app/_shared/constants/constants';
 import { StudentDataService } from 'src/app/_shared/data/student-data.service';
 import { SELECTITEM } from 'src/app/_shared/interfaces/SELECTITEM';
@@ -11,10 +10,10 @@ import { ColumnSortService } from 'src/app/_shared/services/column-sort.service'
 import { SessionService } from 'src/app/_shared/services/session.service';
 import { SetPhotoPathname, SetSelectedStudentIdentifiers, SetSelectedStudentMentorGUId } from 'src/app/_store/student/student.action';
 import {
-  SetSelectedFilterMode,
-  SetSelectedGradYear,
-  SetSelectedStudentStatus,
-  SetSelectedYearJoined
+    SetSelectedFilterMode,
+    SetSelectedGradYear,
+    SetSelectedStudentStatus,
+    SetSelectedYearJoined
 } from 'src/app/_store/ui/ui.action';
 import { UIState } from 'src/app/_store/ui/ui.state';
 
@@ -44,11 +43,11 @@ export class AdminsStudentListComponent implements OnInit {
   readonly smileys: string[] = constants.smileys;
   displayTestNames: boolean;
 
-  @Select(UIState.getTestNamesVisibility) testNameVisibility$: Observable<boolean>;
-  @Select(UIState.getSelectedGradYear) selectedGradYear$: Observable<string>;
-  @Select(UIState.getSelectedYearJoined) selectedYearJoined$: Observable<string>;
-  @Select(UIState.getSelectedStudentStatus) selectedStudentStatus$: Observable<string>;
-  @Select(UIState.getSelectedFilterMode) selectedFilterMode$: Observable<string>;
+   testNameVisibility$ = this.store.select<boolean>(UIState.getTestNamesVisibility);
+   selectedGradYear$ = this.store.select<string>(UIState.getSelectedGradYear);
+   selectedYearJoined$ = this.store.select<string>(UIState.getSelectedYearJoined);
+   selectedStudentStatus$ = this.store.select<string>(UIState.getSelectedStudentStatus);
+   selectedFilterMode$ = this.store.select<string>(UIState.getSelectedFilterMode);
 
   constructor(
     public studentData: StudentDataService,

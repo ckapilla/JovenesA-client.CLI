@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Select } from '@ngxs/store';
-import { Observable } from 'rxjs';
 import { constants } from 'src/app/_shared/constants/constants';
 import { MemberDataService } from 'src/app/_shared/data/member-data.service';
 import { SELECTITEM } from 'src/app/_shared/interfaces/SELECTITEM';
@@ -29,7 +27,7 @@ export class AdminsMemberListComponent implements OnInit {
   sortCriteria: SORTCRITERIA;
   displayTestNames: boolean;
 
-  @Select(UIState.getTestNamesVisibility) testNameVisibility$: Observable<boolean>;
+   testNameVisibility$ = this.store.select<boolean>(UIState.getTestNamesVisibility);
 
   constructor(
     public memberData: MemberDataService,

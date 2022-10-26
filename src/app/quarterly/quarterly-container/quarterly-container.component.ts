@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Select, Store } from '@ngxs/store';
-import { Observable, Subscription } from 'rxjs';
+import { Store } from '@ngxs/store';
+import { Subscription } from 'rxjs';
 import { QuarterlyReportRPT } from 'src/app/_shared/models/quarterly-reportRPT';
 import { StudentState } from 'src/app/_store/student/student.state';
 import { SetQRComponentsEditable, SetSelectedQRPeriod } from 'src/app/_store/ui/ui.action';
@@ -28,8 +28,8 @@ export class QuarterlyContainerComponent implements OnInit {
   qrMini = new QuarterlyReportRPT();
   private subscription: Subscription;
 
-  @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
-  @Select(UIState.getSelectedQRPeriod) selectedQRPeriod$: Observable<string>;
+   currentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
+   selectedQRPeriod$ = this.store.select<string>(UIState.getSelectedQRPeriod);
 
   constructor(private route: ActivatedRoute, public quarterlyData: QuarterlyDataService, public store: Store) {}
 

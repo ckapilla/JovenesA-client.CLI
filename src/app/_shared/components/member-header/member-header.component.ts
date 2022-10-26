@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
-import { Observable, Subscription } from 'rxjs';
+import { Store } from '@ngxs/store';
+import { Subscription } from 'rxjs';
 import { MemberState } from 'src/app/_store/member/member.state';
 
 @Component({
@@ -11,7 +11,7 @@ export class MemberHeaderComponent implements OnInit {
   private subscription: Subscription;
   public memberGUId: string;
 
-  @Select(MemberState.getSelectedMemberGUId) currentGUId$: Observable<string>;
+   currentGUId$ = this.store.select<string>(MemberState.getSelectedMemberGUId);
 
   constructor(private store: Store) {
     console.log('hi from member-header constructor');

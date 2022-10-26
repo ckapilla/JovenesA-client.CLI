@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Store } from '@ngxs/store';
 import { constants } from 'src/app/_shared/constants/constants';
 import { MentorReport2DataService } from 'src/app/_shared/data/mentor-report2-data.service';
 import { SELECTITEM } from 'src/app/_shared/interfaces/SELECTITEM';
@@ -37,7 +36,7 @@ export class MentorReportsSummaryTrackingComponent implements OnInit
   studentName: string;
   displayTestNames: boolean;
 
-  @Select(UIState.getTestNamesVisibility) testNameVisibility$: Observable<boolean>;
+   testNameVisibility$ = this.store.select<boolean>(UIState.getTestNamesVisibility);
 
   constructor(
     public router: Router,

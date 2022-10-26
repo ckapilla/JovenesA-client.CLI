@@ -2,8 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Select } from '@ngxs/store';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { BecaDataService } from 'src/app/_shared/data/beca-data.service';
 import { GradesGivenEntryDTO } from 'src/app/_shared/models/grades-given-entryDTO';
 import { StudentGrades } from 'src/app/_shared/models/student-grades';
@@ -35,8 +34,8 @@ export class GradeEntryComponent implements OnInit {
   confirmedDateB: boolean;
   inGradesProcessingPeriod: boolean;
 
-  @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
-  @Select(StudentState.getSelectedStudentName) currentName$: Observable<string>;
+   currentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
+   currentName$ = this.store.select<string>(StudentState.getSelectedStudentName);
 
   constructor(
     public becaData: BecaDataService,

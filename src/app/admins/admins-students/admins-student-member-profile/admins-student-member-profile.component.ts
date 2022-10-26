@@ -2,8 +2,8 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Select, Store } from '@ngxs/store';
-import { Observable, Subscription } from 'rxjs';
+import { Store } from '@ngxs/store';
+import { Subscription } from 'rxjs';
 import { constants } from 'src/app/_shared/constants/constants';
 import { MemberDataService } from 'src/app/_shared/data/member-data.service';
 import { MiscDataService } from 'src/app/_shared/data/misc-data.service';
@@ -49,7 +49,7 @@ export class AdminsStudentMemberDataComponent implements OnInit {
   private subscription: Subscription;
   studentName: string;
 
-  @Select(StudentState.getSelectedStudentName) currentName$: Observable<string>;
+   currentName$ = this.store.select<string>(StudentState.getSelectedStudentName);
   constructor(
     public currRoute: ActivatedRoute,
     private router: Router,

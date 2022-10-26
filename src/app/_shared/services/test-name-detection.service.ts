@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Store } from '@ngxs/store';
 import { SetTestNamesVisibility } from 'src/app/_store/ui/ui.action';
 import { UIState } from 'src/app/_store/ui/ui.state';
 
 @Injectable({ providedIn: 'root' })
 export class TestNameDetectionService {
-  @Select(UIState.getTestNamesVisibility) currentState$: Observable<boolean>;
+   currentState$ = this.store.select<boolean>(UIState.getTestNamesVisibility);
   constructor(private store: Store) {}
 
   public checkForTestName(testName: string): void {

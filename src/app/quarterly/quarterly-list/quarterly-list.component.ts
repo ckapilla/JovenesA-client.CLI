@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Select, Store } from '@ngxs/store';
-import { Observable, Subscription } from 'rxjs';
+import { Store } from '@ngxs/store';
+import { Subscription } from 'rxjs';
 import { ColumnSortService } from 'src/app/_shared/services/column-sort.service';
 import { SetSelectedStudentGUId } from 'src/app/_store/student/student.action';
 import { SetSelectedQRPeriod } from 'src/app/_store/ui/ui.action';
@@ -30,8 +30,8 @@ export class QuarterlyListComponent implements OnInit {
   displayTestNames: boolean;
   private subscription: Subscription;
 
-  @Select(UIState.getTestNamesVisibility) testNameVisibility$: Observable<boolean>;
-  @Select(UIState.getSelectedQRPeriod) selectedQRPeriod$: Observable<string>;
+   testNameVisibility$ = this.store.select<boolean>(UIState.getTestNamesVisibility);
+   selectedQRPeriod$ = this.store.select<string>(UIState.getSelectedQRPeriod);
 
   constructor(
     public currRoute: ActivatedRoute,

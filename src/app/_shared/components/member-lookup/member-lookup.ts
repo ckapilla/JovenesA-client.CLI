@@ -1,6 +1,6 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Select, Store } from '@ngxs/store';
+import { Store } from '@ngxs/store';
 import { Observable, of, Subscription } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
 import { SetSelectedMemberGUId } from 'src/app/_store/member/member.action';
@@ -40,7 +40,7 @@ export class MemberLookupComponent implements OnInit {
   memberGUId: string;
   private subscription: Subscription;
 
-  @Select(MemberState.getSelectedMemberGUId) currentGUId$: Observable<string>;
+   currentGUId$ = this.store.select<string>(MemberState.getSelectedMemberGUId);;
 
   constructor(
     private _service: MemberNameService,

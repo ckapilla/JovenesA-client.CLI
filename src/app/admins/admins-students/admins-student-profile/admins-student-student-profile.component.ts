@@ -2,7 +2,7 @@ import { formatDate, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Select, Store } from '@ngxs/store';
+import { Store } from '@ngxs/store';
 import { BehaviorSubject, EMPTY, Observable, Subscription } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { constants } from 'src/app/_shared/constants/constants';
@@ -100,7 +100,7 @@ export class AdminsStudentComponent implements OnInit {
   private subscription: Subscription;
   studentName: string;
 
-  @Select(StudentState.getSelectedStudentName) currentName$: Observable<string>;
+   currentName$ = this.store.select<string>(StudentState.getSelectedStudentName);
 
   constructor(
     public currRoute: ActivatedRoute,

@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
-import { Observable, Subscription } from 'rxjs';
+import { Store } from '@ngxs/store';
+import { Subscription } from 'rxjs';
 import { SetPhotoPathname } from 'src/app/_store/member/member.action';
 import { MemberState } from 'src/app/_store/member/member.state';
 import { MemberDataService } from '../../data/member-data.service';
@@ -26,7 +26,7 @@ export class MemberHeaderDetailsComponent implements OnInit {
   memberGUId: string;
   private subscription: Subscription;
 
-  @Select(MemberState.getSelectedMemberGUId) currentGUId$: Observable<string>;
+   currentGUId$ = this.store.select<string>(MemberState.getSelectedMemberGUId);
 
   constructor(private store: Store, public memberData: MemberDataService, public location: Location) {
     console.log('hi from MemberHeaderDetails constructor');

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Select } from '@ngxs/store';
-import { Observable } from 'rxjs';
 import { UIState } from 'src/app/_store/ui/ui.state';
 import { SponsorGroupDataService } from '../../data/sponsor-group-data.service';
 import { StudentSponsorXRef } from '../../models/student-sponsor-xref';
@@ -20,7 +18,7 @@ export class StudentsForSponsorComponent implements OnInit {
   haveData: boolean;
   displayTestNames: boolean;
 
-  @Select(UIState.getTestNamesVisibility) testNameVisibility$: Observable<boolean>;
+   testNameVisibility$ = this.store.select<boolean>(UIState.getTestNamesVisibility);
 
   constructor(
     public session: SessionService,

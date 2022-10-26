@@ -31,7 +31,7 @@ export class SelfReportsAddComponent implements OnInit {
   selectedQRPeriod = '';
   subscription: Subscription;
 
-  // @Select(UIState.getSelectedQRPeriod) selectedQRPeriod$: Observable<string>;
+  //  selectedQRPeriod$ = this.store.select<string>(UIState.getSelectedQRPeriod);
    selectedQRPeriod$ = this.store.select<string>(UIState.getSelectedQRPeriod);
 
   constructor(

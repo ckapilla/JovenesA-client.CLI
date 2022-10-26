@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
-import { Observable, Subscription } from 'rxjs';
+import { Store } from '@ngxs/store';
+import { Subscription } from 'rxjs';
 import { SetSelectedStudentIdentifiers } from 'src/app/_store/student/student.action';
 import { StudentState } from 'src/app/_store/student/student.state';
 import { UIState } from 'src/app/_store/ui/ui.state';
@@ -26,8 +26,8 @@ export class StudentsForMentorGridComponent implements OnInit {
   gridLoaded: boolean;
   displayTestNames: boolean;
 
-  @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
-  @Select(UIState.getTestNamesVisibility) testNameVisibility$: Observable<boolean>;
+   currentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
+   testNameVisibility$ = this.store.select<boolean>(UIState.getTestNamesVisibility);
 
   constructor(public session: SessionService, private mentorData: MentorDataService, private store: Store) {
     this.emojis = constants.emojis;

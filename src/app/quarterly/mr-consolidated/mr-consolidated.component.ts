@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Select } from '@ngxs/store';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { MiscDataService } from 'src/app/_shared/data/misc-data.service';
 import { StudentState } from 'src/app/_store/student/student.state';
 import { UIState } from 'src/app/_store/ui/ui.state';
@@ -32,9 +31,9 @@ export class MrConsolidatedComponent implements OnInit {
   selectedQRPeriod = '';
   private subscription: Subscription;
 
-  @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
-  @Select(UIState.getSelectedQRPeriod) selectedQRPeriod$: Observable<string>;
-  @Select(UIState.getQRComponentsEditable) qrComponentsEditable$: Observable<boolean>;
+   currentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
+   selectedQRPeriod$ = this.store.select<string>(UIState.getSelectedQRPeriod);
+   qrComponentsEditable$ = this.store.select<boolean>(UIState.getQRComponentsEditable);
 
   constructor(
     public currRoute: ActivatedRoute,

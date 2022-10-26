@@ -2,7 +2,6 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Select } from '@ngxs/store';
 import { EMPTY, Observable, Subscription } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { BecaDataService } from 'src/app/_shared/data/beca-data.service';
@@ -45,8 +44,8 @@ export class GradesEditComponent implements OnInit {
     })
   );
 
-  @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
-  @Select(StudentState.getSelectedStudentName) currentName$: Observable<string>;
+   currentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
+   currentName$ = this.store.select<string>(StudentState.getSelectedStudentName);
 
   constructor(
     public becaData: BecaDataService,

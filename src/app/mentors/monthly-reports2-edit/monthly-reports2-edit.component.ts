@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Select } from '@ngxs/store';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { MentorReport2DataService } from 'src/app/_shared/data/mentor-report2-data.service';
 import { StudentState } from 'src/app/_store/student/student.state';
 import { constants } from '../../_shared/constants/constants';
@@ -41,7 +40,7 @@ export class MonthlyReports2EditComponent implements OnInit {
   readonly contactYears: SELECTITEM[] = constants.contactYears;
   readonly contactMonths: SELECTITEM[] = constants.months;
 
-  @Select(StudentState.getSelectedStudentName) currentName$: Observable<string>;
+   currentName$ = this.store.select<string>(StudentState.getSelectedStudentName);
 
   constructor(
     public currRoute: ActivatedRoute,

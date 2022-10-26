@@ -1,8 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Select } from '@ngxs/store';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { MentorReport2DataService } from 'src/app/_shared/data/mentor-report2-data.service';
 import { StudentState } from 'src/app/_store/student/student.state';
 import { MentorReport2RPT } from '../../_shared/models/mentor-report2';
@@ -25,9 +24,9 @@ export class AdminsStudentMRsComponent implements OnInit {
 
   private subscription: Subscription;
 
-  @Select(StudentState.getSelectedStudentName) currentStudentName$: Observable<string>;
-  @Select(StudentState.getSelectedStudentMentorGUId) currentStudentMentorGUId$: Observable<string>;
-  @Select(StudentState.getSelectedStudentGUId) currentStudentGUId$: Observable<string>;
+   currentStudentName$ = this.store.select<string>(StudentState.getSelectedStudentName);
+   currentStudentMentorGUId$ = this.store.select<string>(StudentState.getSelectedStudentMentorGUId);
+   currentStudentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
 
   constructor(
     public currRoute: ActivatedRoute,

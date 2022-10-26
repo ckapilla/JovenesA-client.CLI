@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Select } from '@ngxs/store';
-import { Observable } from 'rxjs';
 import { SponsorGroupDataService } from 'src/app/_shared/data/sponsor-group-data.service';
 import { SponsorGroup } from 'src/app/_shared/models/sponsor-group';
 import { SponsorGroupMemberDTO } from 'src/app/_shared/models/sponsor-group-memberDTO';
@@ -22,7 +20,7 @@ export class SponsorGroupsComponent implements OnInit {
   sortCriteria: SORTCRITERIA;
   displayTestNames: boolean;
 
-  @Select(UIState.getTestNamesVisibility) testNameVisibility$: Observable<boolean>;
+   testNameVisibility$ = this.store.select<boolean>(UIState.getTestNamesVisibility);
 
   constructor(
     public sponsorGroupData: SponsorGroupDataService,

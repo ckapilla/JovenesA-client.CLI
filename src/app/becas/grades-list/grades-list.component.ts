@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Select, Store } from '@ngxs/store';
-import { Observable, Subscription } from 'rxjs';
+import { Store } from '@ngxs/store';
+import { Subscription } from 'rxjs';
 import { BecaDataService } from 'src/app/_shared/data/beca-data.service';
 import { GRADESPROCESSINGPERIOD } from 'src/app/_shared/interfaces/GRADESPROCESSINGPERIOD';
 import { GradesGivenEntryDTO } from 'src/app/_shared/models/grades-given-entryDTO';
@@ -37,8 +37,8 @@ export class GradesListComponent implements OnInit {
   periodStart: string;
   private subscription: Subscription;
 
-  @Select(UIState.getTestNamesVisibility) testNameVisibility$: Observable<boolean>;
-  @Select(UIState.getselectedGradesProcessingPeriodID) selectedGradesProcessingPeriodID$: Observable<string>;
+   testNameVisibility$ = this.store.select<boolean>(UIState.getTestNamesVisibility);
+   selectedGradesProcessingPeriodID$ = this.store.select<string>(UIState.getselectedGradesProcessingPeriodID);
 
   constructor(
     public becaData: BecaDataService,

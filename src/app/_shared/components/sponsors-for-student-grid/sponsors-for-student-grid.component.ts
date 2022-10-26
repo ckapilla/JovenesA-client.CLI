@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
-import { Select } from '@ngxs/store';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { StudentState } from 'src/app/_store/student/student.state';
 import { StudentDataService } from '../../data/student-data.service';
 import { SponsorGroupMemberDTO } from '../../models/sponsor-group-memberDTO';
@@ -22,7 +21,7 @@ export class SponsorsForStudentGridComponent implements OnInit, OnChanges {
   @Output() onSelectedSponsorId = new EventEmitter<number>();
   @Input() sponsorId: number; // only used for change detection
 
-  @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
+   currentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
 
   constructor(public session: SessionService, private studentData: StudentDataService) {}
 

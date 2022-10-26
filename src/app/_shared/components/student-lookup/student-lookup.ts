@@ -1,6 +1,6 @@
 import { Component, Injectable, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Select, Store } from '@ngxs/store';
+import { Store } from '@ngxs/store';
 import { Observable, of, Subscription } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
 import { SetSelectedStudentGUId, SetSelectedStudentIdentifiers } from 'src/app/_store/student/student.action';
@@ -48,7 +48,7 @@ export class StudentLookupComponent implements OnInit {
   private subscription: Subscription;
   @Input() showSearchButton: boolean;
 
-  @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
+   currentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
 
   constructor(
     private _service: StudentNameService,

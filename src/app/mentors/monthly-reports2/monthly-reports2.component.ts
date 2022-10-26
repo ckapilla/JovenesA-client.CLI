@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Select } from '@ngxs/store';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { MentorReport2DataService } from 'src/app/_shared/data/mentor-report2-data.service';
 import { StudentState } from 'src/app/_store/student/student.state';
 import { constants } from '../../_shared/constants/constants';
@@ -27,8 +26,8 @@ export class MonthlyReports2Component implements OnInit {
   haveCurrentReport: boolean;
   private subscription: Subscription;
 
-  @Select(StudentState.getSelectedStudentGUId) currentGUId$: Observable<string>;
-  @Select(StudentState.getSelectedStudentName) currentName$: Observable<string>;
+   currentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
+   currentName$ = this.store.select<string>(StudentState.getSelectedStudentName);
 
   constructor(
     public currRoute: ActivatedRoute,

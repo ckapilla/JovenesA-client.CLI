@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Select, Store } from '@ngxs/store';
-import { Observable, Subscription } from 'rxjs';
+import { Store } from '@ngxs/store';
+import { Subscription } from 'rxjs';
 import { StudentSelfReportDataService } from 'src/app/_shared/data/student-self-report-data.service';
 import { StudentSelfReport } from 'src/app/_shared/models/student-self-report';
 import { SetSelectedQRPeriod } from 'src/app/_store/ui/ui.action';
@@ -34,7 +34,7 @@ export class SelfReportsEditComponent implements OnInit {
   selectedQRPeriod = '';
   subscription: Subscription;
 
-  @Select(UIState.getSelectedQRPeriod) selectedQRPeriod$: Observable<string>;
+   selectedQRPeriod$ = this.store.select<string>(UIState.getSelectedQRPeriod);
 
 
   constructor(
