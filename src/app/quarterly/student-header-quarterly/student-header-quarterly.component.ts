@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
 import { StudentState } from 'src/app/_store/student/student.state';
 
@@ -12,7 +13,7 @@ export class StudentHeaderQuarterlyComponent implements OnInit {
 
    currentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
 
-  constructor() {}
+  constructor(private store: Store) {}
 
   ngOnInit() {
     this.subscribeForStudentGUIds2();

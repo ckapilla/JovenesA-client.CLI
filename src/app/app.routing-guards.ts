@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanDeactivate, Router, RouterStateSnapshot } from '@angular/router';
 import { MentorReportSummaryUpdatesComponent } from './admins/admins-mr/mr-summary-updates/mr-summary-updates.component';
-import { AdminsStudentComponent } from './admins/admins-students/admins-student-profile/admins-student-student-profile.component';
+import { AdminsStudentProfileComponent } from './admins/admins-students/admins-student-profile/admins-student-student-profile.component';
 import { GradesEditComponent } from './becas/grades-edit/grades-edit.component';
 import { MonthlyReports2ENAddComponent } from './mentors/monthly-reports2-EN-add/monthly-reports2-EN-add.component';
 import { MonthlyReports2ESAddComponent } from './mentors/monthly-reports2-ES-add/monthly-reports2-ES-add.component';
@@ -150,8 +150,8 @@ export class ConfirmDeactivateMRSummaryUpdatesGuard implements CanDeactivate<Men
 
 // see https://stackoverflow.com/questions/68299992/how-to-use-can-deactivate-without-routing
 @Injectable({ providedIn: 'root' })
-export class ConfirmDeactivateStudentProfileUpdatesGuard implements CanDeactivate<AdminsStudentComponent> {
-  canDeactivate(component: AdminsStudentComponent): boolean {
+export class ConfirmDeactivateStudentProfileUpdatesGuard implements CanDeactivate<AdminsStudentProfileComponent> {
+  canDeactivate(component: AdminsStudentProfileComponent): boolean {
     console.log('XXXXXXXXXXXCanDeactivate');
     if (component.hasChanges instanceof Function) {
       console.log('XXXXXXXXXXXCanDeactivate2');

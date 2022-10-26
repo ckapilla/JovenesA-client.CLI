@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
 import { StudentState } from 'src/app/_store/student/student.state';
 import { StudentDataService } from '../../data/student-data.service';
@@ -23,7 +24,10 @@ export class SponsorsForStudentGridComponent implements OnInit, OnChanges {
 
    currentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
 
-  constructor(public session: SessionService, private studentData: StudentDataService) {}
+  constructor(public session: SessionService,
+     private studentData: StudentDataService,
+     private store: Store
+     ) {}
 
   public ngOnInit() {
     this.studentData.getSponsorGroupMembersForStudent(this.studentGUId).subscribe(

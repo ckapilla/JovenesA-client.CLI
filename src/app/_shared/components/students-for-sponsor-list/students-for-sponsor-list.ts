@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngxs/store';
 import { UIState } from 'src/app/_store/ui/ui.state';
 import { SponsorGroupDataService } from '../../data/sponsor-group-data.service';
 import { StudentSponsorXRef } from '../../models/student-sponsor-xref';
@@ -24,7 +25,8 @@ export class StudentsForSponsorComponent implements OnInit {
     public session: SessionService,
     private sponsorGroupData: SponsorGroupDataService,
     private router: Router,
-    private currRoute: ActivatedRoute
+    private currRoute: ActivatedRoute,
+    private store: Store
   ) {
     console.log('in SponsoredStudents constructor');
   }

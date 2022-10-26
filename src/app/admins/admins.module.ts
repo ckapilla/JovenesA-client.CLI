@@ -26,7 +26,7 @@ import { AdminsStudentQRsComponent } from './admins-student-qrs/admins-student-q
 import { AdminsStudentContainerComponent } from './admins-students/admins-student-container/admins-student-container.component';
 import { AdminsStudentListComponent } from './admins-students/admins-student-list/admins-student-list.component';
 import { AdminsStudentMemberDataComponent } from './admins-students/admins-student-member-profile/admins-student-member-profile.component';
-import { AdminsStudentComponent } from './admins-students/admins-student-profile/admins-student-student-profile.component';
+import { AdminsStudentProfileComponent } from './admins-students/admins-student-profile/admins-student-student-profile.component';
 import { AdminsStudentSearchComponent } from './admins-students/admins-student-search/admins-student-search.component';
 import { AdminsComponent } from './admins.component';
 import { FollowUpRequestsAddComponent } from './follow-up-requests-add/follow-up-requests-add.component';
@@ -49,7 +49,7 @@ import { UtilitiesComponent } from './utilities/utilities.component';
     AdminsMemberComponent,
     AdminsAddMemberComponent,
     AdminsStudentListComponent,
-    AdminsStudentComponent,
+    AdminsStudentProfileComponent,
     AdminsStudentMRsComponent,
     MentorReportsContainerComponent,
     MentorReportsSummaryTrackingComponent,

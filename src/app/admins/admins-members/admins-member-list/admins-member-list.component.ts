@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngxs/store';
 import { constants } from 'src/app/_shared/constants/constants';
 import { MemberDataService } from 'src/app/_shared/data/member-data.service';
 import { SELECTITEM } from 'src/app/_shared/interfaces/SELECTITEM';
@@ -33,7 +34,8 @@ export class AdminsMemberListComponent implements OnInit {
     public memberData: MemberDataService,
     public router: Router,
     private session: SessionService,
-    private columnSorter: ColumnSortService
+    private columnSorter: ColumnSortService,
+    private store: Store
   ) {
     console.log('Hi from member List Ctrl controller function');
     this.roleStatuses = constants.memberStatuses;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngxs/store';
 import { SponsorGroupDataService } from 'src/app/_shared/data/sponsor-group-data.service';
 import { SponsorGroup } from 'src/app/_shared/models/sponsor-group';
 import { SponsorGroupMemberDTO } from 'src/app/_shared/models/sponsor-group-memberDTO';
@@ -25,7 +26,8 @@ export class SponsorGroupsComponent implements OnInit {
   constructor(
     public sponsorGroupData: SponsorGroupDataService,
     public router: Router,
-    private columnSorter: ColumnSortService
+    private columnSorter: ColumnSortService,
+    private store: Store
   ) {
     this.isLoading = false;
   }

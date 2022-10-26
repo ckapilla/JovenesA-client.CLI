@@ -21,7 +21,7 @@ import { StudentState } from 'src/app/_store/student/student.state';
   templateUrl: './admins-student-student-profile.component.html',
   styleUrls: ['./admins-student-student-profile.component.css']
 })
-export class AdminsStudentComponent implements OnInit {
+export class AdminsStudentProfileComponent implements OnInit {
   myForm: FormGroup;
   data: Object;
   isLoading: boolean;
@@ -203,7 +203,7 @@ export class AdminsStudentComponent implements OnInit {
     this.subscription = this.currentName$.subscribe((message) => {
       console.log('subscribeForStudentName received with message [' + message + ']');
       this.studentName = message;
-      console.log('************NGXS: student profile new StudentName received' + this.studentName);
+      console.log('************NGXS: student profile new StudentName received ' + this.studentName);
     });
   }
 

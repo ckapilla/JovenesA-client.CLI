@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Store } from '@ngxs/store';
 import { EMPTY, Observable, Subscription } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { BecaDataService } from 'src/app/_shared/data/beca-data.service';
@@ -55,7 +56,8 @@ export class GradesEditComponent implements OnInit {
     private columnSorter: ColumnSortService,
     private _fb: FormBuilder,
     public location: Location,
-    public url: UrlService
+    public url: UrlService,
+    private store: Store
   ) {
     console.log('Hi from gradesEdit Ctrl controller function');
 

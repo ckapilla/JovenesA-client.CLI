@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
 import { BecaDataService } from 'src/app/_shared/data/beca-data.service';
 import { GradesGivenEntryDTO } from 'src/app/_shared/models/grades-given-entryDTO';
@@ -44,7 +45,8 @@ export class GradeEntryComponent implements OnInit {
     private session: SessionService,
     private columnSorter: ColumnSortService,
     private _fb: FormBuilder,
-    public location: Location
+    public location: Location,
+    private store: Store
   ) {
     this.isLoading = false;
     this.inGradesProcessingPeriod = true;

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
 import { constants } from 'src/app/_shared/constants/constants';
 import { MentorReport2DataService } from 'src/app/_shared/data/mentor-report2-data.service';
@@ -55,7 +56,8 @@ export class MentorReportSummaryUpdatesComponent implements OnInit {
     private router: Router,
     public mentorReportData: MentorReport2DataService,
     private _fb: FormBuilder,
-    public session: SessionService
+    public session: SessionService,
+    private store: Store
   ) {
     this.reviewedStatuses = constants.reviewedStatuses;
     this.highlightStatuses = constants.highlightStatuses;

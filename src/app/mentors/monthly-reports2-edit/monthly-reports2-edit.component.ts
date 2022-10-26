@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
 import { MentorReport2DataService } from 'src/app/_shared/data/mentor-report2-data.service';
 import { StudentState } from 'src/app/_store/student/student.state';
@@ -47,7 +48,8 @@ export class MonthlyReports2EditComponent implements OnInit {
     private router: Router,
     public mentorReportData: MentorReport2DataService,
     private _fb: FormBuilder,
-    private session: SessionService
+    private session: SessionService,
+    private store: Store
   ) {
     console.log('Hi from MonthlyReports2EditComponent');
 

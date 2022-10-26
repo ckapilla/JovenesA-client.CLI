@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
 import { constants } from 'src/app/_shared/constants/constants';
 import { StudentSelfReportDataService } from 'src/app/_shared/data/student-self-report-data.service';
@@ -42,7 +43,8 @@ export class StudentSelfReportsSummaryUpdatesComponent implements OnInit {
     private router: Router,
     public selfReportData: StudentSelfReportDataService,
     private _fb: FormBuilder,
-    public session: SessionService
+    public session: SessionService,
+    private store: Store
   ) {
     console.log('StudentSelfReportsSummaryUpdates constructor')
 

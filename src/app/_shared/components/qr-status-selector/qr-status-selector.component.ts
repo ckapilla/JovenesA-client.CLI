@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
 import { QuarterlyDataService } from 'src/app/_shared/data/quarterly-data.service';
 import { QuarterlyReportRPT } from 'src/app/_shared/models/quarterly-reportRPT';
@@ -29,7 +30,8 @@ export class QrStatusSelectorComponent implements OnInit {
   constructor(
     public quarterlyData: QuarterlyDataService,
     // public selectedStudent: SelectedStudent,
-    public session: SessionService
+    public session: SessionService,
+    private store: Store
   ) {}
 
   ngOnInit() {

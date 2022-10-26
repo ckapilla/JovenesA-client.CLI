@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
 import { StudentState } from 'src/app/_store/student/student.state';
 
@@ -14,7 +15,8 @@ export class StudentHeaderComponent implements OnInit {
    currentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
 
   constructor(
-    public router: Router // private selectedStudent: SelectedStudent
+    public router: Router,
+    private store: Store
   ) {
     console.log('hi from student-header constructor');
   }

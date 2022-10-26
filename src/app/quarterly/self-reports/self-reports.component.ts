@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
 import { MiscDataService } from 'src/app/_shared/data/misc-data.service';
 import { StudentState } from 'src/app/_store/student/student.state';
@@ -42,7 +43,8 @@ export class SelfReportsComponent implements OnInit {
     public miscData: MiscDataService,
     private _fb: FormBuilder,
     public session: SessionService,
-    public quarterlyData: QuarterlyDataService
+    public quarterlyData: QuarterlyDataService,
+    private store: Store
   ) {
     this.myForm = _fb.group({
       narrative_English: ['', {}],

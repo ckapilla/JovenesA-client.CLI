@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
 import { StudentState } from 'src/app/_store/student/student.state';
 import { UrlService } from '../../services/url.service';
@@ -15,7 +16,9 @@ export class StudentPhotoComponent implements OnInit {
 
    photoPathname$ = this.store.select<string>(StudentState.getPhotoPathname);
 
-  constructor(urlService: UrlService) {
+  constructor(urlService: UrlService,
+    private store: Store
+    ) {
     console.log('hi from student-photo constructor');
     this.clientUrl = urlService.getClientUrl();
 

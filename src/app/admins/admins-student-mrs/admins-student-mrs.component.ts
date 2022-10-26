@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
 import { MentorReport2DataService } from 'src/app/_shared/data/mentor-report2-data.service';
 import { StudentState } from 'src/app/_store/student/student.state';
@@ -33,7 +34,8 @@ export class AdminsStudentMRsComponent implements OnInit {
     private router: Router,
     public mentorReportData: MentorReport2DataService,
     public session: SessionService,
-    public location: Location
+    public location: Location,
+    private store: Store
   ) {}
 
   ngOnInit() {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
 import { MentorReport2DataService } from 'src/app/_shared/data/mentor-report2-data.service';
 import { StudentState } from 'src/app/_store/student/student.state';
@@ -33,7 +34,8 @@ export class MonthlyReports2Component implements OnInit {
     public currRoute: ActivatedRoute,
     private router: Router,
     public mentorReport2Data: MentorReport2DataService,
-    public session: SessionService
+    public session: SessionService,
+    private store: Store
   ) {
     console.log('monthlyReports constructor');
     this.smileys = constants.smileys;

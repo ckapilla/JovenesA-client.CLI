@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngxs/store';
 import { UIState } from 'src/app/_store/ui/ui.state';
 import { MentorDataService } from '../../data/mentor-data.service';
 import { StudentDTO } from '../../models/studentDTO';
@@ -27,7 +28,8 @@ export class StudentsForMentorListComponent implements OnInit {
     public session: SessionService,
     private mentorData: MentorDataService,
     private router: Router,
-    private currRoute: ActivatedRoute
+    private currRoute: ActivatedRoute,
+    private store: Store
   ) {
     console.log('in MentoredStudentComponent constructor');
   }
