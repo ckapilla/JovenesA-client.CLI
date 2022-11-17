@@ -9,6 +9,7 @@ export class StudentSelectorComponent implements OnInit {
   students: Array<StudentMiniDTO>;
   errorMessage = '';
   haveData: boolean;
+  isLoading: boolean;
   @Output() onSelectedStudentGUId = new EventEmitter<string>();
   @Input() currentStudentGUId: string;
 
@@ -17,6 +18,7 @@ export class StudentSelectorComponent implements OnInit {
 
     console.log('student selector has input ' + this.currentStudentGUId);
     this.haveData = false;
+    this.isLoading = true;
     this.studentData.getCurrentStudentMiniDTOs('', true).subscribe(
       (data) => {
         this.students = data;
@@ -28,6 +30,7 @@ export class StudentSelectorComponent implements OnInit {
         console.log('student selector has Current students: ' + this.students.length);
         if (this.students.length > 0) {
           console.log(this.students[0].studentName);
+          this.isLoading = false;
           this.haveData = true;
 
         } else {

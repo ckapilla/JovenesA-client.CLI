@@ -1,9 +1,16 @@
 <div class="controls">
   <label for="StudentSelector">Student:</label>
-  <select name="StudentSelector" (change)="setSelectedStudent($event.target.value)"
-  [(ngModel)] = "currentStudentGUId"
-  class="form-control input-sm">
-    <option [value]="null">Select Student</option>
-    <option *ngFor="let student of students" [value]="student.studentGUId">{{student.studentName}}</option>
-  </select>
+
+  <div [ngSwitch]="isLoading">
+    <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
+      <app-loading-container> </app-loading-container>
+    </div>
+    <div *ngSwitchCase="false">
+      <select name="StudentSelector" (change)="setSelectedStudent($event.target.value)"
+      [(ngModel)] = "currentStudentGUId"
+      class="form-control input-sm">
+        <option [value]="null">Select Student</option>
+        <option *ngFor="let student of students" [value]="student.studentGUId">{{student.studentName}}</option>
+      </select>
+    </div>
 </div>
