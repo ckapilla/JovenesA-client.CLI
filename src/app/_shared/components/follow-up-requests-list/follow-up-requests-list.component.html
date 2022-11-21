@@ -5,10 +5,10 @@
       <tr>
         <!-- <th>ID</th> -->
         <th></th>
-        <th>Status</th>
+        <th>SubStatus</th>
+        <th>Assigned To</th>
         <th>Student</th>
         <th>Subject</th>
-        <th>Assigned To</th>
         <th>Requested By</th>
         <th>Updated By</th>
         <th>Details</th>
@@ -27,7 +27,10 @@
           </span>
         </td>
         <td>
-          {{ request.requestStatus }}
+          {{ request.requestSubStatus }}
+        </td>
+        <td>
+          {{ request.assignedToName }}
         </td>
         <td>
           {{ request.studentName }}
@@ -35,9 +38,6 @@
         <td>
           {{ request.subject_English }}<br />
           {{ request.subject_Spanish }}
-        </td>
-        <td>
-          {{ request.assignedToName }}
         </td>
         <td>
           {{ request.requesterName }} <br />

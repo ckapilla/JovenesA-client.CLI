@@ -21,15 +21,19 @@
             </div>
 
             <div class="controls">
-              <label for="requestStatusId">Request Status:</label>
+              <label for="requestStatusId">Request SubStatus:</label>
               <select
-                formControlName="requestStatusId"
+                formControlName="requestSubStatusId"
                 class="form-control input-sm"
-                (change)="onSelectedRequestStatus($event.target.value)"
+                (change)="onSelectedRequestSubStatus($event.target.value)"
               >
-                <option value="2092">Open</option>
-                <option value="2104">Closed</option>
-
+                <!-- <option value="2092">Open</option>
+                <option value="2104">Closed</option> -->
+                <option value="2171">Open -- Requested</option>
+                <option value="2172">Open -- Reviewed</option>
+                <option value="2173">Open -- Working</option>
+                <option value="2174">Closed -- Resolved</option>
+                <option value="2175">Closed -- Expired</option>
                 <!-- <option *ngFor="let status of requestStatuses" [value]="status.value">{{ status.label }}</option> -->
               </select>
             </div>

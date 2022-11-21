@@ -55,7 +55,7 @@ export class FollowUpRequestsEditComponent implements OnInit {
     console.log(this.requestStatuses);
 
     this.myForm = _fb.group({
-      requestStatusId: [''],
+      requestSubStatusId: [''],
       assignedToId: [''],
       subject_English: [''],
       subject_Spanish: [''],
@@ -98,7 +98,7 @@ export class FollowUpRequestsEditComponent implements OnInit {
         // this.currFollowUpRequestId = this.followUpRequest.followUpRequestId;  // won't change, just for completenes
         // this.currRequesterId = this.followUpRequest.followUpRequestId; // won't change, just for completeness
         this.myForm.controls.assignedToId.setValue(this.followUpRequest.assignedToId);
-        this.myForm.controls.requestStatusId.setValue(this.followUpRequest.requestStatusId);
+        this.myForm.controls.requestSubStatusId.setValue(this.followUpRequest.requestSubStatusId);
         this.myForm.controls.subject_English.setValue(this.followUpRequest.subject_English);
         this.myForm.controls.subject_Spanish.setValue(this.followUpRequest.subject_Spanish);
         this.myForm.controls.updateHistory_English.setValue(this.followUpRequest.updateHistory_English);
@@ -127,7 +127,7 @@ export class FollowUpRequestsEditComponent implements OnInit {
     // this.followUpRequest.followUpRequestId = // does not change
 
     this.followUpRequest.assignedToId = this.myForm.controls.assignedToId.value;
-    this.followUpRequest.requestStatusId = this.myForm.controls.requestStatusId.value;
+    this.followUpRequest.requestSubStatusId = this.myForm.controls.requestSubStatusId.value;
     this.followUpRequest.latestUpdaterId = this.session.getUserId();
     this.followUpRequest.subject_English = this.myForm.controls.subject_English.value;
     this.followUpRequest.subject_Spanish = this.myForm.controls.subject_Spanish.value;
@@ -193,10 +193,21 @@ export class FollowUpRequestsEditComponent implements OnInit {
   public onSelectedAssignedToId(memberId: number) {
     this.followUpRequest.assignedToId = memberId;
     console.log('AssignedTo MemberId set to ' + memberId);
+    this.followUpRequest.requestStatusId = 2092;  // Open
+    this.followUpRequest.requestSubStatusId = 2171; // Requested
+    alert('Please update the Comments section with details.')
   }
-  public onSelectedRequestStatus(statusId: number) {
-    this.followUpRequest.requestStatusId = statusId;
-    console.log('requestStatus set to  ' + statusId);
+  public onSelectedRequestSubStatus(subStatusId: number) {
+    this.followUpRequest.requestSubStatusId = subStatusId;
+    console.log('requestSubStatus set to  ' + subStatusId);
+    if (subStatusId == 2174 || subStatusId == 2175) {
+      this.followUpRequest.requestStatusId = 2104; // Closed
+      alert('Please update the Comments section with details.')
+    } else { // if (subStatusId == 2171 || subStatusId === 2172 || subStatusId === 2173) {
+      this.followUpRequest.requestStatusId = 2092; // Open
+    }
+
+
   }
 
   public translateFromSpanish(spanishText: string) {
