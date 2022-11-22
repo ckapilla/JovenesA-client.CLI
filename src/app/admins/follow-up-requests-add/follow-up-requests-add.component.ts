@@ -97,7 +97,8 @@ adminsubject: BehaviorSubject<[SELECTITEM]>;
     // set defaults where needed
     this.followUpRequest.requesterId = this.session.getUserId();
     this.followUpRequest.assignedToId =  this.myForm.controls.assignedToId.value;
-    this.followUpRequest.requestStatusId = 2092; // Open is only status when creating
+    this.followUpRequest.requestStatusId = 2092; // Open is the only status when creating
+    this.followUpRequest.requestSubStatusId = 2171; // Requested is the only status when creating
     this.followUpRequest.latestUpdaterId = this.session.getUserId();
     this.followUpRequest.subject_English =  this.myForm.controls.subject_English.value;
     // this.followUpRequest.subject_Spanish = this.myForm.controls.subject_Spanish.value;
