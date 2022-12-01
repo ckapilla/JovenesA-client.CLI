@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FollowUpDataService } from 'src/app/_shared/data/follow-up-data.service';
 import { constants } from '../../_shared/constants/constants';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
@@ -21,17 +21,23 @@ export class FollowUpRequestsComponent implements OnInit {
   successMessage: string;
   displayCompleteHistory: true;
   showAddDetails: boolean;
+  selectedRequestStatusId: number;
 
-  constructor(public followUpData: FollowUpDataService, public router: Router, public session: SessionService) {
-    // this.followUpStatuses = constants.followUpStatuses;
+  constructor(public followUpData: FollowUpDataService,
+    public currRoute: ActivatedRoute,
+    public router: Router,
+    public session: SessionService) {
     this.followUpStatuses = constants.followUpStatuses;
-    // this.selectedFollowUpStatusId = constants.followUpStatuses[0].value;
     this.selectedActiveStatusId = constants.followUpStatuses[0].value;
-    // this.showAddDetails = this.selectedFollowUpStatusId === '2092'; // Assigned
   }
 
   ngOnInit() {
-    // this.selectedActiveStatusId  = '2092';
+    console.log('onInit snapshot params: ')
+    this.selectedRequestStatusId = this.currRoute.snapshot.params['requestStatusId'];
+    if (this.selectedRequestStatusId === undefined) {
+      this.selectedRequestStatusId = 2092; // open
+    }
+
     console.log('calling fetchFilterdData with ' + this.selectedActiveStatusId);
     this.fetchFilteredData();
   }

@@ -22,7 +22,7 @@ export class MentorReports2ListComponent {
     console.log('in monthly-reports2: monthlyReportEdit, ready to navigate');
     if (this.studentId !== null) {
       const target = '/mentors/monthly-reports-edit/' + mentorReportId;
-     // this.router.navigateByUrl(target);
+     this.router.navigateByUrl(target);
     }
   }
 }

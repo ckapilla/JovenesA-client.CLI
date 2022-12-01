@@ -46,7 +46,7 @@ export class MentorReport2DataService extends BaseDataService {
     const x = JSON.parse(body);
     body = JSON.stringify(x.mentorReport);
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    // console.log('ready to put ' + url + ' body: ' + body + ' options ' + headers);
+    console.log('ready to put ' + url + ' body: ' + body + ' options ' + headers);
     return this.http.put(url, body, { headers: headers });
   }
 

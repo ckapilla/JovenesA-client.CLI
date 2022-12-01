@@ -8,8 +8,7 @@ import { FollowUpRequestDTO } from '../../models/follow-up-requestDTO';
 })
 export class FollowUpRequestsListComponent {
   @Input() followUpRequests: FollowUpRequestDTO[];
-  // @Input() displayCompleteHistory: boolean;
-  @Input() showAddDetails: boolean;
+  @Input() selectedRequestStatusId: number;
   displayCompleteHistory = false;
 
   studentId: number;
@@ -28,12 +27,27 @@ export class FollowUpRequestsListComponent {
   }
 
   editFollowUpRequest(requestId: number) {
-    console.log('edit has index ' + requestId)
-    const link: [string, { requestId: number; }] = [
-      '/admins/follow-up/request-edit', { requestId: requestId }]
-    this.router.navigate(link);
-    console.log('navigating to ' + link);
+    console.log('edit has index ' + requestId);
+    // const target = '/admins/follow-up/request-edit';
+    //   const navigationExtras: NavigationExtras = {
+    //     queryParams: {
+    //               requestId: requestId,
+    //               requestStatusId: this.selectedRequestStatusId
+    //     }
+    //   };
+    //   console.log('navigate to target ' + target[0]);
+    //   console.log('with queryParams ' + navigationExtras.queryParams);
+    //   this.router.navigate([target], navigationExtras);
 
+      const link: [string, { requestId: number, requestStatusId: number }] = [
+        '/admins/follow-up/request-edit',
+        {
+          requestId: requestId,
+          requestStatusId: this.selectedRequestStatusId
+        }
+      ];
+      console.log('navigate to link ' + link);
+      this.router.navigate(link);
 
   }
 

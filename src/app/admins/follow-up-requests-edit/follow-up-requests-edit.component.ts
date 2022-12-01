@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { BehaviorSubject, EMPTY, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { FollowUpDataService } from 'src/app/_shared/data/follow-up-data.service';
@@ -26,10 +26,7 @@ export class FollowUpRequestsEditComponent implements OnInit {
   requestStatuses: SELECTITEM[];
   saveStudentGUId: string;
   saveRequesterId: number;
-
-  // selectedFollowUpStatus: string;
-  // savedFollowUpStatusId: number;
-  // studentName: string;
+  selectedRequestStatusId
 
   admins$: Observable<SELECTITEM[]> = this.miscData.getAdmins$().pipe(
       catchError((err) => {
@@ -83,10 +80,14 @@ export class FollowUpRequestsEditComponent implements OnInit {
   ngOnInit() {
       const followUpRequestId = this.currRoute.snapshot.params['requestId'];
 
-  // admins: SELECTITEM[];
+      this.selectedRequestStatusId = this.currRoute.snapshot.params['reviewedStatusId'];
+      if (this.selectedRequestStatusId === undefined) {
+        this.selectedRequestStatusId = 0;
+      }
 
       this.isLoading = true;
-      console.log('in fetchFilteredData for FollowUpRequests with ' + followUpRequestId);
+      console.log('fetching data with requestId ' + followUpRequestId);
+      console.log('and requestStatusId ' + this.selectedRequestStatusId);
       this.followUpData.getFollowUpRequestByRequest(followUpRequestId).subscribe(
         (data) => {
           this.followUpRequest = data;
@@ -169,16 +170,14 @@ export class FollowUpRequestsEditComponent implements OnInit {
   }
 
   navigateBackInContext() {
-    const link = ['/admins/follow-up/requests'];
-    console.log('after Submit or Cancel navigating to ' + link);
+    const target = '/admins/follow-up/requests';
+    console.log('after Submit or Cancel navigating to ' + target);
 
-    // const navigationExtras: NavigationExtras = {
-    //   // queryParams: { id: 'id' + this.followUpRequest.followUpRequestId,
-    //   //                 summary: this.savedFollowUpStatusId
-    //   //               }
-    // };
-
-    this.router.navigate(link);
+    const navigationExtras: NavigationExtras = {
+      queryParams: { requestStatusId: this.selectedRequestStatusId
+      }
+    };
+    this.router.navigate([target], navigationExtras);
   }
 
   public hasChanges() {
