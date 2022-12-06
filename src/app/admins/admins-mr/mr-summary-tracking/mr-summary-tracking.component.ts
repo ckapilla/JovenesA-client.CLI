@@ -189,7 +189,7 @@ export class MentorReportsSummaryTrackingComponent implements OnInit
     // AABBCCDD
     this.store.dispatch(new SetSelectedStudentIdentifiers({ studentGUId, studentName }));
 
-    console.log(studentName);
+    console.log('updateSummaryTracking for ' + studentName);
     const link: [string, { mentorReportId: number; reviewedStatus: string; highlight: string }] = [
       '/admins/mentor-reports/summary-updates',
       {

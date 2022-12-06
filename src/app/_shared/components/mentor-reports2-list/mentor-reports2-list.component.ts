@@ -19,10 +19,13 @@ export class MentorReports2ListComponent {
   }
 
   monthlyReportEdit(mentorReportId: number) {
-    console.log('in monthly-reports2: monthlyReportEdit, ready to navigate');
+    console.log('in monthly-reports2: monthlyReportEdit');
     if (this.studentId !== null) {
       const target = '/mentors/monthly-reports-edit/' + mentorReportId;
+      console.log('ready to navigate');
      this.router.navigateByUrl(target);
+    } else {
+      console.log('mentorReportID is Null, skipping');
     }
   }
 }
