@@ -13,7 +13,6 @@ import { SessionService } from '../../_shared/services/session.service';
 export class FollowUpRequestsComponent implements OnInit {
   followUpRequests: FollowUpRequestDTO[];
   isLoading: boolean;
-  smileys: Array<string>;
   followUpStatuses: SELECTITEM[];
   selectedFollowUpStatusId: string;
   selectedActiveStatusId: string;

@@ -129,6 +129,7 @@ const smileys = [
   '/assets/images/needsAttention.jpg',
   '/assets/images/thumbsUp.jpg',
   '/assets/images/celebrate.jpg',
+  '/assets/images/concerned.jpg',
   '/assets/images/NA.jpg'
 ];
 const emojis = smileys;

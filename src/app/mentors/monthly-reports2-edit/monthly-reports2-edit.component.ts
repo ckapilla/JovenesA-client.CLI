@@ -104,7 +104,7 @@ export class MonthlyReports2EditComponent implements OnInit {
         this.lastYearCtl.setValue(this.mentorReport2.lastContactYear);
         this.lastMonthCtl.setValue(this.mentorReport2.lastContactMonth);
         this.emojiCtl.setValue(this.mentorReport2.emoji);
-        this.emojiCtl.setValue(0);
+        // this.emojiCtl.setValue(0);
         this.narrative_EnglishCtl.setValue(this.mentorReport2.narrative_English);
         this.narrative_SpanishCtl.setValue(this.mentorReport2.narrative_Spanish);
       }

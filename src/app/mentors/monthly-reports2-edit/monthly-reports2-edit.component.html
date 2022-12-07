@@ -27,21 +27,28 @@
         <div class="form-group">
 
           <div class="controls">
-            <span> Student Emoji:<br />Emoji de Estudiante:</span>>
-            <label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span> Student Emoji / Emoji de Estudiante:<br /></span>
+            <label>&nbsp;&nbsp;
               <input type="radio" id="inputEmoji" formControlName="inputEmoji"
                      [checked]="emojiCtl.value==1" value=1>
               <img src="/assets/images/celebrate.jpg" width="32px" />
               Celebrar
             </label>
-            <label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <input type="radio" id="inputEmoji" formControlName="inputEmoji"
                      [checked]="emojiCtl.value==0" value=0>
               <img src="/assets/images/thumbsUp.jpg" width="30px" />
               Bien
             </label>
-            <label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <input type="radio" id="inputEmoji" formControlName="inputEmoji"
+                     [checked]="emojiCtl.value==2" value=2>
+              <img src="/assets/images/concerned.jpg" width="30px" />
+              Preocupado
+            </label>
+            <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="radio" id="inputEmoji" formControlName="inputEmoji"
+
                      [checked]="emojiCtl.value==-1" value=-1>
               <img src="/assets/images/needsAttention.jpg" width="30px" />
               Problemas
