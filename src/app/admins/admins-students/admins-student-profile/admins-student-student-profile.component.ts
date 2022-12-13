@@ -94,7 +94,7 @@ export class AdminsStudentProfileComponent implements OnInit {
   studentGUIdParam: string;
   sponsorGroupIdParam: number;
   emojiPathname: string;
-  readonly smileys: string[] = constants.smileys;
+  readonly emojis: string[] = constants.emojis;
   showEditLink = false;
   webPrefix: string;
   private subscription: Subscription;
@@ -242,7 +242,7 @@ export class AdminsStudentProfileComponent implements OnInit {
         console.log('photoPathname is ' + this.photoPathname);
         console.log('after fetch');
         console.log(this.student);
-        this.emojiPathname = this.smileys[this.studentDTO.studentSnapshotStatus + 1];
+        this.emojiPathname = this.emojis[this.studentDTO.studentSnapshotStatus + 1];
         console.log('emoji is ' + this.emojiPathname);
       },
       (err) => console.error('Subscribe error: ' + err),

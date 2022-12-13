@@ -13,7 +13,7 @@ import { SessionService } from '../../services/session.service';
 })
 export class StudentsForSponsorComponent implements OnInit {
   studentsForSponsor: Array<StudentSponsorXRef>;
-  smileys: Array<string> = [];
+  emojis: Array<string> = [];
   studentId: number;
   errorMessage = '';
   haveData: boolean;

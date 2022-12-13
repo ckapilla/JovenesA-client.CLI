@@ -13,7 +13,7 @@ import { SessionService } from '../../services/session.service';
 })
 export class StudentsForMentorListComponent implements OnInit {
   students: Array<StudentDTO>;
-  smileys: Array<string> = [];
+  emojis: Array<string> = [];
   studentId: number;
   errorMessage = '';
   haveData: boolean;

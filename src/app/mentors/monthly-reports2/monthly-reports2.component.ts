@@ -22,7 +22,7 @@ export class MonthlyReports2Component implements OnInit {
   mentorGUId: string;
   mentorReportId: number;
   mentorReports2: Array<MentorReport2RPT>;
-  smileys: Array<string>;
+  emojis: Array<string>;
   studentName: string;
   haveCurrentReport: boolean;
   private subscription: Subscription;
@@ -38,7 +38,7 @@ export class MonthlyReports2Component implements OnInit {
     private store: Store
   ) {
     console.log('monthlyReports constructor');
-    this.smileys = constants.smileys;
+    this.emojis = constants.emojis;
   }
 
   ngOnInit() {

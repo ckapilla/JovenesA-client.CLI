@@ -18,7 +18,7 @@ export class MentorReportsSummaryTrackingComponent implements OnInit
   // implements OnInit {
   mentorReportByMonth: MentorReport2RPT[];
   isLoading: boolean;
-  smileys: Array<string>;
+  emojis: Array<string>;
   public errorMessage: string;
   successMessage: string;
   submitted: string;
@@ -59,7 +59,7 @@ export class MentorReportsSummaryTrackingComponent implements OnInit
     this.selectedMRReviewedStatus = '0'; // this.mrReviewedStatuses[0].value;
     this.selectedHighlightStatus = this.highlightStatuses[0].value;
 
-    this.smileys = constants.smileys;
+    this.emojis = constants.emojis;
     console.log('before process route params');
     this.processRouteParams();
 

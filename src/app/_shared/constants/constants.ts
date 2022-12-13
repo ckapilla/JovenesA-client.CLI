@@ -125,14 +125,13 @@ const genders: SELECTITEM[] = [
   { value: 'M', label: 'Male/Hombre' },
   { value: 'F', label: 'Female/Mujer' }
 ];
-const smileys = [
+const emojis = [
   '/assets/images/needsAttention.jpg',
   '/assets/images/thumbsUp.jpg',
   '/assets/images/celebrate.jpg',
   '/assets/images/concerned.jpg',
   '/assets/images/NA.jpg'
 ];
-const emojis = smileys;
 
 // interface CODEVALUE {
 //   codeValueId: number;   codeSet: string; stringValue: string; intValue: number;
@@ -221,8 +220,8 @@ export const constants = {
   gradesProcessingPeriods,
 
   genders,
-  smileys,
   emojis,
+
   // db
   languageStatuses,
   memberStatuses,

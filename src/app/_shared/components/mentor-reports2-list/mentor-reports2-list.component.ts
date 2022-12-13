@@ -10,12 +10,12 @@ import { MentorReport2RPT } from '../../models/mentor-report2';
 export class MentorReports2ListComponent {
   @Input()
   mentorReports2: MentorReport2RPT[];
-  smileys: Array<string>;
+  emojis: Array<string>;
   studentId: number;
 
   constructor(private router: Router) {
     console.log('###MentorReportsList constructor');
-    this.smileys = constants.smileys;
+    this.emojis = constants.emojis;
   }
 
   monthlyReportEdit(mentorReportId: number) {

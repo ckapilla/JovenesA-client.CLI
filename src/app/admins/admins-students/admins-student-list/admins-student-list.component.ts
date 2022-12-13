@@ -40,7 +40,7 @@ export class AdminsStudentListComponent implements OnInit {
   readonly studentStatuses: SELECTITEM[] = constants.studentStatuses;
   readonly joinedYears: SELECTITEM[] = constants.joinedYears;
   readonly gradYears: SELECTITEM[] = constants.gradYears;
-  readonly smileys: string[] = constants.smileys;
+  readonly emojis: string[] = constants.emojis;
   displayTestNames: boolean;
 
    testNameVisibility$ = this.store.select<boolean>(UIState.getTestNamesVisibility);
