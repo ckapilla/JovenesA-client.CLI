@@ -99,28 +99,32 @@ export class ConstantsService extends BaseDataService {
 
 
   public generateQRPeriods() {
+    const launchDate = 15;
+    console.log('launchDate = ' + launchDate);
     const now = new Date();
     console.log('%%%%%%%%%%GENERATE QR PERIODS%%%%%%');
     console.log(now);
     let thisYear  = now.getFullYear();
     let thisMonth = now.getMonth() + 1; // since we don't want zero based here
     const thisDate = now.getDate(); // not zero based
-    if (thisMonth <=2 || (thisMonth  === 3 && thisDate <= 25)) {
+    if (thisMonth <=2 || (thisMonth  === 3 && thisDate < launchDate)) {
       thisYear--;
     }
     if (
-      (thisMonth  === 3 && thisDate >= 27)
-      || (thisMonth  === 6 && thisDate >= 27)
-      || (thisMonth  === 9 && thisDate >= 27)
-      || (thisMonth  === 12 && thisDate >= 27)
+      (thisMonth  === 3 && thisDate >= launchDate)
+      || (thisMonth  === 6 && thisDate >= launchDate)
+      || (thisMonth  === 9 && thisDate >= launchDate)
+      || (thisMonth  === 12 && thisDate >= launchDate)
     ) {
       thisMonth++;
     }
-    console.log('adjustedthisMonth ' + thisMonth);
-    ////////////////J,F,M,A,M,J,J,A,S,O,N,D
+    const monthIndex = thisMonth % 12;
+    console.log('adjusted monthIndex ' + monthIndex );
+    //////////////_,J,F,M,A,M,J,J,A,S,O,N,D
     const qtrs = [0,4,4,4,1,1,1,2,2,2,3,3,3];
-    let targetQtr = qtrs[thisMonth];
+    let targetQtr = qtrs[monthIndex];
     console.log('this month: ' + thisMonth);
+    console.log('month index into qtrs array: ' + monthIndex);
     console.log('targetQtr: '  + targetQtr);
 
 
@@ -131,7 +135,7 @@ export class ConstantsService extends BaseDataService {
     let maxQtrs = NUMQTRS;
     if (thisMonth % 3 === 0) { // if last days of quarter bump  treat as if it is next quarter
       console.log('last month of quarter');
-      targetQtr = (thisDate >= 25) ?  qtrs[thisMonth + 1] : targetQtr;
+      targetQtr = (thisDate >=launchDate) ?  qtrs[thisMonth + 1] : targetQtr;
       console.log('targetQtr adj: '  + targetQtr);
     }
 

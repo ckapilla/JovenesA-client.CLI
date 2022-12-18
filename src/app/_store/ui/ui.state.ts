@@ -14,7 +14,7 @@ import { UIStateModel } from './ui.model';
     qrComponentsEditable: false,
 
     selectedQRPeriod: '', // initialize ConstantsService.generateQRPeriods
-    selectedGradesProcessingPeriodID: '110', // { id: '110', descriptor: '2022-09-01 (Cuatrimestre)', studentReportingStartDate:'2022-09-01', endDate:'2022-09-22', yearTypeId: 2032, isCurrent: true },
+    selectedGradesProcessingPeriodID: '112', //  { id: '112', descriptor: '2023-01-01 (Cuatrimestre)', studentReportingStartDate:'2023-01-01', endDate:'2023-01-22', yearTypeId: 2032, isCurrent: true },
 
 
     selectedFilterMode: '998',
@@ -24,7 +24,7 @@ import { UIStateModel } from './ui.model';
     // ssrEditDateRange: '2021-12-26|2022-01-07'
     // ssrEditDateRange: '2022-03-24|2022-06-07'
     // ssrEditDateRange: '2022-07-28|2022-08-15'
-    ssrEditDateRange: '2022-09-28|2022-10-07'
+    ssrEditDateRange: '2022-12-28|2023-01-15'
   }
 })
 @Injectable()

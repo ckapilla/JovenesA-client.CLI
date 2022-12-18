@@ -118,6 +118,7 @@ export class GradeEntryComponent implements OnInit {
         (dataArray) => {
           // if want to have all empty ones, not just latest:
           // this.studentGradesData = dataArray.filter(this.filter_dates);
+          // get latest one
           this.studentGradesData = dataArray.slice(0, 1);
         },
         (err) => {
