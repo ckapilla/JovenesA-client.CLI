@@ -162,7 +162,7 @@ export class MonthlyReports2EditComponent implements OnInit {
     this.mentorReport2.emoji = this.emojiCtl.value;
     this.mentorReport2.narrative_English = this.narrative_EnglishCtl.value;
     this.mentorReport2.narrative_Spanish = this.narrative_SpanishCtl.value;
-    // this.mentorReport2.reviewedStatusId = 2086; // already is needs setup or wouldn't be here
+    this.mentorReport2.reviewedStatusId = 2087; // could have been ReadyForQR, so reset to NeedsReview
 
     this.mentorReportData.updateMentorReport2(this.mentorReport2).subscribe(
       (student) => {

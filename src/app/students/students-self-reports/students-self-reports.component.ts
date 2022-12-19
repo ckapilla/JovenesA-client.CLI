@@ -32,6 +32,7 @@ export class StudentsSelfReportsComponent implements OnInit {
   ssrEditDateStart = '';
   ssrEditDateStop = '';
   inReportProcessingPeriod = false; // default off for safety
+  lastMonthInQuarter = '--';
 
    ssrEditDateRange$ = this.store.select<string>(UIState.getSSREditDateRange);
   //  currentSSRPeriodEditStop$ = this.store.select<string>(UIState.getCurrentSSRPeriodEditStop);
@@ -45,7 +46,7 @@ export class StudentsSelfReportsComponent implements OnInit {
     public store: Store
   ) {
     console.log('ssr constructor');
-    this.inReportProcessingPeriod = true;
+    this.inReportProcessingPeriod = false;
   }
 
   subscribeForSSREditDates() {
@@ -56,6 +57,20 @@ export class StudentsSelfReportsComponent implements OnInit {
       console.log(this.ssrEditDateStart);
       this.ssrEditDateStop = message.substring(11);
       console.log(this.ssrEditDateStop);
+      console.log(message.substring(5,7));
+      let x  = message.substring(5,7);
+
+      switch (x)
+      {
+        case '03':
+          this.lastMonthInQuarter = 'marzo';
+        case '06':
+          this.lastMonthInQuarter = 'junio';
+        case '09':
+          this.lastMonthInQuarter = 'septiembre';
+        case '12':
+          this.lastMonthInQuarter = 'diciembre';
+      }
 
       console.log('************NGXS: SSR EditDateRange received' + this.ssrEditDateStart + '|' + this.ssrEditDateStop);
     });
