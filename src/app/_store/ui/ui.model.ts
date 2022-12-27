@@ -8,7 +8,4 @@ export interface UIStateModel {
   selectedGradesProcessingPeriodID: string;
   selectedYearJoined: string;
   selectedGradYear: string;
-  // currentSSRPeriodEditStart: string;
-  // currentSSRPeriodEditStop: string;
-  ssrEditDateRange: string;
 }

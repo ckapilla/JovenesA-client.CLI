@@ -1,12 +1,13 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
+import { constants } from 'src/app/_shared/constants/constants';
 import { StudentDataService } from 'src/app/_shared/data/student-data.service';
 import { StudentSelfReportDataService } from 'src/app/_shared/data/student-self-report-data.service';
 import { SponsorGroup } from 'src/app/_shared/models/sponsor-group';
 import { SetSelectedStudentIdentifiers } from 'src/app/_store/student/student.action';
-import { UIState } from 'src/app/_store/ui/ui.state';
 import { StudentSelfReport } from '../../_shared/models/student-self-report';
 import { StudentDTO } from '../../_shared/models/studentDTO';
 import { SessionService } from '../../_shared/services/session.service';
@@ -34,8 +35,7 @@ export class StudentsSelfReportsComponent implements OnInit {
   inReportProcessingPeriod = false; // default off for safety
   lastMonthInQuarter = '--';
 
-   ssrEditDateRange$ = this.store.select<string>(UIState.getSSREditDateRange);
-  //  currentSSRPeriodEditStop$ = this.store.select<string>(UIState.getCurrentSSRPeriodEditStop);
+  //  ssrEditDateRange$ = this.store.select<string>(UIState.getSSREditDateRange);
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -45,20 +45,33 @@ export class StudentsSelfReportsComponent implements OnInit {
     public session: SessionService,
     public store: Store
   ) {
-    console.log('ssr constructor');
-    this.inReportProcessingPeriod = false;
+    console.log('ssr constructor' + 'inReportProcessingPeriod = ' + this.inReportProcessingPeriod);
   }
 
-  subscribeForSSREditDates() {
-    this.subscription = this.ssrEditDateRange$.subscribe((message) => {
-      // this.ssrEditDateRange = message;
-      console.log(message);
-      this.ssrEditDateStart = message.substring(0,10);
+  computeSSREditDateRange() {
+
+      let strDateRange = constants.ssrEditDateRange;
+      console.log(strDateRange);
+      this.ssrEditDateStart = strDateRange.substring(0,10);
       console.log(this.ssrEditDateStart);
-      this.ssrEditDateStop = message.substring(11);
+      this.ssrEditDateStop = strDateRange.substring(11);
       console.log(this.ssrEditDateStop);
-      console.log(message.substring(5,7));
-      let x  = message.substring(5,7);
+      console.log(strDateRange.substring(5,7));
+      let x  = strDateRange.substring(5,7);
+
+      var d0 = new Date(formatDate(new Date(),'yyyy-MM-dd', 'en-us'));
+      var d1 = new Date(this.ssrEditDateStart);
+      d1 = new Date(formatDate(d1,'yyyy-MM-dd', 'en-us'));
+      var d2 = new Date(this.ssrEditDateStop);
+      d2 = new Date(formatDate(d2,'yyyy-MM-dd', 'en-us'));
+      if (d0 >= d1 && d0 <= d2) {
+        console.log ('in report recording period');
+        this.inReportProcessingPeriod = true;
+      } else {
+        console.log ('NOT in report recording period');
+        this.inReportProcessingPeriod = false;
+      }
+
 
       switch (x)
       {
@@ -71,9 +84,7 @@ export class StudentsSelfReportsComponent implements OnInit {
         case '12':
           this.lastMonthInQuarter = 'diciembre';
       }
-
-      console.log('************NGXS: SSR EditDateRange received' + this.ssrEditDateStart + '|' + this.ssrEditDateStop);
-    });
+      console.log('*ssrEditDateRange ' + this.ssrEditDateStart + '|' + this.ssrEditDateStop);
   }
 
   ngOnInit() {
@@ -81,7 +92,7 @@ export class StudentsSelfReportsComponent implements OnInit {
     console.log('studentRecordGUId from session:' + this.studentRecordGUId);
     this.fetchSponsorGroup();
     this.isLoading = true;
-    this.subscribeForSSREditDates();
+    this.computeSSREditDateRange();
 
   }
 
@@ -137,7 +148,7 @@ export class StudentsSelfReportsComponent implements OnInit {
     this.router.navigateByUrl(target);
   }
 
-  isCurrentReportDate(rptDate: string) {
+  isInCurrentReportDateRange(rptDate: string) {
     return (rptDate >= this.ssrEditDateStart  && rptDate <= this.ssrEditDateStop);
   }
 }

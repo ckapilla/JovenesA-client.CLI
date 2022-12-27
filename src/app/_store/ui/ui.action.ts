@@ -31,7 +31,7 @@ export class GetselectedGradesProcessingPeriodID {
   static readonly type = '[UI] Get selectedGradesProcessingPeriodID';
   constructor(public payload: UIStateModel) {}
 }
-export class SetselectedGradesProcessingPeriodID {
+export class SetSelectedGradesProcessingPeriodID {
   static readonly type = '[UI] update selectedGradesProcessingPeriodID';
   constructor(public readonly payload: string) {}
 }

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { catchError, tap, toArray } from 'rxjs/operators';
-import { SetselectedGradesProcessingPeriodID, SetSelectedQRPeriod } from 'src/app/_store/ui/ui.action';
+import { SetSelectedGradesProcessingPeriodID, SetSelectedQRPeriod } from 'src/app/_store/ui/ui.action';
 import { constants } from '../constants/constants';
 import { BaseDataService } from '../data/base-data.service';
 import { SELECTITEM } from '../interfaces/SELECTITEM';
@@ -25,6 +25,11 @@ class C_SELECTITEM implements SELECTITEM {
   ) {}
 }
 
+ // must be manually reset each quarter
+ const ssrEditStartDate: string = '2022-12-26';
+ const ssrEditStopDate: string = '2023-01-15';
+ ////////////////////////////////////
+
 @Injectable({ providedIn: 'root' })
 export class ConstantsService extends BaseDataService {
   private codeValuesUrl = this.WebApiPrefix + 'lookup/codeValues';
@@ -38,12 +43,16 @@ export class ConstantsService extends BaseDataService {
     console.log('hello from constantsService constructor');
   }
 
+
+
   public buildArrays() {
     this.buildCodeValueArrays();
     this.generateQRPeriods();
     this.generateJoinedYears();
     this.generateGradYears();
     this.generateContactYears();
+    this.generateMRAdjustedContactPeriod();
+    this.generateSSRDateRange();
   }
 
   public generateJoinedYears() {
@@ -60,7 +69,7 @@ export class ConstantsService extends BaseDataService {
       constants.joinedYears.push(elem);
       year--;
     }
-    console.log(constants.joinedYears);
+    console.log(constants.joinedYears[0]);
   }
 
   public generateGradYears() {
@@ -77,7 +86,7 @@ export class ConstantsService extends BaseDataService {
       constants.gradYears.push(elem);
       year--;
     }
-    console.log(constants.gradYears);
+    console.log(constants.gradYears[0]);
   }
 
 
@@ -94,7 +103,7 @@ export class ConstantsService extends BaseDataService {
       constants.contactYears.push(elem);
       year++;
     }
-    console.log(constants.contactYears);
+    console.log(constants.contactYears[0]);
   }
 
 
@@ -140,7 +149,7 @@ export class ConstantsService extends BaseDataService {
     }
 
     console.log('============================');
-    const periodStrings: string[] = ['0: XXnot usedXX', '1:Ene-Mar', '2:Abr-Jun', '3:Jul-Set', '4:Oct-Dic' ];
+    const periodStrings: string[] = ['0: null', '1:Ene-Mar', '2:Abr-Jun', '3:Jul-Set', '4:Oct-Dic' ];
 
     let year = initYear;
     let qtr = initQtr;
@@ -149,20 +158,43 @@ export class ConstantsService extends BaseDataService {
       while (qtr <= maxQtrs) {
         elem = new C_SELECTITEM(year + '-' + qtr, year + '-' + periodStrings[qtr]);
         constants.qrPeriods.push(elem);
-        console.log(elem);
+
         qtr++;
       }
       qtr = 1;
       year++;
     }
-    console.log('settingSelectedQRPeriod to ' + thisYear + ' ' + targetQtr);
-    this.setSelectedQRPeriod(thisYear + '-' + targetQtr);
-    console.log(constants.qrPeriods);
+    console.log('setting SelectedQRPeriod to ' + thisYear + ' ' + targetQtr);
+    this.store.dispatch(new SetSelectedQRPeriod(thisYear + '-' + targetQtr));
+    // console.log(constants.qrPeriods);
   }
 
-  setSelectedQRPeriod(yearPeriod: string) {
-    this.store.dispatch(new SetSelectedQRPeriod(yearPeriod));
+  public generateSSRDateRange() {
+    constants.ssrEditDateRange = ssrEditStartDate + '|' + ssrEditStopDate;
+    console.log('####ssrEditDateRange: ' + constants.ssrEditDateRange);
   }
+
+  generateMRAdjustedContactPeriod(): void {
+    const now = new Date();
+    let thisYear  = now.getFullYear();
+    let thisMonth  = now.getMonth() + 1; // don't want zero based here
+    const thisDate  = now.getDate();
+    if (thisDate <= 2) {
+      console.log('adjusting month');
+      if (thisMonth === 1) {
+        thisMonth = 12;
+        console.log('adjusting Year');
+        thisYear--;
+      } else {
+        thisMonth--;
+      }
+    }
+    console.log('%%%%MRDateAdjustment has :', thisYear, thisMonth);
+
+    constants.currentContactYear  = thisYear;
+    constants.currentContactMonth = thisMonth;
+  }
+
 
   // public generateGradesProcessingPeriods() {
   //   const now = new Date();
@@ -184,8 +216,8 @@ export class ConstantsService extends BaseDataService {
     constants.gradesProcessingPeriods.find(period => period.studentReportingStartDate >=('' +  now) && period.yearTypeId === yearTypeId);
   }
 
-  setselectedGradesProcessingPeriodID(gradesProcessingPeriod: string) {
-    this.store.dispatch(new SetselectedGradesProcessingPeriodID(gradesProcessingPeriod));
+  setSelectedGradesProcessingPeriodID(gradesProcessingPeriod: string) {
+    this.store.dispatch(new SetSelectedGradesProcessingPeriodID(gradesProcessingPeriod));
   }
 
 

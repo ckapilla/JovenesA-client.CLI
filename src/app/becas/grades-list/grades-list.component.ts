@@ -7,7 +7,7 @@ import { GRADESPROCESSINGPERIOD } from 'src/app/_shared/interfaces/GRADESPROCESS
 import { GradesGivenEntryDTO } from 'src/app/_shared/models/grades-given-entryDTO';
 import { UrlService } from 'src/app/_shared/services/url.service';
 import { SetSelectedStudentIdentifiers } from 'src/app/_store/student/student.action';
-import { SetselectedGradesProcessingPeriodID } from 'src/app/_store/ui/ui.action';
+import { SetSelectedGradesProcessingPeriodID } from 'src/app/_store/ui/ui.action';
 import { UIState } from 'src/app/_store/ui/ui.state';
 import { constants } from '../../_shared/constants/constants';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
@@ -117,7 +117,7 @@ export class GradesListComponent implements OnInit {
   // }
 
   setselectedGradesProcessingPeriodID(gradesProcessingPeriod: string) {
-    this.store.dispatch(new SetselectedGradesProcessingPeriodID(gradesProcessingPeriod));
+    this.store.dispatch(new SetSelectedGradesProcessingPeriodID(gradesProcessingPeriod));
   }
 
   confirmGPA(studentGUId: string, studentName: string) {

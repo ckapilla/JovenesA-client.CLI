@@ -49,7 +49,7 @@ export class GradeEntryComponent implements OnInit {
     private store: Store
   ) {
     this.isLoading = false;
-    this.inGradesProcessingPeriod = true;
+    this.inGradesProcessingPeriod = false;
     this.myForm = this._fb.group({
       studentGUId: ['0000'],
       gradeEntryRows: this._fb.array([])

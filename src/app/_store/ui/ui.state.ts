@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import {
   SetQRComponentsEditable,
-  SetSelectedFilterMode, SetselectedGradesProcessingPeriodID, SetSelectedGradYear, SetSelectedQRPeriod, SetSelectedStudentStatus,
+  SetSelectedFilterMode, SetSelectedGradesProcessingPeriodID, SetSelectedGradYear, SetSelectedQRPeriod, SetSelectedStudentStatus,
   SetSelectedYearJoined, SetTestNamesVisibility
 } from './ui.action';
 import { UIStateModel } from './ui.model';
@@ -16,15 +16,10 @@ import { UIStateModel } from './ui.model';
     selectedQRPeriod: '', // initialize ConstantsService.generateQRPeriods
     selectedGradesProcessingPeriodID: '112', //  { id: '112', descriptor: '2023-01-01 (Cuatrimestre)', studentReportingStartDate:'2023-01-01', endDate:'2023-01-22', yearTypeId: 2032, isCurrent: true },
 
-
     selectedFilterMode: '998',
     selectedStudentStatus: '0',
     selectedYearJoined: '0',
-    selectedGradYear: '0',
-    // ssrEditDateRange: '2021-12-26|2022-01-07'
-    // ssrEditDateRange: '2022-03-24|2022-06-07'
-    // ssrEditDateRange: '2022-07-28|2022-08-15'
-    ssrEditDateRange: '2022-12-28|2023-01-15'
+    selectedGradYear: '0'
   }
 })
 @Injectable()
@@ -62,11 +57,6 @@ export class UIState {
   }
 
   @Selector()
-  static getSSREditDateRange(state: UIStateModel) {
-    return state.ssrEditDateRange;
-  }
-
-  @Selector()
   static getSelectedQRPeriod(state: UIStateModel): string {
     return state.selectedQRPeriod;
   }
@@ -86,8 +76,8 @@ export class UIState {
     return state.selectedGradesProcessingPeriodID;
   }
 
-  @Action(SetselectedGradesProcessingPeriodID)
-  setselectedGradesProcessingPeriodID(ctx: StateContext<UIStateModel>, { payload }: SetselectedGradesProcessingPeriodID) {
+  @Action(SetSelectedGradesProcessingPeriodID)
+  setselectedGradesProcessingPeriodID(ctx: StateContext<UIStateModel>, { payload }: SetSelectedGradesProcessingPeriodID) {
     const selectedGradesProcessingPeriodID = payload;
     const state = ctx.getState();
     ctx.patchState({
