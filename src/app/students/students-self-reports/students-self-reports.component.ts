@@ -35,8 +35,6 @@ export class StudentsSelfReportsComponent implements OnInit {
   inReportProcessingPeriod = false; // default off for safety
   lastMonthInQuarter = '--';
 
-  //  ssrEditDateRange$ = this.store.select<string>(UIState.getSSREditDateRange);
-
   constructor(
     public currRoute: ActivatedRoute,
     private router: Router,
@@ -48,43 +46,47 @@ export class StudentsSelfReportsComponent implements OnInit {
     console.log('ssr constructor' + 'inReportProcessingPeriod = ' + this.inReportProcessingPeriod);
   }
 
-  computeSSREditDateRange() {
+  parseSSRDateRange() {
+    console.log('in parseSSRDateRange');
 
-      let strDateRange = constants.ssrEditDateRange;
-      console.log(strDateRange);
-      this.ssrEditDateStart = strDateRange.substring(0,10);
-      console.log(this.ssrEditDateStart);
-      this.ssrEditDateStop = strDateRange.substring(11);
-      console.log(this.ssrEditDateStop);
-      console.log(strDateRange.substring(5,7));
-      let x  = strDateRange.substring(5,7);
+    var strToday = formatDate(new Date(),'yyyyMMdd', 'en-us');
+    console.log('today literal ' + strToday);
 
-      var d0 = new Date(formatDate(new Date(),'yyyy-MM-dd', 'en-us'));
-      var d1 = new Date(this.ssrEditDateStart);
-      d1 = new Date(formatDate(d1,'yyyy-MM-dd', 'en-us'));
-      var d2 = new Date(this.ssrEditDateStop);
-      d2 = new Date(formatDate(d2,'yyyy-MM-dd', 'en-us'));
-      if (d0 >= d1 && d0 <= d2) {
-        console.log ('in report recording period');
-        this.inReportProcessingPeriod = true;
-      } else {
-        console.log ('NOT in report recording period');
-        this.inReportProcessingPeriod = false;
-      }
+    this.splitStartStopDates(strToday);
+    this.getMonthStrings(strToday);
+  }
 
+  splitStartStopDates(strToday: string ){
 
-      switch (x)
-      {
-        case '03':
-          this.lastMonthInQuarter = 'marzo';
-        case '06':
-          this.lastMonthInQuarter = 'junio';
-        case '09':
-          this.lastMonthInQuarter = 'septiembre';
-        case '12':
-          this.lastMonthInQuarter = 'diciembre';
-      }
-      console.log('*ssrEditDateRange ' + this.ssrEditDateStart + '|' + this.ssrEditDateStop);
+    console.log('constants has ' + constants.ssrDateRange);
+    let ssrEditDateStart =  constants.ssrDateRange.substring(0,8);
+    console.log('Start literal ' + ssrEditDateStart);
+    let ssrEditDateStop =  constants.ssrDateRange.substring(9);
+    console.log('stop literal ' + ssrEditDateStop);
+    console.log('month ' + constants.ssrDateRange.substring(4,6));
+
+    if (strToday >= ssrEditDateStart && strToday <= ssrEditDateStop) {
+      console.log ('in report recording period');
+      this.inReportProcessingPeriod = true;
+    } else {
+      console.log ('NOT in report recording period');
+      this.inReportProcessingPeriod = false;
+    }
+  }
+
+  getMonthStrings(strToday: string) {
+    let month  = strToday.substring(4,6);
+    switch (month)
+    {
+      case '03':
+        this.lastMonthInQuarter = 'marzo';
+      case '06':
+        this.lastMonthInQuarter = 'junio';
+      case '09':
+        this.lastMonthInQuarter = 'septiembre';
+      case '12':
+        this.lastMonthInQuarter = 'diciembre';
+    }
   }
 
   ngOnInit() {
@@ -92,7 +94,7 @@ export class StudentsSelfReportsComponent implements OnInit {
     console.log('studentRecordGUId from session:' + this.studentRecordGUId);
     this.fetchSponsorGroup();
     this.isLoading = true;
-    this.computeSSREditDateRange();
+    this.parseSSRDateRange();
 
   }
 

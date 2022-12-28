@@ -3,7 +3,7 @@ import { SELECTITEM } from '../interfaces/SELECTITEM';
 
 const currentContactYear: number = null;
 const currentContactMonth: number = null;
-const ssrEditDateRange: string = '';
+const ssrDateRange: string = 'NODATEYET';
 
 const joinedYears: SELECTITEM[] = [];
 const gradYears: SELECTITEM[] = [];
@@ -91,7 +91,7 @@ export const constants = {
   // non-db
   gradYears,
   contactYears,
-  ssrEditDateRange,
+  ssrDateRange,
   currentContactYear,
   currentContactMonth,
   months,

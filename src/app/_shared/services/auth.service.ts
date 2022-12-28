@@ -61,7 +61,7 @@ export class AuthService {
   ) {
     //  if not authenticated, check to see if we have a saved profile
     if (session.getUserId() === 0) {
-      console.log('no current userProfile so check for stored userProfile');
+      // console.log('no current userProfile so check for stored userProfile');
       this.setUserProfileElementsToSession(this.checkRestoreUserProfile());
     }
   }
@@ -73,7 +73,7 @@ export class AuthService {
   }
 
   localAuthSetup() {
-    console.log('localAuthSetup');
+    // console.log('localAuthSetup');
     // called from AppComponent constructor
     // Set up local authentication streams
     const checkAuth$ = this.isAuthenticated$.pipe(
@@ -105,7 +105,7 @@ export class AuthService {
     // A desired redirect path can be passed to login method
     // (e.g., from a route guard)
     // Ensure Auth0 client instance exists
-    console.log('!@#$%^&*(in login with redirectPath:' + redirectPath);
+    // console.log('!@#$%^&*(in login with redirectPath:' + redirectPath);
     this.auth0Client$.subscribe((client: Auth0Client) => {
       // Call method to log in
       client.loginWithRedirect({
@@ -124,7 +124,7 @@ export class AuthService {
   */
 
   handleAuthCallback() {
-    console.log('handleAuthCallback');
+    // console.log('handleAuthCallback');
     // Only the callback component should call this method
     // Call when app reloads after user logs in with Auth0
     let targetRoute: string; // Path to redirect to after login processsed
@@ -154,8 +154,8 @@ export class AuthService {
       // doesn't work because returns observable
       // this.userProfile = this.userProfileSubject$.pipe(mergeMap(() => take(1)));
       this.userProfile = this.userProfileSubject$.getValue();
-      console.log('authComplete setting userProfle with value ');
-      console.log(this.userProfile);
+      // console.log('authComplete setting userProfle with value ');
+      // console.log(this.userProfile);
       this.setUserProfileElementsToSession(this.userProfile);
       this.storeUserProfileToStorage(this.userProfile);
 
@@ -188,29 +188,29 @@ export class AuthService {
   }
 
   public setUserProfileElementsToSession(userProfile: any): void {
-    console.log('in extractElementsFromProfile with userProfile:');
-    console.log(userProfile);
+    // console.log('in extractElementsFromProfile with userProfile:');
+    // console.log(userProfile);
     if (userProfile !== null && userProfile !== undefined) {
       const app_metadata = userProfile['app_metadata'];
       this.session.setAdminStatus(app_metadata['adminStatus']);
-      console.log('isAdmin: ' + this.session.isAdmin());
+      // console.log('isAdmin: ' + this.session.isAdmin());
 
       this.session.setMentorStatus(app_metadata['mentorStatus']);
-      console.log('isMentor: ' + this.session.isMentor());
+      // console.log('isMentor: ' + this.session.isMentor());
 
       this.session.setSponsorStatus(app_metadata['sponsorStatus']);
-      console.log('isSponsor: ' + this.session.isSponsor());
+      // console.log('isSponsor: ' + this.session.isSponsor());
 
       this.session.setStudentRecordGUId(app_metadata['studentRecordGUId']);
-      console.log('isStudent: ' + this.session.isStudent());
-      console.log('studentRecordGUId: ' + this.session.getStudentRecordGUId());
+      // console.log('isStudent: ' + this.session.isStudent());
+      // console.log('studentRecordGUId: ' + this.session.getStudentRecordGUId());
 
       this.session.setUserGUId(userProfile['memberGUId']);
       // for testing abort: this.session.setUserGUId(null);
-      console.log('memberGUId: ' + this.session.getUserGUId());
+      // console.log('memberGUId: ' + this.session.getUserGUId());
 
       this.session.setUserId(userProfile['user_id'].substr('auth0|'.length));
-      console.log('userId: ' + this.session.userId);
+      // console.log('userId: ' + this.session.userId);
 
       this.nickname = userProfile['nickname'];
       this.testNameDetectionService.checkForTestName(this.nickname);
@@ -218,12 +218,12 @@ export class AuthService {
   }
 
   private storeUserProfileToStorage(userProfile: any) {
-    console.log('saving userProfile to storage');
+    // console.log('saving userProfile to storage');
     localStorage.setItem('userProfile', JSON.stringify(userProfile));
   }
 
   public checkRestoreUserProfile(): any {
-    console.log('in checkRestoreUserProfile with' + JSON.parse(localStorage.getItem('userProfile')));
+    // console.log('in checkRestoreUserProfile with' + JSON.parse(localStorage.getItem('userProfile')));
     return JSON.parse(localStorage.getItem('userProfile'));
   }
 

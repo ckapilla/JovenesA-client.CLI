@@ -191,7 +191,7 @@ export class MonthlyReports2EditComponent implements OnInit {
   }
 
   validateMonth(control: FormControl): IValidationType {
-    console.log('validateMonth has input ' + control.value);
+    // console.log('validateMonth has input ' + control.value);
     // tslint:disable-next-line: triple-equals
     if ('' + control.value === '0') {
       // can be either string or number

@@ -19,7 +19,7 @@ import { StudentState } from './_store/student/student.state';
 import { UIState } from './_store/ui/ui.state';
 
 export function appInit(constantsService: ConstantsService) {
-  return () => constantsService.buildArrays();
+  return () => constantsService.loadFromDB();
 }
 
 @NgModule({

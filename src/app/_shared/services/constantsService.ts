@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { catchError, tap, toArray } from 'rxjs/operators';
+import { catchError, shareReplay, tap, toArray } from 'rxjs/operators';
 import { SetSelectedGradesProcessingPeriodID, SetSelectedQRPeriod } from 'src/app/_store/ui/ui.action';
 import { constants } from '../constants/constants';
 import { BaseDataService } from '../data/base-data.service';
@@ -16,6 +16,11 @@ interface CODEVALUE {
   sortOrder: number;
 }
 
+interface QRDATES {
+  ssrDateRange: string;
+  active: number;
+}
+
 class C_SELECTITEM implements SELECTITEM {
 
   constructor(
@@ -25,11 +30,6 @@ class C_SELECTITEM implements SELECTITEM {
   ) {}
 }
 
- // must be manually reset each quarter
- const ssrEditStartDate: string = '2022-12-26';
- const ssrEditStopDate: string = '2023-01-15';
- ////////////////////////////////////
-
 @Injectable({ providedIn: 'root' })
 export class ConstantsService extends BaseDataService {
   private codeValuesUrl = this.WebApiPrefix + 'lookup/codeValues';
@@ -38,6 +38,14 @@ export class ConstantsService extends BaseDataService {
     catchError(this.handleError)
   );
 
+  private qrDatesUrl = this.WebApiPrefix + 'lookup/qrDates';
+  ssrDates$: Observable<QRDATES> = this.http.get<QRDATES>(this.qrDatesUrl).pipe(
+    tap((data) => console.log('qrDates results ', JSON.stringify(data))),
+    shareReplay(1),
+    catchError(this.handleError)
+  );
+
+
   constructor(public http: HttpClient, public webApiPrefixService: UrlService, public store: Store) {
     super(http, webApiPrefixService);
     console.log('hello from constantsService constructor');
@@ -45,14 +53,15 @@ export class ConstantsService extends BaseDataService {
 
 
 
-  public buildArrays() {
+  public loadFromDB() {
+    this.setSSRDateRange();
     this.buildCodeValueArrays();
     this.generateQRPeriods();
     this.generateJoinedYears();
     this.generateGradYears();
     this.generateContactYears();
     this.generateMRAdjustedContactPeriod();
-    this.generateSSRDateRange();
+
   }
 
   public generateJoinedYears() {
@@ -169,11 +178,6 @@ export class ConstantsService extends BaseDataService {
     // console.log(constants.qrPeriods);
   }
 
-  public generateSSRDateRange() {
-    constants.ssrEditDateRange = ssrEditStartDate + '|' + ssrEditStopDate;
-    console.log('####ssrEditDateRange: ' + constants.ssrEditDateRange);
-  }
-
   generateMRAdjustedContactPeriod(): void {
     const now = new Date();
     let thisYear  = now.getFullYear();
@@ -221,6 +225,20 @@ export class ConstantsService extends BaseDataService {
   }
 
 
+  public setSSRDateRange() {
+    let x = 'NOTSETYET';
+    this.ssrDates$.pipe().subscribe(
+      (data) => {
+        x = data.ssrDateRange;
+          constants.ssrDateRange = x;
+      }),
+      (err) => console.error('Subscribe error: ' + err),
+      () => {
+        console.log('xxxxxxxxxx subscribe returned  ' + x);
+      }
+      ;
+  }
+
   public buildCodeValueArrays() {
     this.codeValues$.pipe(toArray()).subscribe(
       (data) => {
@@ -266,12 +284,12 @@ export class ConstantsService extends BaseDataService {
             default:
               break;
           }
-        });
-      },
-      (err) => console.error('Subscribe error: ' + err),
-      () => {
-        console.log('toArray completed ');
-      }
-    );
+         });
+        },
+        (err) => console.error('Subscribe error: ' + err),
+        () => {
+          console.log('toArray completed ');
+        }
+      );
+    }
   }
-}

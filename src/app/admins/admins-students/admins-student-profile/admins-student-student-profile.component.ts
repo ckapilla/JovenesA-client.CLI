@@ -213,9 +213,9 @@ export class AdminsStudentProfileComponent implements OnInit {
     this.studentData.getStudentDTOViaGUID(this.studentGUIdParam).subscribe(
       (data) => {
         this.studentDTO = data;
-        console.log('#######studentDTO: MemberRecordGUId ' + this.studentDTO.memberRecordGUId);
-        console.log('#######studentDTO: mentorGUId ' + this.studentDTO.mentorGUId);
-        console.log('#######studentDTO: studentName ' + this.studentDTO.studentName);
+        console.log('studentDTO: MemberRecordGUId ' + this.studentDTO.memberRecordGUId);
+        console.log('studentDTO: mentorGUId ' + this.studentDTO.mentorGUId);
+        console.log('studentDTO: studentName ' + this.studentDTO.studentName);
         this.studentDTO = this.getNumericStatus(this.studentDTO);
       },
       (err) => {
@@ -253,7 +253,7 @@ export class AdminsStudentProfileComponent implements OnInit {
 
         console.log('getStudent is done now set timeout for scroll');
         this.setFormValues(this.student);
-        console.log('#######student: dispatching mentorGUId ' + this.student.mentorGUId);
+        console.log('student: dispatching mentorGUId ' + this.student.mentorGUId);
         this.store.dispatch(new SetPhotoPathname(this.student.photoUrl));
         this.store.dispatch(new SetSelectedStudentGUId(this.student.studentGUId));
         // this.store.dispatch(new SetSelectedStudentName(this.student.studentName));
