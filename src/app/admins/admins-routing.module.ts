@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CanActivateViaAdminAuthGuard, ConfirmDeactivateMRSummaryUpdatesGuard, ConfirmDeactivateStudentProfileUpdatesGuard } from '../app.routing-guards';
+import { AdminsHomeComponent } from './admins-home/admins-home.component';
 import { AdminsAddMemberComponent } from './admins-members/admins-add-member/admins-add-member.component';
 import { AdminsMemberListComponent } from './admins-members/admins-member-list/admins-member-list.component';
 import { AdminsMemberSearchComponent } from './admins-members/admins-member-search/admins-member-search.component';
@@ -32,7 +33,7 @@ const adminRoutes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        component: AdminsStudentSearchComponent// AdminsHomeComponent
+        component: AdminsHomeComponent // AdminsStudentSearchComponent//
       },
       // {
       //   path: 'becas-home',
