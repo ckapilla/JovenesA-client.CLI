@@ -45,7 +45,6 @@ import { MarkedPipe } from './pipes/marked-pipe';
 import { TrimGuidPipe } from './pipes/trim-guid-pipe';
 import { TruncateDatePipe } from './pipes/truncate-date-pipe';
 import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
-
 /**
  * Do not specify provider's for modules that might be imported by a lazy loaded module.
  */
@@ -141,7 +140,7 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     StudentPhotoComponent,
     EmptyStatusPipe,
     FileUploaderComponent,
-    StudentHeader2Component
+    StudentHeader2Component,
   ]
 })
 export class AppSharedModule {

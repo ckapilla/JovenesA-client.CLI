@@ -13,7 +13,7 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "allowedCommonJsDependencies": [ "zone.js/dist/zone-error", "util" ],
+                        "allowedCommonJsDependencies": [ "zone.js/dist/zone-error", "util", "highcharts" ],
                         "outputPath": "dist/ja",
                         "index": "src/index.html",
                         "main": "src/main.ts",

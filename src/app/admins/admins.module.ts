@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppSharedModule } from '../_shared/_shared.module';
-// import { SelfReportsUpdatesComponent } from '../students/self-reports-updates/self-reports-updates.component';
-import { AdminsHomeComponent } from './admins-home/admins-home.component';
+
+// import { AdminsHomeComponent } from './admins-home/admins-home.component';
 import { AdminsAddMemberComponent } from './admins-members/admins-add-member/admins-add-member.component';
 import { AdminsMemberListComponent } from './admins-members/admins-member-list/admins-member-list.component';
 import { AdminsMemberSearchComponent } from './admins-members/admins-member-search/admins-member-search.component';
@@ -44,7 +44,7 @@ import { UtilitiesComponent } from './utilities/utilities.component';
     imports: [AppSharedModule, AdminsRoutingModule, ReactiveFormsModule, FormsModule, NgbModule],
     declarations: [
         AdminsComponent,
-        AdminsHomeComponent,
+        // AdminsHomeComponent,
         AdminsMemberListComponent,
         AdminsMemberComponent,
         AdminsAddMemberComponent,
