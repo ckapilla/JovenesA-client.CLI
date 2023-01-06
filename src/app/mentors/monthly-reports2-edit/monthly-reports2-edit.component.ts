@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
@@ -18,7 +18,7 @@ interface IValidationType {
   templateUrl: '../monthly-reports2-edit/monthly-reports2-edit.component.html'
 })
 export class MonthlyReports2EditComponent implements OnInit {
-  myForm: FormGroup;
+  myForm: UntypedFormGroup;
   mentorReport2: MentorReport2RPT = new MentorReport2RPT();
   isLoading: boolean;
   isSubmitted: boolean;
@@ -47,7 +47,7 @@ export class MonthlyReports2EditComponent implements OnInit {
     public currRoute: ActivatedRoute,
     private router: Router,
     public mentorReportData: MentorReport2DataService,
-    private _fb: FormBuilder,
+    private _fb: UntypedFormBuilder,
     private session: SessionService,
     private store: Store
   ) {
@@ -190,7 +190,7 @@ export class MonthlyReports2EditComponent implements OnInit {
     this.router.navigateByUrl(target);
   }
 
-  validateMonth(control: FormControl): IValidationType {
+  validateMonth(control: UntypedFormControl): IValidationType {
     // console.log('validateMonth has input ' + control.value);
     // tslint:disable-next-line: triple-equals
     if ('' + control.value === '0') {
@@ -202,7 +202,7 @@ export class MonthlyReports2EditComponent implements OnInit {
     }
   }
 
-  validateEmojis(control: FormControl): IValidationType {
+  validateEmojis(control: UntypedFormControl): IValidationType {
     // console.log('emoji validator ' + control.value);
     if (control.value === 666) {
       return { validateEmojis: true };

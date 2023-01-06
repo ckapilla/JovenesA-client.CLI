@@ -16,7 +16,7 @@
         "name": "typescript-tslint-plugin"
       }
     ],
-    "target": "es2015",
+    "target": "es2020",
     "paths": {
       "auth0-js": [
         "node_modules/auth0-js/build/auth0.js"

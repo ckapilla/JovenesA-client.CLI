@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SponsorGroupDataService } from 'src/app/_shared/data/sponsor-group-data.service';
 import { SponsorGroup } from 'src/app/_shared/models/sponsor-group';
@@ -11,7 +11,7 @@ import { SORTCRITERIA } from '../../_shared/interfaces/SORTCRITERIA';
   templateUrl: './sponsor-group.component.html'
 })
 export class SponsorGroupComponent implements OnInit {
-  myForm: FormGroup;
+  myForm: UntypedFormGroup;
   sponsorGroup: SponsorGroup;
   isLoading: boolean;
   submitted: boolean;
@@ -26,7 +26,7 @@ export class SponsorGroupComponent implements OnInit {
     public currRoute: ActivatedRoute,
     public sponsorGroupData: SponsorGroupDataService,
     public router: Router,
-    public formBuilder: FormBuilder,
+    public formBuilder: UntypedFormBuilder,
     public location: Location
   ) {
     this.isLoading = false;

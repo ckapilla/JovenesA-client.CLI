@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
@@ -15,7 +15,7 @@ import { StudentState } from 'src/app/_store/student/student.state';
   styleUrls: ['../../../../assets/css/forms.css']
 })
 export class MentorReportSummaryUpdatesComponent implements OnInit {
-  myForm: FormGroup;
+  myForm: UntypedFormGroup;
   mentorReport2: MentorReport2RPT;
   isLoading: boolean;
   submitted: boolean;
@@ -55,7 +55,7 @@ export class MentorReportSummaryUpdatesComponent implements OnInit {
     public currRoute: ActivatedRoute,
     private router: Router,
     public mentorReportData: MentorReport2DataService,
-    private _fb: FormBuilder,
+    private _fb: UntypedFormBuilder,
     public session: SessionService,
     private store: Store
   ) {
@@ -239,7 +239,7 @@ export class MentorReportSummaryUpdatesComponent implements OnInit {
     this.router.navigate([target], navigationExtras);
   }
 
-  validateEmojis(control: FormControl): { [error: string]: any } {
+  validateEmojis(control: UntypedFormControl): { [error: string]: any } {
     // console.log('emoji validator ' + control.value);
     const rtnVal: any = control.value === 666 ? { validateEmojis: { valid: false } } : null;
     console.log(rtnVal);

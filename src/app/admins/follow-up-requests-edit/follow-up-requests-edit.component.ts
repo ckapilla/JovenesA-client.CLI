@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { BehaviorSubject, EMPTY, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -16,7 +16,7 @@ import { TranslationService } from '../../_shared/services/translation.service';
   templateUrl: './follow-up-requests-edit.component.html'
 })
 export class FollowUpRequestsEditComponent implements OnInit {
-  myForm: FormGroup;
+  myForm: UntypedFormGroup;
   followUpRequest: FollowUpRequest;
   isLoading: boolean;
   submitted: boolean;
@@ -43,7 +43,7 @@ export class FollowUpRequestsEditComponent implements OnInit {
     private router: Router,
     public followUpData: FollowUpDataService,
     public miscData: MiscDataService,
-    private _fb: FormBuilder,
+    private _fb: UntypedFormBuilder,
     private session: SessionService,
     private xlator: TranslationService
   ) {

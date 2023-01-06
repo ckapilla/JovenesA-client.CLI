@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, EMPTY, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -16,7 +16,7 @@ import { TranslationService } from '../../_shared/services/translation.service';
   templateUrl: './follow-up-requests-add.component.html'
 })
 export class FollowUpRequestsAddComponent implements OnInit {
-  myForm: FormGroup;
+  myForm: UntypedFormGroup;
   followUpRequest: FollowUpRequest;
   isLoading: boolean;
   submitted: boolean;
@@ -49,7 +49,7 @@ adminsubject: BehaviorSubject<[SELECTITEM]>;
     private router: Router,
     public followUpData: FollowUpDataService,
     public miscData: MiscDataService,
-    private _fb: FormBuilder,
+    private _fb: UntypedFormBuilder,
     private session: SessionService,
     private xlator: TranslationService
   ) {

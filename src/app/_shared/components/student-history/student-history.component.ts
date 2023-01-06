@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
 import { StudentDataService } from 'src/app/_shared/data/student-data.service';
@@ -11,7 +11,7 @@ import { StudentState } from 'src/app/_store/student/student.state';
   templateUrl: './student-history.component.html'
 })
 export class StudentHistoryComponent implements OnInit {
-  myForm: FormGroup;
+  myForm: UntypedFormGroup;
   private subscription: Subscription;
   public studentGUId: string;
   public isLoading = false;
@@ -24,7 +24,7 @@ export class StudentHistoryComponent implements OnInit {
    currentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
 
   constructor(
-    public formBuilder: FormBuilder,
+    public formBuilder: UntypedFormBuilder,
     public studentData: StudentDataService,
     private store: Store
   ) {

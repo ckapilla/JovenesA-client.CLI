@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
@@ -14,7 +14,7 @@ import { StudentState } from 'src/app/_store/student/student.state';
   templateUrl: './ssr-summary-updates.component.html'
 })
 export class StudentSelfReportsSummaryUpdatesComponent implements OnInit {
-  myForm: FormGroup;
+  myForm: UntypedFormGroup;
   selfReport: StudentSelfReport;
   isLoading: boolean;
   submitted: boolean;
@@ -42,7 +42,7 @@ export class StudentSelfReportsSummaryUpdatesComponent implements OnInit {
     public currRoute: ActivatedRoute,
     private router: Router,
     public selfReportData: StudentSelfReportDataService,
-    private _fb: FormBuilder,
+    private _fb: UntypedFormBuilder,
     public session: SessionService,
     private store: Store
   ) {

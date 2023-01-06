@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { EMPTY, Observable, Subscription } from 'rxjs';
@@ -23,7 +23,7 @@ import { UrlService } from '../../_shared/services/url.service';
   styleUrls: ['./grades-edit.component.css']
 })
 export class GradesEditComponent implements OnInit {
-  myForm: FormGroup;
+  myForm: UntypedFormGroup;
   studentDTO: StudentDTO;
   studentGradesData: StudentGrades[];
   entry: GradesGivenEntryDTO;
@@ -54,7 +54,7 @@ export class GradesEditComponent implements OnInit {
     private miscData: MiscDataService,
     private session: SessionService,
     private columnSorter: ColumnSortService,
-    private _fb: FormBuilder,
+    private _fb: UntypedFormBuilder,
     public location: Location,
     public url: UrlService,
     private store: Store
@@ -71,11 +71,11 @@ export class GradesEditComponent implements OnInit {
     });
   }
 
-  gradeEntryRows(): FormArray {
-    return <FormArray>this.myForm.get('gradeEntryRows');
+  gradeEntryRows(): UntypedFormArray {
+    return <UntypedFormArray>this.myForm.get('gradeEntryRows');
   }
 
-  createEmptyGradeEntryRow(): FormGroup {
+  createEmptyGradeEntryRow(): UntypedFormGroup {
     console.log('CreateEmptyGradeEntry create empty row to be populated');
     return this._fb.group({
       gradesProcessingPeriodId: { value: '', disabled: true },
@@ -92,7 +92,7 @@ export class GradesEditComponent implements OnInit {
     });
   }
 
-  updateGradeEntryRow(gradeEntryRow: FormGroup, entryData: StudentGrades): FormGroup {
+  updateGradeEntryRow(gradeEntryRow: UntypedFormGroup, entryData: StudentGrades): UntypedFormGroup {
     console.log('updateGradeEntryRow update existing row with actual data');
     console.log(JSON.stringify(entryData));
     gradeEntryRow.patchValue({
@@ -110,7 +110,7 @@ export class GradesEditComponent implements OnInit {
   }
 
   addGradeEntryRow(gradeEntryData: StudentGrades) {
-    const gradeEntryRow: FormGroup = this.createEmptyGradeEntryRow();
+    const gradeEntryRow: UntypedFormGroup = this.createEmptyGradeEntryRow();
 
     this.updateGradeEntryRow(gradeEntryRow, gradeEntryData);
     console.log('addGradeEntry: push new populated row intoFormArray');
@@ -226,7 +226,7 @@ export class GradesEditComponent implements OnInit {
           window.setTimeout(() => {
             this.successMessage = 'Changes were saved successfully.';
           }, 0);
-          const currRowFormGroup = this.gradeEntryRows().controls[i] as FormGroup;
+          const currRowFormGroup = this.gradeEntryRows().controls[i] as UntypedFormGroup;
           // this fails for some reason, and isn't needed because the update won't change any of these values
           // this.updateGradeEntryRow(currRowFormGroup, gradeRowData);
           currRowFormGroup.markAsPristine();
@@ -274,7 +274,7 @@ export class GradesEditComponent implements OnInit {
     }
     const strDate = [d.getFullYear(), ('0' + (d.getMonth() + 1)).slice(-2), ('0' + d.getDate()).slice(-2)].join('-');
 
-    const gradeEntryRow: FormGroup = this.gradeEntryRows().controls[i] as FormGroup;
+    const gradeEntryRow: UntypedFormGroup = this.gradeEntryRows().controls[i] as UntypedFormGroup;
     gradeEntryRow.patchValue({
       gradesTurnedInDate: strDate
     });
@@ -283,7 +283,7 @@ export class GradesEditComponent implements OnInit {
 
   setConfirmedBy(i: number, adminId?: any): void {
     console.log('setConfirmedBy with adminId = ' + adminId);
-    const gradeEntryRow: FormGroup = this.gradeEntryRows().controls[i] as FormGroup;
+    const gradeEntryRow: UntypedFormGroup = this.gradeEntryRows().controls[i] as UntypedFormGroup;
     if (adminId === null || adminId === 'null') {
 
       gradeEntryRow.patchValue({

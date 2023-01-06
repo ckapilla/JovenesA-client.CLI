@@ -1,5 +1,5 @@
 import { Component, Host, Input } from '@angular/core';
-import { FormGroup, FormGroupDirective } from '@angular/forms';
+import { UntypedFormGroup, FormGroupDirective } from '@angular/forms';
 
 @Component({
   template: '<div>{{currentError}}</div>',
@@ -8,7 +8,7 @@ import { FormGroup, FormGroupDirective } from '@angular/forms';
 export class DisplayErrorsComponent {
   @Input() errors: Object;
   @Input() control: string;
-  myFormGroup: FormGroup;
+  myFormGroup: UntypedFormGroup;
   // constructor(@Host() private formDir: NgForm) {}
   constructor(@Host() private myFormGroupDirective: FormGroupDirective) { }
   get currentError() {

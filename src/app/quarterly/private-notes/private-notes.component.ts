@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
@@ -21,7 +21,7 @@ export class PrivateNotesComponent implements OnInit {
   successMessage: string;
   privateNotes: QuarterlyReport;
   quarterlyReportId: number;
-  myForm: FormGroup;
+  myForm: UntypedFormGroup;
   narrativeCtl: AbstractControl;
   reportIdCtl: AbstractControl;
   studentGUId: string;
@@ -37,7 +37,7 @@ export class PrivateNotesComponent implements OnInit {
     public currRoute: ActivatedRoute,
     private router: Router,
     public miscData: MiscDataService,
-    private _fb: FormBuilder,
+    private _fb: UntypedFormBuilder,
     public session: SessionService,
     public quarterlyData: QuarterlyDataService,
     private store: Store

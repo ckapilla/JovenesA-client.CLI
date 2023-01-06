@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { SessionService } from 'src/app/_shared/services/session.service';
 import { constants } from '../../_shared/constants/constants';
@@ -11,7 +11,7 @@ import { Member } from '../../_shared/models/member';
   templateUrl: './students-profile.component.html'
 })
 export class StudentProfileComponent implements OnInit {
-  myForm: FormGroup;
+  myForm: UntypedFormGroup;
   data: Object;
   isLoading: boolean;
   submitted: boolean;
@@ -28,7 +28,7 @@ export class StudentProfileComponent implements OnInit {
     public currRoute: ActivatedRoute,
     private session: SessionService,
     public memberData: MemberDataService,
-    public formBuilder: FormBuilder
+    public formBuilder: UntypedFormBuilder
   ) {
     console.log('hi from profile.component constructor');
     this.languageStatuses = constants.languageStatuses;

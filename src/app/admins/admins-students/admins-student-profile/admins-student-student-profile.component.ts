@@ -1,6 +1,6 @@
 import { formatDate, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { BehaviorSubject, EMPTY, Observable, Subscription } from 'rxjs';
@@ -22,7 +22,7 @@ import { StudentState } from 'src/app/_store/student/student.state';
   styleUrls: ['./admins-student-student-profile.component.css']
 })
 export class AdminsStudentProfileComponent implements OnInit {
-  myForm: FormGroup;
+  myForm: UntypedFormGroup;
   data: Object;
   isLoading: boolean;
   submitted: boolean;
@@ -108,7 +108,7 @@ export class AdminsStudentProfileComponent implements OnInit {
     public urlService: UrlService,
     public studentData: StudentDataService,
     public miscData: MiscDataService,
-    public formBuilder: FormBuilder,
+    public formBuilder: UntypedFormBuilder,
     public location: Location,
     public store: Store
   ) {

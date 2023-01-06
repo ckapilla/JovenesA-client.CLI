@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MemberDataService } from '../../data/member-data.service';
 import { MemberMiniDTO } from '../../models/memberMiniDTO';
@@ -10,7 +10,7 @@ import { SponsorGroupMember } from '../../models/sponsor-group-member';
   templateUrl: './sponsor-group-member-edit.component.html'
 })
 export class SponsorGroupMemberEditComponent implements OnInit {
-  myForm: FormGroup;
+  myForm: UntypedFormGroup;
   isLoading: boolean;
   submitted: boolean;
   bReadOnly = true;
@@ -27,7 +27,7 @@ export class SponsorGroupMemberEditComponent implements OnInit {
     public currRoute: ActivatedRoute,
     public memberData: MemberDataService,
     public router: Router,
-    public formBuilder: FormBuilder
+    public formBuilder: UntypedFormBuilder
   ) {
     this.isLoading = false;
 

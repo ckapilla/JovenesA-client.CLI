@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { constants } from 'src/app/_shared/constants/constants';
 import { MemberDataService } from 'src/app/_shared/data/member-data.service';
@@ -13,7 +13,7 @@ import { UrlService } from 'src/app/_shared/services/url.service';
   styleUrls: ['./admins-member.component.css']
 })
 export class AdminsMemberComponent implements OnInit {
-  myForm: FormGroup;
+  myForm: UntypedFormGroup;
   data: Object;
   isLoading: boolean;
   submitted: boolean;
@@ -36,7 +36,7 @@ export class AdminsMemberComponent implements OnInit {
     private router: Router,
     public urlService: UrlService,
     public memberData: MemberDataService,
-    public formBuilder: FormBuilder,
+    public formBuilder: UntypedFormBuilder,
     public location: Location
   ) {
     console.log('hi from AdminsMember constructor');

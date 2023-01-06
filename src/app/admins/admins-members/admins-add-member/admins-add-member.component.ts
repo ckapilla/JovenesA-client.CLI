@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { constants } from 'src/app/_shared/constants/constants';
 import { MemberDataService } from 'src/app/_shared/data/member-data.service';
@@ -13,7 +13,7 @@ import { UrlService } from 'src/app/_shared/services/url.service';
   styleUrls: ['./admins-add-member.component.css']
 })
 export class AdminsAddMemberComponent implements OnInit {
-  myForm: FormGroup;
+  myForm: UntypedFormGroup;
   data: Object;
   isLoading: boolean;
   submitted: boolean;
@@ -39,7 +39,7 @@ export class AdminsAddMemberComponent implements OnInit {
     private router: Router,
     public urlService: UrlService,
     public memberData: MemberDataService,
-    private _fb: FormBuilder,
+    private _fb: UntypedFormBuilder,
     public location: Location
   ) {
     console.log('hi from AdminsAddMember constructor');
@@ -181,7 +181,7 @@ export class AdminsAddMemberComponent implements OnInit {
     this.router.navigate(link);
   }
 
-  setAllTextFields(fg: FormGroup) {
+  setAllTextFields(fg: UntypedFormGroup) {
     console.log('check if set all text fields');
     console.log('>' + fg.controls.firstNames.value + '<');
     console.log('>' + fg.controls.lastNames.value + '<');
@@ -195,7 +195,7 @@ export class AdminsAddMemberComponent implements OnInit {
     return null;
   }
 
-  setAtLeastOneStatus(fg: FormGroup) {
+  setAtLeastOneStatus(fg: UntypedFormGroup) {
     if (
       fg.controls.mentorStatusId.value === '' &&
       fg.controls.sponsorStatusId.value === '' &&

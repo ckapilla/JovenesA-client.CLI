@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
@@ -23,7 +23,7 @@ export class MrConsolidatedComponent implements OnInit {
 
   mentorReport: QuarterlyReport;
   mentorReportId: number;
-  myForm: FormGroup;
+  myForm: UntypedFormGroup;
   narrative_EnglishCtl: AbstractControl;
   narrative_SpanishCtl: AbstractControl;
   reportIdCtl: AbstractControl;
@@ -40,7 +40,7 @@ export class MrConsolidatedComponent implements OnInit {
     public currRoute: ActivatedRoute,
     private router: Router,
     public miscData: MiscDataService,
-    private _fb: FormBuilder,
+    private _fb: UntypedFormBuilder,
     public session: SessionService,
     public quarterlyData: QuarterlyDataService,
     private store: Store

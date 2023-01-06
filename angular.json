@@ -77,7 +77,6 @@
             }
         }
     },
-    "defaultProject": "ja",
     "cli": {
         "analytics": false
     }

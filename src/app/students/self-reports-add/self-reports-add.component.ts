@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
@@ -15,7 +15,7 @@ import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
   styleUrls: ['./self-reports-add.component.css', '../../../assets/css/forms.css']
 })
 export class SelfReportsAddComponent implements OnInit {
-  myForm: FormGroup;
+  myForm: UntypedFormGroup;
 
   isLoading: boolean;
   submitted: boolean;
@@ -38,7 +38,7 @@ export class SelfReportsAddComponent implements OnInit {
     public currRoute: ActivatedRoute,
     private router: Router,
     public ssrData: StudentSelfReportDataService,
-    private _fb: FormBuilder,
+    private _fb: UntypedFormBuilder,
     private store: Store
   ) {
     console.log('Hi from SelfReportsAddComponent');
