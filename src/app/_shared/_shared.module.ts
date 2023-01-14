@@ -3,6 +3,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HighchartsChartModule } from 'highcharts-angular';
 import { NgxFileDropModule } from 'ngx-file-drop';
 import { CallbackComponent } from './components/callback.component';
 import { DisplayErrorsComponent } from './components/display-errors.component';
@@ -141,6 +142,8 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     EmptyStatusPipe,
     FileUploaderComponent,
     StudentHeader2Component,
+    HighchartsChartModule,
+
   ]
 })
 export class AppSharedModule {

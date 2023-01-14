@@ -15,20 +15,6 @@ export class MentorReportsStatusCountsComponent implements OnChanges {
   constructor(private mentorReportsData: MentorReport2DataService) {}
 
   public ngOnChanges() {
-    // this.statusCounts = [{
-    //   reportYear: 2017,
-    //   reportMonth: 10,
-    //   sponsorSummaryStatusId: 2087,
-    //   sponsorSummaryStatus: 'NeedsReview',
-    //   statusCount: 44
-    // }, {
-    //     reportYear: 2017,
-    //     reportMonth: 10,
-    //     sponsorSummaryStatusId: 2088,
-    //     sponsorSummaryStatus: 'ReadyToSend',
-    //     statusCount: 7
-    //   }
-    // ];
     console.log('ngOnChanges has fired, calling data service with ');
     console.log(this.year);
     console.log(this.month);

@@ -3,7 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppSharedModule } from '../_shared/_shared.module';
 
-// import { AdminsHomeComponent } from './admins-home/admins-home.component';
+import { AdminsHomeComponent } from './admins-home/admins-home.component';
 import { AdminsAddMemberComponent } from './admins-members/admins-add-member/admins-add-member.component';
 import { AdminsMemberListComponent } from './admins-members/admins-member-list/admins-member-list.component';
 import { AdminsMemberSearchComponent } from './admins-members/admins-member-search/admins-member-search.component';
@@ -38,13 +38,16 @@ import { SponsorGroupsComponent } from './sponsor-groups/sponsor-groups.componen
 import { ServerEnvironmentComponent } from './utilities/server-environment/server-environment.component';
 import { TestNamesVisibilityComponent } from './utilities/test-names-visibility/test-names-visibility.component';
 import { UtilitiesComponent } from './utilities/utilities.component';
-// import { MentorReportsComponent } from './reports/mentor-reports/mentor-reports.component';
+
+import { WHSE_SSR_Component } from '../_shared/components/whse-ssr/whse-ssr.component';
+
+import { WHSE_MR_Component } from '../_shared/components/whse-mr/whse-mr.component';
 
 @NgModule({
     imports: [AppSharedModule, AdminsRoutingModule, ReactiveFormsModule, FormsModule, NgbModule],
     declarations: [
         AdminsComponent,
-        // AdminsHomeComponent,
+        AdminsHomeComponent,
         AdminsMemberListComponent,
         AdminsMemberComponent,
         AdminsAddMemberComponent,
@@ -78,7 +81,9 @@ import { UtilitiesComponent } from './utilities/utilities.component';
         TestNamesVisibilityComponent,
         AdminsStudentContainerComponent,
         AdminsStudentMemberDataComponent,
-        AdminsStudentQRsComponent
+        AdminsStudentQRsComponent,
+        WHSE_SSR_Component,
+        WHSE_MR_Component
     ],
     exports: [AdminsStudentMRsComponent, AdminsStudentQRsComponent, SponsorGroupsComponent]
 })

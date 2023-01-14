@@ -23,6 +23,9 @@ export function appInit(constantsService: ConstantsService) {
 }
 
 @NgModule({
+  declarations: [
+    AppComponent, HeaderbarComponent
+  ],
   imports: [
     BrowserModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'always' }),
@@ -33,9 +36,8 @@ export function appInit(constantsService: ConstantsService) {
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot(),
     AppSharedModule.forRoot()
-  ],
 
-  declarations: [AppComponent, HeaderbarComponent],
+  ],
 
   exports: [ReactiveFormsModule, HttpClientModule, AppRoutingModule],
   providers: [

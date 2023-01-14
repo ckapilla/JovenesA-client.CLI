@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { URL_CONFIG } from './url-config';
+import { URL_CONFIG } from '../../../url-config';
 
 @Injectable({ providedIn: 'root' })
 export class UrlService {
