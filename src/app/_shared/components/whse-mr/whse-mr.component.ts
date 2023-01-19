@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { WHSE_DataService } from '../../data/whse-data.service';
-import { WHSE_MR } from '../../models/WHSE_MR';
-/**
- * This class represents the lazy loaded BecasHomeComponent.
- */
+import { WHSE_MRCount } from '../../models/WHSE_MR.Count';
+
+
 @Component({
   selector: 'whse-mr',
   templateUrl: 'whse-mr.component.html'
@@ -13,53 +12,59 @@ import { WHSE_MR } from '../../models/WHSE_MR';
 export class WHSE_MR_Component implements OnInit {
 
   isLoading: boolean;
-  whseMR: WHSE_MR[];
-  Highcharts = Highcharts;
-  stackedbarchart: any = {
+  whseMR: WHSE_MRCount[];
+  Highcharts: typeof Highcharts = Highcharts;
+  dummyData =[];
+  myCategories = this.dummyData.map(a => a.yearMonth);
+  myData0 = this.dummyData.map(a => a.allGood);
+  myData1 = this.dummyData.map(a => a.celebrate);
+  myData2 = this.dummyData.map(a => a.concerned);
+  myData3 = this.dummyData.map(a => a.problems);
+
+  chartOptions: Highcharts.Options = {
     series: [
       {
-        name:'Problems',
-        data: [3, 5, 1, 13],
-      },
-      {
+        type: 'column',
         name:'AllGood',
-        data: [14, 8, 8, 12],
+        color: '#00b300'
       },
       {
+        type: 'column',
+        name:'Problems',
+        color: '#b30000'
+      },
+      {
+        type: 'column',
         name:'Celebrate',
-        data: [14, 8, 8, 12],
+        color: '#ffb31a'
       },
       {
+        type: 'column',
         name:'Concerned',
-        data: [0, 2, 6, 3],
+        color: '#4da6ff'
+
       },
     ],
     chart: {
-      type: 'column',
+      height: 300
     },
     title: {
-      text: 'Mentor Reports by Month',
-    },
-    xAxis: {
-      categories: ['2020-Jan',
-        '2020-Feb',
-        '2020-Mar',
-        '2020-Apr',
-        '2020-May'
-        ]
-    },
-    yAxis: {
-      min: 0
+      text: 'Mentor Reports by Emoji by Month',
     },
     plotOptions: {
       column: {
           stacking: 'normal',
           dataLabels: {
-              enabled: true
+              enabled: false
           }
       }
+    },
+    yAxis: {
+      reversedStacks: false,
+      tickInterval: 10,
   },
   };
+
   constructor(public whseData: WHSE_DataService) {
 
   }
@@ -69,24 +74,35 @@ export class WHSE_MR_Component implements OnInit {
 
   fetchData() {
     this.isLoading = true;
-    console.log('in fetchData for getWHSE_MR');
+    console.log('in fetchData for getWHSE_SSR');
     this.whseData.getWHSE_MR().subscribe(
       (data) => {
         this.whseMR = data;
-        this.whseMR = [
-        {"yearMonth":"2020-Jan","problems":7,"allGood":55,"celebrate":19,"concerned":0},
-        {"yearMonth":"2020-Feb","problems":6,"allGood":52,"celebrate":20,"concerned":0},
-        {"yearMonth":"2021-Jun","problems":2,"allGood":60,"celebrate":7,"concerned":0}]
-        console.log('MentorReportsByMonth');
-
       },
       (err) => console.error('Subscribe error: ' + err),
       () => {
         console.log('MentorReportsByMonth loaded ' + this.whseMR.length + ' rows');
-        this.isLoading = false;
         console.log(JSON.stringify(this.whseMR));
+        this.setHighchartValues(this.whseMR);
+        this.isLoading = false;
       }
     );
+  }
+  setHighchartValues(hcValues: any) {
+
+    this.myCategories = hcValues.map(a => a.yearMonth);
+    this.myData0 = hcValues.map(a => a.allGood);
+    this.myData1 = hcValues.map(a => a.problems);
+    this.myData2 = hcValues.map(a => a.celebrate);
+    this.myData3 = hcValues.map(a => a.concerned);
+
+
+    let chart = Highcharts.chart('container_mr', this.chartOptions);
+    chart.xAxis[0].setCategories(this.myCategories);
+    chart.series[0].setData(this.myData0);
+    chart.series[1].setData(this.myData1);
+    chart.series[2].setData(this.myData2);
+    chart.series[3].setData(this.myData3);
   }
 
 

@@ -43,6 +43,13 @@ import { WHSE_SSR_Component } from '../_shared/components/whse-ssr/whse-ssr.comp
 
 import { WHSE_MR_Component } from '../_shared/components/whse-mr/whse-mr.component';
 
+import { WHSE_SS_Component } from '../_shared/components/whse-ss/whse-ss.component';
+
+import { WHSE_DC_Component } from '../_shared/components/whse-dc/whse-dc.component';
+
+import { WHSE_SU_Component } from '../_shared/components/whse-su/whse-su.component';
+
+
 @NgModule({
     imports: [AppSharedModule, AdminsRoutingModule, ReactiveFormsModule, FormsModule, NgbModule],
     declarations: [
@@ -83,7 +90,10 @@ import { WHSE_MR_Component } from '../_shared/components/whse-mr/whse-mr.compone
         AdminsStudentMemberDataComponent,
         AdminsStudentQRsComponent,
         WHSE_SSR_Component,
-        WHSE_MR_Component
+        WHSE_MR_Component,
+        WHSE_SS_Component,
+        WHSE_SU_Component,
+        WHSE_DC_Component
     ],
     exports: [AdminsStudentMRsComponent, AdminsStudentQRsComponent, SponsorGroupsComponent]
 })

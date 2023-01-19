@@ -21,14 +21,13 @@ export class WHSE_SSR_Component implements OnInit {
     ];
 
   myCategories = this.dummyData.map(a => a.yearPeriod);
-  myData = this.dummyData.map(a => a.ssrCount);
+  myData =this.dummyData.map(a => a.ssrCount);
 
   chartOptions: Highcharts.Options = {
     series: [
       {
         type: 'column',
         name: "SSR Submissions",
-        // data: this.myData
       }
     ],
     chart: {
@@ -36,9 +35,6 @@ export class WHSE_SSR_Component implements OnInit {
     },
     title: {
       text: 'Student Self Reports by Month',
-    },
-    xAxis: {
-      // categories: this.myCategories
     },
     plotOptions: {
       column: {
@@ -77,7 +73,7 @@ export class WHSE_SSR_Component implements OnInit {
     this.myCategories = hcValues.map(a => a.yearPeriod);
     this.myData = hcValues.map(a => a.ssrCount);
 
-    let chart = Highcharts.chart('container', this.chartOptions);
+    let chart = Highcharts.chart('container_ssr', this.chartOptions);
     chart.xAxis[0].setCategories(this.myCategories);
     chart.series[0].setData(this.myData);
   }
