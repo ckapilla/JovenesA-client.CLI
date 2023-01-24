@@ -16,32 +16,51 @@ export class WHSE_DC_Component implements OnInit {
   Highcharts: typeof Highcharts = Highcharts;
   dummyData =[] as any[];
 
-  myCategories = [1, 2]; // this.dummyData.map(a => a.yearJoined);
+  myCategories = this.dummyData.map(a => a.snapshotDate);
   myData0 = this.dummyData.map(a => a.completeTotals);
   myData1 = this.dummyData.map(a => a.droppedTotals);
-  myData2 = this.dummyData.map(a => a.percentage);
+  // myData2 = this.dummyData.map(a => a.percentage);
 
 
   chartOptions: Highcharts.Options = {
 
     series: [
+      // {
+      //   type: 'column',
+      //   name: "Dropped vs Completed/Active",
+      // },
       {
         type: 'column',
-        name: "SSR Submissions",
-      }
+        name:'Completed/Current',
+        color: '#00b300'
+      },
+      {
+        type: 'column',
+        name:'Dropped',
+        color: '#b30000'
+      },
+      // {
+      //   type: 'column',
+      //   name:'Percentage',
+      //   color: '#ffb31a'
+      // },
     ],
     chart: {
       height: 300
     },
     title: {
-      text: 'Dropped/Compled/Active',
+      text: 'Current Student Statuses',
+    },
+    xAxis: {
+
     },
     plotOptions: {
       column: {
           stacking: 'normal',
           dataLabels: {
               enabled: true
-          }
+          },
+          grouping: true
       }
   },
   };
@@ -61,7 +80,7 @@ export class WHSE_DC_Component implements OnInit {
       },
       (err) => console.error('Subscribe error: ' + err),
       () => {
-        console.log('StudentStatus by YearJoined loaded ' + this.whseDC.length + ' rows');
+        console.log('StudentStatuses loaded ' + this.whseDC.length + ' rows');
         console.log(JSON.stringify(this.whseDC));
         this.setHighchartValues(this.whseDC);
         this.isLoading = false;
@@ -70,16 +89,22 @@ export class WHSE_DC_Component implements OnInit {
   }
 
   setHighchartValues(hcValues: any) {
-    // this.myCategories = hcValues.map(a => a.yearPeriod);
+    this.myCategories = hcValues.map(a => a.snapshotDate);
     this.myData0 = hcValues.map(a => a.completeTotals);
     this.myData1 = hcValues.map(a => a.droppedTotals);
-    this.myData2 = hcValues.map(a => a.percentage);
+    // this.myData2 = hcValues.map(a => a.percentage);
 
-    let chart = Highcharts.chart('container', this.chartOptions);
-    // chart.xAxis[0].setCategories(this.myCategories);
+    console.log('setting chart values');
+    console.log(JSON.stringify(this.myCategories));
+    console.log(JSON.stringify(this.myData0));
+    console.log(JSON.stringify(this.myData1));
+    // console.log(JSON.stringify(this.myData2));
+
+    let chart = Highcharts.chart('container_dc', this.chartOptions);
+    chart.xAxis[0].setCategories(this.myCategories);
     chart.series[0].setData(this.myData0);
     chart.series[1].setData(this.myData1);
-    chart.series[2].setData(this.myData2);
+    // chart.series[2].setData(this.myData2);
   }
 
 
