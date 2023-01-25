@@ -49,7 +49,7 @@ export class WHSE_MR_Component implements OnInit {
       height: 300
     },
     title: {
-      text: 'Mentor Reports by Emoji by Month',
+      text: 'Mentor Reports per Emoji Status',
     },
     plotOptions: {
       column: {
@@ -62,7 +62,15 @@ export class WHSE_MR_Component implements OnInit {
     yAxis: {
       reversedStacks: false,
       tickInterval: 10,
-  },
+      title: {
+        text: 'Reports per Status',
+      },
+    },
+    xAxis: {
+      labels: {
+        rotation: 90
+      }
+    }
   };
 
   constructor(public whseData: WHSE_DataService) {

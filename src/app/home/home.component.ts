@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../_shared/services/auth.service';
-/**
- * This class represents the lazy loaded BecasHomeComponent.
- */
+
 @Component({
 
   selector: 'app-home',

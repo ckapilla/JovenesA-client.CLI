@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { WHSE_DCCount } from '../models/WHSE_DCCount';
 import { WHSE_MRCount } from '../models/WHSE_MR.Count';
+import { WHSE_SGCount } from '../models/WHSE_SGCount';
 import { WHSE_SSCount } from '../models/WHSE_SSCount';
 import { WHSE_SSRCount } from '../models/WHSE_SSRCount';
 import { WHSE_SUCount } from '../models/WHSE_SUCount';
@@ -34,6 +35,12 @@ export class WHSE_DataService extends BaseDataService {
     console.log('sending AuthHttp get request WHSE_SS with ' + url);
     return this.http.get<WHSE_SSCount[]>(url).pipe(catchError(this.handleError));
   }
+  public getWHSE_SG(): Observable<WHSE_SGCount[]> {
+    const url = this.WebApiPrefix + 'WHSE/sg';
+    console.log('sending AuthHttp get request WHSE_SG with ' + url);
+    return this.http.get<WHSE_SGCount[]>(url).pipe(catchError(this.handleError));
+  }
+
   public getWHSE_DC(): Observable<WHSE_DCCount[]> {
     const url = this.WebApiPrefix + 'WHSE/dc';
     console.log('sending AuthHttp get request WHSE_DC with ' + url);

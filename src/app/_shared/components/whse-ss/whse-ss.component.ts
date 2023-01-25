@@ -3,9 +3,7 @@ import * as Highcharts from 'highcharts';
 import { WHSE_DataService } from '../../data/whse-data.service';
 import { WHSE_SSCount } from '../../models/WHSE_SSCount';
 
-/**
- * This class represents the lazy loaded BecasHomeComponent.
- */
+
 @Component({
   selector: 'whse-ss',
   templateUrl: 'whse-ss.component.html'
@@ -72,6 +70,9 @@ export class WHSE_SS_Component implements OnInit {
     },
       yAxis: {
         reversedStacks: false,
+        title: {
+          text: 'Students per Status',
+        },
     },
   };
 

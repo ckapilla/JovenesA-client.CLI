@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 
 
-/**
- * This class represents the lazy loaded BecasHomeComponent.
- */
+
 @Component({
 
   templateUrl: 'students-home.component.html',

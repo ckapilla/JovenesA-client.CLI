@@ -1,45 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { WHSE_DataService } from '../../data/whse-data.service';
-import { WHSE_SSRCount } from '../../models/WHSE_SSRCount';
+import { WHSE_SGCount } from '../../models/WHSE_SGCount';
 
 
 @Component({
-  selector: 'whse-ssr',
-  templateUrl: 'whse-ssr.component.html'
+  selector: 'whse-sg',
+  templateUrl: 'whse-sg.component.html'
 })
 
-export class WHSE_SSR_Component implements OnInit {
+export class WHSE_SG_Component implements OnInit {
 
   isLoading: boolean;
-  whseSSR: WHSE_SSRCount[];
+  whseSG: WHSE_SGCount[];
   Highcharts: typeof Highcharts = Highcharts;
-  dummyData =[
+  dummyData: any[] =[
     // {"yearPeriod":"2019-3","ssrCount":96},
     ];
 
-  myCategories = this.dummyData.map(a => a.yearPeriod);
-  myData =this.dummyData.map(a => a.ssrCount);
+  myCategories = this.dummyData.map(a => a.yearJoined);
+  myData =this.dummyData.map(a => a.current);
 
   chartOptions: Highcharts.Options = {
     series: [
-
       {
         type: 'column',
-        name:'Completed/Current',
-        color: '#0066ff'
-      },
+        name: "SSR Submissions",
+      }
     ],
     chart: {
       height: 300
     },
     title: {
-      text: 'Student Self Reports by Month',
-    },
-      yAxis: {
-        title: {
-          text: 'Reports Submitted',
-        },
+      text: 'Student Grads',
     },
     plotOptions: {
       column: {
@@ -59,16 +52,16 @@ export class WHSE_SSR_Component implements OnInit {
 
   fetchData() {
     this.isLoading = true;
-    console.log('in fetchData for getWHSE_SSR');
-    this.whseData.getWHSE_SSR().subscribe(
+    console.log('in fetchData for getWHSE_SG');
+    this.whseData.getWHSE_SG().subscribe(
       (data) => {
-        this.whseSSR = data;
+        this.whseSG = data;
       },
       (err) => console.error('Subscribe error: ' + err),
       () => {
-        console.log('StudentsSelfReportsByMonth loaded ' + this.whseSSR.length + ' rows');
-        console.log(JSON.stringify(this.whseSSR));
-        this.setHighchartValues(this.whseSSR);
+        console.log('StudentStatus by YearJoined loaded ' + this.whseSG.length + ' rows');
+        console.log(JSON.stringify(this.whseSG));
+        this.setHighchartValues(this.whseSG);
         this.isLoading = false;
       }
     );
@@ -78,7 +71,7 @@ export class WHSE_SSR_Component implements OnInit {
     this.myCategories = hcValues.map(a => a.yearPeriod);
     this.myData = hcValues.map(a => a.ssrCount);
 
-    let chart = Highcharts.chart('container_ssr', this.chartOptions);
+    let chart = Highcharts.chart('container', this.chartOptions);
     chart.xAxis[0].setCategories(this.myCategories);
     chart.series[0].setData(this.myData);
   }

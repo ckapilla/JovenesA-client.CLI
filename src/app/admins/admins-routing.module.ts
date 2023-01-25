@@ -35,10 +35,10 @@ const adminRoutes: Routes = [
         pathMatch: 'full',
         component: AdminsHomeComponent // AdminsStudentSearchComponent//
       },
-      // {
-      //   path: 'becas-home',
-      //   component: AdminsHomeComponent
-      // },
+      {
+        path: 'home',
+        component: AdminsHomeComponent
+      },
       {
         path: 'sponsor-groups',
         component: SponsorGroupsComponent

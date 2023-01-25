@@ -25,10 +25,6 @@ export class WHSE_DC_Component implements OnInit {
   chartOptions: Highcharts.Options = {
 
     series: [
-      // {
-      //   type: 'column',
-      //   name: "Dropped vs Completed/Active",
-      // },
       {
         type: 'column',
         name:'Completed/Current',
@@ -39,11 +35,6 @@ export class WHSE_DC_Component implements OnInit {
         name:'Dropped',
         color: '#b30000'
       },
-      // {
-      //   type: 'column',
-      //   name:'Percentage',
-      //   color: '#ffb31a'
-      // },
     ],
     chart: {
       height: 300
