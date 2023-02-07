@@ -39,9 +39,10 @@ import { ServerEnvironmentComponent } from './utilities/server-environment/serve
 import { TestNamesVisibilityComponent } from './utilities/test-names-visibility/test-names-visibility.component';
 import { UtilitiesComponent } from './utilities/utilities.component';
 
-import { WHSE_SSR_Component } from '../_shared/components/whse-ssr/whse-ssr.component';
-
+import { WHSE_Daily_MR_Component } from '../_shared/components/whse-daily-mr/whse-daily-mr.component';
+import { WHSE_Daily_SSR_Component } from '../_shared/components/whse-daily-ssr/whse-daily-ssr.component';
 import { WHSE_MR_Component } from '../_shared/components/whse-mr/whse-mr.component';
+import { WHSE_SSR_Component } from '../_shared/components/whse-ssr/whse-ssr.component';
 
 import { WHSE_SG_Component } from '../_shared/components/whse-sg/whse-sg.component';
 import { WHSE_SS_Component } from '../_shared/components/whse-ss/whse-ss.component';
@@ -95,7 +96,9 @@ import { WHSE_SU_Component } from '../_shared/components/whse-su/whse-su.compone
         WHSE_SS_Component,
         WHSE_SG_Component,
         WHSE_SU_Component,
-        WHSE_DC_Component
+        WHSE_DC_Component,
+        WHSE_Daily_MR_Component,
+        WHSE_Daily_SSR_Component,
     ],
     exports: [AdminsStudentMRsComponent, AdminsStudentQRsComponent, SponsorGroupsComponent]
 })

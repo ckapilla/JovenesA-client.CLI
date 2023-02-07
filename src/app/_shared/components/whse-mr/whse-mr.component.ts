@@ -54,9 +54,9 @@ export class WHSE_MR_Component implements OnInit {
     plotOptions: {
       column: {
           stacking: 'normal',
-          dataLabels: {
-              enabled: false
-          }
+          // dataLabels: {
+          //     enabled: false
+          // }
       }
     },
     yAxis: {
@@ -65,6 +65,9 @@ export class WHSE_MR_Component implements OnInit {
       title: {
         text: 'Reports per Status',
       },
+      stackLabels: {
+        enabled: true
+      }
     },
     xAxis: {
       labels: {

@@ -23,7 +23,7 @@ export class WHSE_SS_Component implements OnInit {
   myData1 = this.dummyData.map(a => a.grad);
   myData2 = this.dummyData.map(a => a.sabbatical);
   myData3 = this.dummyData.map(a => a.dropped);
-
+  myData4 = this.dummyData.map(a => a.pending);
 
   chartOptions: Highcharts.Options = {
     series: [
@@ -42,6 +42,11 @@ export class WHSE_SS_Component implements OnInit {
         type: 'column',
         name:'Sabbatical',
         color: '#4da6ff'
+      },
+      {
+        type: 'column',
+        name:'Pending',
+        color: '#0066ff'
       },
       {
         type: 'column',
@@ -64,7 +69,7 @@ export class WHSE_SS_Component implements OnInit {
       column: {
           stacking: 'normal',
           dataLabels: {
-              enabled: true
+              enabled: false
           }
       }
     },
@@ -73,6 +78,9 @@ export class WHSE_SS_Component implements OnInit {
         title: {
           text: 'Students per Status',
         },
+        stackLabels: {
+          enabled: true
+        }
     },
   };
 
@@ -104,7 +112,9 @@ export class WHSE_SS_Component implements OnInit {
     this.myData0 = hcValues.map(a => a.current);
     this.myData1 = hcValues.map(a => a.grad);
     this.myData2 = hcValues.map(a => a.sabbatical);
-    this.myData3 = hcValues.map(a => a.dropped);
+    this.myData3 = hcValues.map(a => a.pending);
+    this.myData4 = hcValues.map(a => a.dropped);
+
 
     let chart = Highcharts.chart('container_ss', this.chartOptions);
     chart.xAxis[0].setCategories(this.myCategories);
@@ -112,6 +122,7 @@ export class WHSE_SS_Component implements OnInit {
     chart.series[1].setData(this.myData1);
     chart.series[2].setData(this.myData2);
     chart.series[3].setData(this.myData3);
+    chart.series[4].setData(this.myData4);
 
   }
 }

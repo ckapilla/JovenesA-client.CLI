@@ -5,6 +5,7 @@ export class WHSE_SSCount {
     public current: number,
     public grad: number,
     public sabbatical: number,
+    public pending: number,
     public dropped: number,
   ) { }
 }

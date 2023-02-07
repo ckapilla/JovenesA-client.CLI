@@ -61,7 +61,7 @@ export class AuthService {
   ) {
     //  if not authenticated, check to see if we have a saved profile
     if (session.getUserId() === 0) {
-      // console.log('no current userProfile so check for stored userProfile');
+      console.log('authService constructor has no current userProfile so check for stored userProfile');
       this.setUserProfileElementsToSession(this.checkRestoreUserProfile());
     }
   }
@@ -124,7 +124,7 @@ export class AuthService {
   */
 
   handleAuthCallback() {
-    // console.log('handleAuthCallback');
+    console.log('handleAuthCallback');
     // Only the callback component should call this method
     // Call when app reloads after user logs in with Auth0
     let targetRoute: string; // Path to redirect to after login processsed
@@ -188,7 +188,7 @@ export class AuthService {
   }
 
   public setUserProfileElementsToSession(userProfile: any): void {
-    // console.log('in extractElementsFromProfile with userProfile:');
+    console.log('in setUserProfileElementsToSession');
     // console.log(userProfile);
     if (userProfile !== null && userProfile !== undefined) {
       const app_metadata = userProfile['app_metadata'];
@@ -223,7 +223,7 @@ export class AuthService {
   }
 
   public checkRestoreUserProfile(): any {
-    // console.log('in checkRestoreUserProfile with' + JSON.parse(localStorage.getItem('userProfile')));
+    console.log('in checkRestoreUserProfile with' + JSON.parse(localStorage.getItem('userProfile')));
     return JSON.parse(localStorage.getItem('userProfile'));
   }
 

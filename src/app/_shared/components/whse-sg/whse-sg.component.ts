@@ -49,7 +49,7 @@ export class WHSE_SG_Component implements OnInit {
       column: {
           stacking: 'normal',
           dataLabels: {
-              enabled: true
+              enabled: false
           }
       }
     },
@@ -58,6 +58,9 @@ export class WHSE_SG_Component implements OnInit {
         title: {
           text: 'Number of Students',
         },
+        stackLabels: {
+          enabled: true
+        }
     },
     xAxis: {
       labels: {

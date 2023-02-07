@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { WHSE_DailyMRCount } from '../models/WHSE_DailyMRCount';
+import { WHSE_DailySSRCount } from '../models/WHSE_DailySSRCount';
 import { WHSE_DCCount } from '../models/WHSE_DCCount';
 import { WHSE_MRCount } from '../models/WHSE_MR.Count';
 import { WHSE_SGCount } from '../models/WHSE_SGCount';
@@ -50,6 +52,16 @@ export class WHSE_DataService extends BaseDataService {
     const url = this.WebApiPrefix + 'WHSE/su';
     console.log('sending AuthHttp get request WHSE_SU with ' + url);
     return this.http.get<WHSE_SUCount[]>(url).pipe(catchError(this.handleError));
+  }
+  public getWHSE_DailyMR(): Observable<WHSE_DailyMRCount[]> {
+    const url = this.WebApiPrefix + 'WHSE/daily-mr';
+    console.log('sending AuthHttp get request WHSE_DailyMR with ' + url);
+    return this.http.get<WHSE_DailyMRCount[]>(url).pipe(catchError(this.handleError));
+  }
+  public getWHSE_DailySSR(): Observable<WHSE_DailySSRCount[]> {
+    const url = this.WebApiPrefix + 'WHSE/daily-ssr';
+    console.log('sending AuthHttp get request WHSE_DailySSR with ' + url);
+    return this.http.get<WHSE_DailySSRCount[]>(url).pipe(catchError(this.handleError));
   }
 
 
