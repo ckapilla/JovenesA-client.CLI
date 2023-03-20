@@ -77,14 +77,14 @@ export class WHSE_SG_Component implements OnInit {
 
   fetchData() {
     this.isLoading = true;
-    console.log('in fetchData for getWHSE_SSR');
+    console.log('in fetchData for getWHSE_SG');
     this.whseData.getWHSE_SG().subscribe(
       (data) => {
         this.whseSG = data;
       },
       (err) => console.error('Subscribe error: ' + err),
       () => {
-        console.log('StudentStatus by YearJoined loaded ' + this.whseSG.length + ' rows');
+        console.log('Grade Submissions loaded ' + this.whseSG.length + ' rows');
         console.log(JSON.stringify(this.whseSG));
         this.setHighchartValues(this.whseSG);
         this.isLoading = false;

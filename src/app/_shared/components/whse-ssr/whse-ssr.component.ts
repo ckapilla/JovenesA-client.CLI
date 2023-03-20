@@ -15,7 +15,7 @@ export class WHSE_SSR_Component implements OnInit {
   whseSSR: WHSE_SSRCount[];
   Highcharts: typeof Highcharts = Highcharts;
   dummyData =[
-    // {"yearPeriod":"2019-3","ssrCount":96},
+
     ];
 
   myCategories = this.dummyData.map(a => a.yearPeriod);
@@ -34,7 +34,7 @@ export class WHSE_SSR_Component implements OnInit {
       height: 300
     },
     title: {
-      text: 'Student Self Reports by Month',
+      text: 'Student Self Reports by Quarter',
     },
       yAxis: {
         title: {

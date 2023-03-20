@@ -1,31 +1,47 @@
 <div class="container">
-
-
-
   <div class="row">
     <div class="col">
       <nav ngbNav #nav1="ngbNav" class="nav-tabs">
         <ng-container ngbNavItem>
-          <a ngbNavLink>Daily Charts</a>
+          <a ngbNavLink>Mentor Report Charts</a>
           <ng-template ngbNavContent>
             <div id="container_daily_mr" class="col-sm-12" style="height: 330px">
               <whse-daily-mr></whse-daily-mr>
             </div>
+            <div id="container_mr" class="col-sm-12" style="height: 330px">
+              <whse-mr></whse-mr>
+            </div>
+          </ng-template>
+        </ng-container>
+
+        <ng-container ngbNavItem>
+          <a ngbNavLink>Quarterly Charts</a>
+          <ng-template ngbNavContent>
             <div id="container_daily_ssr" class="col-sm-12" style="height: 330px">
               <whse-daily-ssr></whse-daily-ssr>
             </div>
+            <div id="container_ssr" class="col-sm-12" style="height: 330px">
+              <whse-ssr></whse-ssr>
+            </div>
+            <div id="container_qr" class="col-sm-12" style="height: 330px">
+              <whse-qr></whse-qr>
+            </div>
+          </ng-template>
+        </ng-container>
+
+        <ng-container ngbNavItem>
+          <a ngbNavLink>Grade Submission Charts</a>
+          <ng-template ngbNavContent>
+            <div id="container_gs" class="col-sm-12" style="height: 330px">
+              <whse-gs></whse-gs>
+            </div>
+
           </ng-template>
         </ng-container>
 
         <ng-container ngbNavItem>
           <a ngbNavLink>Other Charts</a>
           <ng-template ngbNavContent>
-            <div id="container_mr" class="col-sm-12" style="height: 330px">
-              <whse-mr></whse-mr>
-            </div>
-            <div id="container_ssr" class="col-sm-12" style="height: 330px">
-              <whse-ssr></whse-ssr>
-            </div>
             <div id="container_sg" class="col-sm-6" style="height: 330px">
               <whse-sg></whse-sg>
             </div>
@@ -40,31 +56,5 @@
       </nav>
       <div [ngbNavOutlet]="nav1" class="mt-2"></div>
     </div>
-  </div>
-
-
-
-  <div class="row">
-
-    <!-- <div id="container_daily_mr" class="col-sm-12" style="height: 330px">
-      <whse-daily-mr></whse-daily-mr>
-    </div> -->
-
-    <!-- <div id="container_mr" class="col-sm-12" style="height: 330px">
-      <whse-mr></whse-mr>
-    </div>
-    <div id="container_ssr" class="col-sm-12" style="height: 330px">
-      <whse-ssr></whse-ssr>
-    </div>
-    <div id="container_sg" class="col-sm-6" style="height: 330px">
-      <whse-sg></whse-sg>
-    </div>
-    <div id="container_ss" class="col-sm-6" style="height: 330px">
-      <whse-ss></whse-ss>
-    </div>
-    <div id="container_su" class="col-sm-12" style="height: 330px">
-      <whse-su></whse-su>
-    </div> -->
-
   </div>
 </div>

@@ -87,13 +87,16 @@ export class MonthlyReports2Component implements OnInit {
       () => {
         console.log('done: ');
         this.isLoading = false;
+        let i = 0;
+        console.log('mentorReports2.length = ' + this.mentorReports2.length);
         for (const x of this.mentorReports2) {
           console.log('reviewedStatusId: ' + x.reviewedStatusId);
-          if (x.reviewedStatusId === 2087) {  // Needs_Review, not finalized
+          console.log('i = ' + i);
+          if (x.reviewedStatusId === 2087 ) {  // Needs_Review, not finalized
             console.log(' report w/ NeedsReview status found; disable add function');
             this.haveCurrentReport = true;
-
           }
+          break; // only want current (first in reverse order)
         }
       }
     );

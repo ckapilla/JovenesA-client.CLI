@@ -41,16 +41,16 @@ import { UtilitiesComponent } from './utilities/utilities.component';
 
 import { WHSE_Daily_MR_Component } from '../_shared/components/whse-daily-mr/whse-daily-mr.component';
 import { WHSE_Daily_SSR_Component } from '../_shared/components/whse-daily-ssr/whse-daily-ssr.component';
+import { WHSE_GS_Component } from '../_shared/components/whse-gs/whse-gs.component';
 import { WHSE_MR_Component } from '../_shared/components/whse-mr/whse-mr.component';
-import { WHSE_SSR_Component } from '../_shared/components/whse-ssr/whse-ssr.component';
-
 import { WHSE_SG_Component } from '../_shared/components/whse-sg/whse-sg.component';
 import { WHSE_SS_Component } from '../_shared/components/whse-ss/whse-ss.component';
+import { WHSE_SSR_Component } from '../_shared/components/whse-ssr/whse-ssr.component';
 
 import { WHSE_DC_Component } from '../_shared/components/whse-dc/whse-dc.component';
 
+import { WHSE_QR_Component } from '../_shared/components/whse-qr/whse-qr.component';
 import { WHSE_SU_Component } from '../_shared/components/whse-su/whse-su.component';
-
 
 @NgModule({
     imports: [AppSharedModule, AdminsRoutingModule, ReactiveFormsModule, FormsModule, NgbModule],
@@ -94,11 +94,13 @@ import { WHSE_SU_Component } from '../_shared/components/whse-su/whse-su.compone
         WHSE_SSR_Component,
         WHSE_MR_Component,
         WHSE_SS_Component,
+        WHSE_GS_Component,
         WHSE_SG_Component,
         WHSE_SU_Component,
         WHSE_DC_Component,
         WHSE_Daily_MR_Component,
         WHSE_Daily_SSR_Component,
+        WHSE_QR_Component,
     ],
     exports: [AdminsStudentMRsComponent, AdminsStudentQRsComponent, SponsorGroupsComponent]
 })

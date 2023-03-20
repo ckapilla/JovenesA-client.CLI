@@ -36,7 +36,7 @@ const adminRoutes: Routes = [
         component: AdminsHomeComponent // AdminsStudentSearchComponent//
       },
       {
-        path: 'home',
+        path: 'data',
         component: AdminsHomeComponent
       },
       {
