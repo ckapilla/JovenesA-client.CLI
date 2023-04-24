@@ -88,7 +88,7 @@ export class AdminsStudentMRsComponent implements OnInit {
   }
 
   createProxyReport() {
-    console.log('studentDTO: mentorGUId ' + this.mentorGUId);
+    console.log('subscribed Proxy mentorGUId ' + this.mentorGUId);
     // console.log('studentDTO: mentorId ' + this.mentorId);
     const link = ['/mentors/monthly-reports-EN-add',
       {

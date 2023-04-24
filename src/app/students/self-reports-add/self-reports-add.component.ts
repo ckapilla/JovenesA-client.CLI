@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -35,6 +36,7 @@ export class SelfReportsAddComponent implements OnInit {
    selectedQRPeriod$ = this.store.select<string>(UIState.getSelectedQRPeriod);
 
   constructor(
+    public location: Location,
     public currRoute: ActivatedRoute,
     private router: Router,
     public ssrData: StudentSelfReportDataService,
@@ -67,11 +69,11 @@ export class SelfReportsAddComponent implements OnInit {
   ngOnInit() {
     console.log('selfReportsAdd ngOnInit');
 
-    this.selfReport.sponsorGroupId = this.currRoute.snapshot.params['sponsorId'];
+    this.selfReport.sponsorGroupId = this.currRoute.snapshot.params['sponsorGroupId'];
     this.selfReport.studentGUId = this.currRoute.snapshot.params['studentGUId'];
 
     console.log('sponsorGroupId ' + this.selfReport.sponsorGroupId);
-    console.log('studentGUId ' + this.selfReport.studentGUId);
+    console.log('studentGUId from route params: ' + this.selfReport.studentGUId);
 
     this.selfReport.reportYear = +this.selectedQRPeriod.substr(0, 4);
     this.selfReport.reportPeriod = +this.selectedQRPeriod.substr(5, 1);
@@ -120,7 +122,9 @@ export class SelfReportsAddComponent implements OnInit {
         this.isLoading = false;
         const target = '/students';
         console.log('after call to postStudentSelfReports; navigating to ' + target);
-        this.router.navigateByUrl(target);
+        // because can be proxy from Admin we need to use location.back() not a fixed target
+        // this.router.navigateByUrl(target);
+        this.location.back();
       },
       (error) => {
         this.errorMessage = error;

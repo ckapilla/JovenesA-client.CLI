@@ -8,6 +8,7 @@ import { StudentDataService } from 'src/app/_shared/data/student-data.service';
 import { StudentSelfReportDataService } from 'src/app/_shared/data/student-self-report-data.service';
 import { SponsorGroup } from 'src/app/_shared/models/sponsor-group';
 import { SetSelectedStudentIdentifiers } from 'src/app/_store/student/student.action';
+import { StudentState } from 'src/app/_store/student/student.state';
 import { StudentSelfReport } from '../../_shared/models/student-self-report';
 import { StudentDTO } from '../../_shared/models/studentDTO';
 import { SessionService } from '../../_shared/services/session.service';
@@ -21,7 +22,6 @@ export class StudentsSelfReportsComponent implements OnInit {
   isLoading: boolean;
   errorMessage: string;
   studentId: number;
-  studentRecordGUId: string;
   student: StudentDTO;
   studentSelfReports: Array<StudentSelfReport>;
   sponsorGroup: SponsorGroup;
@@ -34,6 +34,9 @@ export class StudentsSelfReportsComponent implements OnInit {
   ssrEditDateStop = '';
   inReportProcessingPeriod = false; // default off for safety
   lastMonthInQuarter = '--';
+  studentGUId: string;
+
+  currentStudentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -90,19 +93,35 @@ export class StudentsSelfReportsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.studentRecordGUId = this.session.getStudentRecordGUId();
-    console.log('studentRecordGUId from session:' + this.studentRecordGUId);
-    this.fetchSponsorGroup();
-    this.isLoading = true;
+    this.studentGUId = this.session.getStudentRecordGUId();
+    console.log('studentSelfReport ngOnInit, studentGUID = ' + this.studentGUId);
     this.parseSSRDateRange();
+    this.fetchSelfReports();
 
+  //  this.subscribeForStudentGUId();
   }
 
+  // subscribeForStudentGUId() {
+  //   this.studentGUId = 'unset';
+  //   this.subscription = this.currentStudentGUId$.subscribe((message) => {
+  //     this.studentGUId= message;
+  //     console.log('************NGXS: admins-student-qrs new StudentGUID received' + this.studentGUId);
+  //     // this.fetchSponsorGroup();
+  //     this.isLoading = true;
+  //     this.parseSSRDateRange();
+  //     this.fetchSelfReports();
+
+  //   });
+  // }
+
+
+
   fetchSponsorGroup() {
-    this.studentData.getSponsorGroupForStudent(this.studentRecordGUId).subscribe(
+    console.log('>>>>fetching Sponsor greoup for ' + this.studentGUId);
+    this.studentData.getSponsorGroupForStudent(this.studentGUId).subscribe(
       (data) => {
         this.sponsorGroup = data;
-        console.log('getSponsorGroupForStudent');
+        console.log('got SponsorGroupForStudent');
         console.log(this.sponsorGroup);
       },
       (err) => console.error('Subscribe error: ' + err),
@@ -112,7 +131,7 @@ export class StudentsSelfReportsComponent implements OnInit {
           this.sponsorGroupId = this.sponsorGroup.sponsorGroupId;
           this.fetchSelfReports();
         } else {
-          this.errorMessage = 'No Assigned Sponsors.';
+          this.errorMessage = 'Something went wrong';
           // this.onNoAssignedStudents.emit();
           this.isLoading = false;
         }
@@ -121,7 +140,7 @@ export class StudentsSelfReportsComponent implements OnInit {
   }
 
   fetchSelfReports() {
-    this.studentSelfReportData.getStudentSelfReportsByGUId(this.studentRecordGUId).subscribe(
+    this.studentSelfReportData.getStudentSelfReportsByGUId(this.studentGUId).subscribe(
       (data) => {
         this.studentSelfReports = data;
       },
@@ -132,6 +151,8 @@ export class StudentsSelfReportsComponent implements OnInit {
       }
     );
   }
+
+
 
   selfReportEdit(id: number, studentGUId: string, studentName: string) {
     // AABBCCDD
@@ -144,11 +165,24 @@ export class StudentsSelfReportsComponent implements OnInit {
   }
 
   studentSelfReportAdd() {
-    const target =
-      'students/self-reports-add/' + this.studentId + '/' + this.sponsorGroupId + '/' + this.studentRecordGUId;
-    console.log('in SSR: ready to navigate to' + target);
-    this.router.navigateByUrl(target);
-  }
+  //   const target =
+  //       'students/self-reports-add/' +  this.sponsorGroupId + '/' + this.studentGUId;
+  //   console.log('in SSR: ready to navigate to ' + target);
+  //   this.router.navigateByUrl(target);
+  // }
+  console.log('actual nonProxy studentGUId ' + this.studentGUId);
+
+  let sponsorGroupId = 1168; // dummy value until code is eliminated
+  const link = ['/students/self-reports-add',
+    {
+      sponsorGroupId: sponsorGroupId,
+      studentGUId: this.studentGUId
+    }
+  ];
+  console.log('navigating to ' + JSON.stringify(link));
+  this.router.navigate(link);
+}
+
 
   isInCurrentReportDateRange(rptDate: string) {
     return (rptDate >= this.ssrEditDateStart  && rptDate <= this.ssrEditDateStop);

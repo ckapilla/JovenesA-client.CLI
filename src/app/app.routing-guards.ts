@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanDeactivate, Router, RouterStateSnapshot } from '@angular/router';
+import { AuthService } from './_shared/services/auth.service';
+import { SessionService } from './_shared/services/session.service';
 import { MentorReportSummaryUpdatesComponent } from './admins/admins-mr/mr-summary-updates/mr-summary-updates.component';
 import { AdminsStudentProfileComponent } from './admins/admins-students/admins-student-profile/admins-student-student-profile.component';
 import { GradesEditComponent } from './becas/grades-edit/grades-edit.component';
 import { MonthlyReports2ENAddComponent } from './mentors/monthly-reports2-EN-add/monthly-reports2-EN-add.component';
 import { MonthlyReports2ESAddComponent } from './mentors/monthly-reports2-ES-add/monthly-reports2-ES-add.component';
-import { AuthService } from './_shared/services/auth.service';
-import { SessionService } from './_shared/services/session.service';
 
 @Injectable({ providedIn: 'root' })
 export class CanActivateViaAdminAuthGuard implements CanActivate {
@@ -87,7 +87,7 @@ export class CanActivateViaStudentAuthGuard implements CanActivate {
     console.log('canActivate for /students');
     if (this.auth.loggedIn) {
       // following has issue of race condition with callback to get profile
-      if (this.session.isStudent()) {
+      if (this.session.isStudent() || this.session.isAdmin() /* for proxy cases */ ) {
         console.log('Authenticated and Can Activate Student');
         return true;
       } else {

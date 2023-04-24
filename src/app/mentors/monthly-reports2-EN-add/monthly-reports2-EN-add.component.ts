@@ -174,9 +174,7 @@ export class MonthlyReports2ENAddComponent implements OnInit {
         console.log((this.successMessage = <any>student));
         // this.isSubmitted = true;
         this.isLoading = false;
-        // don't need to provide params, StudentGuid service will do the job
-        // const target = '/mentors';
-        // console.log('after call to addMentorReport; navigating to ' + target);
+        // because can be proxy from Admin we need to use location.back() not a fixed target
         // this.router.navigateByUrl(target);
         this.location.back();
       },

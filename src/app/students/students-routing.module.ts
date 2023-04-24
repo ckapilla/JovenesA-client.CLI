@@ -4,9 +4,9 @@ import { CanActivateViaStudentAuthGuard } from '../app.routing-guards';
 import { GradeEntryComponent } from './grade-entry/grade-entry.component';
 import { SelfReportsAddComponent } from './self-reports-add/self-reports-add.component';
 import { SelfReportsEditComponent } from './self-reports-edit/self-reports-edit.component';
+import { StudentProfileComponent } from './students-profile/students-profile.component';
 import { StudentsSelfReportsComponent } from './students-self-reports/students-self-reports.component';
 import { StudentsComponent } from './students.component';
-import { StudentProfileComponent } from './students-profile/students-profile.component';
 
 
 const routes: Routes = [
@@ -27,7 +27,7 @@ const routes: Routes = [
         component: StudentsSelfReportsComponent
       },
       {
-        path: 'self-reports-add/:studentId/:sponsorId/:studentGUId',
+        path: 'self-reports-add', // use params not path // /:sponsorGroupId/:studentGUId',
         component: SelfReportsAddComponent
       },
       {

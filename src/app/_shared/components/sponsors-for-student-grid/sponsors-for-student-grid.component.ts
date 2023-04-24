@@ -30,10 +30,14 @@ export class SponsorsForStudentGridComponent implements OnInit, OnChanges {
      ) {}
 
   public ngOnInit() {
+
+
+    console.log('ponsors-for-student-grid  onInit sponsors for student gred with' + this.studentGUId );
+    if (this.studentGUId) {
     this.studentData.getSponsorGroupMembersForStudent(this.studentGUId).subscribe(
       (data) => {
         this.sponsors = data;
-        console.log('getSponsorMembersForStudent');
+        console.log('>>>>>>>>>>>getSponsorMembersForStudent');
         console.log(this.sponsors[0]);
       },
       (err) => console.error('Subscribe error: ' + err),
@@ -46,6 +50,7 @@ export class SponsorsForStudentGridComponent implements OnInit, OnChanges {
         }
       }
     );
+    }
     this.subscribeForStudentGUIds2();
   }
 

@@ -92,7 +92,7 @@ export class MonthlyReports2Component implements OnInit {
         for (const x of this.mentorReports2) {
           console.log('reviewedStatusId: ' + x.reviewedStatusId);
           console.log('i = ' + i);
-          if (x.reviewedStatusId === 2087 ) {  // Needs_Review, not finalized
+          if (x.reviewedStatusId === 2087 && x.reportDateTime >= new Date('4/3/2023')) {  // Needs_Review, not finalized
             console.log(' report w/ NeedsReview status found; disable add function');
             this.haveCurrentReport = true;
           }
@@ -108,7 +108,7 @@ export class MonthlyReports2Component implements OnInit {
         'There is already a report filed for this month. Please use the edit button to edit it. / Ya hay un informe presentado para este mes. Por favor, utilice el botón Editar para editarlo. '
       );
     } else {
-      console.log('in monthly-reports: monthlyReportAdd, ready to navigate');
+      console.log('actual nonProxy mentorGUId ' + this.mentorGUId);
       if (this.studentGUId !== null) {
         const link = [
           '/mentors/monthly-reports-EN-add',
@@ -130,7 +130,7 @@ export class MonthlyReports2Component implements OnInit {
         'There is already a report filed for this month. Please use the edit button to edit it. / Ya hay un informe presentado para este mes. Por favor, utilice el botón Editar para editarlo. '
       );
     } else {
-      console.log('in monthly-reports: monthlyReportAdd, ready to navigate');
+          console.log('actual mentorGUId ' + this.mentorGUId);
       if (this.studentGUId !== null) {
         const link = [
           '/mentors/monthly-reports-ES-add',

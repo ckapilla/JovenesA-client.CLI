@@ -23,6 +23,8 @@ import { StudentSelfReportsSummaryUpdatesComponent } from './admins-ssr/ssr-summ
 
 import { AdminsStudentMRsComponent } from './admins-student-mrs/admins-student-mrs.component';
 import { AdminsStudentQRsComponent } from './admins-student-qrs/admins-student-qrs.component';
+import { AdminsStudentSSRComponent } from './admins-student-ssr/admins-student-ssr.component';
+
 import { AdminsStudentContainerComponent } from './admins-students/admins-student-container/admins-student-container.component';
 import { AdminsStudentListComponent } from './admins-students/admins-student-list/admins-student-list.component';
 import { AdminsStudentMemberDataComponent } from './admins-students/admins-student-member-profile/admins-student-member-profile.component';
@@ -91,6 +93,7 @@ import { WHSE_SU_Component } from '../_shared/components/whse-su/whse-su.compone
         AdminsStudentContainerComponent,
         AdminsStudentMemberDataComponent,
         AdminsStudentQRsComponent,
+        AdminsStudentSSRComponent,
         WHSE_SSR_Component,
         WHSE_MR_Component,
         WHSE_SS_Component,
