@@ -42,6 +42,7 @@
                   <th>Promedio</th>
                   <th>Fecha Confirmado</th>
                   <th></th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody >
@@ -105,18 +106,24 @@
                       <button (click)="saveEntry(i)">Save</button>
                     </td> -->
                     <td *ngIf="isRowDirty(i)">
-                      +-+
+                      >>>
                     </td>
                     <td *ngIf="!isRowDirty(i)">
 
                     </td>
                   </ng-container>
-                  <p style="text-align: right;">
+                  <p style="text-align: center;">
                     <button [disabled]="myForm.pristine"
                         type="submit"
                         class="btn btn-primary"
                         (click)="saveAllChangedEntries()">Guardar</button>
                   </p>
+                  <td *ngIf="isRowDirty(i)">
+                    &lt;&lt;&lt;
+                  </td>
+                  <td *ngIf="!isRowDirty(i)">
+
+                  </td>
                 </tr>
 
               </tbody>

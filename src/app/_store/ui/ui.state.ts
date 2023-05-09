@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import {
   SetQRComponentsEditable,
-  SetSelectedFilterMode, SetSelectedGradesProcessingPeriodID, SetSelectedGradYear, SetSelectedQRPeriod, SetSelectedStudentStatus,
+  SetSelectedFilterMode,
+  SetSelectedGradYear,
+  SetSelectedGradesProcessingPeriodID,
+  SetSelectedQRPeriod, SetSelectedStudentStatus,
   SetSelectedYearJoined, SetTestNamesVisibility
 } from './ui.action';
 import { UIStateModel } from './ui.model';
@@ -14,7 +17,7 @@ import { UIStateModel } from './ui.model';
     qrComponentsEditable: false,
 
     selectedQRPeriod: '', // initialize ConstantsService.generateQRPeriods
-    selectedGradesProcessingPeriodID: '112', //  { id: '112', descriptor: '2023-01-01 (Cuatrimestre)', studentReportingStartDate:'2023-01-01', endDate:'2023-01-22', yearTypeId: 2032, isCurrent: true },
+    selectedGradesProcessingPeriodID: '113', //  { id: '112', descriptor: '2023-01-01 (Cuatrimestre)', studentReportingStartDate:'2023-01-01', endDate:'2023-01-22', yearTypeId: 2032, isCurrent: true },
 
     selectedFilterMode: '998',
     selectedStudentStatus: '0',
