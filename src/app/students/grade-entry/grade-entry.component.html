@@ -48,35 +48,10 @@
               <tbody >
 
                 <tr style="background-color:white;"
-                    formArrayName="gradeEntryRows"
+                    formArrayName="gradeEntryFormRows"
                     *ngFor="let entry of studentGradesData, let i = index">
                   <ng-container [formGroupName]="i">
-                    <!-- <td>
-                        {{ i+1 }}
-                      </td> -->
-                    <!-- <td>
-                  <app-grade-row [entry]="entry">
 
-                  </app-grade-row>
-                </td> -->
-
-
-                    <!-- <td (click)='gotoStudent(entry.studentGUId, entry.studentName)' class='link'>
-                  {{ entry.studentName }}
-                </td>
-                <td>
-                  {{ entry.univ }}
-                </td> -->
-                    <!-- <td>
-                {{  entry.academicYear }}
-              </td> -->
-                    <!-- <td>
-                  <input formControlName="gradeMonths"
-                         class="form-control form-control-sm" type="text" />
-                </td> -->
-                    <!-- <td>
-                {{ entry.year }}
-              </td> -->
                     <td>
                       <input formControlName="gradesProcessingPeriodId"
                              class="form-control form-control-sm" type="text" size="8" />

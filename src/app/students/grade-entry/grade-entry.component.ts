@@ -52,12 +52,12 @@ export class GradeEntryComponent implements OnInit {
     this.inGradesProcessingPeriod = true;
     this.myForm = this._fb.group({
       studentGUId: ['0000'],
-      gradeEntryRows: this._fb.array([])
+      gradeEntryFormRows: this._fb.array([])
     });
   }
 
-  gradeEntryRows(): UntypedFormArray {
-    return <UntypedFormArray>this.myForm.get('gradeEntryRows');
+  gradeEntryFormRows(): UntypedFormArray {
+    return <UntypedFormArray>this.myForm.get('gradeEntryFormRows');
   }
 
   createEmptyGradeEntryRow(): UntypedFormGroup {
@@ -75,32 +75,32 @@ export class GradeEntryComponent implements OnInit {
     });
   }
 
-  updateGradeEntryRow(gradeEntryRow: UntypedFormGroup, entryData: StudentGrades): UntypedFormGroup {
-    console.log('updateGradeEntryRow update existing row with actual data');
-    console.log(JSON.stringify(entryData));
-    gradeEntryRow.patchValue({
-      gradesProcessingPeriodId: entryData.gradesProcessingPeriodId,
-      initialGradesEntryDate: new TruncateDatePipe().transform('' + entryData.initialGradesEntryDate),
-      gradesDueDate: new TruncateDatePipe().transform('' + entryData.gradesDueDate),
+  updateGradeEntryFormRow(gradeEntryFormRow: UntypedFormGroup, gradeEntryDataRow: StudentGrades): UntypedFormGroup {
+    console.log('updateGradeEntryFormRow update existing form row with retrieved data');
+    console.log(JSON.stringify(gradeEntryDataRow));
+    gradeEntryFormRow.patchValue({
+      gradesProcessingPeriodId: gradeEntryDataRow.gradesProcessingPeriodId,
+      initialGradesEntryDate: new TruncateDatePipe().transform('' + gradeEntryDataRow.initialGradesEntryDate),
+      gradesDueDate: new TruncateDatePipe().transform('' + gradeEntryDataRow.gradesDueDate),
       gradesTurnedInDate: new Date().toISOString().slice(0, 10),
-      gradePointAvg: this.toFixedValue(entryData.gradePointAvg),
-      confirmedDate: new TruncateDatePipe().transform('' + entryData.confirmedDate)
+      gradePointAvg: this.toFixedValue(gradeEntryDataRow.gradePointAvg),
+      confirmedDate: new TruncateDatePipe().transform('' + gradeEntryDataRow.confirmedDate)
     });
-    if (gradeEntryRow.get('confirmedDate').value > '') {
-      gradeEntryRow.get('gradePointAvg').disable();
+    if (gradeEntryFormRow.get('confirmedDate').value > '') {
+      gradeEntryFormRow.get('gradePointAvg').disable();
       this.confirmedDateB=true;
     }
 
-    gradeEntryRow.markAsPristine();
-    return gradeEntryRow;
+    gradeEntryFormRow.markAsPristine();
+    return gradeEntryFormRow;
   }
 
   addGradeEntryRow(gradeEntryData: StudentGrades) {
-    const gradeEntryRow: UntypedFormGroup = this.createEmptyGradeEntryRow();
+    const gradeEntryFormRow: UntypedFormGroup = this.createEmptyGradeEntryRow();
 
-    this.updateGradeEntryRow(gradeEntryRow, gradeEntryData);
+    this.updateGradeEntryFormRow(gradeEntryFormRow, gradeEntryData);
     console.log('addGradeEntry: push new populated row intoFormArray');
-    this.gradeEntryRows().push(gradeEntryRow);
+    this.gradeEntryFormRows().push(gradeEntryFormRow);
     console.log('XX1');
   }
 
@@ -161,21 +161,20 @@ export class GradeEntryComponent implements OnInit {
   }
 
   retrieveFormValuesForRow(i: number): void {
-    console.log('retrieveFormValues for row' + JSON.stringify(this.gradeEntryRows().value[i]));
-    this.studentGradesData[i] = { ...this.studentGradesData[i], ...this.gradeEntryRows().value[i] };
+    console.log('retrieveFormValues for row' + JSON.stringify(this.gradeEntryFormRows().value[i]));
+    this.studentGradesData[i] = { ...this.studentGradesData[i], ...this.gradeEntryFormRows().value[i] };
   }
 
   isRowDirty(i: number): boolean {
-    // console.log('checking dirty state of i ' + i + ' -- ' + this.gradeEntryRows().controls[i].dirty);
-    return this.gradeEntryRows().controls[i].dirty;
+    return this.gradeEntryFormRows().controls[i].dirty;
   }
 
   saveEntry(i: number): boolean {
     console.log('saveEntry for ' + i);
     this.isLoading = true;
     this.errorMessage = '';
-    console.log('row dirty value is ' + this.gradeEntryRows().controls[i].dirty);
-    if (this.gradeEntryRows().controls[i].dirty) {
+    console.log('row dirty value is ' + this.gradeEntryFormRows().controls[i].dirty);
+    if (this.gradeEntryFormRows().controls[i].dirty) {
       this.retrieveFormValuesForRow(i);
       this.becaData.updateStudentGrades(this.studentGradesData[i]).subscribe(
         (gradeRowData) => {
@@ -185,7 +184,7 @@ export class GradeEntryComponent implements OnInit {
           window.setTimeout(() => {
             this.successMessage = 'Los cambios se guardaron con éxito.';
           }, 0);
-          const currRowFormGroup = this.gradeEntryRows().controls[i] as UntypedFormGroup;
+          const currRowFormGroup = this.gradeEntryFormRows().controls[i] as UntypedFormGroup;
           // this fails for some reason, and isn't needed because the update won't change any of these values
           // this.updateGradeEntryRow(currRowFormGroup, gradeRowData);
           currRowFormGroup.markAsPristine();
@@ -210,10 +209,10 @@ export class GradeEntryComponent implements OnInit {
   resetEntry(i: number): boolean {
     console.log('resetEntry for ' + i);
 
-    if (this.gradeEntryRows().controls[i].dirty) {
+    if (this.gradeEntryFormRows().controls[i].dirty) {
       this.retrieveFormValuesForRow(i);
-      this.gradeEntryRows().controls[i].reset();
-      this.gradeEntryRows().controls[i].markAsPristine();
+      this.gradeEntryFormRows().controls[i].reset();
+      this.gradeEntryFormRows().controls[i].markAsPristine();
     }
     // prevent default action of reload
     return false;
@@ -232,7 +231,7 @@ export class GradeEntryComponent implements OnInit {
     }
 
     const strDate = [d.getFullYear(), ('0' + (d.getMonth() + 1)).slice(-2), ('0' + d.getDate()).slice(-2)].join('-');
-    const gradeEntryRow: UntypedFormGroup = this.gradeEntryRows().controls[i] as UntypedFormGroup;
+    const gradeEntryRow: UntypedFormGroup = this.gradeEntryFormRows().controls[i] as UntypedFormGroup;
 
     gradeEntryRow.patchValue({
       gradesTurnedInDate: strDate
