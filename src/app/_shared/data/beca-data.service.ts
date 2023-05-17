@@ -44,7 +44,7 @@ export class BecaDataService {
 
     const x = JSON.parse(body);
     body = JSON.stringify(x.studentGradeEntry);
-    console.log('in updateStudentGradeEntry');
+    console.log('in updateStudentGrades');
 
     const returnedToken =
       // eslint-disable-next-line max-len

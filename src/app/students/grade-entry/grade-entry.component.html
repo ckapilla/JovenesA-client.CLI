@@ -90,7 +90,7 @@
                              class="form-control form-control-sm" type="text" size="8" />
                     </td>
                     <td>
-                      <input formControlName="gradesTurnedInDate"
+                      <input formControlName="gradesTurnedInDate" readonly
                              (dblclick)="setReceivedDate(i, $event.target.value)"
                              class="form-control form-control-sm" type="text" size="8" />
                     </td>
@@ -102,9 +102,7 @@
                       <input formControlName="confirmedDate"
                              class="form-control form-control-sm" type="text" size="8" />
                     </td>
-                    <!-- <td>
-                      <button (click)="saveEntry(i)">Save</button>
-                    </td> -->
+
                     <td *ngIf="isRowDirty(i)">
                       >>>
                     </td>
@@ -114,7 +112,7 @@
                   </ng-container>
                   <p style="text-align: center;">
                     <button [disabled]="myForm.pristine"
-                        type="submit"
+                        type="button"
                         class="btn btn-primary"
                         (click)="saveAllChangedEntries()">Guardar</button>
                   </p>

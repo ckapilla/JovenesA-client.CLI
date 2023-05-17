@@ -67,7 +67,7 @@ export class GradeEntryComponent implements OnInit {
       initialGradesEntryDate: { value: '', disabled: true },
       gradesDueDate: { value: '', disabled: true },
       gradesTurnedInDate: [
-        { value: '', disabled: true },
+        { value: '' }, // must use readonly in html instead of disabled here so value will get sent to server
         Validators.compose([Validators.pattern(/^\d{4}\-\d{1,2}\-\d{1,2}$/), Validators.maxLength(10)])
       ],
       gradePointAvg: [{ value: '' }, Validators.pattern(/^\d{1,2}\.\d{1,1}$/)],
