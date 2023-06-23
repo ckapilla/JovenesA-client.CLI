@@ -54,7 +54,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr formArrayName="gradeEntryRows" *ngFor="let entry of studentGradesData; let i = index">
+                <tr formArrayName="gradeEntryFormRows" *ngFor="let entry of studentGradesData; let i = index">
                   <ng-container [formGroupName]="i">
                     <!-- <td>
                         {{ i+1 }}

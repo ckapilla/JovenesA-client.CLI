@@ -60,7 +60,7 @@ export class GradeEntryComponent implements OnInit {
     return <UntypedFormArray>this.myForm.get('gradeEntryFormRows');
   }
 
-  createEmptyGradeEntryRow(): UntypedFormGroup {
+  createEmptyGradeEntryFormRow(): UntypedFormGroup {
     console.log('CreateEmptyGradeEntry create empty row to be populated');
     return this._fb.group({
       gradesProcessingPeriodId: { value: '', disabled: true },
@@ -75,7 +75,7 @@ export class GradeEntryComponent implements OnInit {
     });
   }
 
-  updateGradeEntryFormRow(gradeEntryFormRow: UntypedFormGroup, gradeEntryDataRow: StudentGrades): UntypedFormGroup {
+  updateGradeEntryFormRow(gradeEntryFormRow: UntypedFormGroup, gradeEntryDataRow: StudentGrades): void {
     console.log('updateGradeEntryFormRow update existing form row with retrieved data');
     console.log(JSON.stringify(gradeEntryDataRow));
     gradeEntryFormRow.patchValue({
@@ -92,16 +92,15 @@ export class GradeEntryComponent implements OnInit {
     }
 
     gradeEntryFormRow.markAsPristine();
-    return gradeEntryFormRow;
+
   }
 
-  addGradeEntryRow(gradeEntryData: StudentGrades) {
-    const gradeEntryFormRow: UntypedFormGroup = this.createEmptyGradeEntryRow();
+  addGradeEntryRow(gradeEntryDataRow: StudentGrades) {
+    const gradeEntryFormRow: UntypedFormGroup = this.createEmptyGradeEntryFormRow();
 
-    this.updateGradeEntryFormRow(gradeEntryFormRow, gradeEntryData);
+    this.updateGradeEntryFormRow(gradeEntryFormRow, gradeEntryDataRow);
     console.log('addGradeEntry: push new populated row intoFormArray');
     this.gradeEntryFormRows().push(gradeEntryFormRow);
-    console.log('XX1');
   }
 
   ngOnInit() {
@@ -126,8 +125,8 @@ export class GradeEntryComponent implements OnInit {
           this.errorMessage = err;
         },
         () => {
-          this.studentGradesData.forEach((gradeEntryData) => {
-            this.addGradeEntryRow(gradeEntryData);
+          this.studentGradesData.forEach((gradeEntryDataRow) => {
+            this.addGradeEntryRow(gradeEntryDataRow);
           });
           this.isLoading = false;
         }
@@ -231,12 +230,12 @@ export class GradeEntryComponent implements OnInit {
     }
 
     const strDate = [d.getFullYear(), ('0' + (d.getMonth() + 1)).slice(-2), ('0' + d.getDate()).slice(-2)].join('-');
-    const gradeEntryRow: UntypedFormGroup = this.gradeEntryFormRows().controls[i] as UntypedFormGroup;
+    const gradeEntryFormRow: UntypedFormGroup = this.gradeEntryFormRows().controls[i] as UntypedFormGroup;
 
-    gradeEntryRow.patchValue({
+    gradeEntryFormRow.patchValue({
       gradesTurnedInDate: strDate
     });
-    gradeEntryRow.markAsDirty();
+    gradeEntryFormRow.markAsDirty();
   }
 
   toFixedValue(num: number | null) {
