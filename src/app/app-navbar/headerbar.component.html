@@ -28,6 +28,10 @@
          [hidden]=!isAdminWithValidToken()>Becas</a>
     </li>
     <li class="nav-item">
+      <a [routerLinkActive]="['active']" [routerLink]="['titulos']"
+         [hidden]=!isAdminWithValidToken()>Titulos</a>
+    </li>
+    <li class="nav-item">
       <a [routerLinkActive]="['active']" [routerLink]="['quarterly']"
          [hidden]=!isAdminWithValidToken()>Quarterly</a>
     </li>
