@@ -1,74 +1,79 @@
-
-
-h1,h2,h3,h4,h5,h6{
-/*font-family: 'Dosis', sans-serif;*/
-font-weight:normal;
-padding:0px;
-margin:0px;
-color:#888;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  /*font-family: 'Dosis', sans-serif;*/
+  font-weight: normal;
+  padding: 0px;
+  margin: 0px;
+  color: #888;
 }
 
-h5{
-font-size:20px;
-margin:5px 0px;
-padding:5px 0px;
+h5 {
+  font-size: 20px;
+  margin: 5px 0px;
+  padding: 5px 0px;
 }
 
-.padd{
-padding:10px;
+.padd {
+  padding: 10px;
 }
 
-.social img{
-margin-right:5px;
-margin-bottom:5px;
+.social img {
+  margin-right: 5px;
+  margin-bottom: 5px;
 }
 
-img.alignleft{
-margin:10px 8px 5px 0px;
-float:left;
+img.alignleft {
+  margin: 10px 8px 5px 0px;
+  float: left;
 }
 
-img.alignright{
-margin:10px 0px 5px 8px;
-float:right;
+img.alignright {
+  margin: 10px 0px 5px 8px;
+  float: right;
 }
 
-a:active, a:focus {
-border:none;
-outline:none;
+a:active,
+a:focus {
+  border: none;
+  outline: none;
 }
 
 a:-moz-any-link:focus {
-outline:none;
+  outline: none;
 }
 
-i{
-margin-right:3px;
+i {
+  margin-right: 3px;
 }
 
 /* from Site.css */
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists
    will truncate terms that are too long to fit in the left column
 */
 .dl-horizontal dt {
-    white-space: normal;
+  white-space: normal;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select {
-    max-width: 320px;
+  max-width: 320px;
 }
+
 /* CJK Mod */
 textarea {
-    max-width: 800px;
+  max-width: 800px;
 }
 
 /* CJK Mode override bootstrap*/
@@ -83,12 +88,12 @@ textarea.form-control {
 }
 
 .link {
-  cursor:pointer;
+  cursor: pointer;
   text-decoration: underline;
 }
 
 .centered {
-   text-align: center;
+  text-align: center;
 }
 
 .form-group .help-block {
@@ -99,155 +104,171 @@ textarea.form-control {
   display: block;
 }
 
-.foot{
-background:#0072c6;
-}
-
-.foot a, .foot a:visited{
-color:#c2e5ff;
-}
-
-.foot a:hover{
-color:#c2e5ff;
-}
 
 
 /* Header */
 
-.sharecard{
-background:#444;
-color:#ddd;
-display:none;
-border-bottom:1px solid #222;
+.sharecard {
+  background: #444;
+  color: #ddd;
+  display: none;
+  border-bottom: 1px solid #222;
 }
 
-.spara{
-padding-bottom:0px;
-font-size:22px;
-line-height:23px;
+.spara {
+  padding-bottom: 0px;
+  font-size: 22px;
+  line-height: 23px;
 }
 
-.fixedbar{
-/* color:#fff; */
-height:50px;
-/* margin-bottom:5px; */
+.fixedbar {
+  /* color:#fff; */
+  height: 50px;
+  /* margin-bottom:5px; */
 }
 
-.logo, .share{
-padding:0px 10px 0px 10px;
+.logo,
+.share {
+  padding: 0px 10px 0px 10px;
 }
 
-.share{
-font-size:20px;
-line-height:23px;
+.share {
+  font-size: 20px;
+  line-height: 23px;
 }
 
-.fixedbar a,.fixedbar a:visited,.fixedbar a:hover{
-color:#fff;
-text-decoration:none;
+.fixedbar a,
+.fixedbar a:visited,
+.fixedbar a:hover {
+  color: #fff;
+  text-decoration: none;
 }
 
-.foot{
-color:#fff;
-font-size:13px;
-line-height:16px;
+footer {
+  background: #0072c6;
 }
 
-.foot h3{
-color:#fff;
-font-size:22px;
-margin:5px 0px;
-padding-bottom:10px;
+footer a:hover,
+footer a:focus {
+  color: #c2e5ff;
 }
 
-.foot a:hover{
-text-decoration:underline;
+footer {
+  color: #fff;
+  font-size: 14px;
+  line-height: 16px;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
 }
 
-.foot ul li{
-padding:5px 0px;
+footer a:hover,
+footer a:focus {
+  text-decoration: underline;
 }
 
-.foot blockquote p,.foot blockquote small{
-color:#fff;
-font-size:12px;
-padding-left:30px;
+footer h3 {
+  color: #fff;
+  font-size: 22px;
+  margin: 5px 0px;
+  padding-bottom: 10px;
 }
 
-.foot h3, .foot ul li{
-border-bottom:1px dashed #ccc;
+
+footer ul li {
+  padding: 5px 0px;
 }
 
-footer{
-font-size:12px;
-line-height:22px;
-background:#fcfcfc;
-border-top:1px solid #eee;
-border-bottom:1px solid #eee;
+footer blockquote p,
+footer blockquote small {
+  color: #fff;
+  font-size: 12px;
+  padding-left: 30px;
 }
 
-.attr{
-text-align:right;
+footer h3,
+footer ul li {
+  border-bottom: 1px dashed #ccc;
 }
 
-.fpadd{
-padding:5px 10px 5px 70px;
+
+
+.attr {
+  text-align: right;
+}
+
+.fpadd {
+  padding: 5px 10px 5px 70px;
 }
 
 /* Responsive */
 
-@media (max-width: 480px){
-   img.alignleft,img.alignright{
-   float:none;
-   display:block;
-   width:auto;
-   padding:0px;
-   margin:0px;
-   }
+@media (max-width: 480px) {
+
+  img.alignleft,
+  img.alignright {
+    float: none;
+    display: block;
+    width: auto;
+    padding: 0px;
+    margin: 0px;
+  }
 }
 
-@media (max-width: 767px){
-	.attr{
-	text-align:left;
-	}
-  .fixedbar, .sharecard, .foot, footer{
-  margin-left:-20px;
-  margin-right:-20px;
+@media (max-width: 767px) {
+  .attr {
+    text-align: left;
   }
-  .sharecard{
-  text-align:center;
+
+  .fixedbar,
+  .sharecard,
+  .foot
+
+  /* , footer */
+    {
+    margin-left: -20px;
+    margin-right: -20px;
   }
-  .matter{
-  display:none;
+
+  .sharecard {
+    text-align: center;
   }
-  .padd-f,.padd-m,.padd-l{
-  padding:10px;
-  margin:0px;
+
+  .matter {
+    display: none;
   }
-  input{
-  width:50% !important;
+
+  .padd-f,
+  .padd-m,
+  .padd-l {
+    padding: 10px;
+    margin: 0px;
   }
-  .navi ul{
-  display: none;
+
+  input {
+    width: 50% !important;
   }
+
+  .navi ul {
+    display: none;
+  }
+
   .navis select {
-  display: inline-block;
+    display: inline-block;
   }
-  select{
-  width:100%;
+
+  select {
+    width: 100%;
   }
-  .foot .padd{
-  padding:10px 20px;
+
+  .foot .padd {
+    padding: 10px 20px;
   }
-  .staff{
-  text-align:center;
+
+  .staff {
+    text-align: center;
   }
 }
 
-@media (min-width: 768px) and (max-width: 979px){
+@media (min-width: 768px) and (max-width: 979px) {}
 
-}
-
-@media (max-width: 979px){
-
-}
+@media (max-width: 979px) {}

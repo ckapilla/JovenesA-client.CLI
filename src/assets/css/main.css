@@ -1,4 +1,6 @@
 /* Reset */
+/* this set of reset rules doesn't work due bootstrap higher priority  */
+
 html,
 body,
 div {
@@ -6,11 +8,11 @@ div {
   margin: 0;
   padding: 0;
 }
-
 /* Box-sizing border-box */
 * {
-  box-sizing: border-box;
+  box-sizing: border-box!important;
 }
+
 
 /* Set up a default font and some padding to provide breathing room */
 body {
@@ -107,4 +109,18 @@ ul {
 .dimmed {
   opacity: 0.5;
   font-weight: light;
+}
+
+/* new color set */
+.main-blue-bg {
+  background-color: #1894A4;
+  color: white;
+}
+.main-blue-bg a{
+  color: white;
+}
+
+.text-area-bg{
+  background-color: #E4E8EA;
+  color: black;
 }
