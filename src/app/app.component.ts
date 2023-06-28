@@ -16,7 +16,11 @@ isStudent: boolean = false;
   constructor(private auth: AuthService, private session: SessionService) {
     console.log('AppComponentConstructor, calling localAuthSetup');
     auth.localAuthSetup();
-    this.isStudent= session.isStudent();
+    /* wait 1sec before checking if user is student */
+    setTimeout(() => {
+      this.isStudent= session.isStudent();
     console.log(this.isStudent)
+    }, 1000);
+    
   }
 }

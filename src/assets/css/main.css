@@ -111,16 +111,3 @@ ul {
   font-weight: light;
 }
 
-/* new color set */
-.main-blue-bg {
-  background-color: #1894A4;
-  color: white;
-}
-.main-blue-bg a{
-  color: white;
-}
-
-.text-area-bg{
-  background-color: #E4E8EA;
-  color: black;
-}

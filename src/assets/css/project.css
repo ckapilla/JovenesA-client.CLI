@@ -158,7 +158,6 @@ footer {
   font-size: 14px;
   line-height: 16px;
   border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
 }
 
 footer a:hover,
@@ -190,7 +189,9 @@ footer ul li {
   border-bottom: 1px dashed #ccc;
 }
 
-
+footer a {
+  color: #fff;
+}
 
 .attr {
   text-align: right;
@@ -269,6 +270,18 @@ footer ul li {
   }
 }
 
+/* new color set */
+.main-blue-bg {
+  background-color: #1894A4;
+  color: white;
+  font-family: 'Open-sans', sans-serif;
+}
+
+
+a:hover, a:focus-visible {
+  transition: 150ms;
+}
 @media (min-width: 768px) and (max-width: 979px) {}
 
 @media (max-width: 979px) {}
+
