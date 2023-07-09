@@ -44,6 +44,10 @@ const appRoutes: Routes = [
     path: 'becas',
     loadChildren: () => import('./becas/becas.module').then(m => m.BecasModule)
   },
+  {
+    path: 'titulos',
+    loadChildren: () => import('./titulos/titulos.module').then(m => m.TitulosModule)
+  },
   { path: '**', redirectTo: '' }
 ];
 
