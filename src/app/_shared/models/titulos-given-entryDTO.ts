@@ -1,0 +1,9 @@
+export class TitulosGivenEntryDTO {
+  constructor(
+    public studentGUId: string,
+    public studentName?: string, // StudentName
+    public gradYear?: number,
+    public tituloReceivedDate?: Date,
+    public imageSubmittedDate?: Date
+  ) {}
+}
