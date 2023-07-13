@@ -81,7 +81,6 @@ const adminRoutes: Routes = [
         canDeactivate: [ConfirmDeactivateStudentProfileUpdatesGuard]
       },
 
-
       {
         path: 'students/student/mentorReports', // using query params /:mentorId/:mentorGUId/:studentGUId/:studentName',
         component: AdminsStudentMRsComponent

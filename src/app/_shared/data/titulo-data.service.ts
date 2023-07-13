@@ -19,15 +19,15 @@ export class TituloDataService {
   ///  TitulosController
   /// ///////////////////////////////////////////////
 
-  public getGradesListEntryDTOs(): Observable<TitulosGivenEntryDTO[]> {
+  public getTitulosListEntryDTOs(): Observable<TitulosGivenEntryDTO[]> {
     const url = this.WebApiPrefix + 'titulos/' + 'grades-list';
     console.log('sending AuthHttp get request for GradesList');
     return this.http.get<TitulosGivenEntryDTO[]>(url).pipe(catchError(this.handleError));
   }
 
-  public getGradesListForPeriod(gradesProcessingPeriodId: number): Observable<TitulosGivenEntryDTO[]> {
-    const url = this.WebApiPrefix + 'titulos/' + 'grades-list/period/' + gradesProcessingPeriodId;
-    console.log('sending AuthHttp get request for GradesList with url ' + url);
+  public getTitulosListForYearJoined(yearJoined: number): Observable<TitulosGivenEntryDTO[]> {
+    const url = this.WebApiPrefix + 'titulos/' + 'titulos-list/year-joined/' + yearJoined;
+    console.log('sending AuthHttp get request for TitulosList with url ' + url);
     return this.http.get<TitulosGivenEntryDTO[]>(url).pipe(catchError(this.handleError));
   }
 

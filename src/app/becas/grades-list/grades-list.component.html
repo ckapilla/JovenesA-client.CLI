@@ -28,27 +28,18 @@
             <tr>
               <!-- <td>Id</td> -->
               <th></th>
-              <!-- <th></th> -->
               <th>Profile</th>
               <th app-sortable-column="studentName" sort-direction="asc" (onSortColumn)="onSortColumn($event)">
                 Student
               </th>
               <th app-sortable-column="gradesTurnedInStatus" (onSortColumn)="onSortColumn($event)">Turned-In<br />Status</th>
               <th app-sortable-column="gradePointAvgStatus" (onSortColumn)="onSortColumn($event)">GPA<br />Status</th>
-              <!-- <th app-sortable-column="univ" (onSortColumn)="onSortColumn($event)">Univ</th> -->
-              <!-- <th app-sortable-column="academicYear" (onSortColumn)="onSortColumn($event)">YearType</th> -->
-              <!-- <th app-sortable-column="gradeMonths" (onSortColumn)="onSortColumn($event)">Grade Months</th> -->
-              <!-- <th app-sortable-column="year" (onSortColumn)="onSortColumn($event)">Year</th> -->
-              <!-- <th app-sortable-column="periodNumber" (onSortColumn)="onSortColumn($event)">Period</th> -->
-              <!-- <th app-sortable-column="gradesGivenDate" (onSortColumn)="onSortColumn($event)">Given By<br />Date</th> -->
               <th app-sortable-column="gradesDueDate" (onSortColumn)="onSortColumn($event)">Final Grades<br />Due Date</th>
               <th app-sortable-column="gradesTurnedInDate" (onSortColumn)="onSortColumn($event)">Entered <br />Date</th>
               <th app-sortable-column="imageSubmittedDate" (onSortColumn)="onSortColumn($event)">Uploaded <br />Date</th>
               <th>View<br />Image</th>
               <th app-sortable-column="gradePointAvg" (onSortColumn)="onSortColumn($event)">GPA</th>
-
-              <!-- <th app-sortable-column="exception" (onSortColumn)="onSortColumn($event)">Exception</th> -->
-              <th app-sortable-column="confirmedDate" (onSortColumn)="onSortColumn($event)">Confirmed <br />Date</th>
+             <th app-sortable-column="confirmedDate" (onSortColumn)="onSortColumn($event)">Confirmed <br />Date</th>
             </tr>
           </thead>
           <tbody>
@@ -68,25 +59,6 @@
               </td>
               <td>
                 {{ entry.gradePointAvgStatus }}
-              </td>
-              <!-- <td>
-                {{ entry.univ }}
-              </td> -->
-              <!-- <td>
-                {{  entry.academicYear }}
-              </td> -->
-              <!-- <td>
-                {{ entry.gradeMonths }}
-              </td> -->
-              <!-- <td>
-                {{ entry.year }}
-              </td> -->
-              <!-- <td>
-                {{ entry.periodNumber }}
-              </td> -->
-              <!-- <td>
-                {{ entry.gradesGivenDate | truncateDate }}
-              </td> -->
               <td>
                 {{ entry.gradesDueDate | truncateDate }}
               </td>
@@ -102,21 +74,13 @@
                   target="_blank">{{entry.studentGUId | trimGuid | uppercase  }}</a>
                 </div>
               </td>
-
-
-
               <td>
                 {{ entry.gradePointAvg }}
               </td>
 
-
-
               <td>
                 {{ entry.confirmedDate | truncateDate }}
               </td>
-              <!-- <td>
-                {{ entry.exception | emptyStatus }}
-              </td> -->
             </tr>
           </tbody>
         </table>

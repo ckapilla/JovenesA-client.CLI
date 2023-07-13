@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
+import { SetSelectedYearJoined } from 'src/app/_store/ui/ui.action';
 import { constants } from '../../_shared/constants/constants';
 import { TituloDataService } from '../../_shared/data/titulo-data.service';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
@@ -29,16 +30,16 @@ export class TitulosListComponent implements OnInit {
   selectedYear: string;
   selectedMonth: string;
   displayTestNames: boolean;
-  selectedGradesProcessingPeriodID = '';
+  selectedYearJoined = '2018';
   staticUrlPrefix: string;
   periodStart: string;
   private subscription: Subscription;
 
    testNameVisibility$ = this.store.select<boolean>(UIState.getTestNamesVisibility);
-   selectedGradesProcessingPeriodID$ = this.store.select<string>(UIState.getselectedGradesProcessingPeriodID);
+   selectedYearJoined$ = this.store.select<string>(UIState.getSelectedYearJoined);
 
   constructor(
-    public becaData: TituloDataService,
+    public tituloData: TituloDataService,
     public router: Router,
     private store: Store,
     private session: SessionService,
@@ -57,13 +58,13 @@ export class TitulosListComponent implements OnInit {
     this.testNameVisibility$.subscribe((flag) => {
       this.displayTestNames = flag;
     });
-    this.subscribeForselectedGradesProcessingPeriodID();
+    this.subscribeForselectedYearJoined();
   }
 
-  subscribeForselectedGradesProcessingPeriodID() {
-    this.subscription = this.selectedGradesProcessingPeriodID$.subscribe((message) => {
-      this.selectedGradesProcessingPeriodID = message;
-      console.log('************NGXS: GradesList new selectedGradesProcessingPeriodID received' + this.selectedGradesProcessingPeriodID);
+  subscribeForselectedYearJoined() {
+    this.subscription = this.selectedYearJoined$.subscribe((message) => {
+      this.selectedYearJoined = message;
+      console.log('************NGXS: GradesList new selectedGradesProcessingPeriodID received' + this.selectedYearJoined);
       this.fetchFilteredData();
     });
   }
@@ -71,30 +72,34 @@ export class TitulosListComponent implements OnInit {
 
   fetchFilteredData() {
 
-  //   this.isLoading = true;
-  //   console.log('displayTestNames: ' + this.displayTestNames);
-  //   this.becaData.getGradesListForPeriod(+this.selectedGradesProcessingPeriodID).subscribe(
-  //     (data) => {
-  //       this.titulosGivenEntryDTOs = data.filter((item) => {
-  //         if (this.displayTestNames) {
-  //           return item;
-  //         } else if (!this.displayTestNames && item.studentName?.substring(0,5) !== '_Test') {
-  //           return item;
-  //         }
-  //       });
-  //     },
-  //     (err) => {
-  //       this.errorMessage = err;
-  //     },
-  //     () => {
-  //       console.log(this.titulosGivenEntryDTOs[0]);
-  //       console.log('data loaded now set timeout for scroll');
-  //       setTimeout(() => {
-  //         this.scrollIntoView();
-  //       }, 0);
-  //       this.isLoading = false;
-  //     }
-  //   );
+    this.isLoading = true;
+    console.log('displayTestNames: ' + this.displayTestNames);
+    this.tituloData.getTitulosListForYearJoined(+this.selectedYearJoined).subscribe(
+      (data) => {
+        this.titulosGivenEntryDTOs = data.filter((item) => {
+          if (this.displayTestNames) {
+            return item;
+          } else if (!this.displayTestNames && item.studentName?.substring(0,5) !== '_Test') {
+            return item;
+          }
+        });
+      },
+      (err) => {
+        this.errorMessage = err;
+      },
+      () => {
+        console.log(this.titulosGivenEntryDTOs[0]);
+        console.log('data loaded now set timeout for scroll');
+        setTimeout(() => {
+          this.scrollIntoView();
+        }, 0);
+        this.isLoading = false;
+      }
+    );
+  }
+
+  setselectedYearJoined(yearJoined: string) {
+    this.store.dispatch(new SetSelectedYearJoined(yearJoined));
   }
 
   scrollIntoView() {
