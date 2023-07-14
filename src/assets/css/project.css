@@ -278,9 +278,7 @@ footer a {
 }
 
 
-a:hover, a:focus-visible {
-  transition: 150ms;
-}
+
 @media (min-width: 768px) and (max-width: 979px) {}
 
 @media (max-width: 979px) {}

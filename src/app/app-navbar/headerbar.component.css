@@ -54,10 +54,9 @@ nav.students a.active {
   opacity: 1!important;
   outline: none!important;
 } 
-nav.students a:hover , nav.students a:focus{
+nav.students a:hover , nav.students a:focus,  nav.students a:focus-visible{
   opacity: .7;
   outline: 2px solid #fff;
-  border-radius: 10px;
 }
 
 nav.students ul, li{
@@ -68,12 +67,12 @@ nav.students ul, li{
 nav.students .container-fluid .navbar-brand{
   height: 96px;
 }
-nav.students a.navbar-brand:hover, nav.students a.navbar-brand:focus{
+nav.students a.navbar-brand:hover, nav.students a.navbar-brand:focus, nav.students a.navbar-brand:focus-visible{
 opacity: 1;
 outline: none;
 }
 nav.students ul.navbar-nav{
-  gap: 1rem!important;
+  gap: .5rem!important;
 }
 nav.students .nav-item:active{
   color: black;
@@ -86,12 +85,13 @@ nav.students .nav-item:active{
   font-size: 1rem;
   margin: 0 !important;
 } */
-a.logout:hover, a.logout:focus{
-  outline: red solid 1px!important;
+a.logout:hover, a.logout:focus, a.logout:focus-visible{
+  outline: 2px red solid !important;
   color: red!important;
+  opacity: 1!important;
 }
 
-@media (max-width: 575.98px) { 
+@media (max-width: 767.98px) { 
   
 .menu{
   top: 96px;

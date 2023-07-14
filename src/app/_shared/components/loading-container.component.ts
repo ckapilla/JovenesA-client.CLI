@@ -149,6 +149,11 @@ import { Component } from '@angular/core';
         position: relative;
         width: 200px;
         height: 200px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      div:has(.uil-squares-css){
+        transform: scale(.25);
       }
       .uil-squares-css div {
         position: absolute;
@@ -258,7 +263,7 @@ import { Component } from '@angular/core';
         animation-delay: 0.875s;
       }
     </style>
-    <div class="uil-squares-css" style="transform:scale(0.25);">
+    <div class="uil-squares-css" >
       <div><div></div></div>
       <div><div></div></div>
       <div><div></div></div>

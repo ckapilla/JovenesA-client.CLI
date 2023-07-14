@@ -8,7 +8,8 @@ import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 import { Member } from '../../_shared/models/member';
 
 @Component({
-  templateUrl: './students-profile.component.html'
+  templateUrl: './students-profile.component.html',
+  styleUrls: ['./students-profile.component.css']
 })
 export class StudentProfileComponent implements OnInit {
   myForm: UntypedFormGroup;
@@ -47,6 +48,7 @@ export class StudentProfileComponent implements OnInit {
       nonSMA_PostalCode: ['', Validators.required]
       // englishSkillLevelId: ['', Validators.required]
     });
+
     this.student = new Member();
 
     this.errorMessage = '';
@@ -62,6 +64,7 @@ export class StudentProfileComponent implements OnInit {
       // this.successMessage = '';
       this.submitted = false;
     });
+    this.myForm.disable();
   }
 
   fetchData() {
@@ -105,9 +108,20 @@ export class StudentProfileComponent implements OnInit {
     // use spread operator to merge changes:
     this.student = { ...this.student, ...this.myForm.value };
   }
+  editForm(element: HTMLInputElement) {
+    /* enables all form inputs */
+    if (this.myForm.disabled) {
+      element.textContent = 'Cancelar';
+      this.myForm.enable();
+    } else {
+      element.textContent = 'Editar';
+      this.myForm.disable();
+    }
+  }
 
   saveMyForm(): boolean {
     console.log('saving ');
+    this.myForm.disable();
     this.isLoading = true;
     this.retrieveFormValues();
     this.memberData.updateMember(this.student).subscribe(
