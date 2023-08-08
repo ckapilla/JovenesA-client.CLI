@@ -42,7 +42,7 @@ const gradesProcessingPeriods: GRADESPROCESSINGPERIOD[] = [
   { id: '111', descriptor: '2023-01-01 (Semestre)', studentReportingStartDate:'2023-01-01', endDate:'2023-01-22', yearTypeId: 2031, isCurrent: false },
   { id: '112', descriptor: '2023-01-01 (Cuatrimestre)', studentReportingStartDate:'2023-01-01', endDate:'2023-01-22', yearTypeId: 2032, isCurrent: false },
   { id: '113', descriptor: '2023-05-01 (Cuatrimestre)', studentReportingStartDate:'2023-05-01', endDate:'2023-07-31', yearTypeId: 2032, isCurrent: false },
-  { id: '114', descriptor: '2023-08-01 (Cuatrimestre)', studentReportingStartDate:'2023-08-01', endDate:'2023-08-31', yearTypeId: 2031, isCurrent: true },
+  { id: '114', descriptor: '2023-08-01 (Cuatrimestre)', studentReportingStartDate:'2023-07-22', endDate:'2023-08-31', yearTypeId: 2031, isCurrent: true },
   { id: '115', descriptor: '2023-09-01 (Cuatrimestre)', studentReportingStartDate:'2023-09-01', endDate:'2023-09-30', yearTypeId: 2032, isCurrent: false },
 
 

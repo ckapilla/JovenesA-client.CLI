@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Titulos } from '../models/titulos';
-import { TitulosGivenEntryDTO } from '../models/titulos-given-entryDTO';
+import { TitulosReceivedDTO } from '../models/titulos-receivedDTO';
 import { UrlService } from '../services/url.service';
 
 @Injectable({ providedIn: 'root' })
@@ -19,31 +19,26 @@ export class TituloDataService {
   ///  TitulosController
   /// ///////////////////////////////////////////////
 
-  public getTitulosListEntryDTOs(): Observable<TitulosGivenEntryDTO[]> {
-    const url = this.WebApiPrefix + 'titulos/' + 'grades-list';
-    console.log('sending AuthHttp get request for GradesList');
-    return this.http.get<TitulosGivenEntryDTO[]>(url).pipe(catchError(this.handleError));
-  }
-
-  public getTitulosListForYearJoined(yearJoined: number): Observable<TitulosGivenEntryDTO[]> {
-    const url = this.WebApiPrefix + 'titulos/' + 'titulos-list/year-joined/' + yearJoined;
-    console.log('sending AuthHttp get request for TitulosList with url ' + url);
-    return this.http.get<TitulosGivenEntryDTO[]>(url).pipe(catchError(this.handleError));
-  }
-
-  public getTitulos(studentGUId: string): Observable<Titulos[]> {
-    const url = this.WebApiPrefix + 'titulos/' + 'student-grades/' + studentGUId;
+  public getTitulosForStudent(studentGUId: string): Observable<Titulos[]> {
+    const url = this.WebApiPrefix + 'titulos/' + studentGUId;
     console.log('sending AuthHttp get request for Titulos');
     return this.http.get<Titulos[]>(url).pipe(catchError(this.handleError));
   }
 
-  public updateTitulos(studentGradeEntry: Titulos): Observable<any> {
-    const url = this.WebApiPrefix + 'titulos/' + 'student-grades/' + studentGradeEntry.tituloId;
-    let body = JSON.stringify({ studentGradeEntry }); //
-    // strip outer 'studentGradeEntry' name
+
+  public getTitulosListForGradYear(gradYear: number): Observable<TitulosReceivedDTO[]> {
+    const url = this.WebApiPrefix +  'titulos/titulos-list/gradYear/' + gradYear;
+    console.log('sending AuthHttp get request for TitulosList with url ' + url);
+    return this.http.get<TitulosReceivedDTO[]>(url).pipe(catchError(this.handleError));
+  }
+
+  public updateTitulos(titulo: Titulos): Observable<any> {
+    const url = this.WebApiPrefix + 'titulos/' + 'titulos/' + titulo.tituloId;
+    let body = JSON.stringify({ titulo }); //
+    // strip outer 'titulo' name
 
     const x = JSON.parse(body);
-    body = JSON.stringify(x.studentGradeEntry);
+    body = JSON.stringify(x.titulo);
     console.log('in updateTitulos');
 
     const returnedToken =
@@ -54,12 +49,14 @@ export class TituloDataService {
     return this.http.put(url, body, { headers: headers });
   }
 
-  public uploadTitulosReport(frmData: FormData, studentGUId: string, studentGradeId: number, gradesProcessingPeriodId: number): Observable<any> {
-    const url = this.WebApiPrefix + 'titulos/' + 'student-grades-report' + '?studentGUId=' + studentGUId + '&studentGradeId='+ studentGradeId  + '&gradesProcessingPeriodId='+ gradesProcessingPeriodId;
-    // const headers = new HttpHeaders().set(
-    //   'Content-Type',
-    //   'multipart/form-data; boundary=----WebKitFormBoundary0BPm0koKA'
-    // );
+  public uploadTitulosImage(frmData: FormData,
+    studentGUId: string,
+    tituloId: number,
+    gradYear: number,
+    receivedDate: string
+    ): Observable<any> {
+    const url = this.WebApiPrefix + 'titulos/' + 'titulos' + '?studentGUId=' + studentGUId + '&tituloId='+ tituloId  + '&gradYear='+ gradYear + '&receivedDate=' + receivedDate;
+
     if (frmData) {
       const file: any = frmData.get('file');
       console.log('ready to post ' + url + ' filename: ' + file.name); // + ' options ' + headers);
@@ -70,7 +67,7 @@ export class TituloDataService {
   }
 
   private handleError(error: any) {
-    console.log('beca-data handlError');
+    console.log('titulo-data handlError');
     JSON.stringify(error);
     const errMsg = error.message
       ? error.message

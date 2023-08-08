@@ -1,16 +1,16 @@
 <div class="card bg-primary">
   <div class="card-header text-white"
-    data-cy="grades-period">
+    data-cy="selectedGradYear">
     <span style="font-size: large"> Titulos Tracking</span>
     <span style="margin-left: 10rem">
-      Year Joined JA:
+      Grad Year:
       <select
-        name="activePeriodSelector"
+        name="activeGradYearSelector"
         data-cy="period-selector"
-        [(ngModel)]="selectedYearJoined"
-        (change)="setselectedYearJoined($event.target.value)"
+        [(ngModel)]="selectedGradYear"
+        (change)="setselectedGradYear($event.target.value)"
       >
-        <option *ngFor="let year of years" [value]="yearJoined">{{yearJoined}}</option>
+        <option *ngFor="let year of years" [value]="year.value">{{year.label}}</option>
       </select>
     </span>
   </div>
@@ -24,7 +24,51 @@
       </div>
       <div *ngSwitchCase="false">
         <table class="table-sm table-striped">
+          <table class="table-sm table-striped">
+            <thead>
+              <tr>
+                <!-- <td>Id</td> -->
+                <th></th>
+                <th app-sortable-column="studentName" sort-direction="asc" (onSortColumn)="onSortColumn($event)">
+                  Student
+                </th>
+                <th>Upload<br />Image</th>
+                <!-- <th app-sortable-column="tituloReceivedDate" (onSortColumn)="onSortColumn($event)">Received <br />Date</th> -->
+                <th app-sortable-column="imageSubmittedDate" (onSortColumn)="onSortColumn($event)">Uploaded <br />Date</th>
+                <th>View<br />Image</th>
+               </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let entry of titulosReceivedDTOs; let i = index">
+                <td>
+                  {{ i + 1 }}
+                </td>
+                <td (click)="gotoStudent(entry.studentGUId, entry.studentName)" class="link">
+                  {{ entry.studentName }}
+                </td>
 
+                <td>
+                  <span *ngIf="2147==2147 " class="padded">
+                    <span class="btn btn-primary" (click)="submitImage(entry.studentGUId, entry.gradYear)" >
+                      ^
+                    </span>
+                  </span>
+                </td>
+                <!-- <td>
+                  {{ entry.tituloReceivedDate | truncateDate }}
+                </td> -->
+                <td>
+                  {{ entry.imageSubmittedDate | truncateDate }}
+                </td>
+                <td class="link">
+                  <div [hidden]="isViewLinkHidden(entry!.imageSubmittedDate)">
+                    <a href= "{{staticUrlPrefix}}StudentTitulosImages/{{entry.gradYear}}/{{entry.studentGUId | uppercase }}.png"
+                    target="_blank">{{entry.studentGUId | trimGuid | uppercase  }}</a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </table>
       </div>
     </div>

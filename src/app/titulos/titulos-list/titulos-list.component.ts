@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
-import { SetSelectedYearJoined } from 'src/app/_store/ui/ui.action';
+import { SetSelectedGradYear } from 'src/app/_store/ui/ui.action';
 import { constants } from '../../_shared/constants/constants';
 import { TituloDataService } from '../../_shared/data/titulo-data.service';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 import { SORTCRITERIA } from '../../_shared/interfaces/SORTCRITERIA';
 import { StudentDTO } from '../../_shared/models/studentDTO';
-import { TitulosGivenEntryDTO } from '../../_shared/models/titulos-given-entryDTO';
+import { TitulosReceivedDTO } from '../../_shared/models/titulos-receivedDTO';
+
 import { ColumnSortService } from '../../_shared/services/column-sort.service';
 import { SessionService } from '../../_shared/services/session.service';
 import { UrlService } from '../../_shared/services/url.service';
@@ -20,23 +21,23 @@ import { UIState } from '../../_store/ui/ui.state';
 })
 export class TitulosListComponent implements OnInit {
   studentDTO: StudentDTO;
-  titulosGivenEntryDTOs: TitulosGivenEntryDTO[];
+  titulosReceivedDTOs: TitulosReceivedDTO[];
   isLoading: boolean;
   errorMessage: string;
   successMessage: string;
   sortCriteria: SORTCRITERIA;
   years: SELECTITEM[];
-  months: SELECTITEM[];
+  // months: SELECTITEM[];
   selectedYear: string;
   selectedMonth: string;
   displayTestNames: boolean;
-  selectedYearJoined = '2018';
+  selectedGradYear = '';
   staticUrlPrefix: string;
   periodStart: string;
   private subscription: Subscription;
 
    testNameVisibility$ = this.store.select<boolean>(UIState.getTestNamesVisibility);
-   selectedYearJoined$ = this.store.select<string>(UIState.getSelectedYearJoined);
+   selectedGradYear$ = this.store.select<string>(UIState.getSelectedGradYear);
 
   constructor(
     public tituloData: TituloDataService,
@@ -48,23 +49,25 @@ export class TitulosListComponent implements OnInit {
   ) {
     this.staticUrlPrefix = url.getStaticFilePrefix();
 
-    this.years = constants.contactYears;
-    this.months = constants.months;
+    this.years = constants.gradYears;
+    // this.months = constants.months;
 
     this.isLoading = false;
   }
 
   ngOnInit() {
+    console.log('TitulosListComponent constructor');
     this.testNameVisibility$.subscribe((flag) => {
       this.displayTestNames = flag;
     });
-    this.subscribeForselectedYearJoined();
+    this.subscribeForselectedGradYear();
   }
 
-  subscribeForselectedYearJoined() {
-    this.subscription = this.selectedYearJoined$.subscribe((message) => {
-      this.selectedYearJoined = message;
-      console.log('************NGXS: GradesList new selectedGradesProcessingPeriodID received' + this.selectedYearJoined);
+  subscribeForselectedGradYear() {
+    console.log('fetching selected GradYear')
+    this.subscription = this.selectedGradYear$.subscribe((message) => {
+      this.selectedGradYear = message;
+      console.log('************NGXS: TitulosList new selectedGradYear received' + this.selectedGradYear);
       this.fetchFilteredData();
     });
   }
@@ -74,9 +77,9 @@ export class TitulosListComponent implements OnInit {
 
     this.isLoading = true;
     console.log('displayTestNames: ' + this.displayTestNames);
-    this.tituloData.getTitulosListForYearJoined(+this.selectedYearJoined).subscribe(
+    this.tituloData.getTitulosListForGradYear(+this.selectedGradYear).subscribe(
       (data) => {
-        this.titulosGivenEntryDTOs = data.filter((item) => {
+        this.titulosReceivedDTOs = data.filter((item) => {
           if (this.displayTestNames) {
             return item;
           } else if (!this.displayTestNames && item.studentName?.substring(0,5) !== '_Test') {
@@ -88,7 +91,8 @@ export class TitulosListComponent implements OnInit {
         this.errorMessage = err;
       },
       () => {
-        console.log(this.titulosGivenEntryDTOs[0]);
+        console.log(this.titulosReceivedDTOs[0]);
+        console.log(this.titulosReceivedDTOs[1]);
         console.log('data loaded now set timeout for scroll');
         setTimeout(() => {
           this.scrollIntoView();
@@ -98,8 +102,8 @@ export class TitulosListComponent implements OnInit {
     );
   }
 
-  setselectedYearJoined(yearJoined: string) {
-    this.store.dispatch(new SetSelectedYearJoined(yearJoined));
+  setselectedGradYear(gradYear: string) {
+    this.store.dispatch(new SetSelectedGradYear(gradYear));
   }
 
   scrollIntoView() {
@@ -119,12 +123,26 @@ export class TitulosListComponent implements OnInit {
   }
 
   isViewLinkHidden(imageSubmittedDate: any) {
-    return (imageSubmittedDate === '1900-01-01T00:00:00');
+    // console.log('%%%%%%%%[' + imageSubmittedDate + ']')
+    return (imageSubmittedDate === '1900-01-01T00:00:00' || imageSubmittedDate == null);
   }
+
+  submitImage(studentGUId: any, gradYear: number) {
+    console.log('submitImage');
+
+    const link = ['/titulos/entry',
+      {
+        studentGUId: studentGUId,
+        gradYear: gradYear
+      }
+    ];
+    console.log('navigating to ' + JSON.stringify(link));
+    this.router.navigate(link);
+}
 
   public onSortColumn(sortCriteria: SORTCRITERIA) {
     console.log('parent received sortColumnCLick event with ' + sortCriteria.sortColumn);
-    return this.titulosGivenEntryDTOs.sort((a, b) => this.columnSorter.compareValues(a, b, sortCriteria));
+    return this.titulosReceivedDTOs.sort((a, b) => this.columnSorter.compareValues(a, b, sortCriteria));
   }
 
   onSorted($event) {

@@ -38,6 +38,8 @@ export class FileUploaderComponent {
 
         // interface File extends Blob {
         fileEntry.file((file: File) => {
+          const date = new Date(file.lastModified);
+          console.log('fileEntry last modified: ' + date.toDateString());
           console.log('fileEntry relativePath: ' + currFile.relativePath);
           console.log('filEntry.name: ', file.name);
           const ext = file.name.substr(file.name.length - 4, 4);
@@ -55,7 +57,13 @@ export class FileUploaderComponent {
             const frmData = new FormData();
             frmData.append('file', file);
             // frmData.append('studentGUID', this.session.getStudentRecordGUId());
-            this.becaData.uploadStudentGradesReport(frmData, this.session.getStudentRecordGUId(), this.studentGradeId, this.gradesProcessingPeriodId ).subscribe(
+            this.becaData.uploadStudentGradesReport(
+              frmData,
+              this.session.getStudentRecordGUId(),
+              this.studentGradeId,
+              this.gradesProcessingPeriodId,
+              date.toDateString()
+              ).subscribe(
               // this.becaData.uploadStudentGradesReport(frmData).subscribe(
               () => {
                 this.successMessage = 'El archivo [' + file.name + '] se cargó correctamente';
