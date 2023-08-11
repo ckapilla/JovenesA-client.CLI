@@ -8,7 +8,14 @@ const ssrDateRange: string = 'NODATEYET';
 const joinedYears: SELECTITEM[] = [];
 const gradYears: SELECTITEM[] = [];
 const contactYears: SELECTITEM[] = [];
-
+const pastGradYears: SELECTITEM[] = [
+  { value: '2018', label: '2018' },
+  { value: '2019', label: '2019' },
+  { value: '2020', label: '2020' },
+  { value: '2022', label: '2021' },
+  { value: '2022', label: '2022' },
+  { value: '2023', label: '2023' },
+];
 
 const months: SELECTITEM[] = [
   { value: '1', label: 'Jan/Ene' },
@@ -93,6 +100,7 @@ export const constants = {
   joinedYears,
   // non-db
   gradYears,
+  pastGradYears,
   contactYears,
   ssrDateRange,
   currentContactYear,

@@ -49,7 +49,7 @@ export class TitulosListComponent implements OnInit {
   ) {
     this.staticUrlPrefix = url.getStaticFilePrefix();
 
-    this.years = constants.gradYears;
+    this.years = constants.pastGradYears;
     // this.months = constants.months;
 
     this.isLoading = false;

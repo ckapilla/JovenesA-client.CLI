@@ -22,7 +22,7 @@ import { UIStateModel } from './ui.model';
     selectedFilterMode: '998',
     selectedStudentStatus: '0',
     selectedYearJoined: '0',
-    selectedGradYear: '2020'
+    selectedGradYear: '2022'
   }
 })
 @Injectable()

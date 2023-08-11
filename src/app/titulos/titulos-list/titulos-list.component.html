@@ -23,19 +23,21 @@
         <app-loading-container> </app-loading-container>
       </div>
       <div *ngSwitchCase="false">
-        <table class="table-sm table-striped">
-          <table class="table-sm table-striped">
+
+
+
+        <table class="table table-condensed table-striped">
+
             <thead>
               <tr>
-                <!-- <td>Id</td> -->
-                <th></th>
-                <th app-sortable-column="studentName" sort-direction="asc" (onSortColumn)="onSortColumn($event)">
+                <th style="width: 8.33%"></th>
+                <th style="width: 25%" app-sortable-column="studentName" sort-direction="asc" (onSortColumn)="onSortColumn($event)">
                   Student
                 </th>
-                <th>Upload<br />Image</th>
-                <!-- <th app-sortable-column="tituloReceivedDate" (onSortColumn)="onSortColumn($event)">Received <br />Date</th> -->
-                <th app-sortable-column="imageSubmittedDate" (onSortColumn)="onSortColumn($event)">Uploaded <br />Date</th>
-                <th>View<br />Image</th>
+                <th style="width: 8.33%">Upload<br />Image</th>
+               <th style="width: 16.66%" app-sortable-column="tituloReceivedDate" (onSortColumn)="onSortColumn($event)">Received <br />Date</th>
+                <th style="width: 16.66%" app-sortable-column="imageSubmittedDate" (onSortColumn)="onSortColumn($event)">Uploaded <br />Date</th>
+                <th style="width: 16.66%">View<br />Image</th>
                </tr>
             </thead>
             <tbody>
@@ -43,22 +45,22 @@
                 <td>
                   {{ i + 1 }}
                 </td>
-                <td (click)="gotoStudent(entry.studentGUId, entry.studentName)" class="link">
+                <td  (click)="gotoStudent(entry.studentGUId, entry.studentName)" class="link">
                   {{ entry.studentName }}
                 </td>
 
                 <td>
                   <span *ngIf="2147==2147 " class="padded">
-                    <span class="btn btn-primary" (click)="submitImage(entry.studentGUId, entry.gradYear)" >
+                    <span class="btn btn-xs btn-primary" (click)="submitImage(entry.studentGUId, entry.gradYear)" >
                       ^
                     </span>
                   </span>
                 </td>
-                <!-- <td>
-                  {{ entry.tituloReceivedDate | truncateDate }}
-                </td> -->
                 <td>
-                  {{ entry.imageSubmittedDate | truncateDate }}
+                 &nbsp; {{ entry.tituloReceivedDate | truncateDate }}
+                </td>
+                <td>
+                 &nbsp; {{ entry.imageSubmittedDate | truncateDate }}
                 </td>
                 <td class="link">
                   <div [hidden]="isViewLinkHidden(entry!.imageSubmittedDate)">
@@ -68,7 +70,7 @@
                 </td>
               </tr>
             </tbody>
-          </table>
+
         </table>
       </div>
     </div>
