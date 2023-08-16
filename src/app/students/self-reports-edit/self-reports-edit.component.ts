@@ -62,6 +62,7 @@ export class SelfReportsEditComponent implements OnInit {
     this.ssrData.getStudentSelfReport(this.selfReportId).subscribe(
       (data) => {
         this.selfReport = data;
+       // console.log(data.narrative_Spanish)
       },
       (err) => console.error('Subscribe error: ' + err),
       () => {

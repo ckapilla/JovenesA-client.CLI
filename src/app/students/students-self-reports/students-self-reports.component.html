@@ -1,47 +1,112 @@
-<div *ngIf="errorMessage" class="alert alert-danger">
-  {{ errorMessage }}
-</div>
+<!DOCTYPE html>
 
-<div [ngSwitch]="isLoading">
-  <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
-    <app-loading-container> </app-loading-container>
+<head lang="es">
+  <meta charset="UTF-8">
+</head>
+
+<body>
+  <header>
+    <p>Reportes</p>
+  </header>
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
   </div>
-  <div *ngSwitchCase="false">
-    <div *ngIf="!errorMessage" class="card bg-primary">
-      <div class="card-header text-white" style="font-size: large">
-        <span>Tus reportes anteriores</span>
-        <span>
-          <span *ngIf="inReportProcessingPeriod; else elseBlock">
-           <span *ngIf="inReportProcessingPeriod"></span>
-            <span class="btn btn-default active" (click)="studentSelfReportAdd()" style="margin-left: 10px">
-              Añadir Nuevo Reporte
-            </span>
-          </span>
-          <!-- <ng-template #elseBlock><div> (El próximo período para presentar tu reporte trimestral comenzará cerca de finales de {{ lastMonthInQuarter }}.)</div> </ng-template> -->
-        </span>
+  <main>
+
+    <!-- se evalua si se está cargando la página, si sí se muestra el componente loading que contiene la animación de cargando en vez de este componente-->
+    <div [ngSwitch]="isLoading">
+      <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
+        <app-loading-container> </app-loading-container>
       </div>
-      <div class="card-body bg-white">
-        <div class="row" style="border-bottom: 3px solid #ccc; margin-top: 2px" *ngFor="let i of studentSelfReports">
-          <div class="col-md-12">
-            <div class="row">
-              <button
-                *ngIf="isInCurrentReportDateRange(i.reportDateTime)"
-                class="btn default-btn btn-primary btn-sm"
-                (click)="selfReportEdit(i.studentSelfReportId, i.studentGUId, i.studentName)"
-              >
-                Editar
-              </button>
-              &nbsp;
-              <span class="padded"> &nbsp;Fecha del Reporte: {{ i.reportDateTime | truncateDate }} </span>
-              <span class="padded"> &nbsp;Período: {{ i.reportYear }} - {{ i.reportPeriod }} </span>
+
+      <div *ngSwitchCase="false">
+        <div *ngIf="!errorMessage">
+
+          <div *ngIf="inReportProcessingPeriod; else elseBlock" class="conteneder-agregar">
+            <div *ngIf="inReportProcessingPeriod"></div>
+            <div class="btn-agregar-reporte btn " (click)="studentSelfReportAdd()" style="margin-left: 10px">
+              Agregar Reporte
             </div>
-            <div class="row">
-              <div class="padded">&nbsp;Texto del Reporte:</div>
-              <div [innerHTML]="i.narrative_Spanish | unsafeHtml"></div>
-            </div>
+          </div>
+
+          <p class="subtitulo">Reportes anteriores</p>
+          <div class="tabla-scroll">
+            <table>
+              <tbody>
+                <div class="franjas">
+                  <tr *ngFor="let i of studentSelfReports; index as a">
+                    <td class="reportes-td">
+                      <div class="d-flex flex-lg-row flex-column">
+                        <div class="col-12 col-lg-10 d-block m-0">
+
+                          <!--<button
+                      *ngIf="isInCurrentReportDateRange(i.reportDateTime)"
+                      class="btn default-btn btn-primary btn-sm"
+                      (click)="selfReportEdit(i.studentSelfReportId, i.studentGUId, i.studentName)"
+                    >
+                      Editar
+                    </button>-->
+                          <div class="reportes-fecha">
+                            <h1> Fecha del Reporte:</h1>
+                            <h2>
+                              {{ i.reportDateTime | truncateDate }}
+                            </h2>
+                            <h1>
+                              Período:
+                            </h1>
+                            <h2>
+                              {{ i.reportYear }} - {{ i.reportPeriod }}
+                            </h2>
+                          </div>
+                          <div class="reportes-texto" id="contenedor-reporte">
+                            <div [innerHTML]=" i.narrative_Spanish | unsafeHtml" class="reportes-resumen"
+                              id="reportFullText + i"></div>
+                            <div class="puntos">{{i.puntos}}</div>
+                          </div>
+
+                        </div>
+
+                        <div class=" lateral-tabla justify-content-end d-flex align-content-lg-center justify-content-lg-between mt-lg-2 col-lg-2 flex-lg-column flex-row flex-wrap mt-2">
+                          
+                          <div class="col-5 col-lg-auto ">
+                            <button *ngIf="isInCurrentReportDateRange2(i.reportDateTime)" type="button"
+                            class="btn btn-primary editar  ml-2 mb-2 ">
+                            Editar
+                          </button>
+                          </div>
+                          <a class="ver-mas d-flex  align-self-start justify-content-end" (click)="verMas(i.studentSelfReportId, a)" id="link-vermas"
+                            [innerHTML]="i.link"></a>
+                        </div>
+
+                      </div>
+      
+
+                    </td>
+
+
+
+                  </tr>
+
+                </div>
+
+              </tbody>
+
+            </table>
           </div>
         </div>
       </div>
+
+
+
+
     </div>
-  </div>
-</div>
+
+
+
+
+  </main>
+
+
+
+
+</body>
