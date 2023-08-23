@@ -14,7 +14,6 @@ import { StudentDTO } from '../../_shared/models/studentDTO';
 import { SessionService } from '../../_shared/services/session.service';
 //import { StudentSelfReportDataService } from 'src/app/_shared/data/student-self-report-data.service';
 
-
 @Component({
   templateUrl: './students-self-reports.component.html',
   styleUrls: ['./students-self-reports.component.css']
@@ -39,13 +38,10 @@ export class StudentsSelfReportsComponent implements OnInit {
 
   currentStudentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
 
+  fechaActual = new Date();
 
-
-  reporteCompletoTexto: string;
-  reporteResumenTexto: string;
-  reporteCompleto: StudentSelfReport;
-
-
+  fechaEntregaInicio;
+  fechaEntregaFinal;
   constructor(
     public currRoute: ActivatedRoute,
     private router: Router,
@@ -55,12 +51,8 @@ export class StudentsSelfReportsComponent implements OnInit {
     public store: Store,
     public ssrData: StudentSelfReportDataService,
     public renderer2: Renderer2
-
-
   ) {
-
     //console.log('ssr constructor' + 'inReportProcessingPeriod = ' + this.inReportProcessingPeriod);
-
   }
 
   parseSSRDateRange() {
@@ -74,7 +66,6 @@ export class StudentsSelfReportsComponent implements OnInit {
   }
 
   splitStartStopDates(strToday: string) {
-
     console.log('constants has ' + constants.ssrDateRange);
     let ssrEditDateStart = constants.ssrDateRange.substring(0, 8);
     console.log('Start literal ' + ssrEditDateStart);
@@ -110,36 +101,24 @@ export class StudentsSelfReportsComponent implements OnInit {
     console.log('studentSelfReport ngOnInit, studentGUID = ' + this.studentGUId);
     this.parseSSRDateRange();
     this.fetchSelfReports();
+    
     //  this.subscribeForStudentGUId();
   }
-  verMas(reportId, lugar) {
-    if (this.studentSelfReports[lugar]['link'] == 'Seguir leyendo &#709;') {
+  verMas(lugar) {
+    console.log(this.studentSelfReports[lugar]);
 
-      this.ssrData.getStudentSelfReport(reportId).subscribe(
-        (data) => {
-          //guardamos el resumen en una nueva variable
-          this.reporteResumenTexto = this.studentSelfReports[lugar].narrative_Spanish
-          //cambiamos el resumen por el texto completo del reporte
-          this.studentSelfReports[lugar].narrative_Spanish = data.narrative_Spanish
-          //cambiamos el texto del link
-          this.studentSelfReports[lugar]['link'] = 'Leer menos &#708;'
-          this.studentSelfReports[lugar]['puntos'] = ''
-        }
-        ,
-        (err) => console.error('Subscribe error: ' + err),
-        () => {
-
-        }
-      );
+    if (this.studentSelfReports[lugar]['link'] == 'Leer más &#709;') {
+      //cambiamos el valor del reporteMostrado al reporte compelto
+      this.studentSelfReports[lugar]['reporteMostrado'] = this.studentSelfReports[lugar]['reporteCompleto'];
+      //cambiamos el texto del link
+      this.studentSelfReports[lugar]['link'] = 'Leer menos &#708;';
+      this.studentSelfReports[lugar]['puntos'] = '';
+    } else {
+      //cambiamos el valor del reporteMostrado por el recumen del reporte
+      this.studentSelfReports[lugar]['reporteMostrado'] = this.studentSelfReports[lugar]['resumenReporte'];
+      this.studentSelfReports[lugar]['link'] = 'Leer más &#709;';
+      this.studentSelfReports[lugar]['puntos'] = ' ...';
     }
-    else {
-
-      //regresamos el resumen al arreglo
-      this.studentSelfReports[lugar].narrative_Spanish = this.reporteResumenTexto
-      this.studentSelfReports[lugar]['link'] = 'Seguir leyendo &#709;'
-      this.studentSelfReports[lugar]['puntos'] = ' ...'
-    }
-
   }
 
   // subscribeForStudentGUId() {
@@ -154,8 +133,6 @@ export class StudentsSelfReportsComponent implements OnInit {
 
   //   });
   // }
-
-
 
   fetchSponsorGroup() {
     console.log('>>>>fetching Sponsor greoup for ' + this.studentGUId);
@@ -184,8 +161,10 @@ export class StudentsSelfReportsComponent implements OnInit {
     this.studentSelfReportData.getStudentSelfReportsByGUId(this.studentGUId).subscribe(
       (data) => {
         this.studentSelfReports = data;
-        console.log(data)
-        this.agregarLinkPuntos()
+        console.log(data);
+        this.asignarResumenAReporteMostrado();
+        this.agregarReportesCompletos();
+        this.agregarLinkPuntos();
       },
       (err) => console.error('Subscribe error: ' + err),
       () => {
@@ -195,19 +174,32 @@ export class StudentsSelfReportsComponent implements OnInit {
     );
   }
 
-  agregarLinkPuntos() {
-    this.studentSelfReports.forEach(element => {
-      element['link'] = 'Seguir leyendo &#709;'
-      element['puntos'] = ' ...'
+  asignarResumenAReporteMostrado() {
+    this.studentSelfReports.forEach((reporte) => {
+      reporte['resumenReporte'] = reporte.narrative_Spanish;
+      reporte['reporteMostrado'] = reporte.narrative_Spanish;
     });
-
-
   }
 
-
+  agregarReportesCompletos() {
+    this.studentSelfReports.forEach((reporte) => {
+      this.ssrData.getStudentSelfReport(reporte.studentSelfReportId).subscribe(
+        (data) => {
+          reporte['reporteCompleto'] = data.narrative_Spanish;
+        },
+        (err) => console.error('Subscribe error: ' + err),
+        () => {}
+      );
+    });
+  }
+  agregarLinkPuntos() {
+    this.studentSelfReports.forEach((element) => {
+      element['link'] = 'Leer más &#709;';
+      element['puntos'] = ' ...';
+    });
+  }
 
   selfReportEdit(id: number, studentGUId: string, studentName: string) {
-
     this.store.dispatch(new SetSelectedStudentIdentifiers({ studentGUId, studentName }));
 
     console.log(studentName);
@@ -225,7 +217,8 @@ export class StudentsSelfReportsComponent implements OnInit {
     console.log('actual nonProxy studentGUId ' + this.studentGUId);
 
     let sponsorGroupId = 1168; // dummy value until code is eliminated
-    const link = ['/students/self-reports-add',
+    const link = [
+      '/students/self-reports-add',
       {
         sponsorGroupId: sponsorGroupId,
         studentGUId: this.studentGUId
@@ -237,20 +230,51 @@ export class StudentsSelfReportsComponent implements OnInit {
 
   //***prueba de función para detectar si esta dentro del plazo para editar */
 
-  isInCurrentReportDateRange2(rptDate2: string) {
-    console.log(rptDate2)
-
-    this.ssrEditDateStart = '2023-03-07T17:29:48.34'
-    this.ssrEditDateStop = '2023-05-07T17:29:48.34'
-    return (rptDate2 >= this.ssrEditDateStart && rptDate2 <= this.ssrEditDateStop);
-
-
-  }
+ 
 
   isInCurrentReportDateRange(rptDate: string) {
-    return (rptDate >= this.ssrEditDateStart && rptDate <= this.ssrEditDateStop);
+    return rptDate >= this.ssrEditDateStart && rptDate <= this.ssrEditDateStop;
+  }
 
+
+  esEditable(periodo, anioReporte){
+    this.obtenerFechasEntrega(periodo, anioReporte)
+    //se obtiene el periodo editable del reporte y si la fecha actual está dentro de ese periodo se habilita el botón 
+ //console.log('la fecha actual es: ' + this.fechaActual + ' y la fechas de entrega del reporte son: '+ this.fechaEntregaInicio + "-" + this.fechaEntregaFinal);
+
+    if (this.fechaActual >= this.fechaEntregaInicio && this.fechaActual <= this.fechaEntregaFinal ) {
+      //console.log('se puede editar')
+      return true;
+    } else {
+     // console.log('no se puede editar')
+      return false;
+    }
 
   }
 
+
+  obtenerFechasEntrega(periodo, anioReporte) {
+    //se obtiene las fechas de entrega del reporte según su año y periodo
+    switch (periodo) {
+      case 1:
+        this.fechaEntregaInicio = new Date(anioReporte, 3, 1);
+        this.fechaEntregaFinal = new Date(anioReporte, 3, 7);
+        break;
+      case 2:
+        this.fechaEntregaInicio = new Date(anioReporte, 6, 1);
+        this.fechaEntregaFinal = new Date(anioReporte, 6, 7);
+        break;
+      case 3:
+        this.fechaEntregaInicio = new Date(anioReporte, 9, 1);
+        this.fechaEntregaFinal = new Date(anioReporte, 9, 7);
+        break;
+      case 4:
+        this.fechaEntregaInicio = new Date(anioReporte + 1, 0, 1);
+        this.fechaEntregaFinal = new Date(anioReporte + 1, 0, 7);
+        break;
+
+ 
+    }
+
+  }
 }
