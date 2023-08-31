@@ -1,29 +1,41 @@
+<div role="alert" *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show">
+    {{errorMessage}}
+    <button type="button" class="close m-0" data-dismiss="alert" aria-label="Close"
+        style="line-height: unset!important;">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div role="alert" *ngIf="successMessage" class="alert alert-success alert-dismissible fade show">
+    {{successMessage}}
+    <button type="button" class="close m-0" data-dismiss="alert" aria-label="Close"
+        style="line-height: unset!important;">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
 
-<div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
-<div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
 
 <div class="center">
-  <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)"
-  (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)"
-  accept=".png">
-      <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
-        Arrastre un archivo .PNG  del informe de calificaciones aquí. (O busque y seleccione el archivo.)
-        <button style='margin-left: 2rem;' type="button" (click)="openFileSelector()">Examinar archivos</button>
-      </ng-template>
-  </ngx-file-drop>
+    <ngx-file-drop dropZoneClassName="drop-zone" contentClassName="drop-zone-content" browseBtnLabel="Upload File"
+        dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)" (onFileOver)="fileOver($event)"
+        (onFileLeave)="fileLeave($event)" accept=".png">
+        <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector" (click)="openFileSelector()">
+            <button type="button" (click)="openFileSelector()">
+                <p>
+                    Haz clic o arrastra el archivo a esta área para cargarlo
+                </p>
+                <p class="parentheses">
+                    (sólo formato .PNG máx. 200kb)
+                </p>
+            </button>
+        </ng-template>
+    </ngx-file-drop>
 
-  <!-- <div class="upload-table">
-      <table class="table">
-          <thead>
-              <tr>
-                  <th>Nombre de archivo</th>
-              </tr>
-          </thead>
-          <tbody class="upload-name-style">
-              <tr *ngFor="let item of files; let i=index">
-                  <td><strong>{{ item.relativePath }}</strong></td>
-              </tr>
-          </tbody>
-      </table>
+   <!--  <div class="border border-dark">
+     
+      
+              <ng-container *ngFor="let item of files; let i=index">
+                <strong>{{ item.relativePath }}</strong>
+
+              </ng-container>
   </div> -->
 </div>

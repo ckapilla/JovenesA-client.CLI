@@ -4,17 +4,17 @@
             <app-headerbar></app-headerbar>
 
             <router-outlet></router-outlet>
-            <footer class=" d-flex flex-wrap px-4 py-2" [class.main-blue-bg] = "isStudent">
+            <footer class="align-items-center d-flex p-2" [class.main-blue-bg] = "session.isStudent && auth.loggedIn" >
                 <!-- Copyright information -->
                 <a width="150" height="50" href="https://auth0.com/?utm_source=oss&utm_medium=gp&utm_campaign=oss"
                     target="_blank" alt="Single Sign On & Token Based Authentication - Auth0"><img width="150"
                         height="50" alt="JWT Auth for open source projects"
                         src="//cdn.auth0.com/oss/badges/a0-badge-light.png" /></a>
-                <div style=" height: 50px;" class="d-flex flex-wrap align-items-center pl-sm-3 pl-0">
-                    v 9.0.1 Copyright &copy; 2020&nbsp;-&nbsp;<a href="http://www.jovenesadelante.org">Jóvenes
+                <p class="pl-3 m-0">
+                    v 9.0.1 Copyright &copy; 2020 -<a href="http://www.jovenesadelante.org">&nbsp;Jóvenes
                         Adelante
                         main site</a>
-                </div>
+                </p>
             </footer>
         </div>
     </div>

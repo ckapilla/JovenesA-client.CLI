@@ -3,6 +3,7 @@
   font-family: 'Open Sans', sans-serif;
   font-size: 1rem;
   font-weight: unset;
+  background-color: white;
 }
 
 input {
@@ -17,3 +18,55 @@ ul {
 .bodytext {
   margin: 25px;
 }
+
+
+input {
+  border: 2px solid #ADADAD;
+  color: black;
+  width: 100% !important;
+  max-width: 355px !important;
+}
+
+button {
+  min-width: 100px;
+  height: 36px;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+}
+
+button:hover {
+  color: white;
+}
+
+.edit {
+  background-color: #0C4ABA;
+}
+
+.edit:hover {
+  background-color: #06255E;
+}
+
+.save {
+  background-color: #147C12;
+}
+
+.save:hover:disabled {
+  cursor: default;
+}
+
+.save:not(:disabled):not(.disabled):hover {
+  background-color: #0B4F0B;
+}
+
+.cancel {
+  background-color: #FF0000;
+}
+
+.cancel:hover {
+  background-color: #A30000;
+}
+
+/* *{
+  outline: red solid 1px;
+} */

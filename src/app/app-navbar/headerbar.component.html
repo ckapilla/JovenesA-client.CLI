@@ -1,106 +1,97 @@
-<ng-container 
-*ngTemplateOutlet="isStudentWithValidToken() === true ? studentNavbar : navbar"></ng-container>
+<ng-container *ngTemplateOutlet="isStudentWithValidToken() === true ? studentNavbar : navbar"></ng-container>
 
 
-<!-- students navbar -->
 <ng-template #navbar>
-  <nav
-     class="navbar navbar-expand-sm bg-primary navbar-dark fixedbar" *ngIf=!isStudentWithValidToken()>
+  <nav class="navbar navbar-expand-sm bg-primary navbar-dark fixedbar" *ngIf=!isStudentWithValidToken()>
 
 
-  <a class="navbar-brand" href="#"><img src="../../../assets/images/JAPrivadaLogo.png" /></a>
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a [routerLinkActive]="['active']" [routerLink]="['home']">Home</a>
-    </li>
-    <li class="nav-item">
-      <a [routerLinkActive]="['active']" [routerLink]="['admins']" [hidden]=!isAdminWithValidToken()>Admins</a>
-    </li>
-    <li class="nav-item">
-      <a [routerLinkActive]="['active']" [routerLink]="['mentors']" [hidden]=!isMentorWithValidToken()>Mentors</a>
-    </li>
-    <li class="nav-item">
-      <a [routerLinkActive]="['active']" [routerLink]="['sponsors/becas-home']"
-         data-cy="top-sponsors"
-         [hidden]=!isSponsorWithValidToken()>Sponsors</a>
-    </li>
-    <li class="nav-item">
-      <a [routerLinkActive]="['active']" [routerLink]="['students']"
-         data-cy="top-students"
-         [hidden]=!isStudentWithValidToken()>Estudiantes</a>
-    </li>
-    <li class="nav-item">
-      <a [routerLinkActive]="['active']" [routerLink]="['becas']"
-         [hidden]=!isAdminWithValidToken()>Becas</a>
-    </li>
-    <li class="nav-item">
-      <a [routerLinkActive]="['active']" [routerLink]="['quarterly']"
-         [hidden]=!isAdminWithValidToken()>Quarterly</a>
-    </li>
-  </ul>
-  <div class="navbar-text ml-auto" data-cy="login_welcome">
-    <section id="login">
-      <button class="btn btn-primary btn-sm" data-cy="login" (click)="auth.login()" *ngIf="!auth.loggedIn">Log In /
-        Iniciar
-        sesión</button>
-      <span *ngIf="auth.loggedIn">Welcome {{auth.nickname}} <br /></span>
-      <span class="link" data-cy="logout" (click)="auth.logout()" *ngIf="auth.loggedIn">Log Out</span>
-    </section>
-  </div>
-</nav>
+    <a class="navbar-brand" href="#"><img src="../../../assets/images/JAPrivadaLogo.png" /></a>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a [routerLinkActive]="['active']" [routerLink]="['home']">Home</a>
+      </li>
+      <li class="nav-item">
+        <a [routerLinkActive]="['active']" [routerLink]="['admins']" [hidden]=!isAdminWithValidToken()>Admins</a>
+      </li>
+      <li class="nav-item">
+        <a [routerLinkActive]="['active']" [routerLink]="['mentors']" [hidden]=!isMentorWithValidToken()>Mentors</a>
+      </li>
+      <li class="nav-item">
+        <a [routerLinkActive]="['active']" [routerLink]="['sponsors/becas-home']" data-cy="top-sponsors"
+          [hidden]=!isSponsorWithValidToken()>Sponsors</a>
+      </li>
+      <li class="nav-item">
+        <a [routerLinkActive]="['active']" [routerLink]="['students']" data-cy="top-students"
+          [hidden]=!isStudentWithValidToken()>Estudiantes</a>
+      </li>
+      <li class="nav-item">
+        <a [routerLinkActive]="['active']" [routerLink]="['becas']" [hidden]=!isAdminWithValidToken()>Becas</a>
+      </li>
+      <li class="nav-item">
+        <a [routerLinkActive]="['active']" [routerLink]="['quarterly']" [hidden]=!isAdminWithValidToken()>Quarterly</a>
+      </li>
+    </ul>
+    <div class="navbar-text ml-auto" data-cy="login_welcome">
+      <section id="login">
+        <button class="btn btn-primary btn-sm" data-cy="login" (click)="auth.login()" *ngIf="!auth.loggedIn">Log In /
+          Iniciar
+          sesión</button>
+        <span *ngIf="auth.loggedIn">Welcome {{auth.nickname}} <br /></span>
+        <span class="link" data-cy="logout" (click)="auth.logout()" *ngIf="auth.loggedIn">Log Out</span>
+      </section>
+    </div>
+  </nav>
 </ng-template>
+<!-- students navbar -->
+
 <ng-template #studentNavbar>
-  <nav class="navbar students navbar-expand-md p-0 px-md-5" >
-    <div class="container-fluid p-0 ">
-      <a class="navbar-brand   py-2 mx-3 ml-md-0 " href="#" >
-        <img src="../../../assets/images/logo-1-bco.svg" class="h-100 w-auto"/>
+  <nav class="navbar students navbar-expand-md p-0 px-md-5">
+    <div class="container-fluid p-0">
+      <a class="navbar-brand py-2 mx-3 ml-md-0" href="#">
+        <img src="../../../assets/images/logo-1-bco.svg" class="h-100 w-auto" />
       </a>
-      <button class="navbar-toggler border-0 p-0 mr-3 mr-md-0" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler border-0 p-0 mr-3 mr-md-0" type="button" data-toggle="collapse"
+        data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="">
-          <svg fill="#ffffff" height="100%" width="100%" version="1.1" id="XMLID_309_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" xml:space="preserve" stroke="#ffffff" stroke-width="1.2">
-            
-                   <path d="M24,21H0v-2h24V21z M24,13H0v-2h24V13z M24,5H0V3h24V5z"></path> 
-                 </svg>
+          <svg fill="#ffffff" height="100%" width="100%" version="1.1" id="XMLID_309_"
+            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24"
+            xml:space="preserve" stroke="#ffffff" stroke-width="1.2">
+            <path d="M24,21H0v-2h24V21z M24,13H0v-2h24V13z M24,5H0V3h24V5z"></path>
+          </svg>
         </span>
       </button>
       <div class="collapse navbar-collapse menu text-center mr-3" id="navbarNav">
-        <ul class="navbar-nav">
-         <li class="nav-item" data-toggle="collapse" data-target="#navbarNav">
-            <a class="nav-link "   [routerLinkActive]="['active']" [routerLink]="['home']">Home</a>
+        <ul class="navbar-nav mx-auto mx-md-0">
+          <li class="nav-item" data-toggle="collapse" data-target="#navbarNav">
+            <a class="nav-link " [routerLinkActive]="['active']" [routerLink]="['home']">Home</a>
           </li>
           <li class="nav-item" data-toggle="collapse" data-target="#navbarNav" [hidden]=!isAdminWithValidToken()>
-            <a class="nav-link "  [routerLinkActive]="['active']" [routerLink]="['admins']" >Admins</a>
+            <a class="nav-link " [routerLinkActive]="['active']" [routerLink]="['admins']">Admins</a>
           </li>
-          <li class="nav-item" data-toggle="collapse" data-target="#navbarNav"  [hidden]=!isMentorWithValidToken()>
-            <a class="nav-link "  [routerLinkActive]="['active']" [routerLink]="['mentors']">Mentors</a>
+          <li class="nav-item" data-toggle="collapse" data-target="#navbarNav" [hidden]=!isMentorWithValidToken()>
+            <a class="nav-link " [routerLinkActive]="['active']" [routerLink]="['mentors']">Mentors</a>
           </li>
-          <li class="nav-item"  data-toggle="collapse" data-target="#navbarNav" [hidden]=!isSponsorWithValidToken()>
-            <a class="nav-link "  [routerLinkActive]="['active']" [routerLink]="['sponsors/becas-home']"
-               data-cy="top-sponsors"
-               >Sponsors</a>
+          <li class="nav-item" data-toggle="collapse" data-target="#navbarNav" [hidden]=!isSponsorWithValidToken()>
+            <a class="nav-link " [routerLinkActive]="['active']" [routerLink]="['sponsors/becas-home']"
+              data-cy="top-sponsors">Sponsors</a>
           </li>
           <li class="nav-item" data-toggle="collapse" data-target="#navbarNav" [hidden]=!isStudentWithValidToken()>
             <a class="nav-link " [routerLinkActive]="['active']" [routerLink]="['students']"
-               data-cy="top-students"
-               >Estudiantes</a>
+              data-cy="top-students">Estudiantes</a>
           </li>
           <li class="nav-item" data-toggle="collapse" data-target="#navbarNav" [hidden]=!isAdminWithValidToken()>
-            <a class="nav-link " [routerLinkActive]="['active']" [routerLink]="['becas']"
-              >Becas</a>
+            <a class="nav-link " [routerLinkActive]="['active']" [routerLink]="['becas']">Becas</a>
           </li>
-          <li class="nav-item" data-toggle="collapse" data-target="#navbarNav"  [hidden]=!isAdminWithValidToken()>
-            <a class="nav-link " [routerLinkActive]="['active']" [routerLink]="['quarterly']"
-              >Quarterly</a>
+          <li class="nav-item" data-toggle="collapse" data-target="#navbarNav" [hidden]=!isAdminWithValidToken()>
+            <a class="nav-link " [routerLinkActive]="['active']" [routerLink]="['quarterly']">Quarterly</a>
           </li>
         </ul>
         <hr class="mx-4 my-2 d-block d-md-none  menu-separator">
         <div class=" w-100 d-flex justify-content-md-end justify-content-center" data-cy="login_welcome">
-            <a class="link p-2 mt-1 mb-2 m-md-0 ml-md-2 logout text-nowrap " data-cy="logout" (click)="auth.logout()" *ngIf="auth.loggedIn">Cerrar Sesión</a>
+          <a class="link p-2 mt-1 mb-2 m-md-0 ml-md-2 logout text-nowrap " data-cy="logout" (click)="auth.logout()"
+            *ngIf="auth.loggedIn">Cerrar Sesión</a>
         </div>
       </div>
-      
     </div>
   </nav>
 </ng-template>
-
-
