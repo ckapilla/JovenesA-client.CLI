@@ -122,9 +122,9 @@ export class TitulosListComponent implements OnInit {
     this.router.navigate(link);
   }
 
-  isViewLinkHidden(imageSubmittedDate: any) {
+  isViewLinkHidden(imageUploadedDate: any) {
     // console.log('%%%%%%%%[' + imageSubmittedDate + ']')
-    return (imageSubmittedDate === '1900-01-01T00:00:00' || imageSubmittedDate == null);
+    return (imageUploadedDate === '1900-01-01T00:00:00' || imageUploadedDate == null);
   }
 
   submitImage(studentGUId: any, gradYear: number) {
