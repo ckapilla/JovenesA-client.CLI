@@ -202,10 +202,10 @@ export class StudentsSelfReportsComponent implements OnInit {
   selfReportEdit(id: number, studentGUId: string, studentName: string) {
     this.store.dispatch(new SetSelectedStudentIdentifiers({ studentGUId, studentName }));
 
-    console.log(studentName);
+    console.log('datos para editar', id, studentGUId, studentName);
     const link = '/students/self-reports-edit/' + id;
     console.log('navigating to ' + link);
-    this.router.navigateByUrl(link);
+    //this.router.navigateByUrl(link);
   }
 
   studentSelfReportAdd() {

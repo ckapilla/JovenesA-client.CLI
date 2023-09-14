@@ -11,6 +11,9 @@ import { UIState } from 'src/app/_store/ui/ui.state';
 import { constants } from '../../_shared/constants/constants';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 
+
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+
 @Component({
   templateUrl: './self-reports-add.component.html',
   styleUrls: ['./self-reports-add.component.css', '../../../assets/css/forms.css']
@@ -32,8 +35,10 @@ export class SelfReportsAddComponent implements OnInit {
   selectedQRPeriod = '';
   subscription: Subscription;
 
+  periodo;
+
   //  selectedQRPeriod$ = this.store.select<string>(UIState.getSelectedQRPeriod);
-   selectedQRPeriod$ = this.store.select<string>(UIState.getSelectedQRPeriod);
+  selectedQRPeriod$ = this.store.select<string>(UIState.getSelectedQRPeriod);
 
   constructor(
     public location: Location,
@@ -46,7 +51,6 @@ export class SelfReportsAddComponent implements OnInit {
     console.log('Hi from SelfReportsAddComponent');
     this.subscribeForselectedQRPeriod();
     this.qrPeriods = constants.qrPeriods;
-
 
     this.myForm = _fb.group({
       narrative_English: ['', Validators.compose([Validators.required, Validators.maxLength(4500)])]
@@ -64,6 +68,9 @@ export class SelfReportsAddComponent implements OnInit {
     this.errorMessage = '';
     this.successMessage = '';
     this.submitted = false;
+
+    console.log('el reporte es', this.selfReport);
+
   }
 
   ngOnInit() {
@@ -80,15 +87,17 @@ export class SelfReportsAddComponent implements OnInit {
     console.log('year: ' + this.selfReport.reportYear + ' period: ' + this.selfReport.reportPeriod);
     this.selfReport.narrative_English = '';
 
+    //obtener el periodo
+    this.periodo = this.selfReport.reportPeriod;
+
     this.myForm.valueChanges.subscribe(() => {
       this.errorMessage = '';
       this.successMessage = '';
       this.submitted = false;
       // console.log('form change event');
     });
-    console.log('xx');
+    //console.log('xx');
   }
-
 
   subscribeForselectedQRPeriod() {
     console.log('subscribing for selectedQRPeriod$');
@@ -114,6 +123,7 @@ export class SelfReportsAddComponent implements OnInit {
     this.submitted = true; // need to set guard immediately to prevent dups
 
     this.selfReport.narrative_English = this.myForm.controls.narrative_English.value;
+    //console.log('contenido del reporte', this.selfReport.narrative_English);
 
     this.ssrData.postStudentSelfReport(this.selfReport).subscribe(
       (student) => {
@@ -133,7 +143,6 @@ export class SelfReportsAddComponent implements OnInit {
     );
     return false;
   }
-
 
   onCancel() {
     const target = '/students';

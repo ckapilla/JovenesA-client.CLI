@@ -1,3 +1,55 @@
+.titulo{
+  font-size: 35px;
+  font-weight: bold;
+  padding: 40px 40px 13px ;
+}
+.subtitulo{
+  font-size: 30px;
+  text-align: center;
+  margin: 13px auto 15px auto;
+}
+.areatexto{
+  background-color: #E4E8EA;
+    min-width: 300px;
+}
+
+.bordeRojo{
+  border: 2px solid #FF0000 ;
+}
+.bordeVerde{
+  border: 2px solid #147C12 ;
+}
+.bordeAzul{
+  border: 2px solid #303A54 ;
+}
+.areatexto{
+    height: 300px;
+    width:calc(100% - 6px);
+    max-width: 100% !important;
+    min-width: 300px;
+    border: none !important; 
+    background-color: #E4E8EA;
+}
+.areatexto:focus{
+    outline:none;
+} 
+.cuadroTexto{
+    background-color: #E4E8EA;
+    min-width: calc(385px - 6em);
+}
+.textoError{
+  color: #f00 ;
+}
+.conteoCaracteres{
+  color: #303A54;
+  font-weight: bold;
+}
+.btnGuardar{
+  background-color: #147C12;
+}
+.btnCancelar{
+  background-color: #f00;
+}
 :host {
   display: block;
   padding: 0 16px;

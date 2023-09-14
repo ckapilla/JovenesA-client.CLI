@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
 </head>
 
+<p class="titulo">Reportes</p>
+
 <div *ngIf="errorMessage" class="alert alert-danger">
   {{ errorMessage }}
 </div>
@@ -59,6 +61,7 @@
                             *ngIf="lugar == 0 && esEditable(i.reportPeriod, i.reportYear)"
                             type="button"
                             class="btn btn-primary editar ml-2 mb-2"
+                            (click) = "selfReportEdit(i.studentSelfReportId, i.studentGUId, i.studentName)"
                           >
                             Editar
                           </button>

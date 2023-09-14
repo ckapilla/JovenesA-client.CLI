@@ -11,8 +11,10 @@ import { StudentsRoutingModule } from './students-routing.module';
 import { StudentsSelfReportsComponent } from './students-self-reports/students-self-reports.component';
 import { StudentsComponent } from './students.component';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
-  imports: [AppSharedModule, CommonModule, StudentsRoutingModule],
+  imports: [AppSharedModule, CommonModule, StudentsRoutingModule, ReactiveFormsModule],
   declarations: [
     StudentsComponent,
     StudentsNavbarComponent,
