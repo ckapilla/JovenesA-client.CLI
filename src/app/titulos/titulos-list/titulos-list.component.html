@@ -34,14 +34,14 @@
                 <th style="width: 25%" app-sortable-column="studentName" sort-direction="asc" (onSortColumn)="onSortColumn($event)">
                   Student
                 </th>
-                <th style="width: 8.33%">Upload<br />Image</th>
-               <th style="width: 16.66%" app-sortable-column="tituloReceivedDate" (onSortColumn)="onSortColumn($event)">Received <br />Date</th>
-                <th style="width: 16.66%" app-sortable-column="imageSubmittedDate" (onSortColumn)="onSortColumn($event)">Uploaded <br />Date</th>
+                <!-- <th style="width: 8.33%">Upload<br />Image</th> -->
+               <th style="width: 16.66%" app-sortable-column="tituloIssuedDate" (onSortColumn)="onSortColumn($event)">Issued <br />Date</th>
+                <th style="width: 16.66%" app-sortable-column="tituloUploadedDate" (onSortColumn)="onSortColumn($event)">Uploaded <br />Date</th>
                 <th style="width: 16.66%">View<br />Image</th>
                </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let entry of titulosReceivedDTOs; let i = index">
+              <tr *ngFor="let entry of titulosIssuedDTOs; let i = index">
                 <td>
                   {{ i + 1 }}
                 </td>
@@ -49,22 +49,22 @@
                   {{ entry.studentName }}
                 </td>
 
-                <td>
+                <!-- <td>
                   <span *ngIf="2147==2147 " class="padded">
-                    <span class="btn btn-xs btn-primary" (click)="submitImage(entry.studentGUId, entry.gradYear)" >
+                    <span class="btn btn-xs btn-primary" (click)="uploadTitulo(entry.studentGUId, entry.gradYear)" >
                       ^
                     </span>
                   </span>
+                </td> -->
+                <td>
+                 &nbsp; {{ entry.tituloIssuedDate | truncateDate }}
                 </td>
                 <td>
-                 &nbsp; {{ entry.tituloReceivedDate | truncateDate }}
-                </td>
-                <td>
-                 &nbsp; {{ entry.imageSubmittedDate | truncateDate }}
+                 &nbsp; {{ entry.tituloUploadedDate | truncateDate }}
                 </td>
                 <td class="link">
-                  <div [hidden]="isViewLinkHidden(entry!.imageSubmittedDate)">
-                    <a href= "{{staticUrlPrefix}}StudentTitulosImages/{{entry.gradYear}}/{{entry.studentGUId | uppercase }}.png"
+                  <div [hidden]="isViewLinkHidden(entry!.tituloUploadedDate)">
+                    <a href= "{{staticUrlPrefix}}Certifications/Titulos/{{entry.gradYear}}/{{entry.studentGUId | uppercase }}.jpg"
                     target="_blank">{{entry.studentGUId | trimGuid | uppercase  }}</a>
                   </div>
                 </td>

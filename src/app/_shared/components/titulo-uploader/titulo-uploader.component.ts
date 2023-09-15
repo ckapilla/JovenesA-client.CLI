@@ -1,29 +1,31 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import { FileSystemFileEntry, NgxFileDropEntry } from 'ngx-file-drop';
-import { BecaDataService } from '../../data/beca-data.service';
+import { TituloDataService } from '../../data/titulo-data.service';
 import { SessionService } from '../../services/session.service';
 import { UrlService } from '../../services/url.service';
 
 @Component({
-  selector: 'app-file-uploader',
-  templateUrl: './file-uploader.component.html' // ,
+  selector: 'app-titulo-uploader',
+  templateUrl: './titulo-uploader.component.html' // ,
   // styleUrls: ['./app.component.scss']
 })
-export class FileUploaderComponent {
+export class TituloUploaderComponent {
+
   public files: NgxFileDropEntry[] = [];
   WebApiPrefix: string;
   errorMessage= '';
   successMessage = '';
-  @Input() studentGradeId: number;
-  @Input() gradesProcessingPeriodId: number;
-   constructor(
+  @Input() gradYear: number;
+  @Input() studentGUId: string;
+
+  constructor(
     private http: HttpClient,
     private webApiPrefixService: UrlService,
     private session: SessionService,
-    private becaData: BecaDataService
+    private tituloData: TituloDataService
   ) {
-    console.log('file uploader constructor with studentGradeId= ' + this.studentGradeId);
+    console.log('titulo uploader constructor with studentGUId= ' + this.studentGUId);
     this.WebApiPrefix = webApiPrefixService.getWebApiPrefix();
   }
 
@@ -43,29 +45,26 @@ export class FileUploaderComponent {
           console.log('filEntry.name: ', file.name);
           const ext = file.name.substr(file.name.length - 4, 4);
           console.log('extension = ' + ext);
-          console.log(ext.toLocaleLowerCase() !== '.png');
+          console.log(ext.toLocaleLowerCase() !== '.jpg');
           console.log('filEntry.size: ', file.size);
           let localError = '';
-          if (ext.toLocaleLowerCase() !== '.png') {
-            localError = 'El archivo [' + file.name + '] no estár en el formato de .png .';
+          if (ext.toLocaleLowerCase() !== '.jpg') {
+            localError = 'The file [' + file.name + '] is not in .JPG format.';
             this.errorMessage = localError;
-          } else if (file.size > 204800) {
-            localError = 'El archivo [' + file.name + '] tiene mas 200 kb de tamaño.';
+          } else if (file.size > 1204800) {
+            localError = 'The file [' + file.name + '] has more that 1 Mb in size.';
             this.errorMessage = localError;
           } else {
             const frmData = new FormData();
             frmData.append('file', file);
-            // frmData.append('studentGUID', this.session.getStudentRecordGUId());
-            this.becaData.uploadStudentGradesReport(
+            frmData.append('studentGUID', this.studentGUId);
+            this.tituloData.uploadTitulo(
               frmData,
-              this.session.getStudentRecordGUId(),
-              this.studentGradeId,
-              this.gradesProcessingPeriodId,
-              date.toDateString()
+              this.studentGUId.toUpperCase(),
+              this.gradYear
               ).subscribe(
-              // this.becaData.uploadStudentGradesReport(frmData).subscribe(
               () => {
-                this.successMessage = 'El archivo [' + file.name + '] se cargó correctamente';
+                this.successMessage = 'The file [' + file.name + '] uploaded successfully.';
                 // window.scrollTo(0, 0);
                 // window.setTimeout(() => {
                 //   this.successMessage = '';

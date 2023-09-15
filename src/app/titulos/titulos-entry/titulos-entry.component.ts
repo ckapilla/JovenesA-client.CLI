@@ -1,11 +1,11 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
 import { TituloDataService } from '../../_shared/data/titulo-data.service';
-import { TitulosReceivedDTO } from '../../_shared/models/titulos-receivedDTO';
+import { TitulosIssuedDTO } from '../../_shared/models/titulos-issuedDTO';
 import { SessionService } from '../../_shared/services/session.service';
 
 @Component({
@@ -13,16 +13,19 @@ import { SessionService } from '../../_shared/services/session.service';
 })
 export class TitulosEntryComponent implements OnInit {
   myForm: UntypedFormGroup;
-  titulosData: TitulosReceivedDTO[];
-  entry: TitulosReceivedDTO;
+  titulosData: TitulosIssuedDTO[];
+  entry: TitulosIssuedDTO;
   isLoading: boolean;
   errorMessage: string;
   successMessage: string;
   studentGUId: string;
+  gradYear: number;
+  // tituloId: number;
   private subscription: Subscription;
   studentName: string;
   confirmedDateB: boolean;
   inGradesProcessingPeriod: boolean;
+
 
   //  currentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
   //  currentName$ = this.store.select<string>(StudentState.getSelectedStudentName);
@@ -30,18 +33,20 @@ export class TitulosEntryComponent implements OnInit {
   constructor(
     public tituloData: TituloDataService,
     public router: Router,
-    // private route: ActivatedRoute,
+    private currRoute: ActivatedRoute,
     private session: SessionService,
     public location: Location,
-    private store: Store
+    private store: Store,
+
   ) {
     this.isLoading = false;
   }
 
 
   ngOnInit() {
-    this.studentGUId = this.session.getStudentRecordGUId();
-    console.log('titulosEntry/Upload ngOnInit, studentGUID = ' + this.studentGUId);
+    this.studentGUId = this.currRoute.snapshot.params['studentGUId'];
+    this.gradYear = this.currRoute.snapshot.params['gradYear'];
+    console.log('&&&&&tituloUpload ngOnInit, studentGUID = ' + this.studentGUId, ' gradYear = ' + this.gradYear);
   }
 
 

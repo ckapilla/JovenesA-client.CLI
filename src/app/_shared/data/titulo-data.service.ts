@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Titulos } from '../models/titulos';
-import { TitulosReceivedDTO } from '../models/titulos-receivedDTO';
+import { TitulosIssuedDTO } from '../models/titulos-issuedDTO';
 import { UrlService } from '../services/url.service';
 
 @Injectable({ providedIn: 'root' })
@@ -26,14 +26,14 @@ export class TituloDataService {
   }
 
 
-  public getTitulosListForGradYear(gradYear: number): Observable<TitulosReceivedDTO[]> {
+  public getTitulosListForGradYear(gradYear: number): Observable<TitulosIssuedDTO[]> {
     const url = this.WebApiPrefix +  'titulos/titulos-list/gradYear/' + gradYear;
     console.log('sending AuthHttp get request for TitulosList with url ' + url);
-    return this.http.get<TitulosReceivedDTO[]>(url).pipe(catchError(this.handleError));
+    return this.http.get<TitulosIssuedDTO[]>(url).pipe(catchError(this.handleError));
   }
 
   public updateTitulos(titulo: Titulos): Observable<any> {
-    const url = this.WebApiPrefix + 'titulos/' + 'titulos/' + titulo.tituloId;
+    const url = this.WebApiPrefix + 'titulos/' + 'titulos/' + titulo.studentGUId;
     let body = JSON.stringify({ titulo }); //
     // strip outer 'titulo' name
 
@@ -49,13 +49,12 @@ export class TituloDataService {
     return this.http.put(url, body, { headers: headers });
   }
 
-  public uploadTitulosImage(frmData: FormData,
+  public uploadTitulo(frmData: FormData,
     studentGUId: string,
-    tituloId: number,
-    gradYear: number,
-    receivedDate: string
+    // tituloId: number,
+    gradYear: number
     ): Observable<any> {
-    const url = this.WebApiPrefix + 'titulos/' + 'titulos' + '?studentGUId=' + studentGUId + '&tituloId='+ tituloId  + '&gradYear='+ gradYear + '&receivedDate=' + receivedDate;
+    const url = this.WebApiPrefix + 'titulos/' + 'titulo' + '?studentGUId=' + studentGUId + '&gradYear='+ gradYear;
 
     if (frmData) {
       const file: any = frmData.get('file');

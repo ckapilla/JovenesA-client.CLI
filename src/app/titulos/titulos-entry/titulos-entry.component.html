@@ -1,23 +1,20 @@
 <div class="card bg-primary">
   <div class="card-header text-white" style="font-size:large">
-    <span>Submit Titulo </span>
+    <span>Upload Titulo </span>
   </div>
 
+
   <div class="card-body bg-white">
-    <span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
-    <span *ngIf="successMessage" class="alert alert-success">{{successMessage}}</span>
 
     <div>
-
+      <div class="btn btn-primary btn-sm" (click)="location.back()"> &lt;&lt;&nbsp; Back </div>
         <div>
           <hr color="#0f5faf">
           <h6 style="color:black;"><b></b>Sube el titulo</h6>
           <br>
-          <h6 style="color:black;">En el siguiente apartado podrás subir la captura de del titulo. Asegúrate de que tu archivo sea en formato <mark style="color:#05579E; background-color:powderblue;"> PNG</mark> y tenga <b><i>menos de 200 kb de tamaño</i></b>.</h6>
-          <h6 style="color:black;">Si tu archivo no termina con la extensión PNG, puedes convertirlo en línea dando clic <a href="https://imagen.online-convert.com/es/convertir-a-png" target="_blank">aquí</a>. Es una página que te brindamos para que puedas convertirlo al formato requerido.</h6>
-          <h6 style="color:black;">Al arrastrar o seleccionar tu archivo, este se cargará y su nombre se mostrará debajo del recuadro. Hecho esto, tu archivo estará cargado y listo para revisión.</h6>
+          <h6 style="color:black;">The titulo file must be in<mark style="color:#05579E; background-color:powderblue;"> JPG</mark> format, and be <b><i>less than 1 Mb in size</i></b>.</h6>
           <br>
-          <!-- <app-file-uploader [tituloId]=tituloData.tituloId [gradYear]=tituloData.gradYear ></app-file-uploader> -->
+          <app-titulo-uploader [studentGUId]=studentGUId [gradYear]=gradYear ></app-titulo-uploader>
         </div>
     </div>
   </div>

@@ -126,6 +126,35 @@
                     class="form-control form-control-sm"
                     placeholder=""
                   />
+
+                  <label for="tituloIssuedDate">Titulo Issued Date</label>
+                  <input
+                    id="tituloIssuedDate"
+                    formControlName="tituloIssuedDate"
+                    type="text"
+                    class="form-control form-control-sm"
+                    placeholder=""
+                  />
+
+                  <!-- <label>Do Not Use: (Testing only)</label> -->
+                  <label for="tituloUploadedDate">Titulo Uploaded Date</label>
+                  <input
+                    id="tituloUploadedDate"
+                    formControlName="tituloUploadedDate"
+                    type="text"
+                    class="form-control form-control-sm"
+                    placeholder=""
+                  />
+                  <div>
+                    <span class="btn btn-primary btn-sm" data-cy="upload-titulo"
+                     (click)="uploadTitulo(student.studentGUId, student.gradYear)" >
+                    Upload Titulo &gt;&gt;
+                    </span>
+                    <span>&nbsp;&nbsp;</span>
+                    <span [hidden]="!student.tituloUploadedDate" class="btn btn-primary btn-sm" data-cy="view-titulo" (click)="viewTitulo(student.studentGUId, student.gradYear)"
+                      >View Titulo &gt;&gt;
+                    </span>
+                  </div>
                 </div>
               </div>
               <div class="col">

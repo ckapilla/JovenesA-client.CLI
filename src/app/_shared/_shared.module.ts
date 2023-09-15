@@ -8,6 +8,8 @@ import { NgxFileDropModule } from 'ngx-file-drop';
 import { CallbackComponent } from './components/callback.component';
 import { DisplayErrorsComponent } from './components/display-errors.component';
 import { FileUploaderComponent } from './components/file-uploader/file-uploader.component';
+import { TituloUploaderComponent } from './components/titulo-uploader/titulo-uploader.component';
+
 import { FollowUpRequestsListComponent } from './components/follow-up-requests-list/follow-up-requests-list.component';
 import { LoadingContainerComponent } from './components/loading-container.component';
 import { MemberHeaderDetailsComponent } from './components/member-header-details/member-header-details.component';
@@ -95,6 +97,7 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     StudentPhotoComponent,
     EmptyStatusPipe,
     FileUploaderComponent,
+    TituloUploaderComponent,
     StudentHeader2Component
   ],
   exports: [
@@ -141,6 +144,7 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     StudentPhotoComponent,
     EmptyStatusPipe,
     FileUploaderComponent,
+    TituloUploaderComponent,
     StudentHeader2Component,
     HighchartsChartModule,
 

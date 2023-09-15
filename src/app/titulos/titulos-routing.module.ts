@@ -5,7 +5,7 @@ import { TitulosEntryComponent } from './titulos-entry/titulos-entry.component';
 import { TitulosListComponent } from './titulos-list/titulos-list.component';
 import { TitulosComponent } from './titulos.component';
 
-const gradesRoutes: Routes = [
+const titulosRoutes: Routes = [
   {
     path: '', // lazy loading
     component: TitulosComponent,
@@ -29,7 +29,7 @@ const gradesRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(gradesRoutes)],
+  imports: [RouterModule.forChild(titulosRoutes)],
   exports: [RouterModule]
 })
 export class TitulosRoutingModule {}
