@@ -3,3 +3,44 @@
   padding-right: 30px;
   font-weight: bold;
 }
+.bordeRojo{
+  border: 2px solid #FF0000 ;
+}
+.bordeVerde{
+  border: 2px solid #147C12 ;
+}
+.bordeAzul{
+  border: 2px solid #303A54 ;
+}
+.areatexto{
+    height: 300px;
+    width:calc(100% - 6px);
+    max-width: 100% !important;
+    border: none !important; 
+    background-color: #E4E8EA;
+}
+.areatexto:focus{
+    outline:none;
+} 
+.cuadroTexto{
+    background-color: #E4E8EA;
+    min-width: calc(385px - 6em);
+    
+}
+.textoError{
+  color: #f00 ;
+}
+.conteoCaracteres{
+  color: #303A54;
+  font-weight: bold;
+}
+.btnGuardar{
+  background-color: #147C12;
+  margin-right: 1rem !important;
+  margin-left: 0 !important;
+}
+.btnCancelar{
+  background-color: #f00;
+  margin-right: 0 !important;
+  margin-left: 1rem !important;
+}

@@ -1,60 +1,147 @@
-<div class="card bg-primary">
-  <div class="card-header text-white" style="font-size: large">Editar Mi Reporte</div>
-  <div class="card-body bg-white">
-    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
-    <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+<div>
+  <p class="titulo">Editar Reporte</p>
 
-    <div class="controls">
-      Año/Periodo de este reporte
-      <select
-        data-cy="period-selector"
-        disabled
-        [(ngModel)]="selectedQRPeriod"
-        (change)="setSelectedQRPeriod($event.target.value )"
-      >
-        <option *ngFor="let qrPeriod of qrPeriods" [value]="qrPeriod.value">{{ qrPeriod.label }}</option>
-      </select>
+  <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+  <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+
+  <form [formGroup]="myForm">
+
+    <div class="subtitulo">
+      <p>Periodo: <b>{{selectedQRPeriod}}</b></p>
     </div>
 
-    <form [formGroup]="myForm">
-      <fieldset [disabled]="submitted">
-        <div class="form-group">
-          <div hidden class="controls">
-            <label for="selfReportId">Id</label>
-            <textarea id="selfReportId" formControlName="selfReportId" type="text" class="form-control input-sm">
-            </textarea>
-          </div>
-          <pre style="font-size: 120%">
+    <fieldset [disabled]="submitted">
+
+      <div class="form-group">
+
+        <div hidden class="controls">
+          <label for="selfReportId">Id</label>
+          <textarea id="selfReportId" formControlName="selfReportId" type="text" class="form-control input-sm">
+          </textarea>
+        </div>
+
+        <div class="mt-4 mb-2">
+          <div class="border border-dark rounded-lg bg-white m-sm-4 m-2 p-sm-4 p-2">
             REDACTA A MANERA DE ENSAYO LAS RESPUESTAS A ESTAS PREGUNTAS:
+            <br />
+            1. ¿Qué es lo que más te gusta de ti?
+            <br />
+            2. ¿Qué sería para ti tener éxito en tu vida?
+            <br />
+            3. ¿Cuál es la actividad para la que necesitas esforzarte más?
+            <br />
+            4. ¿Por qué necesitas esforzarte más en esta actividad? ¿De qué manera impacta tu vida?
+            <br />
+            5. En este primer cuatrimestre del año ¿Qué obstáculos económicos, académicos, familiares o emocionales se
+            te han presentado?
+            <br />
+            6. ¿Cómo lo resolviste o cómo se están resolviendo?
+            <br />
+            7. Hablando de ti ¿De qué te sientes orgulloso?
+          </div>
+        </div>
 
-            1.	¿Qué es lo que más te gusta de ti?
+        <!--Texto en español-->
+        <label for="narrative_Spanish">Texto Español</label>
 
-            2.	¿Qué sería para ti tener éxito en tu vida?
+        <div class="rounded-lg m-sm-4 m-2 cuadroTexto"
+          [ngClass]="myForm.controls['narrative_Spanish'].errors?.required ? 'bordeRojo'
+              : myForm.controls['narrative_Spanish'].valid && myForm.controls['narrative_Spanish'].value.length > 0
+              ? 'bordeVerde': 'bordeAzul'">
 
-            3.	¿Cuál es la actividad para la que necesitas esforzarte más?
+          <textarea id="narrative_Spanish"
+            #success
+            formControlName="narrative_Spanish"
+            type="text"
+            required
+            class="areatexto p-sm-4 p-2"
+            maxlength="4500"
+            placeholder="Ingresa año, periodo y el texto del reporte con un máximo de 4500 caracteres"
+            > </textarea>
+            
+          <div class="conteoCaracteres bold text-right m-4"
+            *ngIf="myForm.controls['narrative_Spanish'].value.length > 0 "
+          >
+            {{ 4500 - myForm.controls['narrative_Spanish'].value.length }} caracteres disponibles
+          </div>
 
-            4.	¿Por qué necesitas esforzarte más en esta actividad? ¿De qué manera impacta
-                tu vida?
+          <div class="pl-4 textoError"
+            *ngIf="myForm.controls['narrative_Spanish'].errors?.required"
+          >
+            No se puede registrar un reporte vacío
+          </div>
 
-            5.	En este primer cuatrimestre del año ¿Qué obstáculos económicos, académicos,
-                familiares o emocionales se te han presentado?
+        </div>
+        
+        <!--texto en inglés-->
+        <label for="narrative_Spanish">English Text</label>
 
-            6.	¿Cómo lo resolviste o cómo se están resolviendo?
+        <div class="rounded-lg  m-sm-4 m-2 cuadroTexto"
+          [ngClass]="myForm.controls['narrative_English'].errors?.required ? 'bordeRojo'
+              : myForm.controls['narrative_English'].valid && myForm.controls['narrative_English'].value.length > 0
+              ? 'bordeVerde': 'bordeAzul'">
 
-            7.	Hablando de ti ¿De qué te sientes orgulloso?
-          </pre>
+          <textarea id="narrative_English"
+            #success
+            formControlName="narrative_English"
+            type="text"
+            required
+            class="areatexto p-sm-4 p-2"
+            maxlength="4500"
+            placeholder="Enter year, period, and report text with a maximum of 4500 characters"
 
-          <div class="controls">
-            <label for="narrative_Spanish">Texto Español</label>
+            > </textarea>
+            
+          <div class="conteoCaracteres bold text-right m-4 "
+            *ngIf="myForm.controls['narrative_English'].value.length > 0 "
+          >
+            {{ 4500 - myForm.controls['narrative_English'].value.length }} available characters
+          </div>
+
+          <div class="pl-4 textoError"
+            *ngIf="myForm.controls['narrative_English'].errors?.required"
+          >
+            You can't register an empty report
+          </div>
+
+        </div>
+      </div>
+
+ 
+    <div class="text-center p-2">
+      <button class="btn btnGuardar text-white rounded " (click)="onSubmit()"
+      [disabled]="myForm.controls['narrative_Spanish'].errors?.required || myForm.controls['narrative_Spanish'].value == null || myForm.controls['narrative_English'].errors?.required || myForm.controls['narrative_English'].value == null ">
+        Guardar
+      </button>
+      <button class="btn btnCancelar text-white rounded" (click)="onCancel()">
+        Cancelar
+      </button>
+    </div>
+
+          <!--
+          <div
+            class="rounded-lg m-4 cuadroTexto"
+            [ngClass]="
+              myForm.controls['narrative_Spanish'].errors?.required && myForm.controls['narrative_Spanish'].touched
+                ? 'bordeRojo'
+                : myForm.controls['narrative_Spanish'].valid &&
+                  (myForm.controls['narrative_Spanish'].dirty || myForm.controls['narrative_Spanish'].value.length > 0)
+                ? 'bordeVerde'
+                : 'bordeAzul'
+            "
+          >
             <textarea
               id="narrative_Spanish"
               #success
               formControlName="narrative_Spanish"
+              #narrative_English
               type="text"
-              class="form-control input-sm narrative"
-              placeholder=""
-            >
-            </textarea>
+              required
+              class="areatexto p-4"
+              maxlength="4500"
+              placeholder="Ingresa año, periodo y el texto del reporte con un máximo de 4500 caracteres"
+            ></textarea>
+
             <app-display-errors
               control="narrative_Spanish"
               class="red"
@@ -64,6 +151,14 @@
               }"
             ></app-display-errors>
           </div>
+
+
+
+
+
+
+
+
 
           <div class="controls">
             <label for="narrative_English">English Text</label>
@@ -94,13 +189,102 @@
             >&nbsp;
             <span>
               <button type="button" class="btn btn-default" style="width: 95px" (click)="onCancel()">Cancelar</button>
-              <div class="red" [hidden]="myForm.valid">
-                Descripción rellenarse antes de guardar.
-              </div>
+              <div class="red" [hidden]="myForm.valid">Descripción rellenarse antes de guardar.</div>
             </span>
           </div>
-        </div>
-      </fieldset>
-    </form>
-  </div>
+
+        -->
+    </fieldset>
+  </form>
+
+
 </div>
+<!--
+<div>
+  <form [formGroup]="myForm">
+    <fieldset [disabled]="submitted">
+      <div class="form-group">
+        <div hidden class="controls">
+          <label for="selfReportId">Id</label>
+          <textarea id="selfReportId" formControlName="selfReportId" type="text" class="form-control input-sm">
+          </textarea>
+        </div>
+        <pre style="font-size: 120%">
+            REDACTA A MANERA DE ENSAYO LAS RESPUESTAS A ESTAS PREGUNTAS:
+
+            1.	¿Qué es lo que más te gusta de ti?
+
+            2.	¿Qué sería para ti tener éxito en tu vida?
+
+            3.	¿Cuál es la actividad para la que necesitas esforzarte más?
+
+            4.	¿Por qué necesitas esforzarte más en esta actividad? ¿De qué manera impacta
+                tu vida?
+
+            5.	En este primer cuatrimestre del año ¿Qué obstáculos económicos, académicos,
+                familiares o emocionales se te han presentado?
+
+            6.	¿Cómo lo resolviste o cómo se están resolviendo?
+
+            7.	Hablando de ti ¿De qué te sientes orgulloso?
+          </pre
+        >
+
+        <div class="controls">
+          <label for="narrative_Spanish">Texto Español</label>
+          <textarea
+            id="narrative_Spanish"
+            #success
+            formControlName="narrative_Spanish"
+            type="text"
+            class="form-control input-sm narrative"
+            placeholder=""
+          >
+          </textarea>
+          <app-display-errors
+            control="narrative_Spanish"
+            class="red"
+            [errors]="{
+              required: 'Se requiere una entrada, aun si es sólo N/A.',
+              maxlength: 'La entrada no puede exceder 4000 caracteres del largo.'
+            }"
+          ></app-display-errors>
+        </div>
+
+        <div class="controls">
+          <label for="narrative_English">English Text</label>
+          <textarea
+            id="narrative_English"
+            #success
+            formControlName="narrative_English"
+            type="text"
+            class="form-control inpu-sm narrative"
+            placeholder=""
+          >
+          </textarea>
+          <app-display-errors
+            control="narrative_English"
+            class="red"
+            [errors]="{
+              required: 'An entry is required, even if it is just N/A.',
+              maxlength: 'Entry cannot exceed 4000 characters in length.'
+            }"
+          ></app-display-errors>
+        </div>
+
+        <div class="col-md-6 col-md-offset-1">
+          <span>
+            <button class="btn btn-primary" style="width: 90px; margin-right: 10px" (click)="onSubmit()">
+              Guardar
+            </button> </span
+          >&nbsp;
+          <span>
+            <button type="button" class="btn btn-default" style="width: 95px" (click)="onCancel()">Cancelar</button>
+            <div class="red" [hidden]="myForm.valid">Descripción rellenarse antes de guardar.</div>
+          </span>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>
+-->

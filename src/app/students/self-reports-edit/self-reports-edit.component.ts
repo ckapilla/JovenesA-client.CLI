@@ -27,6 +27,11 @@ export class SelfReportsEditComponent implements OnInit {
   selfReport: StudentSelfReport;
   selfReportId: number;
 
+
+  idInicial;
+  inglesInicial;
+  espanolInicial
+
   periodYears: SELECTITEM[];
   periodMonths: SELECTITEM[];
   readonly qrPeriods: SELECTITEM[] = constants.qrPeriods;
@@ -47,8 +52,8 @@ export class SelfReportsEditComponent implements OnInit {
 
 
     this.myForm = _fb.group({
-      narrative_English: ['', { validators: [Validators.required], updateOn: 'blur' }],
-      narrative_Spanish: ['', { validators: [Validators.required], updateOn: 'blur' }],
+      narrative_English: ['', { validators: [Validators.required] }],
+      narrative_Spanish: ['', { validators: [Validators.required]}],
       selfReportId: ''
     });
 
@@ -70,9 +75,13 @@ export class SelfReportsEditComponent implements OnInit {
         console.log(
           '### after retreiving, set form controls to retreived selfReport-- reportId to ' + this.selfReportId
         );
-        this.myForm.controls.selfReportId.setValue(this.selfReportId);
-        this.myForm.controls.narrative_English.setValue(this.selfReport.narrative_English);
-        this.myForm.controls.narrative_Spanish.setValue(this.selfReport.narrative_Spanish);
+   
+
+
+        this.myForm.controls["selfReportId"].setValue(this.selfReportId);
+        this.myForm.controls["narrative_English"].setValue(this.selfReport.narrative_English);
+        this.myForm.controls["narrative_Spanish"].setValue(this.selfReport.narrative_Spanish);
+        
       }
     );
     this.subscribeForselectedQRPeriod();
@@ -103,6 +112,7 @@ export class SelfReportsEditComponent implements OnInit {
 
     this.selfReport.narrative_English = this.myForm.controls.narrative_English.value;
     this.selfReport.narrative_Spanish = this.myForm.controls.narrative_Spanish.value;
+    //console.log('reporte editado: ', this.selfReport)
 
     this.ssrData.putStudentSelfReport(this.selfReport).subscribe(
       (student) => {
@@ -137,5 +147,9 @@ export class SelfReportsEditComponent implements OnInit {
 
   setSelectedQRPeriod(yearPeriod: string) {
     this.store.dispatch(new SetSelectedQRPeriod(yearPeriod));
+  }
+
+  mostrarReporte(reporte){
+    console.log(reporte)
   }
 }

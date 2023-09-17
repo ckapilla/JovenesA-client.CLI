@@ -1,11 +1,14 @@
+<div>
 <p class="titulo">Agregar Reporte</p>
-
+<div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+    <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+    
 <div class="subtitulo">
   Periodo: <b>{{ selfReport.reportPeriod }} - {{ selfReport.reportYear }}</b>
 </div>
 
 <div class="mt-4 mb-2">
-  <div class="border border-dark rounded-lg padding-1 bg-white m-4 p-4">
+  <div class="border border-dark rounded-lg padding-1 bg-white m-sm-4 m-2  p-sm-4 p-2">
     REDACTA A MANERA DE ENSAYO LAS RESPUESTAS A ESTAS PREGUNTAS:
     <br />
     1. ¿Qué es lo que más te gusta de ti?
@@ -26,7 +29,7 @@
 </div>
 <form [formGroup]="myForm">
   <div
-    class="rounded-lg m-4 cuadroTexto"
+    class="rounded-lg m-sm-4 m-2 cuadroTexto"
     [ngClass]="myForm.controls['narrative_English'].errors?.required && myForm.controls['narrative_English'].touched  ?  'bordeRojo' :
         myForm.controls['narrative_English'].valid && (myForm.controls['narrative_English'].dirty || myForm.controls['narrative_English'].value.length > 0) ? 'bordeVerde' : 'bordeAzul' "
   >
@@ -37,22 +40,32 @@
       #narrative_English
       type="text"
       required
-      class="areatexto p-4"
+      class="areatexto p-sm-4 p-2"
       maxlength="4500"
       placeholder="Ingresa año, periodo y el texto del reporte con un máximo de 4500 caracteres"
       ></textarea>
-    <div class="">
+      
     <div class="conteoCaracteres bold text-right mr-4" *ngIf="myForm.controls['narrative_English'].value != null && myForm.controls['narrative_English'].value.length > 0">
       {{4500 - myForm.controls['narrative_English'].value.length}} caracteres disponibles
     </div>
 
-    </div>
+   
 
     <div
       class="pl-4 textoError"
       *ngIf="myForm.controls['narrative_English'].errors?.required && myForm.controls['narrative_English'].touched">
       No se puede registrar un reporte vacío
     </div>
+
+              <app-display-errors
+            control="narrative_English"
+            class="red"
+            [errors]="{
+              required: 'An entry is required, even if it is just N/A',
+              maxlength: 'Entrada no puede exceder los 4500 caracteres.'
+            }"
+          ></app-display-errors>
+
 
   <div class="text-center p-2">
     <button class="btn btnGuardar text-white rounded " (click)="onSubmit()"
@@ -68,7 +81,7 @@
 
   </div>
 </form>
-
+</div>
 <!--
 <div class="card bg-primary" style="min-width: 46em">
   <div class="card-header text-white" style="font-size: large">Añadir Nuevo Reporte</div>
