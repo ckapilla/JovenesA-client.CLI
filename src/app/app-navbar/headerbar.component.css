@@ -104,4 +104,7 @@ a.logout:hover, a.logout:focus, a.logout:focus-visible{
       margin-left: 1rem;
     }
 }
+.navbar-nav{
+  width: 55%;
+}
 }

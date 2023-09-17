@@ -11,16 +11,11 @@ import { SessionService } from './_shared/services/session.service';
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
-isStudent: boolean = false;
 
-  constructor(private auth: AuthService, private session: SessionService) {
+  constructor(public auth: AuthService, public session: SessionService) {
     console.log('AppComponentConstructor, calling localAuthSetup');
     auth.localAuthSetup();
-    /* wait 1sec before checking if user is student */
-    setTimeout(() => {
-      this.isStudent= session.isStudent();
-    console.log(this.isStudent)
-    }, 1000);
+   
     
   }
 }

@@ -155,9 +155,8 @@ footer a:focus {
 
 footer {
   color: #fff;
-  font-size: 14px;
+  font-size: 1rem;
   line-height: 16px;
-  border-top: 1px solid #eee;
 }
 
 footer a:hover,
@@ -201,6 +200,38 @@ footer a {
   padding: 5px 10px 5px 70px;
 }
 
+.close{
+  min-width: auto!important;
+  height: auto!important;
+}
+/* file drop styles */
+.drop-zone{
+  border: 2px dashed #85858A;
+  background-color: #EAEAEA;
+  border-radius: 10px;
+}
+.drop-zone-content{
+  text-align: center;
+}
+.drop-zone-content>button{
+  padding: 2.5rem;
+
+  height: 100%;
+  width: 100%;
+  background-color: inherit;
+  margin: 0;
+}
+.drop-zone-content>button>p{
+  margin: 0;
+  font: 500 16px Roboto, sans-serif;
+  letter-spacing: 2px;
+  color: black;
+}
+.drop-zone-content>button>.parentheses{
+  font-weight: 300;
+  letter-spacing: normal;
+  color: #3D3D3D;
+}
 /* Responsive */
 
 @media (max-width: 480px) {

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { AppSharedModule } from '../_shared/_shared.module';
 import { GradeEntryComponent } from './grade-entry/grade-entry.component';
 import { SelfReportsAddComponent } from './self-reports-add/self-reports-add.component';
@@ -24,6 +24,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     SelfReportsEditComponent,
     SelfReportsAddComponent,
     GradeEntryComponent
-  ]
+  ],
+  providers: [{
+    provide: LOCALE_ID,
+    useValue: 'es'
+   }]
 })
 export class StudentsModule {}

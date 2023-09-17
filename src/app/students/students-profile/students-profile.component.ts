@@ -9,7 +9,7 @@ import { Member } from '../../_shared/models/member';
 
 @Component({
   templateUrl: './students-profile.component.html',
-  styleUrls: ['./students-profile.component.css']
+  styleUrls: ['./students-profile.component.css', '../students.component.css']
 })
 export class StudentProfileComponent implements OnInit {
   myForm: UntypedFormGroup;
