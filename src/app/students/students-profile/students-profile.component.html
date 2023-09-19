@@ -7,11 +7,11 @@
     </app-loading-container>
   </div>
   <div *ngSwitchCase="false">
- 
+
     <form [formGroup]="myForm" class="form-horizontal">
 
-      <label><mark style="color:#05579E; background-color:powderblue;">Información básica y de contacto</mark></label>
-      <br> 
+      <label><mark style="color:#FFFFFE; background-color:#white;">Información básica y de contacto</mark></label>
+      <br>
       <label for="firstNames">Nombre(s)</label>
       <input id="firstNames"
              formControlName="firstNames"
@@ -59,8 +59,8 @@
       }"></app-display-errors>
 
       <br>
-      <label><mark style="color:#05579E; background-color:powderblue;">Dirección donde vives en San Miguel</mark></label>
-      <br> 
+      <label><mark style="color:#FFFFFE; background-color:#white;">Dirección donde vives en San Miguel</mark></label>
+      <br>
 
       <label for="smA_Address">Dirección</label>
       <input id="smA_Address"
@@ -79,7 +79,7 @@
             formControlName="colonia"
             type="text" class="form-control form-control-sm" placeholder="Colonia"
             required maxlength="50" minlength="3" />
-            
+
       <app-display-errors control="colonia" class="red"
                           [errors]="{
                 'required': 'Se requiere la colonia.',
@@ -87,7 +87,7 @@
                 'maxlength': 'La colonia no puede exceder de 50 caracteres de longitud.'
       }"></app-display-errors>
       <br>
-      <label><mark style="color:#05579E; background-color:powderblue;">Dirección donde vives en el lugar que estudias</mark></label>
+      <label><mark style="color:#FFFFFE; background-color:#white;">Dirección donde vives en el lugar que estudias</mark></label>
       <br>
 
       <label for="nonSMA_Address">Dirección</label>
@@ -137,7 +137,7 @@
                 'minlength': 'El código postal debe tener al menos 3 caracteres de longitud.',
                 'maxlength': 'El código postal no puede exceder de 7 caracteres de longitud.'
       }"></app-display-errors>
-      
+
 
 <!--
       <label for="englishSkillLevelId">Nivel de Inglés:</label>
@@ -149,7 +149,7 @@
                           [errors]="{
                 'required': 'Se requiere el nivel de Inglés'
       }"></app-display-errors>
---> 
+-->
       <div class="form-group">
         <div class="controls">
           <button class="btn btn-default"
@@ -160,7 +160,7 @@
           <span class="red" [hidden]="myForm.valid">Todos los campos deben ser completados antes de guardar.</span>
         </div>
       </div>
-       
+
     </form>
   </div>
 </div>

@@ -22,7 +22,8 @@ nav a.router-link-active {
 }
 
 nav a.active {
-  padding: 5px;
-  background-color: #007fb2;
-  color: #FFFFFF;
+  /* padding: 5px; */
+  background-color:#add8e6;
+  color: #8f8f8f;
+
 }

@@ -1,5 +1,5 @@
 <nav>
-  <a [routerLinkActive]="['active']" [routerLink]="['/admins/data']">Data</a>
+  <a [routerLinkActive]="['active']" [routerLink]="['/admins']" [routerLinkActiveOptions]="{ exact: true }">Data</a>
   <a [routerLinkActive]="['active']" [routerLink]="['/admins/students']">Students</a>
   <a [routerLinkActive]="['active']" [routerLink]="['/admins/members']">Members</a>
   <a [routerLinkActive]="['active']" [routerLink]="['/admins/sponsor-groups']" data-cy="admins-sponsors" >Sponsors</a>

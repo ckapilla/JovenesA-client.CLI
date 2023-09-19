@@ -117,7 +117,7 @@ export class ConstantsService extends BaseDataService {
 
 
   public generateQRPeriods() {
-    const launchDate = 15;
+    const launchDate = 28;
     console.log('launchDate = ' + launchDate);
     const now = new Date();
     console.log('%%%%%%%%%%GENERATE QR PERIODS%%%%%%');

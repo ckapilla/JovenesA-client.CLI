@@ -14,7 +14,6 @@ const sponsorRoutes: Routes = [
         path: '',
         pathMatch: 'full',
         component: SponsorsContainerComponent,
-        // redirectTo: 'sponsors-container.component'
       },
       {
         path: 'becas-home',
