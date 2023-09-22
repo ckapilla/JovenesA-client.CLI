@@ -16,7 +16,7 @@ import { SessionService } from '../../_shared/services/session.service';
 
 @Component({
   templateUrl: './students-self-reports.component.html',
-  styleUrls: ['./students-self-reports.component.css']
+  styleUrls: ['./students-self-reports.component.css', '../students.component.css']
 })
 export class StudentsSelfReportsComponent implements OnInit {
   isLoading: boolean;
@@ -107,7 +107,7 @@ export class StudentsSelfReportsComponent implements OnInit {
   verMas(lugar) {
     console.log(this.studentSelfReports[lugar]);
 
-    if (this.studentSelfReports[lugar]['link'] == 'Leer más &#709;') {
+    if (this.studentSelfReports[lugar]['link'] == 'Leer más &#62;') {
       //cambiamos el valor del reporteMostrado al reporte compelto
       this.studentSelfReports[lugar]['reporteMostrado'] = this.studentSelfReports[lugar]['reporteCompleto'];
       //cambiamos el texto del link
@@ -116,7 +116,7 @@ export class StudentsSelfReportsComponent implements OnInit {
     } else {
       //cambiamos el valor del reporteMostrado por el recumen del reporte
       this.studentSelfReports[lugar]['reporteMostrado'] = this.studentSelfReports[lugar]['resumenReporte'];
-      this.studentSelfReports[lugar]['link'] = 'Leer más &#709;';
+      this.studentSelfReports[lugar]['link'] = 'Leer más &#62;';
       this.studentSelfReports[lugar]['puntos'] = ' ...';
     }
   }
@@ -188,13 +188,12 @@ export class StudentsSelfReportsComponent implements OnInit {
           reporte['reporteCompleto'] = data.narrative_Spanish;
         },
         (err) => console.error('Subscribe error: ' + err),
-        () => {}
       );
     });
   }
   agregarLinkPuntos() {
     this.studentSelfReports.forEach((element) => {
-      element['link'] = 'Leer más &#709;';
+      element['link'] = 'Leer más &#62;';
       element['puntos'] = ' ...';
     });
   }
@@ -205,7 +204,7 @@ export class StudentsSelfReportsComponent implements OnInit {
     console.log('datos para editar', id, studentGUId, studentName);
     const link = '/students/self-reports-edit/' + id;
     console.log('navigating to ' + link);
-    //this.router.navigateByUrl(link);
+    this.router.navigateByUrl(link);
   }
 
   studentSelfReportAdd() {

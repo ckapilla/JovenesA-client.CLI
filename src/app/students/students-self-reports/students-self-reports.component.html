@@ -1,85 +1,73 @@
-<!DOCTYPE html>
+<div class="py-4 px-3 px-md-5">
+  <h1 class="title text-center text-sm-left ">Reportes</h1>
 
-<head lang="es">
-  <meta charset="UTF-8" />
-</head>
-
-<p class="titulo">Reportes</p>
-
-<div *ngIf="errorMessage" class="alert alert-danger">
-  {{ errorMessage }}
-</div>
+  <span *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{errorMessage}}
+    <button type="button" class="close m-0  h-100" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </span>
 
   <!-- se evalua sisigue cargando la página, si sí se muestra el componente loading que contiene la animación de cargando en vez de este componente-->
   <div [ngSwitch]="isLoading">
-    <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
+    <ng-container *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
       <app-loading-container> </app-loading-container>
-    </div>
+    </ng-container>
 
-    <div *ngSwitchCase="false">
+    <ng-container *ngSwitchCase="false">
       <div *ngIf="!errorMessage">
-        <div *ngIf="inReportProcessingPeriod; else elseBlock" class="conteneder-agregar">
-          <div *ngIf="inReportProcessingPeriod"></div>
-          <div class="btn-agregar-reporte btn" (click)="studentSelfReportAdd()" style="margin-left: 10px">
-            Agregar Reporte
-          </div>
+        <div *ngIf="!inReportProcessingPeriod;" class="conteneder-agregar">
+          <button class="save btn mr-0 mt-3 mt-md-1" (click)="studentSelfReportAdd()" >
+            Agregar nuevo reporte
+          </button>
         </div>
 
-        <p class="subtitulo">Reportes anteriores</p>
-        <div class="tabla-scroll">
+        <p class="subtitle text-center mt-4 mb-3">Reportes anteriores</p>
+
+        <div class="table-scroll">
           <table>
             <tbody>
-              <div class="franjas">
-                <tr *ngFor="let i of studentSelfReports; index as lugar">
-                  <td class="reportes-td">
-                    <div class="d-flex flex-lg-row flex-column">
-                      <div class="col-12 col-lg-10 d-block m-0">
-                        <!--<button
+              <tr *ngFor="let i of studentSelfReports; index as lugar">
+                <td class="reportes-td">
+                  <div class="d-flex flex-column">
+                    <div class="d-block m-0">
+                      <!--<button
                       *ngIf="isInCurrentReportDateRange(i.reportDateTime)"
                       class="btn default-btn btn-primary btn-sm"
                       (click)="selfReportEdit(i.studentSelfReportId, i.studentGUId, i.studentName)"
                     >
                       Editar
                     </button>-->
-                        <div class="reportes-fecha">
-                          <h1>Fecha del Reporte:</h1>
-                          <h2>{{ i.reportDateTime | truncateDate }}</h2>
-                          <h1>Periodo:</h1>
-                          <h2>{{ i.reportYear }} - {{ i.reportPeriod }}</h2>
-                        </div>
-                        <div class="reportes-texto" id="contenedor-reporte">
-                          <div class="reportes-resumen">{{ i.reporteMostrado }}</div>
-                          <div class="puntos">{{ i.puntos }}</div>
-                        </div>
+                      <div class="reportes-fecha">
+                        <span class="mr-4 mr-md-5">Fecha: <p class="d-inline-block m-0 data">{{ i.reportDateTime |
+                            date:'dd/MMM/yyyy' }}</p></span>
+                        <span>Periodo: <p class="d-inline-block m-0 data">{{ i.reportYear }} - {{ i.reportPeriod }}</p>
+                          </span>
                       </div>
-
-                      <div
-                        class="lateral-tabla justify-content-end d-flex align-content-lg-center justify-content-lg-between mt-lg-2 col-lg-2 flex-lg-column flex-row flex-wrap mt-2"
-                      >
-                        <div class="col-5 col-lg-auto">
-                          <button
-                            *ngIf="lugar == 0 && esEditable(i.reportPeriod, i.reportYear)"
-                            type="button"
-                            class="btn btn-primary editar ml-2 mb-2"
-                            (click) = "selfReportEdit(i.studentSelfReportId, i.studentGUId, i.studentName)"
-                          >
-                            Editar
-                          </button>
-                        </div>
-                        <a
-                          class="ver-mas d-flex align-self-start justify-content-end"
-                          (click)="verMas(lugar)"
-                          id="link-vermas"
-                          [innerHTML]="i.link"
-                        ></a>
+                      <div class="reportes-texto" id="contenedor-reporte">
+                        <div class="reportes-resumen">{{ i.reporteMostrado }}</div>
+                        <div class="puntos">{{ i.puntos }}</div>
                       </div>
                     </div>
-                  </td>
-                </tr>
-              </div>
+
+                    <div class="d-flex flex-column justify-content-end">
+                      <div class="d-flex justify-content-center">
+                        <button type="button" *ngIf="lugar == 0 && !esEditable(i.reportPeriod, i.reportYear)"
+                          (click)="selfReportEdit(i.studentSelfReportId, i.studentGUId, i.studentName)"
+                          class="btn edit mt-2 mt-md-3 mr-0">
+                          Editar
+                        </button>
+                      </div>
+                      <a (click)="verMas(lugar)" id="link-vermas" [innerHTML]="i.link"
+                        class="ver-mas d-flex align-self-end  mt-1  mt-md-2"></a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
       </div>
-    </div>
+    </ng-container>
   </div>
+</div>

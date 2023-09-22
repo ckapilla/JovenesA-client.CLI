@@ -28,25 +28,18 @@ select.ng-invalid {
   ;
   font-weight: bold;
 }
+
 /* 
 *:not(g, path) {
   outline: red solid 1px;
 } */
 
-.title {
-  font-size: 20px;
-  font-weight: bold;
-  color: black;
-}
+
 
 p {
   margin: 0;
 }
 
-.state {
-  font-size: 18px;
-  font-weight: 400;
-}
 
 .stepper-item {
   flex-grow: 1;
@@ -62,7 +55,7 @@ p {
 .completed-first::before,
 .completed-third::after,
 .completed-second::before,
-.completed-second::after  {
+.completed-second::after {
   border-color: #147c12 !important;
 }
 
@@ -88,7 +81,6 @@ p {
   border-radius: 25px;
   margin-bottom: 53px;
   align-self: center;
-
 }
 
 .stepper-item>div>svg {
@@ -119,58 +111,47 @@ p {
   color: #ff0000 !important;
 }
 
-.grade-image-wrapper>h6{
-  font: 500 16px  'Roboto', sans-serif;
+.grade-image-wrapper>h6 {
+  font: 500 16px 'Roboto', sans-serif;
   margin: 0;
   color: black;
 }
+
 .grade>label {
-  font: 500 16px  'Roboto', sans-serif;
+  font: 500 16px 'Roboto', sans-serif;
   width: fit-content;
   margin: 0;
 }
 
 .grade>input {
-  font: 500 16px  'Roboto', sans-serif;
-  width: 64px!important;
+  font: 500 16px 'Roboto', sans-serif;
+  width: 64px !important;
   text-align: center;
-  margin: 0 0 0 12px!important;
+  margin: 0 0 0 12px !important;
 }
 
-.button-wrapper{
+.button-wrapper {
   gap: 2rem;
   max-width: 325px;
 }
-.img-wrapper{
+
+.img-wrapper {
   border: 1px solid #D9D9D9;
   margin-top: .75rem;
   margin-bottom: .625rem;
 }
 
-.img-wrapper>a{
+.img-wrapper>a {
   word-break: break-all;
   color: #001AFF;
-  font: 500 16px  'Roboto', sans-serif;
-
+  font: 500 16px 'Roboto', sans-serif;
 }
-small{
-  font: 500 14px  'Roboto', sans-serif;
+
+small {
+  font: 500 14px 'Roboto', sans-serif;
 }
-@media (min-width: 576px) {
 
-
-  .title {
-    font-size: 24px;
-    font-weight: bold;
-  }
-
-  .state {
-    font-size: 20px;
-  }
-
-  p {
-    font-size: 18px;
-  }
+@media screen and (min-width: 576px) {
 
   .stepper-item>div>svg {
     width: 101px;
@@ -206,12 +187,8 @@ small{
   }
 }
 
-@media (min-width: 768px) {
+@media only screen and (min-width: 768px) {
   .stepper-wrapper {
     margin: 1.9rem 10%;
   }
-}
-
-*{
-  outline: red solid 1px;
 }

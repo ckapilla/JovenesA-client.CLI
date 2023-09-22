@@ -67,6 +67,34 @@ button:hover {
   background-color: #A30000;
 }
 
+
+.title {
+  font-size: 22px;
+  font-weight: bold;
+  color: black;
+}
+
+.subtitle {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+
+@media only screen and (min-width: 576px) {
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .subtitle {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 18px;
+  }
+
+}
 /* *{
   outline: red solid 1px;
 } */
