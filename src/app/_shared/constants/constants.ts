@@ -8,7 +8,26 @@ const ssrDateRange: string = 'NODATEYET';
 const joinedYears: SELECTITEM[] = [];
 const gradYears: SELECTITEM[] = [];
 const contactYears: SELECTITEM[] = [];
-
+const pastGradYears: SELECTITEM[] = [
+  { value: '2006', label: '2006' },
+  { value: '2007', label: '2007' },
+  { value: '2008', label: '2008' },
+  { value: '2009', label: '2009' },
+  { value: '2010', label: '2010' },
+  { value: '2011', label: '2011' },
+  { value: '2012', label: '2012' },
+  { value: '2013', label: '2013' },
+  { value: '2014', label: '2014' },
+  { value: '2015', label: '2015' },
+  { value: '2016', label: '2016' },
+  { value: '2017', label: '2017' },
+  { value: '2018', label: '2018' },
+  { value: '2019', label: '2019' },
+  { value: '2020', label: '2020' },
+  { value: '2021', label: '2021' },
+  { value: '2022', label: '2022' },
+  { value: '2023', label: '2023' },
+];
 
 const months: SELECTITEM[] = [
   { value: '1', label: 'Jan/Ene' },
@@ -39,8 +58,11 @@ const gradesProcessingPeriods: GRADESPROCESSINGPERIOD[] = [
   { id: '109', descriptor: '2022-08-01 (Semestre)', studentReportingStartDate:'2022-08-01', endDate:'2022-08-15', yearTypeId: 2031, isCurrent: false },
   { id: '110', descriptor: '2022-09-01 (Cuatrimestre)', studentReportingStartDate:'2022-09-01', endDate:'2022-09-22', yearTypeId: 2032, isCurrent: false },
 
-  { id: '111', descriptor: '2023-01-01 (Semestre)', studentReportingStartDate:'2023-01-01', endDate:'2023-01-22', yearTypeId: 2031, isCurrent: true },
-  { id: '112', descriptor: '2023-01-01 (Cuatrimestre)', studentReportingStartDate:'2023-01-01', endDate:'2023-01-22', yearTypeId: 2032, isCurrent: true },
+  { id: '111', descriptor: '2023-01-01 (Semestre)', studentReportingStartDate:'2023-01-01', endDate:'2023-01-22', yearTypeId: 2031, isCurrent: false },
+  { id: '112', descriptor: '2023-01-01 (Cuatrimestre)', studentReportingStartDate:'2023-01-01', endDate:'2023-01-22', yearTypeId: 2032, isCurrent: false },
+  { id: '113', descriptor: '2023-05-01 (Cuatrimestre)', studentReportingStartDate:'2023-05-01', endDate:'2023-07-31', yearTypeId: 2032, isCurrent: false },
+  { id: '114', descriptor: '2023-08-01 (Semestre)', studentReportingStartDate:'2023-07-22', endDate:'2023-08-31', yearTypeId: 2031, isCurrent: true },
+  { id: '115', descriptor: '2023-09-01 (Cuatrimestre)', studentReportingStartDate:'2023-08-25', endDate:'2023-09-30', yearTypeId: 2032, isCurrent: true },
 
 
 ];
@@ -90,6 +112,7 @@ export const constants = {
   joinedYears,
   // non-db
   gradYears,
+  pastGradYears,
   contactYears,
   ssrDateRange,
   currentContactYear,

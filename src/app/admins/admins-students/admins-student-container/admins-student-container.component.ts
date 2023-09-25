@@ -22,7 +22,8 @@ export class AdminsStudentContainerComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.studentGUId = this.route.snapshot.params['guid'];
+    console.log('student student-profile with studentGUId: ' + this.studentGUId);
   }
 
 }

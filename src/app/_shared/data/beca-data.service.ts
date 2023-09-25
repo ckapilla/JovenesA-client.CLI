@@ -44,7 +44,7 @@ export class BecaDataService {
 
     const x = JSON.parse(body);
     body = JSON.stringify(x.studentGradeEntry);
-    console.log('in updateStudentGradeEntry');
+    console.log('in updateStudentGrades');
 
     const returnedToken =
       // eslint-disable-next-line max-len
@@ -54,12 +54,14 @@ export class BecaDataService {
     return this.http.put(url, body, { headers: headers });
   }
 
-  public uploadStudentGradesReport(frmData: FormData, studentGUId: string, studentGradeId: number, gradesProcessingPeriodId: number): Observable<any> {
-    const url = this.WebApiPrefix + 'becas/' + 'student-grades-report' + '?studentGUId=' + studentGUId + '&studentGradeId='+ studentGradeId  + '&gradesProcessingPeriodId='+ gradesProcessingPeriodId;
-    // const headers = new HttpHeaders().set(
-    //   'Content-Type',
-    //   'multipart/form-data; boundary=----WebKitFormBoundary0BPm0koKA'
-    // );
+  public uploadStudentGradesReport(frmData: FormData,
+    studentGUId: string,
+    studentGradeId: number,
+    gradesProcessingPeriodId: number,
+    receivedDate: string
+    ): Observable<any> {
+    const url = this.WebApiPrefix + 'becas/' + 'student-grades-report' + '?studentGUId=' + studentGUId + '&studentGradeId='+ studentGradeId  + '&gradesProcessingPeriodId='+ gradesProcessingPeriodId + '&=';
+
     if (frmData) {
       const file: any = frmData.get('file');
       console.log('ready to post ' + url + ' filename: ' + file.name); // + ' options ' + headers);

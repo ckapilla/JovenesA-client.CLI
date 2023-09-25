@@ -16,11 +16,12 @@
 
     <ng-container *ngSwitchCase="false">
       <div *ngIf="!errorMessage">
-        <div *ngIf="!inReportProcessingPeriod;" class="conteneder-agregar">
+        <div *ngIf="!inReportProcessingPeriod;else elseBlock" class="conteneder-agregar">
           <button class="save btn mr-0 mt-3 mt-md-1" (click)="studentSelfReportAdd()" >
             Agregar nuevo reporte
           </button>
         </div>
+        <ng-template #elseBlock><div>El próximo período para presentar tu reporte trimestral comenzará cerca de finales de {{ lastMonthInQuarter }}.</div> </ng-template>
 
         <p class="subtitle text-center mt-4 mb-3">Reportes anteriores</p>
 

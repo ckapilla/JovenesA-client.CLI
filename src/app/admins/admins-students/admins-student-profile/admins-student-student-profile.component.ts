@@ -97,6 +97,7 @@ export class AdminsStudentProfileComponent implements OnInit {
   readonly emojis: string[] = constants.emojis;
   showEditLink = false;
   webPrefix: string;
+  staticUrlPrefix: string;
   private subscription: Subscription;
   studentName: string;
 
@@ -114,6 +115,7 @@ export class AdminsStudentProfileComponent implements OnInit {
   ) {
     console.log('hi from AdminsStudent constructor');
     this.webPrefix = urlService.getClientUrl();
+    this.staticUrlPrefix = urlService.getStaticFilePrefix();
 
     this.languageStatuses = constants.languageStatuses;
     this.studentStatuses = constants.studentStatuses;
@@ -142,6 +144,9 @@ export class AdminsStudentProfileComponent implements OnInit {
       emergencyContactPhone: [{ value: '' }, Validators.compose([Validators.minLength(7), Validators.maxLength(13)])],
       emergencyContactName: [{ value: '' }],
       major: [{ value: '' }],
+      tituloIssuedDate: [{ value: '' }],
+      tituloUploadedDate: [{ value: '' }],
+
       // englishSkillLevelId: [{ value: '' }],
       statusId: [{ value: '' }],
       yearJoinedJa: [{ value: '' }],
@@ -281,6 +286,8 @@ export class AdminsStudentProfileComponent implements OnInit {
   setFormValues(student: Student) {
     console.log('setFormValues');
     console.log('>>>>>>>>>>>mentorGUId: ' + student.mentorGUId);
+    console.log('>>>>>>>>>>>tituloUploadedDate: ' + student.tituloUploadedDate);
+    console.log('>>>>>>>>>>>tituloIssuedDate: ' + student.tituloIssuedDate);
     this.myForm.setValue({
       studentId: student.studentId,
       gender: student.gender,
@@ -289,6 +296,8 @@ export class AdminsStudentProfileComponent implements OnInit {
       emergencyContactPhone: student.emergencyContactPhone,
       emergencyContactName: student.emergencyContactName,
       major: student.major,
+      tituloIssuedDate:  new TruncateDatePipe().transform('' + student.tituloIssuedDate),
+      tituloUploadedDate:  new TruncateDatePipe().transform('' + student.tituloUploadedDate),
       // englishSkillLevelId: student.englishSkillLevelId,
       statusId: student.statusId,
       yearJoinedJa: student.yearJoinedJa,
@@ -325,17 +334,22 @@ export class AdminsStudentProfileComponent implements OnInit {
     console.log('student before retrieve FormValues merge');
     console.log(this.student);
 
-    this.setNullDates (this.myForm.controls.mentorAssignedDate);
-    this.setNullDates (this.myForm.controls.mentoringEndDate);
-    this.setNullDates (this.myForm.controls.probationStartDate);
-    this.setNullDates (this.myForm.controls.probationEndDate);
+    this.setEmptyDatesToNull (this.myForm.controls.mentorAssignedDate);
+    this.setEmptyDatesToNull (this.myForm.controls.mentoringEndDate);
+    this.setEmptyDatesToNull (this.myForm.controls.probationStartDate);
+    this.setEmptyDatesToNull (this.myForm.controls.probationEndDate);
+
+    this.setEmptyDatesToNull (this.myForm.controls.tituloIssuedDate);
+    this.setEmptyDatesToNull (this.myForm.controls.tituloUploadedDate);
 
     this.student = { ...this.student, ...this.myForm.value };
     console.log('student after retrieve FormValues merge');
     console.log(this.student);
   }
 
-  setNullDates(control: AbstractControl): void {
+  setEmptyDatesToNull(control: AbstractControl): void {
+
+    // console.log('setEmptyDatesToNull has ' + control.value as string)
     if ((control.value as string)?.trim() === '') {
       control.setValue(null);
     }
@@ -346,7 +360,8 @@ export class AdminsStudentProfileComponent implements OnInit {
     this.isLoading = true;
     this.retrieveFormValues();
     console.log('save');
-    console.log(this.student);
+    // console.log(this.student);
+    // console.log('====before Update=====');
     this.studentData.updateStudent(this.student).subscribe(
       () => {
         // console.log('subscribe result in updateStudent');
@@ -416,6 +431,28 @@ export class AdminsStudentProfileComponent implements OnInit {
     this.router.navigate(link);
   }
 
+  viewTitulo( studentGuid: string, gradYear: number ) {
+
+
+    const url = this.staticUrlPrefix + 'Certifications/Titulos/' + gradYear + '/' + studentGuid.toUpperCase() + '.jpg';
+    document.location.href = url;
+
+  }
+
+  uploadTitulo(studentGUId: string, gradYear: number) {
+    console.log('submitImage');
+    // this.store.dispatch(new SetSelectedStudentGUId({ studentGUId }));
+
+    const link = ['titulos/titulos-entry',
+      {
+        studentGUId: studentGUId,
+        gradYear: gradYear
+      }
+    ];
+    console.log('navigating to ' + JSON.stringify(link));
+    this.router.navigate(link);
+  }
+
   gotoGradeHistory() {
     const id = this.currRoute.snapshot.params['id'];
     const link = ['/admins/students/grade-history/' + id + '/'];
@@ -450,6 +487,7 @@ export class AdminsStudentProfileComponent implements OnInit {
     }
     // needs to always be read only
     this.myForm.controls.universityGradeMonthId.disable();
+    this.myForm.controls.tituloUploadedDate.disable();
   }
   onDateSelect() {
     alert('data selected');

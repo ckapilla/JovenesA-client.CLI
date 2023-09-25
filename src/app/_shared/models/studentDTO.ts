@@ -27,6 +27,8 @@ export class StudentDTO {
     public sponsorGroupId?: string,
     public universityAbbrev?: string,
     public major?: string,
+    public tituloIssuedDate?: Date,
+    public tituloUploadedDate?: Date,
     public joinedFromId?: number,
     public joinedFrom?: string,
     public photoUrl?: string,

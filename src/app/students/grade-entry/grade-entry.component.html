@@ -209,7 +209,7 @@
             
 <div class="container-fluid m-0 p-0" style="column-gap: 1.5rem">
  
-  <ng-container formArrayName="gradeEntryRows" *ngFor="let entry of studentGradesData, let i = index">
+  <ng-container formArrayName="gradeEntryFormRows" *ngFor="let entry of studentGradesData, let i = index">
     <div class="row row-cols-1 row-cols-md-2 m-0">
       <div [formGroupName]="i" class="col p-0 my-auto">
         <div class="limit-date col p-0" >
@@ -272,6 +272,81 @@
   </ng-container>
 </div>
              
+<!--
+            <table class="table-sm table-striped">
+              <thead>
+                <tr>
+                  <th># de Periodo</th>
+                  <th>Fecha Inicial<br /> de Entrada</th>
+                  <th>Fecha de Entrega</th>
+                  <th>Fecha de Hoy</th>
+                  <th>Promedio</th>
+                  <th>Fecha Confirmado</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody >
+
+                <tr style="background-color:white;"
+                    formArrayName="gradeEntryFormRows"
+                    *ngFor="let entry of studentGradesData, let i = index">
+                  <ng-container [formGroupName]="i">
+
+                    <td>
+                      <input formControlName="gradesProcessingPeriodId"
+                             class="form-control form-control-sm" type="text" size="8" />
+                    </td>
+                    <td>
+                      <input formControlName="initialGradesEntryDate"
+                             class="form-control form-control-sm" type="text" size="8" />
+                    </td>
+                    <td>
+                      <input formControlName="gradesDueDate"
+                             class="form-control form-control-sm" type="text" size="8" />
+                    </td>
+                    <td>
+                      <input formControlName="gradesTurnedInDate" readonly
+                             (dblclick)="setReceivedDate(i, $event.target.value)"
+                             class="form-control form-control-sm" type="text" size="8" />
+                    </td>
+                    <td>
+                      <input formControlName="gradePointAvg"
+                             class="form-control form-control-sm" type="text" size="4" />
+                    </td>
+                    <td>
+                      <input formControlName="confirmedDate"
+                             class="form-control form-control-sm" type="text" size="8" />
+                    </td>
+
+                    <td *ngIf="isRowDirty(i)">
+                      >>>
+                    </td>
+                    <td *ngIf="!isRowDirty(i)">
+
+                    </td>
+                  </ng-container>
+                  <p style="text-align: center;">
+                    <button [disabled]="myForm.pristine"
+                        type="button"
+                        class="btn btn-primary"
+                        (click)="saveAllChangedEntries()">Guardar</button>
+                  </p>
+                  <td *ngIf="isRowDirty(i)">
+                    &lt;&lt;&lt;
+                  </td>
+                  <td *ngIf="!isRowDirty(i)">
+
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+            <div *ngIf="confirmedDateB">
+               <span class="red">La calificación ha sido revisada y registrada. Cualquier cambio, favor de comunicarse a <a href="mailto:s.martinez@jovenesadelante.org">s.martinez@jovenesadelante.org</a></span>
+            </div>
+          </form>
+        -->
 
             </form>
           </div>
@@ -281,6 +356,7 @@
        <!--    <div>
             <h6 style="color:black;"><b>Paso 2: </b>Sube tu reporte de calificaciones en el recuadro</h6>
             <br>
+
             <h6 style="color:black;">En el siguiente apartado podrás subir la captura de tu informe de calificaciones.
               Asegúrate de que tu archivo sea en formato <mark style="color:#05579E; background-color:powderblue;">
                 PNG</mark> y tenga <b><i>menos de 200 kb de tamaño</i></b>.</h6>
@@ -293,8 +369,6 @@
             <app-file-uploader [studentGradeId]=studentGradesData[0].studentGradeId
               [gradesProcessingPeriodId]=studentGradesData[0].gradesProcessingPeriodId></app-file-uploader>
           </div> -->    
-         
-
         </ng-container>
         <!-- end content -->
       </div>

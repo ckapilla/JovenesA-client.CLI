@@ -20,6 +20,8 @@ export class Student {
     // public sponsor?: string, // Sponsor
     public prepaId?: number, // PrepaID
     public major?: string, // Major
+    public tituloIssuedDate?: Date,
+    public tituloUploadedDate?: Date,
     // public ageWhenJoined?: string, // AgeWhenJoined
     public yearJoinedJa?: string, // YearJoinedJA
     public universityId?: string, // UniversityID

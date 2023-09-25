@@ -53,22 +53,22 @@ export class GradeEntryComponent implements OnInit {
     this.inGradesProcessingPeriod = true;
     this.myForm = this._fb.group({
       studentGUId: ['0000'],
-      gradeEntryRows: this._fb.array([])
+      gradeEntryFormRows: this._fb.array([])
     });
   }
 
-  gradeEntryRows(): UntypedFormArray {
-    return <UntypedFormArray>this.myForm.get('gradeEntryRows');
+  gradeEntryFormRows(): UntypedFormArray {
+    return <UntypedFormArray>this.myForm.get('gradeEntryFormRows');
   }
 
-  createEmptyGradeEntryRow(): UntypedFormGroup {
+  createEmptyGradeEntryFormRow(): UntypedFormGroup {
     console.log('CreateEmptyGradeEntry create empty row to be populated');
     return this._fb.group({
       gradesProcessingPeriodId: { value: '', disabled: true },
       initialGradesEntryDate: { value: '', disabled: true },
       gradesDueDate: { value: '', disabled: true },
       gradesTurnedInDate: [
-        { value: '', disabled: true },
+        { value: '' }, // must use readonly in html instead of disabled here so value will get sent to server
         Validators.compose([Validators.pattern(/^\d{4}\-\d{1,2}\-\d{1,2}$/), Validators.maxLength(10)])
       ],
       gradePointAvg: [{ value: '' }, Validators.pattern(/^\d{1,2}\.\d{1,1}$/)],
@@ -76,33 +76,32 @@ export class GradeEntryComponent implements OnInit {
     });
   }
 
-  updateGradeEntryRow(gradeEntryRow: UntypedFormGroup, entryData: StudentGrades): UntypedFormGroup {
-    console.log('updateGradeEntryRow update existing row with actual data');
-    console.log(JSON.stringify(entryData));
-    gradeEntryRow.patchValue({
-      gradesProcessingPeriodId: entryData.gradesProcessingPeriodId,
-      initialGradesEntryDate: new TruncateDatePipe().transform('' + entryData.initialGradesEntryDate),
-      gradesDueDate: new TruncateDatePipe().transform('' + entryData.gradesDueDate),
+  updateGradeEntryFormRow(gradeEntryFormRow: UntypedFormGroup, gradeEntryDataRow: StudentGrades): void {
+    console.log('updateGradeEntryFormRow update existing form row with retrieved data');
+    console.log(JSON.stringify(gradeEntryDataRow));
+    gradeEntryFormRow.patchValue({
+      gradesProcessingPeriodId: gradeEntryDataRow.gradesProcessingPeriodId,
+      initialGradesEntryDate: new TruncateDatePipe().transform('' + gradeEntryDataRow.initialGradesEntryDate),
+      gradesDueDate: new TruncateDatePipe().transform('' + gradeEntryDataRow.gradesDueDate),
       gradesTurnedInDate: new Date().toISOString().slice(0, 10),
-      gradePointAvg: this.toFixedValue(entryData.gradePointAvg),
-      confirmedDate: new TruncateDatePipe().transform('' + entryData.confirmedDate)
+      gradePointAvg: this.toFixedValue(gradeEntryDataRow.gradePointAvg),
+      confirmedDate: new TruncateDatePipe().transform('' + gradeEntryDataRow.confirmedDate)
     });
-    if (gradeEntryRow.get('confirmedDate').value > '') {
-      gradeEntryRow.get('gradePointAvg').disable();
+    if (gradeEntryFormRow.get('confirmedDate').value > '') {
+      gradeEntryFormRow.get('gradePointAvg').disable();
       this.confirmedDateB=true;
     }
 
-    gradeEntryRow.markAsPristine();
-    return gradeEntryRow;
+    gradeEntryFormRow.markAsPristine();
+
   }
 
-  addGradeEntryRow(gradeEntryData: StudentGrades) {
-    const gradeEntryRow: UntypedFormGroup = this.createEmptyGradeEntryRow();
+  addGradeEntryRow(gradeEntryDataRow: StudentGrades) {
+    const gradeEntryFormRow: UntypedFormGroup = this.createEmptyGradeEntryFormRow();
 
-    this.updateGradeEntryRow(gradeEntryRow, gradeEntryData);
+    this.updateGradeEntryFormRow(gradeEntryFormRow, gradeEntryDataRow);
     console.log('addGradeEntry: push new populated row intoFormArray');
-    this.gradeEntryRows().push(gradeEntryRow);
-    console.log('XX1');
+    this.gradeEntryFormRows().push(gradeEntryFormRow);
   }
 
   ngOnInit() {
@@ -127,8 +126,8 @@ export class GradeEntryComponent implements OnInit {
           this.errorMessage = err;
         },
         () => {
-          this.studentGradesData.forEach((gradeEntryData) => {
-            this.addGradeEntryRow(gradeEntryData);
+          this.studentGradesData.forEach((gradeEntryDataRow) => {
+            this.addGradeEntryRow(gradeEntryDataRow);
           });
           this.isLoading = false;
         }
@@ -162,23 +161,22 @@ export class GradeEntryComponent implements OnInit {
   }
 
   retrieveFormValuesForRow(i: number): void {
-    console.log('retrieveFormValues for row' + JSON.stringify(this.gradeEntryRows().value[i]));
-    this.studentGradesData[i] = { ...this.studentGradesData[i], ...this.gradeEntryRows().value[i] };
-    console.log("result is >>>>>>>>>", this.studentGradesData[i])
+    console.log('retrieveFormValues for row' + JSON.stringify(this.gradeEntryFormRows().value[i]));
+    this.studentGradesData[i] = { ...this.studentGradesData[i], ...this.gradeEntryFormRows().value[i] };
   }
 
   isRowDirty(i: number): boolean {
-    // console.log('checking dirty state of i ' + i + ' -- ' + this.gradeEntryRows().controls[i].dirty);
-    return this.gradeEntryRows().controls[i].dirty;
+    return this.gradeEntryFormRows().controls[i].dirty;
   }
 
   saveEntry(i: number): boolean {
     console.log('saveEntry for ' + i);
     this.isLoading = true;
     this.errorMessage = '';
-    console.log('row dirty value is ' + this.gradeEntryRows().controls[i].dirty);
-    if (this.gradeEntryRows().controls[i].dirty) {
-      this.setReceivedDate(i, this.gradeEntryRows().controls[i].get('gradesTurnedInDate').value);
+
+    console.log('row dirty value is ' + this.gradeEntryFormRows().controls[i].dirty);
+    if (this.gradeEntryFormRows().controls[i].dirty) {
+      this.setReceivedDate(i, this.gradeEntryFormRows().controls[i].get('gradesTurnedInDate').value);
 
       this.retrieveFormValuesForRow(i);
       console.log(this.studentGradesData[i])
@@ -190,7 +188,7 @@ export class GradeEntryComponent implements OnInit {
           window.setTimeout(() => {
             this.successMessage = 'Los cambios se guardaron con éxito.';
           }, 0);
-          const currRowFormGroup = this.gradeEntryRows().controls[i] as UntypedFormGroup;
+          const currRowFormGroup = this.gradeEntryFormRows().controls[i] as UntypedFormGroup;
           // this fails for some reason, and isn't needed because the update won't change any of these values
           // this.updateGradeEntryRow(currRowFormGroup, gradeRowData);
           currRowFormGroup.markAsPristine();
@@ -215,10 +213,10 @@ export class GradeEntryComponent implements OnInit {
   resetEntry(i: number): boolean {
     console.log('resetEntry for ' + i);
 
-    if (this.gradeEntryRows().controls[i].dirty) {
+    if (this.gradeEntryFormRows().controls[i].dirty) {
       this.retrieveFormValuesForRow(i);
-      this.gradeEntryRows().controls[i].reset();
-      this.gradeEntryRows().controls[i].markAsPristine();
+      this.gradeEntryFormRows().controls[i].reset();
+      this.gradeEntryFormRows().controls[i].markAsPristine();
     }
     // prevent default action of reload
     return false;
@@ -236,16 +234,12 @@ export class GradeEntryComponent implements OnInit {
       d = new Date();
     }
     const strDate = [d.getFullYear(), ('0' + (d.getMonth() + 1)).slice(-2), ('0' + d.getDate()).slice(-2)].join('-');
-    const gradeEntryRow: UntypedFormGroup = this.gradeEntryRows().controls[i] as UntypedFormGroup;
-    console.log("date is >>", strDate);
-    console.log("gradentryrow is >>>", gradeEntryRow)
+    const gradeEntryFormRow: UntypedFormGroup = this.gradeEntryFormRows().controls[i] as UntypedFormGroup;
 
-    gradeEntryRow.patchValue({
+    gradeEntryFormRow.patchValue({
       gradesTurnedInDate: strDate
     });
-    gradeEntryRow.markAsDirty();
-    console.log("gradentryrow is >>>", gradeEntryRow)
-
+    gradeEntryFormRow.markAsDirty();
   }
 
   toFixedValue(num: number | null) {

@@ -40,17 +40,19 @@
           <li>Póngase en contacto con el <a href="mailto:chris@kapilla.net">webmaster</a> para obtener ayuda</li>
         </ul>
       </div>
-    </app-ja>
-
-    <script>
-      function handleQueryParams() {
-        // handle Auth0 change password failure string, which only appears in the URL
-        var msg = "?error_description=The%20operation%20cannot%20be%20completed";
-        if (window.location.search.length > 0) {
-          if (window.location.search.substr(0, msg.length) === msg) {
-            alert('Sorry, the email address supplied does not match our records. Please try again or contact the Jovenes Adelante office for assistance.')
-          }
+      
+  </app-ja>
+  <!-- Footer moved to app component -->
+  
+  <script>
+    function handleQueryParams() {
+      // handle Auth0 change password failure string, which only appears in the URL
+      var msg = "?error_description=The%20operation%20cannot%20be%20completed";
+      if (window.location.search.length > 0) {
+        if (window.location.search.substr(0, msg.length) === msg) {
+          alert('Sorry, the email address supplied does not match our records. Please try again or contact the Jovenes Adelante office for assistance.')
         }
+      }
 
       }
 

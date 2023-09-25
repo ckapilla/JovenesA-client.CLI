@@ -67,14 +67,14 @@ export class StudentsSelfReportsComponent implements OnInit {
 
   splitStartStopDates(strToday: string) {
     console.log('constants has ' + constants.ssrDateRange);
-    let ssrEditDateStart = constants.ssrDateRange.substring(0, 8);
-    console.log('Start literal ' + ssrEditDateStart);
-    let ssrEditDateStop = constants.ssrDateRange.substring(9);
-    console.log('stop literal ' + ssrEditDateStop);
-    console.log('month ' + constants.ssrDateRange.substring(4, 6));
+    this.ssrEditDateStart =  constants.ssrDateRange.substring(0,8);
+    console.log('Start literal ' + this.ssrEditDateStart);
+    this.ssrEditDateStop =  constants.ssrDateRange.substring(9);
+    console.log('stop literal ' + this.ssrEditDateStop);
+    console.log('month ' + constants.ssrDateRange.substring(4,6));
 
-    if (strToday >= ssrEditDateStart && strToday <= ssrEditDateStop) {
-      console.log('in report recording period');
+    if (strToday >= this.ssrEditDateStart && strToday <= this.ssrEditDateStop) {
+      console.log ('in report recording period');
       this.inReportProcessingPeriod = true;
     } else {
       console.log('NOT in report recording period');
@@ -232,8 +232,15 @@ export class StudentsSelfReportsComponent implements OnInit {
  
 
   isInCurrentReportDateRange(rptDate: string) {
-    return rptDate >= this.ssrEditDateStart && rptDate <= this.ssrEditDateStop;
-  }
+
+    console.log('~~~~~~~~~~~~~~~~~check if in date range~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+    console.log('current ReportDate: ' + rptDate);
+    rptDate = rptDate.substr(0,4) + rptDate.substr(5,2) + rptDate.substr(8,2);
+    console.log('current tweaked ReportDate: ' + rptDate);
+    console.log('ssrEditDateStart: ' + this.ssrEditDateStart);
+    console.log('ssrEditDateStop: ' + this.ssrEditDateStop);
+    return (rptDate >= this.ssrEditDateStart  && rptDate <= this.ssrEditDateStop);
+    }
 
 
   esEditable(periodo, anioReporte){
@@ -274,6 +281,7 @@ export class StudentsSelfReportsComponent implements OnInit {
 
  
     }
+
 
   }
 }
