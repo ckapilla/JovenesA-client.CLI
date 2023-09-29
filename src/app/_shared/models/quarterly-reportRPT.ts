@@ -4,7 +4,7 @@ export class QuarterlyReportRPT {
     public reportYear?: number,
     public reportPeriod?: number,
     public studentGUId?: string,
-    public sponsorGroupGUId?: string,
+    public sponsorGroupId?: string,
     public reportDateTime?: string,
     public reviewedStatusId?: number,
     public studentName?: string,
