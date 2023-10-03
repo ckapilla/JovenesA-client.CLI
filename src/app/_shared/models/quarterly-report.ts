@@ -4,7 +4,7 @@ export class QuarterlyReport {
     public reportYear?: number,
     public reportPeriod?: number,
     public studentGUId?: string,
-    public sponsorGroupGUId?: string,
+    public sponsorGroupXXGUId?: string,
     public jA_Narrative_English?: string,
     public jA_Narrative_Spanish?: string,
     public sR_Narrative_English?: string,
@@ -13,7 +13,8 @@ export class QuarterlyReport {
     public mR_Narrative_Spanish?: string,
     public reportDateTime?: string,
     public reviewedStatusId?: number,
-    public pN_Narrative?: string
+    public pN_Narrative?: string,
+    public sponsorGroupID?: number
   ) {
 
   }

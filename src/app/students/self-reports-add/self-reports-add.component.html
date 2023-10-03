@@ -1,88 +1,85 @@
-<div>
-<p class="titulo">Agregar Reporte</p>
-<div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
-    <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
-    
-<div class="subtitulo">
-  Periodo: <b>{{ selfReport.reportPeriod }} - {{ selfReport.reportYear }}</b>
-</div>
+<div class="py-4 px-3 px-md-5">
+  <h1 class="title text-center text-sm-left">Agregar Reporte</h1>
 
-<div class="mt-4 mb-2">
-  <div class="border border-dark rounded-lg padding-1 bg-white m-sm-4 m-2  p-sm-4 p-2">
-    <pre>
-      REDACTA A MANERA DE ENSAYO LAS RESPUESTAS A ESTAS PREGUNTAS:
+  <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+  <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
 
-      1.	Este primer semestre del año ¿Que fué lo que más disfrutaste académicamente?
-            y ¿Qué fue lo más difícil de sobrellevar?, cuéntanos ¿por qué?
-      2.	¿Cuáles son las preguntas que más te haz hecho a ti mismo en el trayecto de
-            tu carrera?
-      3.	En el tiempo que llevas en Jóvenes Adelante¿Cómo ha sido tu experiencia con
-            nosotros? Qué mejoraría de nuestro seguimiento, cambiarías algo del programa,
-            que áreas de oportunidad observas.
-      4.	Cuéntanos ¿en qué ámbitos tu mentor te ha ayudado a crecer? y ¿en qué aspectos
-            consideras que necesitas un poco más de apoyo?.
-      5.	¿Cómo está tu familia? Nos interesa saber si hay alguna situación difícil o muy
-            agradable por la que estén pasando? Estoy aquí para leerte.
-      6.	En el punto que vas de tu carrera, ¿cómo te visualizas después de graduarte?
-      7.	Emocionalmente, ¿Cómo te has sentido durante estos cuatro meses? Más allá de
-            responder “bien” o “mal” nos gustaría leerte, eres importante para nosotros.
-    </pre>
-  </div>
-</div>
-<form [formGroup]="myForm">
-  <div
-    class="rounded-lg m-sm-4 m-2 cuadroTexto"
-    [ngClass]="myForm.controls['narrative_English'].errors?.required && myForm.controls['narrative_English'].touched  ?  'bordeRojo' :
-        myForm.controls['narrative_English'].valid && (myForm.controls['narrative_English'].dirty || myForm.controls['narrative_English'].value.length > 0) ? 'bordeVerde' : 'bordeAzul' "
-  >
-    <textarea
-      id="narrative_English"
-      #success
-      formControlName="narrative_English"
-      #narrative_English
-      type="text"
-      required
-      class="areatexto p-sm-4 p-2"
-      maxlength="4500"
-      placeholder="Ingresa año, periodo y el texto del reporte con un máximo de 4500 caracteres"
-      ></textarea>
-      
-    <div class="conteoCaracteres bold text-right mr-4" *ngIf="myForm.controls['narrative_English'].value != null && myForm.controls['narrative_English'].value.length > 0">
-      {{4500 - myForm.controls['narrative_English'].value.length}} caracteres disponibles
-    </div>
+  <form [formGroup]="myForm">
 
-   
+    <p class="subtitle text-center mt-3 mb-2 mt-sm-4 mb-sm-3">
+      Periodo: <b>{{ selfReport.reportPeriod }} - {{ selfReport.reportYear }}</b>
+    </p>
 
-    <div
-      class="pl-4 textoError"
-      *ngIf="myForm.controls['narrative_English'].errors?.required && myForm.controls['narrative_English'].touched">
-      No se puede registrar un reporte vacío
-    </div>
+    <fieldset [disabled]="submitted">
 
-              <app-display-errors
-            control="narrative_English"
-            class="red"
-            [errors]="{
-              required: 'An entry is required, even if it is just N/A',
-              maxlength: 'Entrada no puede exceder los 4500 caracteres.'
-            }"
-          ></app-display-errors>
+      <div class="form-group">
 
+        <div class="border border-dark rounded-lg bg-white  p-sm-4 p-2">
+          <!-- change pre tag for an ordered list to avoid scroll -->
+          <ol class="px-4 my-3">
+            <h3 class="question-header text-center">
+              PREGUNTAS (Recuerda redactar tus respuestas a manera de ensayo)
+            </h3>
+            <li>
+              ¿Cuál ha sido tu emoción más predominante en los últimos 3 meses
+              y a qué crees que se deba?
+            </li>
+            <li>
+              En este punto de tu vida ¿cómo te sientes contigo mismo?
+              más allá de bien o mal. Describe.
+            </li>
+            <li>
+              ¿Cuál es la presión más grande que sientes en la escuela,
+              qué es lo que más te preocupa y por qué?
+            </li>
+            <li>
+              ¿Cuál es la presión social que sientes sobre tus hombros?
+            </li>
+            <li>
+              ¿Hay alguna situación personal que te esté complicando
+              el concentrarte en clase?
+            </li>
+            <li>
+              Si tuvieras una varita mágica que resolviera o desapareciera
+              lo que más te preocupa ¿Qué elegirías resolver?
+            </li>
+          </ol>
+        </div>
 
-  <div class="text-center p-2">
-    <button class="btn btnGuardar text-white rounded " (click)="onSubmit()"
-    [disabled]="myForm.controls['narrative_English'].errors?.required || myForm.controls['narrative_English'].value == null ">
-      Guardar
-    </button>
-    <button class="btn btnCancelar text-white rounded" (click)="onCancel()">
-      Cancelar
-    </button>
-  </div>
+        <div class="rounded-lg textarea-container mt-3 mt-sm-4 mt-md-5" [ngClass]="myForm.controls['narrative_Spanish'].errors?.required && myForm.controls['narrative_Spanish'].touched  ?  
+        myForm.controls['narrative_Spanish'].valid && (myForm.controls['narrative_Spanish'].dirty || myForm.controls['narrative_Spanish'].value.length > 0) ?
+        'green-border' : 
+        'red-border' :
+        'blue-border'">
+          <textarea id="narrative_Spanish" #success formControlName="narrative_Spanish" #narrative_Spanish type="text" required
+           class="custom-textarea p-sm-4 p-2" maxlength="4500"
+            placeholder="Ingresa año, periodo y el texto del reporte con un máximo de 4500 caracteres">
+          </textarea>
 
+          <div class="characters-left bold text-right m-4"
+            *ngIf="myForm.controls['narrative_Spanish'].value != null && myForm.controls['narrative_Spanish'].value.length > 0">
+            {{4500 - myForm.controls['narrative_Spanish'].value.length}} caracteres disponibles
+          </div>
 
+          <div class="p-4 text-error"
+            *ngIf="myForm.controls['narrative_Spanish'].errors?.required && myForm.controls['narrative_Spanish'].touched">
+            No se puede registrar un reporte vacío
+          </div>
 
-  </div>
-</form>
+          
+        </div>
+      </div>
+      <div class="text-center">
+        <button class="btn save mr-4" (click)="onSubmit()"
+          [disabled]="myForm.controls['narrative_Spanish'].errors?.required || myForm.controls['narrative_Spanish'].value == null ">
+          Guardar
+        </button>
+        <button class="btn cancel ml-4 mr-0" (click)="onCancel()">
+          Cancelar
+        </button>
+      </div>
+    </fieldset>
+  </form>
 </div>
 <!--
 <div class="card bg-primary" style="min-width: 46em">
@@ -114,21 +111,21 @@
           >
 
           <textarea
-            id="narrative_English"
+            id="narrative_Spanish"
             #success
-            formControlName="narrative_English"
-            #narrative_English
+            formControlName="narrative_Spanish"
+            #narrative_Spanish
             type="text"
             class="form-control input-sm narrative"
             placeholder=""
           >
           </textarea>
           <span class="form-text text-muted"
-            ><code>{{ narrative_English.value.length }}</code> of <code>4500</code> characters</span
+            ><code>{{ narrative_Spanish.value.length }}</code> of <code>4500</code> characters</span
           >
 
           <app-display-errors
-            control="narrative_English"
+            control="narrative_Spanish"
             class="red"
             [errors]="{
               required: 'An entry is required, even if it is just N/A',

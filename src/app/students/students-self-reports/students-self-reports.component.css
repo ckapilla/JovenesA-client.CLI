@@ -22,7 +22,7 @@ tbody tr:nth-of-type(odd){
   display: none;
 }
 
-.reportes-td{
+.report-table-cell{
   padding: 16px 8px 16px 16px;
   width: 100vw;
 }
@@ -32,7 +32,7 @@ body>main>div>table{
   border-spacing: 0px; /* this draws the table border  */ 
 }
 
-.conteneder-agregar{
+.add-report-container{
   display: flex;
   justify-content: center;
 }
@@ -43,34 +43,29 @@ body>main>div>table{
   padding: 12px 16px;
 }
 
-.reportes-fecha span{
+.report-date span{
   font-size: 18px;
   font-weight: bold;
   color: #EB5525;
   display: inline-block;
   font-family: 'Roboto', sans-serif;
 }
-.reportes-fecha .data{
+.report-date .data{
   font-size: 16px;
   font-weight: bold;
   color: black;
   display: inline-block;
   font-family: 'Roboto', sans-serif;
 }
-.reportes-texto{
+.report-text{
   font-size: 16px;
   font-weight: initial;
   color: black;
   padding-top: 9px;
   font-family: 'Roboto', sans-serif;
 }
-.reportes-resumen{
-  display: inline;
-}
-.puntos{
-  display: inline-block;
-}
-.ver-mas{
+
+.read-more{
   cursor: pointer ;
   font-size: 16px;
   color: #001AFF;
@@ -80,7 +75,7 @@ body>main>div>table{
 }
 
   @media only screen and (min-width: 768px) {
-  .reportes-td{
+  .report-table-cell{
     padding: 20px 12px 20px 20px;
   }
 }

@@ -16,7 +16,7 @@ import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 
 @Component({
   templateUrl: './self-reports-add.component.html',
-  styleUrls: ['./self-reports-add.component.css', '../../../assets/css/forms.css']
+  styleUrls: ['./self-reports-add.component.css', '../../../assets/css/forms.css', '../students.component.css']
 })
 export class SelfReportsAddComponent implements OnInit {
   myForm: UntypedFormGroup;
@@ -53,7 +53,7 @@ export class SelfReportsAddComponent implements OnInit {
     this.qrPeriods = constants.qrPeriods;
 
     this.myForm = _fb.group({
-      narrative_English: ['', Validators.compose([Validators.required, Validators.maxLength(4500)])]
+      narrative_Spanish: ['', Validators.compose([Validators.required, Validators.maxLength(4500)])]
     });
     // this.myForm.controls.currentQRPeriod.disable();
     this.selfReport = new StudentSelfReport();
@@ -85,7 +85,7 @@ export class SelfReportsAddComponent implements OnInit {
     this.selfReport.reportYear = +this.selectedQRPeriod.substr(0, 4);
     this.selfReport.reportPeriod = +this.selectedQRPeriod.substr(5, 1);
     console.log('year: ' + this.selfReport.reportYear + ' period: ' + this.selfReport.reportPeriod);
-    this.selfReport.narrative_English = '';
+    this.selfReport.narrative_Spanish = '';
 
     //obtener el periodo
     this.periodo = this.selfReport.reportPeriod;
@@ -122,8 +122,8 @@ export class SelfReportsAddComponent implements OnInit {
     }
     this.submitted = true; // need to set guard immediately to prevent dups
 
-    this.selfReport.narrative_English = this.myForm.controls.narrative_English.value;
-    //console.log('contenido del reporte', this.selfReport.narrative_English);
+    this.selfReport.narrative_Spanish = this.myForm.controls.narrative_Spanish.value;
+    //console.log('contenido del reporte', this.selfReport.narrative_Spanish);
 
     this.ssrData.postStudentSelfReport(this.selfReport).subscribe(
       (student) => {

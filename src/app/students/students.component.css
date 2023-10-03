@@ -1,4 +1,5 @@
 :host {
+  padding: 0;
   display: block;
   font-family: 'Open Sans', sans-serif;
   font-size: 1rem;
@@ -18,7 +19,6 @@ ul {
 .bodytext {
   margin: 25px;
 }
-
 
 input {
   border: 2px solid #ADADAD;
@@ -67,7 +67,6 @@ button:hover {
   background-color: #A30000;
 }
 
-
 .title {
   font-size: 22px;
   font-weight: bold;
@@ -79,6 +78,51 @@ button:hover {
   font-weight: 400;
 }
 
+/* reports */
+.red-border {
+  border: 2px solid #FF0000;
+}
+
+.green-border {
+  border: 2px solid #4ba34a;
+}
+
+.blue-border {
+  border: 2px solid #7491da;
+}
+
+.custom-textarea {
+  height: 300px;
+  width: 100%;
+  max-width: 100%;
+  border: none !important;
+  background-color: #E4E8EA;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.4;
+}
+
+.custom-textarea:focus {
+  outline: none;
+}
+
+.textarea-container {
+  background-color: #E4E8EA;
+}
+
+.text-error {
+  color: #f00;
+}
+
+.characters-left {
+  color: #303A54;
+  font-weight: bold;
+}
+
+.question-header {
+  color: black;
+  font-size: 18px;
+  font-weight: 600;
+}
 
 @media only screen and (min-width: 576px) {
   .title {
@@ -93,8 +137,8 @@ button:hover {
   p {
     font-size: 18px;
   }
-
 }
+
 /* *{
   outline: red solid 1px;
 } */

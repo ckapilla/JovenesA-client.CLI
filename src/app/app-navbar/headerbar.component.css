@@ -109,3 +109,8 @@ a.logout:hover, a.logout:focus, a.logout:focus-visible{
   width: 55%;
 }
 }
+@media (min-width: 768px) {
+  .navbar-expand-md .navbar-collapse {
+      height: auto !important;
+  }
+}

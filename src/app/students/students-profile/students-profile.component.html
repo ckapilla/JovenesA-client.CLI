@@ -2,7 +2,6 @@
 <div *ngIf="successMessage" class="alert alert-success ">{{successMessage}}</div>
 
 <div [ngSwitch]="isLoading" class="py-4 px-3 px-md-5 ">
-
       <div *ngSwitchCase="true" class="  ">
             <app-loading-container>
             </app-loading-container>
@@ -135,11 +134,11 @@
                               <div class="col mt-3" >
                                     <div style="max-width: 355px" class="mb-2">
                                           <div class="d-flex flex-row justify-content-around">
-                                                <button class="btn btn-default m-0" [class.edit]="myForm.disabled"
+                                                <button class="btn  m-0" [class.edit]="myForm.disabled"
                                                       [class.cancel]="!myForm.disabled" (click)="editForm($event.target)">
                                                       Editar
                                                 </button>
-                                                <button class="btn btn-default m-0 save" (click)="saveMyForm()"
+                                                <button class="btn  m-0 save" (click)="saveMyForm()"
                                                       [disabled]="!myForm.valid">
                                                       Guardar
                                                 </button>

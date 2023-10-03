@@ -1,5 +1,5 @@
 import { formatDate } from '@angular/common';
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
@@ -33,15 +33,15 @@ export class StudentsSelfReportsComponent implements OnInit {
   ssrEditDateStart = '';
   ssrEditDateStop = '';
   inReportProcessingPeriod = false; // default off for safety
+  reportSubmitted = false; // default off for safety
   lastMonthInQuarter = '--';
   studentGUId: string;
 
   currentStudentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
 
-  fechaActual = new Date();
+  fechaEntregaInicio: Date;
+  fechaEntregaFinal: Date;
 
-  fechaEntregaInicio;
-  fechaEntregaFinal;
   constructor(
     public currRoute: ActivatedRoute,
     private router: Router,
@@ -50,76 +50,76 @@ export class StudentsSelfReportsComponent implements OnInit {
     public session: SessionService,
     public store: Store,
     public ssrData: StudentSelfReportDataService,
-    public renderer2: Renderer2
+    public renderer2: Renderer2,
+    private changeDetector: ChangeDetectorRef,
+
   ) {
     //console.log('ssr constructor' + 'inReportProcessingPeriod = ' + this.inReportProcessingPeriod);
   }
 
   parseSSRDateRange() {
-    console.log('in parseSSRDateRange');
+    //console.log('in parseSSRDateRange');
 
     var strToday = formatDate(new Date(), 'yyyyMMdd', 'en-us');
-    console.log('today literal ' + strToday);
+    //console.log('today literal ' + strToday);
 
     this.splitStartStopDates(strToday);
     this.getMonthStrings(strToday);
   }
 
   splitStartStopDates(strToday: string) {
-    console.log('constants has ' + constants.ssrDateRange);
+    //console.log('constants has ' + constants.ssrDateRange);
     this.ssrEditDateStart =  constants.ssrDateRange.substring(0,8);
-    console.log('Start literal ' + this.ssrEditDateStart);
+    //console.log('Start literal ' + this.ssrEditDateStart);
     this.ssrEditDateStop =  constants.ssrDateRange.substring(9);
-    console.log('stop literal ' + this.ssrEditDateStop);
-    console.log('month ' + constants.ssrDateRange.substring(4,6));
+    //console.log('stop literal ' + this.ssrEditDateStop);
+    //console.log('month ' + constants.ssrDateRange.substring(4,6));
 
     if (strToday >= this.ssrEditDateStart && strToday <= this.ssrEditDateStop) {
-      console.log ('in report recording period');
+      //console.log ('in report recording period');
       this.inReportProcessingPeriod = true;
     } else {
-      console.log('NOT in report recording period');
+      //console.log('NOT in report recording period');
       this.inReportProcessingPeriod = false;
     }
   }
 
   getMonthStrings(strToday: string) {
     let month = strToday.substring(4, 6);
+    //console.log('month ' + month)
     switch (month) {
       case '03':
-        this.lastMonthInQuarter = 'marzo';
-      case '06':
+      case '04':
+      case '05':
         this.lastMonthInQuarter = 'junio';
-      case '09':
+        break;
+      case '06':
+      case '07':
+      case '08': 
         this.lastMonthInQuarter = 'septiembre';
-      case '12':
+        break;
+      case '09':
+      case '10':
+      case '11':
         this.lastMonthInQuarter = 'diciembre';
+        break;
+      case '12':
+      case '01':
+      case '02':
+        this.lastMonthInQuarter = 'marzo';
+        break;
     }
   }
 
   ngOnInit() {
     this.studentGUId = this.session.getStudentRecordGUId();
-    console.log('studentSelfReport ngOnInit, studentGUID = ' + this.studentGUId);
+    //console.log('studentSelfReport ngOnInit, studentGUID = ' + this.studentGUId);
     this.parseSSRDateRange();
     this.fetchSelfReports();
     
     //  this.subscribeForStudentGUId();
   }
-  verMas(lugar) {
-    console.log(this.studentSelfReports[lugar]);
-
-    if (this.studentSelfReports[lugar]['link'] == 'Leer más &#62;') {
-      //cambiamos el valor del reporteMostrado al reporte compelto
-      this.studentSelfReports[lugar]['reporteMostrado'] = this.studentSelfReports[lugar]['reporteCompleto'];
-      //cambiamos el texto del link
-      this.studentSelfReports[lugar]['link'] = 'Leer menos &#708;';
-      this.studentSelfReports[lugar]['puntos'] = '';
-    } else {
-      //cambiamos el valor del reporteMostrado por el recumen del reporte
-      this.studentSelfReports[lugar]['reporteMostrado'] = this.studentSelfReports[lugar]['resumenReporte'];
-      this.studentSelfReports[lugar]['link'] = 'Leer más &#62;';
-      this.studentSelfReports[lugar]['puntos'] = ' ...';
-    }
-  }
+ 
 
   // subscribeForStudentGUId() {
   //   this.studentGUId = 'unset';
@@ -135,16 +135,16 @@ export class StudentsSelfReportsComponent implements OnInit {
   // }
 
   fetchSponsorGroup() {
-    console.log('>>>>fetching Sponsor greoup for ' + this.studentGUId);
+    //console.log('>>>>fetching Sponsor greoup for ' + this.studentGUId);
     this.studentData.getSponsorGroupForStudent(this.studentGUId).subscribe(
       (data) => {
         this.sponsorGroup = data;
-        console.log('got SponsorGroupForStudent');
-        console.log(this.sponsorGroup);
+        //console.log('got SponsorGroupForStudent');
+        //console.log(this.sponsorGroup);
       },
       (err) => console.error('Subscribe error: ' + err),
       () => {
-        console.log('sponsors-for-student-grid loaded ');
+        //console.log('sponsors-for-student-grid loaded ');
         if (this.sponsorGroup) {
           this.sponsorGroupId = this.sponsorGroup.sponsorGroupId;
           this.fetchSelfReports();
@@ -161,49 +161,25 @@ export class StudentsSelfReportsComponent implements OnInit {
     this.studentSelfReportData.getStudentSelfReportsByGUId(this.studentGUId).subscribe(
       (data) => {
         this.studentSelfReports = data;
-        console.log(data);
-        this.asignarResumenAReporteMostrado();
-        this.agregarReportesCompletos();
-        this.agregarLinkPuntos();
+        //console.log(data);
+        this.setReportShortToReportShown();
+        this.setReportFulltext();
+        this.setEllipsisLink();
       },
       (err) => console.error('Subscribe error: ' + err),
       () => {
-        console.log('done: ');
+        //console.log('done: ');
         this.isLoading = false;
       }
     );
   }
 
-  asignarResumenAReporteMostrado() {
-    this.studentSelfReports.forEach((reporte) => {
-      reporte['resumenReporte'] = reporte.narrative_Spanish;
-      reporte['reporteMostrado'] = reporte.narrative_Spanish;
-    });
-  }
-
-  agregarReportesCompletos() {
-    this.studentSelfReports.forEach((reporte) => {
-      this.ssrData.getStudentSelfReport(reporte.studentSelfReportId).subscribe(
-        (data) => {
-          reporte['reporteCompleto'] = data.narrative_Spanish;
-        },
-        (err) => console.error('Subscribe error: ' + err),
-      );
-    });
-  }
-  agregarLinkPuntos() {
-    this.studentSelfReports.forEach((element) => {
-      element['link'] = 'Leer más &#62;';
-      element['puntos'] = ' ...';
-    });
-  }
-
   selfReportEdit(id: number, studentGUId: string, studentName: string) {
     this.store.dispatch(new SetSelectedStudentIdentifiers({ studentGUId, studentName }));
 
-    console.log('datos para editar', id, studentGUId, studentName);
+    //console.log('datos para editar', id, studentGUId, studentName);
     const link = '/students/self-reports-edit/' + id;
-    console.log('navigating to ' + link);
+    //console.log('navigating to ' + link);
     this.router.navigateByUrl(link);
   }
 
@@ -213,7 +189,7 @@ export class StudentsSelfReportsComponent implements OnInit {
     //   console.log('in SSR: ready to navigate to ' + target);
     //   this.router.navigateByUrl(target);
     // }
-    console.log('actual nonProxy studentGUId ' + this.studentGUId);
+    //console.log('actual nonProxy studentGUId ' + this.studentGUId);
 
     let sponsorGroupId = 1168; // dummy value until code is eliminated
     const link = [
@@ -223,65 +199,61 @@ export class StudentsSelfReportsComponent implements OnInit {
         studentGUId: this.studentGUId
       }
     ];
-    console.log('navigating to ' + JSON.stringify(link));
+    //console.log('navigating to ' + JSON.stringify(link));
     this.router.navigate(link);
   }
 
-  //***prueba de función para detectar si esta dentro del plazo para editar */
-
- 
-
   isInCurrentReportDateRange(rptDate: string) {
 
-    console.log('~~~~~~~~~~~~~~~~~check if in date range~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
-    console.log('current ReportDate: ' + rptDate);
+    //console.log('~~~~~~~~~~~~~~~~~check if in date range~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+    //console.log('current ReportDate: ' + rptDate);
     rptDate = rptDate.substr(0,4) + rptDate.substr(5,2) + rptDate.substr(8,2);
-    console.log('current tweaked ReportDate: ' + rptDate);
-    console.log('ssrEditDateStart: ' + this.ssrEditDateStart);
-    console.log('ssrEditDateStop: ' + this.ssrEditDateStop);
-    return (rptDate >= this.ssrEditDateStart  && rptDate <= this.ssrEditDateStop);
+    //rptDate = '20231101';
+    //console.log('current tweaked ReportDate: ' + rptDate);
+    //console.log('ssrEditDateStart: ' + this.ssrEditDateStart);
+    //console.log('ssrEditDateStop: ' + this.ssrEditDateStop);
+    return this.reportSubmitted =(rptDate >= this.ssrEditDateStart  && rptDate <= this.ssrEditDateStop); 
     }
-
-
-  esEditable(periodo, anioReporte){
-    this.obtenerFechasEntrega(periodo, anioReporte)
-    //se obtiene el periodo editable del reporte y si la fecha actual está dentro de ese periodo se habilita el botón 
- //console.log('la fecha actual es: ' + this.fechaActual + ' y la fechas de entrega del reporte son: '+ this.fechaEntregaInicio + "-" + this.fechaEntregaFinal);
-
-    if (this.fechaActual >= this.fechaEntregaInicio && this.fechaActual <= this.fechaEntregaFinal ) {
-      //console.log('se puede editar')
-      return true;
-    } else {
-     // console.log('no se puede editar')
-      return false;
-    }
-
+  ngAfterContentChecked(): void {
+    this.changeDetector.detectChanges();
   }
 
-
-  obtenerFechasEntrega(periodo, anioReporte) {
-    //se obtiene las fechas de entrega del reporte según su año y periodo
-    switch (periodo) {
-      case 1:
-        this.fechaEntregaInicio = new Date(anioReporte, 3, 1);
-        this.fechaEntregaFinal = new Date(anioReporte, 3, 7);
-        break;
-      case 2:
-        this.fechaEntregaInicio = new Date(anioReporte, 6, 1);
-        this.fechaEntregaFinal = new Date(anioReporte, 6, 7);
-        break;
-      case 3:
-        this.fechaEntregaInicio = new Date(anioReporte, 9, 1);
-        this.fechaEntregaFinal = new Date(anioReporte, 9, 7);
-        break;
-      case 4:
-        this.fechaEntregaInicio = new Date(anioReporte + 1, 0, 1);
-        this.fechaEntregaFinal = new Date(anioReporte + 1, 0, 7);
-        break;
-
- 
+  readMore(position: number) {
+    //console.log(this.studentSelfReports[lugar]);
+    if (this.studentSelfReports[position]['link'] == 'Leer más &#62;') {
+      //cambiamos el valor del reportShown al reporte compelto
+      this.studentSelfReports[position]['reportShown'] = this.studentSelfReports[position]['reportFulltext'];
+      //cambiamos el texto del link
+      this.studentSelfReports[position]['link'] = 'Leer menos &#708;';
+      this.studentSelfReports[position]['ellipsis'] = '';
+    } else {
+      //cambiamos el valor del reportShown por el recumen del reporte
+      this.studentSelfReports[position]['reportShown'] = this.studentSelfReports[position]['reportShort'];
+      this.studentSelfReports[position]['link'] = 'Leer más &#62;';
+      this.studentSelfReports[position]['ellipsis'] = ' ...';
     }
+  }
+  setReportShortToReportShown() {
+    this.studentSelfReports.forEach((report) => {
+      report['reportShort'] = report.narrative_Spanish;
+      report['reportShown'] = report.narrative_Spanish;
+    });
+  }
 
-
+  setReportFulltext() {
+    this.studentSelfReports.forEach((report) => {
+      this.ssrData.getStudentSelfReport(report.studentSelfReportId).subscribe(
+        (data) => {
+          report['reportFulltext'] = data.narrative_Spanish;
+        },
+        (err) => console.error('Subscribe error: ' + err),
+      );
+    });
+  }
+  setEllipsisLink() {
+    this.studentSelfReports.forEach((report) => {
+      report['link'] = 'Leer más &#62;';
+      report['ellipsis'] = '...';
+    });
   }
 }
