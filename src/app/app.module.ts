@@ -17,6 +17,7 @@ import { AppSharedModule } from './_shared/_shared.module';
 import { MemberState } from './_store/member/member.state';
 import { StudentState } from './_store/student/student.state';
 import { UIState } from './_store/ui/ui.state';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 export function appInit(constantsService: ConstantsService) {
   return () => constantsService.loadFromDB();
@@ -35,7 +36,8 @@ export function appInit(constantsService: ConstantsService) {
     NgxsModule.forRoot([StudentState, MemberState, UIState], { developmentMode: !environment.production }),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot(),
-    AppSharedModule.forRoot()
+    AppSharedModule.forRoot(),
+    SweetAlert2Module.forRoot()
 
   ],
 

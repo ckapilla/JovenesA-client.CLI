@@ -24,6 +24,8 @@ export class StudentProfileComponent implements OnInit {
   lastNames: string;
   email: string;
   student: Member;
+  errorAlert: boolean = false;
+  successAlert: boolean = false;
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -126,7 +128,10 @@ export class StudentProfileComponent implements OnInit {
     this.retrieveFormValues();
     this.memberData.updateMember(this.student).subscribe(
       () => {
+        
         this.successMessage = 'Changes were saved successfully.';
+        /* triggers alert */
+        this.successAlert = true;
         this.submitted = true;
         this.isLoading = false;
 
@@ -137,6 +142,8 @@ export class StudentProfileComponent implements OnInit {
       },
       (error) => {
         this.errorMessage = error;
+        this.errorAlert = true;
+        console.log('error ' + error);
         this.isLoading = false;
       }
     );
@@ -151,5 +158,10 @@ export class StudentProfileComponent implements OnInit {
     console.log('hasChanges has form dirty ' + this.myForm.dirty);
     console.log('hasChanges net is ' + this.myForm.dirty || this.submitted);
     return this.myForm.dirty && !this.submitted;
+  }
+
+  closeAlert(value: boolean){
+    this.errorAlert = value;
+    this.successAlert = value;
   }
 }

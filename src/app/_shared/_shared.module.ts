@@ -48,12 +48,17 @@ import { MarkedPipe } from './pipes/marked-pipe';
 import { TrimGuidPipe } from './pipes/trim-guid-pipe';
 import { TruncateDatePipe } from './pipes/truncate-date-pipe';
 import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
+import { AlertComponent } from './components/alert/alert.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 /**
  * Do not specify provider's for modules that might be imported by a lazy loaded module.
  */
 
 @NgModule({
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule, NgbModule, NgxFileDropModule],
+  imports: [
+    CommonModule, RouterModule, ReactiveFormsModule, FormsModule, 
+    NgbModule, NgxFileDropModule, SweetAlert2Module
+  ],
   declarations: [
     DisplayErrorsComponent,
     LoadingContainerComponent,
@@ -98,7 +103,8 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     EmptyStatusPipe,
     FileUploaderComponent,
     TituloUploaderComponent,
-    StudentHeader2Component
+    StudentHeader2Component,
+    AlertComponent
   ],
   exports: [
     CommonModule,
@@ -147,6 +153,7 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     TituloUploaderComponent,
     StudentHeader2Component,
     HighchartsChartModule,
+    AlertComponent
 
   ]
 })

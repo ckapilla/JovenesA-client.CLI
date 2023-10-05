@@ -311,7 +311,14 @@ footer a {
   font-family: 'Open-sans', sans-serif;
 }
 
+/* for alerts */
+.swal2-html-container, .swal2-title ,.swal2-styled{
+  font-family: 'Roboto', sans-serif !important;
+} 
 
+.swal2-confirm{
+  background-color: #0C4ABA!important;
+}
 
 @media (min-width: 768px) and (max-width: 979px) {}
 

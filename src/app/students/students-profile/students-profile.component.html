@@ -1,5 +1,5 @@
-<div *ngIf="errorMessage" class="alert alert-danger ">{{errorMessage}}</div>
-<div *ngIf="successMessage" class="alert alert-success ">{{successMessage}}</div>
+<app-alert (didClose)="closeAlert($event)" [isShown]="successAlert" [type]="'success'" *ngIf="successAlert"></app-alert>
+<app-alert (didClose)="closeAlert($event)" [isShown]="errorAlert" [type]="'error'" *ngIf="errorAlert"></app-alert>
 
 <div [ngSwitch]="isLoading" class="py-4 px-3 px-md-5 ">
       <div *ngSwitchCase="true" class="  ">

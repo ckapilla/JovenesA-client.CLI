@@ -38,6 +38,8 @@ export class GradeEntryComponent implements OnInit {
 
    currentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
    currentName$ = this.store.select<string>(StudentState.getSelectedStudentName);
+  errorAlert: boolean;
+  successAlert: boolean;
 
   constructor(
     public becaData: BecaDataService,
@@ -182,6 +184,7 @@ export class GradeEntryComponent implements OnInit {
       console.log(this.studentGradesData[i])
       this.becaData.updateStudentGrades(this.studentGradesData[i]).subscribe(
         (gradeRowData) => {
+          this.successAlert = true;
           console.log('subscribe result in updateGradeRowData');
           console.log(JSON.stringify(gradeRowData));
           // need timeout to avoid "Expression has changed error"
@@ -201,6 +204,7 @@ export class GradeEntryComponent implements OnInit {
           }, 15000);
         },
         () => {
+          this.errorAlert = true;
           this.errorMessage = 'Por favor, compruebe el formato de la fecha. Debe ser AAAA-MM-DD';
           this.isLoading = false;
         }
@@ -256,14 +260,8 @@ export class GradeEntryComponent implements OnInit {
     console.log('hasChanges has form dirty ' + this.myForm.dirty);
     return this.myForm.dirty;
   }
-/* 
-  editForm(element: HTMLInputElement) {
-    if (this.myForm.disabled) {
-      element.textContent = 'Cancelar';
-      this.myForm.enable();
-    } else {
-      element.textContent = 'Editar';
-      this.myForm.disable();
-    }
-  } */
+  closeAlert(value: boolean){
+    this.errorAlert = value;
+    this.successAlert = value;
+  }
 }

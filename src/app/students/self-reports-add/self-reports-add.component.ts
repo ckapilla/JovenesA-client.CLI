@@ -39,6 +39,8 @@ export class SelfReportsAddComponent implements OnInit {
 
   //  selectedQRPeriod$ = this.store.select<string>(UIState.getSelectedQRPeriod);
   selectedQRPeriod$ = this.store.select<string>(UIState.getSelectedQRPeriod);
+  errorAlert: boolean;
+  successAlert: boolean;
 
   constructor(
     public location: Location,
@@ -53,7 +55,7 @@ export class SelfReportsAddComponent implements OnInit {
     this.qrPeriods = constants.qrPeriods;
 
     this.myForm = _fb.group({
-      narrative_Spanish: ['', Validators.compose([Validators.required, Validators.maxLength(4500)])]
+      narrative_English: ['', Validators.compose([Validators.required, Validators.maxLength(4500)])]
     });
     // this.myForm.controls.currentQRPeriod.disable();
     this.selfReport = new StudentSelfReport();
@@ -85,7 +87,7 @@ export class SelfReportsAddComponent implements OnInit {
     this.selfReport.reportYear = +this.selectedQRPeriod.substr(0, 4);
     this.selfReport.reportPeriod = +this.selectedQRPeriod.substr(5, 1);
     console.log('year: ' + this.selfReport.reportYear + ' period: ' + this.selfReport.reportPeriod);
-    this.selfReport.narrative_Spanish = '';
+    this.selfReport.narrative_English = '';
 
     //obtener el periodo
     this.periodo = this.selfReport.reportPeriod;
@@ -96,7 +98,7 @@ export class SelfReportsAddComponent implements OnInit {
       this.submitted = false;
       // console.log('form change event');
     });
-    //console.log('xx');
+     
   }
 
   subscribeForselectedQRPeriod() {
@@ -122,23 +124,29 @@ export class SelfReportsAddComponent implements OnInit {
     }
     this.submitted = true; // need to set guard immediately to prevent dups
 
-    this.selfReport.narrative_Spanish = this.myForm.controls.narrative_Spanish.value;
-    //console.log('contenido del reporte', this.selfReport.narrative_Spanish);
+    this.selfReport.narrative_English = this.myForm.controls.narrative_English.value;
+    //console.log('contenido del reporte', this.selfReport.narrative_English);
 
     this.ssrData.postStudentSelfReport(this.selfReport).subscribe(
       (student) => {
         console.log((this.successMessage = <any>student));
         // this.submitted = true;
+        this.successAlert = true;
+
         this.isLoading = false;
         const target = '/students';
         console.log('after call to postStudentSelfReports; navigating to ' + target);
         // because can be proxy from Admin we need to use location.back() not a fixed target
         // this.router.navigateByUrl(target);
-        this.location.back();
+        window.setTimeout(() => {
+          this.location.back();
+        }, 3000);
       },
       (error) => {
         this.errorMessage = error;
         this.isLoading = false;
+        this.errorAlert = true;
+
       }
     );
     return false;
@@ -161,6 +169,11 @@ export class SelfReportsAddComponent implements OnInit {
 
   setSelectedQRPeriod(yearPeriod: string) {
     this.store.dispatch(new SetSelectedQRPeriod(yearPeriod));
+  }
+
+  closeAlert(value: boolean){
+    this.errorAlert = value;
+    this.successAlert = value;
   }
 
 }

@@ -20,27 +20,20 @@ export class SelfReportsEditComponent implements OnInit {
   isLoading: boolean;
   errorMessage: string;
   successMessage: string;
-
   studentId: number;
   sponsorGroupName: string;
   sponsorGroupId: number;
   selfReport: StudentSelfReport;
   selfReportId: number;
-
-
-  idInicial;
-  inglesInicial;
-  espanolInicial
-
   periodYears: SELECTITEM[];
   periodMonths: SELECTITEM[];
   readonly qrPeriods: SELECTITEM[] = constants.qrPeriods;
   readonly reviewedStatuses: SELECTITEM[] = constants.reviewedQRStatuses;
   selectedQRPeriod = '';
   subscription: Subscription;
-
-   selectedQRPeriod$ = this.store.select<string>(UIState.getSelectedQRPeriod);
-
+  selectedQRPeriod$ = this.store.select<string>(UIState.getSelectedQRPeriod);
+  errorAlert: boolean;
+  successAlert: boolean;
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -49,14 +42,11 @@ export class SelfReportsEditComponent implements OnInit {
     private _fb: UntypedFormBuilder,
     private store: Store
   ) {
-
-
     this.myForm = _fb.group({
       narrative_English: ['', { validators: [Validators.required] }],
-      narrative_Spanish: ['', { validators: [Validators.required]}],
+      narrative_Spanish: ['', { validators: [Validators.required] }],
       selfReportId: ''
     });
-
   }
 
   ngOnInit() {
@@ -67,7 +57,7 @@ export class SelfReportsEditComponent implements OnInit {
     this.ssrData.getStudentSelfReport(this.selfReportId).subscribe(
       (data) => {
         this.selfReport = data;
-       // console.log(data.narrative_Spanish)
+        // console.log(data.narrative_Spanish)
       },
       (err) => console.error('Subscribe error: ' + err),
       () => {
@@ -75,13 +65,9 @@ export class SelfReportsEditComponent implements OnInit {
         console.log(
           '### after retreiving, set form controls to retreived selfReport-- reportId to ' + this.selfReportId
         );
-   
-
-
-        this.myForm.controls["selfReportId"].setValue(this.selfReportId);
-        this.myForm.controls["narrative_English"].setValue(this.selfReport.narrative_English);
-        this.myForm.controls["narrative_Spanish"].setValue(this.selfReport.narrative_Spanish);
-        
+        this.myForm.controls['selfReportId'].setValue(this.selfReportId);
+        this.myForm.controls['narrative_English'].setValue(this.selfReport.narrative_English);
+        this.myForm.controls['narrative_Spanish'].setValue(this.selfReport.narrative_Spanish);
       }
     );
     this.subscribeForselectedQRPeriod();
@@ -101,7 +87,7 @@ export class SelfReportsEditComponent implements OnInit {
     if (this.myForm.invalid) {
       this.errorMessage = '';
 
-      if (!this.myForm.controls.narrative_English.valid) {
+      if (!this.myForm.controls.narrative_Spanish.valid) {
         this.errorMessage = this.errorMessage + 'Description must be filled in. Descripcione debe rellenarse';
       }
       window.scrollTo(0, 0);
@@ -116,16 +102,22 @@ export class SelfReportsEditComponent implements OnInit {
 
     this.ssrData.putStudentSelfReport(this.selfReport).subscribe(
       (student) => {
-        console.log((this.successMessage = <any>student));
+        //console.log((this.successMessage = <any>student));
         this.submitted = true;
+        this.successAlert = true;
+
         this.isLoading = false;
         const target = '/students';
         console.log('after call to editMentorReport; navigating to ' + target);
-        this.router.navigateByUrl(target);
+
+        window.setTimeout(() => {
+          this.router.navigateByUrl(target);
+        }, 3000);
       },
-      (error) => {
+      (error = 'error') => {
         this.errorMessage = error;
         this.isLoading = false;
+        this.errorAlert = true;
       }
     );
     return false;
@@ -133,7 +125,7 @@ export class SelfReportsEditComponent implements OnInit {
 
   onCancel() {
     const target = '/students';
-    console.log('navigating to ' + target);
+    //console.log('navigating to ' + target);
     this.router.navigateByUrl(target);
   }
   public hasChanges() {
@@ -149,7 +141,8 @@ export class SelfReportsEditComponent implements OnInit {
     this.store.dispatch(new SetSelectedQRPeriod(yearPeriod));
   }
 
-  mostrarReporte(reporte){
-    console.log(reporte)
+  closeAlert(value: boolean) {
+    this.errorAlert = value;
+    this.successAlert = value;
   }
 }
