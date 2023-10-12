@@ -28,7 +28,7 @@ export class WHSE_Daily_MR_Component implements OnInit {
     height: 300
   },
   title: {
-      text: 'Daily Mentor Reports Submitted -- Sept 2023'
+      text: 'Daily Mentor Reports Submitted -- Oct 2023'
   },
   // tooltip: {
   //   formatter: function() {
