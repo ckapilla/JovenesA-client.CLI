@@ -244,6 +244,7 @@ export class StudentsSelfReportsComponent implements OnInit {
     this.studentSelfReports.forEach((report) => {
       this.ssrData.getStudentSelfReport(report.studentSelfReportId).subscribe(
         (data) => {
+          //console.log(data)
           report['reportFulltext'] = data.narrative_Spanish;
         },
         (err) => console.error('Subscribe error: ' + err),
