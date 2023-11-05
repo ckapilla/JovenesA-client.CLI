@@ -26,31 +26,11 @@
           </div>
           <div>&nbsp;</div>
           <div class="form-group">
-            <div class="controls">
-              <label for="narrative_English"
-                >Positive events or special challenges in the student's life during the past month</label
-              >
-              <textarea
-                id="narrative_English"
-                #success
-                formControlName="narrative_English"
-                type="text"
-                class="form-control input-sm narrative"
-                placeholder=""
-              >
-              </textarea>
-              <app-display-errors
-                control="narrative_English"
-                class="red"
-                [errors]="{
-                  required: 'An entry is required, even if it is just N/A.',
-                  maxlength: 'Entry cannot exceed 4000 characters in length.'
-                }"
-              ></app-display-errors>
-            </div>
 
             <div class="controls">
-              <label for="narrative_Spanish">Logros y eventos positivos o obstáculos en la vida del estudiante</label>
+              <label for="narrative_Spanish">Si edita la versión en español, edite la versión en inglés al mismo tiempo. <b>
+                &gt;&gt;<a href = "https://translate.google.com/?sl=es&tl=en&op=translate" class="link" target="_blank">Google Translate</a>
+              </b></label>
               <textarea
                 id="narrative_Spanish"
                 #success
@@ -69,6 +49,29 @@
                 }"
               ></app-display-errors>
             </div>
+          </div>
+
+          <div class="controls">
+            <label for="narrative_English">If you edit the English version please edit the Spanish one at the same time. <b>
+              &gt;&gt;<a href = "https://translate.google.com/?sl=es&tl=en&op=translate" class="link" target="_blank">Google Translate</a>
+            </b></label>
+            <textarea
+              id="narrative_English"
+              #success
+              formControlName="narrative_English"
+              type="text"
+              class="form-control input-sm narrative"
+              placeholder=""
+            >
+            </textarea>
+            <app-display-errors
+              control="narrative_English"
+              class="red"
+              [errors]="{
+                required: 'An entry is required, even if it is just N/A.',
+                maxlength: 'Entry cannot exceed 4000 characters in length.'
+              }"
+            ></app-display-errors>
           </div>
 
             <div class="col-md-6 col-md-offset-1">
