@@ -47,7 +47,7 @@ export class SelfReportsEditComponent implements OnInit {
 
 
     this.myForm = _fb.group({
-      narrative_English: ['', { validators: [Validators.required], updateOn: 'blur' }],
+      narrative_English: ['', { updateOn: 'blur' }],
       narrative_Spanish: ['', { validators: [Validators.required], updateOn: 'blur' }],
       selfReportId: ''
     });
@@ -91,9 +91,9 @@ export class SelfReportsEditComponent implements OnInit {
     if (this.myForm.invalid) {
       this.errorMessage = '';
 
-      if (!this.myForm.controls.narrative_English.valid) {
-        this.errorMessage = this.errorMessage + 'Description must be filled in. Descripcione debe rellenarse';
-      }
+      // if (!this.myForm.controls.narrative_English.valid) {
+      //   this.errorMessage = this.errorMessage + 'Description must be filled in. Descripcione debe rellenarse';
+      // }
       window.scrollTo(0, 0);
       return false;
     }

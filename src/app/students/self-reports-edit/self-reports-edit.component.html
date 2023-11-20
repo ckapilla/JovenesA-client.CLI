@@ -39,11 +39,10 @@
             6.	Si tuvieras una varita mágica que resolviera o desapareciera
               lo que más te preocupa ¿Qué elegirías resolver?
           </pre>
-
+          <div style="color:mediumblue"><i><b>
+            Si desea que el texto en inglés se traduzca de nuevo, elimínelo antes de introducir un nuevo texto en español.)</b></i>
+          </div>
           <div class="controls">
-            <label for="narrative_Spanish">Si edita la versión en español, edite la versión en inglés al mismo tiempo. <b>
-              &gt;&gt;<a href = "https://translate.google.com/?sl=es&tl=en&op=translate" class="link" target="_blank">Google Translate</a>
-            </b></label>
             <textarea
               id="narrative_Spanish"
               #success
@@ -62,11 +61,10 @@
               }"
             ></app-display-errors>
           </div>
+          <div>&nbsp;</div>
 
           <div class="controls">
-            <label for="narrative_English">If you edit the English version please translate the Spanish one at the same time. <b>
-              &gt;&gt;<a href = "https://translate.google.com/?sl=es&tl=en&op=translate" class="link" target="_blank">Google Translate</a>
-            </b></label>
+
             <textarea
               id="narrative_English"
               #success
@@ -80,7 +78,6 @@
               control="narrative_English"
               class="red"
               [errors]="{
-                required: 'An entry is required, even if it is just N/A.',
                 maxlength: 'Entry cannot exceed 4000 characters in length.'
               }"
             ></app-display-errors>
