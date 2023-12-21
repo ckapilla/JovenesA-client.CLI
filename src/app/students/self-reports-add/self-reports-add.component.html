@@ -1,13 +1,14 @@
 <div class="py-4 px-3 px-md-5">
   <h1 class="title text-center text-sm-left">Agregar Reporte</h1>
 
-  <form [formGroup]="myForm">
-
-  <app-alert (didClose)="closeAlert($event)" [isShown]="successAlert" [type]="'success'" *ngIf="successAlert"></app-alert>
+  <app-alert (didClose)="closeAlert($event)" [isShown]="successAlert" [type]="'success'"
+      *ngIf="successAlert"></app-alert>
   <app-alert (didClose)="closeAlert($event)" [isShown]="errorAlert" [type]="'error'" *ngIf="errorAlert"></app-alert>
-  
+
+  <form [formGroup]="myForm">
+    
     <p class="subtitle text-center mt-3 mb-2 mt-sm-4 mb-sm-3">
-      Periodo: <b>{{ selfReport.reportPeriod }} - {{ selfReport.reportYear }}</b>
+      Periodo: <b>{{ selfReport.reportYear }} - {{ selfReport.reportPeriod }}</b>
     </p>
 
     <fieldset [disabled]="submitted">
@@ -45,32 +46,46 @@
             </li>
           </ol>
         </div>
-
-        <div class="rounded-lg textarea-container mt-3 mt-sm-4 mt-md-5" 
-        [ngClass]="myForm.controls['narrative_Spanish'].errors?.required && myForm.controls['narrative_Spanish'].touched  ? 'red-border' :
-        myForm.controls['narrative_Spanish'].valid && (myForm.controls['narrative_Spanish'].dirty || myForm.controls['narrative_Spanish'].value.length > 0) ?
+        <p>Tu reporte en español </p>
+        <div class="rounded-lg textarea-container mt-3 mt-sm-4 mt-md-5" [ngClass]="myForm.controls['narrative_Spanish'].errors?.required ? 'red-border' :
+        myForm.controls['narrative_Spanish'].valid && myForm.controls['narrative_Spanish'].value.length > 0 ?
         'green-border' : 'blue-border'">
-          <textarea id="narrative_Spanish" #success formControlName="narrative_Spanish" #narrative_Spanish type="text" required
-           class="custom-textarea p-sm-4 p-2" maxlength="4500"
-            placeholder="Ingresa año, periodo y el texto del reporte con un máximo de 4500 caracteres">
+          <textarea id="narrative_Spanish" #success formControlName="narrative_Spanish" type="text" required
+            class="custom-textarea p-sm-4 p-2 pb-0" maxlength="4500"
+            placeholder="Escribe tu reporte a forma de ensayo con un máximo de 4500 caracteres">
+          </textarea>
+          <div class="characters-left bold text-right m-4"
+            *ngIf="!myForm.controls['narrative_Spanish'].errors?.required">
+            {{ 4500 - myForm.controls['narrative_Spanish'].value.length }} caracteres disponibles
+          </div>
+        </div>
+
+        <div style="color:mediumblue" class="mt-2 mt-sm-3 mt-md-4"><b>
+            Si desea que el texto en inglés se traduzca de nuevo, elimínelo antes de introducir un nuevo texto en
+            español.</b>
+        </div>
+        <p>Tu reporte en inglés </p>
+        <div class="rounded-lg textarea-container mt-2  mt-sm-3 mt-md-4" [ngClass]="myForm.controls['narrative_English'].valid && myForm.controls['narrative_English'].value.length > 0 ?
+          'green-border' : 'blue-border'">
+          <textarea id="narrative_English" #success formControlName="narrative_English" type="text"
+            class="custom-textarea p-sm-4 p-2 pb-0" maxlength="4500"
+            placeholder="Dejar en blanco para traducción automática">
           </textarea>
 
-
           <div class="characters-left bold text-right m-4"
-            *ngIf="myForm.controls['narrative_Spanish'].value != null && myForm.controls['narrative_Spanish'].value.length > 0">
-            {{4500 - myForm.controls['narrative_Spanish'].value.length}} caracteres disponibles
-
-           
+            *ngIf="!myForm.controls['narrative_English'].errors?.required">
+            {{ 4500 - myForm.controls['narrative_English'].value.length }} characters left
           </div>
-
-          <div class="p-4 text-error"
-            *ngIf="myForm.controls['narrative_Spanish'].errors?.required && myForm.controls['narrative_Spanish'].touched">
-            No se puede registrar un reporte vacío
-          </div>
-
-          
         </div>
+
       </div>
+
+      <div class="p-4 text-error"
+        *ngIf="myForm.controls['narrative_Spanish'].errors?.required && myForm.controls['narrative_Spanish'].touched">
+        No se puede registrar un reporte vacío
+      </div>
+
+
       <div class="text-center">
         <button class="btn save mr-4" (click)="onSubmit()"
           [disabled]="myForm.controls['narrative_Spanish'].errors?.required || myForm.controls['narrative_Spanish'].value == null ">
@@ -83,81 +98,3 @@
     </fieldset>
   </form>
 </div>
-<!--
-<div class="card bg-primary" style="min-width: 46em">
-  <div class="card-header text-white" style="font-size: large">Añadir Nuevo Reporte</div>
-  <div class="card-body bg-white" style="min-width: 46em">
-    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
-    <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
-    <div class="form-group">
-      <form [formGroup]="myForm">
-        <fieldset>
-          <pre style="font-size: 120%">
-          REDACTA A MANERA DE ENSAYO LAS RESPUESTAS A ESTAS PREGUNTAS:
-
-          1.	Este primer semestre del año ¿Que fué lo que más disfrutaste académicamente?
-                y ¿Qué fue lo más difícil de sobrellevar?, cuéntanos ¿por qué?
-          2.	¿Cuáles son las preguntas que más te haz hecho a ti mismo en el trayecto de
-                tu carrera?
-          3.	En el tiempo que llevas en Jóvenes Adelante¿Cómo ha sido tu experiencia con
-                nosotros? Qué mejoraría de nuestro seguimiento, cambiarías algo del programa,
-                que áreas de oportunidad observas.
-          4.	Cuéntanos ¿en qué ámbitos tu mentor te ha ayudado a crecer? y ¿en qué aspectos
-                consideras que necesitas un poco más de apoyo?.
-          5.	¿Cómo está tu familia? Nos interesa saber si hay alguna situación difícil o muy
-                agradable por la que estén pasando? Estoy aquí para leerte.
-          6.	En el punto que vas de tu carrera, ¿cómo te visualizas después de graduarte?
-          7.	Emocionalmente, ¿Cómo te has sentido durante estos cuatro meses? Más allá de
-                responder “bien” o “mal” nos gustaría leerte, eres importante para nosotros.
-        </pre
-          >
-
-          <textarea
-            id="narrative_Spanish"
-            #success
-            formControlName="narrative_Spanish"
-            #narrative_Spanish
-            type="text"
-            class="form-control input-sm narrative"
-            placeholder=""
-          >
-          </textarea>
-          <span class="form-text text-muted"
-            ><code>{{ narrative_Spanish.value.length }}</code> of <code>4500</code> characters</span
-          >
-
-          <app-display-errors
-            control="narrative_Spanish"
-            class="red"
-            [errors]="{
-              required: 'An entry is required, even if it is just N/A',
-              maxlength: 'Entrada no puede exceder los 4500 caracteres.'
-            }"
-          ></app-display-errors>
-
-          <div class="col-md-6 col-md-offset-1">
-            <span>
-              <button
-                class="btn btn-primary"
-                style="width: 90px; margin-right: 10px; margin-top: 5px"
-                (click)="onSubmit()"
-              >
-                Guardar
-              </button> </span
-            >&nbsp;
-            <span>
-              <button class="btn btn-default" style="width: 90px; margin-top: 5px" (click)="onCancel()">
-                Cancelar
-              </button>
-              <div class="red" [hidden]="myForm.valid">
-                Año, Periodo, y texto de reporte deben ser completados correctamente y no más de 4500 caracteres antes
-                de guardar.
-              </div>
-            </span>
-          </div>
-        </fieldset>
-      </form>
-    </div>
-  </div>
-</div>
--->

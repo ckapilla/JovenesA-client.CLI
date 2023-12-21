@@ -9,12 +9,21 @@ import { WHSE_DailyMRCount } from '../../models/WHSE_DailyMRCount';
   templateUrl: 'whse-daily-mr.component.html'
 })
 
+
+
+
 export class WHSE_Daily_MR_Component implements OnInit {
 
   isLoading: boolean;
   whseDailyMR: WHSE_DailyMRCount[];
   Highcharts: typeof Highcharts = Highcharts;
-  dummyData =[] as any[];
+  dummyData =[] as any[];;
+  months: string[] = [
+    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+  ];
+  monthNum = this.getAdjustedMonth();
+
+  titleText = 'Daily Mentor Reports Submitted -- ' + this.months[this.monthNum] + ' 2023'
 
   myCategories = this.dummyData.map(a => a.formattedDate);
   myData0 = this.dummyData.map(a => a.submitted);
@@ -28,7 +37,7 @@ export class WHSE_Daily_MR_Component implements OnInit {
     height: 300
   },
   title: {
-      text: 'Daily Mentor Reports Submitted -- Sept 2023'
+      text: this.titleText
   },
   // tooltip: {
   //   formatter: function() {
@@ -127,6 +136,15 @@ plotOptions: {
     chart.series[1].setData(this.myData1);
 
   }
-
+  getAdjustedMonth(): number {
+    let adjustedMonth = new Date().getMonth();
+    let todayDate: number = new Date().getDate();
+    if (todayDate <= 2)
+    {
+      adjustedMonth = (adjustedMonth == 0) ? adjustedMonth = 11 : --adjustedMonth;
+      console.log('2>>>>' + adjustedMonth);
+    }
+    return adjustedMonth;
+  }
 
 }

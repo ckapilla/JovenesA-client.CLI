@@ -55,6 +55,7 @@ export class SelfReportsAddComponent implements OnInit {
     this.qrPeriods = constants.qrPeriods;
 
     this.myForm = _fb.group({
+      narrative_English: ['', { updateOn: 'blur' }],
       narrative_Spanish: ['', Validators.compose([Validators.required, Validators.maxLength(4500)])]
     });
     // this.myForm.controls.currentQRPeriod.disable();
@@ -86,11 +87,8 @@ export class SelfReportsAddComponent implements OnInit {
 
     this.selfReport.reportYear = +this.selectedQRPeriod.substr(0, 4);
     this.selfReport.reportPeriod = +this.selectedQRPeriod.substr(5, 1);
-    //console.log('year: ' + this.selfReport.reportYear + ' period: ' + this.selfReport.reportPeriod);
-    //this.selfReport.narrative_Spanish = '';
-    //this.selfReport.narrative_English = '';
-
-    //obtener el periodo
+    console.log('year: ' + this.selfReport.reportYear + ' period: ' + this.selfReport.reportPeriod);
+    this.selfReport.narrative_Spanish = '';
     this.periodo = this.selfReport.reportPeriod;
 
     this.myForm.valueChanges.subscribe(() => {
@@ -111,23 +109,22 @@ export class SelfReportsAddComponent implements OnInit {
   }
 
   onSubmit() {
-    //console.log('Hi from self report Submit');
-
+    console.log('Hi from self report Submit');
+console.log('1');
     if (this.submitted) {
       return false; // prevent dups
     }
-
+    console.log('2')
     if (this.myForm.invalid) {
       // let i = 0;
       this.errorMessage = '';
-
+      console.log('3')
       return false;
     }
     this.submitted = true; // need to set guard immediately to prevent dups
-
-    this.selfReport.narrative_English = this.myForm.controls.narrative_Spanish.value;
-    ////console.log('contenido del reporte', this.selfReport);
-
+    console.log('4')
+    this.selfReport.narrative_Spanish = this.myForm.controls.narrative_Spanish.value;
+    console.log('5')
     this.ssrData.postStudentSelfReport(this.selfReport).subscribe(
 
       (student) => {
