@@ -52,17 +52,23 @@ const gradesProcessingPeriods: GRADESPROCESSINGPERIOD[] = [
   { id: '103', descriptor: '2021-05-01 (Cuatrimestre)', studentReportingStartDate:'2021-05-01', endDate:'2021-05-15', yearTypeId: 2032, isCurrent: false },
   { id: '104', descriptor: '2021-08-01 (Semestre)', studentReportingStartDate:'2021-08-01', endDate:'2021-08-15', yearTypeId: 2031, isCurrent: false  },
   { id: '105', descriptor: '2021-09-01 (Cuatrimestre)', studentReportingStartDate:'2021-09-01', endDate:'2021-09-15', yearTypeId: 2032, isCurrent: false},
+
   { id: '106', descriptor: '2022-01-01 (Cuatrimestre)', studentReportingStartDate:'2022-01-15', endDate:'2022-01-15', yearTypeId: 2032, isCurrent: false },
   { id: '107', descriptor: '2022-01-01 (Semestre)', studentReportingStartDate:'2022-01-01', endDate:'2022-01-15', yearTypeId: 2031, isCurrent: false},
+
   { id: '108', descriptor: '2022-05-01 (Cuatrimestre)', studentReportingStartDate:'2022-05-01', endDate:'2022-05-15', yearTypeId: 2032, isCurrent: false },
   { id: '109', descriptor: '2022-08-01 (Semestre)', studentReportingStartDate:'2022-08-01', endDate:'2022-08-15', yearTypeId: 2031, isCurrent: false },
   { id: '110', descriptor: '2022-09-01 (Cuatrimestre)', studentReportingStartDate:'2022-09-01', endDate:'2022-09-22', yearTypeId: 2032, isCurrent: false },
 
   { id: '111', descriptor: '2023-01-01 (Semestre)', studentReportingStartDate:'2023-01-01', endDate:'2023-01-22', yearTypeId: 2031, isCurrent: false },
   { id: '112', descriptor: '2023-01-01 (Cuatrimestre)', studentReportingStartDate:'2023-01-01', endDate:'2023-01-22', yearTypeId: 2032, isCurrent: false },
+
   { id: '113', descriptor: '2023-05-01 (Cuatrimestre)', studentReportingStartDate:'2023-05-01', endDate:'2023-07-31', yearTypeId: 2032, isCurrent: false },
-  { id: '114', descriptor: '2023-08-01 (Semestre)', studentReportingStartDate:'2023-07-22', endDate:'2023-08-31', yearTypeId: 2031, isCurrent: true },
-  { id: '115', descriptor: '2023-09-01 (Cuatrimestre)', studentReportingStartDate:'2023-08-25', endDate:'2023-09-30', yearTypeId: 2032, isCurrent: true },
+  { id: '114', descriptor: '2023-08-01 (Semestre)', studentReportingStartDate:'2023-07-22', endDate:'2023-08-31', yearTypeId: 2031, isCurrent: false },
+  { id: '115', descriptor: '2023-09-01 (Cuatrimestre)', studentReportingStartDate:'2023-08-25', endDate:'2023-09-30', yearTypeId: 2032, isCurrent: false },
+
+  { id: '116', descriptor: '2024-01-01 (Cuatrimestre)', studentReportingStartDate:'2024-01-01', endDate:'2024-01-22', yearTypeId: 2032, isCurrent: true },
+  { id: '117', descriptor: '2024-01-01 (Semestre)', studentReportingStartDate:'2024-01-01', endDate:'2024-01-22', yearTypeId: 2031, isCurrent: true },
 
 
 ];

@@ -6,7 +6,7 @@
   <app-alert (didClose)="closeAlert($event)" [isShown]="errorAlert" [type]="'error'" *ngIf="errorAlert"></app-alert>
 
   <form [formGroup]="myForm">
-    
+
     <p class="subtitle text-center mt-3 mb-2 mt-sm-4 mb-sm-3">
       Periodo: <b>{{ selfReport.reportYear }} - {{ selfReport.reportPeriod }}</b>
     </p>
