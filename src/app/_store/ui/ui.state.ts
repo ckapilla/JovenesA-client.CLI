@@ -17,7 +17,7 @@ import { UIStateModel } from './ui.model';
     qrComponentsEditable: false,
 
     selectedQRPeriod: '', // initialize ConstantsService.generateQRPeriods
-    selectedGradesProcessingPeriodID: '116', //  { id: '112', descriptor: '2023-01-01 (Cuatrimestre)', studentReportingStartDate:'2023-01-01', yearTypeId: 2032, isCurrent: true },
+    selectedGradesProcessingPeriodID: '116',
 
     selectedFilterMode: '998',
     selectedStudentStatus: '0',
