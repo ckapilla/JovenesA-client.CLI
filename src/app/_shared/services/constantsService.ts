@@ -6,6 +6,7 @@ import { catchError, shareReplay, tap, toArray } from 'rxjs/operators';
 import { SetSelectedGradesProcessingPeriodID, SetSelectedQRPeriod } from 'src/app/_store/ui/ui.action';
 import { constants } from '../constants/constants';
 import { BaseDataService } from '../data/base-data.service';
+import { GRADESPROCESSINGPERIOD } from '../interfaces/GRADESPROCESSINGPERIOD';
 import { SELECTITEM } from '../interfaces/SELECTITEM';
 import { UrlService } from './url.service';
 
@@ -39,8 +40,15 @@ export class ConstantsService extends BaseDataService {
   );
 
   private qrDatesUrl = this.WebApiPrefix + 'lookup/qrDates';
-  ssrDates$: Observable<QRDATES> = this.http.get<QRDATES>(this.qrDatesUrl).pipe(
+  qrDates$: Observable<QRDATES> = this.http.get<QRDATES>(this.qrDatesUrl).pipe(
     tap((data) => console.log('qrDates results ', JSON.stringify(data))),
+    shareReplay(1),
+    catchError(this.handleError)
+  );
+
+  private gpPeriodsUrl = this.WebApiPrefix + 'lookup/gpPeriods';
+  gpPeriods$: Observable<GRADESPROCESSINGPERIOD> = this.http.get<GRADESPROCESSINGPERIOD>(this.gpPeriodsUrl).pipe(
+    tap((data) => console.log('gPP results ', JSON.stringify(data))),
     shareReplay(1),
     catchError(this.handleError)
   );
@@ -54,6 +62,7 @@ export class ConstantsService extends BaseDataService {
 
 
   public loadFromDB() {
+    this.generateGradesProcessingPeriods();
     this.setSSRDateRange();
     this.buildCodeValueArrays();
     this.generateQRPeriods();
@@ -63,6 +72,25 @@ export class ConstantsService extends BaseDataService {
     this.generateMRAdjustedContactPeriod();
 
   }
+
+  public generateGradesProcessingPeriods(){
+    this.gpPeriods$.pipe(toArray()).subscribe(
+      (data) => {
+        constants.gradesProcessingPeriods = data;
+        console.log(constants.gradesProcessingPeriods);
+        // constants.studentStatuses.push(subset); =
+        // const x = data[0];
+        // x.forEach((item) => {
+        //   // const subset = (({ value, label }) => ({ value, label }))(item);
+        //   constants.gradesProcessingPeriods.push(x);
+        // }
+      }),
+      (err) => console.error('Subscribe error: ' + err),
+      () => {
+        console.log('xxxxxxxxxx subscribe returned  ');
+      }
+  }
+
 
   public generateJoinedYears() {
     const now = new Date();
@@ -200,25 +228,12 @@ export class ConstantsService extends BaseDataService {
   }
 
 
-  // public generateGradesProcessingPeriods() {
-  //   const now = new Date();
-  //   let elem: C_SELECTITEM =  { value: '', label: '' };
-
-  //   const initStartDate = '2020-12-01';
-
-  //   let startDate = initStartDate;
-  //   while (year <= thisYear) {
-  //     elem = new C_SELECTITEM('' +year, '' + year );
-  //     constants.contactYears.push(elem);
-  //     year++;
-  //   }
-  //   console.log(constants.contactYears);
-  // }
 
   getCurrentGradePeriod(yearTypeId: number) {
     const now = new Date();
     constants.gradesProcessingPeriods.find(period => period.studentReportingStartDate >=('' +  now) && period.yearTypeId === yearTypeId);
   }
+
 
   setSelectedGradesProcessingPeriodID(gradesProcessingPeriod: string) {
     this.store.dispatch(new SetSelectedGradesProcessingPeriodID(gradesProcessingPeriod));
@@ -227,7 +242,7 @@ export class ConstantsService extends BaseDataService {
 
   public setSSRDateRange() {
     let x = 'NOTSETYET';
-    this.ssrDates$.pipe().subscribe(
+    this.qrDates$.pipe().subscribe(
       (data) => {
         x = data.ssrDateRange;
           constants.ssrDateRange = x;

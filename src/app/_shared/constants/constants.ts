@@ -44,34 +44,37 @@ const months: SELECTITEM[] = [
   { value: '12', label: 'Dec/Dic' }
 ];
 
-const qrPeriods: SELECTITEM[] = []
+const qrPeriods: SELECTITEM[] = [];
 
-const gradesProcessingPeriods: GRADESPROCESSINGPERIOD[] = [
-  { id: '101', descriptor: '2021-01-01 (Cuatrimestre)', studentReportingStartDate:'2021-01-01',  yearTypeId: 2032, isCurrent: false },
-  { id: '102', descriptor: '2021-01-01 (Semestre)', studentReportingStartDate:'2021-01-01', yearTypeId: 2031, isCurrent: false},
-  { id: '103', descriptor: '2021-05-01 (Cuatrimestre)', studentReportingStartDate:'2021-05-01', yearTypeId: 2032, isCurrent: false },
-  { id: '104', descriptor: '2021-08-01 (Semestre)', studentReportingStartDate:'2021-08-01', yearTypeId: 2031, isCurrent: false  },
-  { id: '105', descriptor: '2021-09-01 (Cuatrimestre)', studentReportingStartDate:'2021-09-01', yearTypeId: 2032, isCurrent: false},
-
-  { id: '106', descriptor: '2022-01-01 (Cuatrimestre)', studentReportingStartDate:'2022-01-15', yearTypeId: 2032, isCurrent: false },
-  { id: '107', descriptor: '2022-01-01 (Semestre)', studentReportingStartDate:'2022-01-01', yearTypeId: 2031, isCurrent: false},
-
-  { id: '108', descriptor: '2022-05-01 (Cuatrimestre)', studentReportingStartDate:'2022-05-01', yearTypeId: 2032, isCurrent: false },
-  { id: '109', descriptor: '2022-08-01 (Semestre)', studentReportingStartDate:'2022-08-01', yearTypeId: 2031, isCurrent: false },
-  { id: '110', descriptor: '2022-09-01 (Cuatrimestre)', studentReportingStartDate:'2022-09-01', yearTypeId: 2032, isCurrent: false },
-
-  { id: '111', descriptor: '2023-01-01 (Semestre)', studentReportingStartDate:'2023-01-01', yearTypeId: 2031, isCurrent: false },
-  { id: '112', descriptor: '2023-01-01 (Cuatrimestre)', studentReportingStartDate:'2023-01-01', yearTypeId: 2032, isCurrent: false },
-
-  { id: '113', descriptor: '2023-05-01 (Cuatrimestre)', studentReportingStartDate:'2023-05-01', yearTypeId: 2032, isCurrent: false },
-  { id: '114', descriptor: '2023-08-01 (Semestre)', studentReportingStartDate:'2023-07-22', yearTypeId: 2031, isCurrent: false },
-  { id: '115', descriptor: '2023-09-01 (Cuatrimestre)', studentReportingStartDate:'2023-08-25', yearTypeId: 2032, isCurrent: false },
-
-  { id: '116', descriptor: '2024-01-01 (Cuatrimestre)', studentReportingStartDate:'2024-01-01', yearTypeId: 2032, isCurrent: true },
-  { id: '117', descriptor: '2024-01-01 (Semestre)', studentReportingStartDate:'2024-01-01', yearTypeId: 2031, isCurrent: true },
-
-
+let gradesProcessingPeriods: GRADESPROCESSINGPERIOD[] = [
+//   { id: '0', descriptor: '', studentReportingStartDate:'',  yearTypeId: 0,  yearType: '0' }
 ];
+
+// const gradesProcessingPeriods: GRADESPROCESSINGPERIOD[] = [
+//   { id: '101', descriptor: '2021-01-01 (Cuatrimestre)', studentReportingStartDate:'2021-01-01',  yearTypeId: 2032,  yearType: 'Cuatrimestre' },
+//   { id: '102', descriptor: '2021-01-01 (Semestre)', studentReportingStartDate:'2021-01-01', yearTypeId: 2031,  yearType: 'Semestre'},
+//   { id: '103', descriptor: '2021-05-01 (Cuatrimestre)', studentReportingStartDate:'2021-05-01', yearTypeId: 2032,  yearType: 'Cuatrimestre' },
+//   { id: '104', descriptor: '2021-08-01 (Semestre)', studentReportingStartDate:'2021-08-01', yearTypeId: 2031,  yearType: 'Semestre'  },
+//   { id: '105', descriptor: '2021-09-01 (Cuatrimestre)', studentReportingStartDate:'2021-09-01', yearTypeId: 2032,  yearType: 'Cuatrimestre'},
+
+//   { id: '106', descriptor: '2022-01-01 (Cuatrimestre)', studentReportingStartDate:'2022-01-15', yearTypeId: 2032,  yearType: 'Cuatrimestre' },
+//   { id: '107', descriptor: '2022-01-01 (Semestre)', studentReportingStartDate:'2022-01-01', yearTypeId: 2031,  yearType: 'Semestre'},
+
+//   { id: '108', descriptor: '2022-05-01 (Cuatrimestre)', studentReportingStartDate:'2022-05-01', yearTypeId: 2032,  yearType: 'Cuatrimestre' },
+//   { id: '109', descriptor: '2022-08-01 (Semestre)', studentReportingStartDate:'2022-08-01', yearTypeId: 2031,  yearType: 'Semestre' },
+//   { id: '110', descriptor: '2022-09-01 (Cuatrimestre)', studentReportingStartDate:'2022-09-01', yearTypeId: 2032,  yearType: 'Cuatrimestre' },
+
+//   { id: '111', descriptor: '2023-01-01 (Semestre)', studentReportingStartDate:'2023-01-01', yearTypeId: 2031,  yearType: 'Semestre' },
+//   { id: '112', descriptor: '2023-01-01 (Cuatrimestre)', studentReportingStartDate:'2023-01-01', yearTypeId: 2032,  yearType: 'Cuatrimestre' },
+
+//   { id: '113', descriptor: '2023-05-01 (Cuatrimestre)', studentReportingStartDate:'2023-05-01', yearTypeId: 2032,  yearType: 'Cuatrimestre' },
+//   { id: '114', descriptor: '2023-08-01 (Semestre)', studentReportingStartDate:'2023-07-22', yearTypeId: 2031,  yearType: 'Semestre' },
+//   { id: '115', descriptor: '2023-09-01 (Cuatrimestre)', studentReportingStartDate:'2023-08-25', yearTypeId: 2032,  yearType: 'Cuatrimestre' },
+
+//   { id: '116', descriptor: '2024-01-01 (Cuatrimestre)', studentReportingStartDate:'2024-01-01', yearTypeId: 2032,  yearType: 'Cuatrimestre' },
+//   { id: '117', descriptor: '2024-01-01 (Semestre)', studentReportingStartDate:'2024-01-01', yearTypeId: 2031,  yearType: 'Semestre' },
+
+// ];
 
 const genders: SELECTITEM[] = [
   { value: 'M', label: 'Male/Hombre' },
@@ -125,12 +128,13 @@ export const constants = {
   currentContactMonth,
   months,
   qrPeriods,
-  gradesProcessingPeriods,
+
 
   genders,
   emojis,
 
   // db
+  gradesProcessingPeriods,
   languageStatuses,
   memberStatuses,
   schoolTypes,
