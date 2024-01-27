@@ -24,3 +24,9 @@ select.ng-invalid {
   color: #a94442;;
   font-weight: bold;
 }
+
+.bordered {
+    border: 1px solid #ced4da; /* Border color */
+    border-radius: 5px; /* Border radius for rounded corners */
+    padding: 5px /* Padding to create space between the border and content */
+}
