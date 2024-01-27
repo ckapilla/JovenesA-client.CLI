@@ -13,157 +13,140 @@
         </div>
         <div *ngSwitchCase="false">
           <form [formGroup]="myForm" class="form-horizontal">
+            <!-- main form contents row-->
             <div class="row">
+              <!--
+                COLUMN 1
+              -->
               <div class="col">
                 <div class="form-group">
                   <span class="btn btn-primary btn-sm" (click)="location.back()"> &lt;&lt;&nbsp; Back </span>
                   &nbsp;
-
-                  <!-- <span class="btn btn-primary btn-sm" (click)="mentorReportsReview()"> Mentor Reports </span> -->
-
                   <label for="ckEditMode">
                     <input
-                      id="ckEditMode"
-                      type="checkbox"
-                      name="toggleReadOnly"
-                      (click)="setReadOnly()"
-                      style="margin: 0 0 0 4px"
-                    />
-                    Edit</label
-                  >
+                           id="ckEditMode"
+                           type="checkbox"
+                           name="toggleReadOnly"
+                           (click)="setReadOnly()"
+                           style="margin: 0 0 0 4px" />
+                    Edit</label>
                   &nbsp;&nbsp;
                   <button class="btn btn-primary" data-cy="btn-save" (click)="saveMyForm()" [disabled]="!myForm.valid">
                     Save
                   </button>
                 </div>
-                <!-- <div [hidden]="!showEditLink" (click)="gotoMemberRecord()" class="link">
-              (Edit name or email for Member)
-            </div> -->
 
                 <div class="form-group">
                   <label for="photoUrl">Photo Filename</label>
                   <input
-                    id="photoUrl"
-                    formControlName="photoUrl"
-                    type="text"
-                    class="form-control form-control-sm"
-                    placeholder="Photo Filename"
-                  />
+                         id="photoUrl"
+                         formControlName="photoUrl"
+                         type="text"
+                         class="form-control form-control-sm"
+                         placeholder="Photo Filename" />
                   <app-display-errors
-                    control="photoUrl"
-                    class="red"
-                    [errors]="{
+                                      control="photoUrl"
+                                      class="red"
+                                      [errors]="{
                       maxlength: 'Photo Filename cannot exceed 225 characters in length.'
-                    }"
-                  ></app-display-errors>
+                    }"></app-display-errors>
 
                   <label for="emergencyContactName">Emergency Contact Name</label>
                   <input
-                    id="emergencyContactName"
-                    formControlName="emergencyContactName"
-                    type="text"
-                    class="form-control form-control-sm"
-                    placeholder="Contact Person:"
-                  />
+                         id="emergencyContactName"
+                         formControlName="emergencyContactName"
+                         type="text"
+                         class="form-control form-control-sm"
+                         placeholder="Contact Person:" />
                   <app-display-errors
-                    control="emergencyContactName"
-                    class="red"
-                    [errors]="{
+                                      control="emergencyContactName"
+                                      class="red"
+                                      [errors]="{
                       minlength: 'Name must be at least 5 characters in length.'
-                    }"
-                  ></app-display-errors>
+                    }"></app-display-errors>
 
                   <label for="emergencyContactPhone">Emergency Contact Phone</label>
                   <input
-                    id="emergencyContactPhone"
-                    formControlName="emergencyContactPhone"
-                    type="text"
-                    class="form-control form-control-sm"
-                    placeholder="Best Phone Number: ###-###-####"
-                  />
+                         id="emergencyContactPhone"
+                         formControlName="emergencyContactPhone"
+                         type="text"
+                         class="form-control form-control-sm"
+                         placeholder="Best Phone Number: ###-###-####" />
                   <app-display-errors
-                    control="emergencyContactPhone"
-                    class="red"
-                    [errors]="{
+                                      control="emergencyContactPhone"
+                                      class="red"
+                                      [errors]="{
                       minlength: 'Phone number must be at least 7 characters in length.',
                       maxlength: 'Phone number cannot exceed 13 characters in length.'
-                    }"
-                  ></app-display-errors>
+                    }"></app-display-errors>
+
+
+                  <label for="curp">CURP</label>
+                  <input id="curp" formControlName="curp" class="form-control form-control-sm" placeholder="" />
+
+                  <label for="rfc">RFC</label>
+                  <input
+                         id="rfc"
+                         formControlName="rfc"
+                         type="text"
+                         class="form-control form-control-sm"
+                         placeholder="" />
+
+                  <label for="bankAccount">Bank Account</label>
+                  <input
+                         id="bankAccount"
+                         formControlName="bankAccount"
+                         type="text"
+                         class="form-control form-control-sm"
+                         placeholder="" />
+
 
                   <label for="prepaId">Prepa</label>
-
                   <div *ngIf="prepas$ | async as prepas">
                     <select id="prepaId" formControlName="prepaId" class="form-control form-control-sm">
                       <option *ngFor="let status of prepas" [value]="status.value">{{ status.label }}</option>
                     </select>
                   </div>
 
-                  <label for="universityId">University</label>
-                  <div *ngIf="universities$ | async as universities">
-                    <select id="universityId" formControlName="universityId" class="form-control form-control-sm">
-                      <option *ngFor="let status of universities" [value]="status.value">{{ status.label }}</option>
-                    </select>
-                  </div>
+                  <div class="form-group bordered">
+                    <div>
+                      <label>Undergrad</label>
+                    </div>
 
-                  <label for="universityGradeMonthId">Academic Year / Grade Months</label>
-                  <div *ngIf="universityGradeMonths$ | async as universityGradeMonths">
-                    <select
-                      id="universityGradeMonthId"
-                      formControlName="universityGradeMonthId"
-                      class="form-control form-control-sm"
-                    >
-                      <option *ngFor="let status of universityGradeMonths" [value]="status.value">
-                        {{ status.label }}
-                      </option>
-                    </select>
-                  </div>
-                  `
-                  <label for="major">Major</label>
-                  <input
-                    id="major"
-                    formControlName="major"
-                    type="text"
-                    class="form-control form-control-sm"
-                    placeholder=""
-                  />
+                    <label for="universityId">University</label>
+                    <div *ngIf="universities$ | async as universities">
+                      <select id="universityId" formControlName="universityId" class="form-control form-control-sm">
+                        <option *ngFor="let status of universities" [value]="status.value">{{ status.label }}</option>
+                      </select>
+                    </div>
 
-                  <label for="tituloIssuedDate">Titulo Issued Date</label>
-                  <input
-                    id="tituloIssuedDate"
-                    formControlName="tituloIssuedDate"
-                    type="text"
-                    class="form-control form-control-sm"
-                    placeholder=""
-                  />
+                    <label for="universityGradeMonthId">Academic Year / Grade Months</label>
+                    <div *ngIf="universityGradeMonths$ | async as universityGradeMonths">
+                      <select
+                              id="universityGradeMonthId"
+                              formControlName="universityGradeMonthId"
+                              class="form-control form-control-sm">
+                        <option *ngFor="let status of universityGradeMonths" [value]="status.value">
+                          {{ status.label }}
+                        </option>
+                      </select>
+                    </div>
+                    `
+                    <label for="major">Major</label>
+                    <input
+                           id="major"
+                           formControlName="major"
+                           type="text"
+                           class="form-control form-control-sm"
+                           placeholder="" />
 
-                  <!-- <label>Do Not Use: (Testing only)</label> -->
-                  <label for="tituloUploadedDate">Titulo Uploaded Date</label>
-                  <input
-                    id="tituloUploadedDate"
-                    formControlName="tituloUploadedDate"
-                    type="text"
-                    class="form-control form-control-sm"
-                    placeholder=""
-                  />
-                  <div>
-                    <span class="btn btn-primary btn-sm" data-cy="upload-titulo"
-                     (click)="uploadTitulo(student.studentGUId, student.gradYear)" >
-                    Upload Titulo &gt;&gt;
-                    </span>
-                    <span>&nbsp;&nbsp;</span>
-                    <span [hidden]="!student.tituloUploadedDate" class="btn btn-primary btn-sm" data-cy="view-titulo" (click)="viewTitulo(student.studentGUId, student.gradYear)"
-                      >View Titulo &gt;&gt;
-                    </span>
                   </div>
                 </div>
               </div>
+              <!--
+                COLUMN 2
+              -->
               <div class="col">
-                <!-- <div class="row">
-              <div style="width: 100%">
-                <img [src]="photoPathname" />
-              </div>
-            </div> -->
-
                 <div class="row">
                   <div class="col-6" style="padding: 0 2px 0 4px">
                     <label for="statusId">Status</label>
@@ -188,19 +171,17 @@
 
                     <label for="probationStartDate">Probation Start Dt</label>
                     <input
-                      id="probationStartDate"
-                      formControlName="probationStartDate"
-                      class="form-control form-control-sm"
-                      placeholder="yyyy-mm-dd"
-                    />
+                           id="probationStartDate"
+                           formControlName="probationStartDate"
+                           class="form-control form-control-sm"
+                           placeholder="yyyy-mm-dd" />
 
                     <label for="mentorAssignedDate">Mentor Assigned Dt</label>
                     <input
-                      id="mentorAssignedDate"
-                      formControlName="mentorAssignedDate"
-                      class="form-control form-control-sm"
-                      placeholder="yyyy-mm-dd"
-                    />
+                           id="mentorAssignedDate"
+                           formControlName="mentorAssignedDate"
+                           class="form-control form-control-sm"
+                           placeholder="yyyy-mm-dd" />
 
                     <label for="gender">Gender</label>
                     <select id="gender" formControlName="gender" class="form-control form-control-sm">
@@ -211,10 +192,9 @@
                   <div class="col-6" style="padding: 0 2px 0 4px">
                     <label for="educationalLevelId">Educational Level</label>
                     <select
-                      id="educationalLevelId"
-                      formControlName="educationalLevelId"
-                      class="form-control form-control-sm"
-                    >
+                            id="educationalLevelId"
+                            formControlName="educationalLevelId"
+                            class="form-control form-control-sm">
                       <option *ngFor="let type of schoolTypes" [value]="type.value">{{ type.label }}</option>
                     </select>
 
@@ -230,127 +210,171 @@
 
                     <label for="credentialMonthNum">Credential Month</label>
                     <select
-                      id="credentialMonthNum"
-                      formControlName="credentialMonthNum"
-                      class="form-control form-control-sm"
-                    >
+                            id="credentialMonthNum"
+                            formControlName="credentialMonthNum"
+                            class="form-control form-control-sm">
                       <option *ngFor="let month of gradMonths" [value]="month.value">{{ month.label }}</option>
                     </select>
 
                     <label for="probationEndDate">Probation End Dt</label>
                     <input
-                      id="probationEndDate"
-                      formControlName="probationEndDate"
-                      class="form-control form-control-sm"
-                      placeholder="yyyy-mm-dd"
-                    />
+                           id="probationEndDate"
+                           formControlName="probationEndDate"
+                           class="form-control form-control-sm"
+                           placeholder="yyyy-mm-dd" />
 
                     <label for="mentoringEndDate">Mentoring End Dt</label>
                     <input
-                      id="mentoringEndDate"
-                      formControlName="mentoringEndDate"
-                      class="form-control form-control-sm"
-                      placeholder="yyyy-mm-dd"
-                    />
+                           id="mentoringEndDate"
+                           formControlName="mentoringEndDate"
+                           class="form-control form-control-sm"
+                           placeholder="yyyy-mm-dd" />
 
                     <label for="studentId">StudentId</label>
                     <input
-                      id="studentId"
-                      formControlName="studentId"
-                      readonly
-                      class="form-control form-control-sm"
-                      type="text"
-                    />
+                           id="studentId"
+                           formControlName="studentId"
+                           readonly
+                           class="form-control form-control-sm"
+                           type="text" />
                   </div>
-                </div>
-
-                <div class="row">
                   <label for="studentGUId">StudentGUId</label>
                   <input
-                    id="studentGUId"
-                    formControlName="studentGUId"
-                    readonly
-                    class="form-control form-control-sm"
-                    type="text"
-                  />
-
-                  <label for="curp">CURP</label>
-                  <input id="curp" formControlName="curp" class="form-control form-control-sm" placeholder="" />
-
-                  <label for="rfc">RFC</label>
-                  <input
-                    id="rfc"
-                    formControlName="rfc"
-                    type="text"
-                    class="form-control form-control-sm"
-                    placeholder=""
-                  />
-
-                  <label for="bankAccount">Bank Account</label>
-                  <input
-                    id="bankAccount"
-                    formControlName="bankAccount"
-                    type="text"
-                    class="form-control form-control-sm"
-                    placeholder=""
-                  />
+                         id="studentGUId"
+                         formControlName="studentGUId"
+                         readonly
+                         class="form-control form-control-sm"
+                         type="text" />
                 </div>
+                <div class="row">
+                  <div class="form-group bordered">
+                    <div>
+                      <label>Masters</label>
+                    </div>
+
+                    <label for="universityId">University</label>
+                    <div *ngIf="universities$ | async as universities">
+                      <select id="universityId" formControlName="universityId" class="form-control form-control-sm">
+                        <option *ngFor="let status of universities" [value]="status.value">{{ status.label }}</option>
+                      </select>
+                    </div>
+
+                    <label for="universityGradeMonthId">Academic Year / Grade Months</label>
+                    <div *ngIf="universityGradeMonths$ | async as universityGradeMonths">
+                      <select
+                              id="universityGradeMonthId"
+                              formControlName="universityGradeMonthId"
+                              class="form-control form-control-sm">
+                        <option *ngFor="let status of universityGradeMonths" [value]="status.value">
+                          {{ status.label }}
+                        </option>
+                      </select>
+                    </div>
+                    `
+                    <label for="major">Field of Study</label>
+                    <input
+                           id="major"
+                           formControlName="major"
+                           type="text"
+                           class="form-control form-control-sm"
+                           placeholder="" />
+
+                  </div>
+
+                </div>
+
               </div>
-
+              <!--
+                COLUMN 3
+              -->
               <div class="col">
-                <div class="form-group"></div>
-                <label for="sponsorGroupId">Sponsor Group</label>
-                <div *ngIf="sponsorGroups$ | async as sponsorGroups">
-                  <select id="sponsorGroupId" formControlName="sponsorGroupId" class="form-control form-control-sm">
-                    <option *ngFor="let sponsor of sponsorGroups" [value]="sponsor.value">{{ sponsor.label }}</option>
-                  </select>
+                <div class="form-group">
+                  <label for="sponsorGroupId">Sponsor Group</label>
+                  <div *ngIf="sponsorGroups$ | async as sponsorGroups">
+                    <select id="sponsorGroupId" formControlName="sponsorGroupId" class="form-control form-control-sm">
+                      <option *ngFor="let sponsor of sponsorGroups" [value]="sponsor.value">{{ sponsor.label }}</option>
+                    </select>
+                  </div>
+
+                  <app-sponsor-group-members [sponsorGroupId]="sponsorGroupIdParam"> </app-sponsor-group-members>
+
+                  <label for="mentorGUId">Mentor: </label>
+                  <div *ngIf="mentors$ | async as mentors">
+                    <select
+                            id="mentorGUId"
+                            formControlName="mentorGUId"
+                            (change)="setMentorStartDate()"
+                            class="form-control input-sm">
+                      <option *ngFor="let mentor of mentors" [value]="mentor.value">{{ mentor.label }}</option>
+                    </select>
+                    <span class="btn btn-primary btn-sm" data-cy="goto-mentor"
+                          (click)="gotoMentor(student.mentorGUId)">Mentor Profile &gt;&gt;
+                    </span>
+                    &nbsp;
+                    <span class="btn btn-primary btn-sm" data-cy="refresh-mentors" (click)="refreshMentors()">Refresh
+                      List
+                    </span>
+                  </div>
+
+                  <label for="mentoringComment">Mentoring Comment: </label>
+                  <div>
+                    <input
+                           id="mentoringComment"
+                           formControlName="mentoringComment"
+                           type="text"
+                           class="form-control form-control-sm"
+                           placeholder="" />
+                  </div>
+
+                  <app-student-grades-status
+                                             [gpaStatus]="studentDTO.gpaStatus"
+                                             [gradeRptStatus]="studentDTO.gradeRptStatus">
+                  </app-student-grades-status>
+                  <app-student-mr-status
+                                         [meetingStatus]="studentDTO.timelyMentorMeetingStatus"
+                                         [reportStatus]="studentDTO.timelyMentorReportStatus"
+                                         [emojiPathname]="emojiPathname">
+                  </app-student-mr-status>
                 </div>
-
-                <app-sponsor-group-members [sponsorGroupId]="sponsorGroupIdParam"> </app-sponsor-group-members>
-
-                <label for="mentorGUId">Mentor: </label>
-                <div *ngIf="mentors$ | async as mentors">
-                  <select
-                    id="mentorGUId"
-                    formControlName="mentorGUId"
-                    (change)="setMentorStartDate()"
-                    class="form-control input-sm"
-                  >
-                    <option *ngFor="let mentor of mentors" [value]="mentor.value">{{ mentor.label }}</option>
-                  </select>
-                  <span class="btn btn-primary btn-sm" data-cy="goto-mentor" (click)="gotoMentor(student.mentorGUId)"
-                    >Mentor Profile &gt;&gt;
-                  </span>
-                  &nbsp;
-                  <span class="btn btn-primary btn-sm" data-cy="refresh-mentors" (click)="refreshMentors()"
-                    >Refresh List
-                  </span>
-                </div>
-
-                <label for="mentoringComment">Mentoring Comment: </label>
-                <div>
+                <div class="form-group">
+                  <label for="tituloIssuedDate">Titulo Issued Date</label>
                   <input
-                    id="mentoringComment"
-                    formControlName="mentoringComment"
-                    type="text"
-                    class="form-control form-control-sm"
-                    placeholder=""
-                  />
-                </div>
+                         id="tituloIssuedDate"
+                         formControlName="tituloIssuedDate"
+                         type="text"
+                         class="form-control form-control-sm"
+                         placeholder="" />
 
-                <app-student-grades-status
-                  [gpaStatus]="studentDTO.gpaStatus"
-                  [gradeRptStatus]="studentDTO.gradeRptStatus"
-                >
-                </app-student-grades-status>
-                <app-student-mr-status
-                  [meetingStatus]="studentDTO.timelyMentorMeetingStatus"
-                  [reportStatus]="studentDTO.timelyMentorReportStatus"
-                  [emojiPathname]="emojiPathname"
-                >
-                </app-student-mr-status>
+                  <label for="tituloUploadedDate">Titulo Uploaded Date</label>
+                  <input
+                         id="tituloUploadedDate"
+                         formControlName="tituloUploadedDate"
+                         type="text"
+                         class="form-control form-control-sm"
+                         placeholder="" />
+                  <!-- <div> -->
+                  <span class="btn btn-primary btn-sm" data-cy="upload-titulo"
+                        (click)="uploadTitulo(student.studentGUId, student.gradYear)">
+                    Upload Titulo &gt;&gt;
+                  </span>
+                  <span>&nbsp;&nbsp;</span>
+                  <span [hidden]="!student.tituloUploadedDate" class="btn btn-primary btn-sm" data-cy="view-titulo"
+                        (click)="viewTitulo(student.studentGUId, student.gradYear)">View Titulo &gt;&gt;
+                  </span>
+                </div>
+                <!-- </div> -->
+                <!-- <div class="form-group"> -->
+                <label for="cedula">Cedula Number</label>
+                <input
+                       id="cedula"
+                       formControlName="cedula"
+                       type="text"
+                       class="form-control form-control-sm"
+                       placeholder="" />
+
               </div>
             </div>
+            <!-- submit button row-->
             <div class="row">
               <div class="form-group">
                 <button class="btn btn-primary" (click)="saveMyForm()" [disabled]="!myForm.valid">Save</button>
