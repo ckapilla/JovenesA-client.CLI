@@ -92,13 +92,13 @@
                          class="form-control form-control-sm"
                          placeholder="" />
 
-                  <label for="bankAccount">Bank Account</label>
+                  <!-- <label for="bankAccount">Bank Account</label>
                   <input
                          id="bankAccount"
                          formControlName="bankAccount"
                          type="text"
                          class="form-control form-control-sm"
-                         placeholder="" />
+                         placeholder="" /> -->
 
 
                   <label for="prepaId">Prepa</label>
@@ -107,11 +107,12 @@
                       <option *ngFor="let status of prepas" [value]="status.value">{{ status.label }}</option>
                     </select>
                   </div>
+                  <div>
+                    <label>Undergrad</label>
+                  </div>
 
                   <div class="form-group bordered">
-                    <div>
-                      <label>Undergrad</label>
-                    </div>
+
 
                     <label for="universityId">University</label>
                     <div *ngIf="universities$ | async as universities">
@@ -139,7 +140,20 @@
                            type="text"
                            class="form-control form-control-sm"
                            placeholder="" />
-
+                    <div class="row">
+                      <div class="col-5" style="padding: 0 2px 0 4px">
+                        <label for="gradYear">Grad Year</label>
+                        <select id="gradYear" formControlName="gradYear" class="form-control form-control-sm">
+                          <option *ngFor="let year of gradYears" [value]="year.value">{{ year.label }}</option>
+                        </select>
+                      </div>
+                      <div class="col-5" style="padding: 0 2px 0 4px">
+                        <label for="gradMonthNum">Grad Month</label>
+                        <select id="gradMonthNum" formControlName="gradMonthNum" class="form-control form-control-sm">
+                          <option *ngFor="let month of gradMonths" [value]="month.value">{{ month.label }}</option>
+                        </select>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -158,7 +172,7 @@
                     <select id="joinedFromId" formControlName="joinedFromId" class="form-control form-control-sm">
                       <option *ngFor="let status of schoolTypes" [value]="status.value">{{ status.label }}</option>
                     </select>
-
+                    <!--
                     <label for="gradYear">Grad Year</label>
                     <select id="gradYear" formControlName="gradYear" class="form-control form-control-sm">
                       <option *ngFor="let year of gradYears" [value]="year.value">{{ year.label }}</option>
@@ -168,7 +182,7 @@
                     <select id="credentialYear" formControlName="credentialYear" class="form-control form-control-sm">
                       <option *ngFor="let year of gradYears" [value]="year.value">{{ year.label }}</option>
                     </select>
-
+                    -->
                     <label for="probationStartDate">Probation Start Dt</label>
                     <input
                            id="probationStartDate"
@@ -189,7 +203,7 @@
                     </select>
                   </div>
 
-                  <div class="col-6" style="padding: 0 2px 0 4px">
+                  <div class="col-6" style="padding: 0 2px 0 px">
                     <label for="educationalLevelId">Educational Level</label>
                     <select
                             id="educationalLevelId"
@@ -202,7 +216,7 @@
                     <select id="yearJoinedJa" formControlName="yearJoinedJa" class="form-control form-control-sm">
                       <option *ngFor="let year of joinedYears" [value]="year.value">{{ year.label }}</option>
                     </select>
-
+                    <!--
                     <label for="gradMonthNum">Grad Month</label>
                     <select id="gradMonthNum" formControlName="gradMonthNum" class="form-control form-control-sm">
                       <option *ngFor="let month of gradMonths" [value]="month.value">{{ month.label }}</option>
@@ -215,7 +229,7 @@
                             class="form-control form-control-sm">
                       <option *ngFor="let month of gradMonths" [value]="month.value">{{ month.label }}</option>
                     </select>
-
+                    -->
                     <label for="probationEndDate">Probation End Dt</label>
                     <input
                            id="probationEndDate"
@@ -245,12 +259,22 @@
                          readonly
                          class="form-control form-control-sm"
                          type="text" />
+
+                  <label for="bankAccount">Bank Account</label>
+                  <input
+                         id="bankAccount"
+                         formControlName="bankAccount"
+                         type="text"
+                         class="form-control form-control-sm"
+                         placeholder="" />
+
                 </div>
                 <div class="row">
+                  <div>
+                    <label>Masters</label>
+                  </div>
                   <div class="form-group bordered">
-                    <div>
-                      <label>Masters</label>
-                    </div>
+
 
                     <label for="universityId">University</label>
                     <div *ngIf="universities$ | async as universities">
@@ -278,11 +302,22 @@
                            type="text"
                            class="form-control form-control-sm"
                            placeholder="" />
-
+                    <div class="row">
+                      <div class="col-5" style="padding: 0 2px 0 4px">
+                        <label for="gradYear">Grad Year</label>
+                        <select id="gradYear" formControlName="gradYear" class="form-control form-control-sm">
+                          <option *ngFor="let year of gradYears" [value]="year.value">{{ year.label }}</option>
+                        </select>
+                      </div>
+                      <div class="col-5" style="padding: 0 2px 0 4px">
+                        <label for="gradMonthNum">Grad Month</label>
+                        <select id="gradMonthNum" formControlName="gradMonthNum" class="form-control form-control-sm">
+                          <option *ngFor="let month of gradMonths" [value]="month.value">{{ month.label }}</option>
+                        </select>
+                      </div>
+                    </div>
                   </div>
-
                 </div>
-
               </div>
               <!--
                 COLUMN 3
@@ -292,7 +327,8 @@
                   <label for="sponsorGroupId">Sponsor Group</label>
                   <div *ngIf="sponsorGroups$ | async as sponsorGroups">
                     <select id="sponsorGroupId" formControlName="sponsorGroupId" class="form-control form-control-sm">
-                      <option *ngFor="let sponsor of sponsorGroups" [value]="sponsor.value">{{ sponsor.label }}</option>
+                      <option *ngFor="let sponsor of sponsorGroups" [value]="sponsor.value">{{ sponsor.label }}
+                      </option>
                     </select>
                   </div>
 
