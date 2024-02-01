@@ -20,8 +20,7 @@ export class Student {
     // public sponsor?: string, // Sponsor
     public prepaId?: number, // PrepaID
     public major?: string, // Major
-    public tituloIssuedDate?: Date,
-    public tituloUploadedDate?: Date,
+
     // public ageWhenJoined?: string, // AgeWhenJoined
     public yearJoinedJa?: string, // YearJoinedJA
     public universityId?: string, // UniversityID
@@ -58,7 +57,17 @@ export class Student {
     // public activeStatus?: number,
     // public pilotProxyId?: number,
     public educationalLevelId?: number,
-    public studentHistory_En?: string
+    public studentHistory_En?: string,
+
+    public tituloIssuedDate?: Date,
+    public tituloUploadedDate?: Date,
+
+    public cedula?: string,
+    public mastersUniversityId?:number,
+    public fieldOfStudy?: string,
+    public mastersGradYear?: string,
+    public mastersGradMonthNum?: number
+
 
   ) {}
 }

@@ -29,6 +29,12 @@ export class StudentDTO {
     public major?: string,
     public tituloIssuedDate?: Date,
     public tituloUploadedDate?: Date,
+    public cedula?: string,
+    public mastersUniversityId?:number,
+    public fieldOfStudy?: string,
+    public mastersGradYear?: string,
+    public mastersGradMonthNum?: number,
+
     public joinedFromId?: number,
     public joinedFrom?: string,
     public photoUrl?: string,
@@ -44,8 +50,10 @@ export class StudentDTO {
     public probationEndDate?: Date,
     public pilotProgram?: string,
     public educationalLevel?: string,
-    public currentGradesProcessingPeriodID?: number,
+    public currentGradesProcessingPeriodId?: number,
     public entryStartDate?: Date,
     public gradeEntryActiveStatus?: number
+
+
   ) {}
 }

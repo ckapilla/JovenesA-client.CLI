@@ -147,6 +147,13 @@ export class AdminsStudentProfileComponent implements OnInit {
       tituloIssuedDate: [{ value: '' }],
       tituloUploadedDate: [{ value: '' }],
 
+      cedula: [{ value: '' }],
+      mastersUniversityId: [{ value: '' }],
+      mastersUniversityGradeMonthId: [{ value: '' }],
+      fieldOfStudy: [{ value: '' }],
+      mastersGradYear: [{ value: '' }],
+      mastersGradMonthNum: [{ value: '' }],
+
       // englishSkillLevelId: [{ value: '' }],
       statusId: [{ value: '' }],
       yearJoinedJa: [{ value: '' }],
@@ -287,7 +294,7 @@ export class AdminsStudentProfileComponent implements OnInit {
     console.log('setFormValues');
     console.log('>>>>>>>>>>>mentorGUId: ' + student.mentorGUId);
     console.log('>>>>>>>>>>>tituloUploadedDate: ' + student.tituloUploadedDate);
-    console.log('>>>>>>>>>>>tituloIssuedDate: ' + student.tituloIssuedDate);
+    console.log('>>>>>>>>>>>mastersUnivesityId ' + student.mastersUniversityId);
     this.myForm.setValue({
       studentId: student.studentId,
       gender: student.gender,
@@ -298,6 +305,14 @@ export class AdminsStudentProfileComponent implements OnInit {
       major: student.major,
       tituloIssuedDate:  new TruncateDatePipe().transform('' + student.tituloIssuedDate),
       tituloUploadedDate:  new TruncateDatePipe().transform('' + student.tituloUploadedDate),
+
+      cedula: student.cedula,
+      mastersUniversityId: student.mastersUniversityId,
+      mastersUniversityGradeMonthId: student.mastersUniversityId,
+      fieldOfStudy: student.fieldOfStudy,
+      mastersGradYear: student.mastersGradYear,
+      mastersGradMonthNum: student.mastersGradMonthNum,
+
       // englishSkillLevelId: student.englishSkillLevelId,
       statusId: student.statusId,
       yearJoinedJa: student.yearJoinedJa,
@@ -323,7 +338,10 @@ export class AdminsStudentProfileComponent implements OnInit {
       // mentorGUId: mentorId, // student.mentorId,
       studentGUId: student.studentGUId
     });
+
     console.log('++++++++++++++++universityGradeMonthId = ' + this.myForm.controls.universityGradeMonthId.value);
+
+    console.log('++++++++++++++++mastersUniversityGradeMonthId = ' + this.myForm.controls.mastersUniversityGradeMonthId.value);
   }
 
   retrieveFormValues(): void {
@@ -487,6 +505,7 @@ export class AdminsStudentProfileComponent implements OnInit {
     }
     // needs to always be read only
     this.myForm.controls.universityGradeMonthId.disable();
+    this.myForm.controls.mastersUniversityGradeMonthId.disable();
     this.myForm.controls.tituloUploadedDate.disable();
   }
   onDateSelect() {
