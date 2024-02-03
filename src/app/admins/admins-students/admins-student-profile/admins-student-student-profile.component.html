@@ -140,6 +140,24 @@
                            type="text"
                            class="form-control form-control-sm"
                            placeholder="" />
+
+                    <div class="row">
+                      <div class="4">&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                      <div class="col-4" style="padding: 0 2px 0 4px">
+                        <label for="undergradStartYear">Start Year</label>
+                        <select id="undergradStartYear" formControlName="undergradStartYear" class="form-control form-control-sm">
+                          <option *ngFor="let year of gradYears" [value]="year.value">{{ year.label }}</option>
+                        </select>
+                      </div>
+
+                      <div class="col-4" style="padding: 0 2px 0 4px">
+                        <label for="undergradStartMonthNum">Start Month</label>
+                        <select id="undergradStartMonthNum" formControlName="undergradStartMonthNum" class="form-control form-control-sm">
+                          <option *ngFor="let month of gradMonths" [value]="month.value">{{ month.label }}</option>
+                        </select>
+                      </div>
+                    </div>
+
                     <div class="row">
                       <div class="4">&nbsp;&nbsp;&nbsp;&nbsp;</div>
                       <div class="col-4" style="padding: 0 2px 0 4px">
@@ -156,6 +174,7 @@
                         </select>
                       </div>
                     </div>
+
                   </div>
                 </div>
               </div>
@@ -205,24 +224,11 @@
                       <option *ngFor="let status of studentStatuses" [value]="status.value">{{ status.label }}</option>
                     </select>
 
-                    <label for="yearJoinedJa">First Student Year</label>
+                    <label for="yearJoinedJa">YearJoinedJA</label>
                     <select id="yearJoinedJa" formControlName="yearJoinedJa" class="form-control form-control-sm">
                       <option *ngFor="let year of joinedYears" [value]="year.value">{{ year.label }}</option>
                     </select>
-                    <!--
-                    <label for="gradMonthNum">Grad Month</label>
-                    <select id="gradMonthNum" formControlName="gradMonthNum" class="form-control form-control-sm">
-                      <option *ngFor="let month of gradMonths" [value]="month.value">{{ month.label }}</option>
-                    </select>
 
-                    <label for="credentialMonthNum">Credential Month</label>
-                    <select
-                            id="credentialMonthNum"
-                            formControlName="credentialMonthNum"
-                            class="form-control form-control-sm">
-                      <option *ngFor="let month of gradMonths" [value]="month.value">{{ month.label }}</option>
-                    </select>
-                    -->
                     <label for="probationEndDate">Probation End Dt</label>
                     <input
                            id="probationEndDate"
@@ -282,19 +288,36 @@
                               id="mastersUniversityGradeMonthId"
                               formControlName="mastersUniversityGradeMonthId"
                               class="form-control form-control-sm">
-                        <option *ngFor="let status of universityGradeMonths" [value]="status.value">
+                     undergrad   <option *ngFor="let status of universityGradeMonths" [value]="status.value">
                           {{ status.label }}
                         </option>
                       </select>
                     </div>
                     `
-                    <label for="fieldOfStudy">Field of Study</label>
+                    <label for="mastersFieldOfStudy">Field of Study</label>
                     <input
-                           id="fieldOfStudy"
-                           formControlName="fieldOfStudy"
+                           id="mastersFieldOfStudy"
+                           formControlName="mastersFieldOfStudy"
                            type="text"
                            class="form-control form-control-sm"
                            placeholder="" />
+                    <div class="row">
+                      <div class="4">&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                      <div class="col-4" style="padding: 0 2px 0 4px">
+                        <label for="mastersStartYear">Start Year</label>
+                        <select id="mastersStartYear" formControlName="mastersStartYear" class="form-control form-control-sm">
+                          <option *ngFor="let year of gradYears" [value]="year.value">{{ year.label }}</option>
+                        </select>
+                      </div>
+
+                      <div class="col-4" style="padding: 0 2px 0 4px">
+                        <label for="mastersStartMonthNum">Start Month</label>
+                        <select id="mastersStartMonthNum" formControlName="mastersStartMonthNum" class="form-control form-control-sm">
+                          <option *ngFor="let month of gradMonths" [value]="month.value">{{ month.label }}</option>
+                        </select>
+                      </div>
+
+                    </div>
                     <div class="row">
                       <div class="4">&nbsp;&nbsp;&nbsp;&nbsp;</div>
                       <div class="col-4" style="padding: 0 2px 0 4px">
@@ -310,7 +333,10 @@
                           <option *ngFor="let month of gradMonths" [value]="month.value">{{ month.label }}</option>
                         </select>
                       </div>
+
                     </div>
+
+
                   </div>
                 </div>
               </div>
