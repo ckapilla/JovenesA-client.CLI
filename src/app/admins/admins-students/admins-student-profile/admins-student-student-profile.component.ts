@@ -150,9 +150,13 @@ export class AdminsStudentProfileComponent implements OnInit {
       cedula: [{ value: '' }],
       mastersUniversityId: [{ value: '' }],
       mastersUniversityGradeMonthId: [{ value: '' }],
-      fieldOfStudy: [{ value: '' }],
+      mastersFieldOfStudy: [{ value: '' }],
       mastersGradYear: [{ value: '' }],
       mastersGradMonthNum: [{ value: '' }],
+      mastersStartYear: [{ value: '' }],
+      mastersStartMonthNum: [{ value: '' }],
+      undergradStartYear: [{ value: '' }],
+      undergradStartMonthNum: [{ value: '' }],
 
       // englishSkillLevelId: [{ value: '' }],
       statusId: [{ value: '' }],
@@ -309,9 +313,15 @@ export class AdminsStudentProfileComponent implements OnInit {
       cedula: student.cedula,
       mastersUniversityId: student.mastersUniversityId,
       mastersUniversityGradeMonthId: student.mastersUniversityId,
-      fieldOfStudy: student.fieldOfStudy,
+      mastersFieldOfStudy: student.mastersFieldOfStudy,
       mastersGradYear: student.mastersGradYear,
       mastersGradMonthNum: student.mastersGradMonthNum,
+
+      mastersStartYear: student.mastersStartYear,
+      mastersStartMonthNum: student.mastersStartMonthNum,
+
+      undergradStartYear: student.undergradStartYear,
+      undergradStartMonthNum: student.undergradStartMonthNum,
 
       // englishSkillLevelId: student.englishSkillLevelId,
       statusId: student.statusId,
@@ -507,6 +517,7 @@ export class AdminsStudentProfileComponent implements OnInit {
     this.myForm.controls.universityGradeMonthId.disable();
     this.myForm.controls.mastersUniversityGradeMonthId.disable();
     this.myForm.controls.tituloUploadedDate.disable();
+    this.myForm.controls.yearJoinedJa.disable();
   }
   onDateSelect() {
     alert('data selected');

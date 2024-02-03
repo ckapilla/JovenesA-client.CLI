@@ -64,10 +64,13 @@ export class Student {
 
     public cedula?: string,
     public mastersUniversityId?:number,
-    public fieldOfStudy?: string,
+    public mastersFieldOfStudy?: string,
     public mastersGradYear?: string,
-    public mastersGradMonthNum?: number
-
+    public mastersGradMonthNum?: number,
+    public mastersStartYear?: string,
+    public mastersStartMonthNum?: number,
+    public undergradStartYear?: string,
+    public undergradStartMonthNum?: number
 
   ) {}
 }
