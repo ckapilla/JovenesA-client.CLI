@@ -53,7 +53,6 @@ export class GradesListComponent implements OnInit {
     this.years = constants.contactYears;
     this.months = constants.months;
     this.gradesProcessingPeriods = constants.gradesProcessingPeriods;
-
     this.isLoading = false;
   }
 

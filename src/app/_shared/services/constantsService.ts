@@ -47,7 +47,7 @@ export class ConstantsService extends BaseDataService {
   );
 
   private gpPeriodsUrl = this.WebApiPrefix + 'lookup/gpPeriods';
-  gpPeriods$: Observable<GRADESPROCESSINGPERIOD> = this.http.get<GRADESPROCESSINGPERIOD>(this.gpPeriodsUrl).pipe(
+  gpPeriods$: Observable<GRADESPROCESSINGPERIOD[]> = this.http.get<GRADESPROCESSINGPERIOD[]>(this.gpPeriodsUrl).pipe(
     tap((data) => console.log('gPP results ', JSON.stringify(data))),
     shareReplay(1),
     catchError(this.handleError)
@@ -76,19 +76,13 @@ export class ConstantsService extends BaseDataService {
   public generateGradesProcessingPeriods(){
     this.gpPeriods$.pipe(toArray()).subscribe(
       (data) => {
-        constants.gradesProcessingPeriods = data;
-        console.log(constants.gradesProcessingPeriods);
-        // constants.studentStatuses.push(subset); =
-        // const x = data[0];
-        // x.forEach((item) => {
-        //   // const subset = (({ value, label }) => ({ value, label }))(item);
-        //   constants.gradesProcessingPeriods.push(x);
-        // }
-      }),
-      (err) => console.error('Subscribe error: ' + err),
+        constants.gradesProcessingPeriods = data[0];  // our data is in the first and only element of array
+      },
+      (err: any) => console.error('Subscribe error: ' + err),
       () => {
         console.log('xxxxxxxxxx subscribe returned  ');
       }
+    );
   }
 
 
@@ -201,6 +195,7 @@ export class ConstantsService extends BaseDataService {
       qtr = 1;
       year++;
     }
+    constants.qrPeriods.reverse();
     console.log('setting SelectedQRPeriod to ' + thisYear + ' ' + targetQtr);
     this.store.dispatch(new SetSelectedQRPeriod(thisYear + '-' + targetQtr));
     // console.log(constants.qrPeriods);
@@ -229,10 +224,10 @@ export class ConstantsService extends BaseDataService {
 
 
 
-  getCurrentGradePeriod(yearTypeId: number) {
-    const now = new Date();
-    constants.gradesProcessingPeriods.find(period => period.studentReportingStartDate >=('' +  now) && period.yearTypeId === yearTypeId);
-  }
+  // getCurrentGradePeriod(yearTypeId: number) {
+  //   const now = new Date();
+  //   constants.gradesProcessingPeriods.find(period => period.studentReportingStartDate >=('' +  now) && period.yearTypeId === yearTypeId);
+  // }
 
 
   setSelectedGradesProcessingPeriodID(gradesProcessingPeriod: string) {
