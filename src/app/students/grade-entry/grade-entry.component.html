@@ -4,9 +4,9 @@
   <ng-container>
     <app-alert (didClose)="closeAlert($event)" [isShown]="successAlert" [type]="'success'" *ngIf="successAlert"></app-alert>
     <app-alert (didClose)="closeAlert($event)" [isShown]="errorAlert" [type]="'error'" *ngIf="errorAlert"></app-alert>
-    
 
-   
+
+
     <div *ngIf="inGradesProcessingPeriod">
 
       <div [ngSwitch]="isLoading">
@@ -197,9 +197,9 @@
 
               </div>
               <form [formGroup]="myForm">
-            
+
 <div class="container-fluid m-0 p-0" style="column-gap: 1.5rem">
- 
+
   <ng-container formArrayName="gradeEntryFormRows" *ngFor="let entry of studentGradesData, let i = index">
     <div class="row row-cols-1 row-cols-md-2 m-0">
       <div [formGroupName]="i" class="col p-0 my-auto">
@@ -216,15 +216,15 @@
             </p>
           </ng-template>
         </div>
-         
-     
+
+
         <div class="col p-0 d-flex flex-row align-items-center justify-content-center grade">
           <label for="gradePointAvg">Ingresa tu promedio: </label>
-          <input class="form-control form-control-sm" formControlName="gradePointAvg" name="gradePointAvg" id="gradePointAvg" 
-          
+          <input class="form-control form-control-sm" formControlName="gradePointAvg" name="gradePointAvg" id="gradePointAvg"
+
             type="text" />
         </div>
-  
+
         <div class="col p-0 d-flex flex-row justify-content-around button-wrapper mx-auto mt-3">
        <!--    <button class="btn btn-default m-0" [class.edit]="!studentGradesData[0].confirmedDate"
             [class.cancel]="studentGradesData[0].confirmedDate" (click)="editForm($event.target)">
@@ -239,7 +239,7 @@
         <button [disabled]="myForm.pristine" type="submit" class="btn btn-primary"
           (click)="saveAllChangedEntries()">Guardar</button>
       </p> -->
-  
+
       <div class="col p-0 grade-image-wrapper mt-4 text-right ">
         <h6 class="mb-3 text-center">Sube tu reporte de calificaciones en el recuadro de abajo</h6>
        <!-- hacer esto con la alerta y con el cuadro de abajo q nunca se muestra -->
@@ -254,15 +254,15 @@
               </svg>
             <a class="align-middle ml-2"
              [hidden]="!entry!.imageSubmittedDate" href= "{{staticUrlPrefix}}StudentGradesReports/{{entry.gradesProcessingPeriodId}}/{{entry.studentGUId | uppercase }}.png" target="_blank">{{entry.studentGUId  | uppercase   }}.png</a>
-  
+
           </div>
           <small>*Si tu archivo no termina con .png haz clic <a href="https://imagen.online-convert.com/es/convertir-a-png" target="_blank" rel="noopener noreferrer">aquí</a></small>
       </div>
     </div>
-   
+
   </ng-container>
 </div>
-             
+
 <!--
             <table class="table-sm table-striped">
               <thead>
@@ -342,7 +342,7 @@
             </form>
           </div>
           <!-- end promedio status section -->
-         
+
           <!-- file upload -->
        <!--    <div>
             <h6 style="color:black;"><b>Paso 2: </b>Sube tu reporte de calificaciones en el recuadro</h6>
@@ -359,7 +359,7 @@
             <br>
             <app-file-uploader [studentGradeId]=studentGradesData[0].studentGradeId
               [gradesProcessingPeriodId]=studentGradesData[0].gradesProcessingPeriodId></app-file-uploader>
-          </div> -->    
+          </div> -->
         </ng-container>
         <!-- end content -->
       </div>
