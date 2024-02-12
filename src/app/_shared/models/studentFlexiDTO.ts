@@ -1,12 +1,12 @@
-export class StudentDTO {
+export class StudentFlexiDTO {
   constructor(
 
     public studentId: number, // StudentID (Primary key)
     public studentName: string, // StudentName
-    public photoUrl: string,
-    public email: string, // Email
-    public memberRecordGUId: string,
-    public gender: string, // Gender
+    public photoUrl?: string,
+    // public email: string, // Email
+    //public memberRecordGUId: string,
+    // public gender: string, // Gender
     public joinedFrom?: string,
 
     public status?: string, // Status
@@ -27,10 +27,11 @@ export class StudentDTO {
     public sponsorGroupName?: string,
 
    public universityAbbrev?: string,
+   public universityDescriptor?: string,
    public major?: string,
 
 
-
+/***
     public gradeRptStatus?: string, // GradeRptStatus
     public gpaStatus?: string, // GPAStatus
     public numericGradeRptStatus?: number,
@@ -39,6 +40,7 @@ export class StudentDTO {
     public timelyMentorReportStatus?: string,
     public numericTimelyMentorMeetingStatus?: number,
     public numericTimelyMentorReportStatus?: number,
+
     // public mentorId?: number, // MentorID
 
 
@@ -52,7 +54,7 @@ export class StudentDTO {
     public mastersFieldOfStudy?: string,
 
 
-    public joinedFromId?: number,
+    // public joinedFromId?: number,
     // public joinedFrom?: string,
 
     public studentGUId?: string,
@@ -73,10 +75,10 @@ export class StudentDTO {
     public currentGradesProcessingPeriodId?: number,
     public entryStartDate?: Date,
     public gradeEntryActiveStatus?: number,
-    public mastersStartYear?: string,
-    public mastersStartMonthNum?: number,
-    public undergradStartYear?: string,
-    public undergradStartMonthNum?: number
-
+    // public mastersStartYear?: string,
+    // public mastersStartMonthNum?: number,
+    // public undergradStartYear?: string,
+    // public undergradStartMonthNum?: number
+ */
   ) {}
 }
