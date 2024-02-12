@@ -55,8 +55,8 @@ export class StudentsForMentorListComponent implements OnInit {
       () => {
         console.log('studentsForMentorList has All students: ' + this.students.length);
         if (this.students.length > 0) {
-          console.log(this.students[0].studentName);
-          console.log(this.students[0].studentGUId);
+          // console.log(this.students[0].studentName);
+          // console.log(this.students[0].studentGUId);
           this.haveData = true;
         } else {
           //

@@ -5,17 +5,18 @@ import { constants } from 'src/app/_shared/constants/constants';
 import { StudentDataService } from 'src/app/_shared/data/student-data.service';
 import { SELECTITEM } from 'src/app/_shared/interfaces/SELECTITEM';
 import { SORTCRITERIA } from 'src/app/_shared/interfaces/SORTCRITERIA';
-import { StudentDTO } from 'src/app/_shared/models/studentDTO';
+import { StudentFlexiDTO } from 'src/app/_shared/models/studentFlexiDTO';
 import { ColumnSortService } from 'src/app/_shared/services/column-sort.service';
 import { SessionService } from 'src/app/_shared/services/session.service';
 import { SetPhotoPathname, SetSelectedStudentIdentifiers, SetSelectedStudentMentorGUId } from 'src/app/_store/student/student.action';
 import {
-    SetSelectedFilterMode,
-    SetSelectedGradYear,
-    SetSelectedStudentStatus,
-    SetSelectedYearJoined
+  SetSelectedFilterMode,
+  SetSelectedGradYear,
+  SetSelectedStudentStatus,
+  SetSelectedYearJoined
 } from 'src/app/_store/ui/ui.action';
 import { UIState } from 'src/app/_store/ui/ui.state';
+
 
 
 
@@ -30,8 +31,8 @@ export class AdminsStudentListComponent implements OnInit {
   selectedYearJoined: string;
   selectedGradYear: string;
 
-  studentDTO: StudentDTO;
-  studentDTOs: StudentDTO[];
+  studentDTO: StudentFlexiDTO;
+  studentDTOs: StudentFlexiDTO[];
   isLoading: boolean;
   errorMessage: string;
   successMessage: string;
@@ -160,14 +161,14 @@ export class AdminsStudentListComponent implements OnInit {
                 } else if (!this.displayTestNames && item.studentName.substring(0,5) !== '_Test') {
                   return item;
                 }
-              })
-              .map(this.getNumericStatus);
+              });
+              // .map(this.getNumericStatus);
           },
           (err) => {
             this.errorMessage = err;
           },
           () => {
-            console.log(this.studentDTOs[0]);
+            console.log(JSON.stringify(this.studentDTOs[0]));
             console.log('data loaded now set timeout for scroll');
             setTimeout(() => {
               this.scrollIntoView();
@@ -185,45 +186,45 @@ export class AdminsStudentListComponent implements OnInit {
     }
   }
 
-  getNumericStatus(studentDTO: StudentDTO): StudentDTO {
-    studentDTO.numericTimelyMentorMeetingStatus = 0;
-    if (studentDTO.timelyMentorMeetingStatus === 'red') {
-      studentDTO.numericTimelyMentorMeetingStatus = 1;
-    } else if (studentDTO.timelyMentorMeetingStatus === 'yellow') {
-      studentDTO.numericTimelyMentorMeetingStatus = 2;
-    } else if (studentDTO.timelyMentorMeetingStatus === 'green') {
-      studentDTO.numericTimelyMentorMeetingStatus = 3;
-    }
+  // getNumericStatus(studentDTO: StudentDTO): StudentDTO {
+  //   // studentDTO.numericTimelyMentorMeetingStatus = 0;
+  //   // if (studentDTO.timelyMentorMeetingStatus === 'red') {
+  //   //   studentDTO.numericTimelyMentorMeetingStatus = 1;
+  //   // } else if (studentDTO.timelyMentorMeetingStatus === 'yellow') {
+  //   //   studentDTO.numericTimelyMentorMeetingStatus = 2;
+  //   // } else if (studentDTO.timelyMentorMeetingStatus === 'green') {
+  //   //   studentDTO.numericTimelyMentorMeetingStatus = 3;
+  //   // }
 
-    studentDTO.numericTimelyMentorReportStatus = 0;
-    if (studentDTO.timelyMentorReportStatus === 'red') {
-      studentDTO.numericTimelyMentorReportStatus = 1;
-    } else if (studentDTO.timelyMentorReportStatus === 'yellow') {
-      studentDTO.numericTimelyMentorReportStatus = 2;
-    } else if (studentDTO.timelyMentorReportStatus === 'green') {
-      studentDTO.numericTimelyMentorReportStatus = 3;
-    }
+  //   // studentDTO.numericTimelyMentorReportStatus = 0;
+  //   // if (studentDTO.timelyMentorReportStatus === 'red') {
+  //   //   studentDTO.numericTimelyMentorReportStatus = 1;
+  //   // } else if (studentDTO.timelyMentorReportStatus === 'yellow') {
+  //   //   studentDTO.numericTimelyMentorReportStatus = 2;
+  //   // } else if (studentDTO.timelyMentorReportStatus === 'green') {
+  //   //   studentDTO.numericTimelyMentorReportStatus = 3;
+  //   // }
 
-    studentDTO.numericGradeRptStatus = 0;
-    if (studentDTO.gradeRptStatus === 'red') {
-      studentDTO.numericGradeRptStatus = 1;
-    } else if (studentDTO.gradeRptStatus === 'yellow') {
-      studentDTO.numericGradeRptStatus = 2;
-    } else if (studentDTO.gradeRptStatus === 'green') {
-      studentDTO.numericGradeRptStatus = 3;
-    }
+  //   // studentDTO.numericGradeRptStatus = 0;
+  //   // if (studentDTO.gradeRptStatus === 'red') {
+  //   //   studentDTO.numericGradeRptStatus = 1;
+  //   // } else if (studentDTO.gradeRptStatus === 'yellow') {
+  //   //   studentDTO.numericGradeRptStatus = 2;
+  //   // } else if (studentDTO.gradeRptStatus === 'green') {
+  //   //   studentDTO.numericGradeRptStatus = 3;
+  //   // }
 
-    studentDTO.numericGPAStatus = 0;
-    if (studentDTO.gpaStatus === 'red') {
-      studentDTO.numericGPAStatus = 1;
-    } else if (studentDTO.gpaStatus === 'yellow') {
-      studentDTO.numericGPAStatus = 2;
-    } else if (studentDTO.gpaStatus === 'green') {
-      studentDTO.numericGPAStatus = 3;
-    }
+  //   // studentDTO.numericGPAStatus = 0;
+  //   // if (studentDTO.gpaStatus === 'red') {
+  //   //   studentDTO.numericGPAStatus = 1;
+  //   // } else if (studentDTO.gpaStatus === 'yellow') {
+  //   //   studentDTO.numericGPAStatus = 2;
+  //   // } else if (studentDTO.gpaStatus === 'green') {
+  //   //   studentDTO.numericGPAStatus = 3;
+  //   // }
 
-    return studentDTO;
-  }
+  //   return studentDTO;
+  // }
 
   gotoStudent(guid: string, studentName: string,
     photoUrl: string, mentorGUId: string) {

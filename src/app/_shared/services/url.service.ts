@@ -20,7 +20,7 @@ export class UrlService {
       this.webApiPrefix =  URL_CONFIG.DevUrlPrefix + 'api/';
       this.staticFilePrefix =  URL_CONFIG.DevUrlPrefix + 'static/';
       this.clientUrl = 'https://' + hostName; // privada-dev.jovenesadelante.org';
-    } else if (hostName === 'localhost') {
+    } else if (hostName === 'localhost' || '127.0.0.1' ) {
       this.webApiPrefix = URL_CONFIG.localDevUrlPrefix + 'api/'; // Local  Development
       this.staticFilePrefix = URL_CONFIG.localDevUrlPrefix + 'static/';
       // if above doesn't work, run ipconfig to see current IPv4 address
@@ -28,6 +28,7 @@ export class UrlService {
       // this.webApiPrefix =  URL_CONFIG.DevUrlPrefix + 'api/'; // remote dev
       // this.webApiPrefix = URL_CONFIG.ProdUrlPrefix + 'api/'; ; // remote prod
       this.clientUrl = 'http://localhost:3000';
+      this.clientUrl = 'http://127.0.0.1:3000';
     }
 
     console.log('>>>webapi prefix: ' + this.webApiPrefix);

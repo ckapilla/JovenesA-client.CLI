@@ -435,7 +435,7 @@ export class AdminsStudentProfileComponent implements OnInit {
     this.router.navigate([
       '/admins/students/student/mentorReports/',
       {
-        mentorId: this.studentDTO.mentorId,
+        // mentorId: this.studentDTO.mentorId,
         mentorGUId: this.studentDTO.mentorGUId,
         studentGUId: this.studentDTO.studentGUId,
         studentName: this.studentDTO.studentName
