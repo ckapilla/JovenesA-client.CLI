@@ -13,9 +13,11 @@
         <!-- <label>Name</label>
         {{ student.studentName }}
         <br /> -->
-        <label>First Student Year:</label>
-        {{student.startYear}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <label>Grad Year/Month:</label>
+
+        <label>[{{student.educationalLevel}}]</label>
+        <label>&nbsp; Start Year/Mo:</label>
+        {{student.startYear}} / {{student.gradMonth}}
+        <label>&nbsp; Grad Year/Mo:</label>
         {{student.gradYear}} / {{student.gradMonth}}
       </div>
     </div>
