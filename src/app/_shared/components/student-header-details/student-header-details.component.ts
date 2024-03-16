@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { SetPhotoPathname } from 'src/app/_store/student/student.action';
 import { StudentState } from 'src/app/_store/student/student.state';
 import { StudentDataService } from '../../data/student-data.service';
-import { StudentHeaderDTO } from '../../models/studentHeaderDTO';
+import { StudentFlexiDTO } from '../../models/studentFlexiDTO';
 
 @Component({
   selector: 'app-student-header-details',
@@ -20,7 +20,7 @@ export class StudentHeaderDetailsComponent implements OnInit {
   errorMessage: string;
   successMessage: string;
 
-  student: StudentHeaderDTO;
+  student: StudentFlexiDTO;
   studentGUId: string;
   private subscription: Subscription;
 
@@ -50,10 +50,10 @@ export class StudentHeaderDetailsComponent implements OnInit {
   fetchData() {
     if (this.studentGUId && this.studentGUId !== undefined && this.studentGUId !== '0000') {
       this.loadingState = 1;
-      this.studentData.getStudentHeaderDTO(this.studentGUId).subscribe(
+      this.studentData.getStudentFlexiDTO(this.studentGUId).subscribe(
         (data) => {
           this.student = data;
-        },
+          console.log('header flexi: ' + this.student.educationalLevel); },
         (err) => {
           this.errorMessage = err;
         },

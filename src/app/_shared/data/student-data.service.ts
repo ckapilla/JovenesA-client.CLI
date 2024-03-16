@@ -7,7 +7,7 @@ import { Member } from '../models/member';
 import { Student } from '../models/student';
 import { StudentSponsorXRef } from '../models/student-sponsor-xref';
 import { StudentDTO } from '../models/studentDTO';
-import { StudentHeaderDTO } from '../models/studentHeaderDTO';
+import { StudentFlexiDTO } from '../models/studentFlexiDTO';
 import { StudentMiniDTO } from '../models/studentMiniDTO';
 import { UrlService } from '../services/url.service';
 
@@ -35,10 +35,10 @@ export class StudentDataService extends BaseDataService {
     return this.http.get<StudentDTO>(url);
   }
 
-  public getStudentHeaderDTO(studentGUId: string): Observable<StudentHeaderDTO> {
+  public getStudentFlexiDTO(studentGUId: string): Observable<StudentFlexiDTO> {
     const url = this.WebApiPrefix + 'students/headerDTO/' + studentGUId;
     console.log('sending AuthHttp get request for Students');
-    return this.http.get<StudentHeaderDTO>(url);
+    return this.http.get<StudentFlexiDTO>(url);
   }
 
   public getStudentDTOsByStatusAndYear(
