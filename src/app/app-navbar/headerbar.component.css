@@ -47,14 +47,14 @@ nav.students a {
   font-size: 16px;
   color: white;
   margin: unset;
-}  
+}
 nav.students a.active {
   color: black;
   padding: 8px;
   background-color: unset;
   opacity: 1!important;
   outline: none!important;
-} 
+}
 nav.students a:hover , nav.students a:focus,  nav.students a:focus-visible{
   opacity: .7;
   outline: 2px solid #fff;
@@ -92,19 +92,20 @@ a.logout:hover, a.logout:focus, a.logout:focus-visible{
   opacity: 1!important;
 }
 
-@media (max-width: 767.98px) { 
-  
+@media (max-width: 767.98px) {
+
 .menu{
   top: 96px;
     position: absolute;
     width: 100%;
     background-color: #1C94A4;
     z-index: 10;
-    .collapse.show a.nav-link{
+}
+.menu .collapse.show a.nav-link{
       margin-right: 1rem;
       margin-left: 1rem;
-    }
-}
+  }
+
 .navbar-nav{
   width: 55%;
 }
