@@ -17,7 +17,7 @@ import { UIStateModel } from './ui.model';
     qrComponentsEditable: false,
 
     selectedQRPeriod: '', // initialize ConstantsService.generateQRPeriods
-    selectedGradesProcessingPeriodID: '116',
+    selectedGradesProcessingPeriodID: '118',
 
     selectedFilterMode: '998',
     selectedStudentStatus: '0',
