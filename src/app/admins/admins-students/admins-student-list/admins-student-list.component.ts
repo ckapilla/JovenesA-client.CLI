@@ -232,19 +232,17 @@ export class AdminsStudentListComponent implements OnInit {
     this.store.dispatch(new SetPhotoPathname(photoUrl));
     // this.store.dispatch(new SetSelectedStudentGUId(guid));
     // this.store.dispatch(new SetSelectedStudentName(studentName));
-    console.log('gotoStudent sending mentorGUId: ' + mentorGUId);
     this.store.dispatch(new SetSelectedStudentMentorGUId(mentorGUId));
     const studentGUId = guid;
     this.store.dispatch(new SetSelectedStudentIdentifiers({ studentGUId, studentName }));
 
-    const link = ['admins/students/student-container', { guid: mentorGUId }];
+    const link = ['admins/students/student-container', { guid: guid }];
 
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }
 
   gotoMentor(guid: string) {
-    console.log('gotoMentor sending mentorGUId: ' + guid);
     const link = ['admins/members/member', { guid: guid }];
 
     console.log('navigating to ' + link);
