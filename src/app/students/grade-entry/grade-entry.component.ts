@@ -1,4 +1,4 @@
-import { Location } from '@angular/common';
+import { Location, registerLocaleData } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -14,10 +14,11 @@ import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 import { StudentDTO } from '../../_shared/models/studentDTO';
 import { ColumnSortService } from '../../_shared/services/column-sort.service';
 import { SessionService } from '../../_shared/services/session.service';
-
+import localePy from '@angular/common/locales/es-PY';
+registerLocaleData(localePy, 'es');
 @Component({
   templateUrl: './grade-entry.component.html',
-  styleUrls: ['./grade-entry.component.css']
+  styleUrls: ['./grade-entry.component.css', '../students.component.css']
 })
 export class GradeEntryComponent implements OnInit {
   myForm: UntypedFormGroup;
@@ -37,6 +38,8 @@ export class GradeEntryComponent implements OnInit {
 
    currentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
    currentName$ = this.store.select<string>(StudentState.getSelectedStudentName);
+  errorAlert: boolean;
+  successAlert: boolean;
 
   constructor(
     public becaData: BecaDataService,
@@ -172,11 +175,16 @@ export class GradeEntryComponent implements OnInit {
     console.log('saveEntry for ' + i);
     this.isLoading = true;
     this.errorMessage = '';
+
     console.log('row dirty value is ' + this.gradeEntryFormRows().controls[i].dirty);
     if (this.gradeEntryFormRows().controls[i].dirty) {
+      this.setReceivedDate(i, this.gradeEntryFormRows().controls[i].get('gradesTurnedInDate').value);
+
       this.retrieveFormValuesForRow(i);
+      console.log(this.studentGradesData[i])
       this.becaData.updateStudentGrades(this.studentGradesData[i]).subscribe(
         (gradeRowData) => {
+          this.successAlert = true;
           console.log('subscribe result in updateGradeRowData');
           console.log(JSON.stringify(gradeRowData));
           // need timeout to avoid "Expression has changed error"
@@ -196,6 +204,7 @@ export class GradeEntryComponent implements OnInit {
           }, 15000);
         },
         () => {
+          this.errorAlert = true;
           this.errorMessage = 'Por favor, compruebe el formato de la fecha. Debe ser AAAA-MM-DD';
           this.isLoading = false;
         }
@@ -224,11 +233,10 @@ export class GradeEntryComponent implements OnInit {
     // if empty set it to two days ago; if currently has a value, increment by one day
     if (currDateValue > '') {
       d = new Date(currDateValue + ' 00:00:01');
-      d.setDate(d.getDate() - 1);
+      //d.setDate(d.getDate() - 1);
     } else {
       d = new Date();
     }
-
     const strDate = [d.getFullYear(), ('0' + (d.getMonth() + 1)).slice(-2), ('0' + d.getDate()).slice(-2)].join('-');
     const gradeEntryFormRow: UntypedFormGroup = this.gradeEntryFormRows().controls[i] as UntypedFormGroup;
 
@@ -251,5 +259,9 @@ export class GradeEntryComponent implements OnInit {
     // ask if form is dirty and has not just been submitted
     console.log('hasChanges has form dirty ' + this.myForm.dirty);
     return this.myForm.dirty;
+  }
+  closeAlert(value: boolean){
+    this.errorAlert = value;
+    this.successAlert = value;
   }
 }

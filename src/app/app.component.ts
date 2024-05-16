@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from './_shared/services/auth.service';
+import { SessionService } from './_shared/services/session.service';
 
 /**
  * This class represents the main application component. Within the @Routes annotation is the configuration of the
@@ -10,8 +11,11 @@ import { AuthService } from './_shared/services/auth.service';
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
-  constructor(private auth: AuthService) {
+
+  constructor(public auth: AuthService, public session: SessionService) {
     console.log('AppComponentConstructor, calling localAuthSetup');
     auth.localAuthSetup();
+   
+    
   }
 }

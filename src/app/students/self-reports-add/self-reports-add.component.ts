@@ -11,9 +11,12 @@ import { UIState } from 'src/app/_store/ui/ui.state';
 import { constants } from '../../_shared/constants/constants';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 
+
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+
 @Component({
   templateUrl: './self-reports-add.component.html',
-  styleUrls: ['./self-reports-add.component.css', '../../../assets/css/forms.css']
+  styleUrls: ['./self-reports-add.component.css', '../../../assets/css/forms.css', '../students.component.css']
 })
 export class SelfReportsAddComponent implements OnInit {
   myForm: UntypedFormGroup;
@@ -32,8 +35,12 @@ export class SelfReportsAddComponent implements OnInit {
   selectedQRPeriod = '';
   subscription: Subscription;
 
+  periodo;
+
   //  selectedQRPeriod$ = this.store.select<string>(UIState.getSelectedQRPeriod);
-   selectedQRPeriod$ = this.store.select<string>(UIState.getSelectedQRPeriod);
+  selectedQRPeriod$ = this.store.select<string>(UIState.getSelectedQRPeriod);
+  errorAlert: boolean;
+  successAlert: boolean;
 
   constructor(
     public location: Location,
@@ -43,12 +50,12 @@ export class SelfReportsAddComponent implements OnInit {
     private _fb: UntypedFormBuilder,
     private store: Store
   ) {
-    console.log('Hi from SelfReportsAddComponent');
+    //console.log('Hi from SelfReportsAddComponent');
     this.subscribeForselectedQRPeriod();
     this.qrPeriods = constants.qrPeriods;
 
-
     this.myForm = _fb.group({
+      narrative_English: ['', { updateOn: 'blur' }],
       narrative_Spanish: ['', Validators.compose([Validators.required, Validators.maxLength(4500)])]
     });
     // this.myForm.controls.currentQRPeriod.disable();
@@ -59,42 +66,45 @@ export class SelfReportsAddComponent implements OnInit {
     // we want to store local time so we adjust for that.
     const now = new Date();
     this.selfReport.reportDateTime = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
-    console.log(this.selfReport.reportDateTime);
+    //console.log(this.selfReport.reportDateTime);
 
     this.errorMessage = '';
     this.successMessage = '';
     this.submitted = false;
+
+    //console.log('el reporte es', this.selfReport);
+
   }
 
   ngOnInit() {
-    console.log('selfReportsAdd ngOnInit');
+    //console.log('selfReportsAdd ngOnInit');
 
     this.selfReport.sponsorGroupId = this.currRoute.snapshot.params['sponsorGroupId'];
     this.selfReport.studentGUId = this.currRoute.snapshot.params['studentGUId'];
 
-    console.log('sponsorGroupId ' + this.selfReport.sponsorGroupId);
-    console.log('studentGUId from route params: ' + this.selfReport.studentGUId);
+    //console.log('sponsorGroupId ' + this.selfReport.sponsorGroupId);
+    //console.log('studentGUId from route params: ' + this.selfReport.studentGUId);
 
     this.selfReport.reportYear = +this.selectedQRPeriod.substr(0, 4);
     this.selfReport.reportPeriod = +this.selectedQRPeriod.substr(5, 1);
     console.log('year: ' + this.selfReport.reportYear + ' period: ' + this.selfReport.reportPeriod);
     this.selfReport.narrative_Spanish = '';
+    this.periodo = this.selfReport.reportPeriod;
 
     this.myForm.valueChanges.subscribe(() => {
       this.errorMessage = '';
       this.successMessage = '';
       this.submitted = false;
-      // console.log('form change event');
+      // //console.log('form change event');
     });
-    console.log('xx');
+     
   }
 
-
   subscribeForselectedQRPeriod() {
-    console.log('subscribing for selectedQRPeriod$');
+    //console.log('subscribing for selectedQRPeriod$');
     this.subscription = this.selectedQRPeriod$.subscribe((message) => {
       this.selectedQRPeriod = message;
-      console.log('************NGXS: SSR Add new selectedQRPeriod received ' + this.selectedQRPeriod);
+      //console.log('************NGXS: SSR Add new selectedQRPeriod received ' + this.selectedQRPeriod);
     });
   }
 
@@ -116,42 +126,55 @@ console.log('1');
     this.selfReport.narrative_Spanish = this.myForm.controls.narrative_Spanish.value;
     console.log('5')
     this.ssrData.postStudentSelfReport(this.selfReport).subscribe(
+
       (student) => {
-        console.log((this.successMessage = <any>student));
+        ////console.log((this.successMessage = <any>student));
         // this.submitted = true;
+        this.successAlert = true;
+
         this.isLoading = false;
         const target = '/students';
-        console.log('after call to postStudentSelfReports; navigating to ' + target);
+        //console.log('after call to postStudentSelfReports; navigating to ' + target);
         // because can be proxy from Admin we need to use location.back() not a fixed target
         // this.router.navigateByUrl(target);
-        this.location.back();
+        window.setTimeout(() => {
+          this.location.back();
+        }, 3000);
       },
       (error) => {
+        //console.log(error)
         this.errorMessage = error;
         this.isLoading = false;
+        this.errorAlert = true;
+        this.submitted = false;
+               
       }
     );
     return false;
   }
 
-
   onCancel() {
     const target = '/students';
-    console.log('navigating to ' + target);
+    //console.log('navigating to ' + target);
     this.router.navigateByUrl(target);
   }
 
   public hasChanges() {
     // if have changes then ask for confirmation
     // ask if form is dirty and has not just been submitted
-    console.log('hasChanges has submitted ' + this.submitted);
-    console.log('hasChanges has form dirty ' + this.myForm.dirty);
-    console.log('hasChanges net is ' + this.myForm.dirty || this.submitted);
+    //console.log('hasChanges has submitted ' + this.submitted);
+    //console.log('hasChanges has form dirty ' + this.myForm.dirty);
+    //console.log('hasChanges net is ' + this.myForm.dirty || this.submitted);
     return this.myForm.dirty && !this.submitted;
   }
 
   setSelectedQRPeriod(yearPeriod: string) {
     this.store.dispatch(new SetSelectedQRPeriod(yearPeriod));
+  }
+
+  closeAlert(value: boolean){
+    this.errorAlert = value;
+    this.successAlert = value;
   }
 
 }

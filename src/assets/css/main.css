@@ -1,4 +1,6 @@
 /* Reset */
+/* this set of reset rules doesn't work due bootstrap higher priority  */
+
 html,
 body,
 div {
@@ -6,16 +8,16 @@ div {
   margin: 0;
   padding: 0;
 }
-
 /* Box-sizing border-box */
-* {
-  box-sizing: border-box;
-}
+/* * {
+  box-sizing: border-box!important;
+} */
+
 
 /* Set up a default font and some padding to provide breathing room */
 body {
     color: #212121;
-    font-family: "Tahoma", "Helvetica Neue",  Roboto, sans-serif;
+    font-family: "Tahoma", "Helvetica Neue", 'Roboto', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     /*letter-spacing: 0.02em;*/
@@ -108,3 +110,4 @@ ul {
   opacity: 0.5;
   font-weight: light;
 }
+

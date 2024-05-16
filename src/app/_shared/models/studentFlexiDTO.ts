@@ -22,6 +22,8 @@ export class StudentFlexiDTO {
     public gradMonth?: string, // GradMonth
     public mentorName?: number, // MentorName
 
+    public studentGUId?: string,
+    public mentorGUId?: string ,//
     public studentSnapshotStatus?: number,
 
     public sponsorGroupName?: string,
@@ -57,8 +59,6 @@ export class StudentFlexiDTO {
     // public joinedFromId?: number,
     // public joinedFrom?: string,
 
-    public studentGUId?: string,
-    public mentorGUId?: string,
     public mentorAssignedDate?: Date,
     public mentoringEndDate?: Date,
     public mentoringComment?: string,

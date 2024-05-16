@@ -1,8 +1,9 @@
-<nav>
-  <a [routerLinkActive]="['active']" [routerLink]="['/students/becas-home']">Bienvenido</a>
-
-  <a [routerLinkActive]="['active']" [routerLink]="['/students/students-profile']">Perfil</a>
-  <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/students']">Mis
+<nav class="overflow-auto text-nowrap px-3 px-md-5 d-flex">
+  <!-- not being used -->
+<!--   <a [routerLinkActive]="['active']" [routerLink]="['/students/becas-home']">Bienvenido</a>
+ -->
+  <a class="p-1" [routerLinkActive]="['active']" [routerLink]="['/students/students-profile']">Perfil</a>
+  <a class="p-1" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/students']">Mis
     Reportes</a>
-  <a [routerLinkActive]="['active']" [routerLink]="['/students/grade-entry/']">Entrega Promedio</a>
+  <a class="p-1" [routerLinkActive]="['active']" [routerLink]="['/students/grade-entry/']">Entrega Promedio</a>
 </nav>

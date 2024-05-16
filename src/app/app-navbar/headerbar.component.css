@@ -29,3 +29,89 @@ nav a.active {
     padding: 26px 10px !important;
     border-right: 0px !important;
 }*/
+
+
+/* students navbar styles */
+.menu-separator{
+  opacity: .5;
+  border-radius: 5px;
+  border-bottom: 3px solid #fff;
+}
+nav.students{
+  background: #1C94A4;
+  font-family: 'Open Sans', sans-serif;
+  line-height: initial;
+}
+nav.students a {
+  font-weight: bold;
+  font-size: 16px;
+  color: white;
+  margin: unset;
+}
+nav.students a.active {
+  color: black;
+  padding: 8px;
+  background-color: unset;
+  opacity: 1!important;
+  outline: none!important;
+}
+nav.students a:hover , nav.students a:focus,  nav.students a:focus-visible{
+  opacity: .7;
+  outline: 2px solid #fff;
+}
+
+nav.students ul, li{
+  margin: 0;
+  padding: 0;
+}
+
+nav.students .container-fluid .navbar-brand{
+  height: 96px;
+}
+nav.students a.navbar-brand:hover, nav.students a.navbar-brand:focus, nav.students a.navbar-brand:focus-visible{
+opacity: 1;
+outline: none;
+}
+nav.students ul.navbar-nav{
+  gap: .5rem!important;
+}
+nav.students .nav-item:active{
+  color: black;
+}
+
+/* nav.students .btn-login{
+  color: white;
+  background-color: #143C4C;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 0 !important;
+} */
+a.logout:hover, a.logout:focus, a.logout:focus-visible{
+  outline: 2px red solid !important;
+  color: red!important;
+  opacity: 1!important;
+}
+
+@media (max-width: 767.98px) {
+
+.menu{
+  top: 96px;
+    position: absolute;
+    width: 100%;
+    background-color: #1C94A4;
+    z-index: 10;
+}
+.menu .collapse.show a.nav-link{
+      margin-right: 1rem;
+      margin-left: 1rem;
+  }
+
+.navbar-nav{
+  width: 55%;
+}
+}
+@media (min-width: 768px) {
+  .navbar-expand-md .navbar-collapse {
+      height: auto !important;
+  }
+}

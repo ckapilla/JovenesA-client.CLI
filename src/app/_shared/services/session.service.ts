@@ -48,6 +48,7 @@ export class SessionService {
   }
 
   public getStudentRecordGUId(): string {
+   // console.log("student record gui"+this.studentRecordGUId);
     return this.studentRecordGUId;
   }
 

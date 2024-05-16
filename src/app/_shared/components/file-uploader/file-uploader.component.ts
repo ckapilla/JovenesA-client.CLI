@@ -47,10 +47,10 @@ export class FileUploaderComponent {
           console.log('filEntry.size: ', file.size);
           let localError = '';
           if (ext.toLocaleLowerCase() !== '.png') {
-            localError = 'El archivo [' + file.name + '] no estár en el formato de .png .';
+            localError = 'El archivo [' + file.name + '] no está en formato .png.';
             this.errorMessage = localError;
           } else if (file.size > 204800) {
-            localError = 'El archivo [' + file.name + '] tiene mas 200 kb de tamaño.';
+            localError = 'El archivo [' + file.name + '] excede el límite de 200kb de tamaño.';
             this.errorMessage = localError;
           } else {
             const frmData = new FormData();

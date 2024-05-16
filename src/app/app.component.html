@@ -1,9 +1,23 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm" style="min-width:900px">
+<div class="container-fluid px-0 h-100">
+    <div class="row m-0">
+        <div class="col p-0">
             <app-headerbar></app-headerbar>
-            <div>
-                <router-outlet></router-outlet>
+            <router-outlet></router-outlet>
+            <footer class="d-flex justify-content-between align-items-center p-1 main-blue-bg">
+                <p class="m-1">
+                    &copy; 2024 <a href="http://www.jovenesadelante.org">
+                        <u>Jóvenes Adelante</u></a>
+                </p>
+                <p class="m-1 pr-2">
+                    v 11.0.1
+                </p>
+            </footer>
+
+            <div class="text-right">
+                <a height="60"
+                href="https://auth0.com/?utm_source=oss&utm_medium=gp&utm_campaign=oss" target="_blank"
+                alt="Single Sign On & Token Based Authentication - Auth0"><img height="60"
+                    alt="JWT Auth for open source projects" src="//cdn.auth0.com/oss/badges/a0-badge-light.png" /></a>
             </div>
         </div>
     </div>

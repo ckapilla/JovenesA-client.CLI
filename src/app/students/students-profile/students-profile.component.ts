@@ -8,7 +8,8 @@ import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 import { Member } from '../../_shared/models/member';
 
 @Component({
-  templateUrl: './students-profile.component.html'
+  templateUrl: './students-profile.component.html',
+  styleUrls: ['./students-profile.component.css', '../students.component.css']
 })
 export class StudentProfileComponent implements OnInit {
   myForm: UntypedFormGroup;
@@ -23,6 +24,8 @@ export class StudentProfileComponent implements OnInit {
   lastNames: string;
   email: string;
   student: Member;
+  errorAlert: boolean = false;
+  successAlert: boolean = false;
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -47,6 +50,7 @@ export class StudentProfileComponent implements OnInit {
       nonSMA_PostalCode: ['', Validators.required]
       // englishSkillLevelId: ['', Validators.required]
     });
+
     this.student = new Member();
 
     this.errorMessage = '';
@@ -62,6 +66,7 @@ export class StudentProfileComponent implements OnInit {
       // this.successMessage = '';
       this.submitted = false;
     });
+    this.myForm.disable();
   }
 
   fetchData() {
@@ -105,14 +110,28 @@ export class StudentProfileComponent implements OnInit {
     // use spread operator to merge changes:
     this.student = { ...this.student, ...this.myForm.value };
   }
+  editForm(element: HTMLInputElement) {
+    /* enables all form inputs */
+    if (this.myForm.disabled) {
+      element.textContent = 'Cancelar';
+      this.myForm.enable();
+    } else {
+      element.textContent = 'Editar';
+      this.myForm.disable();
+    }
+  }
 
   saveMyForm(): boolean {
     console.log('saving ');
+    this.myForm.disable();
     this.isLoading = true;
     this.retrieveFormValues();
     this.memberData.updateMember(this.student).subscribe(
       () => {
+        
         this.successMessage = 'Changes were saved successfully.';
+        /* triggers alert */
+        this.successAlert = true;
         this.submitted = true;
         this.isLoading = false;
 
@@ -123,6 +142,8 @@ export class StudentProfileComponent implements OnInit {
       },
       (error) => {
         this.errorMessage = error;
+        this.errorAlert = true;
+        console.log('error ' + error);
         this.isLoading = false;
       }
     );
@@ -137,5 +158,10 @@ export class StudentProfileComponent implements OnInit {
     console.log('hasChanges has form dirty ' + this.myForm.dirty);
     console.log('hasChanges net is ' + this.myForm.dirty || this.submitted);
     return this.myForm.dirty && !this.submitted;
+  }
+
+  closeAlert(value: boolean){
+    this.errorAlert = value;
+    this.successAlert = value;
   }
 }
