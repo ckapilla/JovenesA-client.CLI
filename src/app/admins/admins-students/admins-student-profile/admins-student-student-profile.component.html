@@ -382,16 +382,31 @@
                            class="form-control form-control-sm"
                            placeholder="" />
                   </div>
+                  <table>
+                    <tr>
+                      <td>
+                        <app-student-grades-status
+                        [gpaStatus]="studentDTO.gpaStatus"
+                        [gradeRptStatus]="studentDTO.gradeRptStatus">
+                        </app-student-grades-status>
 
-                  <app-student-grades-status
-                                             [gpaStatus]="studentDTO.gpaStatus"
-                                             [gradeRptStatus]="studentDTO.gradeRptStatus">
-                  </app-student-grades-status>
+                      </td>
+                      <td>
+                        &nbsp;&nbsp;&nbsp;
+                      </td>
+                      <td>
+                        <app-student-ssr-status
+                        [reportStatus]="studentDTO.timelySSRStatus">
+                      </app-student-ssr-status>
+                      </td>
+                    </tr>
+                  </table>
+
                   <app-student-mr-status
-                                         [meetingStatus]="studentDTO.timelyMentorMeetingStatus"
-                                         [reportStatus]="studentDTO.timelyMentorReportStatus"
-                                         [emojiPathname]="emojiPathname">
+                  [reportStatus]="studentDTO.timelyMentorReportStatus"
+                  [emojiPathname]="emojiPathname">
                   </app-student-mr-status>
+
                 </div>
                 <div class="form-group">
                   <label for="tituloIssuedDate">Titulo Issued Date</label>

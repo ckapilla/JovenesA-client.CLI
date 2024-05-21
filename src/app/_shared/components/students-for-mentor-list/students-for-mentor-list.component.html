@@ -10,7 +10,17 @@
       <tr *ngFor="let item of students, let i = index"
           id="item.studentGUId">
         <td (click)='gotoStudent(item.studentGUId)' class='link'>
-          {{item.studentName}} / {{item.status}}
+      <span *ngIf="item.status=='Current'; else notCurrentBlock ">
+        <span style="text-align: center; white-space: nowrap">
+          <img src="/assets/images/{{ item.timelyMentorReportStatus }}.jpg" width="20" />
+        </span>
+      </span>
+      <ng-template #notCurrentBlock>
+      <span style="text-align: center; white-space: nowrap">
+        <img src="/assets/images/NA.jpg" width="20" />
+      </span>
+    </ng-template>
+      {{item.studentName}} / {{item.status}}
         </td>
         <td></td>
       </tr>

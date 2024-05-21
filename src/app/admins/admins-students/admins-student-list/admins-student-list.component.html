@@ -101,6 +101,9 @@
                 <img [src]="student.photoUrl" height="30" class="thumbnail" />
               </td>
               <td (click)="gotoStudent(student.studentGUId, student.studentName, student.photoUrl, student.mentorGUId)" class="link">
+                <span style="text-align: center; white-space: nowrap">
+                  <img src="/assets/images/{{ student.timelySSRStatus }}.jpg" width="20" />
+                </span>
                 {{ student.studentName }}
               </td>
 
@@ -123,6 +126,10 @@
 
 
               <td (click)="gotoMentor(student.mentorGUId)" class="link">
+
+                <span style="text-align: center; white-space: nowrap">
+                  <img src="/assets/images/{{ student.timelyMentorReportStatus }}.jpg" width="20" />
+                </span>
                 {{ student.mentorName }}
               </td>
 

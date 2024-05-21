@@ -10,6 +10,8 @@ import { DisplayErrorsComponent } from './components/display-errors.component';
 import { FileUploaderComponent } from './components/file-uploader/file-uploader.component';
 import { TituloUploaderComponent } from './components/titulo-uploader/titulo-uploader.component';
 
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { AlertComponent } from './components/alert/alert.component';
 import { FollowUpRequestsListComponent } from './components/follow-up-requests-list/follow-up-requests-list.component';
 import { LoadingContainerComponent } from './components/loading-container.component';
 import { MemberHeaderDetailsComponent } from './components/member-header-details/member-header-details.component';
@@ -35,6 +37,7 @@ import { StudentLookupComponent } from './components/student-lookup/student-look
 import { StudentMRStatusComponent } from './components/student-mr-status.component';
 import { StudentPhotoComponent } from './components/student-photo/student-photo.component';
 import { StudentSelectorComponent } from './components/student-selector/student-selector.component';
+import { StudentSSRStatusComponent } from './components/student-ssr-status.component';
 import { StudentsForMentorGridComponent } from './components/students-for-mentor-grid/students-for-mentor-grid.component';
 import { StudentsForMentorListComponent } from './components/students-for-mentor-list/students-for-mentor-list.component';
 import { StudentsForSponsorGridComponent } from './components/students-for-sponsor-grid/students-for-sponsor-grid.component';
@@ -48,15 +51,13 @@ import { MarkedPipe } from './pipes/marked-pipe';
 import { TrimGuidPipe } from './pipes/trim-guid-pipe';
 import { TruncateDatePipe } from './pipes/truncate-date-pipe';
 import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
-import { AlertComponent } from './components/alert/alert.component';
-import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 /**
  * Do not specify provider's for modules that might be imported by a lazy loaded module.
  */
 
 @NgModule({
   imports: [
-    CommonModule, RouterModule, ReactiveFormsModule, FormsModule, 
+    CommonModule, RouterModule, ReactiveFormsModule, FormsModule,
     NgbModule, NgxFileDropModule, SweetAlert2Module
   ],
   declarations: [
@@ -80,6 +81,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     MentorsForStudentListComponent,
     StudentGradesStatusComponent,
     StudentMRStatusComponent,
+    StudentSSRStatusComponent,
     UniversityGradeMonthsComponent,
     CallbackComponent,
     AlphaMonthPipe,
@@ -130,6 +132,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     UniversityGradeMonthsComponent,
     StudentGradesStatusComponent,
     StudentMRStatusComponent,
+    StudentSSRStatusComponent,
     CallbackComponent,
     AlphaMonthPipe,
     AlphaLanguagePipe,

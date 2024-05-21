@@ -184,6 +184,12 @@ export class MentorReportsSummaryTrackingComponent implements OnInit
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }
+  gotoMentor(guid: string) {
+    const link = ['admins/members/member', { guid: guid }];
+
+    console.log('navigating to ' + link);
+    this.router.navigate(link);
+  }
 
   updateSummaryTracking(id: number, studentGUId: string, studentName: string) {
     // AABBCCDD
