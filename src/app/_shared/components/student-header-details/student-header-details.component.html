@@ -29,11 +29,18 @@
         <label>University:</label>
         {{student.universityDescriptor}}
         <br />
-        <label>Mentor Name:</label>
+        <label>Mentor:</label>
         {{student.mentorName}}
-        <br />
-        <label>Sponsor Name:</label>
+        &nbsp;&nbsp;
+        <label>Sponsor:</label>
         {{student.sponsorGroupName}}
+        <br />
+        <label>Student Self Rpt:</label>
+        <img src="/assets/images/{{student.timelySSRStatus}}.jpg" height="22">
+        <label>&nbsp;&nbsp;Grades Submitted:</label>
+        <img src="/assets/images/{{student.gradeRptStatus}}.jpg" height="22">
+        <label>&nbsp;&nbsp;GPA:</label>
+        <img src="/assets/images/{{student.gpaStatus}}.jpg" height="22">
       </div>
     </div>
   </div>

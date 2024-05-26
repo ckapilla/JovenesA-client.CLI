@@ -50,10 +50,12 @@ export class StudentHeaderDetailsComponent implements OnInit {
   fetchData() {
     if (this.studentGUId && this.studentGUId !== undefined && this.studentGUId !== '0000') {
       this.loadingState = 1;
-      this.studentData.getStudentFlexiDTO(this.studentGUId).subscribe(
+      this.studentData.getStudentFlexiDTOViaGUID(this.studentGUId).subscribe(
         (data) => {
           this.student = data;
-          console.log('header flexi: ' + this.student.educationalLevel); },
+          console.log('header flexi: ' + this.student.educationalLevel);
+          console.log('this.student.timelySSRStatus: ' + this.student.timelySSRStatus);
+        },
         (err) => {
           this.errorMessage = err;
         },

@@ -524,41 +524,41 @@ export class AdminsStudentProfileComponent implements OnInit {
   }
 
   getNumericStatus(studentDTO: StudentDTO): StudentDTO {
-    studentDTO.numericTimelyMentorMeetingStatus = 0;
-    if (studentDTO.timelyMentorMeetingStatus === 'red') {
-      studentDTO.numericTimelyMentorMeetingStatus = 1;
-    } else if (studentDTO.timelyMentorMeetingStatus === 'yellow') {
-      studentDTO.numericTimelyMentorMeetingStatus = 2;
-    } else if (studentDTO.timelyMentorMeetingStatus === 'green') {
-      studentDTO.numericTimelyMentorMeetingStatus = 3;
-    }
+    // studentDTO.numericTimelyMentorMeetingStatus = 0;
+    // if (studentDTO.timelyMentorMeetingStatus === 'red') {
+    //   studentDTO.numericTimelyMentorMeetingStatus = 1;
+    // } else if (studentDTO.timelyMentorMeetingStatus === 'yellow') {
+    //   studentDTO.numericTimelyMentorMeetingStatus = 2;
+    // } else if (studentDTO.timelyMentorMeetingStatus === 'green') {
+    //   studentDTO.numericTimelyMentorMeetingStatus = 3;
+    // }
 
-    studentDTO.numericTimelyMentorReportStatus = 0;
-    if (studentDTO.timelyMentorReportStatus === 'red') {
-      studentDTO.numericTimelyMentorReportStatus = 1;
-    } else if (studentDTO.timelyMentorReportStatus === 'yellow') {
-      studentDTO.numericTimelyMentorReportStatus = 2;
-    } else if (studentDTO.timelyMentorReportStatus === 'green') {
-      studentDTO.numericTimelyMentorReportStatus = 3;
-    }
+    // studentDTO.numericTimelyMentorReportStatus = 0;
+    // if (studentDTO.timelyMentorReportStatus === 'red') {
+    //   studentDTO.numericTimelyMentorReportStatus = 1;
+    // } else if (studentDTO.timelyMentorReportStatus === 'yellow') {
+    //   studentDTO.numericTimelyMentorReportStatus = 2;
+    // } else if (studentDTO.timelyMentorReportStatus === 'green') {
+    //   studentDTO.numericTimelyMentorReportStatus = 3;
+    // }
 
-    studentDTO.numericGradeRptStatus = 0;
-    if (studentDTO.gradeRptStatus === 'red') {
-      studentDTO.numericGradeRptStatus = 1;
-    } else if (studentDTO.gradeRptStatus === 'yellow') {
-      studentDTO.numericGradeRptStatus = 2;
-    } else if (studentDTO.gradeRptStatus === 'green') {
-      studentDTO.numericGradeRptStatus = 3;
-    }
+    // studentDTO.numericGradeRptStatus = 0;
+    // if (studentDTO.gradeRptStatus === 'red') {
+    //   studentDTO.numericGradeRptStatus = 1;
+    // } else if (studentDTO.gradeRptStatus === 'yellow') {
+    //   studentDTO.numericGradeRptStatus = 2;
+    // } else if (studentDTO.gradeRptStatus === 'green') {
+    //   studentDTO.numericGradeRptStatus = 3;
+    // }
 
-    studentDTO.numericGPAStatus = 0;
-    if (studentDTO.gpaStatus === 'red') {
-      studentDTO.numericGPAStatus = 1;
-    } else if (studentDTO.gpaStatus === 'yellow') {
-      studentDTO.numericGPAStatus = 2;
-    } else if (studentDTO.gpaStatus === 'green') {
-      studentDTO.numericGPAStatus = 3;
-    }
+    // studentDTO.numericGPAStatus = 0;
+    // if (studentDTO.gpaStatus === 'red') {
+    //   studentDTO.numericGPAStatus = 1;
+    // } else if (studentDTO.gpaStatus === 'yellow') {
+    //   studentDTO.numericGPAStatus = 2;
+    // } else if (studentDTO.gpaStatus === 'green') {
+    //   studentDTO.numericGPAStatus = 3;
+    // }
 
     studentDTO.joinedFrom = 'N/A';
     if (studentDTO.joinedFromId === 2056) {

@@ -33,12 +33,14 @@ export class StudentDTO {
 
     public gradeRptStatus?: string, // GradeRptStatus
     public gpaStatus?: string, // GPAStatus
-    public numericGradeRptStatus?: number,
-    public numericGPAStatus?: number,
+    public timelySSRStatus?: string,
+
+    // public numericGradeRptStatus?: number,
+    // public numericGPAStatus?: number,
     public timelyMentorMeetingStatus?: string,
     public timelyMentorReportStatus?: string,
-    public numericTimelyMentorMeetingStatus?: number,
-    public numericTimelyMentorReportStatus?: number,
+    // public numericTimelyMentorMeetingStatus?: number,
+    // public numericTimelyMentorReportStatus?: number,
     // public mentorId?: number, // MentorID
 
 

@@ -35,7 +35,7 @@ export class StudentDataService extends BaseDataService {
     return this.http.get<StudentDTO>(url);
   }
 
-  public getStudentFlexiDTO(studentGUId: string): Observable<StudentFlexiDTO> {
+  public getStudentFlexiDTOViaGUID(studentGUId: string): Observable<StudentFlexiDTO> {
     const url = this.WebApiPrefix + 'students/headerDTO/' + studentGUId;
     console.log('sending AuthHttp get request for Students');
     return this.http.get<StudentFlexiDTO>(url);
