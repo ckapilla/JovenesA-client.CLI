@@ -1,0 +1,58 @@
+<div class="card bg-primary">
+  <div class="card-header text-white" style="font-size:large">
+    Universitys
+  </div>
+  <div class="card-body bg-white">
+    <span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
+    <span *ngIf="successMessage" class="alert alert-success">{{successMessage}}</span>
+
+
+    <div [ngSwitch]="isLoading">
+      <div *ngSwitchCase="true" class="text-center col-md-4 col-md-offset-4">
+        <app-loading-container>
+        </app-loading-container>
+      </div>
+      <div *ngSwitchCase="false">
+        <table appSortableTable class="table-sm table-striped">
+
+          <thead>
+            <tr>
+              <!--<th app-sortable-column="mentorName" (onSortColumn)="onSortColumn($event)">Id</th>-->
+              <th></th>
+              <th app-sortable-column="universityName" sort-direction="asc" (onSortColumn)="onSortColumn($event)">
+                University</th>
+              <th app-sortable-column="universityMemberName" (onSortColumn)="onSortColumn($event)">Group Member Name
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let group of universities, let i = index">
+              <td>
+                {{ i+1 }}
+              </td>
+              <td>
+                {{ group.universityName }} <span (click)="editUniversity(group.universityId)" class="link">
+                  Edit</span>
+              </td>
+              <td>
+                {{ group.universityMemberName }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="form-group">
+          <label for="UniversityName">Add new University</label>
+          <input id="UniversityName" type="text"
+                 #UniversityName
+                 class="form-control form-control-sm" placeholder="University Name" />
+          <button class="btn btn-primary" (click)="addNewUniversity(UniversityName.value)">
+            Save
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  l
