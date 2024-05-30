@@ -22,6 +22,8 @@ import { FollowUpRequestsEditComponent } from './follow-up-requests-edit/follow-
 import { FollowUpRequestsComponent } from './follow-up-requests/follow-up-requests.component';
 import { SponsorGroupComponent } from './sponsor-group/sponsor-group.component';
 import { SponsorGroupsComponent } from './sponsor-groups/sponsor-groups.component';
+import { UniversitiesComponent } from './universities/universities.component';
+import { UniversityEditComponent } from './university-edit/university-edit.component';
 import { UtilitiesComponent } from './utilities/utilities.component';
 
 const adminRoutes: Routes = [
@@ -143,6 +145,14 @@ const adminRoutes: Routes = [
       //   path: 'reports',
       //   component: ReportsComponent
       // },
+      {
+        path: 'universities',
+        component: UniversitiesComponent
+      },
+      {
+        path: 'university-edit', // /:universityId',
+        component: UniversityEditComponent
+      },
       {
         path: 'utilities',
         component: UtilitiesComponent

@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { University } from '../models/university';
 import { UrlService } from '../services/url.service';
 
@@ -18,11 +18,23 @@ export class UniversityDataService {
   ///  University Data Service
   /// ///////////////////////////////////////////////
 
+  public getUniversity(universityId: number): Observable<University> {
+    console.log('university-dataservice getUniversity');
+    const url = this.WebApiPrefix +  'universities/' + universityId;
+    console.log('sending AuthHttp get request for University with url ' + url);
+    return this.http.get<University>(url).pipe(
+      tap(result => console.log('getUniversity result:', result)),
+      catchError(this.handleError));
+  }
+
 
   public getUniversities(): Observable<University[]> {
-    const url = this.WebApiPrefix +  'university/university-list';
+    console.log('university-dataservice getUniversities');
+    const url = this.WebApiPrefix +  'universities';
     console.log('sending AuthHttp get request for UniversityList with url ' + url);
-    return this.http.get<University[]>(url).pipe(catchError(this.handleError));
+    return this.http.get<University[]>(url).pipe(
+      tap(result => console.log('getUniversities result:', result)),
+      catchError(this.handleError));
   }
 
   public addNewUniversity(university: University): Observable<University> {
@@ -38,7 +50,7 @@ export class UniversityDataService {
   }
 
   public updateUniversity(university: University): Observable<any> {
-    const url = this.WebApiPrefix + 'university/' + university.universityId;
+    const url = this.WebApiPrefix + 'universities'; ///' + university.universityId;
     let body = JSON.stringify({ university }); //
     // strip outer 'university' name
 
@@ -59,7 +71,7 @@ export class UniversityDataService {
     // universityId: number,
     gradYear: number
     ): Observable<any> {
-    const url = this.WebApiPrefix + 'university/' + 'university' + '?studentGUId=' + studentGUId + '&gradYear='+ gradYear;
+    const url = this.WebApiPrefix + 'universities/' + 'university' + '?studentGUId=' + studentGUId + '&gradYear='+ gradYear;
 
     if (frmData) {
       const file: any = frmData.get('file');
