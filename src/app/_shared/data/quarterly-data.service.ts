@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { QuarterlyReport } from '../models/quarterly-report';
-import { QuarterlyReportRPT } from '../models/quarterly-reportRPT';
+import { QRMini } from '../models/quarterly-reportRPT';
 import { UrlService } from '../services/url.service';
 
 @Injectable({ providedIn: 'root' })
@@ -33,20 +33,20 @@ export class QuarterlyDataService {
     return this.http.get<QuarterlyReport[]>(url).pipe(catchError(this.handleError));
   }
 
-  public getQRMiniForStudentPeriod(studentGUId: string, yearPeriod: string): Observable<QuarterlyReportRPT> {
+  public getQRMiniForStudentPeriod(studentGUId: string, yearPeriod: string): Observable<QRMini> {
     const year = yearPeriod.substr(0, 4);
     const period = yearPeriod.substr(5, 1);
     const url = this.WebApiPrefix + 'quarterly/single/' + studentGUId + '/' + year + '/' + period;
     console.log('sending AuthHttp get request for QRMiniForStudentPeriod with url ' + url);
-    return this.http.get<QuarterlyReportRPT>(url).pipe(catchError(this.handleError));
+    return this.http.get<QRMini>(url).pipe(catchError(this.handleError));
   }
 
-  public getQRMinisForPeriod(yearPeriod: string, reviewedStatusId: number): Observable<QuarterlyReportRPT[]> {
+  public getQRMinisForPeriod(yearPeriod: string, reviewedStatusId: number): Observable<QRMini[]> {
     const year = yearPeriod.substr(0, 4);
     const period = yearPeriod.substr(5, 1);
     const url = this.WebApiPrefix + 'quarterly/' + year + '/' + period + '/' + reviewedStatusId;
     console.log('sending AuthHttp get request for QRMinisForPeriod with url ' + url);
-    return this.http.get<QuarterlyReportRPT[]>(url).pipe(catchError(this.handleError));
+    return this.http.get<QRMini[]>(url).pipe(catchError(this.handleError));
   }
 
   public getPartialQuarterlyReportByPeriod(

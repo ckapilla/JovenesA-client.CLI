@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
-import { QuarterlyReportRPT } from 'src/app/_shared/models/quarterly-reportRPT';
+import { QRMini } from 'src/app/_shared/models/quarterly-reportRPT';
 import { StudentState } from 'src/app/_store/student/student.state';
 import { SetQRComponentsEditable, SetSelectedQRPeriod } from 'src/app/_store/ui/ui.action';
 import { UIState } from 'src/app/_store/ui/ui.state';
@@ -25,7 +25,7 @@ export class QuarterlyContainerComponent implements OnInit {
   readonly reviewedStatuses: SELECTITEM[] = constants.reviewedQRStatuses;
   quarterlyReportGUId: string;
   selectedReviewedStatusID: string;
-  qrMini = new QuarterlyReportRPT();
+  qrMini = new QRMini();
   private subscription: Subscription;
 
    currentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);

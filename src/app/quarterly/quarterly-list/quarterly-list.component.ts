@@ -10,7 +10,7 @@ import { constants } from '../../_shared/constants/constants';
 import { QuarterlyDataService } from '../../_shared/data/quarterly-data.service';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 import { SORTCRITERIA } from '../../_shared/interfaces/SORTCRITERIA';
-import { QuarterlyReportRPT } from '../../_shared/models/quarterly-reportRPT';
+import { QRMini } from '../../_shared/models/quarterly-reportRPT';
 import { SessionService } from '../../_shared/services/session.service';
 
 @Component({
@@ -24,8 +24,8 @@ export class QuarterlyListComponent implements OnInit {
   readonly reviewedStatuses: SELECTITEM[] = constants.reviewedQRStatuses;
   readonly highlightStatuses: SELECTITEM[] = constants.highlightStatuses;
   readonly qrPeriods: SELECTITEM[] = constants.qrPeriods;
-  qrMinis: QuarterlyReportRPT[];
-  qrMini: QuarterlyReportRPT;
+  qrMinis: QRMini[];
+  qrMini: QRMini;
   selectedQRPeriod = '';
   displayTestNames: boolean;
   private subscription: Subscription;

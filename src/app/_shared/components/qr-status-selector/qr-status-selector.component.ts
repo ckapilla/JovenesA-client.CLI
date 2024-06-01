@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
 import { QuarterlyDataService } from 'src/app/_shared/data/quarterly-data.service';
-import { QuarterlyReportRPT } from 'src/app/_shared/models/quarterly-reportRPT';
+import { QRMini } from 'src/app/_shared/models/quarterly-reportRPT';
 import { StudentState } from 'src/app/_store/student/student.state';
 import { UIState } from 'src/app/_store/ui/ui.state';
 import { constants } from '../../constants/constants';
@@ -18,7 +18,7 @@ export class QrStatusSelectorComponent implements OnInit {
   isLoading = false;
   errorMessage: string;
   successMessage: string;
-  qrMini: QuarterlyReportRPT;
+  qrMini: QRMini;
   readonly reviewedStatuses: SELECTITEM[] = constants.reviewedQRStatuses;
   studentGUId: string; // 'model' for this component
   private subscription: Subscription;
@@ -35,7 +35,7 @@ export class QrStatusSelectorComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.qrMini = new QuarterlyReportRPT();
+    this.qrMini = new QRMini();
     this.subscribeForStudentGUIds2();
     this.subscribeForselectedQRPeriod();
   }

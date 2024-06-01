@@ -32,7 +32,9 @@
               <th app-sortable-column="studentName" sort-direction="asc" (onSortColumn)="onSortColumn($event)">
                 Student
               </th>
-              <th app-sortable-column="studentStatus" (onSortColumn)="onSortColumn($event)">Student Status</th>
+              <th app-sortable-column="studentStatus" (onSortColumn)="onSortColumn($event)">Status</th>
+              <th app-sortable-column="hasMR" (onSortColumn)="onSortColumn($event)">MR</th>
+              <th app-sortable-column="hasSR" (onSortColumn)="onSortColumn($event)">SSR</th>
               <th app-sortable-column="reviewedStatusId" (onSortColumn)="onSortColumn($event)">QR Status</th>
               <th app-sortable-column="sponsorGroupName" (onSortColumn)="onSortColumn($event)">Sponsor Group</th>
               <th app-sortable-column="highlightStatusId" (onSortColumn)="onSortColumn($event)">Highlight Status</th>
@@ -57,6 +59,16 @@
                 {{ qr.studentName }}
               </td>
               <td>{{ qr.studentStatus }}</td>
+              <td>
+                <span style="text-align: center; white-space: nowrap">
+                  <img src="/assets/images/{{ qr.hasMR }}.jpg" width="20" />
+                </span>
+              </td>
+              <td>
+                <span style="text-align: center; white-space: nowrap">
+                  <img src="/assets/images/{{ qr.hasSR }}.jpg" width="20" />
+                </span>
+              </td>
 
               <td class="centered">
                 <select

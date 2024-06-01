@@ -1,4 +1,4 @@
-export class QuarterlyReportRPT {
+export class QRMini {
   constructor(
     public quarterlyReportGUId?: string,
     public reportYear?: number,
@@ -10,7 +10,9 @@ export class QuarterlyReportRPT {
     public studentName?: string,
     public studentStatus?: string,
     public sponsorGroupName?: string,
-    public highlightStatusId?: number
+    public highlightStatusId?: number,
+    public hasMR?: string,
+    public hasSR?: string
   ) {
 
   }

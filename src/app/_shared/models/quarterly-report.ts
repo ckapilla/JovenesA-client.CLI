@@ -14,7 +14,8 @@ export class QuarterlyReport {
     public reportDateTime?: string,
     public reviewedStatusId?: number,
     public pN_Narrative?: string,
-    public sponsorGroupID?: number
+    public sponsorGroupID?: number,
+
   ) {
 
   }
