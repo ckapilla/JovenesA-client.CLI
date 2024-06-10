@@ -48,7 +48,7 @@ export class ConstantsService extends BaseDataService {
 
   private gpPeriodsUrl = this.WebApiPrefix + 'lookup/gpPeriods';
   gpPeriods$: Observable<GRADESPROCESSINGPERIOD[]> = this.http.get<GRADESPROCESSINGPERIOD[]>(this.gpPeriodsUrl).pipe(
-    tap((data) => console.log('gPP results ', JSON.stringify(data))),
+    // tap((data) => console.log('gPP results ', JSON.stringify(data))),
     shareReplay(1),
     catchError(this.handleError)
   );

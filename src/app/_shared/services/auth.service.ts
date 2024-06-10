@@ -105,7 +105,7 @@ export class AuthService {
     // A desired redirect path can be passed to login method
     // (e.g., from a route guard)
     // Ensure Auth0 client instance exists
-    // console.log('!@#$%^&*(in login with redirectPath:' + redirectPath);
+    console.log('!@#$%^&*(in UTH.login with redirectPath:' + redirectPath);
     this.auth0Client$.subscribe((client: Auth0Client) => {
       // Call method to log in
       client.loginWithRedirect({

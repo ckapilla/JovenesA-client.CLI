@@ -93,7 +93,7 @@ export class WHSE_MR_Component implements OnInit {
       (err) => console.error('Subscribe error: ' + err),
       () => {
         console.log('MentorReportsByMonth loaded ' + this.whseMR.length + ' rows');
-        console.log(JSON.stringify(this.whseMR));
+        // console.log(JSON.stringify(this.whseMR));
         this.setHighchartValues(this.whseMR);
         this.isLoading = false;
       }

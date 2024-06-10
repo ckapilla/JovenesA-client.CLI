@@ -28,8 +28,10 @@ export class UrlService {
       // this.webApiPrefix =  URL_CONFIG.DevUrlPrefix + 'api/'; // remote dev
       // this.webApiPrefix = URL_CONFIG.ProdUrlPrefix + 'api/'; ; // remote prod
       this.clientUrl = 'http://localhost:3000';
-      this.clientUrl = 'http://127.0.0.1:3000';
+      // this.clientUrl = 'http://127.0.0.1:3000';
+      // this.clientUrl = hostName + ':3000';
     }
+
 
     console.log('>>>webapi prefix: ' + this.webApiPrefix);
     console.log('>>>clientUrl: ' + this.clientUrl);

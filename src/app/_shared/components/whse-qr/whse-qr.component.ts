@@ -100,7 +100,7 @@ export class WHSE_QR_Component implements OnInit {
       (err) => console.error('Subscribe error: ' + err),
       () => {
         console.log('MentorReportsByMonth loaded ' + this.whseQR.length + ' rows');
-        console.log(JSON.stringify(this.whseQR));
+        // console.log(JSON.stringify(this.whseQR));
         this.setHighchartValues(this.whseQR);
         this.isLoading = false;
       }

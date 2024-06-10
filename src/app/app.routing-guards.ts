@@ -12,8 +12,8 @@ import { MonthlyReports2ESAddComponent } from './mentors/monthly-reports2-ES-add
 export class CanActivateViaAdminAuthGuard implements CanActivate {
   constructor(private auth: AuthService, private router: Router, private session: SessionService) {}
 
-  canActivate(next: ActivatedRouteSnapshot, routerState: RouterStateSnapshot) {
-    console.log('canActivate for Admin AuthGuard with url' + routerState.url);
+  canActivate(next: ActivatedRouteSnapshot, routerStateSnapshot: RouterStateSnapshot) {
+    console.log('canActivate for Admin AuthGuard with routerStateSnapshot.url' + routerStateSnapshot.url);
     if (this.auth.loggedIn) {
       console.log('Can Activate Admin 1');
       if (this.session.isAdmin()) {
@@ -26,7 +26,7 @@ export class CanActivateViaAdminAuthGuard implements CanActivate {
     } else {
       console.log('Not authenticated -- Can\'t Activate Admin');
       this.router.navigate([ '' ]); // just to clean up url bar
-      this.auth.login(routerState.url);
+      this.auth.login(routerStateSnapshot.url);
       return false;
     }
   }
@@ -35,7 +35,7 @@ export class CanActivateViaAdminAuthGuard implements CanActivate {
 export class CanActivateViaMentorAuthGuard implements CanActivate {
   constructor(private auth: AuthService, private router: Router, private session: SessionService) {}
 
-  canActivate(next: ActivatedRouteSnapshot, routerState: RouterStateSnapshot) {
+  canActivate(next: ActivatedRouteSnapshot, routerStateSnapshot: RouterStateSnapshot) {
     console.log('canActivate for /mentors');
     if (this.auth.loggedIn) {
       // following has issue of race condition with callback to get profile
@@ -46,9 +46,9 @@ export class CanActivateViaMentorAuthGuard implements CanActivate {
         return false;
       }
     } else {
-      console.log('link to Mentor but not authenticated -- save /mentors retry url:');
+      console.log('link to Mentor but not authenticated -- save /mentors routerState url:' + routerStateSnapshot.url);
       this.router.navigate([ '' ]); // just to clean up URL bar
-      this.auth.login(routerState.url);
+      this.auth.login(routerStateSnapshot.url);
 
       return false;
     }
@@ -59,7 +59,7 @@ export class CanActivateViaMentorAuthGuard implements CanActivate {
 export class CanActivateViaSponsorAuthGuard implements CanActivate {
   constructor(private auth: AuthService, private router: Router, private session: SessionService) {}
 
-  canActivate(next: ActivatedRouteSnapshot, routerState: RouterStateSnapshot) {
+  canActivate(next: ActivatedRouteSnapshot, routerStateSnapshot: RouterStateSnapshot) {
     console.log('canActivate for /sponsors');
     if (this.auth.loggedIn) {
       // following has issue of race condition with callback to get profile
@@ -70,9 +70,9 @@ export class CanActivateViaSponsorAuthGuard implements CanActivate {
         return false;
       }
     } else {
-      console.log('link to Sponsor but not authenticated -- save /sponsors retry url:');
+      console.log('link to Sponsor but not authenticated -- save /sponsors routerStateSnapshot.url:' + routerStateSnapshot.url);
       this.router.navigate([ '' ]); // just to clean up URL bar
-      this.auth.login(routerState.url);
+      this.auth.login(routerStateSnapshot.url);
 
       return false;
     }
@@ -83,7 +83,7 @@ export class CanActivateViaSponsorAuthGuard implements CanActivate {
 export class CanActivateViaStudentAuthGuard implements CanActivate {
   constructor(private auth: AuthService, private router: Router, private session: SessionService) {}
 
-  canActivate(next: ActivatedRouteSnapshot, routerState: RouterStateSnapshot) {
+  canActivate(next: ActivatedRouteSnapshot, routerStateSnapshot: RouterStateSnapshot) {
     console.log('canActivate for /students');
     if (this.auth.loggedIn) {
       // following has issue of race condition with callback to get profile
@@ -95,9 +95,9 @@ export class CanActivateViaStudentAuthGuard implements CanActivate {
         return false;
       }
     } else {
-      console.log('link to Mentor but not authenticated -- save /students retry url:');
+      console.log('link to Student but not authenticated -- save /students routerStateSnapshot.url:' + routerStateSnapshot.url);
       this.router.navigate([ '' ]); // just to clean up URL bar
-      this.auth.login(routerState.url);
+      this.auth.login(routerStateSnapshot.url);
 
       return false;
     }
