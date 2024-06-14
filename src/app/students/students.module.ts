@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule, LOCALE_ID } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { AppSharedModule } from '../_shared/_shared.module';
 import { GradeEntryComponent } from './grade-entry/grade-entry.component';
 import { SelfReportsAddComponent } from './self-reports-add/self-reports-add.component';
@@ -12,6 +12,7 @@ import { StudentsSelfReportsComponent } from './students-self-reports/students-s
 import { StudentsComponent } from './students.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { InscriptionsEntryComponent } from './inscriptions-entry/inscriptions-entry.component';
 
 @NgModule({
   imports: [AppSharedModule, CommonModule, StudentsRoutingModule, ReactiveFormsModule],
@@ -23,7 +24,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     StudentsSelfReportsComponent,
     SelfReportsEditComponent,
     SelfReportsAddComponent,
-    GradeEntryComponent
+    GradeEntryComponent,
+    InscriptionsEntryComponent
   ],
   providers: [{
     provide: LOCALE_ID,

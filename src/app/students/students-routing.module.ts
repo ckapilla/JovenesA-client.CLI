@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CanActivateViaStudentAuthGuard } from '../app.routing-guards';
 import { GradeEntryComponent } from './grade-entry/grade-entry.component';
+import { InscriptionsEntryComponent } from './inscriptions-entry/inscriptions-entry.component';
 import { SelfReportsAddComponent } from './self-reports-add/self-reports-add.component';
 import { SelfReportsEditComponent } from './self-reports-edit/self-reports-edit.component';
 import { StudentProfileComponent } from './students-profile/students-profile.component';
@@ -37,6 +38,10 @@ const routes: Routes = [
       {
         path: 'grade-entry',
         component: GradeEntryComponent
+      },
+      {
+        path: 'inscriptions-entry',
+        component: InscriptionsEntryComponent
       },
       {
         path: 'students-profile',
