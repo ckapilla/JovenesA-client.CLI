@@ -1,29 +1,29 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, Input } from "@angular/core";
 import { FileSystemFileEntry, NgxFileDropEntry } from "ngx-file-drop";
-import { BecaDataService } from "../../data/beca-data.service";
+import { InscriptionDataService } from "../../data/inscription-data.service";
 import { SessionService } from "../../services/session.service";
 import { UrlService } from "../../services/url.service";
 
 @Component({
-  selector: "app-file-uploader",
-  templateUrl: "./file-uploader.component.html", // ,
+  selector: "app-inscription-uploader",
+  templateUrl: "./inscription-uploader.component.html", // ,
   // styleUrls: ['./app.component.scss']
 })
-export class FileUploaderComponent {
+export class InscriptionUploaderComponent {
   public files: NgxFileDropEntry[] = [];
   WebApiPrefix: string;
   errorMessage = "";
   successMessage = "";
-  @Input() studentGradeId: number;
+  @Input() inscriptionId: number;
   @Input() gradesProcessingPeriodId: number;
   constructor(
     private http: HttpClient,
     private webApiPrefixService: UrlService,
     private session: SessionService,
-    private becaData: BecaDataService
+    private inscriptionDataSvc: InscriptionDataService
   ) {
-    console.log("file uploader constructor with studentGradeId= " + this.studentGradeId);
+    console.log("inscription uploader constructor with inscriptionId= " + this.inscriptionId);
     this.WebApiPrefix = webApiPrefixService.getWebApiPrefix();
   }
 
@@ -55,11 +55,11 @@ export class FileUploaderComponent {
             const frmData = new FormData();
             frmData.append("file", file);
             // frmData.append('studentGUID', this.session.getStudentRecordGUId());
-            this.becaData
-              .uploadStudentGradesReport(
+            this.inscriptionDataSvc
+              .uploadInscriptionImage(
                 frmData,
                 this.session.getStudentRecordGUId(),
-                this.studentGradeId,
+                this.inscriptionId,
                 this.gradesProcessingPeriodId,
                 date.toDateString()
               )

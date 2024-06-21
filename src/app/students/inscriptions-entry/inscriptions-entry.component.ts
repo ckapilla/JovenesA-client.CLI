@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
 import { InscriptionDataService } from 'src/app/_shared/data/inscription-data.service';
-
 import { Inscription } from 'src/app/_shared/models/inscription';
+import { TruncateDatePipe } from "src/app/_shared/pipes/truncate-date-pipe";
 import { StudentState } from 'src/app/_store/student/student.state';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 // import { SORTCRITERIA } from '../../_shared/interfaces/SORTCRITERIA';
@@ -22,7 +22,7 @@ registerLocaleData(localePy, 'es');
 export class InscriptionsEntryComponent implements OnInit {
   myForm: UntypedFormGroup;
   studentDTO: StudentDTO;
-  inscription: Inscription[];
+  inscriptionsData: Inscription[];
   isLoading: boolean;
   errorMessage: string;
   successMessage: string;
@@ -31,7 +31,7 @@ export class InscriptionsEntryComponent implements OnInit {
   studentGUId: string;
   private subscription: Subscription;
   studentName: string;
-  confirmedDateB: boolean;
+  confirmedDate: boolean;
   inGradesProcessingPeriod: boolean;
 
    currentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
@@ -40,7 +40,7 @@ export class InscriptionsEntryComponent implements OnInit {
   successAlert: boolean;
 
   constructor(
-    public inscriptionData: InscriptionDataService,
+    public inscriptionDataSvc: InscriptionDataService,
     public router: Router,
     // private route: ActivatedRoute,
     private session: SessionService,
@@ -53,55 +53,91 @@ export class InscriptionsEntryComponent implements OnInit {
     this.inGradesProcessingPeriod = true;
     this.myForm = this._fb.group({
       studentGUId: ['0000'],
-      gradeEntryFormRows: this._fb.array([])
+      inscriptionEntryFormRows: this._fb.array([])
     });
   }
 
-  gradeEntryFormRows(): UntypedFormArray {
-    return <UntypedFormArray>this.myForm.get('gradeEntryFormRows');
+  inscriptionEntryFormRows(): UntypedFormArray {
+    return <UntypedFormArray>this.myForm.get('inscriptionEntryFormRows');
   }
 
-  createEmptyGradeEntryFormRow(): UntypedFormGroup {
-    console.log('CreateEmptyGradeEntry create empty row to be populated');
+  createEmptyInscriptionEntryFormRow(): UntypedFormGroup {
+    console.log('CreateEmptyInscriptionEntry create empty row to be populated');
     return this._fb.group({
       gradesProcessingPeriodId: { value: '', disabled: true },
       initialGradesEntryDate: { value: '', disabled: true },
-      gradesDueDate: { value: '', disabled: true },
-      gradesTurnedInDate: [
+      inscriptionsDueDate: { value: '', disabled: true },
+      inscriptionsTurnedInDate: [
         { value: '' }, // must use readonly in html instead of disabled here so value will get sent to server
         Validators.compose([Validators.pattern(/^\d{4}\-\d{1,2}\-\d{1,2}$/), Validators.maxLength(10)])
       ],
-      gradePointAvg: [{ value: '' }, Validators.pattern(/^\d{1,2}\.\d{1,1}$/)],
       confirmedDate: { value: '', disabled: true }
     });
   }
 
+  updateInscriptionEntryFormRow(
+    inscriptionEntryFormRow: UntypedFormGroup,
+    inscriptionEntryDataRow: Inscription
+  ): void {
+    console.log(
+      "updateInscriptionEntryFormRow update existing form row with retrieved data"
+    );
+    console.log(JSON.stringify(inscriptionEntryDataRow));
+    inscriptionEntryFormRow.patchValue({
+      gradesProcessingPeriodId: inscriptionEntryDataRow.gradesProcessingPeriodId,
+      initialGradesEntryDate: new TruncateDatePipe().transform(
+        "" + inscriptionEntryDataRow.initialGradesEntryDate
+      ),
+      inscriptionsDueDate: new TruncateDatePipe().transform(
+        "" + inscriptionEntryDataRow.inscriptionsDueDate
+      ),
+      inscriptionsTurnedInDate: new Date().toISOString().slice(0, 10),
+      confirmedDate: new TruncateDatePipe().transform(
+        "" + inscriptionEntryDataRow.confirmedDate
+      ),
+    });
+    ///if (inscriptionEntryFormRow.get("confirmedDate").value > "") {
+      ///inscriptionEntryFormRow.get("gradePointAvg").disable();
+      /// this.confirmedDateB = true;
+    ///}
+
+    inscriptionEntryFormRow.markAsPristine();
+  }
+
+  addInscriptionEntryRow(inscriptionEntryDataRow: Inscription) {
+    const inscriptionEntryFormRow: UntypedFormGroup = this.createEmptyInscriptionEntryFormRow();
+
+    this.updateInscriptionEntryFormRow(inscriptionEntryFormRow, inscriptionEntryDataRow);
+    console.log("addInscriptionEntry: push new populated row intoFormArray");
+    this.inscriptionEntryFormRows().push(inscriptionEntryFormRow);
+  }
   ngOnInit() {
     this.studentGUId = this.session.getStudentRecordGUId();
-    console.log('gradeEntry ngOnInit, studentGUID = ' + this.studentGUId);
+    console.log('inscriptionEntry ngOnInit, studentGUID = ' + this.studentGUId);
     this.fetchFilteredData();
   }
 
   fetchFilteredData() {
     if (this.studentGUId && this.studentGUId !== undefined && this.studentGUId !== '0000') {
       this.isLoading = true;
-      this.inscriptionData.getInscription(this.studentGUId).subscribe(
+      this.inscriptionDataSvc.getInscriptionsForStudent(this.studentGUId).subscribe(
         (dataArray) => {
           // if want to have all empty ones, not just latest:
-          // this.studentGradesData = dataArray.filter(this.filter_dates);
+          // this.inscriptions = dataArray.filter(this.filter_dates);
           // get latest one
-          this.inscription = dataArray.slice(0, 1);
+          this.inscriptionsData = dataArray.slice(0, 1);
         },
         (err) => {
           console.log('XXE1');
           this.errorMessage = err;
         },
-        // () => {
-        //   this.inscription.forEach((gradeEntryDataRow) => {
-        //     this.addGradeEntryRow(gradeEntryDataRow);
-        //   });
-        //   this.isLoading = false;
-        // }
+        () => {
+          console.log('XXE2');
+          this.inscriptionsData.forEach((inscriptionEntryDataRow) => {
+            this.addInscriptionEntryRow(inscriptionEntryDataRow);
+          });
+          this.isLoading = false;
+        }
       );
     }
   }
@@ -125,12 +161,12 @@ export class InscriptionsEntryComponent implements OnInit {
       d = new Date();
     }
     const strDate = [d.getFullYear(), ('0' + (d.getMonth() + 1)).slice(-2), ('0' + d.getDate()).slice(-2)].join('-');
-    const gradeEntryFormRow: UntypedFormGroup = this.gradeEntryFormRows().controls[i] as UntypedFormGroup;
+    const inscriptionEntryFormRow: UntypedFormGroup = this.inscriptionEntryFormRows().controls[i] as UntypedFormGroup;
 
-    gradeEntryFormRow.patchValue({
-      gradesTurnedInDate: strDate
+    inscriptionEntryFormRow.patchValue({
+      inscriptionsTurnedInDate: strDate
     });
-    gradeEntryFormRow.markAsDirty();
+    inscriptionEntryFormRow.markAsDirty();
   }
 
   toFixedValue(num: number | null) {

@@ -60,7 +60,7 @@ export class BecaDataService {
     gradesProcessingPeriodId: number,
     receivedDate: string
     ): Observable<any> {
-    const url = this.WebApiPrefix + 'becas/' + 'student-grades-report' + '?studentGUId=' + studentGUId + '&studentGradeId='+ studentGradeId  + '&gradesProcessingPeriodId='+ gradesProcessingPeriodId + '&=';
+    const url = this.WebApiPrefix + 'becas/' + 'student-grades-report' + '?studentGUId=' + studentGUId + '&studentGradeId='+ studentGradeId  + '&gradesProcessingPeriodId='+ gradesProcessingPeriodId + '&receivedDate=' + receivedDate;
 
     if (frmData) {
       const file: any = frmData.get('file');
