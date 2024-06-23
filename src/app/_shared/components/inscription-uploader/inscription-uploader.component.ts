@@ -17,17 +17,20 @@ export class InscriptionUploaderComponent {
   successMessage = "";
   @Input() inscriptionId: number;
   @Input() gradesProcessingPeriodId: number;
+  @Input() inscriptionType: string;
   constructor(
     private http: HttpClient,
     private webApiPrefixService: UrlService,
     private session: SessionService,
     private inscriptionDataSvc: InscriptionDataService
   ) {
-    console.log("inscription uploader constructor with inscriptionId= " + this.inscriptionId);
+    console.log("inscription uploader constructor");
     this.WebApiPrefix = webApiPrefixService.getWebApiPrefix();
   }
 
   public dropped(files: NgxFileDropEntry[]) {
+    console.log("@@@@@@@@@@@@@ dropped event with inscriptionType= " + this.inscriptionType);
+
     this.errorMessage = "";
     this.successMessage = "";
     this.files = files;
@@ -61,7 +64,7 @@ export class InscriptionUploaderComponent {
                 this.session.getStudentRecordGUId(),
                 this.inscriptionId,
                 this.gradesProcessingPeriodId,
-                date.toDateString()
+                this.inscriptionType
               )
               .subscribe(
                 // this.becaData.uploadStudentGradesReport(frmData).subscribe(

@@ -44,7 +44,7 @@ export class InscriptionDataService {
 
     const x = JSON.parse(body);
     body = JSON.stringify(x.inscriptionEntry);
-    console.log('in updateInscriptions');
+    console.log('@@@@@@@@@@@@@in updateInscriptions with ' + body);
 
     const returnedToken =
       // eslint-disable-next-line max-len
@@ -54,31 +54,33 @@ export class InscriptionDataService {
     return this.http.put(url, body, { headers: headers });
   }
 
-  public uploadStudentGradesImage(frmData: FormData,
-    studentGUId: string,
-    studentGradeId: number,
-    gradesProcessingPeriodId: number,
-    receivedDate: string
-    ): Observable<any> {
-    const url = this.WebApiPrefix + 'becas/' + 'student-grades-report' + '?studentGUId=' + studentGUId + '&studentGradeId='+ studentGradeId  + '&gradesProcessingPeriodId='+ gradesProcessingPeriodId + '&receivedDate=' + receivedDate;
+  // public uploadStudentGradesImage(frmData: FormData,
+  //   studentGUId: string,
+  //   studentGradeId: number,
+  //   gradesProcessingPeriodId: number,
+  //   receivedDate: string
+  //   ): Observable<any> {
+  //   const url = this.WebApiPrefix + 'becas/' + 'student-grades-report' + '?studentGUId=' + studentGUId + '&studentGradeId='+ studentGradeId  + '&gradesProcessingPeriodId='+ gradesProcessingPeriodId + '&receivedDate=' + receivedDate;
 
-    if (frmData) {
-      const file: any = frmData.get('file');
-      console.log('ready to post ' + url + ' filename: ' + file.name); // + ' options ' + headers);
-      // console.log('with frmData.fileName = ' + frmData.get('fileName'));
-      // console.log('with frmData.studentGUID = ' + frmData.get('studentGUID'));
-      return this.http.post(url, frmData);
-    }
-  }
+  //   if (frmData) {
+  //     const file: any = frmData.get('file');
+  //     console.log('ready to post ' + url + ' filename: ' + file.name); // + ' options ' + headers);
+  //     // console.log('with frmData.fileName = ' + frmData.get('fileName'));
+  //     // console.log('with frmData.studentGUID = ' + frmData.get('studentGUID'));
+  //     return this.http.post(url, frmData);
+  //   }
+  // }
 
 
   public uploadInscriptionImage(frmData: FormData,
     studentGUId: string,
     inscriptionId: number,
     gradesProcessingPeriodId: number,
-    receivedDate: string
+    inscriptionType: string
     ): Observable<any>{
-    const url = this.WebApiPrefix + 'becas/inscriptions/' + 'inscription' + '?studentGUId=' + studentGUId + 'InscriptionId='+ inscriptionId  + '&gradesProcessingPeriodId='+ gradesProcessingPeriodId ;
+    const url = this.WebApiPrefix + 'becas/inscriptions/' + 'inscription' + '?studentGUId=' + studentGUId + '&inscriptionId='+ inscriptionId  + '&gradesProcessingPeriodId='+ gradesProcessingPeriodId + '&inscriptionType=' + inscriptionType;
+
+    console.log('@@@@@@@@@@@@@@in uploadInscriptionImage with url ' + url );
 
     if (frmData) {
       const file: any = frmData.get('file');

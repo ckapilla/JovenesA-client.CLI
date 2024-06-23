@@ -1,6 +1,6 @@
 import { Location, registerLocaleData } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
@@ -66,11 +66,9 @@ export class InscriptionsEntryComponent implements OnInit {
     return this._fb.group({
       gradesProcessingPeriodId: { value: '', disabled: true },
       initialGradesEntryDate: { value: '', disabled: true },
-      inscriptionsDueDate: { value: '', disabled: true },
-      inscriptionsTurnedInDate: [
-        { value: '' }, // must use readonly in html instead of disabled here so value will get sent to server
-        Validators.compose([Validators.pattern(/^\d{4}\-\d{1,2}\-\d{1,2}$/), Validators.maxLength(10)])
-      ],
+      XXinscriptionsDueDate: { value: '', disabled: true },
+      registrationFormSubmittedDate: { value: '' }, // must use readonly in html instead of disabled here so value will get sent to server
+      paymentReceiptSubmittedDate: { value: '' }, // must use readonly in html instead of disabled here so value will get sent to server
       confirmedDate: { value: '', disabled: true }
     });
   }
@@ -91,15 +89,11 @@ export class InscriptionsEntryComponent implements OnInit {
       inscriptionsDueDate: new TruncateDatePipe().transform(
         "" + inscriptionEntryDataRow.inscriptionsDueDate
       ),
-      inscriptionsTurnedInDate: new Date().toISOString().slice(0, 10),
-      confirmedDate: new TruncateDatePipe().transform(
-        "" + inscriptionEntryDataRow.confirmedDate
-      ),
+      // inscriptionsTurnedInDate: new Date().toISOString().slice(0, 10),
+      // confirmedDate: new TruncateDatePipe().transform(
+      //   "" + inscriptionEntryDataRow.confirmedDate
+      // ),
     });
-    ///if (inscriptionEntryFormRow.get("confirmedDate").value > "") {
-      ///inscriptionEntryFormRow.get("gradePointAvg").disable();
-      /// this.confirmedDateB = true;
-    ///}
 
     inscriptionEntryFormRow.markAsPristine();
   }
@@ -126,6 +120,9 @@ export class InscriptionsEntryComponent implements OnInit {
           // this.inscriptions = dataArray.filter(this.filter_dates);
           // get latest one
           this.inscriptionsData = dataArray.slice(0, 1);
+          console.log('XXE0');
+          console.log(JSON.stringify(this.inscriptionsData));
+
         },
         (err) => {
           console.log('XXE1');

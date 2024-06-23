@@ -6,7 +6,7 @@ export class Inscription {
     public gradesProcessingPeriodId: number,
     public initialGradesEntryDate: Date = new Date(),
     public inscriptionsDueDate: Date = new Date(),
-    public inscriptionsTurnedInDate: Date = new Date(),
+    public XXinscriptionsTurnedInDate: Date = new Date(),
     public confirmedById?: number,
     public confirmedDate?: Date,
     public registrationFormSubmittedDate?: Date,
