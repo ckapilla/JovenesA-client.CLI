@@ -1,5 +1,5 @@
 <div class="py-4 px-3 px-md-5">
-  <h1 class="title text-center text-sm-left ">Tu inscripción para este periodo</h1>
+  <h1 class="title text-center text-sm-left ">Tu promedio para este periodo</h1>
 
   <ng-container>
     <app-alert (didClose)="closeAlert($event)" [isShown]="successAlert" [type]="'success'"
@@ -81,12 +81,12 @@
                     {{inscriptionsData[0].initialGradesEntryDate | date:'dd/MM/yyy'}}</p>
                 </div>
               </div>
-
-              <div class="stepper-item second d-flex flex-row align-items-center justify-content-around"
-                   [class.completed-second]="inscriptionsData[0].gradesTurnedInDate">
+<!-- Entregado_A  --->
+              <div class="stepper-item second-A d-flex flex-row align-items-center justify-content-around"
+                   [class.completed-second-A]="inscriptionsData[0].registrationFormSubmittedDate">
                 <div class="d-flex flex-column align-items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                       *ngIf="!inscriptionsData[0].RegistrationFormSubmittedDate; else entregado" viewBox="0,0,256,256"
+                       *ngIf="!inscriptionsData[0].registrationFormSubmittedDate; else Entregado_A" viewBox="0,0,256,256"
                        heigth="256px" width="256px" fill-rule="nonzero">
                     <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
                        stroke-linejoin="none" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
@@ -103,7 +103,7 @@
                       </g>
                     </g>
 
-                    <g fill="#d9d9d9" fill-rule="nonzero" stroke="none" stroke-width="none" stroke-linecap="butt"
+                    <!-- <g fill="#d9d9d9" fill-rule="nonzero" stroke="none" stroke-width="none" stroke-linecap="butt"
                        stroke-linejoin="none" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
                        font-family="none" font-weight="none" font-size="none" text-anchor="none"
                        style="mix-blend-mode: normal">
@@ -114,9 +114,9 @@
                         <path
                               d="M143.79,112.215v0c0,3.01333 -0.55667,6.1 -1.67,9.26c-1.10667,3.15333 -2.55667,6.32333 -4.35,9.51c-1.79333,3.18667 -3.79667,6.30333 -6.01,9.35c-2.22,3.04 -4.44,5.92667 -6.66,8.66v0l-4.18,3.67v0.34l5.46,-0.94h18.6v6.31h-33.96v-2.47c1.25333,-1.30667 2.76,-2.93 4.52,-4.87c1.76667,-1.93333 3.60333,-4.08 5.51,-6.44c1.90667,-2.36 3.78333,-4.86333 5.63,-7.51c1.84667,-2.64667 3.52333,-5.33333 5.03,-8.06c1.51333,-2.73333 2.72333,-5.43667 3.63,-8.11c0.91333,-2.67333 1.37,-5.20333 1.37,-7.59v0c0,-2.78667 -0.79667,-5.10667 -2.39,-6.96c-1.59333,-1.84667 -4.01333,-2.77 -7.26,-2.77v0c-2.16,0 -4.26333,0.44 -6.31,1.32c-2.04667,0.88 -3.81,1.89 -5.29,3.03v0l-2.82,-4.86c1.99333,-1.70667 4.35333,-3.04333 7.08,-4.01c2.73333,-0.96667 5.66333,-1.45 8.79,-1.45v0c2.44667,0 4.61,0.35333 6.49,1.06c1.88,0.71333 3.47333,1.72333 4.78,3.03c1.30667,1.30667 2.3,2.85667 2.98,4.65c0.68667,1.79333 1.03,3.74333 1.03,5.85z" />
                       </g>
-                    </g>
+                    </g> -->
                   </svg>
-                  <ng-template #entregado>
+                  <ng-template #Entregado_A>
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                          viewBox="0,0,256,256" width="256px" height="256px" fill-rule="nonzero">
                       <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
@@ -134,17 +134,78 @@
                       </g>
                     </svg>
                   </ng-template>
-                  <p class="step">Entregado</p>
-                  <p class="step" *ngIf="inscriptionsData[0].gradesTurnedInDate">
-                    {{inscriptionsData[0].gradesTurnedInDate | date:'dd/MM/yyy'}}</p>
+                  <p class="step">Entregado_A</p>
+                  <p class="step" *ngIf="inscriptionsData[0].registrationFormSubmittedDate">
+                    {{inscriptionsData[0].registrationFormSubmittedDate | date:'dd/MM/yyy'}}</p>
                 </div>
               </div>
+
+<!-- Entregado_B  --->
+              <div class="stepper-item second-B d-flex flex-row align-items-center justify-content-around"
+                   [class.completed-second-B]="inscriptionsData[0].paymentReceiptSubmittedDate">
+                <div class="d-flex flex-column align-items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                       *ngIf="!inscriptionsData[0].paymentReceiptSubmittedDate; else Entregado_B" viewBox="0,0,256,256"
+                       heigth="256px" width="256px" fill-rule="nonzero">
+                    <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+                       stroke-linejoin="none" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+                       font-family="none" font-weight="none" font-size="none" text-anchor="none"
+                       style="mix-blend-mode: normal">
+                      <path transform="scale(5.33333,5.33333)"
+                            d="M44,24c0,11.045 -8.955,20 -20,20c-11.045,0 -20,-8.955 -20,-20c0,-11.045 8.955,-20 20,-20c11.045,0 20,8.955 20,20z"
+                            id="strokeMainSVG" fill="#d9d9d9" stroke="#d9d9d9" stroke-linejoin="round" />
+                      <g transform="scale(5.33333,5.33333)" fill="#ffffff" stroke="none" stroke-linejoin="miter">
+                        <path
+                              d="M44,24c0,11.045 -8.955,20 -20,20c-11.045,0 -20,-8.955 -20,-20c0,-11.045 8.955,-20 20,-20c11.045,0 20,8.955 20,20z" />
+                        <path
+                              d="M34.586,14.586l-13.57,13.586l-5.602,-5.586l-2.828,2.828l8.434,8.414l16.395,-16.414z" />
+                      </g>
+                    </g>
+
+                    <!-- <g fill="#d9d9d9" fill-rule="nonzero" stroke="none" stroke-width="none" stroke-linecap="butt"
+                       stroke-linejoin="none" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+                       font-family="none" font-weight="none" font-size="none" text-anchor="none"
+                       style="mix-blend-mode: normal">
+                      <path
+                            d="M143.79,112.215c0,3.01333 -0.55667,6.1 -1.67,9.26c-1.10667,3.15333 -2.55667,6.32333 -4.35,9.51c-1.79333,3.18667 -3.79667,6.30333 -6.01,9.35c-2.22,3.04 -4.44,5.92667 -6.66,8.66l-4.18,3.67v0.34l5.46,-0.94h18.6v6.31h-33.96v-2.47c1.25333,-1.30667 2.76,-2.93 4.52,-4.87c1.76667,-1.93333 3.60333,-4.08 5.51,-6.44c1.90667,-2.36 3.78333,-4.86333 5.63,-7.51c1.84667,-2.64667 3.52333,-5.33333 5.03,-8.06c1.51333,-2.73333 2.72333,-5.43667 3.63,-8.11c0.91333,-2.67333 1.37,-5.20333 1.37,-7.59c0,-2.78667 -0.79667,-5.10667 -2.39,-6.96c-1.59333,-1.84667 -4.01333,-2.77 -7.26,-2.77c-2.16,0 -4.26333,0.44 -6.31,1.32c-2.04667,0.88 -3.81,1.89 -5.29,3.03l-2.82,-4.86c1.99333,-1.70667 4.35333,-3.04333 7.08,-4.01c2.73333,-0.96667 5.66333,-1.45 8.79,-1.45c2.44667,0 4.61,0.35333 6.49,1.06c1.88,0.71333 3.47333,1.72333 4.78,3.03c1.30667,1.30667 2.3,2.85667 2.98,4.65c0.68667,1.79333 1.03,3.74333 1.03,5.85z"
+                            id="strokeMainSVG" stroke="#d9d9d9" stroke-width="5.33333" stroke-linejoin="round" />
+                      <g stroke="none" stroke-width="1" stroke-linejoin="miter">
+                        <path
+                              d="M143.79,112.215v0c0,3.01333 -0.55667,6.1 -1.67,9.26c-1.10667,3.15333 -2.55667,6.32333 -4.35,9.51c-1.79333,3.18667 -3.79667,6.30333 -6.01,9.35c-2.22,3.04 -4.44,5.92667 -6.66,8.66v0l-4.18,3.67v0.34l5.46,-0.94h18.6v6.31h-33.96v-2.47c1.25333,-1.30667 2.76,-2.93 4.52,-4.87c1.76667,-1.93333 3.60333,-4.08 5.51,-6.44c1.90667,-2.36 3.78333,-4.86333 5.63,-7.51c1.84667,-2.64667 3.52333,-5.33333 5.03,-8.06c1.51333,-2.73333 2.72333,-5.43667 3.63,-8.11c0.91333,-2.67333 1.37,-5.20333 1.37,-7.59v0c0,-2.78667 -0.79667,-5.10667 -2.39,-6.96c-1.59333,-1.84667 -4.01333,-2.77 -7.26,-2.77v0c-2.16,0 -4.26333,0.44 -6.31,1.32c-2.04667,0.88 -3.81,1.89 -5.29,3.03v0l-2.82,-4.86c1.99333,-1.70667 4.35333,-3.04333 7.08,-4.01c2.73333,-0.96667 5.66333,-1.45 8.79,-1.45v0c2.44667,0 4.61,0.35333 6.49,1.06c1.88,0.71333 3.47333,1.72333 4.78,3.03c1.30667,1.30667 2.3,2.85667 2.98,4.65c0.68667,1.79333 1.03,3.74333 1.03,5.85z" />
+                      </g>
+                    </g> -->
+                  </svg>
+                  <ng-template #Entregado_B>
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                         viewBox="0,0,256,256" width="256px" height="256px" fill-rule="nonzero">
+                      <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+                         stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+                         font-family="none" font-weight="none" font-size="none" text-anchor="none"
+                         style="mix-blend-mode: normal">
+                        <g transform="scale(5.33333,5.33333)">
+                          <path
+                                d="M44,24c0,11.045 -8.955,20 -20,20c-11.045,0 -20,-8.955 -20,-20c0,-11.045 8.955,-20 20,-20c11.045,0 20,8.955 20,20z"
+                                fill="#147c12" />
+                          <path
+                                d="M34.602,14.602l-13.602,13.597l-5.602,-5.598l-2.797,2.797l8.399,8.403l16.398,-16.402z"
+                                fill="#ffffff" />
+                        </g>
+                      </g>
+                    </svg>
+                  </ng-template>
+                  <p class="step">Entregado_B</p>
+                  <p class="step" *ngIf="inscriptionsData[0].paymentReceiptSubmittedDate">
+                    {{inscriptionsData[0].paymentReceiptSubmittedDate | date:'dd/MM/yyy'}}</p>
+                </div>
+              </div>
+
+
 
               <div class="stepper-item third d-flex flex-row  justify-content-around"
                    [class.completed-third]="inscriptionsData[0].confirmedDate">
                 <div class="d-flex flex-column align-items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                       *ngIf="!inscriptionsData[0].PaymentReceiptSubmittedDate; else confirmado" viewBox="0,0,256,256" heigth="256px"
+                       *ngIf="!inscriptionsData[0].confirmedDate; else confirmado" viewBox="0,0,256,256" heigth="256px"
                        width="256px" fill-rule="nonzero">
                     <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
                        stroke-linejoin="none" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
@@ -200,82 +261,48 @@
               </div>
 
             </div>
+
             <form [formGroup]="myForm">
 
               <div class="container-fluid m-0 p-0" style="column-gap: 1.5rem">
 
-                <ng-container formArrayName="inscriptionEntryFormRows"
-                              *ngFor="let entry of inscriptionsData, let i = index">
+                <ng-container formArrayName="inscriptionEntryFormRows" *ngFor="let entry of inscriptionsData, let i = index">
                   <div class="row row-cols-1 row-cols-md-2 m-0">
                     <div [formGroupName]="i" class="col p-0 my-auto">
                       <div class="limit-date col p-0">
                         <p class="state" *ngIf="!inscriptionsData[0].confirmedDate; else emailSary">
                           Tienes hasta el
-                          <br><span>{{inscriptionsData[0].gradesDueDate | date: 'fullDate' :'es'}}</span>
-                          <br>para subir tus inscripciones
+                          <br><span>{{inscriptionsData[0].inscriptionsDueDate | date: 'fullDate' :'es'}}</span>
+                          <br>para subir tus calificaciones
                         </p>
                         <ng-template #emailSary>
-                          <p>
-                            La inscripción ha sido revisada y registrada.
+                          <p class="text-danger">
+                            La calificación ha sido revisada y registrada. Cualquier cambio, favor de comunicarse a
+                            <a href="mailto:s.martinez@jovenesadelante.org"
+                               target="_blank">s.martinez@jovenesadelante.org</a>
                           </p>
                         </ng-template>
                       </div>
 
-
-                      <!-- <div class="col p-0 d-flex flex-row align-items-center justify-content-center grade">
-                        <label for="gradePointAvg">Ingresa tu inscripción: </label>
-                      </div>
-
-                      <div class="col p-0 d-flex flex-row justify-content-around button-wrapper mx-auto mt-3">
-
-                        <button class="btn btn-default m-0 save" type="submit" (click)="saveAllChangedEntries()"
-                                [disabled]="myForm.pristine">
-                          Guardar
-                        </button>
-                      </div> -->
                     </div>
-                    <!--  <p style="text-align: right;">
-        <button [disabled]="myForm.pristine" type="submit" class="btn btn-primary"
-          (click)="saveAllChangedEntries()">Guardar</button>
-      </p> -->
+
 
                     <div class="col p-0 grade-image-wrapper mt-4 text-right ">
-                      <h6 class="mb-3 text-center">Sube tu formato de inscripciones en el recuadro de abajo</h6>
+                      <h6 class="mb-3 text-center">Sube tu reporte de calificaciones en el recuadro de abajo</h6>
                       <!-- hacer esto con la alerta y con el cuadro de abajo q nunca se muestra -->
                       <!--  <h6 >Al arrastrar o seleccionar tu archivo, este se cargará y su nombre se mostrará
           debajo del recuadro. Hecho esto, tu archivo estará cargado y listo para revisión.</h6>
         <br> -->
-                      <app-inscription-uploader [inscriptionId]=inscriptionsData[0].inscriptionId
-                                                [gradesProcessingPeriodId]=inscriptionsData[0].gradesProcessingPeriodId
-                                                [inscriptionType]="'reg'"
-                                                ></app-inscription-uploader>
+                      <app-file-uploader [studentGradeId]=inscriptionsData[0].studentGradeId
+                                         [gradesProcessingPeriodId]=inscriptionsData[0].gradesProcessingPeriodId></app-file-uploader>
                       <div class="img-wrapper p-1 text-left">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 13 14" fill="none">
                           <path d="M8.66734 0C7.78194 0 6.89655 0.367845 6.21948 1.03347L1.3932 5.79794C-0.464399 7.67219 -0.464399 10.7025 1.3932 12.5943C3.25079 14.4686 6.2542 14.4686 8.12916 12.5943L10.2992 10.4048L9.10136 9.19612L7.08751 11.1755L6.93127 11.4032C5.73338 12.6118 3.78898 12.6118 2.59109 11.4032C1.41056 10.2121 1.44528 8.28527 2.59109 7.07663L7.41737 2.25962C8.09443 1.57648 9.22288 1.57648 9.91731 2.25962C10.5944 2.94276 10.5597 4.02878 9.91731 4.72943L5.57713 9.05599C5.40352 9.23115 5.10839 9.23115 4.91742 9.05599C4.74382 8.88083 4.74382 8.58305 4.91742 8.39037L5.02159 8.33782L6.60141 6.69127L5.40352 5.48264L3.71953 7.18173C2.88622 8.02252 2.88622 9.40632 3.71953 10.2471C4.55285 11.0879 5.92435 11.1054 6.75766 10.2471L11.0978 5.9731C12.452 4.60682 12.452 2.39975 11.0978 1.05099C10.4208 0.367845 9.55273 0.0175164 8.64998 0.0175164L8.66734 0Z"
                                 fill="#001AFF" />
                         </svg>
                         <a class="align-middle ml-2"
-                           [hidden]="!entry!.registrationFormSubmittedDate"
-                           href="{{staticUrlPrefix}}Inscription/{{entry.gradesProcessingPeriodId}}/{{entry.studentGUId | uppercase }}.png"
-                           target="_blank">{{entry.studentGUId | uppercase }}.png</a>
-
-                      </div>
-
-                      <!-- #######################################-->
-                      <h6 class="mb-3 text-center">Sube tu recibo de pago en el recuadro de abajo</h6>
-
-                      <app-inscription-uploader [inscriptionId]=inscriptionsData[0].inscriptionId
-                                                [gradesProcessingPeriodId]=inscriptionsData[0].gradesProcessingPeriodId
-                                                [inscriptionType]="'pmt'">
-                                              </app-inscription-uploader>
-                      <div class="img-wrapper p-1 text-left">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 13 14" fill="none">
-                          <path d="M8.66734 0C7.78194 0 6.89655 0.367845 6.21948 1.03347L1.3932 5.79794C-0.464399 7.67219 -0.464399 10.7025 1.3932 12.5943C3.25079 14.4686 6.2542 14.4686 8.12916 12.5943L10.2992 10.4048L9.10136 9.19612L7.08751 11.1755L6.93127 11.4032C5.73338 12.6118 3.78898 12.6118 2.59109 11.4032C1.41056 10.2121 1.44528 8.28527 2.59109 7.07663L7.41737 2.25962C8.09443 1.57648 9.22288 1.57648 9.91731 2.25962C10.5944 2.94276 10.5597 4.02878 9.91731 4.72943L5.57713 9.05599C5.40352 9.23115 5.10839 9.23115 4.91742 9.05599C4.74382 8.88083 4.74382 8.58305 4.91742 8.39037L5.02159 8.33782L6.60141 6.69127L5.40352 5.48264L3.71953 7.18173C2.88622 8.02252 2.88622 9.40632 3.71953 10.2471C4.55285 11.0879 5.92435 11.1054 6.75766 10.2471L11.0978 5.9731C12.452 4.60682 12.452 2.39975 11.0978 1.05099C10.4208 0.367845 9.55273 0.0175164 8.64998 0.0175164L8.66734 0Z"
-                                fill="#001AFF" />
-                        </svg>
-                        <a class="align-middle ml-2"
-                           [hidden]="!entry!.paymentReceiptSubmittedDate"
-                           href="{{staticUrlPrefix}}Inscription/{{entry.gradesProcessingPeriodId}}/{{entry.studentGUId | uppercase }}.png"
+                           [hidden]="!entry!.imageSubmittedDate"
+                           href="{{staticUrlPrefix}}StudentGradesReports/{{entry.gradesProcessingPeriodId}}/{{entry.studentGUId | uppercase }}.png"
                            target="_blank">{{entry.studentGUId | uppercase }}.png</a>
 
                       </div>
@@ -283,12 +310,14 @@
                            href="https://imagen.online-convert.com/es/convertir-a-png" target="_blank"
                            rel="noopener noreferrer">aquí</a></small>
                     </div>
-
                   </div>
+
                 </ng-container>
               </div>
+
             </form>
           </div>
+
         </ng-container>
         <!-- end content -->
       </div>
