@@ -16,31 +16,37 @@
       <div class="form-group">
 
         <div class="border border-dark rounded-lg bg-white  p-sm-4 p-2">
-          Queridos estudiantes,<br/>
-          <br/>En sus reportes, me gustaría que compartieran su perspectiva sobre la importancia de la educación superior como la mejor
-          inversión para crear un futuro próspero. Les animo a reflexionar sobre cómo la educación ha impactado sus vidas y cómo creen
-          que puede influir positivamente en el desarrollo de la sociedad en su conjunto. ¿Qué oportunidades les ha brindado la educación? ¿Cómo creen que puede contribuir al crecimiento y la mejora de sus entornos? Sus opiniones y experiencias son valiosas para nosotros y para nuestros patrocinadores, quienes comparten nuestra convicción de que la educación es la clave para un futuro mejor.
-          <br/><br/>Además escriban algo que quieran agradecer a su patrocinador, algo que consideren lo motivaría a seguir apoyando a más estudiantes invirtiendo en la educación.
-
-          <ol class="px-4 my-3">
-            <h3 class="question-header text-center">
-              Para hacer valida tu entrega de reporte te pediremos lo siguiente:
-            </h3>
+          <!-- change pre tag for an ordered list to avoid horizontal scroll -->
+          REDACTA A MANERA DE ENSAYO LAS RESPUESTAS A ESTAS PREGUNTAS:
+          <ol class="px-4 my-3" style="list-style-type: none;">
             <li>
-              Construye una narrativa significativa.
+              <!-- <h3 class="question-header text-center"> -->
+                1.	Este primer semestre del año ¿Que fué lo que más disfrutaste académicamente? y ¿Qué fue lo más difícil de sobrellevar?, cuéntanos ¿por qué?
+              <!-- </h3> -->
+            <li>
+              2.	¿Cuáles son las preguntas que más te haz hecho a ti mismo en el trayecto de tu carrera?
             </li>
             <li>
-              Da un orden y coherencia en el desarrollo y presentación de la narrativa.
+              3.	En el tiempo que llevas en Jóvenes Adelante¿Cómo ha sido tu experiencia con nosotros? Qué mejoraría de nuestro seguimiento, cambiarías algo del programa, que áreas de oportunidad observas.
             </li>
             <li>
-              Cantidad mínima 1 cuartilla
+              4.	Cuéntanos ¿en qué ámbitos tu mentor te ha ayudado a crecer? y ¿en qué aspectos consideras que necesitas un poco más de apoyo?.
             </li>
             <li>
-              Revisa tu ortografía antes de enviar.
+              5.	¿Cómo está tu familia? Nos interesa saber si hay alguna situación difícil o muy agradable por la que estén pasando? Estoy aquí para leerte.
+            </li>
+            <li>
+              6.	En el punto que vas de tu carrera, ¿En qué notas que haz evolucionado, crecido o madurado? y ¿Por qué?
+            </li>
+            <li>
+              7.	¿Qué hábito notas que te está poniendo el pié para lograr tus metas?
+            </li>
+            <li>
+              8.	Emocionalmente, ¿Cómo te has sentido durante estos cuatro meses? Más allá de responder “bien” o “mal” nos gustaría leerte, eres importante para nosotros.
             </li>
           </ol>
         </div>
-        <p>Tu reporte en español </p>
+        <p>Tu reporte en español:</p>
         <div class="rounded-lg textarea-container mt-3 mt-sm-4 mt-md-5" [ngClass]="myForm.controls['narrative_Spanish'].errors?.required ? 'red-border' :
         myForm.controls['narrative_Spanish'].valid && myForm.controls['narrative_Spanish'].value.length > 0 ?
         'green-border' : 'blue-border'">

@@ -12,7 +12,6 @@ import { constants } from '../../_shared/constants/constants';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 
 
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 
 @Component({
   templateUrl: './self-reports-add.component.html',
@@ -86,7 +85,8 @@ export class SelfReportsAddComponent implements OnInit {
     //console.log('studentGUId from route params: ' + this.selfReport.studentGUId);
 
     this.selfReport.reportYear = +this.selectedQRPeriod.substr(0, 4);
-    this.selfReport.reportPeriod = +this.selectedQRPeriod.substr(5, 1);
+    // TEMP TEMP TEMP
+    this.selfReport.reportPeriod = 2; // +this.selectedQRPeriod.substr(5, 1);
     console.log('year: ' + this.selfReport.reportYear + ' period: ' + this.selfReport.reportPeriod);
     this.selfReport.narrative_Spanish = '';
     this.periodo = this.selfReport.reportPeriod;
@@ -97,7 +97,7 @@ export class SelfReportsAddComponent implements OnInit {
       this.submitted = false;
       // //console.log('form change event');
     });
-     
+
   }
 
   subscribeForselectedQRPeriod() {
@@ -147,7 +147,7 @@ console.log('1');
         this.isLoading = false;
         this.errorAlert = true;
         this.submitted = false;
-               
+
       }
     );
     return false;

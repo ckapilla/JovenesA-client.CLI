@@ -82,7 +82,12 @@ export class StudentsSelfReportsComponent implements OnInit {
       //console.log('NOT in report recording period');
       this.inReportProcessingPeriod = false;
     }
+
+      // REMP TEMP TEMP
+    this.inReportProcessingPeriod = true;
   }
+
+
 
   getMonthStrings(strToday: string) {
     let month = strToday.substring(4, 6);
@@ -95,7 +100,7 @@ export class StudentsSelfReportsComponent implements OnInit {
         break;
       case '06':
       case '07':
-      case '08': 
+      case '08':
         this.lastMonthInQuarter = 'septiembre';
         break;
       case '09':
@@ -116,10 +121,10 @@ export class StudentsSelfReportsComponent implements OnInit {
     //console.log('studentSelfReport ngOnInit, studentGUID = ' + this.studentGUId);
     this.parseSSRDateRange();
     this.fetchSelfReports();
-    
+
     //  this.subscribeForStudentGUId();
   }
- 
+
 
   // subscribeForStudentGUId() {
   //   this.studentGUId = 'unset';
@@ -212,7 +217,7 @@ export class StudentsSelfReportsComponent implements OnInit {
     //console.log('current tweaked ReportDate: ' + rptDate);
     //console.log('ssrEditDateStart: ' + this.ssrEditDateStart);
     //console.log('ssrEditDateStop: ' + this.ssrEditDateStop);
-    return this.reportSubmitted =(rptDate >= this.ssrEditDateStart  && rptDate <= this.ssrEditDateStop); 
+    return this.reportSubmitted =(rptDate >= this.ssrEditDateStart  && rptDate <= this.ssrEditDateStop);
     }
   ngAfterContentChecked(): void {
     this.changeDetector.detectChanges();
