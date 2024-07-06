@@ -102,7 +102,9 @@
               </td>
               <td (click)="gotoStudent(student.studentGUId, student.studentName, student.photoUrl, student.mentorGUId)" class="link">
                 <span style="text-align: center; white-space: nowrap">
-                  <img src="/assets/images/{{ student.timelySSRStatus }}.jpg" width="20" />
+                  <img src="/assets/images/{{ student.timelySSRStatus }}.jpg" width="20"
+                  title= "{{ getSSRTimelinessByColor(student.timelySSRStatus) }}"
+                  />
                 </span>
                 {{ student.studentName }}
               </td>
@@ -128,13 +130,17 @@
               <td (click)="gotoMentor(student.mentorGUId)" class="link">
 
                 <span style="text-align: center; white-space: nowrap">
-                  <img src="/assets/images/{{ student.timelyMentorReportStatus }}.jpg" width="20" />
+                  <img src="/assets/images/{{ student.timelyMentorReportStatus }}.jpg" width="20"
+                    title= "{{ getMRTimelinessByColor(student.timelyMentorReportStatus) }}"
+                  />
                 </span>
                 {{ student.mentorName }}
               </td>
 
               <td style="text-align: center; white-space: nowrap">
-                <img src="{{ emojis[student.studentSnapshotStatus + 1] }}" width="24" />
+                <img src="{{ emojis[student.studentSnapshotStatus + 1] }}" width="24"
+                  title="{{ emojiMsgs[student.studentSnapshotStatus + 1] ?? 'N/A' }}"
+                   />
               </td>
 
               <td>

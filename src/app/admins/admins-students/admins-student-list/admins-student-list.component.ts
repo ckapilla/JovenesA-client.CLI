@@ -42,6 +42,7 @@ export class AdminsStudentListComponent implements OnInit {
   readonly joinedYears: SELECTITEM[] = constants.joinedYears;
   readonly gradYears: SELECTITEM[] = constants.gradYears;
   readonly emojis: string[] = constants.emojis;
+  readonly emojiMsgs: string[] = constants.emojiMsgs;
   displayTestNames: boolean;
 
    testNameVisibility$ = this.store.select<boolean>(UIState.getTestNamesVisibility);
@@ -185,7 +186,23 @@ export class AdminsStudentListComponent implements OnInit {
       element.scrollIntoView(true);
     }
   }
+  getSSRTimelinessByColor(color: string): string {
+    return 'Student ' +constants.timelinessMsgs.get(color);
+  }
+  getMRTimelinessByColor(color: string): string {
+    return 'Mentor ' + constants.timelinessMsgs.get(color);
+  }
 
+
+  // getEmojiMsg(studentSnapshotStatus: number): string {
+  //   const index = studentSnapshotStatus + 1;
+  //   if (index >= 0 && index < constants.emojiMsgs.length) {
+  //     return constants.emojiMsgs[index];
+  //   } else {
+  //     console.error('Invalid studentSnapshotStatus:', studentSnapshotStatus);
+  //     return 'N/A'; // Default message
+  //   }
+  // }
   // getNumericStatus(studentDTO: StudentDTO): StudentDTO {
   //   // studentDTO.numericTimelyMentorMeetingStatus = 0;
   //   // if (studentDTO.timelyMentorMeetingStatus === 'red') {

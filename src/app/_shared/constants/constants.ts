@@ -85,6 +85,24 @@ const emojis = [
   '/assets/images/NA.jpg'
 ];
 
+const emojiMsgs = [
+  'Needs Attention',
+  'Thumbs Up',
+  'Celebrate',
+  'Concerned',
+  'N/A'
+];
+
+
+const timelinessMsgs =new Map<string, string>([
+  ['green', 'Reports Up-to-date'],
+  ['yellow', 'Report Due this month'],
+  ['red', 'Report Overdue']
+]);
+
+
+
+
 const languageStatuses: SELECTITEM[] = [
 ];
 
@@ -128,7 +146,8 @@ export const constants = {
 
   genders,
   emojis,
-
+  emojiMsgs,
+  timelinessMsgs,
   // db
   gradesProcessingPeriods,
   languageStatuses,
