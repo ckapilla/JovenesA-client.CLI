@@ -84,7 +84,7 @@ export class InscriptionsEntryComponent implements OnInit {
     inscriptionEntryFormRow.patchValue({
       gradesProcessingPeriodId: inscriptionEntryDataRow.gradesProcessingPeriodId,
       initialGradesEntryDate: new TruncateDatePipe().transform(
-        "" + inscriptionEntryDataRow.initialGradesEntryDate
+        "" + inscriptionEntryDataRow.initialInscriptionsEntryDate
       ),
       inscriptionsDueDate: new TruncateDatePipe().transform(
         "" + inscriptionEntryDataRow.inscriptionsDueDate

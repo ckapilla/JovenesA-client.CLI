@@ -26,10 +26,10 @@
             <div class="stepper-wrapper d-flex flex-row justify-content-center">
 
               <div class="stepper-item first d-flex flex-row align-items-center justify-content-around"
-                   [class.completed-first]="inscriptionsData[0].initialGradesEntryDate">
+                   [class.completed-first]="inscriptionsData[0].initialInscriptionsEntryDate">
                 <div class="d-flex flex-column align-items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                       *ngIf="!inscriptionsData[0].initialGradesEntryDate; else solicitado" viewBox="0,0,256,256"
+                       *ngIf="!inscriptionsData[0].initialInscriptionsEntryDate; else solicitado" viewBox="0,0,256,256"
                        heigth="256px" width="256px" fill-rule="nonzero">
                     <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
                        stroke-linejoin="none" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
@@ -84,7 +84,7 @@
                   </ng-template>
                   <p class="step">Solicitado</p>
                   <p class="step" *ngIf="inscriptionsData[0].gradesTurnedInDate">
-                    {{inscriptionsData[0].initialGradesEntryDate | date:'dd/MM/yyy'}}</p>
+                    {{inscriptionsData[0].initialInscriptionsEntryDate | date:'yyyy-MM-dd'}}</p>
                 </div>
               </div>
               <!-- Entregado_A  --->
@@ -145,7 +145,7 @@
                   </ng-template>
                   <p class="step">Inscripción</p>
                   <p class="step" *ngIf="inscriptionsData[0].registrationFormSubmittedDate">
-                    {{inscriptionsData[0].registrationFormSubmittedDate | date:'dd/MM/yyy'}}</p>
+                    {{inscriptionsData[0].registrationFormSubmittedDate | date:'yyyy-MM-dd'}}</p>
                 </div>
               </div>
 
@@ -209,7 +209,7 @@
                   </ng-template>
                   <p class="step">Recibo de Pago</p>
                   <p class="step" *ngIf="inscriptionsData[0].paymentReceiptSubmittedDate">
-                    {{inscriptionsData[0].paymentReceiptSubmittedDate | date:'dd/MM/yyy'}}</p>
+                    {{inscriptionsData[0].paymentReceiptSubmittedDate | date:'yyyy-MM-dd'}}</p>
                 </div>
               </div>
 
@@ -274,7 +274,7 @@
 
                   <p class="step">Confirmado</p>
                   <p class="step step-date" *ngIf="inscriptionsData[0].confirmedDate">{{
-                    inscriptionsData[0].confirmedDate | date:'dd/MM/yyy' }}</p>
+                    inscriptionsData[0].confirmedDate | date:'yyyy-MM-dd' }}</p>
 
                 </div>
               </div>
@@ -319,7 +319,7 @@
                                 fill="#001AFF" />
                         </svg>
                         <a class="align-middle ml-2"
-                           [hidden]="!inscriptionsData[0].RegistrationFormSubmittedDate"
+                           [hidden]="!entry?.registrationFormSubmittedDate"
                            href="{{staticUrlPrefix}}InscriptionRegistrations/{{entry.gradesProcessingPeriodId}}/{{entry.studentGUId | uppercase }}.png"
                            target="_blank">{{entry.studentGUId | uppercase }}.png</a>
 
@@ -340,7 +340,7 @@
                                 fill="#001AFF" />
                         </svg>
                         <a class="align-middle ml-2"
-                           [hidden]="!inscriptionsData[0].paymentReceiptSubmittedDate"
+                           [hidden]="!entry?.paymentReceiptSubmittedDate"
                            href="{{staticUrlPrefix}}InscriptionPayments/{{entry.gradesProcessingPeriodId}}/{{entry.studentGUId | uppercase }}.png"
                            target="_blank">{{entry.studentGUId | uppercase }}.png</a>
 

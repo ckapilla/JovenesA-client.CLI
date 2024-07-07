@@ -78,7 +78,7 @@
                   </ng-template>
                   <p class="step">Solicitado</p>
                   <p class="step" *ngIf="studentGradesData[0].gradesTurnedInDate">
-                    {{studentGradesData[0].initialGradesEntryDate | date:'dd/MM/yyy'}}</p>
+                    {{studentGradesData[0].initialGradesEntryDate | date:'yyyy-MM-DD'}}</p>
                 </div>
               </div>
 
@@ -137,7 +137,7 @@
                   </ng-template>
                   <p class="step">Entregado</p>
                   <p class="step" *ngIf="studentGradesData[0].gradesTurnedInDate">
-                    {{studentGradesData[0].gradesTurnedInDate | date:'dd/MM/yyy'}}</p>
+                    {{studentGradesData[0].gradesTurnedInDate | date:'yyyy-MM-DD'}}</p>
                 </div>
               </div>
 
@@ -195,7 +195,7 @@
 
                   <p class="step">Confirmado</p>
                   <p class="step step-date" *ngIf="studentGradesData[0].confirmedDate">{{
-                    studentGradesData[0].confirmedDate | date:'dd/MM/yyy' }}</p>
+                    studentGradesData[0].confirmedDate | date:'yyyy-MM-DD' }}</p>
 
                 </div>
               </div>
@@ -205,7 +205,8 @@
 
               <div class="container-fluid m-0 p-0" style="column-gap: 1.5rem">
 
-                <ng-container formArrayName="gradeEntryFormRows" *ngFor="let entry of studentGradesData, let i = index">
+                <ng-container formArrayName="gradeEntryFormRows"
+                              *ngFor="let entry of studentGradesData, let i = index">
                   <div class="row row-cols-1 row-cols-md-2 m-0">
                     <div [formGroupName]="i" class="col p-0 my-auto">
                       <div class="limit-date col p-0">
@@ -262,7 +263,7 @@
                                 fill="#001AFF" />
                         </svg>
                         <a class="align-middle ml-2"
-                           [hidden]="!entry!.imageSubmittedDate"
+                           [hidden]="!entry?.imageSubmittedDate"
                            href="{{staticUrlPrefix}}StudentGradesReports/{{entry.gradesProcessingPeriodId}}/{{entry.studentGUId | uppercase }}.png"
                            target="_blank">{{entry.studentGUId | uppercase }}.png</a>
 

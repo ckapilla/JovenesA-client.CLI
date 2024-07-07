@@ -4,12 +4,13 @@ export class Inscription {
     public studentGUId: string,
     public year: number, // temp holdover
     public gradesProcessingPeriodId: number,
-    public initialGradesEntryDate: Date = new Date(),
+    public initialInscriptionsEntryDate: Date = new Date(),
     public inscriptionsDueDate: Date = new Date(),
-    public XXinscriptionsTurnedInDate: Date = new Date(),
-    public confirmedById?: number,
-    public confirmedDate?: Date,
+
     public registrationFormSubmittedDate?: Date,
-    public paymentReceiptSubmittedDate?: Date
+    public paymentReceiptSubmittedDate?: Date,
+    public confirmedDate?: Date,
+    public confirmedById?: number,
+
   ) {}
 }
