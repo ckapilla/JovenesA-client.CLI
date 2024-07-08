@@ -78,7 +78,7 @@
                   </ng-template>
                   <p class="step">Solicitado</p>
                   <p class="step" *ngIf="studentGradesData[0].gradesTurnedInDate">
-                    {{studentGradesData[0].initialGradesEntryDate | date:'yyyy-MM-DD'}}</p>
+                    {{studentGradesData[0].initialGradesEntryDate | date:'yyyy-MM-dd'}}</p>
                 </div>
               </div>
 
@@ -137,7 +137,7 @@
                   </ng-template>
                   <p class="step">Entregado</p>
                   <p class="step" *ngIf="studentGradesData[0].gradesTurnedInDate">
-                    {{studentGradesData[0].gradesTurnedInDate | date:'yyyy-MM-DD'}}</p>
+                    {{studentGradesData[0].gradesTurnedInDate | date:'yyyy-MM-dd'}}</p>
                 </div>
               </div>
 
@@ -195,7 +195,7 @@
 
                   <p class="step">Confirmado</p>
                   <p class="step step-date" *ngIf="studentGradesData[0].confirmedDate">{{
-                    studentGradesData[0].confirmedDate | date:'yyyy-MM-DD' }}</p>
+                    studentGradesData[0].confirmedDate | date:'yyyy-MM-dd' }}</p>
 
                 </div>
               </div>
