@@ -10,11 +10,13 @@ import { TruncateDatePipe } from "src/app/_shared/pipes/truncate-date-pipe";
 import { StudentState } from 'src/app/_store/student/student.state';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 // import { SORTCRITERIA } from '../../_shared/interfaces/SORTCRITERIA';
-import localePy from '@angular/common/locales/es-PY';
-import { StudentDTO } from '../../_shared/models/studentDTO';
-import { ColumnSortService } from '../../_shared/services/column-sort.service';
-import { SessionService } from '../../_shared/services/session.service';
-registerLocaleData(localePy, 'es');
+import localePy from "@angular/common/locales/es-PY";
+import { UrlService } from 'src/app/_shared/services/url.service';
+import { StudentDTO } from "../../_shared/models/studentDTO";
+import { ColumnSortService } from "../../_shared/services/column-sort.service";
+import { SessionService } from "../../_shared/services/session.service";
+registerLocaleData(localePy, "es");
+
 @Component({
   templateUrl: './inscriptions-entry.component.html',
   styleUrls: ['./inscriptions-entry.component.css', '../students.component.css']
@@ -33,6 +35,7 @@ export class InscriptionsEntryComponent implements OnInit {
   studentName: string;
   confirmedDate: boolean;
   inGradesProcessingPeriod: boolean;
+  staticUrlPrefix: string;
 
    currentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
    currentName$ = this.store.select<string>(StudentState.getSelectedStudentName);
@@ -47,8 +50,10 @@ export class InscriptionsEntryComponent implements OnInit {
     private columnSorter: ColumnSortService,
     private _fb: UntypedFormBuilder,
     public location: Location,
-    private store: Store
+    private store: Store,
+    private url: UrlService
   ) {
+    this.staticUrlPrefix = url.getStaticFilePrefix();
     this.isLoading = false;
     this.inGradesProcessingPeriod = true;
     this.myForm = this._fb.group({
@@ -108,6 +113,11 @@ export class InscriptionsEntryComponent implements OnInit {
   ngOnInit() {
     this.studentGUId = this.session.getStudentRecordGUId();
     console.log('inscriptionEntry ngOnInit, studentGUID = ' + this.studentGUId);
+    this.fetchFilteredData();
+  }
+
+  onUploadSuccess() {
+    console.log('!@#$%^&*!@#$% Inscription Upload Success');
     this.fetchFilteredData();
   }
 

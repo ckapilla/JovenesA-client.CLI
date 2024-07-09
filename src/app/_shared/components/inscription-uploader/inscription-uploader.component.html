@@ -20,6 +20,14 @@
         (onFileLeave)="fileLeave($event)" accept=".png">
         <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector" (click)="openFileSelector()">
             <button type="button" (click)="openFileSelector()">
+                <p *ngIf="inscriptionType === 'reg'; else pmtContent">
+                    -- REPORTE --
+                </p>
+                <ng-template #pmtContent>
+                    <p>
+                        -- RECIBE --
+                    </p>
+                </ng-template>
                 <p>
                     Haz clic o arrastra el archivo a esta área para cargarlo
                 </p>

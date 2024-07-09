@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Component, Input } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { FileSystemFileEntry, NgxFileDropEntry } from "ngx-file-drop";
 import { InscriptionDataService } from "../../data/inscription-data.service";
 import { SessionService } from "../../services/session.service";
@@ -10,7 +10,7 @@ import { UrlService } from "../../services/url.service";
   templateUrl: "./inscription-uploader.component.html", // ,
   // styleUrls: ['./app.component.scss']
 })
-export class InscriptionUploaderComponent {
+export class InscriptionUploaderComponent implements OnInit {
   public files: NgxFileDropEntry[] = [];
   WebApiPrefix: string;
   errorMessage = "";
@@ -18,6 +18,7 @@ export class InscriptionUploaderComponent {
   @Input() inscriptionId: number;
   @Input() gradesProcessingPeriodId: number;
   @Input() inscriptionType: string;
+  @Output() uploadSuccess = new EventEmitter<void>();
   constructor(
     private http: HttpClient,
     private webApiPrefixService: UrlService,
@@ -26,6 +27,10 @@ export class InscriptionUploaderComponent {
   ) {
     console.log("inscription uploader constructor");
     this.WebApiPrefix = webApiPrefixService.getWebApiPrefix();
+  }
+
+  ngOnInit() {
+    console.log("inscriptions uploader ngInit with studentGradeId= " + this.inscriptionId);
   }
 
   public dropped(files: NgxFileDropEntry[]) {
@@ -70,10 +75,11 @@ export class InscriptionUploaderComponent {
                 // this.becaData.uploadStudentGradesReport(frmData).subscribe(
                 () => {
                   this.successMessage = "El archivo [" + file.name + "] se cargó correctamente";
-                  // window.scrollTo(0, 0);
-                  // window.setTimeout(() => {
-                  //   this.successMessage = '';
-                  // }, 15000);
+                  window.setTimeout(() => {
+                    // success timeout, emitting event to parent
+                    console.log('after success timeout, emitting event to parent');
+                    this.uploadSuccess.emit();
+                  }, 1000);
                 },
                 (error) => {
                   this.errorMessage = error;

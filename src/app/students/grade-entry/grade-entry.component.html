@@ -29,7 +29,7 @@
                    [class.completed-first]="studentGradesData[0].initialGradesEntryDate">
                 <div class="d-flex flex-column align-items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                       *ngIf="!studentGradesData[0].initialGradesEntryDate; else solicitado" viewBox="0,0,256,256"
+                       *ngIf="!studentGradesData[0]?.initialGradesEntryDate; else solicitado" viewBox="0,0,256,256"
                        heigth="256px" width="256px" fill-rule="nonzero">
                     <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
                        stroke-linejoin="none" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
@@ -244,19 +244,21 @@
                         </button>
                       </div>
                     </div>
-                    <!--  <p style="text-align: right;">
+                    <!--  <p style="text-align: right;">app-grades
         <button [disabled]="myForm.pristine" type="submit" class="btn btn-primary"
           (click)="saveAllChangedEntries()">Guardar</button>
       </p> -->
 
                     <div class="col p-0 grade-image-wrapper mt-4 text-right ">
-                      <h6 class="mb-3 text-center">Sube tu reporte de calificaciones en el recuadro de abajo</h6>
+                      <!-- <h6 class="mb-3 text-center">Sube tu reporte de calificaciones en el recuadro de abajo</h6> -->
                       <!-- hacer esto con la alerta y con el cuadro de abajo q nunca se muestra -->
                       <!--  <h6 >Al arrastrar o seleccionar tu archivo, este se cargará y su nombre se mostrará
           debajo del recuadro. Hecho esto, tu archivo estará cargado y listo para revisión.</h6>
         <br> -->
-                      <app-file-uploader [studentGradeId]=studentGradesData[0].studentGradeId
-                                         [gradesProcessingPeriodId]=studentGradesData[0].gradesProcessingPeriodId></app-file-uploader>
+                      <app-grades-uploader [studentGradeId]=studentGradesData[0].studentGradeId
+                                         [gradesProcessingPeriodId]=studentGradesData[0].gradesProcessingPeriodId
+                                         (uploadSuccess)="onUploadSuccess()">
+                                         </app-grades-uploader>
                       <div class="img-wrapper p-1 text-left">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 13 14" fill="none">
                           <path d="M8.66734 0C7.78194 0 6.89655 0.367845 6.21948 1.03347L1.3932 5.79794C-0.464399 7.67219 -0.464399 10.7025 1.3932 12.5943C3.25079 14.4686 6.2542 14.4686 8.12916 12.5943L10.2992 10.4048L9.10136 9.19612L7.08751 11.1755L6.93127 11.4032C5.73338 12.6118 3.78898 12.6118 2.59109 11.4032C1.41056 10.2121 1.44528 8.28527 2.59109 7.07663L7.41737 2.25962C8.09443 1.57648 9.22288 1.57648 9.91731 2.25962C10.5944 2.94276 10.5597 4.02878 9.91731 4.72943L5.57713 9.05599C5.40352 9.23115 5.10839 9.23115 4.91742 9.05599C4.74382 8.88083 4.74382 8.58305 4.91742 8.39037L5.02159 8.33782L6.60141 6.69127L5.40352 5.48264L3.71953 7.18173C2.88622 8.02252 2.88622 9.40632 3.71953 10.2471C4.55285 11.0879 5.92435 11.1054 6.75766 10.2471L11.0978 5.9731C12.452 4.60682 12.452 2.39975 11.0978 1.05099C10.4208 0.367845 9.55273 0.0175164 8.64998 0.0175164L8.66734 0Z"
@@ -265,7 +267,7 @@
                         <a class="align-middle ml-2"
                            [hidden]="!entry?.imageSubmittedDate"
                            href="{{staticUrlPrefix}}StudentGradesReports/{{entry.gradesProcessingPeriodId}}/{{entry.studentGUId | uppercase }}.png"
-                           target="_blank">{{entry.studentGUId | uppercase }}.png</a>
+                           target="_blank">Archivo subido con éxito -- haga clic para revisar</a>
 
                       </div>
                       <small>*Si tu archivo no termina con .png haz clic <a

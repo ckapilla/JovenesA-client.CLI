@@ -1,30 +1,35 @@
 import { HttpClient } from "@angular/common/http";
-import { Component, Input } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { FileSystemFileEntry, NgxFileDropEntry } from "ngx-file-drop";
 import { BecaDataService } from "../../data/beca-data.service";
 import { SessionService } from "../../services/session.service";
 import { UrlService } from "../../services/url.service";
 
 @Component({
-  selector: "app-file-uploader",
-  templateUrl: "./file-uploader.component.html", // ,
+  selector: "app-grades-uploader",
+  templateUrl: "./grades-uploader.component.html", // ,
   // styleUrls: ['./app.component.scss']
 })
-export class FileUploaderComponent {
+export class GradesUploaderComponent implements OnInit {
   public files: NgxFileDropEntry[] = [];
   WebApiPrefix: string;
   errorMessage = "";
   successMessage = "";
   @Input() studentGradeId: number;
   @Input() gradesProcessingPeriodId: number;
+  @Output() uploadSuccess = new EventEmitter<void>();
   constructor(
     private http: HttpClient,
     private webApiPrefixService: UrlService,
     private session: SessionService,
     private becaData: BecaDataService
   ) {
-    console.log("file uploader constructor with studentGradeId= " + this.studentGradeId);
+    console.log("grades uploader constructor ");
     this.WebApiPrefix = webApiPrefixService.getWebApiPrefix();
+  }
+
+  ngOnInit() {
+    console.log("grades uploader ngInit with studentGradeId= " + this.studentGradeId);
   }
 
   public dropped(files: NgxFileDropEntry[]) {
@@ -71,6 +76,7 @@ export class FileUploaderComponent {
                   // window.setTimeout(() => {
                   //   this.successMessage = '';
                   // }, 15000);
+                  this.uploadSuccess.emit();
                 },
                 (error) => {
                   this.errorMessage = error;

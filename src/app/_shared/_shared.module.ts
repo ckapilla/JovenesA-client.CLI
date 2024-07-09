@@ -7,7 +7,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import { NgxFileDropModule } from 'ngx-file-drop';
 import { CallbackComponent } from './components/callback.component';
 import { DisplayErrorsComponent } from './components/display-errors.component';
-import { FileUploaderComponent } from './components/file-uploader/file-uploader.component';
+import { GradesUploaderComponent } from './components/grades-uploader/grades-uploader.component';
 import { InscriptionUploaderComponent } from './components/inscription-uploader/inscription-uploader.component';
 import { TituloUploaderComponent } from './components/titulo-uploader/titulo-uploader.component';
 
@@ -104,7 +104,7 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     StudentHistoryComponent,
     StudentPhotoComponent,
     EmptyStatusPipe,
-    FileUploaderComponent,
+    GradesUploaderComponent,
     InscriptionUploaderComponent,
     TituloUploaderComponent,
     StudentHeader2Component,
@@ -154,7 +154,7 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     MemberPhotoComponent,
     StudentPhotoComponent,
     EmptyStatusPipe,
-    FileUploaderComponent,
+    GradesUploaderComponent,
     InscriptionUploaderComponent,
     TituloUploaderComponent,
     StudentHeader2Component,

@@ -12,6 +12,7 @@ import { StudentState } from "src/app/_store/student/student.state";
 import { SELECTITEM } from "../../_shared/interfaces/SELECTITEM";
 // import { SORTCRITERIA } from '../../_shared/interfaces/SORTCRITERIA';
 import localePy from "@angular/common/locales/es-PY";
+import { UrlService } from "src/app/_shared/services/url.service";
 import { StudentDTO } from "../../_shared/models/studentDTO";
 import { ColumnSortService } from "../../_shared/services/column-sort.service";
 import { SessionService } from "../../_shared/services/session.service";
@@ -35,7 +36,7 @@ export class GradeEntryComponent implements OnInit {
   studentName: string;
   /// confirmedDateB: boolean;
   inGradesProcessingPeriod: boolean;
-
+  staticUrlPrefix: string;
   currentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
   currentName$ = this.store.select<string>(StudentState.getSelectedStudentName);
   errorAlert: boolean;
@@ -49,8 +50,10 @@ export class GradeEntryComponent implements OnInit {
     private columnSorter: ColumnSortService,
     private _fb: UntypedFormBuilder,
     public location: Location,
-    private store: Store
+    private store: Store,
+    private url: UrlService
   ) {
+    this.staticUrlPrefix = url.getStaticFilePrefix();
     this.isLoading = false;
     this.inGradesProcessingPeriod = true;
     this.myForm = this._fb.group({
@@ -122,6 +125,11 @@ export class GradeEntryComponent implements OnInit {
   ngOnInit() {
     this.studentGUId = this.session.getStudentRecordGUId();
     console.log("gradeEntry ngOnInit, studentGUID = " + this.studentGUId);
+    this.fetchFilteredData();
+  }
+
+  onUploadSuccess() {
+    console.log('!@#$%^&*!@#$% Inscription Upload Success');
     this.fetchFilteredData();
   }
 

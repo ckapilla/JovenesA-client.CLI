@@ -308,10 +308,11 @@
 
 
                     <div class="col p-0 grade-image-wrapper mt-4 text-right ">
-                      <h6 class="mb-3 text-center">Sube tu reporte de inscripciones en el recuadro de abajo</h6>
+                      <!-- <h6 class="mb-3 text-center">Sube tu reporte de inscripciones en el recuadro de abajo</h6> -->
                       <app-inscription-uploader [inscriptionId]=inscriptionsData[0].inscriptionId
                                                 [gradesProcessingPeriodId]=inscriptionsData[0].gradesProcessingPeriodId
-                                                [inscriptionType]="'reg'">
+                                                [inscriptionType]="'reg'"
+                                                (uploadSuccess)="onUploadSuccess()">
                       </app-inscription-uploader>
                       <div class="img-wrapper p-1 text-left">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 13 14" fill="none">
@@ -321,15 +322,16 @@
                         <a class="align-middle ml-2"
                            [hidden]="!entry?.registrationFormSubmittedDate"
                            href="{{staticUrlPrefix}}InscriptionRegistrations/{{entry.gradesProcessingPeriodId}}/{{entry.studentGUId | uppercase }}.png"
-                           target="_blank">{{entry.studentGUId | uppercase }}.png</a>
-
+                           target="_blank">Archivo subido con éxito -- haga clic para revisar</a>
                       </div>
 
-                      <h6 class="mb-3 text-center">Sube tu Recibo de Pago en el recuadro de abajo</h6>
+                      <!-- <h6 class="mb-3 text-center">Sube tu Recibo de Pago en el recuadro de abajo</h6> -->
 
                       <app-inscription-uploader [inscriptionId]=inscriptionsData[0].inscriptionId
                                                 [gradesProcessingPeriodId]=inscriptionsData[0].gradesProcessingPeriodId
-                                                [inscriptionType]="'pmt'">
+                                                [inscriptionType]="'pmt'"
+                                                (uploadSuccess)="onUploadSuccess()"
+                                                >
                       </app-inscription-uploader>
                       <div class="img-wrapper p-1 text-left">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 13 14" fill="none">
@@ -339,7 +341,7 @@
                         <a class="align-middle ml-2"
                            [hidden]="!entry?.paymentReceiptSubmittedDate"
                            href="{{staticUrlPrefix}}InscriptionPayments/{{entry.gradesProcessingPeriodId}}/{{entry.studentGUId | uppercase }}.png"
-                           target="_blank">{{entry.studentGUId | uppercase }}.png</a>
+                           target="_blank">Archivo subido con éxito -- haga clic para revisar</a>
 
                       </div>
                       <small>*Si tu archivo no termina con .png haz clic <a
