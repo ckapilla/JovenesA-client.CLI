@@ -54,11 +54,10 @@ p {
 }
 
 .completed-first::before,
-.completed-third::after,
 .completed-second-A::before,
-.completed-second-A::after
-.completed-second-B::before,
-.completed-second-B::after {
+.completed-second-A::after,
+.completed-second-B::after,
+.completed-third::after {
   border-color: #147c12 !important;
 }
 
@@ -76,10 +75,9 @@ p {
   align-self: center;
 }
 
-.stepper-item.second-A::after,
 .stepper-item.second-A::before,
-.stepper-item.second-B::after,
-.stepper-item.second-B::before {
+.stepper-item.second-A::after,
+.stepper-item.second-B::after {
   content: "";
   border-bottom: 6px solid #D9D9D9;
   width: calc(calc(100% - 56px) / 2);
@@ -163,10 +161,9 @@ small {
     height: 101px;
   }
 
-  .stepper-item.second-A::after,
   .stepper-item.second-A::before,
-  .stepper-item.second-B::after,
-  .stepper-item.second-B::before {
+  .stepper-item.second-A::after,
+  .stepper-item.second-B::after {
     width: calc(calc(100% - 101px) / 2);
   }
 
@@ -186,8 +183,7 @@ small {
 
   .stepper-item.second-A::after,
   .stepper-item.second-A::before,
-  .stepper-item.second-B::after,
-  .stepper-item.second-B::before {
+  .stepper-item.second-B::after {
     content: "";
     border-bottom: 9px solid #D9D9D9;
     width: calc(calc(100% - 56px) / 2);

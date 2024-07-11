@@ -1,5 +1,5 @@
-<div class="py-4 px-3 px-md-5">
-  <h1 class="title text-center text-sm-left ">Tu promedio para este periodo</h1>
+<div class="py-4 px-3 px-md-5" *ngIf="inGradesProcessingPeriod; else outOfRange">
+  <h1 class="title text-center text-sm-left ">Tus inscripciones para este periodo</h1>
 
   <ng-container>
     <app-alert (didClose)="closeAlert($event)" [isShown]="successAlert" [type]="'success'"
@@ -21,7 +21,7 @@
         <ng-container *ngSwitchCase="false">
           <!-- inscription status section -->
           <div class=" d-flex flex-column text-center pt-4">
-            <p class="subtitle">Estado de entrega</p>
+            <!-- <p class="subtitle">Estado de entrega</p> -->
 
             <div class="stepper-wrapper d-flex flex-row justify-content-center">
 
@@ -213,9 +213,6 @@
                 </div>
               </div>
 
-
-
-
               <div class="stepper-item third d-flex flex-row  justify-content-around"
                    [class.completed-third]="inscriptionsData[0].confirmedDate">
                 <div class="d-flex flex-column align-items-center">
@@ -306,9 +303,7 @@
 
                     </div>
 
-
                     <div class="col p-0 grade-image-wrapper mt-4 text-right ">
-                      <!-- <h6 class="mb-3 text-center">Sube tu reporte de inscripciones en el recuadro de abajo</h6> -->
                       <app-inscription-uploader [inscriptionId]=inscriptionsData[0].inscriptionId
                                                 [gradesProcessingPeriodId]=inscriptionsData[0].gradesProcessingPeriodId
                                                 [inscriptionType]="'reg'"
@@ -324,8 +319,6 @@
                            href="{{staticUrlPrefix}}InscriptionRegistrations/{{entry.gradesProcessingPeriodId}}/{{entry.studentGUId | uppercase }}.png"
                            target="_blank">Archivo subido con éxito -- haga clic para revisar</a>
                       </div>
-
-                      <!-- <h6 class="mb-3 text-center">Sube tu Recibo de Pago en el recuadro de abajo</h6> -->
 
                       <app-inscription-uploader [inscriptionId]=inscriptionsData[0].inscriptionId
                                                 [gradesProcessingPeriodId]=inscriptionsData[0].gradesProcessingPeriodId
@@ -364,3 +357,8 @@
     </div>
   </ng-container>
 </div>
+<ng-template #outOfRange>
+
+  <h3 style="padding: 2em;">La entrada de inscripciones no está disponible para ti en este momento, estará disponible en una fecha posterior.</h3>
+
+</ng-template>

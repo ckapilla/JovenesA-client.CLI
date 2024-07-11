@@ -125,7 +125,42 @@ export class GradeEntryComponent implements OnInit {
   ngOnInit() {
     this.studentGUId = this.session.getStudentRecordGUId();
     console.log("gradeEntry ngOnInit, studentGUID = " + this.studentGUId);
+
     this.fetchFilteredData();
+  }
+
+  isStudentInCurrentGPP(): boolean {
+    let today = new Date();
+    today.setHours(0, 0, 0, 0); // Set local time to midnight
+    console.log("today is " + today);
+
+    if (!this?.studentGradesData || this?.studentGradesData.length === 0) {
+      console.log("no studentGradesData");
+      return false;
+    }
+
+    const gpp = this?.studentGradesData[0];
+    console.log("initialGradesEntryDate is " + gpp.initialGradesEntryDate);
+    console.log("gradesDueDate is " + gpp.gradesDueDate);
+
+    // Parse the database dates and set them to midnight
+    const initialGradesEntryDate = new Date(gpp.initialGradesEntryDate);
+    initialGradesEntryDate.setHours(0, 0, 0, 0);
+
+    const gradesDueDate = new Date(gpp.gradesDueDate);
+    gradesDueDate.setHours(0, 0, 0, 0);
+
+    console.log("today is " + today);
+    console.log("initialGradesEntryDate is " + initialGradesEntryDate);
+    console.log("gradesDueDate is " + gradesDueDate);
+
+    if (today >= initialGradesEntryDate && today <= gradesDueDate) {
+      console.log('in range');
+      return true;
+    } else {
+      console.log('not in range');
+      return false;
+    }
   }
 
   onUploadSuccess() {
@@ -145,16 +180,20 @@ export class GradeEntryComponent implements OnInit {
           // if want to have all empty ones, not just latest:
           // this.studentGradesData = dataArray.filter(this.filter_dates);
           // get latest one
+          console.log('XXE0');
           this.studentGradesData = dataArray.slice(0, 1);
+          console.log(JSON.stringify(this.studentGradesData));
         },
         (err) => {
           console.log("XXE1");
           this.errorMessage = err;
         },
         () => {
+          console.log('XXE2');
           this.studentGradesData.forEach((gradeEntryDataRow) => {
             this.addGradeEntryRow(gradeEntryDataRow);
           });
+          this.inGradesProcessingPeriod = this.isStudentInCurrentGPP();
           this.isLoading = false;
         }
       );

@@ -24,7 +24,6 @@ export class TitulosEntryComponent implements OnInit {
   private subscription: Subscription;
   studentName: string;
   confirmedDateB: boolean;
-  inGradesProcessingPeriod: boolean;
 
 
   //  currentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
