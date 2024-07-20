@@ -100,7 +100,17 @@ const timelinessMsgs =new Map<string, string>([
   ['red', 'Report Overdue']
 ]);
 
+const gradesTimelinessMsgs =new Map<string, string>([
+  ['green', 'Grades Up-to-date'],
+  ['yellow', 'Grades Due this month'],
+  ['red', 'Grades Overdue']
+]);
 
+const gpaMsgs = new Map<string, string>([
+  ['green', 'GPA Meets Requirement'],
+  ['yellow', 'GPA Below Requirement'],
+  ['red', 'GPA Too Low']
+]);
 
 
 const languageStatuses: SELECTITEM[] = [
@@ -148,6 +158,8 @@ export const constants = {
   emojis,
   emojiMsgs,
   timelinessMsgs,
+  gradesTimelinessMsgs,
+  gpaMsgs,
   // db
   gradesProcessingPeriods,
   languageStatuses,

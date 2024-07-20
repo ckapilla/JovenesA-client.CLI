@@ -193,7 +193,7 @@ export class AuthService {
     if (userProfile !== null && userProfile !== undefined) {
       const app_metadata = userProfile['app_metadata'];
       this.session.setAdminStatus(app_metadata['adminStatus']);
-      // console.log('isAdmin: ' + this.session.isAdmin());
+      console.log('isAdmin: ' + this.session.isAdmin());
 
       this.session.setMentorStatus(app_metadata['mentorStatus']);
       // console.log('isMentor: ' + this.session.isMentor());
@@ -202,7 +202,7 @@ export class AuthService {
       // console.log('isSponsor: ' + this.session.isSponsor());
 
       this.session.setStudentRecordGUId(app_metadata['studentRecordGUId']);
-      // console.log('isStudent: ' + this.session.isStudent());
+      console.log('isStudent: ' + this.session.isStudent());
       // console.log('studentRecordGUId: ' + this.session.getStudentRecordGUId());
 
       this.session.setUserGUId(userProfile['memberGUId']);

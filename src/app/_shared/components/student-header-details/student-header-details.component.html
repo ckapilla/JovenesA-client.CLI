@@ -32,15 +32,23 @@
         <label>Mentor:</label>
         {{student.mentorName}}
         &nbsp;&nbsp;
-        <label>Sponsor:</label>
-        {{student.sponsorGroupName}}
+        <span *ngIf="isAdmin">
+          <label>Sponsor:</label>
+          {{student.sponsorGroupName}}
+        </span>
         <br />
         <label>Student Self Rpt:</label>
-        <img src="/assets/images/{{student.timelySSRStatus}}.jpg" height="22">
+        <img src="/assets/images/{{student.timelySSRStatus}}.jpg" height="22"
+        title= "{{ getSSRTimelinessByColor(student.timelySSRStatus) }}"
+        >
         <label>&nbsp;&nbsp;Grades Submitted:</label>
-        <img src="/assets/images/{{student.gradeRptStatus}}.jpg" height="22">
+        <img src="/assets/images/{{student.gradeRptStatus}}.jpg" height="22"
+        title= "{{ getGradesTimelinessByColor(student.gradeRptStatus) }}"
+        >
         <label>&nbsp;&nbsp;GPA:</label>
-        <img src="/assets/images/{{student.gpaStatus}}.jpg" height="22">
+        <img src="/assets/images/{{student.gpaStatus}}.jpg" height="22"
+        title="{{ getGPAStatus(student.GPAStatus) }}"
+        >
       </div>
     </div>
   </div>
