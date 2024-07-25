@@ -52,6 +52,12 @@ export class ConstantsService extends BaseDataService {
     shareReplay(1),
     catchError(this.handleError)
   );
+  private gpPeriodActiveUrl = this.WebApiPrefix + 'lookup/gpPeriods?activeStatus=1';
+  gpPeriodsActive$: Observable<GRADESPROCESSINGPERIOD[]> = this.http.get<GRADESPROCESSINGPERIOD[]>(this.gpPeriodsUrl).pipe(
+    // tap((data) => console.log('gPP results ', JSON.stringify(data))),
+    shareReplay(1),
+    catchError(this.handleError)
+  );
 
 
   constructor(public http: HttpClient, public webApiPrefixService: UrlService, public store: Store) {

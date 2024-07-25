@@ -1,9 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CanActivateViaAdminAuthGuard, ConfirmDeactivateGradesEditGuard } from '../app.routing-guards';
+import {
+  CanActivateViaAdminAuthGuard,
+  ConfirmDeactivateGradesEditGuard, ConfirmDeactivateInscriptionsEditGuard
+} from '../app.routing-guards';
 import { BecasComponent } from './becas.component';
 import { GradesEditComponent } from './grades-edit/grades-edit.component';
 import { GradesListComponent } from './grades-list/grades-list.component';
+import { InscriptionsEditComponent } from './inscriptions-edit/inscriptions-edit.component';
+import { InscriptionsListComponent } from './inscriptions-list/inscriptions-list.component';
 
 const gradesRoutes: Routes = [
   {
@@ -24,6 +29,15 @@ const gradesRoutes: Routes = [
         path: 'grades-edit',
         component: GradesEditComponent,
         canDeactivate: [ConfirmDeactivateGradesEditGuard]
+      },
+      {
+        path: 'inscriptions-list',
+        component: InscriptionsListComponent
+      },
+      {
+        path: 'inscriptions-edit',
+        component: InscriptionsEditComponent,
+        canDeactivate: [ConfirmDeactivateInscriptionsEditGuard]
       }
     ]
   }

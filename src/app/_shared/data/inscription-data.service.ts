@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Inscription } from '../models/inscription';
+import { InscriptionEntryDTO } from '../models/inscription-entryDTO';
 import { UrlService } from '../services/url.service';
 
 @Injectable({ providedIn: 'root' })
@@ -18,11 +19,11 @@ export class InscriptionDataService {
   ///  InscriptionController
   /// ///////////////////////////////////////////////
 
-  // public getInscriptionsListDTOs(): Observable<Inscription[]> {
-  //   const url = this.WebApiPrefix + 'becas/inscriptions/' + 'inscriptions-list';
-  //   console.log('sending AuthHttp get request for InscriptionsList');
-  //   return this.http.get<Inscription[]>(url).pipe(catchError(this.handleError));
-  // }
+  public getInscriptionsListForPeriod(gradesProcessingPeriodId: number): Observable<InscriptionEntryDTO[]> {
+    const url = this.WebApiPrefix + 'becas/' + 'inscriptions-list/period/' + gradesProcessingPeriodId;
+    console.log('sending AuthHttp get request for GradesList with url ' + url);
+    return this.http.get<InscriptionEntryDTO[]>(url).pipe(catchError(this.handleError));
+  }
 
   public getInscriptionsForPeriod(gradesProcessingPeriodId: number): Observable<Inscription[]> {
     const url = this.WebApiPrefix + 'becas/inscriptions/' + 'for-period/' + gradesProcessingPeriodId;
@@ -53,24 +54,6 @@ export class InscriptionDataService {
     console.log('ready to put ' + url + ' body: ' + body + ' options ' + headers);
     return this.http.put(url, body, { headers: headers });
   }
-
-  // public uploadStudentGradesImage(frmData: FormData,
-  //   studentGUId: string,
-  //   studentGradeId: number,
-  //   gradesProcessingPeriodId: number,
-  //   receivedDate: string
-  //   ): Observable<any> {
-  //   const url = this.WebApiPrefix + 'becas/' + 'student-grades-report' + '?studentGUId=' + studentGUId + '&studentGradeId='+ studentGradeId  + '&gradesProcessingPeriodId='+ gradesProcessingPeriodId + '&receivedDate=' + receivedDate;
-
-  //   if (frmData) {
-  //     const file: any = frmData.get('file');
-  //     console.log('ready to post ' + url + ' filename: ' + file.name); // + ' options ' + headers);
-  //     // console.log('with frmData.fileName = ' + frmData.get('fileName'));
-  //     // console.log('with frmData.studentGUID = ' + frmData.get('studentGUID'));
-  //     return this.http.post(url, frmData);
-  //   }
-  // }
-
 
   public uploadInscriptionImage(frmData: FormData,
     studentGUId: string,

@@ -5,6 +5,7 @@ import { SessionService } from './_shared/services/session.service';
 import { MentorReportSummaryUpdatesComponent } from './admins/admins-mr/mr-summary-updates/mr-summary-updates.component';
 import { AdminsStudentProfileComponent } from './admins/admins-students/admins-student-profile/admins-student-student-profile.component';
 import { GradesEditComponent } from './becas/grades-edit/grades-edit.component';
+import { InscriptionsEditComponent } from './becas/inscriptions-edit/inscriptions-edit.component';
 import { MonthlyReports2ENAddComponent } from './mentors/monthly-reports2-EN-add/monthly-reports2-EN-add.component';
 import { MonthlyReports2ESAddComponent } from './mentors/monthly-reports2-ES-add/monthly-reports2-ES-add.component';
 
@@ -184,3 +185,18 @@ export class ConfirmDeactivateGradesEditGuard implements CanDeactivate<GradesEdi
     return true;
   }
 }
+  @Injectable({ providedIn: 'root' })
+  export class ConfirmDeactivateInscriptionsEditGuard implements CanDeactivate<InscriptionsEditComponent> {
+    canDeactivate(component: InscriptionsEditComponent): boolean {
+      if (component.hasChanges()) {
+        console.log('CanDeactivate');
+        // tslint:disable-next-line:max-line-length
+        return window.confirm(
+          'You have unsaved changes. Click OK to leave the page without saving.\nTiene cambios no guardados. Haga clic OK para salir de la página sin guardar'
+        );
+      }
+      console.log('CanDeactivate for InscriptionsEdit clearing unauthenticate_retry+url');
+      localStorage.removeItem('unauthenticated_retry_url');
+      return true;
+    }
+  }

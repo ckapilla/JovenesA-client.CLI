@@ -1,6 +1,6 @@
 <div class="card bg-primary">
   <div class="card-header text-white" style="font-size: large">
-    <span>Edit Grade Status for {{ studentName }}</span
+    <span>Edit Inscription Status for {{ studentName }}</span
     >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   </div>
 
@@ -42,19 +42,16 @@
                   <!-- <th app-sortable-column="year" (onSortColumn)="onSortColumn($event)">Year</th> -->
                   <!-- <th app-sortable-column="periodNumber" (onSortColumn)="onSortColumn($event)">Period</th> -->
                   <th>Period #</th>
-                  <!-- <th>Grades Given</th> -->
-                  <th>Grades Due</th>
-                  <th>Turned In</th>
-                  <th>GPA</th>
-                  <th>Image</th>
+                  <th>Inscriptions<br />Due Date</th>
+                  <th>Registration Form<br />Submitted</th>
+                  <th>Payment Receipt<br />Submitted</th>
                   <th>Confirmed By</th>
                   <th>Confirmed Date</th>
-                  <th>Exception</th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
-                <tr formArrayName="gradeEntryFormRows" *ngFor="let entry of studentGradesData; let i = index">
+                <tr formArrayName="inscriptionFormRows" *ngFor="let entry of inscriptions; let i = index">
                   <ng-container [formGroupName]="i">
                     <!-- <td>
                         {{ i+1 }}
@@ -84,43 +81,23 @@
               <td>
                 {{ entry.gradesProcessingPeriodId }}
               </td>
-                    <!-- <td>
+                    <td>
                       <input
-                        formControlName="gradesGivenDate"
+                        formControlName="inscriptionsDueDate"
                         class="form-control form-control-sm"
                         type="text"
                         size="8"
-                      />
-                    </td> -->
-                    <td>
-                      <input
-                        formControlName="gradesDueDate"
-                        class="form-control form-control-sm"
-                        type="text"
-                        size="8"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        formControlName="gradesTurnedInDate"
-                        placeholder="yyyy-mm-dd"
-                        (dblclick)="setReceivedDate(i, $event.target.value)"
-                        class="form-control form-control-sm"
-                        type="text"
-                        size="8"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        formControlName="gradePointAvg"
-                        class="form-control form-control-sm"
-                        type="text"
-                        size="4"
                       />
                     </td>
                     <td class="link">
-                      <div [hidden]="isViewLinkHidden(entry.imageSubmittedDate)">
-                          <a href= "{{staticUrlPrefix}}StudentGradesReports/{{entry.gradesProcessingPeriodId}}/{{entry.studentGUId | uppercase }}.png"
+                      <div [hidden]="isViewLinkHidden(entry.registrationFormSubmittedDate)">
+                          <a href= "{{staticUrlPrefix}}InscriptionRegistrations/{{entry.gradesProcessingPeriodId}}/{{entry.studentGUId | uppercase }}.png"
+                          target="_blank">{{entry.studentGUId | trimGuid | uppercase  }}</a>
+                      </div>
+                    </td>
+                    <td class="link">
+                      <div [hidden]="isViewLinkHidden(entry.paymentReceiptSubmittedDate)">
+                          <a href= "{{staticUrlPrefix}}InscriptionPayments/{{entry.gradesProcessingPeriodId}}/{{entry.studentGUId | uppercase }}.png"
                           target="_blank">{{entry.studentGUId | trimGuid | uppercase  }}</a>
                       </div>
                     </td>
@@ -143,9 +120,6 @@
                         type="text"
                         size="8"
                       />
-                    </td>
-                    <td>
-                      <input formControlName="exception" class="form-control form-control-sm" type="text" />
                     </td>
                     <!-- <td>
                       <button (click)="saveEntry(i)">Save</button>

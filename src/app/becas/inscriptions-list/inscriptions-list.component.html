@@ -1,8 +1,8 @@
 <div class="card bg-primary">
   <div class="card-header text-white" data-cy="grades-period">
-    <span style="font-size: large"> Grade Report Statuses</span>
+    <span style="font-size: large"> Inscription Report Statuses</span>
     <span style="margin-left: 10rem">
-      Grades Processing Period Start Date:
+      Inscriptions Processing Period Start Date:
       <select
         name="activePeriodSelector"
         data-cy="period-selector"
@@ -31,52 +31,48 @@
               <th app-sortable-column="studentName" sort-direction="asc" (onSortColumn)="onSortColumn($event)">
                 Student
               </th>
-              <th app-sortable-column="gradesTurnedInStatus" (onSortColumn)="onSortColumn($event)">Turned-In<br />Status</th>
-              <th app-sortable-column="gradePointAvgStatus" (onSortColumn)="onSortColumn($event)">GPA<br />Status</th>
-              <th app-sortable-column="gradesDueDate" (onSortColumn)="onSortColumn($event)">Final Grades<br />Due Date</th>
-              <th app-sortable-column="gradesTurnedInDate" (onSortColumn)="onSortColumn($event)">Entered <br />Date</th>
-              <th app-sortable-column="imageSubmittedDate" (onSortColumn)="onSortColumn($event)">Uploaded <br />Date</th>
-              <th>View<br />Image</th>
-              <th app-sortable-column="gradePointAvg" (onSortColumn)="onSortColumn($event)">GPA</th>
-             <th app-sortable-column="confirmedDate" (onSortColumn)="onSortColumn($event)">Confirmed <br />Date</th>
+              <th app-sortable-column="inscriptionsDueDate" (onSortColumn)="onSortColumn($event)">Inscriptions<br />Due Date</th>
+              <th app-sortable-column="registrationFormSubmittedDate" (onSortColumn)="onSortColumn($event)">Registration Form<br />Submitted</th>
+              <th app-sortable-column="paymentReceiptSubmittedDate" (onSortColumn)="onSortColumn($event)">Payment Receipt<br />Submitted</th>
+              <th>View<br />Registration Form</th>
+              <th>View<br />Payment Receipt</th>
+              <th app-sortable-column="confirmedDate" (onSortColumn)="onSortColumn($event)">Confirmed <br />Date</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let entry of gradesGivenEntryDTOs; let i = index">
+            <tr *ngFor="let entry of inscriptionEntryDTOs; let i = index">
               <td>
                 {{ i + 1 }}
               </td>
               <td (click)="gotoStudent(entry.studentGUId, entry.studentName)" class="link">
-
                 Profile
               </td>
-              <td (click)="confirmGPA(entry.studentGUId, entry.studentName)" class="link">
+              <td (click)="confirmInscription(entry.studentGUId, entry.studentName)" class="link">
                 {{ entry.studentName }}
               </td>
               <td>
-                {{ entry.gradesTurnedInStatus }}
+                {{ entry.inscriptionsDueDate | truncateDate }}
               </td>
               <td>
-                {{ entry.gradePointAvgStatus }}
-              <td>
-                {{ entry.gradesDueDate | truncateDate }}
+                {{ entry.registrationFormSubmittedDate | truncateDate }}
               </td>
               <td>
-                {{ entry.gradesTurnedInDate | truncateDate }}
-              </td>
-              <td>
-                {{ entry.imageSubmittedDate | truncateDate }}
+                {{ entry.paymentReceiptSubmittedDate | truncateDate }}
               </td>
               <td class="link">
-                <div [hidden]="isViewLinkHidden(entry.imageSubmittedDate)">
-                  <a href= "{{staticUrlPrefix}}StudentGradesReports/{{entry.gradesProcessingPeriodId}}/{{entry.studentGUId | uppercase }}.png"
-                  target="_blank">{{entry.studentGUId | trimGuid | uppercase  }}</a>
+                <div [hidden]="isViewLinkHidden(entry.registrationFormSubmittedDate)">
+                  <a href="{{staticUrlPrefix}}InscriptionRegistrations/{{entry.gradesProcessingPeriodId}}/{{entry.studentGUId | uppercase }}.png" target="_blank">
+                    {{entry.studentGUId | trimGuid | uppercase }}
+                  </a>
                 </div>
               </td>
-              <td>
-                {{ entry.gradePointAvg }}
+              <td class="link">
+                <div [hidden]="isViewLinkHidden(entry.paymentReceiptSubmittedDate)">
+                  <a href="{{staticUrlPrefix}}InscriptionPayments/{{entry.gradesProcessingPeriodId}}/{{entry.studentGUId | uppercase }}.png" target="_blank">
+                    {{entry.studentGUId | trimGuid | uppercase }}
+                  </a>
+                </div>
               </td>
-
               <td>
                 {{ entry.confirmedDate | truncateDate }}
               </td>

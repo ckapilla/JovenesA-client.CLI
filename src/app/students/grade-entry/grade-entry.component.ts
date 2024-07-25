@@ -175,7 +175,7 @@ export class GradeEntryComponent implements OnInit {
       this.studentGUId !== "0000"
     ) {
       this.isLoading = true;
-      this.becaData.getStudentGrades(this.studentGUId).subscribe(
+      this.becaData.getStudentGradesForStudent(this.studentGUId).subscribe(
         (dataArray) => {
           // if want to have all empty ones, not just latest:
           // this.studentGradesData = dataArray.filter(this.filter_dates);

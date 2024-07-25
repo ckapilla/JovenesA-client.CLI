@@ -31,7 +31,7 @@ export class BecaDataService {
     return this.http.get<GradesGivenEntryDTO[]>(url).pipe(catchError(this.handleError));
   }
 
-  public getStudentGrades(studentGUId: string): Observable<StudentGrades[]> {
+  public getStudentGradesForStudent(studentGUId: string): Observable<StudentGrades[]> {
     const url = this.WebApiPrefix + 'becas/' + 'student-grades/' + studentGUId;
     console.log('sending AuthHttp get request for StudentGrades');
     return this.http.get<StudentGrades[]>(url).pipe(catchError(this.handleError));

@@ -5,13 +5,13 @@ import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { EMPTY, Observable, Subscription } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { BecaDataService } from 'src/app/_shared/data/beca-data.service';
-import { MiscDataService } from 'src/app/_shared/data/misc-data.service';
-import { GradesGivenEntryDTO } from 'src/app/_shared/models/grades-given-entryDTO';
-import { StudentGrades } from 'src/app/_shared/models/student-grades';
-import { TruncateDatePipe } from 'src/app/_shared/pipes/truncate-date-pipe';
-import { StudentState } from 'src/app/_store/student/student.state';
+import { InscriptionDataService } from '../../_shared/data/inscription-data.service';
+import { MiscDataService } from '../../_shared/data/misc-data.service';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
+import { Inscription } from '../../_shared/models/inscription';
+import { InscriptionEntryDTO } from '../../_shared/models/inscription-entryDTO';
+import { TruncateDatePipe } from '../../_shared/pipes/truncate-date-pipe';
+import { StudentState } from '../../_store/student/student.state';
 // import { SORTCRITERIA } from '../../_shared/interfaces/SORTCRITERIA';
 import { StudentDTO } from '../../_shared/models/studentDTO';
 import { ColumnSortService } from '../../_shared/services/column-sort.service';
@@ -19,14 +19,14 @@ import { SessionService } from '../../_shared/services/session.service';
 import { UrlService } from '../../_shared/services/url.service';
 
 @Component({
-  templateUrl: './grades-edit.component.html',
-  styleUrls: ['./grades-edit.component.css']
+  templateUrl: './inscriptions-edit.component.html',
+  styleUrls: ['./inscriptions-edit.component.css']
 })
-export class GradesEditComponent implements OnInit {
+export class InscriptionsEditComponent implements OnInit {
   myForm: UntypedFormGroup;
   studentDTO: StudentDTO;
-  studentGradesData: StudentGrades[];
-  entry: GradesGivenEntryDTO;
+  inscriptions: Inscription[];
+  entry: InscriptionEntryDTO;
   isLoading: boolean;
   errorMessage: string;
   successMessage: string;
@@ -49,7 +49,7 @@ export class GradesEditComponent implements OnInit {
    currentName$ = this.store.select<string>(StudentState.getSelectedStudentName);
 
   constructor(
-    public becaData: BecaDataService,
+    public inscriptionData: InscriptionDataService,
     public router: Router,
     private miscData: MiscDataService,
     private session: SessionService,
@@ -67,53 +67,45 @@ export class GradesEditComponent implements OnInit {
 
     this.myForm = this._fb.group({
       studentGUId: ['0000'],
-      gradeEntryFormRows: this._fb.array([])
+      inscriptionFormRows: this._fb.array([])
     });
   }
 
-  gradeEntryFormRows(): UntypedFormArray {
-    return <UntypedFormArray>this.myForm.get('gradeEntryFormRows');
+  inscriptionFormRows(): UntypedFormArray {
+    return <UntypedFormArray>this.myForm.get('inscriptionFormRows');
   }
 
-  createEmptyGradeEntryFormRow(): UntypedFormGroup {
-    console.log('CreateEmptyGradeEntryFormRow create empty row to be populated');
+  createEmptyInscriptionFormRow(): UntypedFormGroup {
+    console.log('CreateEmptyInscriptionFormRow create empty row to be populated');
     return this._fb.group({
       gradesProcessingPeriodId: { value: '', disabled: true },
       // gradesGivenDate: { value: '', disabled: true },
-      gradesDueDate: { value: '', disabled: true },
-      gradesTurnedInDate: [
-        { value: '' },
-        Validators.compose([Validators.pattern(/^\d{4}\-\d{1,2}\-\d{1,2}$/), Validators.maxLength(10)])
-      ],
-      gradePointAvg: [{ value: '' }, Validators.pattern(/^\d{1,2}\.\d{1,1}$/)],
-      exception: [''],
+      inscriptionsDueDate: { value: '', disabled: true },
+
       confirmedDate: { value: '', disabled: true },
       confirmedById: [{ value: '' }, Validators.required],
     });
   }
 
-  updateGradeEntryFormRow(gradeEntryFormRow: UntypedFormGroup, gradeEntryDataRow: StudentGrades): void {
-    console.log('updateGradeEntryRow update existing row with actual data');
-    console.log(JSON.stringify(gradeEntryDataRow));
-    gradeEntryFormRow.patchValue({
-      gradesProcessingPeriodId: gradeEntryDataRow.gradesProcessingPeriodId,
+  updateInscriptionFormRow(inscriptionFormRow: UntypedFormGroup, inscriptionDataRow: Inscription): void {
+    console.log('updateInscriptionFormRow update existing row with actual data');
+    console.log(JSON.stringify(inscriptionDataRow));
+    inscriptionFormRow.patchValue({
+      gradesProcessingPeriodId: inscriptionDataRow.gradesProcessingPeriodId,
       // gradesGivenDate: new TruncateDatePipe().transform('' + entryData.gradesGivenDate),
-      gradesDueDate: new TruncateDatePipe().transform('' + gradeEntryDataRow.gradesDueDate),
-      gradesTurnedInDate: new TruncateDatePipe().transform('' + gradeEntryDataRow.gradesTurnedInDate),
-      gradePointAvg: this.toFixedValue(gradeEntryDataRow.gradePointAvg),
-      exception: gradeEntryDataRow.exception,
-      confirmedById: gradeEntryDataRow.confirmedById,
-      confirmedDate: new TruncateDatePipe().transform('' + gradeEntryDataRow.confirmedDate)
+      inscriptionsDueDate: new TruncateDatePipe().transform('' + inscriptionDataRow.inscriptionsDueDate),
+      confirmedById: inscriptionDataRow.confirmedById,
+      confirmedDate: new TruncateDatePipe().transform('' + inscriptionDataRow.confirmedDate)
     });
-    gradeEntryFormRow.markAsPristine();
+    inscriptionFormRow.markAsPristine();
   }
 
-  addGradeEntryRow(gradeEntryDataRow: StudentGrades) {
-    const gradeEntryFormRow: UntypedFormGroup = this.createEmptyGradeEntryFormRow();
+  addGradeEntryRow(gradeEntryDataRow: Inscription) {
+    const inscriptionFormRow: UntypedFormGroup = this.createEmptyInscriptionFormRow();
 
-    this.updateGradeEntryFormRow(gradeEntryFormRow, gradeEntryDataRow);
+    this.updateInscriptionFormRow(inscriptionFormRow, gradeEntryDataRow);
     console.log('addGradeEntry: push new populated row intoFormArray');
-    this.gradeEntryFormRows().push(gradeEntryFormRow);
+    this.inscriptionFormRows().push(inscriptionFormRow);
   }
 
   ngOnInit() {
@@ -126,14 +118,14 @@ export class GradesEditComponent implements OnInit {
   subscribeForStudentNames() {
     this.subscription = this.currentName$.subscribe((message) => {
       this.studentName = message;
-      console.log('************NGXS: grades edit new StudentName received' + this.studentName);
+      console.log('************NGXS: Inscription edit new StudentName received' + this.studentName);
     });
   }
 
   subscribeForStudentGUIds2() {
     this.subscription = this.currentGUId$.subscribe((message) => {
       this.studentGUId = message;
-      console.log('************NGXS: grades edit new StudentGUId received' + this.studentGUId);
+      console.log('************NGXS: Inscription edit new StudentGUId received' + this.studentGUId);
       if (this.studentGUId && this.studentGUId !== '0000') {
         this.fetchFilteredData();
       }
@@ -143,15 +135,15 @@ export class GradesEditComponent implements OnInit {
   fetchFilteredData() {
     if (this.studentGUId && this.studentGUId !== undefined && this.studentGUId !== '0000') {
       this.isLoading = true;
-      this.becaData.getStudentGradesForStudent(this.studentGUId).subscribe(
+      this.inscriptionData.getInscriptionsForStudent(this.studentGUId).subscribe(
         (data) => {
-          this.studentGradesData = data;
+          this.inscriptions = data;
         },
         (err) => {
           this.errorMessage = err;
         },
         () => {
-          this.studentGradesData.forEach((gradeEntryDataRow) => {
+          this.inscriptions.forEach((gradeEntryDataRow) => {
             this.addGradeEntryRow(gradeEntryDataRow);
           });
 
@@ -184,8 +176,8 @@ export class GradesEditComponent implements OnInit {
     return (imageSubmittedDate === '1900-01-01T00:00:00');
   }
   saveAllChangedEntries() {
-    console.log('studentGradesData length is ' + this.studentGradesData.length);
-    for (let i = 0; i < this.studentGradesData.length; ++i) {
+    console.log('inscriptionData length is ' + this.inscriptions.length);
+    for (let i = 0; i < this.inscriptions.length; ++i) {
       console.log('saveEntry ' + i);
       this.saveEntry(i);
     }
@@ -193,8 +185,8 @@ export class GradesEditComponent implements OnInit {
   }
 
   resetAllChangedEntries() {
-    console.log('studentGradesData length is ' + this.studentGradesData.length);
-    for (let i = 0; i < this.studentGradesData.length; ++i) {
+    console.log('inscriptionData length is ' + this.inscriptions.length);
+    for (let i = 0; i < this.inscriptions.length; ++i) {
       console.log('saveEntry ' + i);
       this.resetEntry(i);
     }
@@ -202,24 +194,24 @@ export class GradesEditComponent implements OnInit {
   }
 
   retrieveFormValuesForRow(i: number): void {
-    console.log('retrieveFormValues for row' + JSON.stringify(this.gradeEntryFormRows().value[i]));
-    this.studentGradesData[i] = { ...this.studentGradesData[i], ...this.gradeEntryFormRows().value[i] };
+    console.log('retrieveFormValues for row' + JSON.stringify(this.inscriptionFormRows().value[i]));
+    this.inscriptions[i] = { ...this.inscriptions[i], ...this.inscriptionFormRows().value[i] };
   }
 
   isRowDirty(i: number): boolean {
     // console.log('checking dirty state of i ' + i + ' -- ' + this.gradeEntryFormRows().controls[i].dirty);
-    return this.gradeEntryFormRows().controls[i].dirty;
+    return this.inscriptionFormRows().controls[i].dirty;
   }
 
   saveEntry(i: number): boolean {
     console.log('saveEntry for ' + i);
     this.isLoading = true;
     this.errorMessage = '';
-    console.log('row dirty value is ' + this.gradeEntryFormRows().controls[i].dirty);
-    if (this.gradeEntryFormRows().controls[i].dirty) {
-      this.gradeEntryFormRows().controls[i].get('confirmedDate').enable();
+    console.log('row dirty value is ' + this.inscriptionFormRows().controls[i].dirty);
+    if (this.inscriptionFormRows().controls[i].dirty) {
+      this.inscriptionFormRows().controls[i].get('confirmedDate')?.enable();
       this.retrieveFormValuesForRow(i);
-      this.becaData.updateStudentGrades(this.studentGradesData[i]).subscribe(
+      this.inscriptionData.updateInscriptions(this.inscriptions[i]).subscribe(
         (gradeRowData) => {
           console.log('subscribe result in updateGradeRowData');
           console.log(JSON.stringify(gradeRowData));
@@ -227,11 +219,11 @@ export class GradesEditComponent implements OnInit {
           window.setTimeout(() => {
             this.successMessage = 'Changes were saved successfully.';
           }, 0);
-          const currRowFormGroup = this.gradeEntryFormRows().controls[i] as UntypedFormGroup;
+          const currRowFormGroup = this.inscriptionFormRows().controls[i] as UntypedFormGroup;
           // this fails for some reason, and isn't needed because the update won't change any of these values
           // this.updateGradeEntryRow(currRowFormGroup, gradeRowData);
           currRowFormGroup.markAsPristine();
-          this.gradeEntryFormRows().controls[i].get('confirmedDate').disable();
+          this.inscriptionFormRows().controls[i].get('confirmedDate')?.disable();
           // this.successMessage = 'Changes were saved successfully.';
           this.isLoading = false;
           window.scrollTo(0, 0);
@@ -253,10 +245,10 @@ export class GradesEditComponent implements OnInit {
   resetEntry(i: number): boolean {
     console.log('resetEntry for ' + i);
 
-    if (this.gradeEntryFormRows().controls[i].dirty) {
+    if (this.inscriptionFormRows().controls[i].dirty) {
       this.retrieveFormValuesForRow(i);
-      this.gradeEntryFormRows().controls[i].reset();
-      this.gradeEntryFormRows().controls[i].markAsPristine();
+      this.inscriptionFormRows().controls[i].reset();
+      this.inscriptionFormRows().controls[i].markAsPristine();
     }
     // prevent default action of reload
     return false;
@@ -275,7 +267,7 @@ export class GradesEditComponent implements OnInit {
     }
     const strDate = [d.getFullYear(), ('0' + (d.getMonth() + 1)).slice(-2), ('0' + d.getDate()).slice(-2)].join('-');
 
-    const gradeEntryRow: UntypedFormGroup = this.gradeEntryFormRows().controls[i] as UntypedFormGroup;
+    const gradeEntryRow: UntypedFormGroup = this.inscriptionFormRows().controls[i] as UntypedFormGroup;
     gradeEntryRow.patchValue({
       gradesTurnedInDate: strDate
     });
@@ -284,7 +276,7 @@ export class GradesEditComponent implements OnInit {
 
   setConfirmedBy(i: number, adminId?: any): void {
     console.log('setConfirmedBy with adminId = ' + adminId);
-    const gradeEntryRow: UntypedFormGroup = this.gradeEntryFormRows().controls[i] as UntypedFormGroup;
+    const gradeEntryRow: UntypedFormGroup = this.inscriptionFormRows().controls[i] as UntypedFormGroup;
     if (adminId === null || adminId === 'null') {
 
       gradeEntryRow.patchValue({
