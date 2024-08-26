@@ -6,7 +6,7 @@ import { catchError, shareReplay, tap, toArray } from 'rxjs/operators';
 import { SetSelectedGradesProcessingPeriodID, SetSelectedQRPeriod } from 'src/app/_store/ui/ui.action';
 import { constants } from '../constants/constants';
 import { BaseDataService } from '../data/base-data.service';
-import { GRADESPROCESSINGPERIOD } from '../interfaces/GRADESPROCESSINGPERIOD';
+import { PROCESSINGPERIOD } from '../interfaces/PROCESSINGPERIOD';
 import { SELECTITEM } from '../interfaces/SELECTITEM';
 import { UrlService } from './url.service';
 
@@ -47,17 +47,31 @@ export class ConstantsService extends BaseDataService {
   );
 
   private gpPeriodsUrl = this.WebApiPrefix + 'lookup/gpPeriods';
-  gpPeriods$: Observable<GRADESPROCESSINGPERIOD[]> = this.http.get<GRADESPROCESSINGPERIOD[]>(this.gpPeriodsUrl).pipe(
+  gpPeriods$: Observable<PROCESSINGPERIOD[]> = this.http.get<PROCESSINGPERIOD[]>(this.gpPeriodsUrl).pipe(
     // tap((data) => console.log('gPP results ', JSON.stringify(data))),
     shareReplay(1),
     catchError(this.handleError)
   );
   private gpPeriodActiveUrl = this.WebApiPrefix + 'lookup/gpPeriods?activeStatus=1';
-  gpPeriodsActive$: Observable<GRADESPROCESSINGPERIOD[]> = this.http.get<GRADESPROCESSINGPERIOD[]>(this.gpPeriodsUrl).pipe(
+  gpPeriodsActive$: Observable<PROCESSINGPERIOD[]> = this.http.get<PROCESSINGPERIOD[]>(this.gpPeriodsUrl).pipe(
     // tap((data) => console.log('gPP results ', JSON.stringify(data))),
     shareReplay(1),
     catchError(this.handleError)
   );
+
+  private ipPeriodsUrl = this.WebApiPrefix + 'lookup/ipPeriods';
+  ipPeriods$: Observable<PROCESSINGPERIOD[]> = this.http.get<PROCESSINGPERIOD[]>(this.ipPeriodsUrl).pipe(
+    // tap((data) => console.log('inscripP results ', JSON.stringify(data))),
+    shareReplay(1),
+    catchError(this.handleError)
+  );
+  private inscripPeriodActiveUrl = this.WebApiPrefix + 'lookup/ipPeriods?activeStatus=1';
+  ipPeriodsActive$: Observable<PROCESSINGPERIOD[]> = this.http.get<PROCESSINGPERIOD[]>(this.ipPeriodsUrl).pipe(
+    // tap((data) => console.log('inscripP results ', JSON.stringify(data))),
+    shareReplay(1),
+    catchError(this.handleError)
+  );
+
 
 
   constructor(public http: HttpClient, public webApiPrefixService: UrlService, public store: Store) {
@@ -69,6 +83,7 @@ export class ConstantsService extends BaseDataService {
 
   public loadFromDB() {
     this.generateGradesProcessingPeriods();
+    this.generateInscriptionsPeriods();
     this.setSSRDateRange();
     this.buildCodeValueArrays();
     this.generateQRPeriods();
@@ -91,6 +106,17 @@ export class ConstantsService extends BaseDataService {
     );
   }
 
+  public generateInscriptionsPeriods(){
+    this.ipPeriods$.pipe(toArray()).subscribe(
+      (data) => {
+        constants.inscriptionsProcessingPeriods = data[0];  // our data is in the first and only element of array
+      },
+      (err: any) => console.error('Subscribe error: ' + err),
+      () => {
+        console.log('xxxxxxxxxx subscribe returned  ');
+      }
+    );
+  }
 
   public generateJoinedYears() {
     const now = new Date();

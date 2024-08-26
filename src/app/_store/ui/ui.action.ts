@@ -35,6 +35,10 @@ export class SetSelectedGradesProcessingPeriodID {
   static readonly type = '[UI] update selectedGradesProcessingPeriodID';
   constructor(public readonly payload: string) {}
 }
+export class SetSelectedInscriptionsPeriodID {
+  static readonly type = '[UI] update selectedInscriptionsPeriodID';
+  constructor(public readonly payload: string) {}
+}
 ///
 export class GetSelectedYearJoined {
   static readonly type = '[UI] Get selectedYearJoined';

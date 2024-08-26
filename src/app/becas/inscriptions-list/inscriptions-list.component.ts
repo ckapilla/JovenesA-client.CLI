@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
+import { PROCESSINGPERIOD } from 'src/app/_shared/interfaces/PROCESSINGPERIOD';
 import { constants } from '../../_shared/constants/constants';
 import { InscriptionDataService } from '../../_shared/data/inscription-data.service';
-import { GRADESPROCESSINGPERIOD } from '../../_shared/interfaces/GRADESPROCESSINGPERIOD';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 import { SORTCRITERIA } from '../../_shared/interfaces/SORTCRITERIA';
 import { InscriptionEntryDTO } from '../../_shared/models/inscription-entryDTO';
@@ -28,17 +28,18 @@ export class InscriptionsListComponent implements OnInit {
   sortCriteria: SORTCRITERIA;
   years: SELECTITEM[];
   months: SELECTITEM[];
-  gradesProcessingPeriods: GRADESPROCESSINGPERIOD[];
+  inscriptionsProcessingPeriods: PROCESSINGPERIOD[];
   selectedYear: string;
   selectedMonth: string;
   displayTestNames: boolean;
-  selectedGradesProcessingPeriodID = '';
+  // selectedGradesProcessingPeriodID = '';
+  selectedInscriptionsPeriodID = '';
   staticUrlPrefix: string;
   periodStart: string;
   private subscription: Subscription;
 
   testNameVisibility$ = this.store.select<boolean>(UIState.getTestNamesVisibility);
-  selectedGradesProcessingPeriodID$ = this.store.select<string>(UIState.getselectedGradesProcessingPeriodID);
+  selectedInscriptionsProcessingPeriodID$ = this.store.select<string>(UIState.getselectedGradesProcessingPeriodID);
 
   constructor(
     public inscriptionData: InscriptionDataService,
@@ -52,7 +53,7 @@ export class InscriptionsListComponent implements OnInit {
 
     this.years = constants.contactYears;
     this.months = constants.months;
-    this.gradesProcessingPeriods = constants.gradesProcessingPeriods;
+    this.inscriptionsProcessingPeriods = constants.inscriptionsProcessingPeriods;
     this.isLoading = false;
   }
 
@@ -60,13 +61,13 @@ export class InscriptionsListComponent implements OnInit {
     this.testNameVisibility$.subscribe((flag) => {
       this.displayTestNames = flag;
     });
-    this.subscribeForselectedGradesProcessingPeriodID();
+    this.subscribeForselectedInscriptionsProcessingPeriodID();
   }
 
-  subscribeForselectedGradesProcessingPeriodID() {
-    this.subscription = this.selectedGradesProcessingPeriodID$.subscribe((message) => {
-      this.selectedGradesProcessingPeriodID = message;
-      console.log('************NGXS: InscriptionsList new selectedGradesProcessingPeriodID received' + this.selectedGradesProcessingPeriodID);
+  subscribeForselectedInscriptionsProcessingPeriodID() {
+    this.subscription = this.selectedInscriptionsProcessingPeriodID$.subscribe((message) => {
+      this.selectedInscriptionsPeriodID = message;
+      console.log('************NGXS: InscriptionsList new selectedGradesProcessingPeriodID received' + this.selectedInscriptionsPeriodID);
       this.fetchFilteredData();
     });
   }
@@ -74,7 +75,7 @@ export class InscriptionsListComponent implements OnInit {
   fetchFilteredData() {
     this.isLoading = true;
     console.log('displayTestNames: ' + this.displayTestNames);
-    this.inscriptionData.getInscriptionsListForPeriod(+this.selectedGradesProcessingPeriodID).subscribe(
+    this.inscriptionData.getInscriptionsListForPeriod(+this.selectedInscriptionsPeriodID).subscribe(
       (data) => {
         this.inscriptionEntryDTOs = data.filter((item) => {
           if (this.displayTestNames) {
@@ -89,8 +90,8 @@ export class InscriptionsListComponent implements OnInit {
       },
       () => {
         console.log(this.inscriptionEntryDTOs[0]);
-        // console.log(JSON.stringify(this.inscriptionEntryDTOs));
-        console.log('data loaded now set timeout for scroll');
+        console.log(JSON.stringify(this.inscriptionEntryDTOs));
+        console.log('inscription data loaded now set timeout for scroll');
         setTimeout(() => {
           this.scrollIntoView();
         }, 0);
@@ -115,8 +116,8 @@ export class InscriptionsListComponent implements OnInit {
   //   this.fetchFilteredData();
   // }
 
-  setselectedGradesProcessingPeriodID(gradesProcessingPeriod: string) {
-    this.store.dispatch(new SetSelectedGradesProcessingPeriodID(gradesProcessingPeriod));
+  setselectedInscriptionsProcessingPeriodID(inscriptionsPeriod: string) {
+    this.store.dispatch(new SetSelectedGradesProcessingPeriodID(inscriptionsPeriod));
   }
 
   confirmInscription(studentGUId: string, studentName: string) {

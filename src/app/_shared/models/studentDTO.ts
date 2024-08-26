@@ -74,7 +74,7 @@ export class StudentDTO {
 
     public currentGradesProcessingPeriodId?: number,
     public entryStartDate?: Date,
-    public gradeEntryActiveStatus?: number,
+    public gradesEntryActiveStatus?: number,
     public mastersStartYear?: string,
     public mastersStartMonthNum?: number,
     public undergradStartYear?: string,

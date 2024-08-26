@@ -19,8 +19,8 @@ export class InscriptionDataService {
   ///  InscriptionController
   /// ///////////////////////////////////////////////
 
-  public getInscriptionsListForPeriod(gradesProcessingPeriodId: number): Observable<InscriptionEntryDTO[]> {
-    const url = this.WebApiPrefix + 'becas/' + 'inscriptions-list/period/' + gradesProcessingPeriodId;
+  public getInscriptionsListForPeriod(inscriptionsProcessingPeriodId: number): Observable<InscriptionEntryDTO[]> {
+    const url = this.WebApiPrefix + 'becas/' + 'inscriptions-list/period/' + inscriptionsProcessingPeriodId;
     console.log('sending AuthHttp get request for GradesList with url ' + url);
     return this.http.get<InscriptionEntryDTO[]>(url).pipe(catchError(this.handleError));
   }

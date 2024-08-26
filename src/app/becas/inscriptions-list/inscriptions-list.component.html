@@ -1,15 +1,15 @@
 <div class="card bg-primary">
-  <div class="card-header text-white" data-cy="grades-period">
+  <div class="card-header text-white" data-cy="inscriptions-period">
     <span style="font-size: large"> Inscription Report Statuses</span>
     <span style="margin-left: 10rem">
       Inscriptions Processing Period Start Date:
       <select
         name="activePeriodSelector"
         data-cy="period-selector"
-        [(ngModel)]="selectedGradesProcessingPeriodID"
-        (change)="setselectedGradesProcessingPeriodID($event.target.value)"
+        [(ngModel)]="selectedInscriptionsProcessingPeriodID"
+        (change)="setselectedInscriptionsProcessingPeriodID($event.target.value)"
       >
-        <option *ngFor="let gradesProcessingPeriod of gradesProcessingPeriods" [value]="gradesProcessingPeriod.id">{{gradesProcessingPeriod.descriptor}}</option>
+        <option *ngFor="let inscriptionsProcessingPeriod of inscriptionsProcessingPeriods" [value]="inscriptionsProcessingPeriod.id">{{inscriptionsProcessingPeriod.descriptor}}</option>
       </select>
     </span>
   </div>

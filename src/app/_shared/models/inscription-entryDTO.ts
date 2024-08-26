@@ -6,8 +6,8 @@ export class InscriptionEntryDTO {
     public univ?: string,
     public academicYear?: string,
 
-    public gradesProcessingPeriodId?: number,
-    public initialGradesEntryDate?: Date,
+    public inscriptionsProcessingPeriodId?: number,
+    public initialInscriptionsEntryDate?: Date,
     public inscriptionsDueDate?: Date,
     public inscriptionsTurnedInDate?: Date,
 
