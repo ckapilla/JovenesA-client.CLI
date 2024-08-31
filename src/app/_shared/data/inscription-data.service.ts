@@ -25,8 +25,8 @@ export class InscriptionDataService {
     return this.http.get<InscriptionEntryDTO[]>(url).pipe(catchError(this.handleError));
   }
 
-  public getInscriptionsForPeriod(gradesProcessingPeriodId: number): Observable<Inscription[]> {
-    const url = this.WebApiPrefix + 'becas/inscriptions/' + 'for-period/' + gradesProcessingPeriodId;
+  public getInscriptionsForPeriod(inscriptionsProcessingPeriodId: number): Observable<Inscription[]> {
+    const url = this.WebApiPrefix + 'becas/inscriptions/' + 'for-period/' + inscriptionsProcessingPeriodId;
     console.log('sending AuthHttp get request for Inscriptions for Period with url ' + url);
     return this.http.get<Inscription[]>(url).pipe(catchError(this.handleError));
   }
@@ -58,10 +58,10 @@ export class InscriptionDataService {
   public uploadInscriptionImage(frmData: FormData,
     studentGUId: string,
     inscriptionId: number,
-    gradesProcessingPeriodId: number,
+    inscriptionsProcessingPeriodId: number,
     inscriptionType: string
     ): Observable<any>{
-    const url = this.WebApiPrefix + 'becas/inscriptions/' + 'inscription' + '?studentGUId=' + studentGUId + '&inscriptionId='+ inscriptionId  + '&gradesProcessingPeriodId='+ gradesProcessingPeriodId + '&inscriptionType=' + inscriptionType;
+    const url = this.WebApiPrefix + 'becas/inscriptions/' + 'inscription' + '?studentGUId=' + studentGUId + '&inscriptionId='+ inscriptionId  + '&gradesProcessingPeriodId='+ inscriptionsProcessingPeriodId + '&inscriptionType=' + inscriptionType;
 
     console.log('@@@@@@@@@@@@@@in uploadInscriptionImage with url ' + url );
 

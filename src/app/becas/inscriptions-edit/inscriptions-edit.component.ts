@@ -78,7 +78,7 @@ export class InscriptionsEditComponent implements OnInit {
   createEmptyInscriptionFormRow(): UntypedFormGroup {
     console.log('CreateEmptyInscriptionFormRow create empty row to be populated');
     return this._fb.group({
-      gradesProcessingPeriodId: { value: '', disabled: true },
+      inscriptionsProcessingPeriodId: { value: '', disabled: true },
       // gradesGivenDate: { value: '', disabled: true },
       inscriptionsDueDate: { value: '', disabled: true },
 
@@ -91,8 +91,7 @@ export class InscriptionsEditComponent implements OnInit {
     console.log('updateInscriptionFormRow update existing row with actual data');
     console.log(JSON.stringify(inscriptionDataRow));
     inscriptionFormRow.patchValue({
-      gradesProcessingPeriodId: inscriptionDataRow.gradesProcessingPeriodId,
-      // gradesGivenDate: new TruncateDatePipe().transform('' + entryData.gradesGivenDate),
+      inscriptionsProcessingPeriodId: inscriptionDataRow.inscriptionsProcessingPeriodId,
       inscriptionsDueDate: new TruncateDatePipe().transform('' + inscriptionDataRow.inscriptionsDueDate),
       confirmedById: inscriptionDataRow.confirmedById,
       confirmedDate: new TruncateDatePipe().transform('' + inscriptionDataRow.confirmedDate)

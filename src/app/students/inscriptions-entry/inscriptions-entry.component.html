@@ -305,7 +305,7 @@
 
                     <div class="col p-0 grade-image-wrapper mt-4 text-right ">
                       <app-inscription-uploader [inscriptionId]=inscriptionsData[0].inscriptionId
-                                                [gradesProcessingPeriodId]=inscriptionsData[0].gradesProcessingPeriodId
+                                                [inscriptionsProcessingPeriodId]=inscriptionsData[0].inscriptionsProcessingPeriodId
                                                 [inscriptionType]="'reg'"
                                                 (uploadSuccess)="onUploadSuccess()">
                       </app-inscription-uploader>
@@ -316,12 +316,12 @@
                         </svg>
                         <a class="align-middle ml-2"
                            [hidden]="!entry?.registrationFormSubmittedDate"
-                           href="{{staticUrlPrefix}}InscriptionRegistrations/{{entry.gradesProcessingPeriodId}}/{{entry.studentGUId | uppercase }}.png"
+                           href="{{staticUrlPrefix}}InscriptionRegistrations/{{entry.inscriptionsProcessingPeriodId}}/{{entry.studentGUId | uppercase }}.png"
                            target="_blank">Archivo subido con éxito -- haga clic para revisar</a>
                       </div>
 
                       <app-inscription-uploader [inscriptionId]=inscriptionsData[0].inscriptionId
-                                                [gradesProcessingPeriodId]=inscriptionsData[0].gradesProcessingPeriodId
+                                                [inscriptionsProcessingPeriodId]=inscriptionsData[0].inscriptionsProcessingPeriodId
                                                 [inscriptionType]="'pmt'"
                                                 (uploadSuccess)="onUploadSuccess()"
                                                 >
@@ -333,7 +333,7 @@
                         </svg>
                         <a class="align-middle ml-2"
                            [hidden]="!entry?.paymentReceiptSubmittedDate"
-                           href="{{staticUrlPrefix}}InscriptionPayments/{{entry.gradesProcessingPeriodId}}/{{entry.studentGUId | uppercase }}.png"
+                           href="{{staticUrlPrefix}}InscriptionPayments/{{entry.inscriptionsProcessingPeriodId}}/{{entry.studentGUId | uppercase }}.png"
                            target="_blank">Archivo subido con éxito -- haga clic para revisar</a>
 
                       </div>

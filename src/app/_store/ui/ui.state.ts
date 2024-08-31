@@ -5,7 +5,7 @@ import {
   SetSelectedFilterMode,
   SetSelectedGradYear,
   SetSelectedGradesProcessingPeriodID,
-  SetSelectedInscriptionsPeriodID,
+  SetSelectedInscriptionsProcessingPeriodID,
   SetSelectedQRPeriod, SetSelectedStudentStatus,
   SetSelectedYearJoined, SetTestNamesVisibility
 } from './ui.action';
@@ -19,7 +19,7 @@ import { UIStateModel } from './ui.model';
 
     selectedQRPeriod: '', // initialize ConstantsService.generateQRPeriods
     selectedGradesProcessingPeriodID: '119', // need to initialize this from ConstantsService
-    selectedInscriptionsPeriodID: '120', // need to initialize this from ConstantsService
+    selectedInscriptionsProcessingPeriodID: '120', // need to initialize this from ConstantsService
 
     selectedFilterMode: '998',
     selectedStudentStatus: '0',
@@ -92,20 +92,20 @@ export class UIState {
   }
 
   @Selector()
-  static getselectedInscriptionsPeriodID(state: UIStateModel) {
-    return state.selectedInscriptionsPeriodID;
+  static getselectedInscriptionsProcessingPeriodID(state: UIStateModel) {
+    return state.selectedInscriptionsProcessingPeriodID;
   }
 
-  @Action(SetSelectedInscriptionsPeriodID)
-  setselectedInscriptionsPeriodID(ctx: StateContext<UIStateModel>, { payload }: SetSelectedInscriptionsPeriodID) {
-    const selectedInscriptionsPeriodID = payload;
+  @Action(SetSelectedInscriptionsProcessingPeriodID)
+  setselectedInscriptionsProcessingPeriodID(ctx: StateContext<UIStateModel>, { payload }: SetSelectedInscriptionsProcessingPeriodID) {
+    const selectedInscriptionsProcessingPeriodID = payload;
     const state = ctx.getState();
     ctx.patchState({
       ...state,
-      selectedInscriptionsPeriodID
+      selectedInscriptionsProcessingPeriodID
     });
   }
-  selectedInscriptionsPeriodID
+  selectedInscriptionsProcessingPeriodID
 
   @Selector()
   static getSelectedYearJoined(state: UIStateModel) {

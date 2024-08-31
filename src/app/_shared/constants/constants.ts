@@ -75,7 +75,8 @@ const emojiMsgs = [
 const timelinessMsgs =new Map<string, string>([
   ['green', 'Reports Up-to-date'],
   ['yellow', 'Report Due this month'],
-  ['red', 'Report Overdue']
+  ['red', 'Report Overdue'],
+  ['N/A', 'Reports N/A for Masters']
 ]);
 
 const gradesTimelinessMsgs =new Map<string, string>([

@@ -79,7 +79,7 @@
                 {{ entry.year }}
               </td> -->
               <td>
-                {{ entry.gradesProcessingPeriodId }}
+                {{ entry.inscriptionsProcessingPeriodId }}
               </td>
                     <td>
                       <input
@@ -91,13 +91,13 @@
                     </td>
                     <td class="link">
                       <div [hidden]="isViewLinkHidden(entry.registrationFormSubmittedDate)">
-                          <a href= "{{staticUrlPrefix}}InscriptionRegistrations/{{entry.gradesProcessingPeriodId}}/{{entry.studentGUId | uppercase }}.png"
+                          <a href= "{{staticUrlPrefix}}InscriptionRegistrations/{{entry.inscriptionsProcessingPeriodId}}/{{entry.studentGUId | uppercase }}.png"
                           target="_blank">{{entry.studentGUId | trimGuid | uppercase  }}</a>
                       </div>
                     </td>
                     <td class="link">
                       <div [hidden]="isViewLinkHidden(entry.paymentReceiptSubmittedDate)">
-                          <a href= "{{staticUrlPrefix}}InscriptionPayments/{{entry.gradesProcessingPeriodId}}/{{entry.studentGUId | uppercase }}.png"
+                          <a href= "{{staticUrlPrefix}}InscriptionPayments/{{entry.inscriptionsProcessingPeriodId}}/{{entry.studentGUId | uppercase }}.png"
                           target="_blank">{{entry.studentGUId | trimGuid | uppercase  }}</a>
                       </div>
                     </td>

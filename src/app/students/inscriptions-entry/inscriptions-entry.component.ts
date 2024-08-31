@@ -69,7 +69,7 @@ export class InscriptionsEntryComponent implements OnInit {
   createEmptyInscriptionEntryFormRow(): UntypedFormGroup {
     console.log('CreateEmptyInscriptionEntry create empty row to be populated');
     return this._fb.group({
-      gradesProcessingPeriodId: { value: '', disabled: true },
+      inscriptionsProcessingPeriodId: { value: '', disabled: true },
       initialGradesEntryDate: { value: '', disabled: true },
       XXinscriptionsDueDate: { value: '', disabled: true },
       registrationFormSubmittedDate: { value: '' }, // must use readonly in html instead of disabled here so value will get sent to server
@@ -87,7 +87,7 @@ export class InscriptionsEntryComponent implements OnInit {
     );
     console.log(JSON.stringify(inscriptionEntryDataRow));
     inscriptionEntryFormRow.patchValue({
-      gradesProcessingPeriodId: inscriptionEntryDataRow.gradesProcessingPeriodId,
+      inscriptionsProcessingPeriodId: inscriptionEntryDataRow.inscriptionsProcessingPeriodId,
       initialGradesEntryDate: new TruncateDatePipe().transform(
         "" + inscriptionEntryDataRow.initialInscriptionsEntryDate
       ),

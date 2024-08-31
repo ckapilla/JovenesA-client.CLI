@@ -3,7 +3,7 @@ export class Inscription {
     public inscriptionId: number,
     public studentGUId: string,
     public year: number, // temp holdover
-    public gradesProcessingPeriodId: number,
+    public inscriptionsProcessingPeriodId: number,
     public initialInscriptionsEntryDate: Date = new Date(),
     public inscriptionsDueDate: Date = new Date(),
 
