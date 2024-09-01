@@ -38,9 +38,6 @@ export class Student {
     // public byte[] Timestamp?: string, // Timestamp
     public emergencyContactName?: string, // EmergencyContactName
     public emergencyContactPhone?: string, // EmergencyContactPhone
-    // public postalCode?: string, // PostalCode
-    // public academicYearTypeId?: number, // AcademicYearTypeID
-    // public gradeMonthsId?: number, // GradeMonthsID
     public joinedFromId?: number, // JoinedFromID
     public studentHistory_Es?: string, // StudentStory
     public gradMonthNum?: number, // GradMonth
