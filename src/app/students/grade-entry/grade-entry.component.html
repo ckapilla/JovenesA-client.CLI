@@ -26,10 +26,10 @@
             <div class="stepper-wrapper d-flex flex-row justify-content-center">
 
               <div class="stepper-item first d-flex flex-row align-items-center justify-content-around"
-                   [class.completed-first]="studentGradesData[0].initialGradesEntryDate">
+                   [class.completed-first]="studentGradesData[0].gradesEntryStartDate">
                 <div class="d-flex flex-column align-items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                       *ngIf="!studentGradesData[0]?.initialGradesEntryDate; else solicitado" viewBox="0,0,256,256"
+                       *ngIf="!studentGradesData[0]?.gradesEntryStartDate; else solicitado" viewBox="0,0,256,256"
                        heigth="256px" width="256px" fill-rule="nonzero">
                     <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
                        stroke-linejoin="none" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
@@ -82,7 +82,7 @@
                   </ng-template>
                   <p class="step">Solicitado</p>
                   <p class="step" *ngIf="studentGradesData[0].gradesTurnedInDate">
-                    {{studentGradesData[0].initialGradesEntryDate | date:'yyyy-MM-dd'}}</p>
+                    {{studentGradesData[0].gradesEntryStartDate | date:'yyyy-MM-dd'}}</p>
                 </div>
               </div>
 
@@ -287,7 +287,7 @@
                       <div class="limit-date col p-0">
                         <p class="state" *ngIf="!studentGradesData[0].confirmedDate; else emailSary">
                           Tienes hasta el
-                          <br><span>{{studentGradesData[0].gradesDueDate | date: 'fullDate' :'es'}}</span>
+                          <br><span>{{studentGradesData[0].gradesEntryEndDate | date: 'fullDate' :'es'}}</span>
                           <br>para subir tus calificaciones
                         </p>
                         <ng-template #emailSary>
@@ -330,7 +330,7 @@
           debajo del recuadro. Hecho esto, tu archivo estará cargado y listo para revisión.</h6>
         <br> -->
                       <app-grades-uploader [studentGradeId]=studentGradesData[0].studentGradeId
-                                         [gradesProcessingPeriodId]=studentGradesData[0].gradesProcessingPeriodId
+                                         [academicTermId]=studentGradesData[0].academicTermId
                                          (uploadSuccess)="onUploadSuccess()">
                                          </app-grades-uploader>
                       <div class="img-wrapper p-1 text-left">
@@ -340,7 +340,7 @@
                         </svg>
                         <a class="align-middle ml-2"
                            [hidden]="!entry?.imageSubmittedDate"
-                           href="{{staticUrlPrefix}}StudentGradesReports/{{entry.gradesProcessingPeriodId}}/{{entry.studentGUId | uppercase }}.png"
+                           href="{{staticUrlPrefix}}StudentGradesReports/{{entry.academicTermId}}/{{entry.studentGUId | uppercase }}.png"
                            target="_blank">Archivo subido con éxito -- haga clic para revisar</a>
 
                       </div>

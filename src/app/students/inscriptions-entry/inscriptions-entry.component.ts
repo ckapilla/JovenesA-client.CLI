@@ -34,7 +34,7 @@ export class InscriptionsEntryComponent implements OnInit {
   private subscription: Subscription;
   studentName: string;
   confirmedDate: boolean;
-  inGradesProcessingPeriod: boolean;
+  inInscriptionsProcessingPeriod: boolean;
   staticUrlPrefix: string;
 
    currentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
@@ -55,7 +55,7 @@ export class InscriptionsEntryComponent implements OnInit {
   ) {
     this.staticUrlPrefix = url.getStaticFilePrefix();
     this.isLoading = false;
-    this.inGradesProcessingPeriod = true;
+    this.inInscriptionsProcessingPeriod = true;
     this.myForm = this._fb.group({
       studentGUId: ['0000'],
       inscriptionEntryFormRows: this._fb.array([])
@@ -69,9 +69,9 @@ export class InscriptionsEntryComponent implements OnInit {
   createEmptyInscriptionEntryFormRow(): UntypedFormGroup {
     console.log('CreateEmptyInscriptionEntry create empty row to be populated');
     return this._fb.group({
-      inscriptionsProcessingPeriodId: { value: '', disabled: true },
-      initialGradesEntryDate: { value: '', disabled: true },
-      XXinscriptionsDueDate: { value: '', disabled: true },
+      academicTermId: { value: '', disabled: true },
+      inscriptionsEntryStartDate: { value: '', disabled: true },
+      inscriptionsEntryEndDate: { value: '', disabled: true },
       registrationFormSubmittedDate: { value: '' }, // must use readonly in html instead of disabled here so value will get sent to server
       paymentReceiptSubmittedDate: { value: '' }, // must use readonly in html instead of disabled here so value will get sent to server
       confirmedDate: { value: '', disabled: true }
@@ -87,12 +87,12 @@ export class InscriptionsEntryComponent implements OnInit {
     );
     console.log(JSON.stringify(inscriptionEntryDataRow));
     inscriptionEntryFormRow.patchValue({
-      inscriptionsProcessingPeriodId: inscriptionEntryDataRow.inscriptionsProcessingPeriodId,
-      initialGradesEntryDate: new TruncateDatePipe().transform(
-        "" + inscriptionEntryDataRow.initialInscriptionsEntryDate
+      academicTermId: inscriptionEntryDataRow.academicTermId,
+      inscriptionsEntryStartDate: new TruncateDatePipe().transform(
+        "" + inscriptionEntryDataRow.inscriptionsEntryStartDate
       ),
-      inscriptionsDueDate: new TruncateDatePipe().transform(
-        "" + inscriptionEntryDataRow.inscriptionsDueDate
+      inscriptionEntryEndDate: new TruncateDatePipe().transform(
+        "" + inscriptionEntryDataRow.inscriptionsEntryEndDate
       ),
       // inscriptionsTurnedInDate: new Date().toISOString().slice(0, 10),
       // confirmedDate: new TruncateDatePipe().transform(
@@ -114,7 +114,7 @@ export class InscriptionsEntryComponent implements OnInit {
     this.studentGUId = this.session.getStudentRecordGUId();
     console.log('inscriptionEntry ngOnInit, studentGUID = ' + this.studentGUId);
     this.fetchFilteredData();
-    this.inGradesProcessingPeriod = this.isStudentInCurrentGPP();
+    this.inInscriptionsProcessingPeriod = this.isStudentInCurrentGPP();
   }
 
 
@@ -128,22 +128,22 @@ export class InscriptionsEntryComponent implements OnInit {
       return false;
     }
 
-    const gpp = this?.inscriptionsData[0];
-    console.log("initialGradesEntryDate is " + gpp.initialInscriptionsEntryDate);
-    console.log("gradesDueDate is " + gpp.inscriptionsDueDate);
+    const ipp = this?.inscriptionsData[0];
+    console.log("inscriptionsEntryStartDate is " + ipp.inscriptionsEntryStartDate);
+    console.log("inscriptionsEntryEndDate is " + ipp.inscriptionsEntryEndDate);
 
     // Parse the database dates and set them to midnight
-    const initialGradesEntryDate = new Date(gpp.initialInscriptionsEntryDate);
-    initialGradesEntryDate.setHours(0, 0, 0, 0);
+    const inscriptionsEntryStartDate = new Date(ipp.inscriptionsEntryStartDate);
+    inscriptionsEntryStartDate.setHours(0, 0, 0, 0);
 
-    const gradesDueDate = new Date(gpp.inscriptionsDueDate);
-    gradesDueDate.setHours(0, 0, 0, 0);
+    const inscriptionsEntryEndDate = new Date(ipp.inscriptionsEntryEndDate);
+    inscriptionsEntryEndDate.setHours(0, 0, 0, 0);
 
     console.log("today is " + today);
-    console.log("initialGradesEntryDate is " + initialGradesEntryDate);
-    console.log("gradesDueDate is " + gradesDueDate);
+    console.log("inscriptionsEntryStartDate is " + inscriptionsEntryStartDate);
+    console.log("inscriptionsEntryEndDate is " + inscriptionsEntryEndDate);
 
-    if (today >= initialGradesEntryDate && today <= gradesDueDate) {
+    if (today >= inscriptionsEntryStartDate && today <= inscriptionsEntryEndDate) {
       console.log('in range');
       return true;
     } else {
@@ -177,7 +177,9 @@ export class InscriptionsEntryComponent implements OnInit {
           this.inscriptionsData.forEach((inscriptionEntryDataRow) => {
             this.addInscriptionEntryRow(inscriptionEntryDataRow);
           });
-          this.inGradesProcessingPeriod = this.isStudentInCurrentGPP();
+          //// TEST TEST TEST TEST
+          ////
+          ////this.inGradesProcessingPeriod = this.isStudentInCurrentGPP();
           this.isLoading = false;
         }
       );

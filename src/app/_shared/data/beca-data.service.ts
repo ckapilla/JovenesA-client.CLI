@@ -25,8 +25,8 @@ export class BecaDataService {
     return this.http.get<GradesGivenEntryDTO[]>(url).pipe(catchError(this.handleError));
   }
 
-  public getGradesListForPeriod(gradesProcessingPeriodId: number): Observable<GradesGivenEntryDTO[]> {
-    const url = this.WebApiPrefix + 'becas/' + 'grades-list/period/' + gradesProcessingPeriodId;
+  public getGradesListForPeriod(academicTermId: number): Observable<GradesGivenEntryDTO[]> {
+    const url = this.WebApiPrefix + 'becas/' + 'grades-list/period/' + academicTermId;
     console.log('sending AuthHttp get request for GradesList with url ' + url);
     return this.http.get<GradesGivenEntryDTO[]>(url).pipe(catchError(this.handleError));
   }
@@ -57,10 +57,10 @@ export class BecaDataService {
   public uploadStudentGradesReport(frmData: FormData,
     studentGUId: string,
     studentGradeId: number,
-    gradesProcessingPeriodId: number,
+    academicTermId: number,
     receivedDate: string
     ): Observable<any> {
-    const url = this.WebApiPrefix + 'becas/' + 'student-grades-report' + '?studentGUId=' + studentGUId + '&studentGradeId='+ studentGradeId  + '&gradesProcessingPeriodId='+ gradesProcessingPeriodId + '&receivedDate=' + receivedDate;
+    const url = this.WebApiPrefix + 'becas/' + 'student-grades-report' + '?studentGUId=' + studentGUId + '&studentGradeId='+ studentGradeId  + '&academicTermId='+ academicTermId + '&receivedDate=' + receivedDate;
 
     if (frmData) {
       const file: any = frmData.get('file');

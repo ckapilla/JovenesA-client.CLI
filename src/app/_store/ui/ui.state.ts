@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import {
   SetQRComponentsEditable,
+  SetSelectedAcademicTermId,
   SetSelectedFilterMode,
   SetSelectedGradYear,
-  SetSelectedGradesProcessingPeriodID,
-  SetSelectedInscriptionsProcessingPeriodID,
   SetSelectedQRPeriod, SetSelectedStudentStatus,
   SetSelectedYearJoined, SetTestNamesVisibility
 } from './ui.action';
@@ -18,8 +17,8 @@ import { UIStateModel } from './ui.model';
     qrComponentsEditable: false,
 
     selectedQRPeriod: '', // initialize ConstantsService.generateQRPeriods
-    selectedGradesProcessingPeriodID: '119', // need to initialize this from ConstantsService
-    selectedInscriptionsProcessingPeriodID: '120', // need to initialize this from ConstantsService
+    selectedAcademicTermId: '119', // need to initialize this from ConstantsService
+    selectedAcademicTermId2: '120', // need to initialize this from ConstantsService
 
     selectedFilterMode: '998',
     selectedStudentStatus: '0',
@@ -77,35 +76,24 @@ export class UIState {
   }
 
   @Selector()
-  static getselectedGradesProcessingPeriodID(state: UIStateModel) {
-    return state.selectedGradesProcessingPeriodID;
+  static DUPsetSelectedAcademicTermId(state: UIStateModel) {
+    return state.selectedAcademicTermId;
   }
 
-  @Action(SetSelectedGradesProcessingPeriodID)
-  setselectedGradesProcessingPeriodID(ctx: StateContext<UIStateModel>, { payload }: SetSelectedGradesProcessingPeriodID) {
-    const selectedGradesProcessingPeriodID = payload;
+  @Action(SetSelectedAcademicTermId)
+  setSelectedAcademicTermId(ctx: StateContext<UIStateModel>, { payload }: SetSelectedAcademicTermId) {
+    const selectedAcademicTermId = payload;
     const state = ctx.getState();
     ctx.patchState({
       ...state,
-      selectedGradesProcessingPeriodID
+      selectedAcademicTermId
     });
   }
 
   @Selector()
-  static getselectedInscriptionsProcessingPeriodID(state: UIStateModel) {
-    return state.selectedInscriptionsProcessingPeriodID;
+  static getSelectedAcademicTermId(state: UIStateModel) {
+    return state.selectedAcademicTermId;
   }
-
-  @Action(SetSelectedInscriptionsProcessingPeriodID)
-  setselectedInscriptionsProcessingPeriodID(ctx: StateContext<UIStateModel>, { payload }: SetSelectedInscriptionsProcessingPeriodID) {
-    const selectedInscriptionsProcessingPeriodID = payload;
-    const state = ctx.getState();
-    ctx.patchState({
-      ...state,
-      selectedInscriptionsProcessingPeriodID
-    });
-  }
-  selectedInscriptionsProcessingPeriodID
 
   @Selector()
   static getSelectedYearJoined(state: UIStateModel) {

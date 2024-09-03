@@ -72,7 +72,7 @@ export class StudentDTO {
     // public probationEndDate?: Date,
     // public pilotProgram?: string,
 
-    public currentGradesProcessingPeriodId?: number,
+    public currentacademicTermId?: number,
     public entryStartDate?: Date,
     public gradesEntryActiveStatus?: number,
     public mastersStartYear?: string,

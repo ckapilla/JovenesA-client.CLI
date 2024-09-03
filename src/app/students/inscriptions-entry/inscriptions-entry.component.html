@@ -26,10 +26,10 @@
             <div class="stepper-wrapper d-flex flex-row justify-content-center">
 
               <div class="stepper-item first d-flex flex-row align-items-center justify-content-around"
-                   [class.completed-first]="inscriptionsData[0].initialInscriptionsEntryDate">
+                   [class.completed-first]="inscriptionsData[0].inscriptionsEntryStartDate">
                 <div class="d-flex flex-column align-items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                       *ngIf="!inscriptionsData[0].initialInscriptionsEntryDate; else solicitado" viewBox="0,0,256,256"
+                       *ngIf="!inscriptionsData[0].inscriptionsEntryStartDate; else solicitado" viewBox="0,0,256,256"
                        heigth="256px" width="256px" fill-rule="nonzero">
                     <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
                        stroke-linejoin="none" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
@@ -84,7 +84,7 @@
                   </ng-template>
                   <p class="step">Solicitado</p>
                   <p class="step" *ngIf="inscriptionsData[0].gradesTurnedInDate">
-                    {{inscriptionsData[0].initialInscriptionsEntryDate | date:'yyyy-MM-dd'}}</p>
+                    {{inscriptionsData[0].inscriptionsEntryStartDate | date:'yyyy-MM-dd'}}</p>
                 </div>
               </div>
               <!-- Entregado_A  --->
@@ -305,7 +305,7 @@
 
                     <div class="col p-0 grade-image-wrapper mt-4 text-right ">
                       <app-inscription-uploader [inscriptionId]=inscriptionsData[0].inscriptionId
-                                                [inscriptionsProcessingPeriodId]=inscriptionsData[0].inscriptionsProcessingPeriodId
+                                                [academicTermId]=inscriptionsData[0].academicTermId
                                                 [inscriptionType]="'reg'"
                                                 (uploadSuccess)="onUploadSuccess()">
                       </app-inscription-uploader>
@@ -316,12 +316,12 @@
                         </svg>
                         <a class="align-middle ml-2"
                            [hidden]="!entry?.registrationFormSubmittedDate"
-                           href="{{staticUrlPrefix}}InscriptionRegistrations/{{entry.inscriptionsProcessingPeriodId}}/{{entry.studentGUId | uppercase }}.png"
+                           href="{{staticUrlPrefix}}InscriptionRegistrations/{{entry.academicTermId}}/{{entry.studentGUId | uppercase }}.png"
                            target="_blank">Archivo subido con éxito -- haga clic para revisar</a>
                       </div>
 
                       <app-inscription-uploader [inscriptionId]=inscriptionsData[0].inscriptionId
-                                                [inscriptionsProcessingPeriodId]=inscriptionsData[0].inscriptionsProcessingPeriodId
+                                                [academicTermId]=inscriptionsData[0].academicTermId
                                                 [inscriptionType]="'pmt'"
                                                 (uploadSuccess)="onUploadSuccess()"
                                                 >
@@ -333,7 +333,7 @@
                         </svg>
                         <a class="align-middle ml-2"
                            [hidden]="!entry?.paymentReceiptSubmittedDate"
-                           href="{{staticUrlPrefix}}InscriptionPayments/{{entry.inscriptionsProcessingPeriodId}}/{{entry.studentGUId | uppercase }}.png"
+                           href="{{staticUrlPrefix}}InscriptionPayments/{{entry.academicTermId}}/{{entry.studentGUId | uppercase }}.png"
                            target="_blank">Archivo subido con éxito -- haga clic para revisar</a>
 
                       </div>

@@ -32,13 +32,13 @@ export class InscriptionsListComponent implements OnInit {
   selectedYear: string;
   selectedMonth: string;
   displayTestNames: boolean;
-  selectedInscriptionsProcessingPeriodID = '';
+  selectedAcademicTermId = '';
   staticUrlPrefix: string;
   periodStart: string;
   private subscription: Subscription;
 
   testNameVisibility$ = this.store.select<boolean>(UIState.getTestNamesVisibility);
-  selectedInscriptionsProcessingPeriodID$ = this.store.select<string>(UIState.getselectedInscriptionsProcessingPeriodID);
+  selectedAcademicTermId$ = this.store.select<string>(UIState.getSelectedAcademicTermId);
 
   constructor(
     public inscriptionData: InscriptionDataService,
@@ -60,13 +60,13 @@ export class InscriptionsListComponent implements OnInit {
     this.testNameVisibility$.subscribe((flag) => {
       this.displayTestNames = flag;
     });
-    this.subscribeForselectedInscriptionsProcessingPeriodID();
+    this.subscribeForselectedAcademicTermId();
   }
 
-  subscribeForselectedInscriptionsProcessingPeriodID() {
-    this.subscription = this.selectedInscriptionsProcessingPeriodID$.subscribe((message) => {
-      this.selectedInscriptionsProcessingPeriodID = message;
-      console.log('************NGXS: InscriptionsList new selectedInscriptionsProcessingPeriodID received' + this.selectedInscriptionsProcessingPeriodID);
+  subscribeForselectedAcademicTermId() {
+    this.subscription = this.selectedAcademicTermId$.subscribe((message) => {
+      this.selectedAcademicTermId = message;
+      console.log('************NGXS: InscriptionsList new selectedAcademicTermId received' + this.selectedAcademicTermId);
       this.fetchFilteredData();
     });
   }
@@ -74,7 +74,7 @@ export class InscriptionsListComponent implements OnInit {
   fetchFilteredData() {
     this.isLoading = true;
     console.log('displayTestNames: ' + this.displayTestNames);
-    this.inscriptionData.getInscriptionsListForPeriod(+this.selectedInscriptionsProcessingPeriodID).subscribe(
+    this.inscriptionData.getInscriptionsListForPeriod(+this.selectedAcademicTermId).subscribe(
       (data) => {
         this.inscriptionEntryDTOs = data.filter((item) => {
           if (this.displayTestNames) {
@@ -106,17 +106,8 @@ export class InscriptionsListComponent implements OnInit {
     }
   }
 
-  // setSelectedYear(year: string) {
-  //   this.selectedYear = year;
-  //   this.fetchFilteredData();
-  // }
-  // setSelectedMonth(month: string) {
-  //   this.selectedMonth = month;
-  //   this.fetchFilteredData();
-  // }
-
-  setselectedInscriptionsProcessingPeriodID(inscriptionsPeriod: string) {
-    this.store.dispatch(new SetSelectedInscriptionsProcessingPeriodID(inscriptionsPeriod));
+  setSelectedAcademicTermId(academicTermID: string) {
+    this.store.dispatch(new SetSelectedInscriptionsProcessingPeriodID(academicTermID));
   }
 
   confirmInscription(studentGUId: string, studentName: string) {

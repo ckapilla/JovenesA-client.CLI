@@ -6,8 +6,8 @@
       <select
         name="activePeriodSelector"
         data-cy="period-selector"
-        [(ngModel)]="selectedGradesProcessingPeriodID"
-        (change)="setselectedGradesProcessingPeriodID($event.target.value)"
+        [(ngModel)]="selectedAcademicTermId"
+        (change)="setSelectedAcademicTermId($event.target.value)"
       >
         <option *ngFor="let gradesProcessingPeriod of gradesProcessingPeriods" [value]="gradesProcessingPeriod.id">{{gradesProcessingPeriod.descriptor}}</option>
       </select>
@@ -33,7 +33,7 @@
               </th>
               <th app-sortable-column="gradesTurnedInStatus" (onSortColumn)="onSortColumn($event)">Turned-In<br />Status</th>
               <th app-sortable-column="gradePointAvgStatus" (onSortColumn)="onSortColumn($event)">GPA<br />Status</th>
-              <th app-sortable-column="gradesDueDate" (onSortColumn)="onSortColumn($event)">Final Grades<br />Due Date</th>
+              <th app-sortable-column="gradesEntryEndDate" (onSortColumn)="onSortColumn($event)">Final Grades<br />Due Date</th>
               <th app-sortable-column="gradesTurnedInDate" (onSortColumn)="onSortColumn($event)">Entered <br />Date</th>
               <th app-sortable-column="imageSubmittedDate" (onSortColumn)="onSortColumn($event)">Uploaded <br />Date</th>
               <th>View<br />Image</th>
@@ -59,7 +59,7 @@
               <td>
                 {{ entry.gradePointAvgStatus }}
               <td>
-                {{ entry.gradesDueDate | truncateDate }}
+                {{ entry.gradesEntryEndDate | truncateDate }}
               </td>
               <td>
                 {{ entry.gradesTurnedInDate | truncateDate }}
@@ -69,7 +69,7 @@
               </td>
               <td class="link">
                 <div [hidden]="isViewLinkHidden(entry.imageSubmittedDate)">
-                  <a href= "{{staticUrlPrefix}}StudentGradesReports/{{entry.gradesProcessingPeriodId}}/{{entry.studentGUId | uppercase }}.png"
+                  <a href= "{{staticUrlPrefix}}StudentGradesReports/{{entry.academicTermId}}/{{entry.studentGUId | uppercase }}.png"
                   target="_blank">{{entry.studentGUId | trimGuid | uppercase  }}</a>
                 </div>
               </td>

@@ -69,9 +69,9 @@ export class GradeEntryComponent implements OnInit {
   createEmptyGradeEntryFormRow(): UntypedFormGroup {
     console.log("CreateEmptyGradeEntry create empty row to be populated");
     return this._fb.group({
-      gradesProcessingPeriodId: { value: "", disabled: true },
-      initialGradesEntryDate: { value: "", disabled: true },
-      gradesDueDate: { value: "", disabled: true },
+      academicTermId: { value: "", disabled: true },
+      gradesEntryStartDate: { value: "", disabled: true },
+      gradesEntryEndDate: { value: "", disabled: true },
       gradesTurnedInDate: [
         { value: "" }, // must use readonly in html instead of disabled here so value will get sent to server
         Validators.compose([
@@ -93,12 +93,12 @@ export class GradeEntryComponent implements OnInit {
     );
     console.log(JSON.stringify(gradeEntryDataRow));
     gradeEntryFormRow.patchValue({
-      gradesProcessingPeriodId: gradeEntryDataRow.gradesProcessingPeriodId,
-      initialGradesEntryDate: new TruncateDatePipe().transform(
-        "" + gradeEntryDataRow.initialGradesEntryDate
+      academicTermId: gradeEntryDataRow.academicTermId,
+      gradesEntryStartDate: new TruncateDatePipe().transform(
+        "" + gradeEntryDataRow.gradesEntryStartDate
       ),
-      gradesDueDate: new TruncateDatePipe().transform(
-        "" + gradeEntryDataRow.gradesDueDate
+      gradesEntryEndDate: new TruncateDatePipe().transform(
+        "" + gradeEntryDataRow.gradesEntryEndDate
       ),
       gradesTurnedInDate: new Date().toISOString().slice(0, 10),
       gradePointAvg: this.toFixedValue(gradeEntryDataRow.gradePointAvg),
@@ -140,21 +140,20 @@ export class GradeEntryComponent implements OnInit {
     }
 
     const gpp = this?.studentGradesData[0];
-    console.log("initialGradesEntryDate is " + gpp.initialGradesEntryDate);
-    console.log("gradesDueDate is " + gpp.gradesDueDate);
+    console.log("gradesEntryStartDate is " + gpp.gradesEntryStartDate);
 
     // Parse the database dates and set them to midnight
-    const initialGradesEntryDate = new Date(gpp.initialGradesEntryDate);
-    initialGradesEntryDate.setHours(0, 0, 0, 0);
+    const gradesEntryStartDate = new Date(gpp.gradesEntryStartDate);
+    gradesEntryStartDate.setHours(0, 0, 0, 0);
 
-    const gradesDueDate = new Date(gpp.gradesDueDate);
-    gradesDueDate.setHours(0, 0, 0, 0);
+    const gradesEntryEndDate = new Date(gpp.gradesEntryEndDate);
+    gradesEntryEndDate.setHours(0, 0, 0, 0);
 
     console.log("today is " + today);
-    console.log("initialGradesEntryDate is " + initialGradesEntryDate);
-    console.log("gradesDueDate is " + gradesDueDate);
+    console.log("gradesEntryStartDate is " + gradesEntryStartDate);
+    console.log("gradesEntryEndDate is " + gradesEntryEndDate);
 
-    if (today >= initialGradesEntryDate && today <= gradesDueDate) {
+    if (today >= gradesEntryStartDate && today <= gradesEntryEndDate) {
       console.log('in range');
       return true;
     } else {
@@ -193,7 +192,8 @@ export class GradeEntryComponent implements OnInit {
           this.studentGradesData.forEach((gradeEntryDataRow) => {
             this.addGradeEntryRow(gradeEntryDataRow);
           });
-          this.inGradesProcessingPeriod = this.isStudentInCurrentGPP();
+          //// TEST TEST TEST
+          ////this.inGradesProcessingPeriod = this.isStudentInCurrentGPP();
           this.isLoading = false;
         }
       );

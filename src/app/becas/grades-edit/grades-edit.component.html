@@ -78,7 +78,7 @@
                 {{ entry.year }}
               </td> -->
               <td>
-                {{ entry.gradesProcessingPeriodId }}
+                {{ entry.academicTermId }}
               </td>
                     <!-- <td>
                       <input
@@ -90,7 +90,7 @@
                     </td> -->
                     <td>
                       <input
-                        formControlName="gradesDueDate"
+                        formControlName="gradesEntryEndDate"
                         class="form-control form-control-sm"
                         type="text"
                         size="8"
@@ -116,7 +116,7 @@
                     </td>
                     <td class="link">
                       <div [hidden]="isViewLinkHidden(entry.imageSubmittedDate)">
-                          <a href= "{{staticUrlPrefix}}StudentGradesReports/{{entry.gradesProcessingPeriodId}}/{{entry.studentGUId | uppercase }}.png"
+                          <a href= "{{staticUrlPrefix}}StudentGradesReports/{{entry.academicTermId}}/{{entry.studentGUId | uppercase }}.png"
                           target="_blank">{{entry.studentGUId | trimGuid | uppercase  }}</a>
                       </div>
                     </td>

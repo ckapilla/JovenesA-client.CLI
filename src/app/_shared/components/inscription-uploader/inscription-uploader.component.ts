@@ -16,7 +16,7 @@ export class InscriptionUploaderComponent implements OnInit {
   errorMessage = "";
   successMessage = "";
   @Input() inscriptionId: number;
-  @Input() gradesProcessingPeriodId: number;
+  @Input() academicTermId: number;
   @Input() inscriptionType: string;
   @Output() uploadSuccess = new EventEmitter<void>();
   constructor(
@@ -68,7 +68,7 @@ export class InscriptionUploaderComponent implements OnInit {
                 frmData,
                 this.session.getStudentRecordGUId(),
                 this.inscriptionId,
-                this.gradesProcessingPeriodId,
+                this.academicTermId,
                 this.inscriptionType
               )
               .subscribe(

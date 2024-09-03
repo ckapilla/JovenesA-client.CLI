@@ -8,7 +8,7 @@
         name="activeGradYearSelector"
         data-cy="period-selector"
         [(ngModel)]="selectedGradYear"
-        (change)="setselectedGradYear($event.target.value)"
+        (change)="setSelectedGradYear($event.target.value)"
       >
         <option *ngFor="let year of years" [value]="year.value">{{year.label}}</option>
       </select>

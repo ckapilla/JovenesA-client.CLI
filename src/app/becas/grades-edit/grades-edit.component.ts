@@ -78,9 +78,9 @@ export class GradesEditComponent implements OnInit {
   createEmptyGradeEntryFormRow(): UntypedFormGroup {
     console.log('CreateEmptyGradeEntryFormRow create empty row to be populated');
     return this._fb.group({
-      gradesProcessingPeriodId: { value: '', disabled: true },
+      academicTermId: { value: '', disabled: true },
       // gradesGivenDate: { value: '', disabled: true },
-      gradesDueDate: { value: '', disabled: true },
+      gradesEntryEndDate: { value: '', disabled: true },
       gradesTurnedInDate: [
         { value: '' },
         Validators.compose([Validators.pattern(/^\d{4}\-\d{1,2}\-\d{1,2}$/), Validators.maxLength(10)])
@@ -96,9 +96,9 @@ export class GradesEditComponent implements OnInit {
     console.log('updateGradeEntryRow update existing row with actual data');
     console.log(JSON.stringify(gradeEntryDataRow));
     gradeEntryFormRow.patchValue({
-      gradesProcessingPeriodId: gradeEntryDataRow.gradesProcessingPeriodId,
+      academicTermId: gradeEntryDataRow.academicTermId,
       // gradesGivenDate: new TruncateDatePipe().transform('' + entryData.gradesGivenDate),
-      gradesDueDate: new TruncateDatePipe().transform('' + gradeEntryDataRow.gradesDueDate),
+      gradesEntryEndDate: new TruncateDatePipe().transform('' + gradeEntryDataRow.gradesEntryEndDate),
       gradesTurnedInDate: new TruncateDatePipe().transform('' + gradeEntryDataRow.gradesTurnedInDate),
       gradePointAvg: this.toFixedValue(gradeEntryDataRow.gradePointAvg),
       exception: gradeEntryDataRow.exception,

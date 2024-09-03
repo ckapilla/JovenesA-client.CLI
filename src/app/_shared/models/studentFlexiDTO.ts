@@ -76,7 +76,7 @@ export class StudentFlexiDTO {
     // public probationEndDate?: Date,
     // public pilotProgram?: string,
 
-    public currentGradesProcessingPeriodId?: number,
+    public currentacademicTermId?: number,
     public entryStartDate?: Date,
     public gradeEntryActiveStatus?: number,
     // public mastersStartYear?: string,

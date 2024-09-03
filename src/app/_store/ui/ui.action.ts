@@ -27,21 +27,21 @@ export class SetSelectedQRPeriod {
   constructor(public readonly payload: string) {}
 }
 ///
-export class GetSelectedGradesProcessingPeriodID {
-  static readonly type = '[UI] Get selectedGradesProcessingPeriodID';
+export class GetSelectedAcademicTermId {
+  static readonly type = '[UI] Get selectedAcademicTermId';
   constructor(public payload: UIStateModel) {}
 }
-export class SetSelectedGradesProcessingPeriodID {
-  static readonly type = '[UI] update selectedGradesProcessingPeriodID';
+export class SetSelectedAcademicTermId {
+  static readonly type = '[UI] update selectedAcademicTermId';
   constructor(public readonly payload: string) {}
 }
 export class GetSelectedInscriptionsProcessingPeriodID {
-  static readonly type = '[UI] Get selectedInscriptionsProcessingPeriodID';
+  static readonly type = '[UI] Get selectedAcademicTermId';
   constructor(public payload: UIStateModel) {}
 }
 
 export class SetSelectedInscriptionsProcessingPeriodID {
-  static readonly type = '[UI] update selectedInscriptionsProcessingPeriodID';
+  static readonly type = '[UI] update selectedAcademicTermId';
   constructor(public readonly payload: string) {}
 }
 ///

@@ -16,7 +16,7 @@ export class GradesUploaderComponent implements OnInit {
   errorMessage = "";
   successMessage = "";
   @Input() studentGradeId: number;
-  @Input() gradesProcessingPeriodId: number;
+  @Input() academicTermId: number;
   @Output() uploadSuccess = new EventEmitter<void>();
   constructor(
     private http: HttpClient,
@@ -65,7 +65,7 @@ export class GradesUploaderComponent implements OnInit {
                 frmData,
                 this.session.getStudentRecordGUId(),
                 this.studentGradeId,
-                this.gradesProcessingPeriodId,
+                this.academicTermId,
                 date.toDateString()
               )
               .subscribe(

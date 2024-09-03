@@ -103,7 +103,7 @@ export class TitulosListComponent implements OnInit {
     );
   }
 
-  setselectedGradYear(gradYear: string) {
+  setSelectedGradYear(gradYear: string) {
     this.store.dispatch(new SetSelectedGradYear(gradYear));
   }
 

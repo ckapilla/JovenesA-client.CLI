@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { catchError, shareReplay, tap, toArray } from 'rxjs/operators';
-import { SetSelectedGradesProcessingPeriodID, SetSelectedQRPeriod } from 'src/app/_store/ui/ui.action';
+import { SetSelectedAcademicTermId, SetSelectedQRPeriod } from 'src/app/_store/ui/ui.action';
 import { constants } from '../constants/constants';
 import { BaseDataService } from '../data/base-data.service';
 import { PROCESSINGPERIOD } from '../interfaces/PROCESSINGPERIOD';
@@ -262,8 +262,8 @@ export class ConstantsService extends BaseDataService {
   // }
 
 
-  setSelectedGradesProcessingPeriodID(gradesProcessingPeriod: string) {
-    this.store.dispatch(new SetSelectedGradesProcessingPeriodID(gradesProcessingPeriod));
+  SetSelectedAcademicTermId(gradesProcessingPeriod: string) {
+    this.store.dispatch(new SetSelectedAcademicTermId(gradesProcessingPeriod));
   }
 
 
