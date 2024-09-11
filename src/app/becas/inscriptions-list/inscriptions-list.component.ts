@@ -17,7 +17,9 @@ import { SetSelectedInscriptionsProcessingPeriodID } from '../../_store/ui/ui.ac
 import { UIState } from '../../_store/ui/ui.state';
 
 @Component({
-  templateUrl: './inscriptions-list.component.html'
+  templateUrl: './inscriptions-list.component.html',
+  styleUrls: ['./inscriptions-list.component.css']
+
 })
 export class InscriptionsListComponent implements OnInit {
   studentDTO: StudentDTO;
@@ -32,13 +34,16 @@ export class InscriptionsListComponent implements OnInit {
   selectedYear: string;
   selectedMonth: string;
   displayTestNames: boolean;
-  selectedAcademicTermId = '';
+
   staticUrlPrefix: string;
   periodStart: string;
   private subscription: Subscription;
 
   testNameVisibility$ = this.store.select<boolean>(UIState.getTestNamesVisibility);
   selectedAcademicTermId$ = this.store.select<string>(UIState.getSelectedAcademicTermId);
+  selectedAcademicTermId = '';
+  entryStartDate: Date;
+  entryEndDate: Date;
 
   constructor(
     public inscriptionData: InscriptionDataService,
@@ -53,6 +58,7 @@ export class InscriptionsListComponent implements OnInit {
     this.years = constants.contactYears;
     this.months = constants.months;
     this.inscriptionsProcessingPeriods = constants.inscriptionsProcessingPeriods;
+    console.log('~~~~~~~inscriptionsProcessingPeriods is ' + JSON.stringify(this.inscriptionsProcessingPeriods));
     this.isLoading = false;
   }
 
@@ -66,7 +72,7 @@ export class InscriptionsListComponent implements OnInit {
   subscribeForselectedAcademicTermId() {
     this.subscription = this.selectedAcademicTermId$.subscribe((message) => {
       this.selectedAcademicTermId = message;
-      console.log('************NGXS: InscriptionsList new selectedAcademicTermId received' + this.selectedAcademicTermId);
+      console.log('************NGXS: InscriptionsList new selectedAcademicTermId received ' + this.selectedAcademicTermId);
       this.fetchFilteredData();
     });
   }
@@ -74,6 +80,7 @@ export class InscriptionsListComponent implements OnInit {
   fetchFilteredData() {
     this.isLoading = true;
     console.log('displayTestNames: ' + this.displayTestNames);
+    console.log('fetchFilredData selectedAcademicTermId is ' + this.selectedAcademicTermId);
     this.inscriptionData.getInscriptionsListForPeriod(+this.selectedAcademicTermId).subscribe(
       (data) => {
         this.inscriptionEntryDTOs = data.filter((item) => {
@@ -89,7 +96,9 @@ export class InscriptionsListComponent implements OnInit {
       },
       () => {
         console.log(this.inscriptionEntryDTOs[0]);
+        console.log('before updateDateIndicators');
         // console.log(JSON.stringify(this.inscriptionEntryDTOs));
+        this.updateDateIndicators();
         console.log('inscription data loaded now set timeout for scroll');
         setTimeout(() => {
           this.scrollIntoView();
@@ -106,9 +115,27 @@ export class InscriptionsListComponent implements OnInit {
     }
   }
 
-  setSelectedAcademicTermId(academicTermID: string) {
-    this.store.dispatch(new SetSelectedInscriptionsProcessingPeriodID(academicTermID));
+  setSelectedAcademicTermId(academicTermId: string) {
+    this.store.dispatch(new SetSelectedInscriptionsProcessingPeriodID(academicTermId));
+    this.selectedAcademicTermId = academicTermId;
+    // move to after fetch    this.updateDateIndicators();
   }
+
+  updateDateIndicators(): void {
+    console.log('selectedAcademicTermId is ' + this.selectedAcademicTermId);
+    // console.log('inscriptionEntryDTOs is ' + JSON.stringify(this.inscriptionEntryDTOs));
+    const selectedInscription = this.inscriptionEntryDTOs.find(
+      period => period.academicTermId === +this.selectedAcademicTermId
+    );
+    console.log('selectedInscriptions= is ' + JSON.stringify(selectedInscription));
+    // console.log('selectedInscription.EntryStartDate is ' + JSON.stringify(selectedInscription.inscriptionsEntryStartDate));
+
+    if (selectedInscription) {
+      this.entryStartDate = selectedInscription.inscriptionsEntryStartDate;
+      this.entryEndDate = selectedInscription.inscriptionsEntryEndDate;
+    }
+  }
+
 
   confirmInscription(studentGUId: string, studentName: string) {
     this.store.dispatch(new SetSelectedStudentIdentifiers({ studentGUId, studentName }));

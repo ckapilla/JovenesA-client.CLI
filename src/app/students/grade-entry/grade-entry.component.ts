@@ -194,7 +194,7 @@ export class GradeEntryComponent implements OnInit {
           this.studentGradesData.forEach((gradeEntryDataRow) => {
             this.addGradeEntryRow(gradeEntryDataRow);
           });
-          this.inGradesProcessingPeriod = this.haveDataForCurrentPeriod();
+          this.inGradesProcessingPeriod = true; // this.haveDataForCurrentPeriod();
           this.isLoading = false;
         }
       );

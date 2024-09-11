@@ -113,7 +113,8 @@ export class ConstantsService extends BaseDataService {
       },
       (err: any) => console.error('Subscribe error: ' + err),
       () => {
-        console.log('xxxxxxxxxx subscribe returned  ');
+        console.log('>>>subscribe returned  ');
+        console.log(JSON.stringify( constants.inscriptionsProcessingPeriods));
       }
     );
   }

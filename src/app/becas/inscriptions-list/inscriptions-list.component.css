@@ -1,0 +1,25 @@
+:host {
+  display: block;
+  padding: 0 16px;
+}
+
+input {
+  height: 20px;
+  width: 6rem;
+ }
+
+/*.ng-valid[required] {*/
+input.ng-valid,
+select.ng-valid {
+  border-left: 5px solid #42A948; /* green */
+}
+
+input.ng-invalid,
+select.ng-invalid {
+  border-left: 5px solid #a94442; /* red */
+}
+
+.red {
+  color: #a94442;;
+  font-weight: bold;
+}

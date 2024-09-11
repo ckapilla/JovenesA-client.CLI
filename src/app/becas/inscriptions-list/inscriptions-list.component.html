@@ -1,8 +1,8 @@
 <div class="card bg-primary">
   <div class="card-header text-white" data-cy="inscriptions-period">
     <span style="font-size: large"> Inscription Report Statuses</span>
-    <span style="margin-left: 10rem">
-      Academic Term Start Date:
+    <span style="margin-left: 5rem">
+      Academic Term:
       <select
         name="activePeriodSelector"
         data-cy="period-selector"
@@ -12,6 +12,11 @@
         <option *ngFor="let inscriptionsProcessingPeriod of inscriptionsProcessingPeriods" [value]="inscriptionsProcessingPeriod.id">{{inscriptionsProcessingPeriod.descriptor}}</option>
       </select>
     </span>
+
+    <label for="startDateIndicator">Start Date:</label>
+    <input type="text" id="startDateIndicator" [value]="entryStartDate" readonly />
+    <label for="endDateIndicator">Due Date:</label>
+    <input type="text" id="endDateIndicator" [value]="entryEndDate" readonly />
   </div>
   <div class="card-body bg-white">
     <span *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</span>

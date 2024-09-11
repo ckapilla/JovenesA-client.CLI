@@ -106,15 +106,6 @@ export class GradesListComponent implements OnInit {
     }
   }
 
-  // setSelectedYear(year: string) {
-  //   this.selectedYear = year;
-  //   this.fetchFilteredData();
-  // }
-  // setSelectedMonth(month: string) {
-  //   this.selectedMonth = month;
-  //   this.fetchFilteredData();
-  // }
-
   setSelectedAcademicTermId(academicTermId: string) {
     this.store.dispatch(new SetSelectedAcademicTermId(academicTermId));
   }
