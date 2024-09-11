@@ -2,7 +2,7 @@
   <div class="card-header text-white" data-cy="grades-period">
     <span style="font-size: large"> Grade Report Statuses</span>
     <span style="margin-left: 10rem">
-      Grades Processing Period Start Date:
+      Academic Term Start Date:
       <select
         name="activePeriodSelector"
         data-cy="period-selector"
@@ -31,9 +31,10 @@
               <th app-sortable-column="studentName" sort-direction="asc" (onSortColumn)="onSortColumn($event)">
                 Student
               </th>
+              <th app-sortable-column="gradesEntryEndDate" (onSortColumn)="onSortColumn($event)">Grades<br />Due Date</th>
               <th app-sortable-column="gradesTurnedInStatus" (onSortColumn)="onSortColumn($event)">Turned-In<br />Status</th>
               <th app-sortable-column="gradePointAvgStatus" (onSortColumn)="onSortColumn($event)">GPA<br />Status</th>
-              <th app-sortable-column="gradesEntryEndDate" (onSortColumn)="onSortColumn($event)">Final Grades<br />Due Date</th>
+
               <th app-sortable-column="gradesTurnedInDate" (onSortColumn)="onSortColumn($event)">Entered <br />Date</th>
               <th app-sortable-column="imageSubmittedDate" (onSortColumn)="onSortColumn($event)">Uploaded <br />Date</th>
               <th>View<br />Image</th>
@@ -54,13 +55,14 @@
                 {{ entry.studentName }}
               </td>
               <td>
+                {{ entry.gradesEntryEndDate | truncateDate }}
+              </td>
+              <td>
                 {{ entry.gradesTurnedInStatus }}
               </td>
               <td>
                 {{ entry.gradePointAvgStatus }}
-              <td>
-                {{ entry.gradesEntryEndDate | truncateDate }}
-              </td>
+
               <td>
                 {{ entry.gradesTurnedInDate | truncateDate }}
               </td>
