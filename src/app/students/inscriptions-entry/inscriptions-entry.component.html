@@ -1,4 +1,4 @@
-<div class="py-4 px-3 px-md-5" *ngIf="inGradesProcessingPeriod; else outOfRange">
+<div class="py-4 px-3 px-md-5" *ngIf="inInscriptionsProcessingPeriod; else outOfRange">
   <h1 class="title text-center text-sm-left ">Tus inscripciones para este periodo</h1>
 
   <ng-container>
@@ -8,7 +8,7 @@
 
 
 
-    <div *ngIf="inGradesProcessingPeriod">
+    <div *ngIf="inInscriptionsProcessingPeriod">
 
       <div [ngSwitch]="isLoading">
         <!-- loader -->
@@ -289,7 +289,7 @@
                       <div class="limit-date col p-0">
                         <p class="state" *ngIf="!inscriptionsData[0].confirmedDate; else emailSary">
                           Tienes hasta el
-                          <br><span>{{inscriptionsData[0].inscriptionsDueDate | date: 'fullDate' :'es'}}</span>
+                          <br><span>{{inscriptionsData[0].inscriptionsEntryEndDate | date: 'fullDate' :'es'}}</span>
                           <br>para subir tus inscripciones
                         </p>
                         <ng-template #emailSary>

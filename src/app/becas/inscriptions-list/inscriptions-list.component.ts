@@ -89,7 +89,7 @@ export class InscriptionsListComponent implements OnInit {
       },
       () => {
         console.log(this.inscriptionEntryDTOs[0]);
-        console.log(JSON.stringify(this.inscriptionEntryDTOs));
+        // console.log(JSON.stringify(this.inscriptionEntryDTOs));
         console.log('inscription data loaded now set timeout for scroll');
         setTimeout(() => {
           this.scrollIntoView();

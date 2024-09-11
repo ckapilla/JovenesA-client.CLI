@@ -127,9 +127,11 @@ export class GradeEntryComponent implements OnInit {
     console.log("gradeEntry ngOnInit, studentGUID = " + this.studentGUId);
 
     this.fetchFilteredData();
+
   }
 
-  isStudentInCurrentGPP(): boolean {
+
+  haveDataForCurrentPeriod(): boolean {
     let today = new Date();
     today.setHours(0, 0, 0, 0); // Set local time to midnight
     console.log("today is " + today);
@@ -140,7 +142,7 @@ export class GradeEntryComponent implements OnInit {
     }
 
     const gpp = this?.studentGradesData[0];
-    console.log("gradesEntryStartDate is " + gpp.gradesEntryStartDate);
+    console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%gradesEntryStartDate is " + gpp.gradesEntryStartDate);
 
     // Parse the database dates and set them to midnight
     const gradesEntryStartDate = new Date(gpp.gradesEntryStartDate);
@@ -149,8 +151,8 @@ export class GradeEntryComponent implements OnInit {
     const gradesEntryEndDate = new Date(gpp.gradesEntryEndDate);
     gradesEntryEndDate.setHours(0, 0, 0, 0);
 
-    console.log("today is " + today);
-    console.log("gradesEntryStartDate is " + gradesEntryStartDate);
+    console.log("%%%%%%%%%%%%%%%%%%%%%%%%%today is2 " + today);
+    console.log("%%%%%%%%%%%%%%%%%%%%%%%%%gradesEntryStartDate is " + gradesEntryStartDate);
     console.log("gradesEntryEndDate is " + gradesEntryEndDate);
 
     if (today >= gradesEntryStartDate && today <= gradesEntryEndDate) {
@@ -192,8 +194,7 @@ export class GradeEntryComponent implements OnInit {
           this.studentGradesData.forEach((gradeEntryDataRow) => {
             this.addGradeEntryRow(gradeEntryDataRow);
           });
-          //// TEST TEST TEST
-          ////this.inGradesProcessingPeriod = this.isStudentInCurrentGPP();
+          this.inGradesProcessingPeriod = this.haveDataForCurrentPeriod();
           this.isLoading = false;
         }
       );

@@ -114,11 +114,10 @@ export class InscriptionsEntryComponent implements OnInit {
     this.studentGUId = this.session.getStudentRecordGUId();
     console.log('inscriptionEntry ngOnInit, studentGUID = ' + this.studentGUId);
     this.fetchFilteredData();
-    this.inInscriptionsProcessingPeriod = this.isStudentInCurrentGPP();
   }
 
 
-  isStudentInCurrentGPP(): boolean {
+  haveDataForCurrentPeriod(): boolean {
     let today = new Date();
     today.setHours(0, 0, 0, 0); // Set local time to midnight
     console.log("today is " + today);
@@ -129,8 +128,8 @@ export class InscriptionsEntryComponent implements OnInit {
     }
 
     const ipp = this?.inscriptionsData[0];
-    console.log("inscriptionsEntryStartDate is " + ipp.inscriptionsEntryStartDate);
-    console.log("inscriptionsEntryEndDate is " + ipp.inscriptionsEntryEndDate);
+    console.log("~~~~~~~~~~~~~~~~~~~~~~inscriptionsEntryStartDate is " + ipp.inscriptionsEntryStartDate);
+    console.log("~~~~~~~~~~~~~~~~~~~~~~inscriptionsEntryEndDate is " + ipp.inscriptionsEntryEndDate);
 
     // Parse the database dates and set them to midnight
     const inscriptionsEntryStartDate = new Date(ipp.inscriptionsEntryStartDate);
@@ -139,9 +138,9 @@ export class InscriptionsEntryComponent implements OnInit {
     const inscriptionsEntryEndDate = new Date(ipp.inscriptionsEntryEndDate);
     inscriptionsEntryEndDate.setHours(0, 0, 0, 0);
 
-    console.log("today is " + today);
-    console.log("inscriptionsEntryStartDate is " + inscriptionsEntryStartDate);
-    console.log("inscriptionsEntryEndDate is " + inscriptionsEntryEndDate);
+    console.log("today is2 " + today);
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~inscriptionsEntryStartDate is " + inscriptionsEntryStartDate);
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~inscriptionsEntryEndDate is " + inscriptionsEntryEndDate);
 
     if (today >= inscriptionsEntryStartDate && today <= inscriptionsEntryEndDate) {
       console.log('in range');
@@ -177,9 +176,7 @@ export class InscriptionsEntryComponent implements OnInit {
           this.inscriptionsData.forEach((inscriptionEntryDataRow) => {
             this.addInscriptionEntryRow(inscriptionEntryDataRow);
           });
-          //// TEST TEST TEST TEST
-          ////
-          ////this.inGradesProcessingPeriod = this.isStudentInCurrentGPP();
+          this.inInscriptionsProcessingPeriod = this.haveDataForCurrentPeriod();
           this.isLoading = false;
         }
       );

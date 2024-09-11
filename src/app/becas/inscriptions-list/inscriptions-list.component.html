@@ -2,7 +2,7 @@
   <div class="card-header text-white" data-cy="inscriptions-period">
     <span style="font-size: large"> Inscription Report Statuses</span>
     <span style="margin-left: 10rem">
-      Inscriptions Processing Period Start Date:
+      Inscriptions Period Start Date:
       <select
         name="activePeriodSelector"
         data-cy="period-selector"
@@ -31,7 +31,7 @@
               <th app-sortable-column="studentName" sort-direction="asc" (onSortColumn)="onSortColumn($event)">
                 Student
               </th>
-              <th app-sortable-column="inscriptionsDueDate" (onSortColumn)="onSortColumn($event)">Inscriptions<br />Due Date</th>
+              <th app-sortable-column="inscriptionsEntryEndDate" (onSortColumn)="onSortColumn($event)">Inscriptions<br />Due Date</th>
               <th app-sortable-column="registrationFormSubmittedDate" (onSortColumn)="onSortColumn($event)">Registration Form<br />Submitted</th>
               <th app-sortable-column="paymentReceiptSubmittedDate" (onSortColumn)="onSortColumn($event)">Payment Receipt<br />Submitted</th>
               <th>View<br />Registration Form</th>
@@ -51,7 +51,7 @@
                 {{ entry.studentName }}
               </td>
               <td>
-                {{ entry.inscriptionsDueDate | truncateDate }}
+                {{ entry.inscriptionsEntryEndDate | truncateDate }}
               </td>
               <td>
                 {{ entry.registrationFormSubmittedDate | truncateDate }}
