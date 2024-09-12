@@ -1,0 +1,36 @@
+:host {
+  display: block;
+  padding: 0 16px;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+}
+
+.card-header span,
+.card-header label,
+.card-header input {
+  margin-right: 1rem; /* Adjust as needed for spacing */
+}
+
+input {
+  height: 20px;
+  width: 6rem;
+ }
+
+/*.ng-valid[required] {*/
+input.ng-valid,
+select.ng-valid {
+  border-left: 5px solid #42A948; /* green */
+}
+
+input.ng-invalid,
+select.ng-invalid {
+  border-left: 5px solid #a94442; /* red */
+}
+
+.red {
+  color: #a94442;;
+  font-weight: bold;
+}
