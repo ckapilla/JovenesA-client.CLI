@@ -1,8 +1,8 @@
 <div class="card bg-primary">
   <div class="card-header text-white" data-cy="inscriptions-period">
-    <span style="font-size: large"> Inscription Report Statuses</span>
-    <span style="margin-left: 5rem">
-      Academic Term:
+    <span style="font-size: large"> Inscriptions Statuses</span>
+    <span style="margin-left: 1.5rem">
+      Academic&nbsp;Term:
       <select
         name="activePeriodSelector"
         data-cy="period-selector"
@@ -13,9 +13,9 @@
       </select>
     </span>
 
-    <label for="startDateIndicator">Start Date:</label>
+    <label for="startDateIndicator">Entry&nbsp;Start:</label>
     <input type="text" id="startDateIndicator" [value]="entryStartDate" readonly />
-    <label for="endDateIndicator">Due Date:</label>
+    <label for="endDateIndicator">Due&nbsp;Date:</label>
     <input type="text" id="endDateIndicator" [value]="entryEndDate" readonly />
   </div>
   <div class="card-body bg-white">
@@ -36,7 +36,7 @@
               <th app-sortable-column="studentName" sort-direction="asc" (onSortColumn)="onSortColumn($event)">
                 Student
               </th>
-              <th app-sortable-column="inscriptionsEntryEndDate" (onSortColumn)="onSortColumn($event)">Inscriptions<br />Due Date</th>
+              <!-- <th app-sortable-column="inscriptionsEntryEndDate" (onSortColumn)="onSortColumn($event)">Inscriptions<br />Due Date</th> -->
               <th app-sortable-column="registrationFormSubmittedDate" (onSortColumn)="onSortColumn($event)">Registration Form<br />Submitted</th>
               <th app-sortable-column="paymentReceiptSubmittedDate" (onSortColumn)="onSortColumn($event)">Payment Receipt<br />Submitted</th>
               <th>View<br />Registration Form</th>
@@ -55,9 +55,9 @@
               <td (click)="confirmInscription(entry.studentGUId, entry.studentName)" class="link">
                 {{ entry.studentName }}
               </td>
-              <td>
+              <!-- <td>
                 {{ entry.inscriptionsEntryEndDate | truncateDate }}
-              </td>
+              </td> -->
               <td>
                 {{ entry.registrationFormSubmittedDate | truncateDate }}
               </td>

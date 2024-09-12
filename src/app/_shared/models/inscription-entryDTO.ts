@@ -7,9 +7,9 @@ export class InscriptionEntryDTO {
     public academicYear?: string,
 
     public academicTermId?: number,
-    public inscriptionsEntryStartDate?: Date,
-    public inscriptionsEntryEndDate?: Date,
-    public inscriptionsTurnedInDate?: Date,
+    public inscriptionsEntryStartDate?: string,
+    public inscriptionsEntryEndDate?: string,
+    public inscriptionsTurnedInDate?: string,
 
     public registrationFormSubmittedDate?: Date,
     public paymentReceiptSubmittedDate?: Date,

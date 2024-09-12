@@ -42,8 +42,8 @@ export class InscriptionsListComponent implements OnInit {
   testNameVisibility$ = this.store.select<boolean>(UIState.getTestNamesVisibility);
   selectedAcademicTermId$ = this.store.select<string>(UIState.getSelectedAcademicTermId);
   selectedAcademicTermId = '';
-  entryStartDate: Date;
-  entryEndDate: Date;
+  entryStartDate: string;
+  entryEndDate: string;
 
   constructor(
     public inscriptionData: InscriptionDataService,
@@ -58,7 +58,7 @@ export class InscriptionsListComponent implements OnInit {
     this.years = constants.contactYears;
     this.months = constants.months;
     this.inscriptionsProcessingPeriods = constants.inscriptionsProcessingPeriods;
-    console.log('~~~~~~~inscriptionsProcessingPeriods is ' + JSON.stringify(this.inscriptionsProcessingPeriods));
+    // console.log('~~~~~~~inscriptionsProcessingPeriods is ' + JSON.stringify(this.inscriptionsProcessingPeriods));
     this.isLoading = false;
   }
 
@@ -97,7 +97,6 @@ export class InscriptionsListComponent implements OnInit {
       () => {
         console.log(this.inscriptionEntryDTOs[0]);
         console.log('before updateDateIndicators');
-        // console.log(JSON.stringify(this.inscriptionEntryDTOs));
         this.updateDateIndicators();
         console.log('inscription data loaded now set timeout for scroll');
         setTimeout(() => {
@@ -118,21 +117,24 @@ export class InscriptionsListComponent implements OnInit {
   setSelectedAcademicTermId(academicTermId: string) {
     this.store.dispatch(new SetSelectedInscriptionsProcessingPeriodID(academicTermId));
     this.selectedAcademicTermId = academicTermId;
-    // move to after fetch    this.updateDateIndicators();
+    // must be after fetch    this.updateDateIndicators();
   }
 
   updateDateIndicators(): void {
     console.log('selectedAcademicTermId is ' + this.selectedAcademicTermId);
     // console.log('inscriptionEntryDTOs is ' + JSON.stringify(this.inscriptionEntryDTOs));
-    const selectedInscription = this.inscriptionEntryDTOs.find(
+    const selectedInscriptionEntry = this.inscriptionEntryDTOs.find(
       period => period.academicTermId === +this.selectedAcademicTermId
     );
-    console.log('selectedInscriptions= is ' + JSON.stringify(selectedInscription));
+    console.log('selectedInscriptionEntry= is ' + JSON.stringify(selectedInscriptionEntry));
     // console.log('selectedInscription.EntryStartDate is ' + JSON.stringify(selectedInscription.inscriptionsEntryStartDate));
 
-    if (selectedInscription) {
-      this.entryStartDate = selectedInscription.inscriptionsEntryStartDate;
-      this.entryEndDate = selectedInscription.inscriptionsEntryEndDate;
+    if (selectedInscriptionEntry) {
+        this.entryStartDate = selectedInscriptionEntry.inscriptionsEntryStartDate.split('T')[0];
+        this.entryEndDate = selectedInscriptionEntry.inscriptionsEntryEndDate.split('T')[0];
+    } else {
+      this.entryStartDate = '';
+      this.entryEndDate = '';
     }
   }
 

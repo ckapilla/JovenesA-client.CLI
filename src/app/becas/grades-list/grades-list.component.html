@@ -1,7 +1,7 @@
 <div class="card bg-primary">
   <div class="card-header text-white" data-cy="grades-period">
-    <span style="font-size: large"> Grade Report Statuses</span>
-    <span style="margin-left: 10rem">
+    <span style="font-size: large"> Grades&nbsp;Statuses</span>
+    <span style="margin-left: 2rem">
       Academic Term:
       <select
         name="activePeriodSelector"
@@ -12,6 +12,10 @@
         <option *ngFor="let gradesProcessingPeriod of gradesProcessingPeriods" [value]="gradesProcessingPeriod.id">{{gradesProcessingPeriod.descriptor}}</option>
       </select>
     </span>
+    <label for="startDateIndicator">Entry&nbsp;Start:</label>
+    <input type="text" id="startDateIndicator" [value]="entryStartDate" readonly />
+    <label for="endDateIndicator">Due&nbsp;Date:</label>
+    <input type="text" id="endDateIndicator" [value]="entryEndDate" readonly />
   </div>
   <div class="card-body bg-white">
     <span *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</span>
@@ -31,15 +35,16 @@
               <th app-sortable-column="studentName" sort-direction="asc" (onSortColumn)="onSortColumn($event)">
                 Student
               </th>
-              <th app-sortable-column="gradesEntryEndDate" (onSortColumn)="onSortColumn($event)">Grades<br />Due Date</th>
-              <th app-sortable-column="gradesTurnedInStatus" (onSortColumn)="onSortColumn($event)">Turned-In<br />Status</th>
-              <th app-sortable-column="gradePointAvgStatus" (onSortColumn)="onSortColumn($event)">GPA<br />Status</th>
+              <!-- <th app-sortable-column="gradesEntryEndDate" (onSortColumn)="onSortColumn($event)">Grades<br />Due Date</th> -->
 
               <th app-sortable-column="gradesTurnedInDate" (onSortColumn)="onSortColumn($event)">Entered <br />Date</th>
               <th app-sortable-column="imageSubmittedDate" (onSortColumn)="onSortColumn($event)">Uploaded <br />Date</th>
               <th>View<br />Image</th>
               <th app-sortable-column="gradePointAvg" (onSortColumn)="onSortColumn($event)">GPA</th>
              <th app-sortable-column="confirmedDate" (onSortColumn)="onSortColumn($event)">Confirmed <br />Date</th>
+             <th app-sortable-column="gradesTurnedInStatus" (onSortColumn)="onSortColumn($event)">Turned-In<br />Status</th>
+             <th app-sortable-column="gradePointAvgStatus" (onSortColumn)="onSortColumn($event)">GPA<br />Status</th>
+
             </tr>
           </thead>
           <tbody>
@@ -54,14 +59,9 @@
               <td (click)="confirmGPA(entry.studentGUId, entry.studentName)" class="link">
                 {{ entry.studentName }}
               </td>
-              <td>
+              <!-- <td>
                 {{ entry.gradesEntryEndDate | truncateDate }}
-              </td>
-              <td>
-                {{ entry.gradesTurnedInStatus }}
-              </td>
-              <td>
-                {{ entry.gradePointAvgStatus }}
+              </td> -->
 
               <td>
                 {{ entry.gradesTurnedInDate | truncateDate }}
@@ -82,6 +82,14 @@
               <td>
                 {{ entry.confirmedDate | truncateDate }}
               </td>
+
+              <td>
+                {{ entry.gradesTurnedInStatus }}
+              </td>
+              <td>
+                {{ entry.gradePointAvgStatus }}
+              </td>
+
             </tr>
           </tbody>
         </table>

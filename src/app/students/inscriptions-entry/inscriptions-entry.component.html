@@ -288,9 +288,8 @@
                     <div [formGroupName]="i" class="col p-0 my-auto">
                       <div class="limit-date col p-0">
                         <p class="state" *ngIf="!inscriptionsData[0].confirmedDate; else emailSary">
-                          Tienes hasta el
+                          La fecha límite para subir tus inscripciones es
                           <br><span>{{inscriptionsData[0].inscriptionsEntryEndDate | date: 'fullDate' :'es'}}</span>
-                          <br>para subir tus inscripciones
                         </p>
                         <ng-template #emailSary>
                           <p>

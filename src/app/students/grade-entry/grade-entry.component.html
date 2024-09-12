@@ -286,9 +286,9 @@
                     <div [formGroupName]="i" class="col p-0 my-auto">
                       <div class="limit-date col p-0">
                         <p class="state" *ngIf="!studentGradesData[0].confirmedDate; else emailSary">
-                          Tienes hasta el
+                          La fecha límite para subir tus calificaciones es
                           <br><span>{{studentGradesData[0].gradesEntryEndDate | date: 'fullDate' :'es'}}</span>
-                          <br>para subir tus calificaciones
+
                         </p>
                         <ng-template #emailSary>
                           <p class="text-danger">

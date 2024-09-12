@@ -17,7 +17,8 @@ import { ColumnSortService } from '../../_shared/services/column-sort.service';
 import { SessionService } from '../../_shared/services/session.service';
 
 @Component({
-  templateUrl: './grades-list.component.html'
+  templateUrl: './grades-list.component.html',
+  styleUrls: ['./grades-list.component.css']
 })
 export class GradesListComponent implements OnInit {
   studentDTO: StudentDTO;
@@ -32,13 +33,15 @@ export class GradesListComponent implements OnInit {
   selectedYear: string;
   selectedMonth: string;
   displayTestNames: boolean;
-  selectedAcademicTermId = '';
   staticUrlPrefix: string;
   periodStart: string;
   private subscription: Subscription;
 
    testNameVisibility$ = this.store.select<boolean>(UIState.getTestNamesVisibility);
    selectedAcademicTermId$ = this.store.select<string>(UIState.getSelectedAcademicTermId);
+   selectedAcademicTermId = '';
+   entryStartDate: string;
+   entryEndDate: string;
 
   constructor(
     public becaData: BecaDataService,
@@ -90,6 +93,8 @@ export class GradesListComponent implements OnInit {
       },
       () => {
         console.log(this.gradesGivenEntryDTOs[0]);
+        console.log('before updateDateIndicators');
+        this.updateDateIndicators();
         console.log('data loaded now set timeout for scroll');
         setTimeout(() => {
           this.scrollIntoView();
@@ -108,6 +113,25 @@ export class GradesListComponent implements OnInit {
 
   setSelectedAcademicTermId(academicTermId: string) {
     this.store.dispatch(new SetSelectedAcademicTermId(academicTermId));
+    this.selectedAcademicTermId = academicTermId;
+    // must be after fetch    this.updateDateIndicators();
+  }
+
+  updateDateIndicators(): void {
+    console.log('selectedAcademicTermId is ' + this.selectedAcademicTermId);
+    // console.log('gradesEntryDTOs is ' + JSON.stringify(this.gradesEntryDTOs));
+    const selectedGradeEntry = this.gradesGivenEntryDTOs.find(
+      period => period.academicTermId === +this.selectedAcademicTermId
+    );
+    console.log('selectedGradeEntry= is ' + JSON.stringify(selectedGradeEntry));
+
+    if (selectedGradeEntry) {
+      this.entryStartDate = selectedGradeEntry.gradesEntryStartDate.split('T')[0];
+      this.entryEndDate = selectedGradeEntry.gradesEntryEndDate.split('T')[0];
+    } else {
+      this.entryStartDate = '';
+      this.entryEndDate = '';
+    }
   }
 
   confirmGPA(studentGUId: string, studentName: string) {

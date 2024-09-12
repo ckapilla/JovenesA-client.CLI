@@ -2,6 +2,16 @@
   display: block;
   padding: 0 16px;
 }
+.card-header {
+  display: flex;
+  align-items: center;
+}
+
+.card-header span,
+.card-header label,
+.card-header input {
+  margin-right: 1rem; /* Adjust as needed for spacing */
+}
 
 input {
   height: 20px;
