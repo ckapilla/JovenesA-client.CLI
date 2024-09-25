@@ -36,6 +36,7 @@ export class InscriptionsEntryComponent implements OnInit {
   confirmedDate: boolean;
   inInscriptionsProcessingPeriod: boolean;
   staticUrlPrefix: string;
+  bExtendInscriptionsEntryPeriod = true;
 
    currentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
    currentName$ = this.store.select<string>(StudentState.getSelectedStudentName);
@@ -146,8 +147,15 @@ export class InscriptionsEntryComponent implements OnInit {
       console.log('in range');
       return true;
     } else {
-      console.log('not in range');
-      return false;
+
+      if (this.bExtendInscriptionsEntryPeriod) {
+        console.log('not in range, but extended');
+        return true
+        } else {
+          console.log('not in range, not extended');
+          return false;
+        }
+
     }
   }
   onUploadSuccess() {
