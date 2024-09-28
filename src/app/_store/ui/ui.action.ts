@@ -35,13 +35,22 @@ export class SetSelectedAcademicTermId {
   static readonly type = '[UI] update selectedAcademicTermId';
   constructor(public readonly payload: string) {}
 }
-export class GetSelectedInscriptionsProcessingPeriodID {
-  static readonly type = '[UI] Get selectedAcademicTermId';
+export class GetSelectedGradesPeriodID {
+  static readonly type = '[UI] Get selectedGradesPeriodId';
+  constructor(public payload: UIStateModel) {}
+}
+export class GetSelectedInscriptionsPeriodId {
+  static readonly type = '[UI] Get selectedInscriptionsPeriodId';
   constructor(public payload: UIStateModel) {}
 }
 
-export class SetSelectedInscriptionsProcessingPeriodID {
-  static readonly type = '[UI] update selectedAcademicTermId';
+export class SetSelectedGradesPeriodId {
+  static readonly type = '[UI] update selectedGradesPeriodId';
+  constructor(public readonly payload: string) {}
+}
+
+export class SetSelectedInscriptionsPeriodId {
+  static readonly type = '[UI] update selectedInscriptionsPeriodId';
   constructor(public readonly payload: string) {}
 }
 ///

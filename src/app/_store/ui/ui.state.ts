@@ -17,8 +17,8 @@ import { UIStateModel } from './ui.model';
     qrComponentsEditable: false,
 
     selectedQRPeriod: '', // initialize ConstantsService.generateQRPeriods
-    selectedAcademicTermId: '119', // need to initialize this from ConstantsService
-    selectedAcademicTermId2: '120', // need to initialize this from ConstantsService
+    selectedGradesPeriodId: '119', // need to initialize this from ConstantsService
+    selectedInscriptionsPeriodId: '120', // need to initialize this from ConstantsService
 
     selectedFilterMode: '998',
     selectedStudentStatus: '0',
@@ -77,23 +77,29 @@ export class UIState {
 
   @Selector()
   static DUPsetSelectedAcademicTermId(state: UIStateModel) {
-    return state.selectedAcademicTermId;
+    return state.selectedGradesPeriodId;
   }
 
   @Action(SetSelectedAcademicTermId)
   setSelectedAcademicTermId(ctx: StateContext<UIStateModel>, { payload }: SetSelectedAcademicTermId) {
-    const selectedAcademicTermId = payload;
+    const selectedInscriptionsPeriodId = payload;
     const state = ctx.getState();
     ctx.patchState({
       ...state,
-      selectedAcademicTermId
+      selectedGradesPeriodId: selectedInscriptionsPeriodId
     });
   }
 
   @Selector()
-  static getSelectedAcademicTermId(state: UIStateModel) {
-    return state.selectedAcademicTermId;
+  static getSelectedInscriptionsPeriodId(state: UIStateModel) {
+    return state.selectedInscriptionsPeriodId;
   }
+
+  @Selector()
+  static getSelectedGradesPeriodId(state: UIStateModel) {
+    return state.selectedGradesPeriodId;
+  }
+
 
   @Selector()
   static getSelectedYearJoined(state: UIStateModel) {

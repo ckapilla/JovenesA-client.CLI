@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {
   CanActivateViaAdminAuthGuard,
-  ConfirmDeactivateGradesEditGuard, ConfirmDeactivateInscriptionsEditGuard
+  ConfirmDeactivateGradesEditGuard,
+  ConfirmDeactivateInscriptionsEditGuard
 } from '../app.routing-guards';
 import { BecasComponent } from './becas.component';
 import { GradesEditComponent } from './grades-edit/grades-edit.component';

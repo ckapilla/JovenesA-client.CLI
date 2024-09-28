@@ -2,12 +2,12 @@
   <div class="card-header text-white" data-cy="inscriptions-period">
     <span style="font-size: large"> Inscriptions Statuses</span>
     <span style="margin-left: 1.5rem">
-      Academic&nbsp;Period:
+      &nbsp;Period:
       <select
         name="activePeriodSelector"
         data-cy="period-selector"
-        [(ngModel)]="selectedAcademicTermId"
-        (change)="setSelectedAcademicTermId($event.target.value)"
+        [(ngModel)]="selectedInscriptionsPeriodId"
+        (change)="setSelectedInscriptionsPeriodId($event.target.value)"
       >
         <option *ngFor="let inscriptionsProcessingPeriod of inscriptionsProcessingPeriods" [value]="inscriptionsProcessingPeriod.id">{{inscriptionsProcessingPeriod.descriptor}}</option>
       </select>
@@ -27,7 +27,10 @@
         <app-loading-container> </app-loading-container>
       </div>
       <div *ngSwitchCase="false">
-        <table class="table-sm table-striped">
+        <div *ngIf="inscriptionEntryDTOs.length === 0" class="text-center">
+          [No Inscriptions data found for this period. Please select another period.]
+        </div>
+        <table *ngIf="inscriptionEntryDTOs.length > 0"  class="table-sm table-striped">
           <thead>
             <tr>
               <!-- <td>Id</td> -->

@@ -13,7 +13,7 @@ import { ColumnSortService } from '../../_shared/services/column-sort.service';
 import { SessionService } from '../../_shared/services/session.service';
 import { UrlService } from '../../_shared/services/url.service';
 import { SetSelectedStudentIdentifiers } from '../../_store/student/student.action';
-import { SetSelectedInscriptionsProcessingPeriodID } from '../../_store/ui/ui.action';
+import { SetSelectedInscriptionsPeriodId } from '../../_store/ui/ui.action';
 import { UIState } from '../../_store/ui/ui.state';
 
 @Component({
@@ -40,8 +40,8 @@ export class InscriptionsListComponent implements OnInit {
   private subscription: Subscription;
 
   testNameVisibility$ = this.store.select<boolean>(UIState.getTestNamesVisibility);
-  selectedAcademicTermId$ = this.store.select<string>(UIState.getSelectedAcademicTermId);
-  selectedAcademicTermId = '';
+  selectedInscriptionsPeriodId$ = this.store.select<string>(UIState.getSelectedInscriptionsPeriodId);
+  selectedInscriptionsPeriodId = '';
   entryStartDate: string;
   entryEndDate: string;
 
@@ -66,13 +66,13 @@ export class InscriptionsListComponent implements OnInit {
     this.testNameVisibility$.subscribe((flag) => {
       this.displayTestNames = flag;
     });
-    this.subscribeForselectedAcademicTermId();
+    this.subscribeForselectedInscriptionsPeriodId();
   }
 
-  subscribeForselectedAcademicTermId() {
-    this.subscription = this.selectedAcademicTermId$.subscribe((message) => {
-      this.selectedAcademicTermId = message;
-      console.log('************NGXS: InscriptionsList new selectedAcademicTermId received ' + this.selectedAcademicTermId);
+  subscribeForselectedInscriptionsPeriodId() {
+    this.subscription = this.selectedInscriptionsPeriodId$.subscribe((message) => {
+      this.selectedInscriptionsPeriodId = message;
+      console.log('************NGXS: InscriptionsList new selectedInscriptionsPeriodId received ' + this.selectedInscriptionsPeriodId);
       this.fetchFilteredData();
     });
   }
@@ -80,8 +80,8 @@ export class InscriptionsListComponent implements OnInit {
   fetchFilteredData() {
     this.isLoading = true;
     console.log('displayTestNames: ' + this.displayTestNames);
-    console.log('fetchFilredData selectedAcademicTermId is ' + this.selectedAcademicTermId);
-    this.inscriptionData.getInscriptionsListForPeriod(+this.selectedAcademicTermId).subscribe(
+    console.log('fetchFilredData selectedInscriptionsPeriodId is ' + this.selectedInscriptionsPeriodId);
+    this.inscriptionData.getInscriptionsListForPeriod(+this.selectedInscriptionsPeriodId).subscribe(
       (data) => {
         this.inscriptionEntryDTOs = data.filter((item) => {
           if (this.displayTestNames) {
@@ -114,17 +114,17 @@ export class InscriptionsListComponent implements OnInit {
     }
   }
 
-  setSelectedAcademicTermId(academicTermId: string) {
-    this.store.dispatch(new SetSelectedInscriptionsProcessingPeriodID(academicTermId));
-    this.selectedAcademicTermId = academicTermId;
+  setSelectedInscriptionsPeriodId(inscriptionsPeriodId: string) {
+    this.store.dispatch(new SetSelectedInscriptionsPeriodId(inscriptionsPeriodId));
+    this.selectedInscriptionsPeriodId = inscriptionsPeriodId;
     // must be after fetch    this.updateDateIndicators();
   }
 
   updateDateIndicators(): void {
-    console.log('selectedAcademicTermId is ' + this.selectedAcademicTermId);
+    console.log('selectedInscriptionsPeriodId is ' + this.selectedInscriptionsPeriodId);
     // console.log('inscriptionEntryDTOs is ' + JSON.stringify(this.inscriptionEntryDTOs));
     const selectedInscriptionEntry = this.inscriptionEntryDTOs.find(
-      period => period.academicTermId === +this.selectedAcademicTermId
+      period => period.academicTermId === +this.selectedInscriptionsPeriodId
     );
     console.log('selectedInscriptionEntry= is ' + JSON.stringify(selectedInscriptionEntry));
     // console.log('selectedInscription.EntryStartDate is ' + JSON.stringify(selectedInscription.inscriptionsEntryStartDate));

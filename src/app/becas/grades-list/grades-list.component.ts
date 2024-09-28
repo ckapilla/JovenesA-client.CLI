@@ -7,7 +7,7 @@ import { PROCESSINGPERIOD } from 'src/app/_shared/interfaces/PROCESSINGPERIOD';
 import { GradesGivenEntryDTO } from 'src/app/_shared/models/grades-given-entryDTO';
 import { UrlService } from 'src/app/_shared/services/url.service';
 import { SetSelectedStudentIdentifiers } from 'src/app/_store/student/student.action';
-import { SetSelectedAcademicTermId } from 'src/app/_store/ui/ui.action';
+import { SetSelectedGradesPeriodId } from 'src/app/_store/ui/ui.action';
 import { UIState } from 'src/app/_store/ui/ui.state';
 import { constants } from '../../_shared/constants/constants';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
@@ -38,8 +38,8 @@ export class GradesListComponent implements OnInit {
   private subscription: Subscription;
 
    testNameVisibility$ = this.store.select<boolean>(UIState.getTestNamesVisibility);
-   selectedAcademicTermId$ = this.store.select<string>(UIState.getSelectedAcademicTermId);
-   selectedAcademicTermId = '';
+   selectedGradesPeriodId$ = this.store.select<string>(UIState.getSelectedGradesPeriodId);
+   selectedGradesPeriodId = '';
    entryStartDate: string;
    entryEndDate: string;
 
@@ -63,22 +63,21 @@ export class GradesListComponent implements OnInit {
     this.testNameVisibility$.subscribe((flag) => {
       this.displayTestNames = flag;
     });
-    this.subscribeForselectedAcademicTermId();
+    this.subscribeForselectedGradesPeriodId();
   }
 
-  subscribeForselectedAcademicTermId() {
-    this.subscription = this.selectedAcademicTermId$.subscribe((message) => {
-      this.selectedAcademicTermId = message;
-      console.log('************NGXS: GradesList new selectedAcademicTermId received' + this.selectedAcademicTermId);
+  subscribeForselectedGradesPeriodId() {
+    this.subscription = this.selectedGradesPeriodId$.subscribe((message) => {
+      this.selectedGradesPeriodId = message;
+      console.log('************NGXS: GradesList new selectedGradesPeriodId received' + this.selectedGradesPeriodId);
       this.fetchFilteredData();
     });
   }
 
-
   fetchFilteredData() {
     this.isLoading = true;
     console.log('displayTestNames: ' + this.displayTestNames);
-    this.becaData.getGradesListForPeriod(+this.selectedAcademicTermId).subscribe(
+    this.becaData.getGradesListForPeriod(+this.selectedGradesPeriodId).subscribe(
       (data) => {
         this.gradesGivenEntryDTOs = data.filter((item) => {
           if (this.displayTestNames) {
@@ -111,17 +110,18 @@ export class GradesListComponent implements OnInit {
     }
   }
 
-  setSelectedAcademicTermId(academicTermId: string) {
-    this.store.dispatch(new SetSelectedAcademicTermId(academicTermId));
-    this.selectedAcademicTermId = academicTermId;
+  setSelectedGradesPeriodId(gradesPeriodId: string) {
+    this.store.dispatch(new SetSelectedGradesPeriodId(gradesPeriodId));
+    this.selectedGradesPeriodId = gradesPeriodId;
     // must be after fetch    this.updateDateIndicators();
   }
 
+
   updateDateIndicators(): void {
-    console.log('selectedAcademicTermId is ' + this.selectedAcademicTermId);
+    console.log('selectedGradesPeriodId is ' + this.selectedGradesPeriodId);
     // console.log('gradesEntryDTOs is ' + JSON.stringify(this.gradesEntryDTOs));
     const selectedGradeEntry = this.gradesGivenEntryDTOs.find(
-      period => period.academicTermId === +this.selectedAcademicTermId
+      period => period.academicTermId === +this.selectedGradesPeriodId
     );
     console.log('selectedGradeEntry= is ' + JSON.stringify(selectedGradeEntry));
 

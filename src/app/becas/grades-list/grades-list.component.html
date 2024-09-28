@@ -2,17 +2,17 @@
   <div class="card-header text-white" data-cy="grades-period">
     <span style="font-size: large"> Grades&nbsp;Statuses</span>
     <span style="margin-left: 2rem">
-      Academic Period:
+      Period:
       <select
         name="activePeriodSelector"
         data-cy="period-selector"
-        [(ngModel)]="selectedAcademicTermId"
-        (change)="setSelectedAcademicTermId($event.target.value)"
+        [(ngModel)]="selectedGradesPeriodId"
+        (change)="setSelectedGradesPeriodId($event.target.value)"
       >
         <option *ngFor="let gradesProcessingPeriod of gradesProcessingPeriods" [value]="gradesProcessingPeriod.id">{{gradesProcessingPeriod.descriptor}}</option>
       </select>
     </span>
-    <label for="startDateIndicator">Entry&nbsp;Start:</label>
+    <label for="startDateIndicator">Grade Entry&nbsp;Start:</label>
     <input type="text" id="startDateIndicator" [value]="entryStartDate" readonly />
     <label for="endDateIndicator">Due&nbsp;Date:</label>
     <input type="text" id="endDateIndicator" [value]="entryEndDate" readonly />
@@ -26,7 +26,10 @@
         <app-loading-container> </app-loading-container>
       </div>
       <div *ngSwitchCase="false">
-        <table class="table-sm table-striped">
+        <div *ngIf="gradesGivenEntryDTOs.length === 0" class="text-center">
+          [No Grades data found for this period]. Please select a different period.
+        </div>
+        <table *ngIf="gradesGivenEntryDTOs.length > 0"  class="table-sm table-striped">
           <thead>
             <tr>
               <!-- <td>Id</td> -->
