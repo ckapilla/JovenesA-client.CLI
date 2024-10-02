@@ -36,7 +36,7 @@ export class InscriptionsEntryComponent implements OnInit {
   confirmedDate: boolean;
   inInscriptionsProcessingPeriod: boolean;
   staticUrlPrefix: string;
-  bExtendInscriptionsEntryPeriod = true;
+  bExtendInscriptionsEntryPeriod = false;
 
    currentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
    currentName$ = this.store.select<string>(StudentState.getSelectedStudentName);

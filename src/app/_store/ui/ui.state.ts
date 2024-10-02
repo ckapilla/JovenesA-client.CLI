@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import {
   SetQRComponentsEditable,
-  SetSelectedAcademicTermId,
   SetSelectedFilterMode,
+  SetSelectedGradesPeriodId,
   SetSelectedGradYear,
+  SetSelectedInscriptionsPeriodId,
   SetSelectedQRPeriod, SetSelectedStudentStatus,
   SetSelectedYearJoined, SetTestNamesVisibility
 } from './ui.action';
@@ -75,18 +76,30 @@ export class UIState {
     });
   }
 
+  @Action(SetSelectedGradesPeriodId)
+  setSelectedGradesPeriodId(ctx: StateContext<UIStateModel>, { payload }: SetSelectedGradesPeriodId) {
+    const selectedGradesPeriodId = payload;
+    const state = ctx.getState();
+    ctx.patchState({
+      ...state,
+      selectedGradesPeriodId: selectedGradesPeriodId
+    });
+  }
+
+
+
   @Selector()
-  static DUPsetSelectedAcademicTermId(state: UIStateModel) {
+  static etSelectedGradesPeriodId(state: UIStateModel) {
     return state.selectedGradesPeriodId;
   }
 
-  @Action(SetSelectedAcademicTermId)
-  setSelectedAcademicTermId(ctx: StateContext<UIStateModel>, { payload }: SetSelectedAcademicTermId) {
+  @Action(SetSelectedInscriptionsPeriodId)
+  setSelectedInscriptionsPeriodId(ctx: StateContext<UIStateModel>, { payload }: SetSelectedInscriptionsPeriodId) {
     const selectedInscriptionsPeriodId = payload;
     const state = ctx.getState();
     ctx.patchState({
       ...state,
-      selectedGradesPeriodId: selectedInscriptionsPeriodId
+      selectedInscriptionsPeriodId: selectedInscriptionsPeriodId
     });
   }
 

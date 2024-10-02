@@ -40,7 +40,7 @@ export class GradeEntryComponent implements OnInit {
   currentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
   currentName$ = this.store.select<string>(StudentState.getSelectedStudentName);
   errorAlert: boolean;
-  bExtendInscriptionsEntryPeriod = true;
+  bExtendGradesEntryPeriod = false;
   successAlert: boolean;
 
   constructor(
@@ -156,7 +156,7 @@ export class GradeEntryComponent implements OnInit {
     console.log("%%%%%%%%%%%%%%%%%%%%%%%%%gradesEntryStartDate is " + gradesEntryStartDate);
     console.log("gradesEntryEndDate is " + gradesEntryEndDate);
 
-    if (this.bExtendInscriptionsEntryPeriod) {
+    if (this.bExtendGradesEntryPeriod) {
       console.log('not in range, but extended');
       return true
       } else {
@@ -166,7 +166,7 @@ export class GradeEntryComponent implements OnInit {
   }
 
   onUploadSuccess() {
-    console.log('!@#$%^&*!@#$% Inscription Upload Success');
+    console.log('!@#$%^&*!@#$% Grade Upload Success');
     this.fetchFilteredData();
   }
 

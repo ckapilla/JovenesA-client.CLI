@@ -34,8 +34,6 @@ export class SelfReportsAddComponent implements OnInit {
   selectedQRPeriod = '';
   subscription: Subscription;
 
-  periodo;
-
   //  selectedQRPeriod$ = this.store.select<string>(UIState.getSelectedQRPeriod);
   selectedQRPeriod$ = this.store.select<string>(UIState.getSelectedQRPeriod);
   errorAlert: boolean;
@@ -86,10 +84,10 @@ export class SelfReportsAddComponent implements OnInit {
 
     this.selfReport.reportYear = +this.selectedQRPeriod.substr(0, 4);
     // TEMP TEMP TEMP
-    this.selfReport.reportPeriod = 2; // +this.selectedQRPeriod.substr(5, 1);
+    this.selfReport.reportPeriod = 3; // +this.selectedQRPeriod.substr(5, 1);
     console.log('year: ' + this.selfReport.reportYear + ' period: ' + this.selfReport.reportPeriod);
     this.selfReport.narrative_Spanish = '';
-    this.periodo = this.selfReport.reportPeriod;
+    // this.periodo = this.selfReport.reportPeriod;
 
     this.myForm.valueChanges.subscribe(() => {
       this.errorMessage = '';

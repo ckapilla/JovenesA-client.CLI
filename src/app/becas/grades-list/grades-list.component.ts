@@ -76,7 +76,7 @@ export class GradesListComponent implements OnInit {
 
   fetchFilteredData() {
     this.isLoading = true;
-    console.log('displayTestNames: ' + this.displayTestNames);
+    console.log('fetchFilteredData with displayTestNames: ' + this.displayTestNames);
     this.becaData.getGradesListForPeriod(+this.selectedGradesPeriodId).subscribe(
       (data) => {
         this.gradesGivenEntryDTOs = data.filter((item) => {
@@ -111,9 +111,9 @@ export class GradesListComponent implements OnInit {
   }
 
   setSelectedGradesPeriodId(gradesPeriodId: string) {
+
     this.store.dispatch(new SetSelectedGradesPeriodId(gradesPeriodId));
     this.selectedGradesPeriodId = gradesPeriodId;
-    // must be after fetch    this.updateDateIndicators();
   }
 
 
@@ -123,7 +123,7 @@ export class GradesListComponent implements OnInit {
     const selectedGradeEntry = this.gradesGivenEntryDTOs.find(
       period => period.academicTermId === +this.selectedGradesPeriodId
     );
-    console.log('selectedGradeEntry= is ' + JSON.stringify(selectedGradeEntry));
+    console.log('selectedGradeEntry is ' + JSON.stringify(selectedGradeEntry));
 
     if (selectedGradeEntry) {
       this.entryStartDate = selectedGradeEntry.gradesEntryStartDate.split('T')[0];
