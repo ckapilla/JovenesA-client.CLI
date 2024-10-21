@@ -185,7 +185,7 @@ export class ConfirmDeactivateGradesEditGuard implements CanDeactivate<GradesEdi
     return true;
   }
 }
-  @Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: 'root' })
   export class ConfirmDeactivateInscriptionsEditGuard implements CanDeactivate<InscriptionsEditComponent> {
     canDeactivate(component: InscriptionsEditComponent): boolean {
       if (component.hasChanges()) {
@@ -199,4 +199,22 @@ export class ConfirmDeactivateGradesEditGuard implements CanDeactivate<GradesEdi
       localStorage.removeItem('unauthenticated_retry_url');
       return true;
     }
-  }
+}
+
+@Injectable({ providedIn: 'root' })
+ export class InitialNavigationGuard implements CanActivate {
+   private initialNavigation = true;
+
+   constructor(private auth: AuthService, private session: SessionService, private router: Router) {}
+
+   canActivate(): boolean {
+     console.log('InitialNavigationGuard#canActivate called');
+     if (this.initialNavigation && this.session.isStudent()) {
+       this.initialNavigation = false;
+       console.log('InitialNavigationGuard#canActivate: Redirecting to /students');
+       this.router.navigate(['/students']);
+       return false; // Prevent further navigation
+     }
+     return true;
+   }
+ }

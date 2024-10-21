@@ -22,13 +22,26 @@ nav a.active {
   color: white#05579E;
   border-radius: 10px;
 }
+/* from ai */
 
+.w-100.d-flex.flex-column.align-items-end {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
 
-
+.w-100.d-flex.flex-column.align-items-end .link {
+  margin-top: 0.1rem; /* Adjust as needed for spacing */
+}
 /*.nav a {
     padding: 26px 10px !important;
     border-right: 0px !important;
 }*/
+.nav-message {
+  display: flex;
+  color: white;
+
+}
 
 
 /* students navbar styles */

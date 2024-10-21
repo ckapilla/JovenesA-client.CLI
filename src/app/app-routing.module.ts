@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CallbackComponent } from './_shared/components/callback.component';
+import { InitialNavigationGuard } from './app.routing-guards';
 
 const appRoutes: Routes = [
   {
@@ -10,7 +11,8 @@ const appRoutes: Routes = [
   {
     path: '',
     redirectTo: 'home',
-    pathMatch: 'full'
+    pathMatch: 'full',
+
   },
   {
     path: 'home',
@@ -34,7 +36,8 @@ const appRoutes: Routes = [
   },
   {
     path: 'students',
-    loadChildren: () => import('./students/students.module').then(m => m.StudentsModule)
+    loadChildren: () => import('./students/students.module').then(m => m.StudentsModule),
+    canActivate: [InitialNavigationGuard]
   },
   {
     path: 'quarterly',

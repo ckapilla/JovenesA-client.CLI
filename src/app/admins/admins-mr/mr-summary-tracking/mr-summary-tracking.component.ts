@@ -177,9 +177,10 @@ export class MentorReportsSummaryTrackingComponent implements OnInit
     this.fetchFilteredData();
   }
 
-  gotoStudent(guid: string, studentName: string) {
+  gotoStudent(studentGUId: string, studentName: string) {
     console.log('setting studentName to ' + studentName);
-    const link = ['admins/students/student-container', { guid: guid }];
+    this.store.dispatch(new SetSelectedStudentIdentifiers({ studentGUId, studentName }));
+    const link = ['admins/students/student-container', { guid: studentGUId }];
 
     console.log('navigating to ' + link);
     this.router.navigate(link);

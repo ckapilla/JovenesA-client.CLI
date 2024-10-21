@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-// import { AppRouting } from '../../app.routing';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../_shared/services/auth.service';
 import { SessionService } from '../_shared/services/session.service';
 /**
@@ -10,8 +10,22 @@ import { SessionService } from '../_shared/services/session.service';
   templateUrl: 'headerbar.component.html',
   styleUrls: [ 'headerbar.component.css' ]
 })
-export class HeaderbarComponent {
-  constructor(public auth: AuthService, public session: SessionService) {}
+export class HeaderbarComponent implements OnInit {
+  private initialNavigation = true;
+
+  constructor(public auth: AuthService, public session: SessionService, private router: Router) {}
+  ngOnInit(): void {
+
+    // this.router.events
+    // .pipe(filter(event => event instanceof NavigationEnd))
+    // .subscribe(() => {
+    //   if (this.initialNavigation && this.session.isStudent()) {
+    //     this.initialNavigation = false;
+    //     this.router.navigate(['/students']);
+    //     return false;
+    //   }
+    // });
+  }
 
   public isAdminWithValidToken(): boolean {
     return this.auth.loggedIn && this.session.isAdmin();

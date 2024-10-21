@@ -43,6 +43,7 @@
   </nav>
 </ng-template>
 <!-- students navbar -->
+<!-- students navbar -->
 
 <ng-template #studentNavbar>
   <nav class="navbar students navbar-expand-md p-0 px-md-5">
@@ -62,19 +63,21 @@
       </button>
       <div class="collapse navbar-collapse menu text-center mr-3" id="navbarNav">
         <ul class="navbar-nav mx-auto mx-md-0">
-          <!-- <li class="nav-item" data-toggle="collapse" data-target="#navbarNav">
+          <li class="nav-item" data-toggle="collapse" data-target="#navbarNav">
             <a class="nav-link " [routerLinkActive]="['active']" [routerLink]="['home']">Home</a>
-          </li> -->
+          </li>
 
           <li class="nav-item" data-toggle="collapse" data-target="#navbarNav" [hidden]=!isStudentWithValidToken()>
             <a class="nav-link " [routerLinkActive]="['active']" [routerLink]="['students']"
               data-cy="top-students">Estudiantes</a>
           </li>
         </ul>
-        <hr class="mx-4 my-2 d-block d-md-none  menu-separator">
-        <div class=" w-100 d-flex justify-content-md-end justify-content-center" data-cy="login_welcome">
-          <a class="link p-2 mt-1 mb-2 m-md-0 ml-md-2 logout text-nowrap " data-cy="logout" (click)="auth.logout()"
-            *ngIf="auth.loggedIn">Cerrar Sesión</a>
+        <hr class="mx-4 my-2 d-block d-md-none menu-separator">
+        <div class="w-100 d-flex flex-column align-items-end" data-cy="login_welcome">
+          <div class="nav-message" *ngIf="auth.loggedIn">Bienvenido {{auth.nickname}} <br/></div>
+          <a class="link p-2 mt-1 mb-2 m-md-0 ml-md-2 logout text-nowrap" data-cy="logout" (click)="auth.logout()" *ngIf="auth.loggedIn">
+            Cerrar Sesión
+          </a>
         </div>
       </div>
     </div>
