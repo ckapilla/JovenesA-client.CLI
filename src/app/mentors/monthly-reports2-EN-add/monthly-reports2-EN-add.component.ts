@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
@@ -24,13 +24,14 @@ export class MonthlyReports2ENAddComponent implements OnInit {
   isLoading: boolean;
   isSubmitted = false;
 
-  lastYearCtl: AbstractControl;
-  lastMonthCtl: AbstractControl;
-  emojiCtl: AbstractControl;
+  lastYearCtl: UntypedFormControl;
+  lastMonthCtl: UntypedFormControl;
+  emojiCtl: UntypedFormControl;
+  communicationCtl: UntypedFormControl;
 
-  narrative_EnglishCtl: AbstractControl;
-  narrative_SpanishCtl: AbstractControl;
-  reportIdCtl: AbstractControl;
+  narrative_EnglishCtl: UntypedFormControl;
+  narrative_SpanishCtl: UntypedFormControl;
+  reportIdCtl: UntypedFormControl;
   errorMessage: string;
   successMessage: string;
   mentorReportId: number;
@@ -62,17 +63,20 @@ export class MonthlyReports2ENAddComponent implements OnInit {
       lastContactMonthSelector: { value: '' + constants.currentContactMonth, disabled: true },
       // use bogus integer value so change detection works:
       inputEmoji: [666, { validators: [Validators.required, this.validateEmojis] }],
+      communicationEmoji: [666, { validators: [Validators.required, this.validateEmojis] }],
+
       narrative_English: ['', Validators.required],
       narrative_Spanish: [''],
       mentorReportId: [this.reportIdCtl]
     });
 
-    this.lastYearCtl = this.myForm.controls.lastContactYearSelector;
-    this.lastMonthCtl = this.myForm.controls.lastContactMonthSelector;
-    this.emojiCtl = this.myForm.controls.inputEmoji;
-    this.narrative_EnglishCtl = this.myForm.controls.narrative_English;
-    this.narrative_SpanishCtl = this.myForm.controls.narrative_Spanish;
-    this.reportIdCtl = this.myForm.controls.mentorReportId;
+    this.lastYearCtl = this.myForm.controls.lastContactYearSelector as UntypedFormControl;
+    this.lastMonthCtl = this.myForm.controls.lastContactMonthSelector as UntypedFormControl;
+    this.emojiCtl = this.myForm.controls.inputEmoji as UntypedFormControl;
+    this.communicationCtl = this.myForm.controls.communicationEmoji as UntypedFormControl;
+    this.narrative_EnglishCtl = this.myForm.controls.narrative_English as UntypedFormControl;
+    this.narrative_SpanishCtl = this.myForm.controls.narrative_Spanish as UntypedFormControl;
+    this.reportIdCtl = this.myForm.controls.mentorReportId as UntypedFormControl;
     this.mentorReport2.reviewedStatusId = 2087; // needs review
 
     this.errorMessage = '';
@@ -90,9 +94,7 @@ export class MonthlyReports2ENAddComponent implements OnInit {
     this.mentorReport2.mentorGUId = this.currRoute.snapshot.params['mentorGUId'];
     this.mentorReport2.studentId = 0; // this.currRoute.snapshot.params['studentId'];
     this.mentorReport2.studentGUId = this.currRoute.snapshot.params['studentGUId'];
-    // this.studentName = this.currRoute.snapshot.params['studentName'];
     console.log('mentorGUId ' + this.mentorReport2.mentorGUId);
-    // console.log('studentId ' + this.mentorReport2.studentId);
     console.log('studentGUId ' + this.mentorReport2.studentGUId);
 
     if (this.mentorReport2.mentorGUId === 'undefined' || this.mentorReport2.mentorGUId === 'null') {
@@ -106,7 +108,6 @@ export class MonthlyReports2ENAddComponent implements OnInit {
       const now = new Date();
       this.mentorReport2.reportDateTime = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
       console.log('reportDateTime = ' + this.mentorReport2.reportDateTime);
-      // this.mentorReport.lastContactYear = (Number)(this.contactYears[this.contactYears.length - 1].value);
       this.mentorReport2.lastContactYear =  constants.currentContactYear;
       this.mentorReport2.lastContactMonth = 0;
 
@@ -116,7 +117,6 @@ export class MonthlyReports2ENAddComponent implements OnInit {
         this.errorMessage = '';
         this.successMessage = '';
         this.isSubmitted = false;
-        // console.log('form change event');
         this.checkFormControlsAreValid(false);
       });
     }

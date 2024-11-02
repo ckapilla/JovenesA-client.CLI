@@ -23,7 +23,7 @@ export class WHSE_Daily_MR_Component implements OnInit {
   ];
   monthNum = this.getAdjustedMonth();
 
-  titleText = 'Daily Mentor Reports Submitted -- ' + this.months[this.monthNum] + ' 2023'
+  titleText = 'Daily Mentor Reports Submitted -- ' + this.months[this.monthNum] + ' 2024'
 
   myCategories = this.dummyData.map(a => a.formattedDate);
   myData0 = this.dummyData.map(a => a.submitted);

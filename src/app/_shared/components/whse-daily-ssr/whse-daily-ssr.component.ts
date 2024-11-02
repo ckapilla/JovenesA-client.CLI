@@ -29,7 +29,7 @@ export class WHSE_Daily_SSR_Component implements OnInit {
     height: 300
   },
   title: {
-      text: 'Daily SSR Reports Submitted for Q3 2023'
+      text: 'Daily SSR Reports Submitted for Q3 2024'
   },
   // tooltip: {
   //   formatter: function() {
