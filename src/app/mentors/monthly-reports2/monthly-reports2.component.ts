@@ -92,7 +92,13 @@ export class MonthlyReports2Component implements OnInit {
         for (const x of this.mentorReports2) {
           console.log('reviewedStatusId: ' + x.reviewedStatusId);
           console.log('i = ' + i);
-          if (x.reviewedStatusId === 2087 && x.reportDateTime >= new Date('4/3/2024')) {  // Needs_Review, not finalized
+          console.log('x.lastContactMonth =  '+ x.lastContactMonth);
+          console.log('x.lastContactYear =  '+ x.lastContactYear);
+          console.log('constants.currentContactMonth =  '+ constants.currentContactMonth);
+          console.log('constants.currentontactYear =  '+ constants.currentContactYear);
+
+          if (x.lastContactMonth == constants.currentContactMonth && x.lastContactYear  == constants.currentContactYear) {
+          // if (x.reviewedStatusId == 2087 ) { // && x.reportDateTime >= new Date('4/3/2024')) {  // Needs_Review, not finalized
             console.log(' report w/ NeedsReview status found; disable add function');
             this.haveCurrentReport = true;
           }

@@ -12,6 +12,20 @@
           <div class="form-group"></div>
 
           <div class="controls">
+            <label for="lastContactYearSelector">Report Year/Month&nbsp;</label>
+            <select formControlName="lastContactYearSelector">
+              <option *ngFor="let year of contactYears" [value]="year.value">{{year.label}}</option>
+            </select>
+            <span *ngIf="!lastYearCtl.valid &amp;&amp; lastYearCtl.touched" class="red"> Select Year</span>
+
+            <select formControlName="lastContactMonthSelector">
+              <option [value]="0">Select Month</option>
+              <option *ngFor="let month of contactMonths" [value]="month.value">{{month.label}}</option>
+            </select>
+            <span [ngClass]="{ 'red': monthValidationMessage }">{{ monthValidationMessage }}</span>
+          </div>
+
+          <div class="controls">
             <label for="reviewedStatusSelector">Reviewed Status:</label>
             <select formControlName="reviewedStatusSelector" class="form-control input-sm">
               <option *ngFor="let status of reviewedStatuses" [value]="status.value">{{ status.label }}</option>

@@ -27,7 +27,7 @@
         <div class="form-group">
 
           <div class="controls">
-            <span><b> Emoji de Estudiante:</b> (cómo van las cosas en general con el estudiante?)<br /></span>
+            <span><b> Estado del estudiante:</b> (cómo van las cosas en general con el estudiante?)<br /></span>
             <label>&nbsp;&nbsp;
               <input type="radio" id="inputEmoji" formControlName="inputEmoji"
                      [checked]="emojiCtl.value==1" value=1>
@@ -52,12 +52,30 @@
                      [checked]="emojiCtl.value==-1" value=-1>
               <img src="/assets/images/needsAttention.jpg" width="30px" />
               Problemas
-              <span *ngIf="emojiCtl.hasError('required')" class="red">Please select an emoji.</span>
+              <span *ngIf="emojiCtl.hasError('required')" class="red">Seleccione un valor de estado.</span>
             </label>
 
           </div>
 
-
+          <div class="controls mt-4">
+            <div><b> Estado de la comunicación:</b>¿Pudiste conectarte con tu estudiante y reunir suficiente información para proporcionar un informe completo?<br /></div>
+            <label>&nbsp;&nbsp;
+              <input type="radio" id="communicationEmoji" formControlName="communicationEmoji"
+                     [checked]="communicationCtl.value==0" value=0>
+                     <img src="/assets/images/thumbsUp.jpg" width="30px" />
+              Yes
+            </label>
+            <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="radio" id="communicationEmoji" formControlName="communicationEmoji"
+                     [checked]="communicationCtl.value==1" value=1>
+                     <img src="/assets/images/concerned.jpg" width="30px" />
+              No
+              <span *ngIf="emojiCtl.hasError('required')" class="red">Seleccione un valor de estado.</span>
+            </label>
+          </div>
+          <div *ngIf="communicationCtl.value == 1" class="alert alert-warning">
+            Asegúrese de explicar esta situación en el cuadro de texto de abajo.
+          </div>
         </div>
         <div hidden class="controls">
           <label for="mentorReportId">Id</label>
@@ -83,20 +101,21 @@
             <button type="submit"
                     class="btn btn-primary"
                     style="width:80px;margin-right:10px"
-                    (click)="onSubmit()">
-              Guardar
+                    (click)="onSubmit()"
+                    [disabled]="myForm.invalid">
+                    Guardar
             </button>
           </span>&nbsp;
           <span>
             <button type="button" class="btn btn-default" style="width:75px" (click)="onCancel()">
               Cancelar
             </button>
-            <div class="red" [hidden]="myForm.valid">Emoji y descripción rellenarse antes de guardar.</div>
+            <div class="red" [hidden]="myForm.valid">Estado del estudiante, Estado de comunicación y descripción deben ser completados antes de guardar.</div>
           </span>
         </div>
       </fieldset>
     </form>
-    <!-- <p>Form value</p>
+  <!-- <p>Form value</p>
     <pre><code>{{myForm.value | json}}</code></pre>
 
 
@@ -104,6 +123,6 @@
     <pre><code>"{{myForm.status}}"</code></pre>
 
     <p>Submitted?</p>
-      {{isSubmitted ? 'Yes' : 'No'}} -->
-  </div>
+      {{isSubmitted ? 'Yes' : 'No'}}
+  </div> -->
 </div>

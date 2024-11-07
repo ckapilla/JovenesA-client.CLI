@@ -83,8 +83,11 @@ export class MonthlyReports2ENAddComponent implements OnInit {
     this.successMessage = '';
     this.isSubmitted = false;
     this.byProxy = this.currRoute.snapshot.params['byProxy'];
-    if (this.byProxy === 'true') {
+    console.log('this.byProxy = ' + this.byProxy);
+    if (this.byProxy === '1') {
       this.returnTarget = '';
+      this.lastYearCtl.enable();
+      this.lastMonthCtl.enable();
     }
   }
 

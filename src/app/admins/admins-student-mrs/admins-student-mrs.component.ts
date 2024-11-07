@@ -94,7 +94,8 @@ export class AdminsStudentMRsComponent implements OnInit {
       {
         mentorId: 666, // not used
         mentorGUId: this.mentorGUId,
-        studentGUId: this.studentGUId
+        studentGUId: this.studentGUId,
+        byProxy: 1
       }
     ];
     console.log('navigating to ' + JSON.stringify(link));

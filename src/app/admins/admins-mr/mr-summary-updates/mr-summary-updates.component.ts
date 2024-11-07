@@ -22,6 +22,8 @@ export class MentorReportSummaryUpdatesComponent implements OnInit {
   errorMessage: string;
   successMessage: string;
 
+  lastYearCtl: UntypedFormControl;
+  lastMonthCtl: UntypedFormControl;
   emojiCtl: AbstractControl;
   narrative_EnglishCtl: AbstractControl;
   narrative_SpanishCtl: AbstractControl;
@@ -34,8 +36,8 @@ export class MentorReportSummaryUpdatesComponent implements OnInit {
   reviewedStatus: AbstractControl;
   highlightStatus: AbstractControl;
 
-  // contactYears: SELECTITEM[];
-  // contactMonths: SELECTITEM[];
+  readonly contactYears: SELECTITEM[] = constants.contactYears;
+  readonly contactMonths: SELECTITEM[] = constants.months;
 
   reviewedStatuses: SELECTITEM[];
   highlightStatuses: SELECTITEM[];
@@ -63,6 +65,9 @@ export class MentorReportSummaryUpdatesComponent implements OnInit {
     this.highlightStatuses = constants.highlightStatuses;
     console.log('mr-summary-updates constructor');
     this.myForm = _fb.group({
+      lastContactYearSelector: { value: '' },
+      lastContactMonthSelector: { value: '' },
+
       inputSummary: [''], // ,Validators.compose([Validators.required, Validators.maxLength(2000)])],
       reviewedStatusSelector: [''],
       highlightStatusSelector: [''],
@@ -72,6 +77,10 @@ export class MentorReportSummaryUpdatesComponent implements OnInit {
     });
     console.log('mr-summary-updates constructor 2');
     this.summary = this.myForm.controls['inputSummary'];
+
+    this.lastYearCtl = this.myForm.controls.lastContactYearSelector as UntypedFormControl;
+    this.lastMonthCtl = this.myForm.controls.lastContactMonthSelector as UntypedFormControl;
+
     this.reviewedStatus = this.myForm.controls['reviewedStatusSelector'];
     this.highlightStatus = this.myForm.controls['highlightStatusSelector'];
     this.emojiCtl = this.myForm.controls['inputEmoji'];
@@ -105,9 +114,11 @@ export class MentorReportSummaryUpdatesComponent implements OnInit {
       },
       (err) => console.error('Subscribe error: ' + err),
       () => {
-        console.log('done with data MentorReport>>');
+        console.log('done with dat MentorReport>>');
         console.log(this.mentorReport2);
         console.log('<<');
+        this.lastMonthCtl.setValue(this.mentorReport2.lastContactMonth);
+        this.lastYearCtl.setValue(this.mentorReport2.lastContactYear);
         this.reviewedStatus.setValue(this.mentorReport2.reviewedStatusId);
         this.emojiCtl.setValue(this.mentorReport2.emoji);
         this.narrative_EnglishCtl.setValue(this.mentorReport2.narrative_English);
@@ -156,6 +167,8 @@ export class MentorReportSummaryUpdatesComponent implements OnInit {
       return false;
     }
 
+    this.mentorReport2.lastContactMonth = this.lastMonthCtl.value;
+    this.mentorReport2.lastContactYear = this.lastYearCtl.value;
     this.mentorReport2.reviewedStatusId = this.reviewedStatus.value;
     this.mentorReport2.emoji = this.emojiCtl.value;
     this.mentorReport2.narrative_English = this.narrative_EnglishCtl.value;
