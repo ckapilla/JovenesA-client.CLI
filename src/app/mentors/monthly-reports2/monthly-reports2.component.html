@@ -10,15 +10,12 @@
     <div *ngIf="!errorMessage" class="card bg-primary">
       <div class="card-header text-white" style="font-size:large">
         <span>Past Reports / Informes Anteriores -- </span>
-        <input
-        id="ckHaveCurrent"
-        [(ngModel)] = "haveCurrentReport"
-       type="checkbox"
-        name="toggleHaveCurrent"
-        style="visibility: hidden"
-      />
         <span>
-          <span *ngIf="!haveCurrentReport">
+
+          <!--
+          * Only  show Add buttons here in (parent component)
+          * if latest report row is NOT current month (reviewed status doesn't matter)-->
+          <span *ngIf="!latestReportIsCurrentMonth">
             <span class="btn btn-default active" (click)="monthlyReportENAdd()" style="margin: 4px 0 0 10px">
               Add New Report</span>
             <span class="btn btn-default active" (click)="monthlyReportESAdd()" style="margin: 4px 0 0 10px">
@@ -26,7 +23,9 @@
           </span>
         </span>
       </div>
-      <app-mentor-reports2-list [mentorReports2]="mentorReports2"></app-mentor-reports2-list>
+      <!-- also pass the value to child, who will pay attention to reviewed status-->
+      <app-mentor-reports2-list [mentorReports2]="mentorReports2" [latestReportIsCurrentMonth]="latestReportIsCurrentMonth">
+      </app-mentor-reports2-list>
     </div>
   </div>
 </div>

@@ -8,8 +8,9 @@ import { MentorReport2RPT } from '../../models/mentor-report2';
   templateUrl: './mentor-reports2-list.component.html'
 })
 export class MentorReports2ListComponent {
-  @Input()
-  mentorReports2: MentorReport2RPT[];
+  @Input() mentorReports2: MentorReport2RPT[];
+  @Input() latestReportIsCurrentMonth: boolean;
+
   emojis: Array<string>;
   studentId: number;
 

@@ -1,45 +1,43 @@
 <div class="card-body bg-white">
 
-  <div class="row" style="border-bottom: 3px solid #ccc; margin-top: 2px;"
-       *ngFor="let i of mentorReports2">
+
+  <div class="row" style="border-bottom: 3px solid #ccc; margin-top: 2px;" *ngFor="let xx of mentorReports2; let i = index">
     <div class="col-md-12">
       <div class="row">
 
         <span class="padded">
           &nbsp;Report Month:
-          {{ i.lastContactMonth | alphaMonth}}-{{ i.lastContactYear }}
+          {{ xx.lastContactMonth | alphaMonth }}-{{ xx.lastContactYear }}
         </span>
         <span class="padded">
           &nbsp;Report Date:
-          {{ i.reportDateTime | truncateDate }}
+          {{ xx.reportDateTime | truncateDate }}
         </span>
         <span class="padded">
           &nbsp;Emoji:
-          <img src="{{emojis[i.emoji+1]}}" width="28px" />
+          <img src="{{ emojis[xx.emoji + 1] }}" width="28px" />
         </span>
-                                    <!-- NeedsReview             ReadyForQR -->
-        <span *ngIf="i.reviewedStatusId==2087 ||i.reviewedStatusId==2147 " class="padded">
-          <span class="btn btn-primary" (click)="monthlyReportEdit(i.mentorReportId )" style="margin-left:10px">
+                                                          <!-- not copied to QR -->
+        <span *ngIf="i === 0 && latestReportIsCurrentMonth && xx.reviewedStatusId !== 2148" class="padded">
+          <span class="btn btn-primary" (click)="monthlyReportEdit(xx.mentorReportId)" style="margin-left: 10px">
             Edit Report / Editar informe
           </span>
         </span>
-
       </div>
       <div class="row">
-        <div class="col-md2 padded">
+        <div class="col-md-2 padded">
           &nbsp;Narrative (English):
         </div>
-        <div class="col-md-10"
-             [innerHTML]="i.narrative_English | unsafeHtml">
+        <div class="col-md-10" [innerHTML]="xx.narrative_English | unsafeHtml">
         </div>
       </div>
       <div class="row">
-        <div class="col-md2 padded">
+        <div class="col-md-2 padded">
           &nbsp;Narrative (Spanish):
         </div>
-        <div class="col-md-10"
-             [innerHTML]="i.narrative_Spanish | unsafeHtml">
+        <div class="col-md-10" [innerHTML]="xx.narrative_Spanish | unsafeHtml">
         </div>
       </div>
     </div>
   </div>
+</div>

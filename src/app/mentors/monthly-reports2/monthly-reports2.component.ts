@@ -7,6 +7,35 @@ import { StudentState } from 'src/app/_store/student/student.state';
 import { constants } from '../../_shared/constants/constants';
 import { MentorReport2RPT } from '../../_shared/models/mentor-report2';
 import { SessionService } from '../../_shared/services/session.service';
+/******
+
+ *
+
+ * First thing to do is determine if the latest report is for the current month
+  * use boolean latestReportIsCurrentMonth to store this value
+  * this.latestReportIsCurrentMonth = (x.lastContactMonth == constants.currentContactMonth
+                                        && x.lastContactYear  == constants.currentContactYear);
+ *
+   Then in Parent component only show Add buttons if latest report row is NOT current month
+    (reviewed status doesn't matter)
+
+ also pass the value to child, who will pay attention to reviewed status for that month
+ and for each row, (in html template) if it is the top row and this.latestReportIsCurrentMonth
+ using this condtion
+ *    ngIf="i === 0 && latestReportIsCurrentMonth && xx.reviewedStatusId !== 2148
+
+
+          For testing set reviewedStatus in ssms editor or Admins/MentorRpts/Review
+          set MR YYYYMM vaues in ssms editor
+          ALL POSSIBLE CONDITIONS
+          ADD BUTTONS (parent):
+          1.) current month = latest report month: never show add buttons (we already have a report for this month)
+          2.) current month <> latest report month: always show for any reviewed status (we are missing current month report)
+          EDIT BUTTONS (child list):
+          3.) current month = latest report month: show only for status 2148 (we have a report but it is not CopiedToQR)
+          4.) current month <> latest report month: never show edit buttons (we don't have current month report)
+
+**/
 
 @Component({
   selector: 'app-mentor-reports',
@@ -24,7 +53,7 @@ export class MonthlyReports2Component implements OnInit {
   mentorReports2: Array<MentorReport2RPT>;
   emojis: Array<string>;
   studentName: string;
-  haveCurrentReport: boolean;
+  latestReportIsCurrentMonth: boolean;
   private subscription: Subscription;
 
    currentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
@@ -48,7 +77,7 @@ export class MonthlyReports2Component implements OnInit {
     this.mentorGUId = this.session.getUserGUId();
     console.log('mentorGUId ' + this.mentorGUId);
 
-    this.haveCurrentReport = false; // conditionally set to true after fetch
+    this.latestReportIsCurrentMonth = false; // conditionally set to true after fetch
     this.subscribeForStudentGUIds2();
     this.subscribeForStudentNames();
   }
@@ -78,7 +107,7 @@ export class MonthlyReports2Component implements OnInit {
     console.log('mr fetchData');
     this.isLoading = true;
     this.isLoading = true;
-    this.haveCurrentReport = false;
+    this.latestReportIsCurrentMonth = false;
     this.mentorReport2Data.getMentorReport2RPTsViaGUID(this.studentGUId, this.mentorGUId).subscribe(
       (data) => {
         this.mentorReports2 = data;
@@ -97,11 +126,9 @@ export class MonthlyReports2Component implements OnInit {
           console.log('constants.currentContactMonth =  '+ constants.currentContactMonth);
           console.log('constants.currentontactYear =  '+ constants.currentContactYear);
 
-          if (x.lastContactMonth == constants.currentContactMonth && x.lastContactYear  == constants.currentContactYear) {
-          // if (x.reviewedStatusId == 2087 ) { // && x.reportDateTime >= new Date('4/3/2024')) {  // Needs_Review, not finalized
-            console.log(' report w/ NeedsReview status found; disable add function');
-            this.haveCurrentReport = true;
-          }
+          this.latestReportIsCurrentMonth = (x.lastContactMonth == constants.currentContactMonth
+                                        && x.lastContactYear  == constants.currentContactYear);
+          console.log(' this.latestReportIsCurrentMonthvalue is  ' +  this.latestReportIsCurrentMonth);
           break; // only want current (first in reverse order)
         }
       }
@@ -109,7 +136,7 @@ export class MonthlyReports2Component implements OnInit {
   }
 
   monthlyReportENAdd() {
-    if (this.haveCurrentReport) {
+    if (this.latestReportIsCurrentMonth) {
       alert(
         'There is already a report filed for this month. Please use the edit button to edit it. / Ya hay un informe presentado para este mes. Por favor, utilice el botón Editar para editarlo. '
       );
@@ -131,7 +158,7 @@ export class MonthlyReports2Component implements OnInit {
   }
 
   monthlyReportESAdd() {
-    if (this.haveCurrentReport) {
+    if (this.latestReportIsCurrentMonth) {
       alert(
         'There is already a report filed for this month. Please use the edit button to edit it. / Ya hay un informe presentado para este mes. Por favor, utilice el botón Editar para editarlo. '
       );
@@ -158,9 +185,6 @@ export class MonthlyReports2Component implements OnInit {
       const target = '/mentors/monthly-reports-edit/' + mentorReportId;
       this.router.navigateByUrl(target);
     }
-  }
-  DoIt() {
-    this.haveCurrentReport = !this.haveCurrentReport;
   }
 
 }
