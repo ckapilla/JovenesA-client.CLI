@@ -120,6 +120,7 @@ export class StudentsSelfReportsComponent implements OnInit {
     this.studentGUId = this.session.getStudentRecordGUId();
     //console.log('studentSelfReport ngOnInit, studentGUID = ' + this.studentGUId);
     this.parseSSRDateRange();
+    // fetch
     this.fetchSelfReports();
 
     //  this.subscribeForStudentGUId();
@@ -162,13 +163,15 @@ export class StudentsSelfReportsComponent implements OnInit {
     );
   }
 
+  // possible TODO: get full text only for each report and truncate here
+  // OR fetch truncated text and full text in one pass
   fetchSelfReports() {
+    // this returns truncated text and full text for all reports for a student
     this.studentSelfReportData.getStudentSelfReportsByGUId(this.studentGUId).subscribe(
       (data) => {
         this.studentSelfReports = data;
-        //console.log(data);
-        this.setReportShortToReportShown();
-        this.setReportFulltext();
+        this.setReportShortToReportShown();// display the short version
+        this.setReportFulltext();  // separate call to get full text
         this.setEllipsisLink();
       },
       (err) => console.error('Subscribe error: ' + err),
@@ -189,12 +192,6 @@ export class StudentsSelfReportsComponent implements OnInit {
   }
 
   studentSelfReportAdd() {
-    //   const target =
-    //       'students/self-reports-add/' +  this.sponsorGroupId + '/' + this.studentGUId;
-    //   console.log('in SSR: ready to navigate to ' + target);
-    //   this.router.navigateByUrl(target);
-    // }
-    //console.log('actual nonProxy studentGUId ' + this.studentGUId);
 
     let sponsorGroupId = 1168; // dummy value until code is eliminated
     const link = [
@@ -224,29 +221,33 @@ export class StudentsSelfReportsComponent implements OnInit {
   }
 
   readMore(position: number) {
-    //console.log(this.studentSelfReports[lugar]);
+
     if (this.studentSelfReports[position]['link'] == 'Leer más &#62;') {
-      //cambiamos el valor del reportShown al reporte compelto
+      //display the full-length version
       this.studentSelfReports[position]['reportShown'] = this.studentSelfReports[position]['reportFulltext'];
-      //cambiamos el texto del link
       this.studentSelfReports[position]['link'] = 'Leer menos &#708;';
       this.studentSelfReports[position]['ellipsis'] = '';
     } else {
       //cambiamos el valor del reportShown por el recumen del reporte
+      // display the short version
       this.studentSelfReports[position]['reportShown'] = this.studentSelfReports[position]['reportShort'];
       this.studentSelfReports[position]['link'] = 'Leer más &#62;';
       this.studentSelfReports[position]['ellipsis'] = ' ...';
     }
   }
+  // for initial load using truncated narrative_Spanish
   setReportShortToReportShown() {
     this.studentSelfReports.forEach((report) => {
-      report['reportShort'] = report.narrative_Spanish;
-      report['reportShown'] = report.narrative_Spanish;
+      report['reportShort'] = report.narrative_Spanish;  // store it
+      report['reportShown'] = report.narrative_Spanish;  // display it
     });
   }
 
+  // fetch and store full text report load (do not display until leer mas)
+  // (maybe change this to load on demand for a single report)
   setReportFulltext() {
     this.studentSelfReports.forEach((report) => {
+      // full text
       this.ssrData.getStudentSelfReport(report.studentSelfReportId).subscribe(
         (data) => {
           //console.log(data)
