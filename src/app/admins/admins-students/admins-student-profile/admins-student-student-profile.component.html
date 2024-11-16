@@ -92,15 +92,6 @@
                          class="form-control form-control-sm"
                          placeholder="" />
 
-                  <!-- <label for="bankAccount">Bank Account</label>
-                  <input
-                         id="bankAccount"
-                         formControlName="bankAccount"
-                         type="text"
-                         class="form-control form-control-sm"
-                         placeholder="" /> -->
-
-
                   <label for="prepaId">Prepa</label>
                   <div *ngIf="prepas$ | async as prepas">
                     <select id="prepaId" formControlName="prepaId" class="form-control form-control-sm">
@@ -215,6 +206,14 @@
                     <select id="gender" formControlName="gender" class="form-control form-control-sm">
                       <option *ngFor="let gender of genders" [value]="gender.value">{{ gender.label }}</option>
                     </select>
+
+                    <label for="bankAccount">Bank Account</label>
+                    <input
+                          id="bankAccount"
+                          formControlName="bankAccount"
+                          type="text"
+                          class="form-control form-control-sm"
+                          placeholder="" />
                   </div>
 
                   <div class="col-6" style="padding: 0 2px 0 px">
@@ -243,6 +242,7 @@
                            class="form-control form-control-sm"
                            placeholder="yyyy-mm-dd" />
 
+
                     <label for="studentId">StudentId</label>
                     <input
                            id="studentId"
@@ -250,6 +250,15 @@
                            readonly
                            class="form-control form-control-sm"
                            type="text" />
+
+                    <label for="PCSID">PCSID</label>
+                    <input
+                            id="pcsid"
+                            formControlName="pcsid"
+                            type="text"
+                            class="form-control form-control-sm"
+                            placeholder="" />
+
                   </div>
                   <label for="studentGUId">StudentGUId</label>
                   <input
@@ -258,14 +267,6 @@
                          readonly
                          class="form-control form-control-sm"
                          type="text" />
-
-                  <label for="bankAccount">Bank Account</label>
-                  <input
-                         id="bankAccount"
-                         formControlName="bankAccount"
-                         type="text"
-                         class="form-control form-control-sm"
-                         placeholder="" />
 
                 </div>
                 <div class="row">

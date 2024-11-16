@@ -192,6 +192,7 @@ export class AdminsStudentProfileComponent implements OnInit {
       ],
       curp: [{ value: '' }],
       rfc: [{ value: '' }],
+      pcsid: [{ value: '' }],
       bankAccount: [{ value: '' }],
       sponsorGroupId: [{ value: '' }],
       mentorGUId: [{ value: '' }],
@@ -341,6 +342,7 @@ export class AdminsStudentProfileComponent implements OnInit {
       mentoringComment: student.mentoringComment,
       curp: student.curp,
       rfc: student.rfc,
+      pcsid: student.pcsid,
       bankAccount: student.bankAccount,
       sponsorGroupId: student.sponsorGroupId,
       // mentorGUId: '46D33F1B-BA9E-4C47-800E-16E2AB0E095C', //

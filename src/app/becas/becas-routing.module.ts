@@ -42,7 +42,7 @@ const gradesRoutes: Routes = [
         canDeactivate: [ConfirmDeactivateInscriptionsEditGuard]
       },
       {
-        path: 'beca-summary',
+        path: 'payment-summary',
         component: BecasSummaryListComponent
       }
     ]
