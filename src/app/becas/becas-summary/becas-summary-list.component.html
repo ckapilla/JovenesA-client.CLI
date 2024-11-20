@@ -36,7 +36,10 @@
               <th app-sortable-column="SR_OK" (onSortColumn)="onSortColumn($event)">SSR</th>
               <th app-sortable-column="IR_OK" (onSortColumn)="onSortColumn($event)">IR</th>
               <th app-sortable-column="GR_OK" (onSortColumn)="onSortColumn($event)">GR</th>
-              <th app-sortable-column="highlightStatusId" (onSortColumn)="onSortColumn($event)">Highlight Status</th>
+              <th app-sortable-column="highlightStatusId" (onSortColumn)="onSortColumn($event)">Todo Bien</th>
+              <th app-sortable-column="overrideComment" (onSortColumn)="onSortColumn($event)">Override Comment</th>
+              <th app-sortable-column="approvedBy" (onSortColumn)="onSortColumn($event)">Override Approved By</th>
+              <th app-sortable-column="overrideComment" (onSortColumn)="onSortColumn($event)">Reviewed Status</th>
             </tr>
           </thead>
           <tbody>
@@ -57,7 +60,6 @@
               >
                 {{ qr.studentName }}
               </td>
-              <td>{{ qr.studentStatus }}</td>
               <td>
                 <span style="text-align: center; white-space: nowrap">
                   <img src="/assets/images/{{ qr.hasMR }}.jpg" width="20" />
@@ -79,7 +81,16 @@
                   <img src="/assets/images/{{ qr.hasSR }}.jpg" width="20" />
                 </span>
               </td>
-
+              <td>
+                <span style="text-align: center; white-space: nowrap">
+                  <img src="/assets/images/{{ qr.hasSR }}.jpg" width="20" />
+                </span>
+              </td>
+              <td>
+                <span style="text-align: center; white-space: nowrap">
+                  Comments Go here
+                </span>
+              </td>
               <td class="centered">
                 <select
                   name="HighlightSelector"
