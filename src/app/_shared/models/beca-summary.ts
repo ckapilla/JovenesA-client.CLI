@@ -1,4 +1,4 @@
-export class BecaSummary {
+export class BecaPayment {
   pcsYear?: number;
   pcsid?: number;
   studentId?: number;

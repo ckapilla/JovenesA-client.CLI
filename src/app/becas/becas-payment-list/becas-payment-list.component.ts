@@ -4,32 +4,42 @@ import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
 import { ColumnSortService } from 'src/app/_shared/services/column-sort.service';
 import { SetSelectedStudentGUId } from 'src/app/_store/student/student.action';
-import { SetSelectedQRPeriod } from 'src/app/_store/ui/ui.action';
 import { UIState } from 'src/app/_store/ui/ui.state';
 import { constants } from '../../_shared/constants/constants';
 import { QuarterlyDataService } from '../../_shared/data/quarterly-data.service';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
-import { SORTCRITERIA } from '../../_shared/interfaces/SORTCRITERIA';
-import { QRMini } from '../../_shared/models/quarterly-reportRPT';
 import { SessionService } from '../../_shared/services/session.service';
+
+import { QRMini } from '../../_shared/models/quarterly-reportRPT';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './becas-summary-list.component.html'
+  templateUrl: './becas-payment-list.component.html'
 })
-export class BecasSummaryListComponent implements OnInit {
+export class BecasPaymentListComponent implements OnInit {
   isLoading = false;
   errorMessage: string;
   successMessage: string;
+
+  years: SELECTITEM[];
+  months: SELECTITEM[];
+
+  selectedYear: string;
+  selectedMonth: string;
+
   readonly reviewedStatuses: SELECTITEM[] = constants.reviewedQRStatuses;
   readonly highlightStatuses: SELECTITEM[] = constants.highlightStatuses;
-  readonly qrPeriods: SELECTITEM[] = constants.qrPeriods;
-  qrMinis: QRMini[];
+  selectedReviewedStatus: string;
+  selectedHighlightStatus: string;
+
+  // readonly qrPeriods: SELECTITEM[] = constants.qrPeriods;
+  // qrMinis: QRMini[];
   qrMini: QRMini;
+  qrMinis: QRMini[];
   selectedQRPeriod = '';
   displayTestNames: boolean;
   private subscription: Subscription;
-
+// #####
    testNameVisibility$ = this.store.select<boolean>(UIState.getTestNamesVisibility);
    selectedQRPeriod$ = this.store.select<string>(UIState.getSelectedQRPeriod);
 
@@ -42,6 +52,18 @@ export class BecasSummaryListComponent implements OnInit {
     public session: SessionService
   ) {
     console.log('quarterly-list constructor');
+    this.years = constants.contactYears;
+    this.months = constants.months;
+    this.reviewedStatuses = constants.reviewedStatuses;
+
+    this.highlightStatuses = constants.highlightStatuses;
+
+    this.selectedYear = '' + constants.currentContactYear; // '' + today.getFullYear(); //
+    this.selectedMonth = '0'; // + today.getMonth() + 1;// '5';
+
+    this.selectedReviewedStatus = '0'; // this.mrReviewedStatuses[0].value;
+    this.selectedHighlightStatus = this.highlightStatuses[0].value;
+
     this.isLoading = false;
   }
 
@@ -51,7 +73,9 @@ export class BecasSummaryListComponent implements OnInit {
     });
     this.subscribeForselectedQRPeriod();
   }
-
+  generateRandomNumber(): number {
+    return Math.floor(100 + Math.random() * 900);
+  }
   subscribeForselectedQRPeriod() {
     this.subscription = this.selectedQRPeriod$.subscribe((message) => {
       this.selectedQRPeriod = message;
@@ -67,9 +91,25 @@ export class BecasSummaryListComponent implements OnInit {
     }
   }
 
-  setSelectedQRPeriod(yearPeriod: string) {
-    this.store.dispatch(new SetSelectedQRPeriod(yearPeriod));
+  setSelectedReviewedStatus(status: string) {
+    this.selectedReviewedStatus = status;
+    this.fetchFilteredData();
   }
+
+  setSelectedHighlightStatus(status: string) {
+    this.selectedHighlightStatus = status;
+    this.fetchFilteredData();
+  }
+
+  setSelectedYear(year: string) {
+    this.selectedYear = year;
+    this.fetchFilteredData();
+  }
+  setSelectedMonth(month: string) {
+    this.selectedMonth = month;
+    this.fetchFilteredData();
+  }
+
 
   gotoStudent(studentGUId: string) {
     this.store.dispatch(new SetSelectedStudentGUId(studentGUId));
@@ -77,9 +117,9 @@ export class BecasSummaryListComponent implements OnInit {
     this.router.navigate(link);
   }
 
-  public onSortColumn(sortCriteria: SORTCRITERIA) {
-    return this.qrMinis.sort((a, b) => this.columnSorter.compareValues(a, b, sortCriteria));
-  }
+  // public onSortColumn(sortCriteria: SORTCRITERIA) {
+  //   return this.qrMinis.sort((a, b) => this.columnSorter.compareValues(a, b, sortCriteria));
+  // }
 
   onSorted($event) {
     console.log('sorted event received');

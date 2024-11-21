@@ -20,7 +20,7 @@ import { UIStateModel } from './ui.model';
     selectedQRPeriod: '', // initialize ConstantsService.generateQRPeriods
     selectedGradesPeriodId: '119', // need to initialize this from ConstantsService
     selectedInscriptionsPeriodId: '120', // need to initialize this from ConstantsService
-
+    selectedBecaPeriod: '2024',
     selectedFilterMode: '998',
     selectedStudentStatus: '0',
     selectedYearJoined: '0',

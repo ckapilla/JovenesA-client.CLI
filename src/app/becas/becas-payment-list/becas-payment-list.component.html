@@ -1,19 +1,38 @@
 <div class="card bg-primary">
   <div class="card-header text-white">
-    <span style="font-size: large"> PCS Summary </span>
+    <span style="font-size: large"> Beca Payment Summary </span>
     <span style="margin-left: 10rem">
       PCS for Year-Month:
-      <select
-        name="activePeriodSelector"
-        data-cy="period-selector"
-        [(ngModel)]="selectedQRPeriod"
-        (change)="setSelectedQRPeriod($event.target.value)"
-      >
-        <option *ngFor="let yearPeriod of qrPeriods" [value]="yearPeriod.value">{{yearPeriod.label}}</option>
-      </select>
+
     </span>
   </div>
   <div class="card-body bg-white">
+
+    <div class="controls">
+      <label for="yearSelector">&nbsp;Payment Year/Month:</label>
+      <select name="yearSelector" [(ngModel)]="selectedYear" (change)="setSelectedYear($event.target.value)">
+        >
+        <option *ngFor="let year of years" [value]="year.value">{{ year.label }}</option>
+      </select>
+      <select name="monthSelector" [(ngModel)]="selectedMonth" (change)="setSelectedMonth($event.target.value)">
+        <option value="0">[Select]</option>
+        <option *ngFor="let month of months" [value]="month.value">{{ month.label }}</option>
+      </select>
+
+      <label for="MRReviewedStatusSelector">Status:</label>
+      <select
+        name="MRReviewedStatusSelector"
+        [(ngModel)]="selectedReviewedStatus"
+        (change)="setSelectedReviewedStatus($event.target.value)"
+      >
+        <option value="0">[All]</option>
+        <option *ngFor="let status of reviewedStatuses" [value]="status.value">{{ status.label }}</option>
+      </select>
+
+    </div>
+
+
+
     <span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
     <span *ngIf="successMessage" class="alert alert-success">{{successMessage}}</span>
     <div></div>
@@ -29,6 +48,7 @@
               <!-- <td>Id</td> -->
               <th></th>
               <!-- <th></th> -->
+              <th app-sortable-column="pcsid"  (onSortColumn)="onSortColumn($event)">PCSID</th>
               <th app-sortable-column="studentName" sort-direction="asc" (onSortColumn)="onSortColumn($event)">
                 Student
               </th>
@@ -36,10 +56,12 @@
               <th app-sortable-column="SR_OK" (onSortColumn)="onSortColumn($event)">SSR</th>
               <th app-sortable-column="IR_OK" (onSortColumn)="onSortColumn($event)">IR</th>
               <th app-sortable-column="GR_OK" (onSortColumn)="onSortColumn($event)">GR</th>
-              <th app-sortable-column="highlightStatusId" (onSortColumn)="onSortColumn($event)">Todo Bien</th>
+
               <th app-sortable-column="overrideComment" (onSortColumn)="onSortColumn($event)">Override Comment</th>
-              <th app-sortable-column="approvedBy" (onSortColumn)="onSortColumn($event)">Override Approved By</th>
-              <th app-sortable-column="overrideComment" (onSortColumn)="onSortColumn($event)">Reviewed Status</th>
+              <th app-sortable-column="overrideBy" (onSortColumn)="onSortColumn($event)">Override By</th>
+              <th app-sortable-column="reviewedStatus" (onSortColumn)="onSortColumn($event)">Status</th>
+
+              <th app-sortable-column="All_OK" (onSortColumn)="onSortColumn($event)">Pmt OK</th>
             </tr>
           </thead>
           <tbody>
@@ -48,9 +70,10 @@
                 {{ qr.studentGUId}}
               </td> -->
               <td>{{ i+1 }}</td>
-              <!-- <td>
-                <img [src]="qr.photoUrl" height="30" class="thumbnail" />
-              </td> -->
+              <td>
+                <!-- {{ qr.pcsid }} -->
+                  100{{ generateRandomNumber() }}
+              </td>
               <td
                 (click)="gotoStudent(qr.studentGUId)"
                 [class.link]="true"
@@ -81,14 +104,10 @@
                   <img src="/assets/images/{{ qr.hasSR }}.jpg" width="20" />
                 </span>
               </td>
+
               <td>
                 <span style="text-align: center; white-space: nowrap">
-                  <img src="/assets/images/{{ qr.hasSR }}.jpg" width="20" />
-                </span>
-              </td>
-              <td>
-                <span style="text-align: center; white-space: nowrap">
-                  Comments Go here
+                  --
                 </span>
               </td>
               <td class="centered">
@@ -100,6 +119,23 @@
                   <option  value="0"> </option>
                   <option *ngFor="let status of highlightStatuses" [value]="status.value">{{status.label}}</option>
                 </select>
+              </td>              <td class="centered">
+                <select
+                  name="HighlightSelector"
+                  [(ngModel)]="qr.highlightStatusId"
+                  (change)="setHighlightStatusForQR(i, $event.target.value)"
+                >
+                  <option  value="0"> </option>
+                  <option *ngFor="let status of highlightStatuses" [value]="status.value">{{status.label}}</option>
+                </select>
+              </td>
+
+
+
+              <td>
+                <span style="text-align: center; white-space: nowrap">
+                  <img src="/assets/images/{{ qr.hasSR }}.jpg" width="20" />
+                </span>
               </td>
             </tr>
           </tbody>

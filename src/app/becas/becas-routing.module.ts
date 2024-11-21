@@ -5,7 +5,7 @@ import {
   ConfirmDeactivateGradesEditGuard,
   ConfirmDeactivateInscriptionsEditGuard
 } from '../app.routing-guards';
-import { BecasSummaryListComponent } from './becas-summary/becas-summary-list.component';
+import { BecasPaymentListComponent } from './becas-payment-list/becas-payment-list.component';
 import { BecasComponent } from './becas.component';
 import { GradesEditComponent } from './grades-edit/grades-edit.component';
 import { GradesListComponent } from './grades-list/grades-list.component';
@@ -42,8 +42,8 @@ const gradesRoutes: Routes = [
         canDeactivate: [ConfirmDeactivateInscriptionsEditGuard]
       },
       {
-        path: 'payment-summary',
-        component: BecasSummaryListComponent
+        path: 'payments-list',
+        component: BecasPaymentListComponent
       }
     ]
   }

@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { BecaPaymentDTO } from '../models/beca-paymentDTO';
 import { GradesGivenEntryDTO } from '../models/grades-given-entryDTO';
 import { StudentGrades } from '../models/student-grades';
 import { UrlService } from '../services/url.service';
@@ -18,6 +19,25 @@ export class BecaDataService {
   /// ///////////////////////////////////////////////
   ///  BecasController
   /// ///////////////////////////////////////////////
+
+
+  public getBecaPaymentsByMonth(
+    year: string,
+    month: string,
+    reviewedStatusId: string
+  ): Observable<BecaPaymentDTO[]> {
+    const url =
+      this.WebApiPrefix +
+      'beca-payments/by_month' +
+      '?year=' +
+      year +
+      '&month=' +
+      month +
+      '&reviewedStatusId=' +
+      reviewedStatusId;
+    console.log('sending AuthHttp get request for BecaPaymentsByMonth with ' + url);
+    return this.http.get<BecaPaymentDTO[]>(url).pipe(catchError(this.handleError));
+  }
 
   public getGradesListEntryDTOs(): Observable<GradesGivenEntryDTO[]> {
     const url = this.WebApiPrefix + 'becas/' + 'grades-list';

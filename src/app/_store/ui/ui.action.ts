@@ -26,6 +26,15 @@ export class SetSelectedQRPeriod {
   static readonly type = '[UI] update selectedQRPeriod';
   constructor(public readonly payload: string) {}
 }
+
+export class GetSelectedBecaPeriod {
+  static readonly type = '[UI] Get selectedBecaPeriod';
+  constructor(public payload: UIStateModel) {}
+}
+export class SetSelectedBecaPeriod {
+  static readonly type = '[UI] update selectedBecaPeriod';
+  constructor(public readonly payload: string) {}
+}
 ///
 export class GetSelectedAcademicTermId {
   static readonly type = '[UI] Get selectedAcademicTermId';

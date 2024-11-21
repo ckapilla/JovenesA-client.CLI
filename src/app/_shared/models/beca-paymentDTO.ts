@@ -1,4 +1,4 @@
-export class BecaSummaryDTO {
+export class BecaPaymentDTO {
   pcsYear?: number;
   pcsid?: number;
   studentID?: number;
