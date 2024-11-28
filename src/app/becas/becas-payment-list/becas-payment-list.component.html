@@ -1,36 +1,32 @@
 <div class="card bg-primary">
   <div class="card-header text-white">
     <span style="font-size: large"> Beca Payment Summary </span>
-    <span style="margin-left: 10rem">
-      PCS for Year-Month:
 
-    </span>
-  </div>
-  <div class="card-body bg-white">
-
-    <div class="controls">
+    <span style="margin-left: 2rem">
       <label for="yearSelector">&nbsp;Payment Year/Month:</label>
-      <select name="yearSelector" [(ngModel)]="selectedYear" (change)="setSelectedYear($event.target.value)">
+      <select name="yearSelector" [(ngModel)]="selectedYear"
+              (change)="setSelectedYear($event.target.value)">
         >
         <option *ngFor="let year of years" [value]="year.value">{{ year.label }}</option>
       </select>
-      <select name="monthSelector" [(ngModel)]="selectedMonth" (change)="setSelectedMonth($event.target.value)">
+      <select name="monthSelector"
+              [(ngModel)]="selectedMonth" (change)="setSelectedMonth($event.target.value)">
         <option value="0">[Select]</option>
         <option *ngFor="let month of months" [value]="month.value">{{ month.label }}</option>
       </select>
 
-      <label for="MRReviewedStatusSelector">Status:</label>
+      <label for="ReviewedStatusSelector">Status:</label>
       <select
-        name="MRReviewedStatusSelector"
-        [(ngModel)]="selectedReviewedStatus"
-        (change)="setSelectedReviewedStatus($event.target.value)"
-      >
+              name="ReviewedStatusSelector"
+              [(ngModel)]="selectedReviewedStatus"
+              (change)="setSelectedReviewedStatus($event.target.value)">
         <option value="0">[All]</option>
         <option *ngFor="let status of reviewedStatuses" [value]="status.value">{{ status.label }}</option>
       </select>
+    </span>
 
-    </div>
-
+  </div>
+  <div class="card-body bg-white">
 
 
     <span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
@@ -42,104 +38,89 @@
         <app-loading-container> </app-loading-container>
       </div>
       <div *ngSwitchCase="false">
-        <table class="table-sm table-striped">
-          <thead>
-            <tr>
-              <!-- <td>Id</td> -->
-              <th></th>
-              <!-- <th></th> -->
-              <th app-sortable-column="pcsid"  (onSortColumn)="onSortColumn($event)">PCSID</th>
-              <th app-sortable-column="studentName" sort-direction="asc" (onSortColumn)="onSortColumn($event)">
-                Student
-              </th>
-              <th app-sortable-column="MR_OK" (onSortColumn)="onSortColumn($event)">MR</th>
-              <th app-sortable-column="SR_OK" (onSortColumn)="onSortColumn($event)">SSR</th>
-              <th app-sortable-column="IR_OK" (onSortColumn)="onSortColumn($event)">IR</th>
-              <th app-sortable-column="GR_OK" (onSortColumn)="onSortColumn($event)">GR</th>
+        <!-- <form [formGroup]="myForm"> -->
+          <table class="table-sm table-striped">
+            <thead>
+              <tr>
+                <!-- <td>Id</td> -->
+                <th></th>
+                <!-- <th></th> -->
+                <th app-sortable-column="pcsid" (onSortColumn)="onSortColumn($event)">PCSID</th>
+                <th app-sortable-column="studentName" sort-direction="asc" (onSortColumn)="onSortColumn($event)">
+                  Student
+                </th>
+                <th app-sortable-column="mentorReportStatus" (onSortColumn)="onSortColumn($event)">MR</th>
+                <th app-sortable-column="studentReportStatus" (onSortColumn)="onSortColumn($event)">SSR</th>
+                <th app-sortable-column="inscriptionReportStatus" (onSortColumn)="onSortColumn($event)">IR</th>
+                <th app-sortable-column="gradeReportStatus" (onSortColumn)="onSortColumn($event)">GR</th>
 
-              <th app-sortable-column="overrideComment" (onSortColumn)="onSortColumn($event)">Override Comment</th>
-              <th app-sortable-column="overrideBy" (onSortColumn)="onSortColumn($event)">Override By</th>
-              <th app-sortable-column="reviewedStatus" (onSortColumn)="onSortColumn($event)">Status</th>
+                <th app-sortable-column="overrideComment" (onSortColumn)="onSortColumn($event)">Override Comment</th>
+                <th app-sortable-column="overrideBy" (onSortColumn)="onSortColumn($event)">Override By</th>
+                <th app-sortable-column="reviewedStatus" (onSortColumn)="onSortColumn($event)">Status</th>
 
-              <th app-sortable-column="All_OK" (onSortColumn)="onSortColumn($event)">Pmt OK</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let qr of qrMinis, let i = index">
-              <!-- <td>
+                <th app-sortable-column="All_OK" (onSortColumn)="onSortColumn($event)">Pmt OK</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let bp of becaPmts, let i = index">
+                <!-- <td>
                 {{ qr.studentGUId}}
               </td> -->
-              <td>{{ i+1 }}</td>
-              <td>
-                <!-- {{ qr.pcsid }} -->
-                  100{{ generateRandomNumber() }}
-              </td>
-              <td
-                (click)="gotoStudent(qr.studentGUId)"
-                [class.link]="true"
-                [class.red]="qr.reviewedStatusId==2087"
-                [class.alert-success]="qr.highlightStatusId==2106"
-                [class.alert-danger]="qr.highlightStatusId==2105"
-              >
-                {{ qr.studentName }}
-              </td>
-              <td>
-                <span style="text-align: center; white-space: nowrap">
-                  <img src="/assets/images/{{ qr.hasMR }}.jpg" width="20" />
-                </span>
-              </td>
-              <td>
-                <span style="text-align: center; white-space: nowrap">
-                  <img src="/assets/images/{{ qr.hasSR }}.jpg" width="20" />
-                </span>
-              </td>
+                <td>{{ i+1 }}</td>
+                <td>
+                  {{ bp.pcsid }}
+                </td>
+                <td
+                    (click)="gotoStudent(qr.studentGUId)"
+                    [class.link]="true">
+                  {{ bp.studentName }}
+                </td>
+                <td>
+                  <span style="text-align: center; white-space: nowrap">
+                    <img src="/assets/images/{{ bp.mentorReportStatus }}.jpg" width="20" />
+                  </span>
+                </td>
+                <td>
+                  <span style="text-align: center; white-space: nowrap">
+                    <img src="/assets/images/{{ bp.studentReportStatus }}.jpg" width="20" />
+                  </span>
+                </td>
 
-              <td>
-                <span style="text-align: center; white-space: nowrap">
-                  <img src="/assets/images/{{ qr.hasMR }}.jpg" width="20" />
-                </span>
-              </td>
-              <td>
-                <span style="text-align: center; white-space: nowrap">
-                  <img src="/assets/images/{{ qr.hasSR }}.jpg" width="20" />
-                </span>
-              </td>
+                <td>
+                  <span style="text-align: center; white-space: nowrap">
+                    <img src="/assets/images/{{ bp.inscriptionReportStatus }}.jpg" width="20" />
+                  </span>
+                </td>
+                <td>
+                  <span style="text-align: center; white-space: nowrap">
+                    <img src="/assets/images/{{ bp.gradeReportStatus }}.jpg" width="20" />
+                  </span>
+                </td>
 
-              <td>
-                <span style="text-align: center; white-space: nowrap">
-                  --
-                </span>
-              </td>
-              <td class="centered">
-                <select
-                  name="HighlightSelector"
-                  [(ngModel)]="qr.highlightStatusId"
-                  (change)="setHighlightStatusForQR(i, $event.target.value)"
-                >
-                  <option  value="0"> </option>
-                  <option *ngFor="let status of highlightStatuses" [value]="status.value">{{status.label}}</option>
-                </select>
-              </td>              <td class="centered">
-                <select
-                  name="HighlightSelector"
-                  [(ngModel)]="qr.highlightStatusId"
-                  (change)="setHighlightStatusForQR(i, $event.target.value)"
-                >
-                  <option  value="0"> </option>
-                  <option *ngFor="let status of highlightStatuses" [value]="status.value">{{status.label}}</option>
-                </select>
-              </td>
-
-
-
-              <td>
-                <span style="text-align: center; white-space: nowrap">
-                  <img src="/assets/images/{{ qr.hasSR }}.jpg" width="20" />
-                </span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+                <td>
+                  <input name="overrideComment" class="form-control form-control-sm" type="text" />
+                </td>
+                <td>
+                  <input name="overrideApprovedBy" class="form-control form-control-sm" type="text" style="width: 100px;"/>
+                </td>
+                <td class="centered" style="width: 100px;">
+                  <select
+                          name="reviewedStatusSelector"
+                          [(ngModel)]="bp.reviewedStatusId"
+                          (change)="setReviewedStatusId(i, $event.target.value)">
+                          <option [value]="0">Needs Review</option>
+                    <option *ngFor="let status of reviewedStatuses" [value]="status.value">{{status.label}}</option>
+                  </select>
+                </td>
+                <td>
+                  <span style="text-align: center; white-space: nowrap">
+                    <img src="/assets/images/{{ bp.gradeReportStatus }}.jpg" width="20" />
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        <!-- </form> -->
       </div>
     </div>
   </div>

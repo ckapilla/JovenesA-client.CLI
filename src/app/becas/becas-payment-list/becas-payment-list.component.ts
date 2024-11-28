@@ -6,11 +6,11 @@ import { ColumnSortService } from 'src/app/_shared/services/column-sort.service'
 import { SetSelectedStudentGUId } from 'src/app/_store/student/student.action';
 import { UIState } from 'src/app/_store/ui/ui.state';
 import { constants } from '../../_shared/constants/constants';
-import { QuarterlyDataService } from '../../_shared/data/quarterly-data.service';
+import { BecaDataService } from '../../_shared/data/beca-data.service';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
+import { SORTCRITERIA } from '../../_shared/interfaces/SORTCRITERIA';
+import { BecaPaymentDTO } from '../../_shared/models/beca-paymentDTO';
 import { SessionService } from '../../_shared/services/session.service';
-
-import { QRMini } from '../../_shared/models/quarterly-reportRPT';
 
 @Component({
   selector: 'app-home',
@@ -28,41 +28,40 @@ export class BecasPaymentListComponent implements OnInit {
   selectedMonth: string;
 
   readonly reviewedStatuses: SELECTITEM[] = constants.reviewedQRStatuses;
-  readonly highlightStatuses: SELECTITEM[] = constants.highlightStatuses;
+  // readonly highlightStatuses: SELECTITEM[] = constants.highlightStatuses;
   selectedReviewedStatus: string;
   selectedHighlightStatus: string;
 
-  // readonly qrPeriods: SELECTITEM[] = constants.qrPeriods;
-  // qrMinis: QRMini[];
-  qrMini: QRMini;
-  qrMinis: QRMini[];
+  becaPmt: BecaPaymentDTO;
+  becaPmts: BecaPaymentDTO[];
   selectedQRPeriod = '';
   displayTestNames: boolean;
   private subscription: Subscription;
 // #####
    testNameVisibility$ = this.store.select<boolean>(UIState.getTestNamesVisibility);
-   selectedQRPeriod$ = this.store.select<string>(UIState.getSelectedQRPeriod);
+   readonly contactYears: SELECTITEM[] = constants.contactYears;
+   readonly contactMonths: SELECTITEM[] = constants.months;
 
   constructor(
     public currRoute: ActivatedRoute,
     private router: Router,
-    public quarterlyData: QuarterlyDataService,
+    public becaData: BecaDataService,
     public columnSorter: ColumnSortService,
     public store: Store,
     public session: SessionService
   ) {
-    console.log('quarterly-list constructor');
+    console.log('beca payments-list constructor');
     this.years = constants.contactYears;
     this.months = constants.months;
-    this.reviewedStatuses = constants.reviewedStatuses;
+    this.reviewedStatuses = constants.becaPaymentStatuses;
 
-    this.highlightStatuses = constants.highlightStatuses;
+    // this.highlightStatuses = constants.highlightStatuses;
 
     this.selectedYear = '' + constants.currentContactYear; // '' + today.getFullYear(); //
     this.selectedMonth = '0'; // + today.getMonth() + 1;// '5';
 
-    this.selectedReviewedStatus = '0'; // this.mrReviewedStatuses[0].value;
-    this.selectedHighlightStatus = this.highlightStatuses[0].value;
+    this.selectedReviewedStatus = '0'; // this.reviewedStatuses[0].value;
+    // this.selectedHighlightStatus = this.highlightStatuses[0].value;
 
     this.isLoading = false;
   }
@@ -71,17 +70,19 @@ export class BecasPaymentListComponent implements OnInit {
     this.testNameVisibility$.subscribe((flag) => {
       this.displayTestNames = flag;
     });
-    this.subscribeForselectedQRPeriod();
+    this.subscribeForselectedYearMonth();
   }
   generateRandomNumber(): number {
     return Math.floor(100 + Math.random() * 900);
   }
-  subscribeForselectedQRPeriod() {
-    this.subscription = this.selectedQRPeriod$.subscribe((message) => {
-      this.selectedQRPeriod = message;
-      console.log('************NGXS: SR new selectedQRPeriod received' + this.selectedQRPeriod);
-      this.fetchFilteredData();
-    });
+
+
+  subscribeForselectedYearMonth() {
+  //   this.subscription = this.selectedQRPeriod$.subscribe((message) => {
+  //     this.selectedQRPeriod = message;
+  //     console.log('************NGXS: BECA new selectedQRPeriod received' + this.selectedQRPeriod);
+  //     this.fetchFilteredData();
+  //   });
   }
 
   scrollIntoView() {
@@ -96,10 +97,10 @@ export class BecasPaymentListComponent implements OnInit {
     this.fetchFilteredData();
   }
 
-  setSelectedHighlightStatus(status: string) {
-    this.selectedHighlightStatus = status;
-    this.fetchFilteredData();
-  }
+  // setSelectedHighlightStatus(status: string) {
+  //   this.selectedHighlightStatus = status;
+  //   this.fetchFilteredData();
+  // }
 
   setSelectedYear(year: string) {
     this.selectedYear = year;
@@ -117,9 +118,10 @@ export class BecasPaymentListComponent implements OnInit {
     this.router.navigate(link);
   }
 
-  // public onSortColumn(sortCriteria: SORTCRITERIA) {
-  //   return this.qrMinis.sort((a, b) => this.columnSorter.compareValues(a, b, sortCriteria));
-  // }
+  public onSortColumn(sortCriteria: SORTCRITERIA) {
+    console.log('parent received sortColumnCLick event with ' + sortCriteria.sortColumn);
+    return this.becaPmts.sort((a, b) => this.columnSorter.compareValues(a, b, sortCriteria));
+  }
 
   onSorted($event) {
     console.log('sorted event received');
@@ -128,10 +130,11 @@ export class BecasPaymentListComponent implements OnInit {
 
   fetchFilteredData() {
     this.isLoading = true;
-    console.log('quarterly-list data fetch ');
-    this.quarterlyData.getQRMinisForPeriod(this.selectedQRPeriod, 0).subscribe(
+    console.log('becas payments-list data fetch ');
+    this.becaData.getBecaPaymentsByMonth(this.selectedYear, this.selectedMonth, '0').subscribe(
       (data) => {
-        this.qrMinis = data.filter((item) => {
+        // console.log(JSON.stringify(data));
+        this.becaPmts = data.filter((item) => {
           if (this.displayTestNames) {
             return item;
           } else if (!this.displayTestNames && item.studentName.substring(0,5) !== '_Test') {
@@ -144,19 +147,22 @@ export class BecasPaymentListComponent implements OnInit {
         this.isLoading = false;
       },
       () => {
+
+        console.log(this.becaPmts.length);
         this.isLoading = false;
-        if (this.qrMinis && this.qrMinis.length > 0) {
-          console.log('### after retreiving, grid to data ' + this.qrMinis[0].quarterlyReportGUId);
+        if (this.becaPmts && this.becaPmts.length > 0) {
+          console.log('### after retreiving, grid becaPaymentId: ' + this.becaPmts[0].becaPaymentId);
+          console.log(JSON.stringify(this.becaPmts));
         } else {
           console.log('no results returned');
         }
       }
     );
   }
-  setStatusForQR(rptEntryIdx: number, statusId: number) {
+  setReviewedStatusID(rptEntryIdx: number, statusId: number) {
     console.log('selected reviewedStatusId: ' + statusId);
 
-    this.quarterlyData.setQRReviewedStatus(this.qrMinis[rptEntryIdx].quarterlyReportGUId, statusId).subscribe(
+    this.becaData.setReviewedStatusId(this.becaPmts[rptEntryIdx].becaPaymentId, statusId).subscribe(
       () => {
         this.successMessage = 'Updated';
         window.setTimeout(() => {
@@ -169,21 +175,22 @@ export class BecasPaymentListComponent implements OnInit {
       }
     );
   }
-  setHighlightStatusForQR(rptEntryIdx: number, highlightStatusId: number) {
-    console.log('selected highlightStatusId: ' + highlightStatusId);
-    console.log('selected RQGUID:' + this.qrMinis[rptEntryIdx].quarterlyReportGUId);
 
-    this.quarterlyData.setQRHighlightStatus(this.qrMinis[rptEntryIdx].quarterlyReportGUId, highlightStatusId).subscribe(
-      () => {
-        this.successMessage = 'Updated';
-        window.setTimeout(() => {
-          this.successMessage = '';
-        }, 500);
-      },
-      (error) => {
-        this.errorMessage = error;
-        this.isLoading = false;
-      }
-    );
-  }
+  // setHighlightStatusForQR(rptEntryIdx: number, highlightStatusId: number) {
+  //   console.log('selected highlightStatusId: ' + highlightStatusId);
+  //   console.log('selected RQGUID:' + this.qrMinis[rptEntryIdx].quarterlyReportGUId);
+
+  //   this.quarterlyData.setQRHighlightStatus(this.qrMinis[rptEntryIdx].quarterlyReportGUId, highlightStatusId).subscribe(
+  //     () => {
+  //       this.successMessage = 'Updated';
+  //       window.setTimeout(() => {
+  //         this.successMessage = '';
+  //       }, 500);
+  //     },
+  //     (error) => {
+  //       this.errorMessage = error;
+  //       this.isLoading = false;
+  //     }
+  //   );
+  // }
 }

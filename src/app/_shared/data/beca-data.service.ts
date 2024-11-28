@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { BecaPaymentDTO } from '../models/beca-paymentDTO';
 import { GradesGivenEntryDTO } from '../models/grades-given-entryDTO';
 import { StudentGrades } from '../models/student-grades';
@@ -28,7 +28,7 @@ export class BecaDataService {
   ): Observable<BecaPaymentDTO[]> {
     const url =
       this.WebApiPrefix +
-      'beca-payments/by_month' +
+      'becas/payments/by_month' +
       '?year=' +
       year +
       '&month=' +
@@ -106,5 +106,13 @@ export class BecaDataService {
       window.alert('Session has expired, please log in again.');
     }
     return throwError(errMsg);
+  }
+
+  public setReviewedStatusId(becaPaymentId: number, reviewedStatusId: number): Observable<any> {
+    const url = this.WebApiPrefix + 'becas/' + becaPaymentId + '/' + reviewedStatusId;
+    console.log('sending AuthHttp put request to set reviewedStatusId ' + reviewedStatusId);
+    return this.http
+      .put(url, null)
+      .pipe(tap(() => console.log('set reviewedStatus returned')), catchError(this.handleError));
   }
 }

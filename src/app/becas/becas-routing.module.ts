@@ -21,7 +21,11 @@ const gradesRoutes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        component: GradesListComponent
+        component: BecasPaymentListComponent
+      },
+      {
+        path: 'payments-list',
+        component: BecasPaymentListComponent
       },
       {
         path: 'grades-list',
@@ -42,9 +46,10 @@ const gradesRoutes: Routes = [
         canDeactivate: [ConfirmDeactivateInscriptionsEditGuard]
       },
       {
-        path: 'payments-list',
-        component: BecasPaymentListComponent
-      }
+        path: 'ssr-list',
+        component: InscriptionsEditComponent,
+        canDeactivate: [ConfirmDeactivateInscriptionsEditGuard]
+      },
     ]
   }
 ];

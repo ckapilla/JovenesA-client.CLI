@@ -26,7 +26,6 @@ export class GradesListComponent implements OnInit {
   isLoading: boolean;
   errorMessage: string;
   successMessage: string;
-  sortCriteria: SORTCRITERIA;
   years: SELECTITEM[];
   months: SELECTITEM[];
   gradesProcessingPeriods: PROCESSINGPERIOD[];

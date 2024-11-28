@@ -8,16 +8,16 @@ import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsModule } from '@ngxs/store';
 import { NgxFileDropModule } from 'ngx-file-drop';
 import { environment } from 'src/environments/environment';
+import { ConstantsService } from './_shared/services/constantsService';
 import { HeaderbarComponent } from './app-navbar/headerbar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ConstantsService } from './_shared/services/constantsService';
 // every module that has a routing component no longer needs to be imported here
 import { AppSharedModule } from './_shared/_shared.module';
 import { MemberState } from './_store/member/member.state';
 import { StudentState } from './_store/student/student.state';
 import { UIState } from './_store/ui/ui.state';
-import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+// import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 export function appInit(constantsService: ConstantsService) {
   return () => constantsService.loadFromDB();
@@ -37,7 +37,7 @@ export function appInit(constantsService: ConstantsService) {
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot(),
     AppSharedModule.forRoot(),
-    SweetAlert2Module.forRoot()
+    // SweetAlert2Module.forRoot()
 
   ],
 

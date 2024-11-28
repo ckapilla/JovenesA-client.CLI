@@ -1,6 +1,6 @@
 import { Location, registerLocaleData } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
-import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators, } from "@angular/forms";
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Store } from "@ngxs/store";
 import { Subscription } from "rxjs";
@@ -9,6 +9,7 @@ import { GradesGivenEntryDTO } from "src/app/_shared/models/grades-given-entryDT
 import { StudentGrades } from "src/app/_shared/models/student-grades";
 import { TruncateDatePipe } from "src/app/_shared/pipes/truncate-date-pipe";
 import { StudentState } from "src/app/_store/student/student.state";
+import { UIState } from "src/app/_store/ui/ui.state";
 import { SELECTITEM } from "../../_shared/interfaces/SELECTITEM";
 // import { SORTCRITERIA } from '../../_shared/interfaces/SORTCRITERIA';
 import localePy from "@angular/common/locales/es-PY";
@@ -37,10 +38,14 @@ export class GradeEntryComponent implements OnInit {
   /// confirmedDateB: boolean;
   inGradesProcessingPeriod: boolean;
   staticUrlPrefix: string;
+
+  bExtendGradesEntryPeriod = false;
+  displayTestNames: boolean;
+  testNameVisibility$ = this.store.select<boolean>(UIState.getTestNamesVisibility);
   currentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
   currentName$ = this.store.select<string>(StudentState.getSelectedStudentName);
   errorAlert: boolean;
-  bExtendGradesEntryPeriod = false;
+
   successAlert: boolean;
 
   constructor(
@@ -63,6 +68,15 @@ export class GradeEntryComponent implements OnInit {
     });
   }
 
+  ngOnInit() {
+    this.studentGUId = this.session.getStudentRecordGUId();
+    console.log("gradeEntry ngOnInit, studentGUID = " + this.studentGUId);
+    this.testNameVisibility$.subscribe((flag) => {
+      this.displayTestNames = flag;
+    });
+    this.fetchFilteredData();
+  }
+
   gradeEntryFormRows(): UntypedFormArray {
     return <UntypedFormArray>this.myForm.get("gradeEntryFormRows");
   }
@@ -75,37 +89,23 @@ export class GradeEntryComponent implements OnInit {
       gradesEntryEndDate: { value: "", disabled: true },
       gradesTurnedInDate: [
         { value: "" }, // must use readonly in html instead of disabled here so value will get sent to server
-        Validators.compose([
-          Validators.pattern(/^\d{4}\-\d{1,2}\-\d{1,2}$/),
-          Validators.maxLength(10),
-        ]),
+        Validators.compose([Validators.pattern(/^\d{4}\-\d{1,2}\-\d{1,2}$/), Validators.maxLength(10)]),
       ],
       gradePointAvg: [{ value: "" }, Validators.pattern(/^\d{1,2}\.\d{1,1}$/)],
       confirmedDate: { value: "", disabled: true },
     });
   }
 
-  updateGradeEntryFormRow(
-    gradeEntryFormRow: UntypedFormGroup,
-    gradeEntryDataRow: StudentGrades
-  ): void {
-    console.log(
-      "updateGradeEntryFormRow update existing form row with retrieved data"
-    );
+  updateGradeEntryFormRow(gradeEntryFormRow: UntypedFormGroup, gradeEntryDataRow: StudentGrades): void {
+    console.log("updateGradeEntryFormRow update existing form row with retrieved data");
     console.log(JSON.stringify(gradeEntryDataRow));
     gradeEntryFormRow.patchValue({
       academicTermId: gradeEntryDataRow.academicTermId,
-      gradesEntryStartDate: new TruncateDatePipe().transform(
-        "" + gradeEntryDataRow.gradesEntryStartDate
-      ),
-      gradesEntryEndDate: new TruncateDatePipe().transform(
-        "" + gradeEntryDataRow.gradesEntryEndDate
-      ),
+      gradesEntryStartDate: new TruncateDatePipe().transform("" + gradeEntryDataRow.gradesEntryStartDate),
+      gradesEntryEndDate: new TruncateDatePipe().transform("" + gradeEntryDataRow.gradesEntryEndDate),
       gradesTurnedInDate: new Date().toISOString().slice(0, 10),
       gradePointAvg: this.toFixedValue(gradeEntryDataRow.gradePointAvg),
-      confirmedDate: new TruncateDatePipe().transform(
-        "" + gradeEntryDataRow.confirmedDate
-      ),
+      confirmedDate: new TruncateDatePipe().transform("" + gradeEntryDataRow.confirmedDate),
     });
     if (gradeEntryFormRow.get("confirmedDate").value > "") {
       gradeEntryFormRow.get("gradePointAvg").disable();
@@ -122,15 +122,6 @@ export class GradeEntryComponent implements OnInit {
     console.log("addGradeEntry: push new populated row intoFormArray");
     this.gradeEntryFormRows().push(gradeEntryFormRow);
   }
-
-  ngOnInit() {
-    this.studentGUId = this.session.getStudentRecordGUId();
-    console.log("gradeEntry ngOnInit, studentGUID = " + this.studentGUId);
-
-    this.fetchFilteredData();
-
-  }
-
 
   haveDataForCurrentPeriod(): boolean {
     let today = new Date();
@@ -156,33 +147,37 @@ export class GradeEntryComponent implements OnInit {
     console.log("%%%%%%%%%%%%%%%%%%%%%%%%%gradesEntryStartDate is " + gradesEntryStartDate);
     console.log("gradesEntryEndDate is " + gradesEntryEndDate);
 
-    if (this.bExtendGradesEntryPeriod) {
-      console.log('not in range, but extended');
-      return true
-      } else {
-        console.log('not in range, not extended');
-        return false;
-      }
+    if (today >= gradesEntryStartDate && today <= gradesEntryEndDate) {
+      console.log("in range");
+      return true;
+    } else {
+        if (this.bExtendGradesEntryPeriod || this.displayTestNames) {
+          console.log("not in range, but extended");
+          if (this.displayTestNames) {
+            console.log("because displayTestNames is true");
+          }
+          return true;
+        } else {
+          console.log("not in range, not extended");
+          return false;
+        }
+    }
   }
 
   onUploadSuccess() {
-    console.log('!@#$%^&*!@#$% Grade Upload Success');
+    console.log("!@#$%^&*!@#$% Grade Upload Success");
     this.fetchFilteredData();
   }
 
   fetchFilteredData() {
-    if (
-      this.studentGUId &&
-      this.studentGUId !== undefined &&
-      this.studentGUId !== "0000"
-    ) {
+    if (this.studentGUId && this.studentGUId !== undefined && this.studentGUId !== "0000") {
       this.isLoading = true;
       this.becaData.getStudentGradesForStudent(this.studentGUId).subscribe(
         (dataArray) => {
           // if want to have all empty ones, not just latest:
           // this.studentGradesData = dataArray.filter(this.filter_dates);
           // get latest one
-          console.log('XXE0');
+          console.log("XXE0");
           this.studentGradesData = dataArray.slice(0, 1);
           console.log(JSON.stringify(this.studentGradesData));
         },
@@ -191,7 +186,7 @@ export class GradeEntryComponent implements OnInit {
           this.errorMessage = err;
         },
         () => {
-          console.log('XXE2');
+          console.log("XXE2");
           this.studentGradesData.forEach((gradeEntryDataRow) => {
             this.addGradeEntryRow(gradeEntryDataRow);
           });
@@ -228,10 +223,7 @@ export class GradeEntryComponent implements OnInit {
   }
 
   retrieveFormValuesForRow(i: number): void {
-    console.log(
-      "retrieveFormValues for row" +
-        JSON.stringify(this.gradeEntryFormRows().value[i])
-    );
+    console.log("retrieveFormValues for row" + JSON.stringify(this.gradeEntryFormRows().value[i]));
     this.studentGradesData[i] = {
       ...this.studentGradesData[i],
       ...this.gradeEntryFormRows().value[i],
@@ -247,14 +239,9 @@ export class GradeEntryComponent implements OnInit {
     this.isLoading = true;
     this.errorMessage = "";
 
-    console.log(
-      "row dirty value is " + this.gradeEntryFormRows().controls[i].dirty
-    );
+    console.log("row dirty value is " + this.gradeEntryFormRows().controls[i].dirty);
     if (this.gradeEntryFormRows().controls[i].dirty) {
-      this.setReceivedDate(
-        i,
-        this.gradeEntryFormRows().controls[i].get("gradesTurnedInDate").value
-      );
+      this.setReceivedDate(i, this.gradeEntryFormRows().controls[i].get("gradesTurnedInDate").value);
 
       this.retrieveFormValuesForRow(i);
       console.log(this.studentGradesData[i]);
@@ -267,9 +254,7 @@ export class GradeEntryComponent implements OnInit {
           window.setTimeout(() => {
             this.successMessage = "Los cambios se guardaron con éxito.";
           }, 0);
-          const currRowFormGroup = this.gradeEntryFormRows().controls[
-            i
-          ] as UntypedFormGroup;
+          const currRowFormGroup = this.gradeEntryFormRows().controls[i] as UntypedFormGroup;
           // this fails for some reason, and isn't needed because the update won't change any of these values
           // this.updateGradeEntryRow(currRowFormGroup, gradeRowData);
           currRowFormGroup.markAsPristine();
@@ -283,8 +268,7 @@ export class GradeEntryComponent implements OnInit {
         },
         () => {
           this.errorAlert = true;
-          this.errorMessage =
-            "Por favor, compruebe el formato de la fecha. Debe ser AAAA-MM-DD";
+          this.errorMessage = "Por favor, compruebe el formato de la fecha. Debe ser AAAA-MM-DD";
           this.isLoading = false;
         }
       );
@@ -316,13 +300,8 @@ export class GradeEntryComponent implements OnInit {
     } else {
       d = new Date();
     }
-    const strDate = [
-      d.getFullYear(),
-      ("0" + (d.getMonth() + 1)).slice(-2),
-      ("0" + d.getDate()).slice(-2),
-    ].join("-");
-    const gradeEntryFormRow: UntypedFormGroup = this.gradeEntryFormRows()
-      .controls[i] as UntypedFormGroup;
+    const strDate = [d.getFullYear(), ("0" + (d.getMonth() + 1)).slice(-2), ("0" + d.getDate()).slice(-2)].join("-");
+    const gradeEntryFormRow: UntypedFormGroup = this.gradeEntryFormRows().controls[i] as UntypedFormGroup;
 
     gradeEntryFormRow.patchValue({
       gradesTurnedInDate: strDate,

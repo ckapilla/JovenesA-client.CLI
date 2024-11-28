@@ -107,6 +107,7 @@ export class AuthService {
     // Ensure Auth0 client instance exists
     console.log('!@#$%^&*(in AUTH.login with redirectPath:' + redirectPath);
     console.log('!@#$%^&*(in calling auth0Client.subscribe');
+    // if localhost redirects to prod, restart front end and backend to fix
     this.auth0Client$.subscribe((client: Auth0Client) => {
       // Call method to log in
       console.log('!@#$%^&*(in subscribe calling loginWithRedirect');
@@ -157,8 +158,8 @@ export class AuthService {
       // doesn't work because returns observable
       // this.userProfile = this.userProfileSubject$.pipe(mergeMap(() => take(1)));
       this.userProfile = this.userProfileSubject$.getValue();
-      // console.log('authComplete setting userProfle with value ');
-      // console.log(this.userProfile);
+      console.log('authComplete setting userProfle with value ');
+      console.log(this.userProfile);
       this.setUserProfileElementsToSession(this.userProfile);
       this.storeUserProfileToStorage(this.userProfile);
 

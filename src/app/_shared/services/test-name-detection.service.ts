@@ -9,10 +9,15 @@ export class TestNameDetectionService {
   constructor(private store: Store) {}
 
   public checkForTestName(testName: string): void {
+    // keep verbose console.log statements for debugging
+    console.log('checking for Test name for ' + testName);
     console.log('checking for Test name prefix "_", have ' + testName.substr(0, 1));
     if (testName.substr(0, 1) === '_') {
       console.log('SETTING TEST NAMES VISIBLE');
       this.store.dispatch(new SetTestNamesVisibility(true));
+    } else {
+      console.log('SETTING TEST NAMES INVISIBLE');
+      this.store.dispatch(new SetTestNamesVisibility(false));
     }
   }
 }

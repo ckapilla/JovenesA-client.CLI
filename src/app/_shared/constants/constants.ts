@@ -117,6 +117,9 @@ const followUpStatuses: SELECTITEM[] = [
 const highlightStatuses: SELECTITEM[] = [
 ];
 
+const becaPaymentStatuses: SELECTITEM[] = [
+];
+
 const academicYearTypes: SELECTITEM[] = [];
 
 const countryList: SELECTITEM[] = [];
@@ -152,6 +155,7 @@ export const constants = {
   memberTypes,
   followUpStatuses,
   highlightStatuses,
+  becaPaymentStatuses,
   academicYearTypes,
   countryList
 };

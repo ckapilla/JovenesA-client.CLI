@@ -12,7 +12,6 @@ import { StudentGrades } from 'src/app/_shared/models/student-grades';
 import { TruncateDatePipe } from 'src/app/_shared/pipes/truncate-date-pipe';
 import { StudentState } from 'src/app/_store/student/student.state';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
-// import { SORTCRITERIA } from '../../_shared/interfaces/SORTCRITERIA';
 import { StudentDTO } from '../../_shared/models/studentDTO';
 import { ColumnSortService } from '../../_shared/services/column-sort.service';
 import { SessionService } from '../../_shared/services/session.service';

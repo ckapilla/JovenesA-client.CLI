@@ -1,11 +1,12 @@
 export class BecaPayment {
-  pcsYear?: number;
   pcsid?: number;
+  pcsYear?: number;
+  pcsMonth?: number;
   studentId?: number;
-  mr_StatusId?: number;
-  ssr_StatusId?: number;
-  gradeReport_StatusId?: number;
-  inscriptionReport_StatusId?: number;
+  mentorReportStatusId?: number;
+  studentReportStatusId?: number;
+  gradeReportStatusId?: number;
+  inscriptionReportStatusId?: number;
   overrideApprovedBy?: number;
   todoBien?: string;
   overrideComment?: string;

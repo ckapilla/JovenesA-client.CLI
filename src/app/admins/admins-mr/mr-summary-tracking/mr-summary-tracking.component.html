@@ -92,22 +92,7 @@
                 <img src="{{ emojis[lmr.emoji + 1] }}" width="24px" />
               </span>
             </div>
-            <!--<div class="row">
-    <div class="padded">
-      &nbsp;Follow-up Needed:
-    </div>
-    <div class="col-md-10">
-      {{ lmr.followUpNeeded }}
-    </div>
-  </div>-->
-            <div class="row" [hidden]="!displayOriginalFields">
-              <div class="col-md2 padded">&nbsp;Description (English)</div>
-              <div class="col-md-10" [innerHTML]="lmr.narrative_English | unsafeHtml"></div>
-            </div>
-            <div class="row" [hidden]="!displayOriginalFields">
-              <div class="col-md2 padded">&nbsp;Description (Spanish)</div>
-              <div class="col-md-10" [innerHTML]="lmr.narrative_Spanish | unsafeHtml"></div>
-            </div>
+
           </div>
         </div>
       </div>

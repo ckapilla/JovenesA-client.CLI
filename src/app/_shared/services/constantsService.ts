@@ -101,7 +101,7 @@ export class ConstantsService extends BaseDataService {
       },
       (err: any) => console.error('Subscribe error: ' + err),
       () => {
-        console.log('xxxxxxxxxx subscribe returned  ');
+        console.log('xxxxxxxxxxGPP  subscribe returned  ');
       }
     );
   }
@@ -277,7 +277,7 @@ export class ConstantsService extends BaseDataService {
       }),
       (err) => console.error('Subscribe error: ' + err),
       () => {
-        console.log('xxxxxxxxxx subscribe returned  ' + x);
+        console.log('xxxxxxxxxx SSR  subscribe returned  ' + x);
       }
       ;
   }
@@ -318,6 +318,9 @@ export class ConstantsService extends BaseDataService {
             case 'HighlightStatus':
               constants.highlightStatuses.push(subset);
               break;
+            case 'BecaPaymentStatus':
+                constants.becaPaymentStatuses.push(subset);
+                break;
             case 'AcademicYearType':
               constants.academicYearTypes.push(subset);
               break;
