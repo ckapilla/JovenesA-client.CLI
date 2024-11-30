@@ -107,7 +107,10 @@ export class AuthService {
     // Ensure Auth0 client instance exists
     console.log('!@#$%^&*(in AUTH.login with redirectPath:' + redirectPath);
     console.log('!@#$%^&*(in calling auth0Client.subscribe');
-    // if localhost redirects to prod, restart front end and backend to fix
+    // ******
+    // ****** TO FIX THE PROBLEM WHERE localhost redirects to prod,
+    // restart front end and backend and possible multiple browser instances
+    // ******
     this.auth0Client$.subscribe((client: Auth0Client) => {
       // Call method to log in
       console.log('!@#$%^&*(in subscribe calling loginWithRedirect');

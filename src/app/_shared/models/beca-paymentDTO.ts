@@ -1,18 +1,19 @@
 export class BecaPaymentDTO {
   becaPaymentId?: number;
   pcsYear?: number;
+  pcsMonthNum?: number;
   pcsid?: number;
   studentId?: number;
+  studentGUId?: string;
   studentName?: string;
   fullName?: string;
   mentorReportStatus?: string;
   studentReportStatus?: string;
-  gradeReportStatus?: string;
   inscriptionReportStatus?: string;
-  overrideApprovedById?: number;
-  overrideApprovedBy?: string;
-  overrideComment?: string;
-  reviewedStatusId?: number;
-  monthlyBeca?: number;
-  paymentAmount?: number;
+  gradeReportStatus?: string;
+  approvedBy?: string;
+  comment?: string;
+  reviewedStatus?: string;
+  defaultBeca?: number;
+  requestedBeca?: number;
 }
