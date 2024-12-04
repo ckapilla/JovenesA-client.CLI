@@ -5,12 +5,13 @@ import {
   ConfirmDeactivateGradesEditGuard,
   ConfirmDeactivateInscriptionsEditGuard
 } from '../app.routing-guards';
-import { BecasPaymentListComponent } from './becas-payment-list/becas-payment-list.component';
 import { BecasComponent } from './becas.component';
 import { GradesEditComponent } from './grades-edit/grades-edit.component';
 import { GradesListComponent } from './grades-list/grades-list.component';
 import { InscriptionsEditComponent } from './inscriptions-edit/inscriptions-edit.component';
 import { InscriptionsListComponent } from './inscriptions-list/inscriptions-list.component';
+import { PaymentsEditComponent } from './payments-edit/payments-edit.component';
+import { PaymentsListComponent } from './payments-list/payments-list.component';
 
 const gradesRoutes: Routes = [
   {
@@ -21,11 +22,15 @@ const gradesRoutes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        component: BecasPaymentListComponent
+        component: PaymentsListComponent
       },
       {
         path: 'payments-list',
-        component: BecasPaymentListComponent
+        component: PaymentsListComponent
+      },
+      {
+        path: 'payments-edit',
+        component: PaymentsEditComponent
       },
       {
         path: 'grades-list',

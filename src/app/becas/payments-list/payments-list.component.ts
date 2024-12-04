@@ -14,9 +14,9 @@ import { SessionService } from '../../_shared/services/session.service';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './becas-payment-list.component.html'
+  templateUrl: './payments-list.component.html'
 })
-export class BecasPaymentListComponent implements OnInit {
+export class PaymentsListComponent implements OnInit {
   isLoading = false;
   errorMessage: string;
   successMessage: string;

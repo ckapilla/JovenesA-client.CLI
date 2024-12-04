@@ -191,7 +191,7 @@ export class ConstantsService extends BaseDataService {
     ) {
       thisMonth++;
     }
-    const monthIndex = thisMonth % 12;
+    const monthIndex = (thisMonth % 12) + 1;
     console.log('adjusted monthIndex ' + monthIndex );
     //////////////_,J,F,M,A,M,J,J,A,S,O,N,D
     const qtrs = [0,4,4,4,1,1,1,2,2,2,3,3,3];
@@ -203,7 +203,7 @@ export class ConstantsService extends BaseDataService {
 
     let elem: C_SELECTITEM =  { value: '', label: '' };
     const NUMQTRS = 4;
-    const initYear = 2019;
+    const initYear = 2021;
     const initQtr = 3;
     let maxQtrs = NUMQTRS;
     if (thisMonth % 3 === 0) { // if last days of quarter bump  treat as if it is next quarter
@@ -212,12 +212,14 @@ export class ConstantsService extends BaseDataService {
       console.log('targetQtr adj: '  + targetQtr);
     }
 
-    console.log('============================');
+    console.log('=+=+=+=+=+=+=+=+=+');
     const periodStrings: string[] = ['0: null', '1:Ene-Mar', '2:Abr-Jun', '3:Jul-Set', '4:Oct-Dic' ];
 
     let year = initYear;
     let qtr = initQtr;
+    let x = 0;
     while (year <= thisYear) {
+      // populate up to current quarter for current year, or all 4 quarters for previous years
       maxQtrs = (year === thisYear) ? targetQtr : NUMQTRS;
       while (qtr <= maxQtrs) {
         elem = new C_SELECTITEM(year + '-' + qtr, year + '-' + periodStrings[qtr]);
@@ -225,8 +227,10 @@ export class ConstantsService extends BaseDataService {
 
         qtr++;
       }
+
       qtr = 1;
       year++;
+      // console.log('setting qtr 1 for new year ' + year);
     }
     constants.qrPeriods.reverse();
     console.log('setting SelectedQRPeriod to ' + thisYear + ' ' + targetQtr);

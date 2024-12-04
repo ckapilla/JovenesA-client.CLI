@@ -21,11 +21,11 @@
         <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector" (click)="openFileSelector()">
             <button type="button" (click)="openFileSelector()">
                 <p *ngIf="inscriptionType === 'reg'; else pmtContent">
-                    -- REPORTE --
+                    -- FORMATO O FICHA DE INSCRIPCIÓN --
                 </p>
                 <ng-template #pmtContent>
                     <p>
-                        -- RECIBE --
+                        -- RECIBO o COMPROBANTE de PAGO --
                     </p>
                 </ng-template>
                 <p>
