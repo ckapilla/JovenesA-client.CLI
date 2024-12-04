@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
 import { ColumnSortService } from 'src/app/_shared/services/column-sort.service';
-import { SetSelectedStudentGUId } from 'src/app/_store/student/student.action';
+import { SetSelectedStudentIdentifiers } from 'src/app/_store/student/student.action';
 import { SetSelectedQRPeriod } from 'src/app/_store/ui/ui.action';
 import { UIState } from 'src/app/_store/ui/ui.state';
 import { constants } from '../../_shared/constants/constants';
@@ -71,9 +71,16 @@ export class QuarterlyListComponent implements OnInit {
     this.store.dispatch(new SetSelectedQRPeriod(yearPeriod));
   }
 
-  gotoStudent(studentGUId: string) {
-    this.store.dispatch(new SetSelectedStudentGUId(studentGUId));
+  editQRDetails(studentGUId: string, studentName: string) {
+    this.store.dispatch(new SetSelectedStudentIdentifiers({ studentGUId, studentName }));
     const link = ['quarterly/edit'];
+    this.router.navigate(link);
+  }
+
+  gotoStudent(studentGUId: string, studentName: string) {
+    this.store.dispatch(new SetSelectedStudentIdentifiers({ studentGUId, studentName }));
+    const link = ['admins/students/student-container', { guid: studentGUId }];
+    console.log('navigating to ' + link);
     this.router.navigate(link);
   }
 

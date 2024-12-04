@@ -34,7 +34,7 @@
             <tr>
               <!-- <td>Id</td> -->
               <th></th>
-              <th>Profile</th>
+              <th></th>
               <th app-sortable-column="studentName" sort-direction="asc" (onSortColumn)="onSortColumn($event)">
                 Student
               </th>
@@ -55,11 +55,10 @@
               <td>
                 {{ i + 1 }}
               </td>
-              <td (click)="gotoStudent(entry.studentGUId, entry.studentName)" class="link">
-
-                Profile
+              <td (click)="editGradeEntry(entry.studentGUId, entry.studentName)" class="link">
+                Edit
               </td>
-              <td (click)="confirmGPA(entry.studentGUId, entry.studentName)" class="link">
+              <td (click)="gotoStudent(entry.studentGUId, entry.studentName)" class="link">
                 {{ entry.studentName }}
               </td>
               <!-- <td>

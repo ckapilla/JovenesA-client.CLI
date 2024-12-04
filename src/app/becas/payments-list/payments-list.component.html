@@ -47,17 +47,15 @@
                 <!-- <td>Id</td> -->
                 <th></th>
                 <!-- <th></th> -->
-                <th>Profile</th>
+                <th></th>
                 <th app-sortable-column="studentName" sort-direction="asc" (onSortColumn)="onSortColumn($event)">
                   Student
                 </th>
                 <th app-sortable-column="pcsid" (onSortColumn)="onSortColumn($event)">PCSID</th>
-
                 <th app-sortable-column="mentorReportStatus" (onSortColumn)="onSortColumn($event)">MR</th>
                 <th app-sortable-column="studentReportStatus" (onSortColumn)="onSortColumn($event)">SSR</th>
                 <th app-sortable-column="inscriptionReportStatus" (onSortColumn)="onSortColumn($event)">IR</th>
                 <th app-sortable-column="gradeReportStatus" (onSortColumn)="onSortColumn($event)">GR</th>
-
                 <th app-sortable-column="overrideComment" (onSortColumn)="onSortColumn($event)">Override Comment</th>
                 <th app-sortable-column="overrideBy" (onSortColumn)="onSortColumn($event)">Override By</th>
                 <th app-sortable-column="reviewedStatus" (onSortColumn)="onSortColumn($event)">Status</th>
@@ -71,8 +69,8 @@
                 {{ qr.studentGUId}}
               </td> -->
                 <td>{{ i+1 }}</td>
-                <td (click)="gotoStudent(entry.studentGUId, entry.studentName)" class="link">
-                  Profile
+                <td (click)="editPaymentDetails(entry.studentGUId, entry.studentName)" class="link">
+                  Edit
                 </td>
 
                 <td

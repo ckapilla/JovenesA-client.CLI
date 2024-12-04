@@ -3,7 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
 import { ColumnSortService } from 'src/app/_shared/services/column-sort.service';
-import { SetSelectedStudentGUId } from 'src/app/_store/student/student.action';
+import { SetSelectedStudentIdentifiers } from 'src/app/_store/student/student.action';
+// import { SetSelectedStudentGUId } from 'src/app/_store/student/student.action';
 import { UIState } from 'src/app/_store/ui/ui.state';
 import { constants } from '../../_shared/constants/constants';
 import { BecaDataService } from '../../_shared/data/beca-data.service';
@@ -111,10 +112,17 @@ export class PaymentsListComponent implements OnInit {
     this.fetchFilteredData();
   }
 
+  editPaymentDetails(studentGUId: string, studentName: string) {
+    this.store.dispatch(new SetSelectedStudentIdentifiers({ studentGUId, studentName }));
+    const link = ['becas/payments-edit'];
+    console.log('navigating to ' + link);
+    this.router.navigate(link);
+  }
 
-  gotoStudent(studentGUId: string) {
-    this.store.dispatch(new SetSelectedStudentGUId(studentGUId));
-    const link = ['quarterly/edit'];
+  gotoStudent(studentGUId: string, studentName: string) {
+    this.store.dispatch(new SetSelectedStudentIdentifiers({ studentGUId, studentName }));
+    const link = ['admins/students/student-container', { guid: studentGUId }];
+    console.log('navigating to ' + link);
     this.router.navigate(link);
   }
 

@@ -133,7 +133,7 @@ export class GradesListComponent implements OnInit {
     }
   }
 
-  confirmGPA(studentGUId: string, studentName: string) {
+  editGradeEntryDetails(studentGUId: string, studentName: string) {
     this.store.dispatch(new SetSelectedStudentIdentifiers({ studentGUId, studentName }));
     const link = ['becas/grades-edit']; // , { guid: guid }];
 
@@ -142,13 +142,7 @@ export class GradesListComponent implements OnInit {
   }
 
   gotoStudent(studentGUId: string, studentName: string) {
-
-    // this.store.dispatch(new SetPhotoPathname(photoUrl));
-    // this.store.dispatch(new SetSelectedStudentGUId(guid));
-    // this.store.dispatch(new SetSelectedStudentName(studentName));
-    // this.store.dispatch(new SetSelectedStudentMentorGUId(mentorGUId));
     this.store.dispatch(new SetSelectedStudentIdentifiers({ studentGUId, studentName }));
-
     const link = ['admins/students/student-container', { guid: studentGUId }];
     console.log('navigating to ' + link);
     this.router.navigate(link);
