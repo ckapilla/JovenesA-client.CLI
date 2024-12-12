@@ -165,7 +165,6 @@ export class GradeEntryComponent implements OnInit {
   }
 
   onUploadSuccess() {
-    console.log("!@#$%^&*!@#$% Grade Upload Success");
     this.fetchFilteredData();
   }
 

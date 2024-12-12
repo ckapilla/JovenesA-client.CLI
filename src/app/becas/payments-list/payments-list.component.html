@@ -56,11 +56,11 @@
                 <th app-sortable-column="studentReportStatus" (onSortColumn)="onSortColumn($event)">SSR</th>
                 <th app-sortable-column="inscriptionReportStatus" (onSortColumn)="onSortColumn($event)">IR</th>
                 <th app-sortable-column="gradeReportStatus" (onSortColumn)="onSortColumn($event)">GR</th>
-                <th app-sortable-column="overrideComment" (onSortColumn)="onSortColumn($event)">Override Comment</th>
-                <th app-sortable-column="overrideBy" (onSortColumn)="onSortColumn($event)">Override By</th>
-                <th app-sortable-column="reviewedStatus" (onSortColumn)="onSortColumn($event)">Status</th>
+                <th app-sortable-column="paymentStatus" (onSortColumn)="onSortColumn($event)">Status</th>
+                <th app-sortable-column="requestedBeca" (onSortColumn)="onSortColumn($event)">Beca Requested</th>
+                <th app-sortable-column="approvedBy" (onSortColumn)="onSortColumn($event)">Approved By</th>
+                <th app-sortable-column="comment" (onSortColumn)="onSortColumn($event)">Comment</th>
 
-                <th app-sortable-column="All_OK" (onSortColumn)="onSortColumn($event)">Pmt OK</th>
               </tr>
             </thead>
             <tbody>
@@ -69,12 +69,12 @@
                 {{ qr.studentGUId}}
               </td> -->
                 <td>{{ i+1 }}</td>
-                <td (click)="editPaymentDetails(entry.studentGUId, entry.studentName)" class="link">
-                  Edit
+                <td (click)="gotoStudent(bp.studentGUId)"  class="link">
+                  Profile
                 </td>
 
                 <td
-                    (click)="gotoStudent(qr.studentGUId)"
+                    (click)="editPaymentDetails(bp.studentGUId, bp.studentName)"
                     [class.link]="true">
                   {{ bp.studentName }}
                 </td>
@@ -103,26 +103,22 @@
                   </span>
                 </td>
 
+
                 <td>
-                  <input name="overrideComment" class="form-control form-control-sm" type="text" />
-                </td>
-                <td>
-                  <input name="overrideApprovedBy" class="form-control form-control-sm" type="text" style="width: 100px;"/>
-                </td>
-                <td class="centered" style="width: 100px;">
-                  <select
-                          name="reviewedStatusSelector"
-                          [(ngModel)]="bp.reviewedStatusId"
-                          (change)="setReviewedStatusId(i, $event.target.value)">
-                          <option [value]="0">Needs Review</option>
-                    <option *ngFor="let status of reviewedStatuses" [value]="status.value">{{status.label}}</option>
-                  </select>
+                  {{ bp.paymentStatus }}
                 </td>
                 <td>
-                  <span style="text-align: center; white-space: nowrap">
-                    <img src="/assets/images/{{ bp.gradeReportStatus }}.jpg" width="20" />
-                  </span>
+                  {{ bp.requestedBeca }}
                 </td>
+
+                <td>
+                  {{ bp.approvedBy }}
+                </td>
+
+                <td>
+                  {{ bp.comment }}
+                </td>
+
               </tr>
             </tbody>
           </table>

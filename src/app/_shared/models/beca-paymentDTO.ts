@@ -12,8 +12,11 @@ export class BecaPaymentDTO {
   inscriptionReportStatus?: string;
   gradeReportStatus?: string;
   approvedBy?: string;
-  comment?: string;
-  reviewedStatus?: string;
+
+  paymentStatus?: string;
   defaultBeca?: number;
   requestedBeca?: number;
+  approvedById?: number;
+  approvedByDateTime?: Date;
+  comment?: string;
 }

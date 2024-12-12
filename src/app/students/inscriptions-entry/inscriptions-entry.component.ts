@@ -159,7 +159,7 @@ export class InscriptionsEntryComponent implements OnInit {
     }
   }
   onUploadSuccess() {
-    console.log("!@#$%^&*!@#$% Inscription Upload Success");
+    console.log("Inscription Upload Success");
     this.fetchFilteredData();
   }
 

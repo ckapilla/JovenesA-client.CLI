@@ -25,7 +25,7 @@ export class BecaDataService {
   public getBecaPaymentsByMonth(
     year: string,
     month: string,
-    reviewedStatusId: string
+    paymentStatusId: string
   ): Observable<BecaPaymentDTO[]> {
     const url =
       this.WebApiPrefix +
@@ -34,8 +34,8 @@ export class BecaDataService {
       year +
       '&month=' +
       month +
-      '&reviewedStatusId=' +
-      reviewedStatusId;
+      '&paymentStatusId=' +
+      paymentStatusId;
     console.log('sending AuthHttp get request for BecaPaymentsByMonth with ' + url);
     return this.http.get<BecaPaymentDTO[]>(url).pipe(catchError(this.handleError));
   }

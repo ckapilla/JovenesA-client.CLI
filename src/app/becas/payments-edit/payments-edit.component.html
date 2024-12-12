@@ -41,99 +41,71 @@
                   <!-- <th app-sortable-column="academicYear" (onSortColumn)="onSortColumn($event)">YearType</th> -->
                   <!-- <th app-sortable-column="year" (onSortColumn)="onSortColumn($event)">Year</th> -->
                   <!-- <th app-sortable-column="periodNumber" (onSortColumn)="onSortColumn($event)">Period</th> -->
-                  <th>Period #</th>
-                  <!-- <th>Grades Given</th> -->
-                  <th>Grades Due</th>
-                  <th>Turned In</th>
-                  <th>GPA</th>
-                  <th>Image</th>
-                  <th>Confirmed By</th>
-                  <th>Confirmed Date</th>
-                  <th>Exception</th>
+                  <th>Year Month</th>
+                  <th>PCSID</th>
+                  <th>MR</th>
+                  <th>SSR</th>
+                  <th>IR</th>
+                  <th>GR</th>
+                  <th>Status</th>
+                  <th>Beca Requested</th>
+                  <th>Approved By</th>
+                  <th>Comment</th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
-                <tr formArrayName="gradeEntryFormRows" *ngFor="let entry of studentGradesData; let i = index">
+                <tr formArrayName="becaPaymentFormRows" *ngFor="let bp of becaPaymentsData; let i = index">
                   <ng-container [formGroupName]="i">
-                    <!-- <td>
+                    <td>
                         {{ i+1 }}
-                      </td> -->
-                    <!-- <td>
-                  <app-grade-row [entry]="entry">
+                      </td>
+                  <!-- <td>
+                    <app-grade-row [entry]="entry">
 
-                  </app-grade-row>
-                </td> -->
+                    </app-grade-row>
+                  </td> -->
+                  <td>
+                    {{ bp.pcsid }}
+                  </td>
+<!--
 
-                    <!-- <td (click)='gotoStudent(entry.studentGUId, entry.studentName)' class='link'>
-                  {{ entry.studentName }}
-                </td>
-                <td>
-                  {{ entry.univ }}
-                </td> -->
-                    <!-- <td>
-                {{  entry.academicYear }}
-              </td> -->
-                    <!-- <td>
-                {{ entry.year }}
-              </td> -->
-              <td>
-                {{ entry.academicTermId }}
-              </td>
-                    <!-- <td>
-                      <input
-                        formControlName="gradesGivenDate"
-                        class="form-control form-control-sm"
-                        type="text"
-                        size="8"
-                      />
-                    </td> -->
-                    <td>
-                      <input
-                        formControlName="gradesEntryEndDate"
-                        class="form-control form-control-sm"
-                        type="text"
-                        size="8"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        formControlName="gradesTurnedInDate"
-                        placeholder="yyyy-mm-dd"
-                        (dblclick)="setReceivedDate(i, $event.target.value)"
-                        class="form-control form-control-sm"
-                        type="text"
-                        size="8"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        formControlName="gradePointAvg"
-                        class="form-control form-control-sm"
-                        type="text"
-                        size="4"
-                      />
-                    </td>
-                    <td class="link">
-                      <div [hidden]="isViewLinkHidden(entry.imageSubmittedDate)">
-                          <a href= "{{staticUrlPrefix}}StudentGradesReports/{{entry.academicTermId}}/{{entry.studentGUId | uppercase }}.png"
-                          target="_blank">{{entry.studentGUId | trimGuid | uppercase  }}</a>
-                      </div>
-                    </td>
+                  <td>
+                    <span style="text-align: center; white-space: nowrap">
+                      <img src="/assets/images/{{ badgeColors[bp.mentorReportStatusId] }}.jpg" width="20" />
+                    </span>
+                  </td>
+                  <td>
+                    <span style="text-align: center; white-space: nowrap">
+                      <img src="/assets/images/{{  badgeColors[bp.studentReportStatusId] }}.jpg" width="20" />
+                    </span>
+                  </td>
+
+                  <td>
+                    <span style="text-align: center; white-space: nowrap">
+                      <img src="/assets/images/{{ badgeColors[bp.inscriptionReportStatusId] }}.jpg" width="20" />
+                    </span>
+                  </td>
+                  <td>
+                    <span style="text-align: center; white-space: nowrap">
+                      <img src="/assets/images/{{  badgeColors[bp.gradeReportStatusId] }}.jpg" width="20" />
+                    </span>
+                  </td>
+
                     <div *ngIf="admins$ | async as admins">
                       <select
                         id="adminId"
                         formControlName="confirmedById"
                         class="form-control form-control-sm"
-                        (change)="setConfirmedBy(i, $event.target.value)"
+                        (change)="setApprovedBy(i, $event.target.value)"
                       >
-                        <option [value]="null">[Not Confirmed]</option>
+                        <option [value]="null">[Not Approved]</option>
                         <option *ngFor="let admin of admins" [value]="admin.value">{{ admin.label }}</option>
                       </select>
                     </div>
                     <td>
                       <input
-                        formControlName="confirmedDate"
+                        formControlName="approvedByDate"
                         placeholder="yyyy-mm-dd"
                         class="form-control form-control-sm"
                         type="text"
@@ -141,8 +113,9 @@
                       />
                     </td>
                     <td>
-                      <input formControlName="exception" class="form-control form-control-sm" type="text" />
+                      <input formControlName="comment" class="form-control form-control-sm" type="text" />
                     </td>
+-->
                     <!-- <td>
                       <button (click)="saveEntry(i)">Save</button>
                     </td> -->

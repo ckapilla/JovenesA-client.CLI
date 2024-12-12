@@ -26,6 +26,7 @@ export class GradesListComponent implements OnInit {
   isLoading: boolean;
   errorMessage: string;
   successMessage: string;
+  readonly paymentStatuses: SELECTITEM[] = constants.becaPaymentStatuses;
   years: SELECTITEM[];
   months: SELECTITEM[];
   gradesProcessingPeriods: PROCESSINGPERIOD[];

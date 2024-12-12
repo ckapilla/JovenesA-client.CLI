@@ -110,6 +110,8 @@ export class AuthService {
     // ******
     // ****** TO FIX THE PROBLEM WHERE localhost redirects to prod,
     // restart front end and backend and possible multiple browser instances
+    //
+    // if still an issue close all browsers and open all and logout of all privada tabs
     // ******
     this.auth0Client$.subscribe((client: Auth0Client) => {
       // Call method to log in

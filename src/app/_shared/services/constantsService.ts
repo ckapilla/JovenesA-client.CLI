@@ -191,7 +191,10 @@ export class ConstantsService extends BaseDataService {
     ) {
       thisMonth++;
     }
-    const monthIndex = (thisMonth % 12) + 1;
+    let monthIndex = (thisMonth % 12) + 1;
+
+
+
     console.log('adjusted monthIndex ' + monthIndex );
     //////////////_,J,F,M,A,M,J,J,A,S,O,N,D
     const qtrs = [0,4,4,4,1,1,1,2,2,2,3,3,3];
@@ -200,6 +203,8 @@ export class ConstantsService extends BaseDataService {
     console.log('month index into qtrs array: ' + monthIndex);
     console.log('targetQtr: '  + targetQtr);
 
+    // override for Viewing list of student reports Dec 2024;
+    targetQtr=3;
 
     let elem: C_SELECTITEM =  { value: '', label: '' };
     const NUMQTRS = 4;

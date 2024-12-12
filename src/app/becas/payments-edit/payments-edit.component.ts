@@ -7,7 +7,7 @@ import { EMPTY, Observable, Subscription } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { MiscDataService } from 'src/app/_shared/data/misc-data.service';
 import { BecaPayment } from 'src/app/_shared/models/beca-payment';
-import { BecaPaymentDTO } from 'src/app/_shared/models/beca-paymentDTO';
+import { TruncateDatePipe } from 'src/app/_shared/pipes/truncate-date-pipe';
 import { StudentState } from 'src/app/_store/student/student.state';
 import { BecaDataService } from '../../_shared/data/beca-data.service';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
@@ -24,7 +24,7 @@ export class PaymentsEditComponent implements OnInit {
   myForm: UntypedFormGroup;
   studentDTO: StudentDTO;
   becaPaymentsData: BecaPayment[];
-  entry: BecaPaymentDTO;
+  // entry: BecaPaymentDTO;
   isLoading: boolean;
   errorMessage: string;
   successMessage: string;
@@ -34,6 +34,11 @@ export class PaymentsEditComponent implements OnInit {
   private subscription: Subscription;
   studentName: string;
   staticUrlPrefix: string;
+
+  badgeColors = [
+    'red',
+    'green'
+  ];
 
   admins$: Observable<SELECTITEM[]> = this.miscData.getAdmins$().pipe(
     catchError((err) => {
@@ -76,42 +81,59 @@ export class PaymentsEditComponent implements OnInit {
   createEmptyBecaPaymentDataFormRow(): UntypedFormGroup {
     console.log('CreateEmptyBecaPaymentDataFormRow create empty row to be populated');
     return this._fb.group({
-      // academicTermId: { value: '', disabled: true },
-      // // gradesGivenDate: { value: '', disabled: true },
-      // gradesEntryEndDate: { value: '', disabled: true },
-      // gradesTurnedInDate: [
-      //   { value: '' },
-      //   Validators.compose([Validators.pattern(/^\d{4}\-\d{1,2}\-\d{1,2}$/), Validators.maxLength(10)])
-      // ],
-      // gradePointAvg: [{ value: '' }, Validators.pattern(/^\d{1,2}\.\d{1,1}$/)],
-      // exception: [''],
-      // confirmedDate: { value: '', disabled: true },
-      // confirmedById: [{ value: '' }, Validators.required],
+
+  becaPaymentId: { value: '', disabled: true },
+  pcsid: { value: '', disabled: true },
+  pcsYear: { value: '', disabled: true },
+  pcsMonthNum: { value: '', disabled: true },
+  studentId: { value: '', disabled: false },
+  studentGUId: { value: '', disabled: false },
+  mentorReportStatusId: { value: '', disabled: false },
+  studentReportStatusId: { value: '', disabled: false },
+  inscriptionReportStatusId: { value: '', disabled: false },
+  gradeReportStatusId: { value: '', disabled: false },
+  paymentStatusId: { value: '', disabled: false },
+  defaultBeca: { value: '', disabled: true },
+  requestedBeca: { value: '', disabled: false },
+  approvedBy: { value: '', disabled: false },
+  approvedById: { value: '', disabled: false },
+  approvedByDateTime: { value: '', disabled: false },
+  comment: { value: '', disabled: false },
     });
   }
 
-  updateBecaPaymentDataFormRow(gradeEntryFormRow: UntypedFormGroup, gradeEntryDataRow: BecaPayment): void {
+  updateBecaPaymentDataFormRow(becaPaymentFormRow: UntypedFormGroup, becaPaymentDataRow: BecaPayment): void {
     console.log('updateBecaPaymentDataRow update existing row with actual data');
-    console.log(JSON.stringify(gradeEntryDataRow));
-    gradeEntryFormRow.patchValue({
-      // academicTermId: gradeEntryDataRow.academicTermId,
-      // gradesGivenDate: new TruncateDatePipe().transform('' + entryData.gradesGivenDate),
-      // gradesEntryEndDate: new TruncateDatePipe().transform('' + gradeEntryDataRow.gradesEntryEndDate),
-      // gradesTurnedInDate: new TruncateDatePipe().transform('' + gradeEntryDataRow.gradesTurnedInDate),
-      // gradePointAvg: this.toFixedValue(gradeEntryDataRow.gradePointAvg),
-      // exception: gradeEntryDataRow.exception,
-      // confirmedById: gradeEntryDataRow.confirmedById,
-      // confirmedDate: new TruncateDatePipe().transform('' + gradeEntryDataRow.confirmedDate)
-    });
-    gradeEntryFormRow.markAsPristine();
+    console.log(JSON.stringify(becaPaymentDataRow));
+    becaPaymentFormRow.patchValue({
+
+  becaPaymentId: 666,
+  pcsid: 10666,
+  pcsYear: 2025,
+  pcsMonthNum: 1,
+  studentId: 1234,
+  studentGUId: '{ABCDEFG17890}',
+  mentorReportStatusId: 0,
+  studentReportStatusId: 0,
+  inscriptionReportStatusId: 0,
+  gradeReportStatusId: 0,
+  paymentStatusId: 1,
+  defaultBeca: 2500.00,
+  requestedBeca: 2500.00,
+  approvedBy: 'Sary',
+  approvedById:2333,
+  approvedByDateTime: new TruncateDatePipe().transform('' + '01/01/2001'),
+  comment: 'this is a comment'
+  });
+    becaPaymentFormRow.markAsPristine();
   }
 
-  addBecaPaymentDataRow(gradeEntryDataRow: BecaPayment) {
-    const gradeEntryFormRow: UntypedFormGroup = this.createEmptyBecaPaymentDataFormRow();
+  addBecaPaymentDataRow(becaPaymentDataRow: BecaPayment) {
+    const becaPaymentFormRow: UntypedFormGroup = this.createEmptyBecaPaymentDataFormRow();
 
-    this.updateBecaPaymentDataFormRow(gradeEntryFormRow, gradeEntryDataRow);
+    this.updateBecaPaymentDataFormRow(becaPaymentFormRow, becaPaymentDataRow);
     console.log('addBecaPaymentData: push new populated row intoFormArray');
-    this.becaPaymentFormRows().push(gradeEntryFormRow);
+    this.becaPaymentFormRows().push(becaPaymentFormRow);
   }
 
   ngOnInit() {
@@ -143,14 +165,15 @@ export class PaymentsEditComponent implements OnInit {
       this.isLoading = true;
       this.becaData.getBecaPaymentsForStudent(this.studentGUId).subscribe(
         (data) => {
+          console.log('subscribe result in getBecaPaymentsForStudent');
           this.becaPaymentsData = data;
         },
         (err) => {
           this.errorMessage = err;
         },
         () => {
-          this.becaPaymentsData.forEach((gradeEntryDataRow) => {
-            this.addBecaPaymentDataRow(gradeEntryDataRow);
+          this.becaPaymentsData.forEach((becaPaymentDataRow) => {
+            this.addBecaPaymentDataRow(becaPaymentDataRow);
           });
 
           console.log('data loaded now set timeout for scroll');
@@ -205,7 +228,7 @@ export class PaymentsEditComponent implements OnInit {
   }
 
   isRowDirty(i: number): boolean {
-    // console.log('checking dirty state of i ' + i + ' -- ' + this.gradeEntryFormRows().controls[i].dirty);
+    // console.log('checking dirty state of i ' + i + ' -- ' + this.becaPaymentFormRows().controls[i].dirty);
     return this.becaPaymentFormRows().controls[i].dirty;
   }
 
@@ -280,8 +303,8 @@ export class PaymentsEditComponent implements OnInit {
     gradeEntryRow.markAsDirty();
   }
 
-  setConfirmedBy(i: number, adminId?: any): void {
-    console.log('setConfirmedBy with adminId = ' + adminId);
+  setApprovedBy(i: number, adminId?: any): void {
+    console.log('setApprovedBy with adminId = ' + adminId);
     const gradeEntryRow: UntypedFormGroup = this.becaPaymentFormRows().controls[i] as UntypedFormGroup;
     if (adminId === null || adminId === 'null') {
 

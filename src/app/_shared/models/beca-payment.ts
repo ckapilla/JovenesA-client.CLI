@@ -1,16 +1,19 @@
 export class BecaPayment {
+  becaPaymentId?: number;
   pcsid?: number;
   pcsYear?: number;
-  pcsMonth?: number;
+  pcsMonthNum?: number;
   studentId?: number;
+  studentGUId?: string;
   mentorReportStatusId?: number;
   studentReportStatusId?: number;
-  gradeReportStatusId?: number;
   inscriptionReportStatusId?: number;
-  overrideApprovedBy?: number;
-  todoBien?: string;
-  overrideComment?: string;
-  reviewedStatusId?: number;
-  monthlyBeca?: number;
-  paymentAmount?: number;
+  gradeReportStatusId?: number;
+  paymentStatusId?: number;
+  defaultBeca?: number;
+  requestedBeca?: number;
+  approvedBy?: string;
+  approvedById?: number;
+  approvedByDateTime?: Date;
+  comment?: string;
 }
