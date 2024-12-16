@@ -2,7 +2,7 @@ export class BecaPaymentDTO {
   becaPaymentId?: number;
   pcsYear?: number;
   pcsMonthNum?: number;
-  pcsid?: number;
+  pcsId?: number;
   studentId?: number;
   studentGUId?: string;
   studentName?: string;

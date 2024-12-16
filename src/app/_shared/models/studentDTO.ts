@@ -79,6 +79,6 @@ export class StudentDTO {
     public mastersStartMonthNum?: number,
     public undergradStartYear?: string,
     public undergradStartMonthNum?: number,
-    public pcsid?: number
+    public pcsId?: number
   ) {}
 }

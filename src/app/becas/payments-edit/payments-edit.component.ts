@@ -4,10 +4,9 @@ import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup } from '@angular
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { EMPTY, Observable, Subscription } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { MiscDataService } from 'src/app/_shared/data/misc-data.service';
 import { BecaPayment } from 'src/app/_shared/models/beca-payment';
-import { TruncateDatePipe } from 'src/app/_shared/pipes/truncate-date-pipe';
 import { StudentState } from 'src/app/_store/student/student.state';
 import { BecaDataService } from '../../_shared/data/beca-data.service';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
@@ -37,10 +36,18 @@ export class PaymentsEditComponent implements OnInit {
 
   badgeColors = [
     'red',
+    'grey',
     'green'
   ];
 
+  paymentStatuses: SELECTITEM[] = [ { value: '2', label: 'On Hold' },  { value: '0', label: '--' }, { value: '1', label:'Requested' } ]; // , { value: '3', viewValue: 'Cancelled' }
+
+
+
   admins$: Observable<SELECTITEM[]> = this.miscData.getAdmins$().pipe(
+    tap((admins) => {
+      console.log('Admins loaded:', admins);
+    }),
     catchError((err) => {
       this.errorMessage = err;
       console.log('CAUGHT ERROR IN Component ' + err);
@@ -74,18 +81,63 @@ export class PaymentsEditComponent implements OnInit {
     });
   }
 
+  ngOnInit() {
+    console.log('paymentsEdit ngOnInit');
+    this.subscribeForStudentGUIds2();
+    // AABBCCEE
+    this.subscribeForStudentNames();
+  }
+
+  fetchFilteredData() {
+    if (this.studentGUId && this.studentGUId !== undefined && this.studentGUId !== '0000') {
+      this.isLoading = true;
+      this.becaData.getBecaPaymentsForStudent(this.studentGUId).subscribe(
+        (data) => {
+          console.log('subscribe result in getBecaPaymentsForStudent');
+          this.becaPaymentsData = data;
+        },
+        (err) => {
+          this.errorMessage = err;
+        },
+        () => {
+          this.becaPaymentsData.forEach((becaPaymentDataRow) => {
+            this.addBecaPaymentFormRow(becaPaymentDataRow);
+          });
+
+          console.log('data loaded now set timeout for scroll');
+          setTimeout(() => {
+            this.scrollIntoView();
+          }, 0);
+          this.isLoading = false;
+        }
+      );
+    }
+  }
+
   becaPaymentFormRows(): UntypedFormArray {
     return <UntypedFormArray>this.myForm.get('becaPaymentFormRows');
   }
 
-  createEmptyBecaPaymentDataFormRow(): UntypedFormGroup {
-    console.log('CreateEmptyBecaPaymentDataFormRow create empty row to be populated');
+  addBecaPaymentFormRow(becaPaymentDataRow: BecaPayment) {
+    console.log('addBecaPaymentFormRow: add new row to form array');
+    const becaPaymentFormRow: UntypedFormGroup = this.createEmptyBecaPaymentFormRow();
+
+    console.log('addBecaPaymentData: form row B4 is ', becaPaymentFormRow.controls);
+    this.updateBecaPaymentFormRow(becaPaymentFormRow, becaPaymentDataRow);
+    console.log('addBecaPaymentData: form row after is ', becaPaymentFormRow.controls);
+
+
+    console.log('addBecaPaymentData: push new populated row intoFormArray');
+    this.becaPaymentFormRows().push(becaPaymentFormRow);
+    console.log('Form array populated:', this.becaPaymentFormRows);
+  }
+
+  createEmptyBecaPaymentFormRow(): UntypedFormGroup {
+    console.log('CreateEmptyBecaPaymentFormRow create empty row to be populated');
     return this._fb.group({
 
   becaPaymentId: { value: '', disabled: true },
-  pcsid: { value: '', disabled: true },
-  pcsYear: { value: '', disabled: true },
-  pcsMonthNum: { value: '', disabled: true },
+  pcsId: { value: '', disabled: true },
   studentId: { value: '', disabled: false },
   studentGUId: { value: '', disabled: false },
   mentorReportStatusId: { value: '', disabled: false },
@@ -93,54 +145,34 @@ export class PaymentsEditComponent implements OnInit {
   inscriptionReportStatusId: { value: '', disabled: false },
   gradeReportStatusId: { value: '', disabled: false },
   paymentStatusId: { value: '', disabled: false },
-  defaultBeca: { value: '', disabled: true },
-  requestedBeca: { value: '', disabled: false },
-  approvedBy: { value: '', disabled: false },
+  // defaultBeca: { value: '', disabled: true },
+  requestedBeca: { value: '2000', disabled: false },
   approvedById: { value: '', disabled: false },
-  approvedByDateTime: { value: '', disabled: false },
+  // approvedByDateTime: { value: '', disabled: false },
   comment: { value: '', disabled: false },
     });
   }
 
-  updateBecaPaymentDataFormRow(becaPaymentFormRow: UntypedFormGroup, becaPaymentDataRow: BecaPayment): void {
-    console.log('updateBecaPaymentDataRow update existing row with actual data');
+  updateBecaPaymentFormRow(becaPaymentFormRow: UntypedFormGroup, becaPaymentDataRow: BecaPayment): void {
+    console.log('updateBecaPaymentFormRow update existing row with actual data');
     console.log(JSON.stringify(becaPaymentDataRow));
     becaPaymentFormRow.patchValue({
-
-  becaPaymentId: 666,
-  pcsid: 10666,
-  pcsYear: 2025,
-  pcsMonthNum: 1,
-  studentId: 1234,
-  studentGUId: '{ABCDEFG17890}',
-  mentorReportStatusId: 0,
-  studentReportStatusId: 0,
-  inscriptionReportStatusId: 0,
-  gradeReportStatusId: 0,
-  paymentStatusId: 1,
-  defaultBeca: 2500.00,
-  requestedBeca: 2500.00,
-  approvedBy: 'Sary',
-  approvedById:2333,
-  approvedByDateTime: new TruncateDatePipe().transform('' + '01/01/2001'),
-  comment: 'this is a comment'
+  becaPaymentId: becaPaymentDataRow.becaPaymentId,
+  pcsId: becaPaymentDataRow.pcsId,
+  studentId: becaPaymentDataRow.studentId,
+  studentGUId: becaPaymentDataRow.studentGUId,
+  mentorReportStatusId: becaPaymentDataRow.mentorReportStatusId,
+  studentReportStatusId: becaPaymentDataRow.studentReportStatusId,
+  inscriptionReportStatusId: becaPaymentDataRow.inscriptionReportStatusId,
+  gradeReportStatusId: becaPaymentDataRow.gradeReportStatusId,
+  paymentStatusId: becaPaymentDataRow.paymentStatusId,
+  // defaultBeca: becaPaymentDataRow.defaultBeca,
+  requestedBeca:  becaPaymentDataRow.requestedBeca,
+  approvedById: becaPaymentDataRow.approvedById,
+  // approvedByDateTime: new TruncateDatePipe().transform('' + becaPaymentDataRow.approvedByDateTime),
+  comment: becaPaymentDataRow.comment
   });
     becaPaymentFormRow.markAsPristine();
-  }
-
-  addBecaPaymentDataRow(becaPaymentDataRow: BecaPayment) {
-    const becaPaymentFormRow: UntypedFormGroup = this.createEmptyBecaPaymentDataFormRow();
-
-    this.updateBecaPaymentDataFormRow(becaPaymentFormRow, becaPaymentDataRow);
-    console.log('addBecaPaymentData: push new populated row intoFormArray');
-    this.becaPaymentFormRows().push(becaPaymentFormRow);
-  }
-
-  ngOnInit() {
-    console.log('paymentsEdit ngOnInit');
-    this.subscribeForStudentGUIds2();
-    // AABBCCEE
-    this.subscribeForStudentNames();
   }
 
   subscribeForStudentNames() {
@@ -160,32 +192,6 @@ export class PaymentsEditComponent implements OnInit {
     });
   }
 
-  fetchFilteredData() {
-    if (this.studentGUId && this.studentGUId !== undefined && this.studentGUId !== '0000') {
-      this.isLoading = true;
-      this.becaData.getBecaPaymentsForStudent(this.studentGUId).subscribe(
-        (data) => {
-          console.log('subscribe result in getBecaPaymentsForStudent');
-          this.becaPaymentsData = data;
-        },
-        (err) => {
-          this.errorMessage = err;
-        },
-        () => {
-          this.becaPaymentsData.forEach((becaPaymentDataRow) => {
-            this.addBecaPaymentDataRow(becaPaymentDataRow);
-          });
-
-          console.log('data loaded now set timeout for scroll');
-          setTimeout(() => {
-            this.scrollIntoView();
-          }, 0);
-          this.isLoading = false;
-        }
-      );
-    }
-  }
-
   scrollIntoView() {
     const element = document.body;
     if (element) {
@@ -201,9 +207,11 @@ export class PaymentsEditComponent implements OnInit {
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }
+
   isViewLinkHidden(imageSubmittedDate: any) {
     return (imageSubmittedDate === '1900-01-01T00:00:00');
   }
+
   saveAllChangedEntries() {
     console.log('becaPaymentsData length is ' + this.becaPaymentsData.length);
     for (let i = 0; i < this.becaPaymentsData.length; ++i) {
@@ -301,6 +309,18 @@ export class PaymentsEditComponent implements OnInit {
       gradesTurnedInDate: strDate
     });
     gradeEntryRow.markAsDirty();
+  }
+  onDoubleClick(): void {
+    const requestedBecaControl = this.myForm.get('requestedBeca');
+    if (requestedBecaControl) {
+      if (requestedBecaControl.value === '0') {
+        requestedBecaControl.setValue('2000'); // Assign the desired string value
+      } else if (requestedBecaControl.value === '2000') {
+        requestedBecaControl.setValue('0'); // Assign the desired string value
+      } else {
+        alert('Value should be 0 or 2000');
+      }
+    }
   }
 
   setApprovedBy(i: number, adminId?: any): void {

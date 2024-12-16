@@ -43,7 +43,7 @@ export class StudentFlexiDTO {
     // public numericGPAStatus?: number,
     public timelyMentorMeetingStatus?: string,
     public timelyMentorReportStatus?: string,
-    public pcsid?: number
+    public pcsId?: number
     // public numericTimelyMentorMeetingStatus?: number,
     // public numericTimelyMentorReportStatus?: number,
 

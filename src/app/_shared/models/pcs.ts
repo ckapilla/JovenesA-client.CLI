@@ -1,6 +1,6 @@
 export class PCS {
   pcsYear?: number;
-  pcsid?: number;
+  pcsId?: number;
   studentID?: number;
   firstNames?: string;
   lastNames?: string;

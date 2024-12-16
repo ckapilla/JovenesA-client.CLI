@@ -1,8 +1,6 @@
 export class BecaPayment {
   becaPaymentId?: number;
-  pcsid?: number;
-  pcsYear?: number;
-  pcsMonthNum?: number;
+  pcsId?: number;
   studentId?: number;
   studentGUId?: string;
   mentorReportStatusId?: number;
@@ -12,8 +10,6 @@ export class BecaPayment {
   paymentStatusId?: number;
   defaultBeca?: number;
   requestedBeca?: number;
-  approvedBy?: string;
   approvedById?: number;
-  approvedByDateTime?: Date;
   comment?: string;
 }

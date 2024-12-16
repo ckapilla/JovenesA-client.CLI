@@ -51,7 +51,7 @@
                 <th app-sortable-column="studentName" sort-direction="asc" (onSortColumn)="onSortColumn($event)">
                   Student
                 </th>
-                <th app-sortable-column="pcsid" (onSortColumn)="onSortColumn($event)">PCSID</th>
+                <th app-sortable-column="pcsId" (onSortColumn)="onSortColumn($event)">PCSID</th>
                 <th app-sortable-column="mentorReportStatus" (onSortColumn)="onSortColumn($event)">MR</th>
                 <th app-sortable-column="studentReportStatus" (onSortColumn)="onSortColumn($event)">SSR</th>
                 <th app-sortable-column="inscriptionReportStatus" (onSortColumn)="onSortColumn($event)">IR</th>
@@ -72,14 +72,13 @@
                 <td (click)="gotoStudent(bp.studentGUId)"  class="link">
                   Profile
                 </td>
-
                 <td
                     (click)="editPaymentDetails(bp.studentGUId, bp.studentName)"
                     [class.link]="true">
                   {{ bp.studentName }}
                 </td>
                 <td>
-                  {{ bp.pcsid }}
+                  {{ bp.pcsId }}
                 </td>
                 <td>
                   <span style="text-align: center; white-space: nowrap">

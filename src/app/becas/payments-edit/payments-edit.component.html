@@ -1,7 +1,6 @@
 <div class="card bg-primary">
   <div class="card-header text-white" style="font-size: large">
-    <span>Edit Grade Status for {{ studentName }}</span
-    >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span>Edit Grade Status for {{ studentName }}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   </div>
 
   <div class="card-body bg-white">
@@ -17,110 +16,102 @@
           <form [formGroup]="myForm">
             <p>
               <button
-                [disabled]="myForm.pristine"
-                type="submit"
-                class="btn btn-primary"
-                (click)="saveAllChangedEntries()"
-              >
+                      [disabled]="myForm.pristine"
+                      type="submit"
+                      class="btn btn-primary"
+                      (click)="saveAllChangedEntries()">
                 Save
               </button>
-              <!-- <button [disabled]="!(myForm.dirty && myForm.touched)"
+              <button [disabled]="!(myForm.dirty && myForm.touched)"
                       type="cancel"
                       class="btn btn-primary"
-                      (click)="resetAllChangedEntries()">Cancel</button> -->
+                      (click)="resetAllChangedEntries()">Cancel</button>
               <button class="btn btn-primary" (click)="location.back()">Back</button>
             </p>
             <table class="table-sm table-striped">
               <thead>
                 <tr>
-                  <!--<td>Id</td>-->
+                  <td></td>
                   <!-- <th></th> -->
                   <!-- <th app-sortable-column="studentName" sort-direFstudentIDion="asc" (onSortColumn)="onSortColumn($event)">Student
-                </th>
-                <th app-sortable-column="univ" (onSortColumn)="onSortColumn($event)">Univ</th> -->
-                  <!-- <th app-sortable-column="academicYear" (onSortColumn)="onSortColumn($event)">YearType</th> -->
-                  <!-- <th app-sortable-column="year" (onSortColumn)="onSortColumn($event)">Year</th> -->
-                  <!-- <th app-sortable-column="periodNumber" (onSortColumn)="onSortColumn($event)">Period</th> -->
-                  <th>Year Month</th>
+                </th>-->
                   <th>PCSID</th>
                   <th>MR</th>
                   <th>SSR</th>
                   <th>IR</th>
                   <th>GR</th>
-                  <th>Status</th>
+                  <th>Payment Status</th>
                   <th>Beca Requested</th>
                   <th>Approved By</th>
                   <th>Comment</th>
-                  <th></th>
                 </tr>
               </thead>
               <tbody>
                 <tr formArrayName="becaPaymentFormRows" *ngFor="let bp of becaPaymentsData; let i = index">
                   <ng-container [formGroupName]="i">
                     <td>
-                        {{ i+1 }}
-                      </td>
-                  <!-- <td>
-                    <app-grade-row [entry]="entry">
-
-                    </app-grade-row>
-                  </td> -->
-                  <td>
-                    {{ bp.pcsid }}
-                  </td>
-<!--
-
-                  <td>
-                    <span style="text-align: center; white-space: nowrap">
-                      <img src="/assets/images/{{ badgeColors[bp.mentorReportStatusId] }}.jpg" width="20" />
-                    </span>
-                  </td>
-                  <td>
-                    <span style="text-align: center; white-space: nowrap">
-                      <img src="/assets/images/{{  badgeColors[bp.studentReportStatusId] }}.jpg" width="20" />
-                    </span>
-                  </td>
-
-                  <td>
-                    <span style="text-align: center; white-space: nowrap">
-                      <img src="/assets/images/{{ badgeColors[bp.inscriptionReportStatusId] }}.jpg" width="20" />
-                    </span>
-                  </td>
-                  <td>
-                    <span style="text-align: center; white-space: nowrap">
-                      <img src="/assets/images/{{  badgeColors[bp.gradeReportStatusId] }}.jpg" width="20" />
-                    </span>
-                  </td>
-
-                    <div *ngIf="admins$ | async as admins">
-                      <select
-                        id="adminId"
-                        formControlName="confirmedById"
-                        class="form-control form-control-sm"
-                        (change)="setApprovedBy(i, $event.target.value)"
-                      >
-                        <option [value]="null">[Not Approved]</option>
-                        <option *ngFor="let admin of admins" [value]="admin.value">{{ admin.label }}</option>
-                      </select>
-                    </div>
+                      {{ i+1 }}
+                    </td>
+                    <td>{{ bp.pcid }}</td>
                     <td>
-                      <input
-                        formControlName="approvedByDate"
-                        placeholder="yyyy-mm-dd"
-                        class="form-control form-control-sm"
-                        type="text"
-                        size="8"
-                      />
+                      <span style="text-align: center; white-space: nowrap">
+                        <img src="/assets/images/{{ badgeColors[bp.mentorReportStatusId] }}.jpg" width="20" />
+                      </span>
+                    </td>
+                    <td>
+                      <span style="text-align: center; white-space: nowrap">
+                        <img src="/assets/images/{{  badgeColors[bp.studentReportStatusId] }}.jpg" width="20" />
+                      </span>
+                    </td>
+
+                    <td>
+                      <span style="text-align: center; white-space: nowrap">
+                        <img src="/assets/images/{{ badgeColors[bp.inscriptionReportStatusId] }}.jpg" width="20" />
+                      </span>
+                    </td>
+                    <td>
+                      <span style="text-align: center; white-space: nowrap">
+                        <img src="/assets/images/{{  badgeColors[0] }}.jpg" width="20" />
+                      </span>
+                    </td>
+
+                    <td>
+                      <select
+                              id="paymentStatusId"
+                              formControlName="paymentStatusId"
+                              class="form-control form-control-sm"
+                              style="width: 100px;">
+                        <option *ngFor="let status of paymentStatuses" [value]="status.value">{{ status.label }}</option>
+                      </select>
+                    </td>
+
+                    <td>
+                    <label style="display: inline-block; margin-right: 3px;">$</label>
+                     <input formControlName="requestedBeca"
+                      class="form-control form-control-sm" type="text"
+                      style ="width: 70px; display: inline-block;"
+                      (dblclick)="onToggleRequestedBeca()" />
+                    </td>
+                    <td>
+                      <div *ngIf="admins$ | async as admins">
+                        <select
+                                id="approvedById"
+                                formControlName="approvedById"
+                                class="form-control form-control-sm"
+                                (change)="setApprovedBy(i, $event.target.value)">
+                          <option [value]="null">[Not Approved]</option>
+                          <option *ngFor="let admin of admins" [value]="admin.value">{{ admin.label }}</option>
+                        </select>
+                      </div>
                     </td>
                     <td>
                       <input formControlName="comment" class="form-control form-control-sm" type="text" />
                     </td>
--->
                     <!-- <td>
                       <button (click)="saveEntry(i)">Save</button>
                     </td> -->
-                    <td *ngIf="isRowDirty(i)">+-+</td>
-                    <td *ngIf="!isRowDirty(i)"></td>
+                    <!-- <td *ngIf="isRowDirty(i)">+-+</td>
+                    <td *ngIf="!isRowDirty(i)"></td> -->
                   </ng-container>
                 </tr>
               </tbody>

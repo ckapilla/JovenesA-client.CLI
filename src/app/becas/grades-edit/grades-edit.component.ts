@@ -70,8 +70,53 @@ export class GradesEditComponent implements OnInit {
     });
   }
 
+  ngOnInit() {
+    console.log('gradesEdit ngOnInit');
+    this.subscribeForStudentGUIds2();
+    // AABBCCEE
+    this.subscribeForStudentNames();
+  }
+
+  fetchFilteredData() {
+    if (this.studentGUId && this.studentGUId !== undefined && this.studentGUId !== '0000') {
+      this.isLoading = true;
+      this.becaData.getStudentGradesForStudent(this.studentGUId).subscribe(
+        (data) => {
+          this.studentGradesData = data;
+        },
+        (err) => {
+          this.errorMessage = err;
+        },
+        () => {
+          this.studentGradesData.forEach((gradeEntryDataRow) => {
+            this.addGradeEntryFormRow(gradeEntryDataRow);
+          });
+
+          console.log('data loaded now set timeout for scroll');
+          setTimeout(() => {
+            this.scrollIntoView();
+          }, 0);
+          this.isLoading = false;
+        }
+      );
+    }
+  }
+
   gradeEntryFormRows(): UntypedFormArray {
     return <UntypedFormArray>this.myForm.get('gradeEntryFormRows');
+  }
+
+  addGradeEntryFormRow(gradeEntryDataRow: StudentGrades) {
+    console.log('addGradeEntryFormRow: add new row to form array');
+    const gradeEntryFormRow: UntypedFormGroup = this.createEmptyGradeEntryFormRow();
+
+    console.log('addGradeEntryFormRow: form row B4 is ', gradeEntryFormRow.controls);
+    this.updateGradeEntryFormRow(gradeEntryFormRow, gradeEntryDataRow);
+    console.log('addGradeEntryFormRow: form row after is ', gradeEntryFormRow.controls);
+
+    console.log('addGradeEntry: push new populated row intoFormArray');
+    this.gradeEntryFormRows().push(gradeEntryFormRow);
+    console.log('Form array populated:', this.gradeEntryFormRows);
   }
 
   createEmptyGradeEntryFormRow(): UntypedFormGroup {
@@ -92,34 +137,21 @@ export class GradesEditComponent implements OnInit {
   }
 
   updateGradeEntryFormRow(gradeEntryFormRow: UntypedFormGroup, gradeEntryDataRow: StudentGrades): void {
-    console.log('updateGradeEntryRow update existing row with actual data');
+    console.log('updateGradeEntryFormRow update existing row with actual data');
     console.log(JSON.stringify(gradeEntryDataRow));
     gradeEntryFormRow.patchValue({
       academicTermId: gradeEntryDataRow.academicTermId,
-      // gradesGivenDate: new TruncateDatePipe().transform('' + entryData.gradesGivenDate),
       gradesEntryEndDate: new TruncateDatePipe().transform('' + gradeEntryDataRow.gradesEntryEndDate),
+
+     /****
       gradesTurnedInDate: new TruncateDatePipe().transform('' + gradeEntryDataRow.gradesTurnedInDate),
       gradePointAvg: this.toFixedValue(gradeEntryDataRow.gradePointAvg),
       exception: gradeEntryDataRow.exception,
       confirmedById: gradeEntryDataRow.confirmedById,
       confirmedDate: new TruncateDatePipe().transform('' + gradeEntryDataRow.confirmedDate)
+      ***/
     });
     gradeEntryFormRow.markAsPristine();
-  }
-
-  addGradeEntryRow(gradeEntryDataRow: StudentGrades) {
-    const gradeEntryFormRow: UntypedFormGroup = this.createEmptyGradeEntryFormRow();
-
-    this.updateGradeEntryFormRow(gradeEntryFormRow, gradeEntryDataRow);
-    console.log('addGradeEntry: push new populated row intoFormArray');
-    this.gradeEntryFormRows().push(gradeEntryFormRow);
-  }
-
-  ngOnInit() {
-    console.log('gradesEdit ngOnInit');
-    this.subscribeForStudentGUIds2();
-    // AABBCCEE
-    this.subscribeForStudentNames();
   }
 
   subscribeForStudentNames() {
@@ -139,31 +171,6 @@ export class GradesEditComponent implements OnInit {
     });
   }
 
-  fetchFilteredData() {
-    if (this.studentGUId && this.studentGUId !== undefined && this.studentGUId !== '0000') {
-      this.isLoading = true;
-      this.becaData.getStudentGradesForStudent(this.studentGUId).subscribe(
-        (data) => {
-          this.studentGradesData = data;
-        },
-        (err) => {
-          this.errorMessage = err;
-        },
-        () => {
-          this.studentGradesData.forEach((gradeEntryDataRow) => {
-            this.addGradeEntryRow(gradeEntryDataRow);
-          });
-
-          console.log('data loaded now set timeout for scroll');
-          setTimeout(() => {
-            this.scrollIntoView();
-          }, 0);
-          this.isLoading = false;
-        }
-      );
-    }
-  }
-
   scrollIntoView() {
     const element = document.body;
     if (element) {
@@ -179,9 +186,11 @@ export class GradesEditComponent implements OnInit {
     console.log('navigating to ' + link);
     this.router.navigate(link);
   }
+
   isViewLinkHidden(imageSubmittedDate: any) {
     return (imageSubmittedDate === '1900-01-01T00:00:00');
   }
+
   saveAllChangedEntries() {
     console.log('studentGradesData length is ' + this.studentGradesData.length);
     for (let i = 0; i < this.studentGradesData.length; ++i) {

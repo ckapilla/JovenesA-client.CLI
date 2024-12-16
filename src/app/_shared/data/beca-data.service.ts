@@ -47,7 +47,7 @@ export class BecaDataService {
   }
 
   public updateBecaPayments(becaPayment: BecaPayment): Observable<any> {
-    const url = this.WebApiPrefix + 'becas/' + 'payments/' + becaPayment.pcsid;
+    const url = this.WebApiPrefix + 'becas/' + 'payments/' + becaPayment.pcsId;
     let body = JSON.stringify({ becaPayment }); //
     // strip outer 'studentGradeEntry' name
 

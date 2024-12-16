@@ -46,12 +46,12 @@
                 {{ qr.studentGUId}}
               </td> -->
               <td>{{ i+1 }}</td>
-              <td (click)="editQRDetails(qr.studentGUId, qr.studentName)" class="link">
-                Edit
+              <td (click)="gotoStudent(qr.studentGUId, qr.studentName)" class="link">
+                Profile
               </td>
               <td
                 class="link"
-                (click)="gotoStudent(qr.studentGUId, qr.studentName)"
+                (click)="editQRDetails(qr.studentGUId, qr.studentName)"
                 [class.link]="true"
                 [class.red]="qr.reviewedStatusId==2087"
                 [class.alert-success]="qr.highlightStatusId==2106"
