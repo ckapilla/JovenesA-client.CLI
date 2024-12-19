@@ -51,13 +51,13 @@
                 <th app-sortable-column="studentName" sort-direction="asc" (onSortColumn)="onSortColumn($event)">
                   Student
                 </th>
-                <th app-sortable-column="pcsId" (onSortColumn)="onSortColumn($event)">PCSID</th>
-                <th app-sortable-column="mentorReportStatus" (onSortColumn)="onSortColumn($event)">MR</th>
-                <th app-sortable-column="studentReportStatus" (onSortColumn)="onSortColumn($event)">SSR</th>
-                <th app-sortable-column="inscriptionReportStatus" (onSortColumn)="onSortColumn($event)">IR</th>
-                <th app-sortable-column="gradeReportStatus" (onSortColumn)="onSortColumn($event)">GR</th>
+                <th app-sortable-column="pcsCode" (onSortColumn)="onSortColumn($event)">PCS Code</th>
+                <th app-sortable-column="mentorReportStatus" (onSortColumn)="onSortColumn($event)" title="Mentor Report">MR</th>
+                <th app-sortable-column="studentReportStatus" (onSortColumn)="onSortColumn($event)"  title="Student Self Report">SSR</th>
+                <th app-sortable-column="inscriptionReportStatus" (onSortColumn)="onSortColumn($event)" title="Inscription Reports">IR</th>
+                <th app-sortable-column="gradeReportStatus" (onSortColumn)="onSortColumn($event)" title="Grade Reports"  >GR</th>
                 <th app-sortable-column="paymentStatus" (onSortColumn)="onSortColumn($event)">Status</th>
-                <th app-sortable-column="requestedBeca" (onSortColumn)="onSortColumn($event)">Beca Requested</th>
+                <th app-sortable-column="requestedBeca" (onSortColumn)="onSortColumn($event)">Amount</th>
                 <th app-sortable-column="approvedBy" (onSortColumn)="onSortColumn($event)">Approved By</th>
                 <th app-sortable-column="comment" (onSortColumn)="onSortColumn($event)">Comment</th>
 
@@ -78,7 +78,7 @@
                   {{ bp.studentName }}
                 </td>
                 <td>
-                  {{ bp.pcsId }}
+                  {{ bp.pcsCode }}
                 </td>
                 <td>
                   <span style="text-align: center; white-space: nowrap">
@@ -107,7 +107,7 @@
                   {{ bp.paymentStatus }}
                 </td>
                 <td>
-                  {{ bp.requestedBeca }}
+                  ${{ bp.requestedBeca }}
                 </td>
 
                 <td>

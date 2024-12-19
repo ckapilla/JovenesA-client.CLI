@@ -34,15 +34,10 @@ export class PaymentsEditComponent implements OnInit {
   studentName: string;
   staticUrlPrefix: string;
 
-  badgeColors = [
-    'red',
-    'grey',
-    'green'
-  ];
-
-  paymentStatuses: SELECTITEM[] = [ { value: '2', label: 'On Hold' },  { value: '0', label: '--' }, { value: '1', label:'Requested' } ]; // , { value: '3', viewValue: 'Cancelled' }
-
-
+  paymentStatuses: SELECTITEM[] = [
+    { value: '2179', label: 'Pending' },
+    { value: '2180', label: 'Payment OK' },
+    { value: '2181', label:'On Hold' } ]; // , { value: '3', viewValue: 'Cancelled' }
 
   admins$: Observable<SELECTITEM[]> = this.miscData.getAdmins$().pipe(
     tap((admins) => {
@@ -137,7 +132,7 @@ export class PaymentsEditComponent implements OnInit {
     return this._fb.group({
 
   becaPaymentId: { value: '', disabled: true },
-  pcsId: { value: '', disabled: true },
+  pcsCode: { value: '', disabled: true },
   studentId: { value: '', disabled: false },
   studentGUId: { value: '', disabled: false },
   mentorReportStatusId: { value: '', disabled: false },
@@ -145,10 +140,9 @@ export class PaymentsEditComponent implements OnInit {
   inscriptionReportStatusId: { value: '', disabled: false },
   gradeReportStatusId: { value: '', disabled: false },
   paymentStatusId: { value: '', disabled: false },
-  // defaultBeca: { value: '', disabled: true },
   requestedBeca: { value: '2000', disabled: false },
   approvedById: { value: '', disabled: false },
-  // approvedByDateTime: { value: '', disabled: false },
+  // approvedDateTime: { value: '', disabled: false },
   comment: { value: '', disabled: false },
     });
   }
@@ -158,7 +152,7 @@ export class PaymentsEditComponent implements OnInit {
     console.log(JSON.stringify(becaPaymentDataRow));
     becaPaymentFormRow.patchValue({
   becaPaymentId: becaPaymentDataRow.becaPaymentId,
-  pcsId: becaPaymentDataRow.pcsId,
+  pcsCode: becaPaymentDataRow.pcsCode,
   studentId: becaPaymentDataRow.studentId,
   studentGUId: becaPaymentDataRow.studentGUId,
   mentorReportStatusId: becaPaymentDataRow.mentorReportStatusId,
@@ -166,10 +160,9 @@ export class PaymentsEditComponent implements OnInit {
   inscriptionReportStatusId: becaPaymentDataRow.inscriptionReportStatusId,
   gradeReportStatusId: becaPaymentDataRow.gradeReportStatusId,
   paymentStatusId: becaPaymentDataRow.paymentStatusId,
-  // defaultBeca: becaPaymentDataRow.defaultBeca,
   requestedBeca:  becaPaymentDataRow.requestedBeca,
   approvedById: becaPaymentDataRow.approvedById,
-  // approvedByDateTime: new TruncateDatePipe().transform('' + becaPaymentDataRow.approvedByDateTime),
+  // approvedDateTime: new TruncateDatePipe().transform('' + becaPaymentDataRow.approvedDateTime),
   comment: becaPaymentDataRow.comment
   });
     becaPaymentFormRow.markAsPristine();
@@ -246,21 +239,21 @@ export class PaymentsEditComponent implements OnInit {
     this.errorMessage = '';
     console.log('row dirty value is ' + this.becaPaymentFormRows().controls[i].dirty);
     if (this.becaPaymentFormRows().controls[i].dirty) {
-      this.becaPaymentFormRows().controls[i].get('confirmedDate').enable();
+      // this.becaPaymentFormRows().controls[i].get('approvedDateTime').enable();
       this.retrieveFormValuesForRow(i);
       this.becaData.updateBecaPayments(this.becaPaymentsData[i]).subscribe(
-        (gradeRowData) => {
+        (paymentRowData) => {
           console.log('subscribe result in updateBecaPaymentData');
-          console.log(JSON.stringify(gradeRowData));
+          console.log(JSON.stringify(paymentRowData));
           // need timeout to avoid "Expression has changed error"
           window.setTimeout(() => {
             this.successMessage = 'Changes were saved successfully.';
           }, 0);
           const currRowFormGroup = this.becaPaymentFormRows().controls[i] as UntypedFormGroup;
           // this fails for some reason, and isn't needed because the update won't change any of these values
-          // this.updateBecaPaymentDataRow(currRowFormGroup, gradeRowData);
+          // this.updateBecaPaymentDataRow(currRowFormGroup, paymentRowData);
           currRowFormGroup.markAsPristine();
-          this.becaPaymentFormRows().controls[i].get('confirmedDate').disable();
+          // this.becaPaymentFormRows().controls[i].get('confirmedDate').disable();
           // this.successMessage = 'Changes were saved successfully.';
           this.isLoading = false;
           window.scrollTo(0, 0);
@@ -270,7 +263,7 @@ export class PaymentsEditComponent implements OnInit {
           }, 3000);
         },
         () => {
-          this.errorMessage = 'Confirmed By must be selected. Also Turned-in Date be filled in';
+         // this.errorMessage = 'Confirmed By must be selected. Also Turned-in Date be filled in';
           this.isLoading = false;
         }
       );
@@ -330,7 +323,7 @@ export class PaymentsEditComponent implements OnInit {
 
       gradeEntryRow.patchValue({
         confirmedById: null,
-        confirmedDate: null
+        approvedDateTime: null
       });
     } else {
       const d = new Date();
@@ -338,7 +331,7 @@ export class PaymentsEditComponent implements OnInit {
       console.log(strDate);
       gradeEntryRow.patchValue({
         confirmedById: adminId,
-        confirmedDate: strDate
+        approvedDateTime: strDate
       });
 
     }

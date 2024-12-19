@@ -109,6 +109,7 @@ import { WHSE_SU_Component } from '../_shared/components/whse-su/whse-su.compone
         WHSE_Daily_MR_Component,
         WHSE_Daily_SSR_Component,
         WHSE_QR_Component,
+
     ],
     exports: [AdminsStudentMRsComponent, AdminsStudentQRsComponent, SponsorGroupsComponent]
 })

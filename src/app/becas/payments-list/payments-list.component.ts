@@ -40,8 +40,6 @@ export class PaymentsListComponent implements OnInit {
   private subscription: Subscription;
 // #####
    testNameVisibility$ = this.store.select<boolean>(UIState.getTestNamesVisibility);
-   readonly contactYears: SELECTITEM[] = constants.contactYears;
-   readonly contactMonths: SELECTITEM[] = constants.months;
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -52,14 +50,14 @@ export class PaymentsListComponent implements OnInit {
     public session: SessionService
   ) {
     console.log('beca payments-list constructor');
-    this.years = constants.contactYears;
+    this.years = constants.paymentYears;
     this.months = constants.months;
     this.reviewedStatuses = constants.becaPaymentStatuses;
 
     // this.highlightStatuses = constants.highlightStatuses;
 
-    this.selectedYear = '' + constants.currentContactYear; // '' + today.getFullYear(); //
-    this.selectedMonth = '0'; // + today.getMonth() + 1;// '5';
+    this.selectedYear = '' + constants.currentPaymentYear; // '' + today.getFullYear(); //
+    this.selectedMonth = '1'; // + today.getMonth() + 1;// '5';
 
     this.selectedReviewedStatus = '0'; // this.reviewedStatuses[0].value;
     // this.selectedHighlightStatus = this.highlightStatuses[0].value;
@@ -79,11 +77,13 @@ export class PaymentsListComponent implements OnInit {
 
 
   subscribeForselectedYearMonth() {
-  //   this.subscription = this.selectedQRPeriod$.subscribe((message) => {
-  //     this.selectedQRPeriod = message;
-  //     console.log('************NGXS: BECA new selectedQRPeriod received' + this.selectedQRPeriod);
-  //     this.fetchFilteredData();
-  //   });
+    // this.subscription = this.selectedQRPeriod$.subscribe((message) => {
+    //   this.selectedQRPeriod = message;
+    //   console.log('************NGXS: BECA new selectedPaymentMont received' + this.selectedQRPeriod);
+    //   this.fetchFilteredData();
+    // });
+    // need to subscribe to the selectedYear and selectedMonth
+    this.fetchFilteredData();
   }
 
   scrollIntoView() {

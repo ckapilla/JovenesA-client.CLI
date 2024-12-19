@@ -12,6 +12,7 @@ import { InscriptionUploaderComponent } from './components/inscription-uploader/
 import { TituloUploaderComponent } from './components/titulo-uploader/titulo-uploader.component';
 
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { ThreeWayCheckboxComponent } from '../_shared/components/three-way-checkbox/three-way-checkbox.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { FollowUpRequestsListComponent } from './components/follow-up-requests-list/follow-up-requests-list.component';
 import { LoadingContainerComponent } from './components/loading-container.component';
@@ -108,7 +109,8 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     InscriptionUploaderComponent,
     TituloUploaderComponent,
     StudentHeader2Component,
-    AlertComponent
+    AlertComponent,
+    ThreeWayCheckboxComponent,
   ],
   exports: [
     CommonModule,
@@ -159,7 +161,8 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html-pipe';
     TituloUploaderComponent,
     StudentHeader2Component,
     HighchartsChartModule,
-    AlertComponent
+    AlertComponent,
+    ThreeWayCheckboxComponent,
 
   ]
 })

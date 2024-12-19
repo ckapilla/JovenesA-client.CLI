@@ -1,8 +1,8 @@
 export class BecaPaymentDTO {
   becaPaymentId?: number;
+  pcsCode?: number;
   pcsYear?: number;
   pcsMonthNum?: number;
-  pcsId?: number;
   studentId?: number;
   studentGUId?: string;
   studentName?: string;
@@ -11,12 +11,12 @@ export class BecaPaymentDTO {
   studentReportStatus?: string;
   inscriptionReportStatus?: string;
   gradeReportStatus?: string;
-  approvedBy?: string;
-
+  paymentStatusId?: number;
   paymentStatus?: string;
   defaultBeca?: number;
   requestedBeca?: number;
   approvedById?: number;
-  approvedByDateTime?: Date;
+  approvedBy?: string;
+  // approvedByDateTime?: Date;
   comment?: string;
 }

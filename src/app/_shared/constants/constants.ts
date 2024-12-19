@@ -8,6 +8,10 @@ const ssrDateRange: string = 'NODATEYET';
 const joinedYears: SELECTITEM[] = [];
 const gradYears: SELECTITEM[] = [];
 const contactYears: SELECTITEM[] = [];
+const currentPaymentYear: number = 2025;
+const paymentYears: SELECTITEM[] = [
+  { value: '2025', label: '2025' },
+];
 const pastGradYears: SELECTITEM[] = [
   { value: '2006', label: '2006' },
   { value: '2007', label: '2007' },
@@ -130,7 +134,9 @@ export const constants = {
   gradYears,
   pastGradYears,
   contactYears,
+  paymentYears,
   ssrDateRange,
+  currentPaymentYear,
   currentContactYear,
   currentContactMonth,
   months,

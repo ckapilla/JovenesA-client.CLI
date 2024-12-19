@@ -1,0 +1,12 @@
+
+.custom-checkbox-image {
+  width: 20px;
+  vertical-align: middle;
+  margin-top: 2px;
+  cursor: pointer;
+}
+
+.custom-control {
+  margin-left: 0;
+  padding-left: 0;
+}

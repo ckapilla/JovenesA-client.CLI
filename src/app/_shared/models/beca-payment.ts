@@ -1,6 +1,8 @@
 export class BecaPayment {
   becaPaymentId?: number;
-  pcsId?: number;
+  pcsCode?: number;
+  pcsYear?: number;
+  pcsMonthNum?: number;
   studentId?: number;
   studentGUId?: string;
   mentorReportStatusId?: number;

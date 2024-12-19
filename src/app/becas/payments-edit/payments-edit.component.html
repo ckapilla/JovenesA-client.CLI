@@ -1,6 +1,6 @@
 <div class="card bg-primary">
   <div class="card-header text-white" style="font-size: large">
-    <span>Edit Grade Status for {{ studentName }}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span>Payment Status for {{ studentName }}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   </div>
 
   <div class="card-body bg-white">
@@ -16,32 +16,30 @@
           <form [formGroup]="myForm">
             <p>
               <button
-                      [disabled]="myForm.pristine"
-                      type="submit"
-                      class="btn btn-primary"
-                      (click)="saveAllChangedEntries()">
+                [disabled]="myForm.pristine"
+                type="button"
+                class="btn btn-primary"
+                (click)="saveAllChangedEntries()">
                 Save
               </button>
-              <button [disabled]="!(myForm.dirty && myForm.touched)"
-                      type="cancel"
-                      class="btn btn-primary"
-                      (click)="resetAllChangedEntries()">Cancel</button>
-              <button class="btn btn-primary" (click)="location.back()">Back</button>
+              <button
+              type="button"
+                class="btn btn-primary"
+                (click)="location.back()">
+                Back
+              </button>
             </p>
             <table class="table-sm table-striped">
               <thead>
                 <tr>
                   <td></td>
-                  <!-- <th></th> -->
-                  <!-- <th app-sortable-column="studentName" sort-direFstudentIDion="asc" (onSortColumn)="onSortColumn($event)">Student
-                </th>-->
                   <th>PCSID</th>
                   <th>MR</th>
                   <th>SSR</th>
                   <th>IR</th>
                   <th>GR</th>
                   <th>Payment Status</th>
-                  <th>Beca Requested</th>
+                  <th>Amount</th>
                   <th>Approved By</th>
                   <th>Comment</th>
                 </tr>
@@ -52,26 +50,27 @@
                     <td>
                       {{ i+1 }}
                     </td>
-                    <td>{{ bp.pcid }}</td>
+                    <td>{{ bp.pcsCode }}</td>
+
                     <td>
                       <span style="text-align: center; white-space: nowrap">
-                        <img src="/assets/images/{{ badgeColors[bp.mentorReportStatusId] }}.jpg" width="20" />
+                        <app-three-way-checkbox [(value)]="bp.mentorReportStatusId"></app-three-way-checkbox>
                       </span>
                     </td>
                     <td>
                       <span style="text-align: center; white-space: nowrap">
-                        <img src="/assets/images/{{  badgeColors[bp.studentReportStatusId] }}.jpg" width="20" />
+                        <app-three-way-checkbox [(value)]="bp.studentReportStatusId"></app-three-way-checkbox>
                       </span>
                     </td>
 
                     <td>
                       <span style="text-align: center; white-space: nowrap">
-                        <img src="/assets/images/{{ badgeColors[bp.inscriptionReportStatusId] }}.jpg" width="20" />
+                        <app-three-way-checkbox [(value)]="bp.inscriptionReportStatusId"></app-three-way-checkbox>
                       </span>
                     </td>
                     <td>
                       <span style="text-align: center; white-space: nowrap">
-                        <img src="/assets/images/{{  badgeColors[0] }}.jpg" width="20" />
+                        <app-three-way-checkbox [(value)]="bp.gradeReportStatusId"></app-three-way-checkbox>
                       </span>
                     </td>
 
@@ -80,7 +79,7 @@
                               id="paymentStatusId"
                               formControlName="paymentStatusId"
                               class="form-control form-control-sm"
-                              style="width: 100px;">
+                              style="width: 120px;">
                         <option *ngFor="let status of paymentStatuses" [value]="status.value">{{ status.label }}</option>
                       </select>
                     </td>
@@ -89,8 +88,8 @@
                     <label style="display: inline-block; margin-right: 3px;">$</label>
                      <input formControlName="requestedBeca"
                       class="form-control form-control-sm" type="text"
-                      style ="width: 70px; display: inline-block;"
-                      (dblclick)="onToggleRequestedBeca()" />
+                      style ="width: 50px; display: inline-block;"
+                       />
                     </td>
                     <td>
                       <div *ngIf="admins$ | async as admins">
@@ -98,6 +97,7 @@
                                 id="approvedById"
                                 formControlName="approvedById"
                                 class="form-control form-control-sm"
+                                style="width: 75px;"
                                 (change)="setApprovedBy(i, $event.target.value)">
                           <option [value]="null">[Not Approved]</option>
                           <option *ngFor="let admin of admins" [value]="admin.value">{{ admin.label }}</option>
