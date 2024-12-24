@@ -16,50 +16,16 @@
 
     <ng-container *ngSwitchCase="false">
       <div *ngIf="!errorMessage">
-        <div *ngIf="inReportProcessingPeriod && !reportSubmitted;else elseBlock" class="add-report-container">
-          <button class="save btn mr-0 mt-3 mt-md-1" (click)="studentSelfReportAdd()" >
+        <!-- if we are in a processing period and no report for that period, Show Add button-->
+        <!-- <div *ngIf="inReportProcessingPeriod && !reportSubmittedForLatestPeriod;else elseBlock" class="add-report-container"> -->
+          <div *ngIf="showAddButton();else elseBlock" class="add-report-container">
+          <button class="save btn mr-0 mt-3 mt-md-1" (click)="studentSelfReportAdd()">
             Agregar nuevo reporte
           </button>
         </div>
-        <ng-template #elseBlock><h4 class="mt-2">El próximo período para presentar tu nuevo informe trimestral comenzará el 1 de {{ firstMonthInNextQuarter }}.</h4> </ng-template>
-
-        <p class="subtitle text-center mt-4 mb-3">Reportes anteriores</p>
-
-        <div class="table-scroll">
-          <table>
-            <tbody>
-              <tr *ngFor="let i of studentSelfReports; index as position">
-                <td class="report-table-cell">
-                  <div class="d-flex flex-column">
-                    <div class="d-block m-0">
-                      <div class="report-date">
-                        <span class="mr-4 mr-md-5">Fecha: <p class="d-inline-block m-0 data">{{ i.reportDateTime |
-                            date:'dd/MMM/yyyy' }}</p></span>
-                        <span>Periodo: <p class="d-inline-block m-0 data">{{ i.reportYear }} - {{ i.reportPeriod }}</p>
-                          </span>
-                      </div>
-                      <div class="report-text" id="report-container">
-                        <div class="d-inline">{{ i.reportShown }}</div>
-                        <div class="d-inline-block">{{ i.ellipsis }}</div>
-                      </div>
-                    </div>
-                    <div class="d-flex flex-column justify-content-end">
-                      <div class="d-flex justify-content-center">
-                        <button type="button" *ngIf="position == 0 && isInCurrentReportDateRange(i.reportDateTime)"
-                          (click)="selfReportEdit(i.studentSelfReportId, i.studentGUId, i.studentName)"
-                          class="btn edit mt-2 mt-md-3 mr-0">
-                          Editar
-                        </button>
-                      </div>
-                      <a (click)="readMore(position)" id="read-more-link" [innerHTML]="i.link"
-                        class="read-more d-flex align-self-end  mt-1  mt-md-2"></a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <ng-template #elseBlock>
+          <h4 class="mt-2">El próximo período para presentar tu nuevo informe trimestral comenzará el 1 de enero a las 18:00.</h4>
+        </ng-template>
       </div>
     </ng-container>
   </div>

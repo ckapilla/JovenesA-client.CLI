@@ -33,7 +33,7 @@ export class StudentsSelfReportsComponent implements OnInit {
   ssrEditDateStart = '';
   ssrEditDateStop = '';
   inReportProcessingPeriod = false; // default off for safety
-  reportSubmitted = false; // default off for safety
+  reportSubmittedForLatestPeriod = false; // default off
   firstMonthInNextQuarter = '--';
   studentGUId: string;
 
@@ -83,8 +83,6 @@ export class StudentsSelfReportsComponent implements OnInit {
       this.inReportProcessingPeriod = false;
     }
 
-      // REMP TEMP TEMP
-    this.inReportProcessingPeriod = true;
   }
 
 
@@ -205,22 +203,39 @@ export class StudentsSelfReportsComponent implements OnInit {
     this.router.navigate(link);
   }
 
-  isInCurrentReportDateRange(rptDate: string) {
+  reportDateIsInDateRange(rptDate: string) {
 
     console.log('~~~~~~~~~~~~~~~~~check if in date range~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
-    console.log('current ReportDate: ' + rptDate);
+    console.log('indexed rptDate: ' + rptDate);
     rptDate = rptDate.substr(0,4) + rptDate.substr(5,2) + rptDate.substr(8,2);
-    rptDate = '20250202';
-    console.log('current tweaked ReportDate: ' + rptDate);
+    console.log('reformatted rptDate: ' + rptDate);
     console.log('ssrEditDateStart: ' + this.ssrEditDateStart);
     console.log('ssrEditDateStop: ' + this.ssrEditDateStop);
-    console.log('this.reportSubmitted =') ;
-    console.log(rptDate >= this.ssrEditDateStart); //  && rptDate <= this.ssrEditDateStop);
-    return this.reportSubmitted =(rptDate >= this.ssrEditDateStart );
-    }
-  ngAfterContentChecked(): void {
-    this.changeDetector.detectChanges();
+    console.log('indexed rptDate > startDate and <= EndDate =') ;
+    console.log(rptDate >= this.ssrEditDateStart  && rptDate <= this.ssrEditDateStop);
+
+    return this.reportSubmittedForLatestPeriod =(rptDate >= this.ssrEditDateStart && rptDate <= this.ssrEditDateStop);
+
   }
+
+  currentDateIsInDateRange() {
+    var strToday = formatDate(new Date(), 'yyyyMMdd', 'en-us');
+    return this.reportSubmittedForLatestPeriod = (strToday >= this.ssrEditDateStart && strToday <= this.ssrEditDateStop);
+  }
+
+  showEditButton(rptDate: string) {
+    return this.inReportProcessingPeriod && !this.reportDateIsInDateRange(rptDate);
+  }
+
+  showAddButton() {
+    console.log('showAddButton inReportProcessingPeriod = ' + this.inReportProcessingPeriod);
+    console.log('showAddButton reportSubmittedForLatestPeriod = ' + this.reportSubmittedForLatestPeriod);
+    return this.inReportProcessingPeriod && !this.reportSubmittedForLatestPeriod
+  }
+
+  // ngAfterContentChecked(): void {
+  //   this.changeDetector.detectChanges();
+  // }
 
   readMore(position: number) {
 
