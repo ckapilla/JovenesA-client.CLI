@@ -27,7 +27,7 @@ export class InscriptionsEntryComponent implements OnInit {
   studentDTO: StudentDTO;
   inscriptionsData: Inscription[];
   isLoading: boolean;
-  errorMessage: string;
+  errorMessage: string;estar
   successMessage: string;
   years: SELECTITEM[];
   months: SELECTITEM[];
@@ -38,7 +38,7 @@ export class InscriptionsEntryComponent implements OnInit {
   inInscriptionsProcessingPeriod: boolean;
   staticUrlPrefix: string;
 
-  bExtendInscriptionsEntryPeriod = true;
+  bExtendInscriptionsEntryPeriod = false;
   displayTestNames: boolean;
   testNameVisibility$ = this.store.select<boolean>(UIState.getTestNamesVisibility);
   currentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
@@ -146,7 +146,7 @@ export class InscriptionsEntryComponent implements OnInit {
       console.log("in range");
       return true;
     } else {
-      if (this.bExtendInscriptionsEntryPeriod || this.displayTestNames) {
+      if (this.bExtendInscriptionsEntryPeriod ) { //|| this.displayTestNames) {
         console.log("not in range, but extended");
         if (this.displayTestNames) {
           console.log("because displayTestNames is true");

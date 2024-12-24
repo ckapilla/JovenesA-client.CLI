@@ -151,7 +151,7 @@ export class GradeEntryComponent implements OnInit {
       console.log("in range");
       return true;
     } else {
-        if (this.bExtendGradesEntryPeriod || this.displayTestNames) {
+        if (this.bExtendGradesEntryPeriod  ) { //|| this.displayTestNames) {
           console.log("not in range, but extended");
           if (this.displayTestNames) {
             console.log("because displayTestNames is true");

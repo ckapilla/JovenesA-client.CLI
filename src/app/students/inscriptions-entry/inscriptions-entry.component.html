@@ -6,8 +6,6 @@
                *ngIf="successAlert"></app-alert>
     <app-alert (didClose)="closeAlert($event)" [isShown]="errorAlert" [type]="'error'" *ngIf="errorAlert"></app-alert>
 
-import swal
-
     <div *ngIf="inInscriptionsProcessingPeriod">
 
       <div [ngSwitch]="isLoading">
@@ -358,6 +356,6 @@ import swal
 </div>
 <ng-template #outOfRange>
 
-  <h3 style="padding: 2em;">La entrada de inscripciones no está disponible para ti en este momento, estará disponible en una fecha posterior.</h3>
+  <h3 style="padding: 2em;">La entrada de inscripciones estará disponible 1 de enero.</h3>
 
 </ng-template>

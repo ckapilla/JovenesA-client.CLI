@@ -84,7 +84,7 @@ export class SelfReportsAddComponent implements OnInit {
 
     this.selfReport.reportYear = +this.selectedQRPeriod.substr(0, 4);
     // TEMP TEMP TEMP
-    this.selfReport.reportPeriod = 3; // +this.selectedQRPeriod.substr(5, 1);
+    this.selfReport.reportPeriod = 4; // +this.selectedQRPeriod.substr(5, 1);
     console.log('year: ' + this.selfReport.reportYear + ' period: ' + this.selfReport.reportPeriod);
     this.selfReport.narrative_Spanish = '';
     // this.periodo = this.selfReport.reportPeriod;
@@ -108,11 +108,11 @@ export class SelfReportsAddComponent implements OnInit {
 
   onSubmit() {
     console.log('Hi from self report Submit');
-console.log('1');
+
     if (this.submitted) {
       return false; // prevent dups
     }
-    console.log('2')
+
     if (this.myForm.invalid) {
       // let i = 0;
       this.errorMessage = '';
@@ -120,9 +120,9 @@ console.log('1');
       return false;
     }
     this.submitted = true; // need to set guard immediately to prevent dups
-    console.log('4')
+
     this.selfReport.narrative_Spanish = this.myForm.controls.narrative_Spanish.value;
-    console.log('5')
+
     this.ssrData.postStudentSelfReport(this.selfReport).subscribe(
 
       (student) => {

@@ -34,7 +34,7 @@ export class StudentsSelfReportsComponent implements OnInit {
   ssrEditDateStop = '';
   inReportProcessingPeriod = false; // default off for safety
   reportSubmitted = false; // default off for safety
-  lastMonthInQuarter = '--';
+  firstMonthInNextQuarter = '--';
   studentGUId: string;
 
   currentStudentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
@@ -93,25 +93,25 @@ export class StudentsSelfReportsComponent implements OnInit {
     let month = strToday.substring(4, 6);
     //console.log('month ' + month)
     switch (month) {
-      case '03':
-      case '04':
-      case '05':
-        this.lastMonthInQuarter = 'junio';
-        break;
-      case '06':
-      case '07':
-      case '08':
-        this.lastMonthInQuarter = 'septiembre';
-        break;
-      case '09':
-      case '10':
-      case '11':
-        this.lastMonthInQuarter = 'diciembre';
-        break;
-      case '12':
       case '01':
       case '02':
-        this.lastMonthInQuarter = 'marzo';
+      case '03':
+        this.firstMonthInNextQuarter = 'febrero';
+        break;
+      case '04':
+      case '05':
+      case '06':
+        this.firstMonthInNextQuarter = 'julio';
+        break;
+      case '07':
+      case '08':
+      case '09':
+        this.firstMonthInNextQuarter = 'octubre';
+        break;
+      case '10':
+      case '11':
+      case '12':
+        this.firstMonthInNextQuarter = 'enero';
         break;
     }
   }
@@ -140,28 +140,28 @@ export class StudentsSelfReportsComponent implements OnInit {
   //   });
   // }
 
-  fetchSponsorGroup() {
-    //console.log('>>>>fetching Sponsor greoup for ' + this.studentGUId);
-    this.studentData.getSponsorGroupForStudent(this.studentGUId).subscribe(
-      (data) => {
-        this.sponsorGroup = data;
-        //console.log('got SponsorGroupForStudent');
-        //console.log(this.sponsorGroup);
-      },
-      (err) => console.error('Subscribe error: ' + err),
-      () => {
-        //console.log('sponsors-for-student-grid loaded ');
-        if (this.sponsorGroup) {
-          this.sponsorGroupId = this.sponsorGroup.sponsorGroupId;
-          this.fetchSelfReports();
-        } else {
-          this.errorMessage = 'Something went wrong';
-          // this.onNoAssignedStudents.emit();
-          this.isLoading = false;
-        }
-      }
-    );
-  }
+  // fetchSponsorGroup() {
+  //   //console.log('>>>>fetching Sponsor greoup for ' + this.studentGUId);
+  //   this.studentData.getSponsorGroupForStudent(this.studentGUId).subscribe(
+  //     (data) => {
+  //       this.sponsorGroup = data;
+  //       //console.log('got SponsorGroupForStudent');
+  //       //console.log(this.sponsorGroup);
+  //     },
+  //     (err) => console.error('Subscribe error: ' + err),
+  //     () => {
+  //       //console.log('sponsors-for-student-grid loaded ');
+  //       if (this.sponsorGroup) {
+  //         this.sponsorGroupId = this.sponsorGroup.sponsorGroupId;
+  //         this.fetchSelfReports();
+  //       } else {
+  //         this.errorMessage = 'Something went wrong';
+  //         // this.onNoAssignedStudents.emit();
+  //         this.isLoading = false;
+  //       }
+  //     }
+  //   );
+  // }
 
   // possible TODO: get full text only for each report and truncate here
   // OR fetch truncated text and full text in one pass
@@ -207,14 +207,16 @@ export class StudentsSelfReportsComponent implements OnInit {
 
   isInCurrentReportDateRange(rptDate: string) {
 
-    //console.log('~~~~~~~~~~~~~~~~~check if in date range~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
-    //console.log('current ReportDate: ' + rptDate);
+    console.log('~~~~~~~~~~~~~~~~~check if in date range~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+    console.log('current ReportDate: ' + rptDate);
     rptDate = rptDate.substr(0,4) + rptDate.substr(5,2) + rptDate.substr(8,2);
-    //rptDate = '20231101';
-    //console.log('current tweaked ReportDate: ' + rptDate);
-    //console.log('ssrEditDateStart: ' + this.ssrEditDateStart);
-    //console.log('ssrEditDateStop: ' + this.ssrEditDateStop);
-    return this.reportSubmitted =(rptDate >= this.ssrEditDateStart  && rptDate <= this.ssrEditDateStop);
+    rptDate = '20250202';
+    console.log('current tweaked ReportDate: ' + rptDate);
+    console.log('ssrEditDateStart: ' + this.ssrEditDateStart);
+    console.log('ssrEditDateStop: ' + this.ssrEditDateStop);
+    console.log('this.reportSubmitted =') ;
+    console.log(rptDate >= this.ssrEditDateStart); //  && rptDate <= this.ssrEditDateStop);
+    return this.reportSubmitted =(rptDate >= this.ssrEditDateStart );
     }
   ngAfterContentChecked(): void {
     this.changeDetector.detectChanges();
