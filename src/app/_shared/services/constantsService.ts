@@ -95,6 +95,8 @@ export class ConstantsService extends BaseDataService {
   }
 
   public generateGradesProcessingPeriods(){
+console.log('%%%%%GENERATE GradesProcessing PERIODS%%%');
+
     this.gpPeriods$.pipe(toArray()).subscribe(
       (data) => {
         constants.gradesProcessingPeriods = data[0];  // our data is in the first and only element of array
@@ -172,30 +174,32 @@ export class ConstantsService extends BaseDataService {
 
 
   public generateQRPeriods() {
-    const launchDate = 26;
-    console.log('launchDate = ' + launchDate);
+    const launchDate = 1;
+    // console.log('launchDate = ' + launchDate);
     const now = new Date();
     console.log('%%%%%%%%%%GENERATE QR PERIODS%%%%%%');
     console.log(now);
     let thisYear  = now.getFullYear();
     let thisMonth = now.getMonth() + 1; // since we don't want zero based here
     const thisDate = now.getDate(); // not zero based
-    if (thisMonth <=2 || (thisMonth  === 3 && thisDate < launchDate)) {
+    if (thisMonth <=2 || (thisMonth  === 3 && thisDate < launchDate)) {  // never true with launchDate = 1
       thisYear--;
     }
-    if (
-      (thisMonth  === 3 && thisDate >= launchDate)
-      || (thisMonth  === 6 && thisDate >= launchDate)
-      || (thisMonth  === 9 && thisDate >= launchDate)
-      || (thisMonth  === 12 && thisDate >= launchDate)
-    ) {
-      thisMonth++;
-    }
-    let monthIndex = (thisMonth % 12) + 1;
+
+    /* 1/1/2025 drop code that adjusts month for last days of quarter */
+    // if (
+    //   (thisMonth  === 3 && thisDate >= launchDate)
+    //   || (thisMonth  === 6 && thisDate >= launchDate)
+    //   || (thisMonth  === 9 && thisDate >= launchDate)
+    //   || (thisMonth  === 12 && thisDate >= launchDate)
+    // ) {
+    //   thisMonth++;
+    // }
+    let monthIndex = (thisMonth % 12);
 
 
 
-    console.log('adjusted monthIndex ' + monthIndex );
+    console.log('monthIndex ' + monthIndex );
     //////////////_,J,F,M,A,M,J,J,A,S,O,N,D
     const qtrs = [0,4,4,4,1,1,1,2,2,2,3,3,3];
     let targetQtr = qtrs[monthIndex];
@@ -203,19 +207,18 @@ export class ConstantsService extends BaseDataService {
     console.log('month index into qtrs array: ' + monthIndex);
     console.log('targetQtr: '  + targetQtr);
 
-    // override for Viewing list of student reports Dec 2024;
-    targetQtr=3;
-
     let elem: C_SELECTITEM =  { value: '', label: '' };
     const NUMQTRS = 4;
     const initYear = 2021;
     const initQtr = 3;
     let maxQtrs = NUMQTRS;
-    if (thisMonth % 3 === 0) { // if last days of quarter bump  treat as if it is next quarter
-      console.log('last month of quarter');
-      targetQtr = (thisDate >=launchDate) ?  qtrs[thisMonth + 1] : targetQtr;
-      console.log('targetQtr adj: '  + targetQtr);
-    }
+
+       /* 1/1/2025 drop code that adjusts month for last days of quarter */
+    // if (thisMonth % 3 === 0) { // if last days of quarter bump  treat as if it is next quarter
+    //   console.log('last month of quarter');
+    //   targetQtr = (thisDate >=launchDate) ?  qtrs[thisMonth + 1] : targetQtr;
+    //   console.log('targetQtr adj: '  + targetQtr);
+    // }
 
     console.log('=+=+=+=+=+=+=+=+=+');
     const periodStrings: string[] = ['0: null', '1:Ene-Mar', '2:Abr-Jun', '3:Jul-Set', '4:Oct-Dic' ];
@@ -238,9 +241,9 @@ export class ConstantsService extends BaseDataService {
       // console.log('setting qtr 1 for new year ' + year);
     }
     constants.qrPeriods.reverse();
-    console.log('setting SelectedQRPeriod to ' + thisYear + ' ' + targetQtr);
+    console.log('setting SelectedQRPeriod to ' + thisYear + '-' + targetQtr);
     this.store.dispatch(new SetSelectedQRPeriod(thisYear + '-' + targetQtr));
-    // console.log(constants.qrPeriods);
+
   }
 
   generateMRAdjustedContactPeriod(): void {

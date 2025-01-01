@@ -91,7 +91,7 @@ export class StudentSelfReportsTrackingComponent implements OnInit
               return item;
             }
           });
-          console.log('StudentSelfReportByMonth has');
+          console.log('StudentSelfReportByPeriod has');
           console.log(this.studentReportsByPeriod[0]);
         },
         (err) => console.error('Subscribe error: ' + err),

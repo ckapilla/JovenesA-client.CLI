@@ -33,7 +33,7 @@ export class StudentsSelfReportsComponent implements OnInit {
   ssrEditDateStart = '';
   ssrEditDateStop = '';
   inReportProcessingPeriod = false; // default off for safety
-  reportSubmittedForLatestPeriod = false; // default off
+  haveReportSubmittedForLatestPeriod = false; // default off
   firstMonthInNextQuarter = '--';
   studentGUId: string;
 
@@ -54,7 +54,7 @@ export class StudentsSelfReportsComponent implements OnInit {
     private changeDetector: ChangeDetectorRef,
 
   ) {
-    //console.log('ssr constructor' + 'inReportProcessingPeriod = ' + this.inReportProcessingPeriod);
+    // console.log('ssr constructor' + 'inReportProcessingPeriod = ' + this.inReportProcessingPeriod);
   }
 
   parseSSRDateRange() {
@@ -82,6 +82,7 @@ export class StudentsSelfReportsComponent implements OnInit {
       //console.log('NOT in report recording period');
       this.inReportProcessingPeriod = false;
     }
+    console.log('ssr setup ' + 'inReportProcessingPeriod = ' + this.inReportProcessingPeriod);
 
   }
 
@@ -167,6 +168,8 @@ export class StudentsSelfReportsComponent implements OnInit {
     // this returns truncated text and full text for all reports for a student
     this.studentSelfReportData.getStudentSelfReportsByGUId(this.studentGUId).subscribe(
       (data) => {
+        console.log('got student self reports');
+        console.log(data);
         this.studentSelfReports = data;
         this.setReportShortToReportShown();// display the short version
         this.setReportFulltext();  // separate call to get full text
@@ -203,7 +206,7 @@ export class StudentsSelfReportsComponent implements OnInit {
     this.router.navigate(link);
   }
 
-  reportDateIsInDateRange(rptDate: string) {
+  thisReportDateIsInDateRange(rptDate: string) {
 
     console.log('~~~~~~~~~~~~~~~~~check if in date range~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
     console.log('indexed rptDate: ' + rptDate);
@@ -214,23 +217,24 @@ export class StudentsSelfReportsComponent implements OnInit {
     console.log('indexed rptDate > startDate and <= EndDate =') ;
     console.log(rptDate >= this.ssrEditDateStart  && rptDate <= this.ssrEditDateStop);
 
-    return this.reportSubmittedForLatestPeriod =(rptDate >= this.ssrEditDateStart && rptDate <= this.ssrEditDateStop);
+    return this.haveReportSubmittedForLatestPeriod =(rptDate >= this.ssrEditDateStart && rptDate <= this.ssrEditDateStop);
 
   }
 
-  currentDateIsInDateRange() {
-    var strToday = formatDate(new Date(), 'yyyyMMdd', 'en-us');
-    return this.reportSubmittedForLatestPeriod = (strToday >= this.ssrEditDateStart && strToday <= this.ssrEditDateStop);
-  }
+  // todayDateIsInDateRange() {
+  //   var strToday = formatDate(new Date(), 'yyyyMMdd', 'en-us');
+  //   return this.reportSubmittedForLatestPeriod = (strToday >= this.ssrEditDateStart && strToday <= this.ssrEditDateStop);
+  // }
 
   showEditButton(rptDate: string) {
-    return this.inReportProcessingPeriod && !this.reportDateIsInDateRange(rptDate);
+    return this.inReportProcessingPeriod && this.thisReportDateIsInDateRange(rptDate);
   }
 
   showAddButton() {
+    // this.thisReportDateIsInDateRange('2021-02-01');
     console.log('showAddButton inReportProcessingPeriod = ' + this.inReportProcessingPeriod);
-    console.log('showAddButton reportSubmittedForLatestPeriod = ' + this.reportSubmittedForLatestPeriod);
-    return this.inReportProcessingPeriod && !this.reportSubmittedForLatestPeriod
+    // console.log('showAddButton reportSubmittedForLatestPeriod = ' + this.thisReportDateIsInDateRange(rptDate));
+    return this.inReportProcessingPeriod && !this.haveReportSubmittedForLatestPeriod
   }
 
   // ngAfterContentChecked(): void {

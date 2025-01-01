@@ -50,7 +50,7 @@ export class SelfReportsAddComponent implements OnInit {
     //console.log('Hi from SelfReportsAddComponent');
     this.subscribeForselectedQRPeriod();
     this.qrPeriods = constants.qrPeriods;
-
+    console.log('qrPeriods: ' + this.qrPeriods);
     this.myForm = _fb.group({
       narrative_English: ['', { updateOn: 'blur' }],
       narrative_Spanish: ['', Validators.compose([Validators.required, Validators.maxLength(4500)])]
@@ -78,13 +78,9 @@ export class SelfReportsAddComponent implements OnInit {
 
     this.selfReport.sponsorGroupId = this.currRoute.snapshot.params['sponsorGroupId'];
     this.selfReport.studentGUId = this.currRoute.snapshot.params['studentGUId'];
-
-    //console.log('sponsorGroupId ' + this.selfReport.sponsorGroupId);
-    //console.log('studentGUId from route params: ' + this.selfReport.studentGUId);
-
+    console.log('this.selectedQRPeriod ' + this.selectedQRPeriod);
     this.selfReport.reportYear = +this.selectedQRPeriod.substr(0, 4);
-    // TEMP TEMP TEMP
-    this.selfReport.reportPeriod = 4; // +this.selectedQRPeriod.substr(5, 1);
+    this.selfReport.reportPeriod = +this.selectedQRPeriod.substr(5,1);
     console.log('year: ' + this.selfReport.reportYear + ' period: ' + this.selfReport.reportPeriod);
     this.selfReport.narrative_Spanish = '';
     // this.periodo = this.selfReport.reportPeriod;

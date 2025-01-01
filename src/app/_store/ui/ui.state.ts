@@ -18,8 +18,8 @@ import { UIStateModel } from './ui.model';
     qrComponentsEditable: false,
 
     selectedQRPeriod: '', // initialize ConstantsService.generateQRPeriods
-    selectedGradesPeriodId: '119', // need to initialize this from ConstantsService
-    selectedInscriptionsPeriodId: '120', // need to initialize this from ConstantsService
+    selectedGradesPeriodId: '122', // need to initialize this from ConstantsService
+    selectedInscriptionsPeriodId: '124', // need to initialize this from ConstantsService
     selectedBecaPeriod: '2024',
     selectedFilterMode: '998',
     selectedStudentStatus: '0',
