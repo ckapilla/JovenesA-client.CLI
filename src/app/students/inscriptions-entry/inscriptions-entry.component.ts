@@ -184,7 +184,7 @@ export class InscriptionsEntryComponent implements OnInit {
           this.inscriptionsData.forEach((inscriptionEntryDataRow) => {
             this.addInscriptionEntryRow(inscriptionEntryDataRow);
           });
-          this.inInscriptionsProcessingPeriod = this.haveDataForCurrentPeriod();
+          this.inInscriptionsProcessingPeriod = true && !this.haveDataForCurrentPeriod();  // temp temp temp
           this.isLoading = false;
         }
       );

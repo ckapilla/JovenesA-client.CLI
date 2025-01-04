@@ -57,6 +57,15 @@ export class StudentsSelfReportsComponent implements OnInit {
     // console.log('ssr constructor' + 'inReportProcessingPeriod = ' + this.inReportProcessingPeriod);
   }
 
+  ngOnInit() {
+    this.studentGUId = this.session.getStudentRecordGUId();
+    //console.log('studentSelfReport ngOnInit, studentGUID = ' + this.studentGUId);
+    this.parseSSRDateRange();
+    // fetch
+    this.fetchSelfReports();
+
+  }
+
   parseSSRDateRange() {
     //console.log('in parseSSRDateRange');
 
@@ -76,13 +85,13 @@ export class StudentsSelfReportsComponent implements OnInit {
     //console.log('month ' + constants.ssrDateRange.substring(4,6));
 
     if (strToday >= this.ssrEditDateStart && strToday <= this.ssrEditDateStop) {
-      //console.log ('in report recording period');
+      console.log ('in report recording period');
       this.inReportProcessingPeriod = true;
     } else {
-      //console.log('NOT in report recording period');
+      console.log('NOT in report recording period');
       this.inReportProcessingPeriod = false;
     }
-    console.log('ssr setup ' + 'inReportProcessingPeriod = ' + this.inReportProcessingPeriod);
+    console.log('>>>>>>ssr setup calc inPP ' + 'inReportProcessingPeriod = ' + this.inReportProcessingPeriod);
 
   }
 
@@ -113,16 +122,6 @@ export class StudentsSelfReportsComponent implements OnInit {
         this.firstMonthInNextQuarter = 'enero';
         break;
     }
-  }
-
-  ngOnInit() {
-    this.studentGUId = this.session.getStudentRecordGUId();
-    //console.log('studentSelfReport ngOnInit, studentGUID = ' + this.studentGUId);
-    this.parseSSRDateRange();
-    // fetch
-    this.fetchSelfReports();
-
-    //  this.subscribeForStudentGUId();
   }
 
 
@@ -179,6 +178,7 @@ export class StudentsSelfReportsComponent implements OnInit {
       () => {
         //console.log('done: ');
         this.isLoading = false;
+        this.changeDetector.detectChanges(); // Manually trigger change detection
       }
     );
   }
@@ -226,20 +226,28 @@ export class StudentsSelfReportsComponent implements OnInit {
   //   return this.reportSubmittedForLatestPeriod = (strToday >= this.ssrEditDateStart && strToday <= this.ssrEditDateStop);
   // }
 
+  calcInProcessingPeriod() {
+    return this.inReportProcessingPeriod;
+  }
+
+  haveCurrentReportSubmitted() {
+    return true;// this.haveReportSubmittedForLatestPeriod;
+  }
+
   showEditButton(rptDate: string) {
     return this.inReportProcessingPeriod && this.thisReportDateIsInDateRange(rptDate);
   }
 
-  showAddButton() {
-    // this.thisReportDateIsInDateRange('2021-02-01');
-    console.log('showAddButton inReportProcessingPeriod = ' + this.inReportProcessingPeriod);
-    // console.log('showAddButton reportSubmittedForLatestPeriod = ' + this.thisReportDateIsInDateRange(rptDate));
-    return this.inReportProcessingPeriod && !this.haveReportSubmittedForLatestPeriod
-  }
-
-  // ngAfterContentChecked(): void {
-  //   this.changeDetector.detectChanges();
+  // showAddButton() {
+  //   // this.thisReportDateIsInDateRange('2021-02-01');
+  //   console.log('showAddButton inReportProcessingPeriod = ' + this.inReportProcessingPeriod);
+  //   // console.log('showAddButton reportSubmittedForLatestPeriod = ' + this.thisReportDateIsInDateRange(rptDate));
+  //   return this.inReportProcessingPeriod && !this.haveReportSubmittedForLatestPeriod
   // }
+
+  ngAfterContentChecked(): void {
+    this.changeDetector.detectChanges();
+  }
 
   readMore(position: number) {
 
