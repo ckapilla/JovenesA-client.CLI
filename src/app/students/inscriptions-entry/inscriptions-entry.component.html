@@ -1,3 +1,4 @@
+<!-- open with *ngIf else -->
 <div class="py-4 px-3 px-md-5" *ngIf="inInscriptionsProcessingPeriod; else outOfRange">
   <h1 class="title text-center text-sm-left ">Tus inscripciones para este periodo</h1>
 
@@ -356,6 +357,6 @@
 </div>
 <ng-template #outOfRange>
 
-  <h3 style="padding: 2em;">La entrada de inscripciones estará disponible 1 de enero a las 18:00.</h3>
+  <h3 style="padding: 2em;">Hay un problema, contacta <a href="mailto:tecnico@jovenesadelante.org">tecnico&#64;jovenesadelante.org</a></h3>
 
 </ng-template>

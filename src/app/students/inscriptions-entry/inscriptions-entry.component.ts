@@ -164,6 +164,7 @@ export class InscriptionsEntryComponent implements OnInit {
   }
 
   fetchFilteredData() {
+    console.log("XXE00");
     if (this.studentGUId && this.studentGUId !== undefined && this.studentGUId !== "0000") {
       this.isLoading = true;
       this.inscriptionDataSvc.getInscriptionsForStudent(this.studentGUId).subscribe(
@@ -184,7 +185,7 @@ export class InscriptionsEntryComponent implements OnInit {
           this.inscriptionsData.forEach((inscriptionEntryDataRow) => {
             this.addInscriptionEntryRow(inscriptionEntryDataRow);
           });
-          this.inInscriptionsProcessingPeriod = true && !this.haveDataForCurrentPeriod();  // temp temp temp
+          this.inInscriptionsProcessingPeriod = true;
           this.isLoading = false;
         }
       );

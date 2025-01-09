@@ -17,12 +17,12 @@
     <ng-container *ngSwitchCase="false">
       <div *ngIf="!errorMessage">
         <!-- if we are NOT in a processing period block content-->
-        <div *ngIf="!calcInProcessingPeriod() else inProcessingPeriod" class="add-report-container">
+        <div *ngIf="!inProcessingPeriod else inProcessingPeriodTemplate" class="add-report-container">
           <h4 class="mt-2">El próximo período para presentar tu nuevo informe trimestral comenzará el 1 de abril.</h4>
         </div>
-        <ng-template #inProcessingPeriod>
+        <ng-template #inProcessingPeriodTemplate>
           <!-- if we are in a processing period and no report for that period, Show Add button-->
-          <div *ngIf="!this.haveCurrentReportSubmitted()" class="add-report-container">
+          <div *ngIf="!haveCurrentReport" class="add-report-container">
             <button class="save btn mr-0 mt-3 mt-md-1" (click)="studentSelfReportAdd()">
               Agregar nuevo reporte
             </button>
@@ -32,7 +32,7 @@
           <div class="table-scroll">
             <table>
               <tbody>
-                <tr *ngFor="let i of studentSelfReports; index as position">
+                <tr *ngFor="let i of studentSelfReports; index as position; trackBy: trackById">
                   <td class="report-table-cell">
                     <div class="d-flex flex-column">
                       <div class="d-block m-0">
@@ -50,7 +50,8 @@
                       </div>
                       <div class="d-flex flex-column justify-content-end">
                         <div class="d-flex justify-content-center">
-                          <button type="button" *ngIf="position == 0 && showEditButton(i.reportDateTime)"
+                          <!-- if latest record and its date is within current processingperiod -->
+                          <button type="button" *ngIf="position == 0 && thisReportDateIsInDateRange(i.reportDateTime)"
                                   (click)="selfReportEdit(i.studentSelfReportId, i.studentGUId, i.studentName)"
                                   class="btn edit mt-2 mt-md-3 mr-0">
                             Editar
