@@ -106,6 +106,8 @@ const memberStatuses: SELECTITEM[] = [
 ];
 const reviewedStatuses: SELECTITEM[] = [
 ];
+const communicationStatuses: SELECTITEM[] = [
+];
 const reviewedQRStatuses: SELECTITEM[] = [
 ];
 const memberTypes: SELECTITEM[] = [
@@ -158,6 +160,7 @@ export const constants = {
   studentStatuses,
   reviewedQRStatuses,
   reviewedStatuses,
+  communicationStatuses,
   memberTypes,
   followUpStatuses,
   highlightStatuses,

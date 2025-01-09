@@ -14,10 +14,13 @@
           {{ xx.reportDateTime | truncateDate }}
         </span>
         <span class="padded">
-          &nbsp;Emoji:
+          &nbsp;Student Status:
           <img src="{{ emojis[xx.emoji + 1] }}" width="28px" />
         </span>
-                                                          <!-- not copied to QR -->
+        <span class="padded">
+          &nbsp;Communication:
+          <img src="{{ emojis[xx.communication + 1] }}" width="28px" />
+        </span>                                                          <!-- not copied to QR -->
         <span *ngIf="i === 0 && latestReportIsCurrentMonth && xx.reviewedStatusId !== 2148" class="padded">
           <span class="btn btn-primary" (click)="monthlyReportEdit(xx.mentorReportId)" style="margin-left: 10px">
             Edit Report / Editar informe

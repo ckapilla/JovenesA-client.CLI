@@ -318,6 +318,9 @@ console.log('%%%%%GENERATE GradesProcessing PERIODS%%%');
             case 'ReviewedStatus':
               constants.reviewedStatuses.push(subset);
               break;
+            case 'CommunicationStatus':
+              constants.communicationStatuses.push(subset);
+              break;
             case 'QRReviewedStatus':
               constants.reviewedQRStatuses.push(subset);
               break;

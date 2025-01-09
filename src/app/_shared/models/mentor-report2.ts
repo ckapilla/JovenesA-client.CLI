@@ -10,6 +10,7 @@ export class MentorReport2RPT {
     public lastContactYear?: number,
     public lastContactMonth?: number,
     public emoji?: number,
+    public communication?: number,
     public narrative_English?: string,
     public narrative_Spanish?: string,
     public reviewedStatusId?: number,

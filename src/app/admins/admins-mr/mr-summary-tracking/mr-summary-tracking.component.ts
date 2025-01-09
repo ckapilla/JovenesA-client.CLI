@@ -26,10 +26,12 @@ export class MentorReportsSummaryTrackingComponent implements OnInit
   years: SELECTITEM[];
   months: SELECTITEM[];
   mrReviewedStatuses: SELECTITEM[];
+  communicationStatuses: SELECTITEM[];
   highlightStatuses: SELECTITEM[];
   selectedYear: string;
   selectedMonth: string;
   selectedMRReviewedStatus: string;
+  selectedCommunicationStatus: string;
   selectedHighlightStatus: string;
   displayOriginalFields = true;
   x: any;
@@ -50,13 +52,14 @@ export class MentorReportsSummaryTrackingComponent implements OnInit
     this.months = constants.months;
 
     this.mrReviewedStatuses = constants.reviewedStatuses;
-
+    this.communicationStatuses = constants.communicationStatuses;
     this.highlightStatuses = constants.highlightStatuses;
 
     this.selectedYear = '' + constants.currentContactYear; // '' + today.getFullYear(); //
     this.selectedMonth = '0'; // + today.getMonth() + 1;// '5';
 
-    this.selectedMRReviewedStatus = '0'; // this.mrReviewedStatuses[0].value;
+    this.selectedMRReviewedStatus = '0';
+    this.selectedCommunicationStatus = '0';
     this.selectedHighlightStatus = this.highlightStatuses[0].value;
 
     this.emojis = constants.emojis;
@@ -101,6 +104,14 @@ export class MentorReportsSummaryTrackingComponent implements OnInit
       this.selectedMRReviewedStatus = reviewedStatus;
     } else {
       this.selectedMRReviewedStatus = '0';
+    }
+
+    const communicationStatus = this.route.snapshot.queryParams['communicationStatus'];
+    console.log('reviewed param = ' + communicationStatus);
+    if (communicationStatus !== undefined) {
+      this.selectedCommunicationStatus = communicationStatus;
+    } else {
+      this.selectedCommunicationStatus = '0';
     }
 
     const highlight = this.route.snapshot.queryParams['highlight'];
@@ -160,6 +171,11 @@ export class MentorReportsSummaryTrackingComponent implements OnInit
 
   setSelectedMRReviewedStatus(status: string) {
     this.selectedMRReviewedStatus = status;
+    this.fetchFilteredData();
+  }
+
+  setSelectedCommunicationStatus(status: string) {
+    this.selectedCommunicationStatus = status;
     this.fetchFilteredData();
   }
 
