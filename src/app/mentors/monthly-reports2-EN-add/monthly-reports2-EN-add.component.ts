@@ -116,8 +116,8 @@ export class MonthlyReports2ENAddComponent implements OnInit {
       this.mentorReport2.lastContactMonth = 0;
 
       this.myForm.valueChanges.subscribe((value: any) => {
-        console.log('valueChanges fired for form with values');
-        console.log(JSON.stringify(value));
+        // console.log('valueChanges fired for form with values');
+        // console.log(JSON.stringify(value));
         this.errorMessage = '';
         this.successMessage = '';
         this.isSubmitted = false;

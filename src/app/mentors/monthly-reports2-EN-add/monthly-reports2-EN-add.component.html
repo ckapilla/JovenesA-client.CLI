@@ -27,7 +27,7 @@
         <div class="form-group">
 
           <div class="controls">
-            <span><b> Student Status:</b> (How are things going overall with the student?)<br /></span>
+            <span><b> Overall Situation:</b><br /></span>
             <label>&nbsp;&nbsp;
               <input type="radio" id="inputEmoji" formControlName="inputEmoji"
                      [checked]="emojiCtl.value==1" value=1>
@@ -48,7 +48,6 @@
             </label>
             <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <input type="radio" id="inputEmoji" formControlName="inputEmoji"
-
                      [checked]="emojiCtl.value==-1" value=-1>
               <img src="/assets/images/needsAttention.jpg" width="30px" />
               Problems
@@ -57,7 +56,7 @@
           </div>
 
           <div class="controls mt-4">
-            <div><b> Communication Status:</b> were you able to connect with your student and gather enough info to provide a comprehensive report?<br /></div>
+            <div><b> Communication:</b> were you able to connect with your student and gather enough info to provide a comprehensive report?<br /></div>
             <label>&nbsp;&nbsp;
               <input type="radio" id="communicationEmoji" formControlName="communicationEmoji"
                      [checked]="communicationCtl.value==0" value=0>
@@ -66,12 +65,12 @@
             </label>
             <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <input type="radio" id="communicationEmoji" formControlName="communicationEmoji"
-                     [checked]="communicationCtl.value==1" value=1>
+                     [checked]="communicationCtl.value==2" value=2>
                      <img src="/assets/images/concerned.jpg" width="30px" />
               No
             </label>
           </div>
-          <div *ngIf="communicationCtl.value == 1" class="alert alert-warning">
+          <div *ngIf="communicationCtl.value == 2" class="alert alert-warning">
             Please be sure to elaborate on this situation in the text box below.
           </div>
         </div>

@@ -15,7 +15,7 @@
           <option *ngFor="let month of months" [value]="month.value">{{ month.label }}</option>
         </select>
 
-        <label for="MRReviewedStatusSelector">Reviewed Status:</label>
+        <label for="MRReviewedStatusSelector">Overall Situation:</label>
         <select
           name="MRReviewedStatusSelector"
           [(ngModel)]="selectedMRReviewedStatus"
@@ -25,7 +25,7 @@
           <option *ngFor="let status of mrReviewedStatuses" [value]="status.value">{{ status.label }}</option>
         </select>
 
-        <label for="CommunicationStatusSelector">Communication Status:</label>
+        <label for="CommunicationStatusSelector">Communication:</label>
         <select
           name="CommunicationStatusSelector"
           [(ngModel)]="selectedCommunicationStatus"
@@ -98,11 +98,11 @@
               <span class="padded"> &nbsp;Reviewed Status: {{ lmr.reviewedStatus }} </span>
 
               <span class="padded">
-                &nbsp;Student Status:
+                &nbsp;Overall Situation:
                 <img src="{{ emojis[lmr.emoji + 1] }}" width="24px" />
               </span>
               <span class="padded">
-                &nbsp;Communication Status:
+                &nbsp;Communication:
                 <img src="{{ emojis[lmr.communication + 1] }}" width="24px" />
               </span>
             </div>

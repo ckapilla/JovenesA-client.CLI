@@ -26,6 +26,8 @@ export class MonthlyReports2EditComponent implements OnInit {
   lastYearCtl: AbstractControl;
   lastMonthCtl: AbstractControl;
   emojiCtl: AbstractControl;
+  communicationCtl: UntypedFormControl;
+
   narrative_EnglishCtl: AbstractControl;
   narrative_SpanishCtl: AbstractControl;
   reportIdCtl: AbstractControl;
@@ -36,6 +38,7 @@ export class MonthlyReports2EditComponent implements OnInit {
   studentName: string;
   monthValidationMessage = '';
   emojiValidationMessage = '';
+  communicationValidationMessage = '';
   narrativeValidationMessage = '';
   subscription: Subscription;
   readonly contactYears: SELECTITEM[] = constants.contactYears;
@@ -58,6 +61,8 @@ export class MonthlyReports2EditComponent implements OnInit {
       lastContactMonthSelector: { value: '' + constants.currentContactMonth, disabled: true },
       // use bogus integer value so change detection works:
       inputEmoji: [666, { validators: [Validators.required, this.validateEmojis] }],
+      communicationEmoji: [666, { validators: [Validators.required, this.validateEmojis] }],
+
       narrative_English: ['', Validators.required],
       narrative_Spanish: [''],
       mentorReportId: [this.reportIdCtl]
@@ -68,6 +73,7 @@ export class MonthlyReports2EditComponent implements OnInit {
     this.lastYearCtl = this.myForm.controls['lastContactYearSelector'];
     this.lastMonthCtl = this.myForm.controls['lastContactMonthSelector'];
     this.emojiCtl = this.myForm.controls['inputEmoji'];
+    this.communicationCtl = this.myForm.controls.communicationEmoji as UntypedFormControl;
     this.narrative_EnglishCtl = this.myForm.controls['narrative_English'];
     this.narrative_SpanishCtl = this.myForm.controls['narrative_Spanish'];
     this.reportIdCtl = this.myForm.controls['mentorReportId'];
@@ -104,7 +110,8 @@ export class MonthlyReports2EditComponent implements OnInit {
         this.lastYearCtl.setValue(this.mentorReport2.lastContactYear);
         this.lastMonthCtl.setValue(this.mentorReport2.lastContactMonth);
         this.emojiCtl.setValue(this.mentorReport2.emoji);
-        // this.emojiCtl.setValue(0);
+        this.communicationCtl.setValue(this.mentorReport2.communication);
+
         this.narrative_EnglishCtl.setValue(this.mentorReport2.narrative_English);
         this.narrative_SpanishCtl.setValue(this.mentorReport2.narrative_Spanish);
       }
@@ -142,6 +149,10 @@ export class MonthlyReports2EditComponent implements OnInit {
       this.emojiValidationMessage = 'An emoji must be selected. Se debe seleccionar un Emoji';
       allCorrect = false;
     }
+    if (this.communicationCtl.invalid && (this.communicationCtl.dirty || bSubmitting)) {
+      this.communicationValidationMessage = 'An emoji must be selected. Se debe seleccionar un Emoji';
+      allCorrect = false;
+    }
     if (this.narrative_EnglishCtl.invalid && (this.narrative_EnglishCtl.dirty || bSubmitting)) {
       this.narrativeValidationMessage = 'Description must be filled in. Descripcione debe rellenarse';
       allCorrect = false;
@@ -160,6 +171,7 @@ export class MonthlyReports2EditComponent implements OnInit {
     this.mentorReport2.lastContactYear = this.lastYearCtl.value;
     this.mentorReport2.lastContactMonth = this.lastMonthCtl.value;
     this.mentorReport2.emoji = this.emojiCtl.value;
+    this.mentorReport2.communication = this.communicationCtl.value;
     this.mentorReport2.narrative_English = this.narrative_EnglishCtl.value;
     this.mentorReport2.narrative_Spanish = this.narrative_SpanishCtl.value;
     this.mentorReport2.reviewedStatusId = 2087; // could have been ReadyForQR, so reset to NeedsReview

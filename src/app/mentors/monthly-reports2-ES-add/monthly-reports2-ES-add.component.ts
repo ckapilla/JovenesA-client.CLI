@@ -38,6 +38,7 @@ export class MonthlyReports2ESAddComponent implements OnInit {
   studentName: string;
   monthValidationMessage = '';
   emojiValidationMessage = '';
+  communicationValidationMessage = '';
   narrativeValidationMessage = '';
   byProxy: string;
   returnTarget: string;
@@ -112,8 +113,8 @@ export class MonthlyReports2ESAddComponent implements OnInit {
       this.mentorReport2.lastContactMonth = 0;
 
       this.myForm.valueChanges.subscribe((value: any) => {
-        console.log('valueChanges fired for form with values');
-        console.log(JSON.stringify(value));
+        // console.log('valueChanges fired for form with values');
+        // console.log(JSON.stringify(value));
         this.errorMessage = '';
         this.successMessage = '';
         this.isSubmitted = false;
@@ -145,6 +146,10 @@ export class MonthlyReports2ESAddComponent implements OnInit {
       this.emojiValidationMessage = 'An emoji must be selected. Se debe seleccionar un Emoji';
       allCorrect = false;
     }
+    if (this.communicationCtl.invalid && (this.communicationCtl.dirty || bSubmitting)) {
+      this.communicationValidationMessage = 'An emoji must be selected. Se debe seleccionar un Emoji';
+      allCorrect = false;
+    }
     if (this.narrative_EnglishCtl.invalid && (this.narrative_EnglishCtl.dirty || bSubmitting)) {
       this.narrativeValidationMessage = 'Description must be filled in. Descripcione debe rellenarse';
       allCorrect = false;
@@ -167,6 +172,7 @@ export class MonthlyReports2ESAddComponent implements OnInit {
     this.mentorReport2.lastContactYear = this.lastYearCtl.value;
     this.mentorReport2.lastContactMonth = this.lastMonthCtl.value;
     this.mentorReport2.emoji = this.emojiCtl.value;
+    this.mentorReport2.communication = this.communicationCtl.value;
     this.mentorReport2.narrative_English = this.narrative_EnglishCtl.value;
     this.mentorReport2.narrative_Spanish = this.narrative_SpanishCtl.value;
     this.mentorReportData.addMentorReport2(this.mentorReport2).subscribe(

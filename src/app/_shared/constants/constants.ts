@@ -60,12 +60,12 @@ const genders: SELECTITEM[] = [
   { value: 'F', label: 'Female/Mujer' }
 ];
 
-const emojis = [
-  '/assets/images/needsAttention.jpg',
-  '/assets/images/thumbsUp.jpg',
-  '/assets/images/celebrate.jpg',
-  '/assets/images/concerned.jpg',
-  '/assets/images/NA.jpg'
+const emojis = [ // values are set in the RadioButton html
+  '/assets/images/needsAttention.jpg',  // -1
+  '/assets/images/thumbsUp.jpg',  // 0
+  '/assets/images/celebrate.jpg', // 3
+  '/assets/images/concerned.jpg', // 2
+  '/assets/images/NA.jpg'         // 4
 ];
 
 const emojiMsgs = [

@@ -55,7 +55,24 @@
               <span *ngIf="emojiCtl.hasError('required')" class="red">Please select an emoji.</span>
             </label>
           </div>
+          <div class="controls mt-4">
+            <div><b> Comunicación:</b>¿Pudiste conectarte con tu estudiante y reunir suficiente información para proporcionar un informe completo?<br /></div>
+            <label>&nbsp;&nbsp;
+              <input type="radio" id="communicationEmoji" formControlName="communicationEmoji"
+                     [checked]="communicationCtl.value==0" value=0>
+                     <img src="/assets/images/thumbsUp.jpg" width="30px" />
+              Yes
+            </label>
+            <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="radio" id="communicationEmoji" formControlName="communicationEmoji"
+                     [checked]="communicationCtl.value==2" value=2>
+                     <img src="/assets/images/concerned.jpg" width="30px" />
+              No
+              <span *ngIf="communicationCtl.hasError('required')" class="red">Seleccione un valor de estado.</span>
+            </label>
+          </div>
         </div>
+
         <div style="color:mediumblue"><i><b>(If you wish to have the translated text below be re-translated, please
               delete it
               before submitting.<br />
