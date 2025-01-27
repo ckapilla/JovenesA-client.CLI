@@ -34,6 +34,8 @@
                 <tr>
                   <td></td>
                   <th>PCSID</th>
+                  <th>Year</th>
+                  <th>Month</th>
                   <th>MR</th>
                   <th>SSR</th>
                   <th>IR</th>
@@ -51,7 +53,12 @@
                       {{ i+1 }}
                     </td>
                     <td>{{ bp.pcsCode }}</td>
-
+                    <td>
+                      {{ bp.pcsYear }}
+                    </td>
+                    <td>
+                      {{ bp.pcsMonthNum }}
+                    </td>
                     <td>
                       <span style="text-align: center; white-space: nowrap">
                         <app-three-way-checkbox [(value)]="bp.mentorReportStatusId"></app-three-way-checkbox>

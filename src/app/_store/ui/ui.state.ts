@@ -20,11 +20,11 @@ import { UIStateModel } from './ui.model';
     selectedQRPeriod: '', // initialize ConstantsService.generateQRPeriods
     selectedGradesPeriodId: '122', // need to initialize this from ConstantsService
     selectedInscriptionsPeriodId: '124', // need to initialize this from ConstantsService
-    selectedBecaPeriod: '2024',
+    selectedBecaPeriod: '', // 2024',
     selectedFilterMode: '998',
     selectedStudentStatus: '0',
     selectedYearJoined: '0',
-    selectedGradYear: '2023'
+    selectedGradYear: '' // '2024'
   }
 })
 @Injectable()

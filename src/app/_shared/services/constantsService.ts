@@ -100,11 +100,13 @@ console.log('%%%%%GENERATE GradesProcessing PERIODS%%%');
     this.gpPeriods$.pipe(toArray()).subscribe(
       (data) => {
         constants.gradesProcessingPeriods = data[0];  // our data is in the first and only element of array
+        console.log('xxxxxxxxxxGPP  subscribe returned  ');
+        console.log(JSON.stringify(constants.gradesProcessingPeriods));
       },
       (err: any) => console.error('Subscribe error: ' + err),
-      () => {
-        console.log('xxxxxxxxxxGPP  subscribe returned  ');
-      }
+      // () => {
+
+      // }
     );
   }
 
@@ -115,7 +117,7 @@ console.log('%%%%%GENERATE GradesProcessing PERIODS%%%');
       },
       (err: any) => console.error('Subscribe error: ' + err),
       () => {
-        console.log('>>>subscribe returned  ');
+        console.log('>>>IPP subscribe returned  ');
         console.log(JSON.stringify( constants.inscriptionsProcessingPeriods));
       }
     );
@@ -135,7 +137,7 @@ console.log('%%%%%GENERATE GradesProcessing PERIODS%%%');
       constants.joinedYears.push(elem);
       year--;
     }
-    console.log(constants.joinedYears[0]);
+    console.log('joinedYears', constants.joinedYears[0]);
   }
 
   public generateGradYears() {
@@ -152,7 +154,7 @@ console.log('%%%%%GENERATE GradesProcessing PERIODS%%%');
       constants.gradYears.push(elem);
       year--;
     }
-    console.log(constants.gradYears[0]);
+    console.log('gradYears', constants.gradYears[0]);
   }
 
 
@@ -169,7 +171,7 @@ console.log('%%%%%GENERATE GradesProcessing PERIODS%%%');
       constants.contactYears.push(elem);
       year++;
     }
-    console.log(constants.contactYears[0]);
+    console.log('contactYears', constants.contactYears[0]);
   }
 
 

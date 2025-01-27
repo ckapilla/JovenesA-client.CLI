@@ -2,8 +2,8 @@ export class StudentGrades {
   constructor(
     public studentGradeId: number,
     public studentGUId: string,
-    public year: number, // temp holdover
-    public periodNumber: number, // temp holdover
+    // public year: number,
+    // public periodNumber: number,
     public academicTermId: number,
     public gradesEntryStartDate: Date = new Date(),
     // public gradesGivenYear?: number,
