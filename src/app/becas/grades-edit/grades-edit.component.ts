@@ -142,14 +142,11 @@ export class GradesEditComponent implements OnInit {
     gradeEntryFormRow.patchValue({
       academicTermId: gradeEntryDataRow.academicTermId,
       gradesEntryEndDate: new TruncateDatePipe().transform('' + gradeEntryDataRow.gradesEntryEndDate),
-
-     /****
       gradesTurnedInDate: new TruncateDatePipe().transform('' + gradeEntryDataRow.gradesTurnedInDate),
       gradePointAvg: this.toFixedValue(gradeEntryDataRow.gradePointAvg),
       exception: gradeEntryDataRow.exception,
       confirmedById: gradeEntryDataRow.confirmedById,
       confirmedDate: new TruncateDatePipe().transform('' + gradeEntryDataRow.confirmedDate)
-      ***/
     });
     gradeEntryFormRow.markAsPristine();
   }

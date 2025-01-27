@@ -47,6 +47,13 @@ export class StudentDataService extends BaseDataService {
     yearJoinedJA: string,
     gradYear: string
   ): Observable<StudentDTO[]> {
+    // gradYear = '2026' ;
+
+    // console.log(activeStatus);
+    // console.log(studentStatusId);
+    // console.log(yearJoinedJA);
+    // console.log(gradYear);
+
     const url =
       this.WebApiPrefix + 'students' + '/' + activeStatus + '/' + studentStatusId + '/' + yearJoinedJA + '/' + gradYear;
     console.log('sending AuthHttp get request for Students with url ' + url);
