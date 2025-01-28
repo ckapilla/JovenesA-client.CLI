@@ -27,12 +27,21 @@ export class SetSelectedQRPeriod {
   constructor(public readonly payload: string) {}
 }
 
-export class GetSelectedBecaPeriod {
-  static readonly type = '[UI] Get selectedBecaPeriod';
+export class GetSelectedPCSYear{
+  static readonly type = '[UI] Get selectedPCSYear';
   constructor(public payload: UIStateModel) {}
 }
-export class SetSelectedBecaPeriod {
-  static readonly type = '[UI] update selectedBecaPeriod';
+export class SetSelectedPCSYear {
+  static readonly type = '[UI] update selectedPCSYear';
+  constructor(public readonly payload: string) {}
+}
+
+export class GetSelectedPCSMonth {
+  static readonly type = '[UI] Get selectedPCSMonth';
+  constructor(public payload: UIStateModel) {}
+}
+export class SetSelectedPCSMonth {
+  static readonly type = '[UI] update selectedPCSMonth';
   constructor(public readonly payload: string) {}
 }
 ///

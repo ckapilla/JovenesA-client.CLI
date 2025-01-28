@@ -6,6 +6,8 @@ import {
   SetSelectedGradesPeriodId,
   SetSelectedGradYear,
   SetSelectedInscriptionsPeriodId,
+  SetSelectedPCSMonth,
+  SetSelectedPCSYear,
   SetSelectedQRPeriod, SetSelectedStudentStatus,
   SetSelectedYearJoined, SetTestNamesVisibility
 } from './ui.action';
@@ -20,7 +22,8 @@ import { UIStateModel } from './ui.model';
     selectedQRPeriod: '', // initialize ConstantsService.generateQRPeriods
     selectedGradesPeriodId: '122', // need to initialize this from ConstantsService
     selectedInscriptionsPeriodId: '124', // need to initialize this from ConstantsService
-    selectedBecaPeriod: '2025',
+    selectedPCSYear: '2025',
+    selectedPCSMonth: '0',
     selectedFilterMode: '998',
     selectedStudentStatus: '0',
     selectedYearJoined: '0',
@@ -74,6 +77,40 @@ export class UIState {
       ...state,
       selectedQRPeriod
     });
+  }
+
+  @Selector()
+  static getSelectedPCSYear(state: UIStateModel): string {
+    return state.selectedPCSYear;
+  }
+
+  @Action(SetSelectedPCSYear)
+  setSelectedPCSYear(ctx: StateContext<UIStateModel>, { payload }: SetSelectedPCSYear) {
+    const selectedPCSYear = payload;
+    const state = ctx.getState();
+    ctx.patchState({
+      ...state,
+      selectedPCSYear
+    });
+  }
+
+
+  @Selector()
+  static getSelectedPCSMonth(state: UIStateModel): string {
+    return state.selectedPCSMonth;
+  }
+
+  @Action(SetSelectedPCSMonth)
+  setSelectedPCSMonth(ctx: StateContext<UIStateModel>, { payload }: SetSelectedPCSMonth) {
+    const selectedPCSMonth = payload;
+    console.log('************NGXS: new selectedPCSMonth received' + selectedPCSMonth);
+    const state = ctx.getState();
+    console.log('B4',JSON.stringify(state));
+    ctx.patchState({
+      ...state,
+      selectedPCSMonth
+    });
+    console.log('AFTER', JSON.stringify(state));
   }
 
   @Action(SetSelectedGradesPeriodId)

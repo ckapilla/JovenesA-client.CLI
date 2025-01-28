@@ -4,6 +4,7 @@ import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
 import { ColumnSortService } from 'src/app/_shared/services/column-sort.service';
 import { SetSelectedStudentIdentifiers } from 'src/app/_store/student/student.action';
+import { SetSelectedPCSMonth, SetSelectedPCSYear } from 'src/app/_store/ui/ui.action';
 // import { SetSelectedStudentGUId } from 'src/app/_store/student/student.action';
 import { UIState } from 'src/app/_store/ui/ui.state';
 import { constants } from '../../_shared/constants/constants';
@@ -12,6 +13,8 @@ import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 import { SORTCRITERIA } from '../../_shared/interfaces/SORTCRITERIA';
 import { BecaPaymentDTO } from '../../_shared/models/beca-paymentDTO';
 import { SessionService } from '../../_shared/services/session.service';
+
+
 
 @Component({
   selector: 'app-home',
@@ -25,8 +28,6 @@ export class PaymentsListComponent implements OnInit {
   years: SELECTITEM[];
   months: SELECTITEM[];
 
-  selectedYear: string;
-  selectedMonth: string;
 
   readonly reviewedStatuses: SELECTITEM[] = constants.reviewedQRStatuses;
   // readonly highlightStatuses: SELECTITEM[] = constants.highlightStatuses;
@@ -35,11 +36,16 @@ export class PaymentsListComponent implements OnInit {
 
   becaPmt: BecaPaymentDTO;
   becaPmts: BecaPaymentDTO[];
-  selectedQRPeriod = '';
+  selectedPCSYear = '';
+  selectedPCSMonth = '';
   displayTestNames: boolean;
   private subscription: Subscription;
 // #####
    testNameVisibility$ = this.store.select<boolean>(UIState.getTestNamesVisibility);
+
+
+   selectedPCSYear$ = this.store.select<string>(UIState.getSelectedPCSYear);
+   selectedPCSMonth$ = this.store.select<string>(UIState.getSelectedPCSMonth);
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -56,8 +62,8 @@ export class PaymentsListComponent implements OnInit {
 
     // this.highlightStatuses = constants.highlightStatuses;
 
-    this.selectedYear = '' + constants.currentPaymentYear; // '' + today.getFullYear(); //
-    this.selectedMonth = '1'; // + today.getMonth() + 1;// '5';
+    this.selectedPCSYear = '' + constants.currentPaymentYear; // '' + today.getFullYear(); //
+    this.selectedPCSMonth = ''; // + today.getMonth() + 1;// '5';
 
     this.selectedReviewedStatus = '0'; // this.reviewedStatuses[0].value;
     // this.selectedHighlightStatus = this.highlightStatuses[0].value;
@@ -69,21 +75,23 @@ export class PaymentsListComponent implements OnInit {
     this.testNameVisibility$.subscribe((flag) => {
       this.displayTestNames = flag;
     });
-    this.subscribeForselectedYearMonth();
+    this.subscribeForSelectedYearMonth();
+
   }
   generateRandomNumber(): number {
     return Math.floor(100 + Math.random() * 900);
   }
 
-
-  subscribeForselectedYearMonth() {
-    // this.subscription = this.selectedQRPeriod$.subscribe((message) => {
-    //   this.selectedQRPeriod = message;
-    //   console.log('************NGXS: BECA new selectedPaymentMont received' + this.selectedQRPeriod);
-    //   this.fetchFilteredData();
-    // });
-    // need to subscribe to the selectedYear and selectedMonth
-    this.fetchFilteredData();
+  subscribeForSelectedYearMonth() {
+    this.subscription = this.selectedPCSYear$.subscribe((message) => {
+      this.selectedPCSYear = message;
+      console.log('************NGXS: BECA new selectedPCSYear received' + this.selectedPCSYear);
+      this.subscription = this.selectedPCSMonth$.subscribe((message) => {
+        this.selectedPCSMonth = message;
+        console.log('************NGXS: BECA new selectedPCSMonth received' + this.selectedPCSMonth);
+        this.fetchFilteredData();
+    })
+    });
   }
 
   scrollIntoView() {
@@ -102,14 +110,29 @@ export class PaymentsListComponent implements OnInit {
   //   this.selectedHighlightStatus = status;
   //   this.fetchFilteredData();
   // }
-
-  setSelectedYear(year: string) {
-    this.selectedYear = year;
-    this.fetchFilteredData();
+  subscribeForSelectedPCSYear() {
+    this.subscription = this.selectedPCSYear$.subscribe((message) => {
+      this.selectedPCSYear = message;
+      console.log('************NGXS: new selectedPCSYear received' + this.selectedPCSYear);
+      this.fetchFilteredData();
+    });
   }
-  setSelectedMonth(month: string) {
-    this.selectedMonth = month;
-    this.fetchFilteredData();
+  subscribeForSelectedPCSMonth() {
+    this.subscription = this.selectedPCSMonth$.subscribe((message) => {
+      this.selectedPCSMonth = message;
+      console.log('************NGXS: new selectedPCSMonth received' + this.selectedPCSMonth);
+      this.fetchFilteredData();
+    });
+  }
+
+
+  setSelectedPCSYear(year: string) {
+    this.store.dispatch(new SetSelectedPCSYear(year));
+    this.selectedPCSYear = year;
+  }
+  setSelectedPCSMonth(month: string) {
+    this.store.dispatch(new SetSelectedPCSMonth(month));
+    this.selectedPCSMonth = month;
   }
 
   editPaymentDetails(studentGUId: string, studentName: string) {
@@ -139,7 +162,7 @@ export class PaymentsListComponent implements OnInit {
   fetchFilteredData() {
     this.isLoading = true;
     console.log('becas payments-list data fetch ');
-    this.becaData.getBecaPaymentsByMonth(this.selectedYear, this.selectedMonth, '0').subscribe(
+    this.becaData.getBecaPaymentsByMonth(this.selectedPCSYear, this.selectedPCSMonth, '0').subscribe(
       (data) => {
         // console.log(JSON.stringify(data));
         this.becaPmts = data.filter((item) => {
@@ -160,7 +183,7 @@ export class PaymentsListComponent implements OnInit {
         this.isLoading = false;
         if (this.becaPmts && this.becaPmts.length > 0) {
           console.log('### after retreiving, grid becaPaymentId: ' + this.becaPmts[0].becaPaymentId);
-          console.log(JSON.stringify(this.becaPmts));
+          // console.log(JSON.stringify(this.becaPmts));
         } else {
           console.log('no results returned');
         }

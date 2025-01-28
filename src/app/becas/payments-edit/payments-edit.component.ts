@@ -133,6 +133,8 @@ export class PaymentsEditComponent implements OnInit {
 
   becaPaymentId: { value: '', disabled: true },
   pcsCode: { value: '', disabled: true },
+  pcsYear: { value: '', disabled: true },
+  pcsMonth: { value: '', disabled: true },
   studentId: { value: '', disabled: false },
   studentGUId: { value: '', disabled: false },
   mentorReportStatusId: { value: '', disabled: false },
@@ -153,6 +155,8 @@ export class PaymentsEditComponent implements OnInit {
     becaPaymentFormRow.patchValue({
   becaPaymentId: becaPaymentDataRow.becaPaymentId,
   pcsCode: becaPaymentDataRow.pcsCode,
+  pcsYear: becaPaymentDataRow.pcsYear,
+  pcsMonth: becaPaymentDataRow.pcsMonthNum,
   studentId: becaPaymentDataRow.studentId,
   studentGUId: becaPaymentDataRow.studentGUId,
   mentorReportStatusId: becaPaymentDataRow.mentorReportStatusId,
