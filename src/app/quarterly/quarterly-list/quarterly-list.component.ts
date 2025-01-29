@@ -84,6 +84,13 @@ export class QuarterlyListComponent implements OnInit {
     this.router.navigate(link);
   }
 
+  gotoFollowUp(studentGUId: string, studentName: string) {
+    this.store.dispatch(new SetSelectedStudentIdentifiers({ studentGUId, studentName }));
+    const link = ['/admins/follow-up/request-add']; //, { guid: studentGUId }];
+    console.log('navigating to ' + link);
+    this.router.navigate(link);
+  }
+
   public onSortColumn(sortCriteria: SORTCRITERIA) {
     return this.qrMinis.sort((a, b) => this.columnSorter.compareValues(a, b, sortCriteria));
   }

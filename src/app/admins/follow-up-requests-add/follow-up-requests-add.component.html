@@ -8,7 +8,11 @@
       <fieldset [disabled]="submitted">
         <div class="form-group">
           <div class="controls">
-            <app-student-selector (onSelectedStudentGUId)="onSelectedStudentGUId($event)"> </app-student-selector>
+              <app-student-lookup
+              [showSearchButton]="false"
+              [showNonEssential]="false"
+              [showSearchActiveOnly]="false"
+              (onSelectedStudentGUId)="onSelectedStudentGUId($event)"> </app-student-lookup>
           </div>
           <div class="controls">
             <label for="assignedToId">Assigned To: </label>

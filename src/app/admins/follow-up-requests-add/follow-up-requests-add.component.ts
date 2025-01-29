@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BehaviorSubject, EMPTY, Observable } from 'rxjs';
+import { Store } from '@ngxs/store';
+import { BehaviorSubject, EMPTY, Observable, Subscription } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { FollowUpDataService } from 'src/app/_shared/data/follow-up-data.service';
 import { MiscDataService } from 'src/app/_shared/data/misc-data.service';
+import { StudentState } from 'src/app/_store/student/student.state';
 import { constants } from '../../_shared/constants/constants';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 import { FollowUpRequest } from '../../_shared/models/follow-up-request';
@@ -20,20 +22,14 @@ export class FollowUpRequestsAddComponent implements OnInit {
   followUpRequest: FollowUpRequest;
   isLoading: boolean;
   submitted: boolean;
-
-  // updUpdateHistory_English: string;
-  // updSubject_English: string;
-  // updUpdateHistory_Spanish: string;
-  // updSubject_Spanish: string;
-  // updStudentGUId: string;
+  currentStudentGUId: string;
 
   errorMessage: string;
   successMessage: string;
   requestStatuses: SELECTITEM[];
 
-  // selectedFollowUpStatus: string;
-  // savedFollowUpStatusId: number;
-  // studentName: string;
+  currentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
+
   admins$: Observable<SELECTITEM[]> = this.miscData.getAdmins$().pipe(
     catchError((err) => {
     this.errorMessage = err;
@@ -42,11 +38,12 @@ export class FollowUpRequestsAddComponent implements OnInit {
   })
 );
 adminsubject: BehaviorSubject<[SELECTITEM]>;
-
+private subscription: Subscription;
 
   constructor(
     public currRoute: ActivatedRoute,
     private router: Router,
+    public store: Store,
     public followUpData: FollowUpDataService,
     public miscData: MiscDataService,
     private _fb: UntypedFormBuilder,
@@ -81,13 +78,28 @@ adminsubject: BehaviorSubject<[SELECTITEM]>;
   ngOnInit() {
     this.isLoading = true;
 
-    this.myForm.valueChanges.subscribe(() => {
-      this.errorMessage = '';
-      this.successMessage = '';
-      this.submitted = false;
-      // console.log('form change event');
+    // this.studentGUId = this.currRoute.snapshot.params['guid'];
+    this.followUpRequest.studentGUId = this.currentStudentGUId;
+    console.log('follow-up add with studentGUId: ' + this.currentStudentGUId);
+    this.subscribeForStudentGUIds2();
+  }
+
+  subscribeForStudentGUIds2() {
+    this.subscription = this.currentGUId$.subscribe((message) => {
+      this.currentStudentGUId = message;
+      console.log('************NGXS: FU new StudentGUId received2 ' + this.currentStudentGUId);
+      this.setSelectedStudent(this.currentStudentGUId);
     });
   }
+
+
+
+
+setSelectedStudent(studentGUId: string): void {
+  console.log('setSelectedStudent ' + studentGUId);
+  this.currentStudentGUId = studentGUId;
+  // Additional logic if needed
+}
 
   retrieveFormValues(): void {
     console.log('retrieveFormValues ' + JSON.stringify(this.myForm.value));
@@ -109,6 +121,7 @@ adminsubject: BehaviorSubject<[SELECTITEM]>;
 
     // this.followUpRequest.studentGUId =  this.myForm.controls.studentGUId;// set by store message
   }
+
 
   onSubmit() {
     console.log('Hi from FollowUpRequests Submit');
@@ -158,6 +171,7 @@ adminsubject: BehaviorSubject<[SELECTITEM]>;
 
   public onSelectedStudentGUId(studentGUId: string) {
     this.followUpRequest.studentGUId = studentGUId;
+    this.currentStudentGUId = studentGUId;
     console.log('studentGUId set to ' + studentGUId);
   }
 

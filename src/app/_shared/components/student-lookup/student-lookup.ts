@@ -47,6 +47,8 @@ export class StudentLookupComponent implements OnInit {
   public searchActiveOnly = true;
   private subscription: Subscription;
   @Input() showSearchButton: boolean;
+  @Input() showNonEssential: boolean;
+  @Input() showSearchActiveOnly: boolean;
 
    currentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
 

@@ -29,6 +29,7 @@
               <!-- <td>Id</td> -->
               <th></th>
               <th></th>
+              <th></th>
               <th app-sortable-column="studentName" sort-direction="asc" (onSortColumn)="onSortColumn($event)">
                 Student
               </th>
@@ -48,6 +49,9 @@
               <td>{{ i+1 }}</td>
               <td (click)="gotoStudent(qr.studentGUId, qr.studentName)" class="link">
                 Profile
+              </td>
+              <td (click)="gotoFollowUp(qr.studentGUId, qr.studentName)" class="link">
+                Follow&nbsp;Up
               </td>
               <td
                 class="link"

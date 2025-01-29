@@ -1,20 +1,13 @@
 <label for='search-string'>Student Search:
   &nbsp;</label>
-  <input
+  <input *ngIf="showSearchActiveOnly"
   id="ckEditMode"
   [(ngModel)]='searchActiveOnly'
   type="checkbox"
   (change)="toggleSearchActiveOnly($event)"
   style="margin: 0 0 0 1px"
 />
-
-
-  <!-- <input type="checkbox" [(ngModel)]="searchActiveOnly" /> -->
-  <span>Active Only</span>
-  <!-- <select id="searchTypeId" >
-    <option value="Active">Active</option>
-    <option value="All">All</option>
-  </select> -->
+  <span *ngIf="showSearchActiveOnly">Active Only</span>
 
 <span style="margin-bottom: 2px; margin-left: 1rem;">
   <span *ngIf="showSearchButton">
@@ -43,7 +36,7 @@
     <button class="btn" style="margin-left:-25px" (click)="onClear()"><b>[✖]</b></button>
   </span>
 </div>
-<div class="row">
+<div class="row" *ngIf="showNonEssential">
   <span [hidden]="currentGUId=='0000'" style="margin-top: .4rem;margin-left: 1rem;" (click)="gotoStudent( studentName )"
         class="link">Student Profile: {{ studentName }}
   </span>

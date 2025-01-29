@@ -31,7 +31,9 @@ export class QuarterlyContainerComponent implements OnInit {
    currentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
    selectedQRPeriod$ = this.store.select<string>(UIState.getSelectedQRPeriod);
 
-  constructor(private route: ActivatedRoute, public quarterlyData: QuarterlyDataService, public store: Store) {}
+  constructor(private route: ActivatedRoute,
+    public quarterlyData: QuarterlyDataService,
+    public store: Store) {}
 
   ngOnInit() {
     console.log('QR containerInit');
