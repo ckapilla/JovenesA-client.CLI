@@ -12,8 +12,8 @@
         <option *ngFor="let year of years" [value]="year.value">{{ year.label }}</option>
       </select>
       <select name="monthSelector"
-              [(ngModel)]="selectedPCSMonth"
-              (change)="setSelectedPCSMonth($event.target.value)">
+              [(ngModel)]="selectedPCSMonthNum"
+              (change)="setSelectedPCSMonthNum($event.target.value)">
         <option value="0">[Select]</option>
         <option *ngFor="let month of months" [value]="month.value">{{ month.label }}</option>
       </select>
@@ -24,8 +24,13 @@
               [(ngModel)]="selectedReviewedStatus"
               (change)="setSelectedReviewedStatus($event.target.value)">
         <option value="0">[All]</option>
-        <option *ngFor="let status of reviewedStatuses" [value]="status.value">{{ status.label }}</option>
+        <option *ngFor="let status of becaPaymentStatuses" [value]="status.value">{{ status.label }}</option>
       </select>
+
+      <span *ngIf="selectedPCSMonthNum !== '0' && !isEditableMonth" class="text-light" style="font-weight: bold;">
+        Data is Locked for this month
+      </span>
+
     </span>
 
   </div>

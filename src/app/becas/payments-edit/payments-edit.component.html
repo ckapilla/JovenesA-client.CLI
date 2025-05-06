@@ -28,6 +28,9 @@
                 (click)="location.back()">
                 Back
               </button>
+                <span *ngIf="selectedPCSMonthNum !== '0' && !isEditableMonth" class="text-danger" style="font-weight: bold;">
+                  Data is Locked for this month
+                </span>
             </p>
             <table class="table-sm table-striped">
               <thead>
@@ -87,7 +90,7 @@
                               formControlName="paymentStatusId"
                               class="form-control form-control-sm"
                               style="width: 120px;">
-                        <option *ngFor="let status of paymentStatuses" [value]="status.value">{{ status.label }}</option>
+                        <option *ngFor="let status of becaPaymentStatuses" [value]="status.value">{{ status.label }}</option>
                       </select>
                     </td>
 

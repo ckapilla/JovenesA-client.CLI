@@ -6,7 +6,7 @@ import {
   SetSelectedGradesPeriodId,
   SetSelectedGradYear,
   SetSelectedInscriptionsPeriodId,
-  SetSelectedPCSMonth,
+  SetSelectedPCSMonthNum,
   SetSelectedPCSYear,
   SetSelectedQRPeriod, SetSelectedStudentStatus,
   SetSelectedYearJoined, SetTestNamesVisibility
@@ -20,10 +20,10 @@ import { UIStateModel } from './ui.model';
     qrComponentsEditable: false,
 
     selectedQRPeriod: '', // initialize ConstantsService.generateQRPeriods
-    selectedGradesPeriodId: '122', // need to initialize this from ConstantsService
+    selectedGradesPeriodId: '123', // need to initialize this from ConstantsService
     selectedInscriptionsPeriodId: '124', // need to initialize this from ConstantsService
     selectedPCSYear: '2025',
-    selectedPCSMonth: '0',
+    selectedPCSMonthNum: '0',
     selectedFilterMode: '998',
     selectedStudentStatus: '0',
     selectedYearJoined: '0',
@@ -96,21 +96,23 @@ export class UIState {
 
 
   @Selector()
-  static getSelectedPCSMonth(state: UIStateModel): string {
-    return state.selectedPCSMonth;
+  static getSelectedPCSMonthNum(state: UIStateModel): string {
+    return state.selectedPCSMonthNum;
   }
 
-  @Action(SetSelectedPCSMonth)
-  setSelectedPCSMonth(ctx: StateContext<UIStateModel>, { payload }: SetSelectedPCSMonth) {
-    const selectedPCSMonth = payload;
-    console.log('************NGXS: new selectedPCSMonth received' + selectedPCSMonth);
+  @Action(SetSelectedPCSMonthNum)
+  setSelectedPCSMonthNum(ctx: StateContext<UIStateModel>, { payload }: SetSelectedPCSMonthNum) {
+    const selectedPCSMonthNum = payload;
+    console.log('************NGXS: new selectedPCSMonthNum received' + selectedPCSMonthNum);
     const state = ctx.getState();
-    console.log('B4',JSON.stringify(state));
+    console.log('B4 State',JSON.stringify(state));
     ctx.patchState({
-      ...state,
-      selectedPCSMonth
+      // Copilot suggestion to not update the whole state...state,
+      selectedPCSMonthNum
     });
-    console.log('AFTER', JSON.stringify(state));
+    // this is wrong: console.log('AFTER State', JSON.stringify(state));
+    const updatedState = ctx.getState();
+    console.log('AFTER with updatedState:', JSON.stringify(updatedState));
   }
 
   @Action(SetSelectedGradesPeriodId)

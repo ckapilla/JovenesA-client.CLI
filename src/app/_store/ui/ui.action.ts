@@ -36,12 +36,12 @@ export class SetSelectedPCSYear {
   constructor(public readonly payload: string) {}
 }
 
-export class GetSelectedPCSMonth {
-  static readonly type = '[UI] Get selectedPCSMonth';
+export class GetSelectedPCSMonthNum {
+  static readonly type = '[UI] Get selectedPCSMonthNum';
   constructor(public payload: UIStateModel) {}
 }
-export class SetSelectedPCSMonth {
-  static readonly type = '[UI] update selectedPCSMonth';
+export class SetSelectedPCSMonthNum {
+  static readonly type = '[UI] update selectedPCSMonthNum';
   constructor(public readonly payload: string) {}
 }
 ///

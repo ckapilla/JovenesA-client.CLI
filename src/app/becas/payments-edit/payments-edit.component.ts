@@ -8,6 +8,8 @@ import { catchError, tap } from 'rxjs/operators';
 import { MiscDataService } from 'src/app/_shared/data/misc-data.service';
 import { BecaPayment } from 'src/app/_shared/models/beca-payment';
 import { StudentState } from 'src/app/_store/student/student.state';
+import { UIState } from 'src/app/_store/ui/ui.state';
+import { constants } from '../../_shared/constants/constants';
 import { BecaDataService } from '../../_shared/data/beca-data.service';
 import { SELECTITEM } from '../../_shared/interfaces/SELECTITEM';
 import { StudentDTO } from '../../_shared/models/studentDTO';
@@ -34,10 +36,7 @@ export class PaymentsEditComponent implements OnInit {
   studentName: string;
   staticUrlPrefix: string;
 
-  paymentStatuses: SELECTITEM[] = [
-    { value: '2179', label: 'Pending' },
-    { value: '2180', label: 'Payment OK' },
-    { value: '2181', label:'On Hold' } ]; // , { value: '3', viewValue: 'Cancelled' }
+  readonly becaPaymentStatuses: SELECTITEM[] = constants.becaPaymentStatuses;
 
   admins$: Observable<SELECTITEM[]> = this.miscData.getAdmins$().pipe(
     tap((admins) => {
@@ -52,6 +51,13 @@ export class PaymentsEditComponent implements OnInit {
 
    currentGUId$ = this.store.select<string>(StudentState.getSelectedStudentGUId);
    currentName$ = this.store.select<string>(StudentState.getSelectedStudentName);
+
+   selectedPCSYear = '';
+   selectedPCSMonthNum = '0';
+   selectedPCSYear$ = this.store.select<string>(UIState.getSelectedPCSYear);
+   selectedPCSMonthNum$ = this.store.select<string>(UIState.getSelectedPCSMonthNum);
+   currentMonthNum = new Date().getMonth() + 1;
+   isEditableMonth: boolean = false;
 
   constructor(
     public becaData: BecaDataService,
@@ -77,10 +83,20 @@ export class PaymentsEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('paymentsEdit ngOnInit');
-    this.subscribeForStudentGUIds2();
-    // AABBCCEE
-    this.subscribeForStudentNames();
+    console.log('paymentsEdit ngOnInit')
+
+   // Retrieve the current values from the store
+   this.studentGUId = this.store.selectSnapshot(StudentState.getSelectedStudentGUId);
+   this.studentName = this.store.selectSnapshot(StudentState.getSelectedStudentName);
+   this.selectedPCSYear = this.store.selectSnapshot(UIState.getSelectedPCSYear);
+   this.selectedPCSMonthNum = this.store.selectSnapshot(UIState.getSelectedPCSMonthNum);
+   this.isEditableMonth = this.currentMonthNum < parseInt(this.selectedPCSMonthNum);
+   console.log('Student GUId:', this.studentGUId);
+   console.log('Student Name:', this.studentName);
+   console.log('Selected PCS Year:', this.selectedPCSYear);
+   console.log('Selected PCS Month Number:', this.selectedPCSMonthNum);
+   console.log('isEditableMonth:', this.isEditableMonth);
+    this.fetchFilteredData();
   }
 
   fetchFilteredData() {
@@ -104,6 +120,8 @@ export class PaymentsEditComponent implements OnInit {
             this.scrollIntoView();
           }, 0);
           this.isLoading = false;
+          console.log('isEditableMonth is ' + this.isEditableMonth);
+          this.toggleFormControls();
         }
       );
     }
@@ -172,22 +190,6 @@ export class PaymentsEditComponent implements OnInit {
     becaPaymentFormRow.markAsPristine();
   }
 
-  subscribeForStudentNames() {
-    this.subscription = this.currentName$.subscribe((message) => {
-      this.studentName = message;
-      console.log('************NGXS: payments edit new StudentName received' + this.studentName);
-    });
-  }
-
-  subscribeForStudentGUIds2() {
-    this.subscription = this.currentGUId$.subscribe((message) => {
-      this.studentGUId = message;
-      console.log('************NGXS: payments edit new StudentGUId received' + this.studentGUId);
-      if (this.studentGUId && this.studentGUId !== '0000') {
-        this.fetchFilteredData();
-      }
-    });
-  }
 
   scrollIntoView() {
     const element = document.body;
@@ -363,5 +365,19 @@ export class PaymentsEditComponent implements OnInit {
     // ask if form is dirty and has not just been submitted
     console.log('hasChanges has form dirty ' + this.myForm.dirty);
     return this.myForm.dirty;
+  }
+
+  toggleFormControls(): void {
+
+    // Iterate over each form control in the form array and enable/disable it
+    this.becaPaymentFormRows().controls.forEach((control) => {
+      if (this.isEditableMonth) {
+        control.enable(); // Enable the control
+      } else {
+        control.disable(); // Disable the control
+      }
+    });
+
+    console.log(`Form controls are now ${this.isEditableMonth ? 'enabled' : 'disabled'}`);
   }
 }

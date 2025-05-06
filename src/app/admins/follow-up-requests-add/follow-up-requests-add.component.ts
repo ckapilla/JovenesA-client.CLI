@@ -78,17 +78,21 @@ private subscription: Subscription;
   ngOnInit() {
     this.isLoading = true;
 
-    // this.studentGUId = this.currRoute.snapshot.params['guid'];
-    this.followUpRequest.studentGUId = this.currentStudentGUId;
-    console.log('follow-up add with studentGUId: ' + this.currentStudentGUId);
+    // // this.studentGUId = this.currRoute.snapshot.params['guid'];
+    // this.followUpRequest.studentGUId = this.currentStudentGUId;
+    // console.log('follow-up add with studentGUId: ' + this.currentStudentGUId);
     this.subscribeForStudentGUIds2();
   }
 
   subscribeForStudentGUIds2() {
     this.subscription = this.currentGUId$.subscribe((message) => {
-      this.currentStudentGUId = message;
+      // this.currentStudentGUId = message;
       console.log('************NGXS: FU new StudentGUId received2 ' + this.currentStudentGUId);
-      this.setSelectedStudent(this.currentStudentGUId);
+      this.setSelectedStudent(message);
+      // this.studentGUId = this.currRoute.snapshot.params['guid'];
+      this.followUpRequest.studentGUId = this.currentStudentGUId;
+      console.log('follow-up add with studentGUId: ' + this.currentStudentGUId);
+
     });
   }
 
