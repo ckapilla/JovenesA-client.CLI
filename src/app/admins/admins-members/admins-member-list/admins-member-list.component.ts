@@ -121,7 +121,7 @@ export class AdminsMemberListComponent implements OnInit {
     this.router.navigate(link);
   }
   gotoStudent(guid: string, studentName: string) {
-    console.log('setting studentName to ' + studentName);
+    console.log('setting studentName to ' + studentName + ' for guid ' + guid); ;
     // XXYYZZ this.session.setStudentInContextName(studentName);
     const link = ['admins/students/student-container', { guid: guid }];
 

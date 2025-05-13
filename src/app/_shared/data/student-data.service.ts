@@ -31,13 +31,13 @@ export class StudentDataService extends BaseDataService {
 
   public getStudentDTOViaGUID(studentGUId: string): Observable<StudentDTO> {
     const url = this.WebApiPrefix + 'students/DTO/' + studentGUId;
-    console.log('sending AuthHttp get request for Students');
+    console.log('sending AuthHttp get request for Students with Guid'+ studentGUId);
     return this.http.get<StudentDTO>(url);
   }
 
   public getStudentFlexiDTOViaGUID(studentGUId: string): Observable<StudentFlexiDTO> {
     const url = this.WebApiPrefix + 'students/headerDTO/' + studentGUId;
-    console.log('sending AuthHttp get request for Students');
+    console.log('sending AuthHttp get request for FlexiDTO with Guid'+ studentGUId);
     return this.http.get<StudentFlexiDTO>(url);
   }
 
