@@ -37,7 +37,7 @@ export class UniversityDataService {
       catchError(this.handleError));
   }
 
-  public addNewUniversity(university: University): Observable<University> {
+  public addNewUniversity(university: University): Observable<any> {
     const url = this.WebApiPrefix + 'universities';
     console.log(university);
     let body = JSON.stringify({ university });
@@ -56,7 +56,7 @@ export class UniversityDataService {
 
     const x = JSON.parse(body);
     body = JSON.stringify(x.university);
-    console.log('in updateUniversity');
+    console.log('in updateUniversity put');
 
     const returnedToken =
       // eslint-disable-next-line max-len
@@ -66,21 +66,21 @@ export class UniversityDataService {
     return this.http.put(url, body, { headers: headers });
   }
 
-  public uploadUniversity(frmData: FormData,
-    studentGUId: string,
-    // universityId: number,
-    gradYear: number
-    ): Observable<any> {
-    const url = this.WebApiPrefix + 'universities/' + 'university' + '?studentGUId=' + studentGUId + '&gradYear='+ gradYear;
+  // public uploadUniversity(frmData: FormData,
+  //   studentGUId: string,
+  //   // universityId: number,
+  //   gradYear: number
+  //   ): Observable<any> {
+  //   const url = this.WebApiPrefix + 'universities/' + 'university' + '?studentGUId=' + studentGUId + '&gradYear='+ gradYear;
 
-    if (frmData) {
-      const file: any = frmData.get('file');
-      console.log('ready to post ' + url + ' filename: ' + file.name); // + ' options ' + headers);
-      // console.log('with frmData.fileName = ' + frmData.get('fileName'));
-      // console.log('with frmData.studentGUID = ' + frmData.get('studentGUID'));
-    }
-    return this.http.post(url, frmData);
-  }
+  //   if (frmData) {
+  //     const file: any = frmData.get('file');
+  //     console.log('ready to post ' + url + ' filename: ' + file.name); // + ' options ' + headers);
+  //     // console.log('with frmData.fileName = ' + frmData.get('fileName'));
+  //     // console.log('with frmData.studentGUID = ' + frmData.get('studentGUID'));
+  //   }
+  //   return this.http.post(url, frmData);
+  // }
 
   private handleError(error: any) {
     console.log('university-data handlError');

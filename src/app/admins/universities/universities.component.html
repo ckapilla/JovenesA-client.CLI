@@ -19,7 +19,8 @@
             <tr>
               <th></th>
               <th>&nbsp;</th>
-
+              <th app-sortable-column="universityId" sort-direction="asc" (onSortColumn)="onSortColumn($event)">
+                  ID</th>
               <th app-sortable-column="universityAbbrev" sort-direction="asc" (onSortColumn)="onSortColumn($event)">
                   Abbrev</th>
               <th app-sortable-column="universityName"  (onSortColumn)="onSortColumn($event)">
@@ -37,7 +38,9 @@
                 <span (click)="editUniversity(uni.universityId)" class="link">
                   Edit</span>
               </td>
-
+              <td>
+                {{ uni.universityId }}
+              </td>
               <td>
                 {{ uni.universityAbbrev }}
               </td>
@@ -50,13 +53,9 @@
             </tr>
           </tbody>
         </table>
-        <div class="form-group">
-          <label for="universityAbbrev">Add new University</label>
-          <input id="universityAbbrev" type="text"
-                 #UniversityAbbrev
-                 class="form-control form-control-sm" placeholder="Abbreviation (2 - 10 characters)" />
-          <button class="btn btn-primary" (click)="addNewUniversity(UniversityAbbrev.value)">
-            Submit
+         <div class="form-group">
+          <button class="btn btn-primary" (click)="addNewUniversity()">
+            Add New University
           </button>
         </div>
         <span *ngIf="successMessage" class="alert alert-success">{{successMessage}}</span>

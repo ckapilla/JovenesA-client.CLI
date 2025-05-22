@@ -56,38 +56,15 @@ export class AdminsAddMemberComponent implements OnInit {
         },
         { validator: this.setAllTextFields }
       )
-      // statusGroup: _fb.group(
-      //   {
-      //     mentorStatusId: [''],
-      //     sponsorStatusId: [''],
-      //     adminStatusId: [''],
-      //     employeeStatusId: [''],
-      //     donorStatusId: [''],
-      //     volunteerStatusId: [''],
-      //     presidentStatusId: [''],
-      //     boardStatusId: ['']
-      //   },
-      //   { validator: this.setAtLeastOneStatus }
-      // )
+
     });
 
-    // this.myForm.controls.statusGroup.setValidators(this.setAtLeastOneStatus);
-
-    // this.myForm.controls.statusGroup.updateValueAndValidity();
     this.member = new Member();
 
     this.member.firstNames = '';
     this.member.lastNames = '';
     this.member.email = '';
-    // this.member.mentorStatusId = 0;
-    // this.member.mentorStatusId = 0;
-    // this.member.sponsorStatusId = 0;
-    // this.member.adminStatusId = 0;
-    // this.member.employeeStatusId = 0;
-    // this.member.donorStatusId = 0;
-    // this.member.volunteerStatusId = 0;
-    // this.member.presidentStatusId = 0;
-    // this.member.boardMemberStatusId = 0;
+
 
     this.errorMessage = '';
     this.successMessage = '';
@@ -108,14 +85,6 @@ export class AdminsAddMemberComponent implements OnInit {
       lastNames: member.lastNames,
       email: member.email // ,
 
-      // mentorStatusId: member.mentorStatusId,
-      // sponsorStatusId: member.sponsorStatusId,
-      // adminStatusId: member.adminStatusId,
-      // employeeStatusId: member.employeeStatusId,
-      // donorStatusId: member.donorStatusId,
-      // volunteerStatusId: member.volunteerStatusId,
-      // presidentStatusId: member.presidentStatusId,
-      // boardStatusId: member.boardMemberStatusId
     });
   }
 
@@ -125,8 +94,7 @@ export class AdminsAddMemberComponent implements OnInit {
     this.member = {
       ...this.member,
       ...this.myForm.value,
-      ...this.myForm.controls.textGroup.value,
-      // ...this.myForm.controls.statusGroup.value
+      ...this.myForm.controls.textGroup.value
     };
   }
 

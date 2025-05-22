@@ -341,6 +341,9 @@ console.log('%%%%%GENERATE GradesProcessing PERIODS%%%');
             case 'AcademicYearType':
               constants.academicYearTypes.push(subset);
               break;
+            case 'GradeMonth':
+              constants.gradeMonths.push(subset);
+              break;
             case 'Country':
               constants.countryList.push(subset);
               break;

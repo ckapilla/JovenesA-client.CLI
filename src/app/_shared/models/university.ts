@@ -5,7 +5,7 @@ export class University {
     public universityName?: string | null,
     public universityCity?: string | null,
     public academicYearTypeId?: number,
-    public gradeMonthsID?: number | null,
+    // public gradeMonthsIdXX?: number | null,
     public updtDtTm?: Date | null,
     // public timestamp?: any | null
 

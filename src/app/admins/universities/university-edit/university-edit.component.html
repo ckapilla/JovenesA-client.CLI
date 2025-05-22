@@ -9,6 +9,13 @@
 
     <form [formGroup]="myForm" class="form-horizontal">
 
+
+      <label for="universityId">University ID</label>
+      <input id="universityId"
+             formControlName="universityId"
+             class="form-control form-control-sm" type="text" />
+
+
       <label for="universityAbbrev">Abbreviation</label>
       <input id="universityAbbrev"
              formControlName="universityAbbrev"
@@ -56,6 +63,17 @@
                           [errors]="{
                 'required': 'Academic Year Type is required'
               }"></app-display-errors>
+
+
+      <!-- <label for="gradeMonthsId">Grade Months</label>
+      <select formControlName="gradeMonthsId"
+              class="form-control form-control-sm">
+        <option *ngFor="let type of gradeMonths" [value]="type.value">{{type.label}}</option>
+      </select>
+      <app-display-errors control="GradeMonthsId" class="red"
+                          [errors]="{
+                'required': 'Grade Months entry is required'
+              }"></app-display-errors> -->
 
 
       <div class="form-group">

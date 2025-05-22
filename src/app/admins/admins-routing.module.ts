@@ -23,7 +23,8 @@ import { FollowUpRequestsComponent } from './follow-up-requests/follow-up-reques
 import { SponsorGroupComponent } from './sponsor-group/sponsor-group.component';
 import { SponsorGroupsComponent } from './sponsor-groups/sponsor-groups.component';
 import { UniversitiesComponent } from './universities/universities.component';
-import { UniversityEditComponent } from './university-edit/university-edit.component';
+import { UniversityAddComponent } from './universities/university-add/university-add.component';
+import { UniversityEditComponent } from './universities/university-edit/university-edit.component';
 import { UtilitiesComponent } from './utilities/utilities.component';
 
 const adminRoutes: Routes = [
@@ -148,6 +149,10 @@ const adminRoutes: Routes = [
       {
         path: 'universities',
         component: UniversitiesComponent
+      },
+            {
+        path: 'university-add', // /:universityId',
+        component: UniversityAddComponent
       },
       {
         path: 'university-edit', // /:universityId',

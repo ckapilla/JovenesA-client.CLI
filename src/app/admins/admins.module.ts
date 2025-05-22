@@ -38,7 +38,9 @@ import { SponsorGroupComponent } from './sponsor-group/sponsor-group.component';
 import { SponsorGroupsComponent } from './sponsor-groups/sponsor-groups.component';
 // import { StudentReportsStatusCountsComponent } from './ssr-status-countsXXX/ssr-status-counts.component';
 import { UniversitiesComponent } from './universities/universities.component';
-import { UniversityEditComponent } from './university-edit/university-edit.component';
+import { UniversityAddComponent } from './universities/university-add/university-add.component';
+import { UniversityEditComponent } from './universities/university-edit/university-edit.component';
+
 
 import { ServerEnvironmentComponent } from './utilities/server-environment/server-environment.component';
 import { TestNamesVisibilityComponent } from './utilities/test-names-visibility/test-names-visibility.component';
@@ -91,6 +93,7 @@ import { WHSE_SU_Component } from '../_shared/components/whse-su/whse-su.compone
         UtilitiesComponent,
         UniversitiesComponent,
         UniversityEditComponent,
+        UniversityAddComponent,
         MentorReportsSubmittedComponent,
         AdminsStudentSearchComponent,
         AdminsMemberSearchComponent,

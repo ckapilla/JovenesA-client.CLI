@@ -55,31 +55,10 @@ export class UniversitiesComponent implements OnInit {
     this.router.navigate(link);
   }
 
-  addNewUniversity(universityAbbrev: string) {
-    console.log('adding universityAbbrev ' + universityAbbrev);
-    if (!universityAbbrev ) {
-      alert('University Abbrev must not be empty');
-      return;
-    }
-    const sg = new University();
-    sg.universityAbbrev = universityAbbrev;
-
-    this.universityData.addNewUniversity(sg).subscribe(
-      () => {
-        console.log((this.successMessage = 'New University ' + universityAbbrev + ' added successfully'));
-        this.isLoading = false;
-        this.fetchData();
-        this.successMessage = 'Be sure to edit the new University to add more details';
-        window.setTimeout(() => {
-          // console.log('clearing success message');
-          this.successMessage = '';
-        }, 5000);
-      },
-      (error) => {
-        console.log((this.errorMessage = error));
-        this.isLoading = false;
-      }
-    );
+  addNewUniversity() {
+    const link = [ '/admins/university-add' ];
+    console.log('navigating to ' + link);
+    this.router.navigate(link);
   }
 
   public onSortColumn(sortCriteria: SORTCRITERIA) {

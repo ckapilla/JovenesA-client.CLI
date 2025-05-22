@@ -4,9 +4,9 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 import { ActivatedRoute, Router } from '@angular/router';
 import { constants } from 'src/app/_shared/constants/constants';
 import { SELECTITEM } from 'src/app/_shared/interfaces/SELECTITEM';
-import { UniversityDataService } from '../../_shared/data/university-data.service';
-import { SORTCRITERIA } from '../../_shared/interfaces/SORTCRITERIA';
-import { University } from '../../_shared/models/university';
+import { UniversityDataService } from '../../../_shared/data/university-data.service';
+import { SORTCRITERIA } from '../../../_shared/interfaces/SORTCRITERIA';
+import { University } from '../../../_shared/models/university';
 
 @Component({
   selector: 'app-university',
@@ -24,6 +24,7 @@ export class UniversityEditComponent implements OnInit {
   universityId: number;
   newMemberMessage: string;
   academicYearTypes: SELECTITEM[];
+  // gradeMonthsValues: SELECTITEM[];
 
   constructor(
     public currRoute: ActivatedRoute,
@@ -34,9 +35,10 @@ export class UniversityEditComponent implements OnInit {
   ) {
     this.isLoading = false;
     this.academicYearTypes = constants.academicYearTypes;
+    //  this.gradeMonthsValues = constants.gradeMonths;
 
     this.myForm = formBuilder.group({
-      universityId: [ { value: '', hidden: true } ],
+      universityId: [ { value: '', disabled: true} ],
       universityAbbrev: [ '', Validators.compose([ Validators.required, Validators.maxLength(10) ]) ],
       universityName: [ '', Validators.compose([ Validators.required, Validators.maxLength(50) ]) ],
       universityCity: [ '', Validators.compose([ Validators.required, Validators.maxLength(50) ]) ],
@@ -74,7 +76,8 @@ export class UniversityEditComponent implements OnInit {
       universityName: university.universityName,
       universityAbbrev: university.universityAbbrev,
       universityCity: university.universityCity,
-      academicYearTypeId: university.academicYearTypeId
+      academicYearTypeId: university.academicYearTypeId,
+      // gradeMonthsId: university.gradeMonthsId
 
     });
   }

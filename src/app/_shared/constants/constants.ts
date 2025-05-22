@@ -128,6 +128,8 @@ const becaPaymentStatuses: SELECTITEM[] = [
 
 const academicYearTypes: SELECTITEM[] = [];
 
+const gradeMonths: SELECTITEM[] = [];
+
 const countryList: SELECTITEM[] = [];
 
 export const constants = {
@@ -166,5 +168,6 @@ export const constants = {
   highlightStatuses,
   becaPaymentStatuses,
   academicYearTypes,
+  gradeMonths,
   countryList
 };
