@@ -120,6 +120,7 @@ export class PaymentsListComponent implements OnInit {
     this.subscription = this.selectedPCSMonthNum$.subscribe((message) => {
       this.selectedPCSMonthNum = message;
       console.log('************NGXS: BECA new selectedPCSMonthNum received '  + this.selectedPCSMonthNum);
+      console.log('current month num: ' + this.currentMonthNum);
       this.isEditableMonth = this.currentMonthNum < parseInt(this.selectedPCSMonthNum);
       this.fetchFilteredData();
     });

@@ -61,7 +61,7 @@ export class GradeEntryComponent implements OnInit {
   ) {
     this.staticUrlPrefix = url.getStaticFilePrefix();
     this.isLoading = false;
-    this.inGradesProcessingPeriod = true;
+    this.inGradesProcessingPeriod = false;
     this.myForm = this._fb.group({
       studentGUId: ["0000"],
       gradeEntryFormRows: this._fb.array([]),
@@ -189,7 +189,7 @@ export class GradeEntryComponent implements OnInit {
           this.studentGradesData.forEach((gradeEntryDataRow) => {
             this.addGradeEntryRow(gradeEntryDataRow);
           });
-          this.inGradesProcessingPeriod = true;
+          this.inGradesProcessingPeriod = false;
           this.isLoading = false;
         }
       );

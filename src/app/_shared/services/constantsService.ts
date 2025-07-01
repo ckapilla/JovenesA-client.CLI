@@ -286,8 +286,7 @@ console.log('%%%%%GENERATE GradesProcessing PERIODS%%%');
     let x = 'NOTSETYET';
     this.qrDates$.pipe().subscribe(
       (data) => {
-        x = data.ssrDateRange;
-          constants.ssrDateRange = x;
+        constants.ssrDateRange = data.ssrDateRange;
       }),
       (err) => console.error('Subscribe error: ' + err),
       () => {
