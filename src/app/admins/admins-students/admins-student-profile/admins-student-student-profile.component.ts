@@ -427,9 +427,10 @@ export class AdminsStudentProfileComponent implements OnInit {
   backToStudentsList() {
     this.router.navigate(['/admins/students']);
   }
-  setMentorStartDate(){
+  setMentorHistoryDates(){
     const formattedDt = formatDate(new Date(), 'yyyy-MM-dd', 'en_US');
     this.myForm.controls.mentorAssignedDate.setValue(formattedDt);
+    this.myForm.controls.mentoringEndDate.setValue(formattedDt);
   }
 
   mentorReportsReview() {
